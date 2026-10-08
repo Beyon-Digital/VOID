@@ -17,3 +17,4 @@ export { tokens, injectVoidStyles, focusClass, animatedClass } from '../componen
 export * from '../components/JobRow';
 export * from '../components/BudgetBadge';
 export * from '../components/ModelRegistryList';
+export * from '../components/ProposalCard';
