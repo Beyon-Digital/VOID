@@ -42,13 +42,14 @@ public:
         : session_ (1), control_ (std::move (control)), telemetry_ (std::move (telemetry))
     {
         auto& dm = session_.engine().getDeviceManager();
-        dm.initialise (0, 2);
+        if (! std::getenv ("VOID_SKIP_DEVICE_INIT"))
+            dm.initialise (0, 2);
         if (auto* dev = dm.deviceManager.getCurrentAudioDevice())
             juce::Logger::writeToLog (juce::String ("[void-engine] audio device: ")
                                       + dev->getName() + " @"
                                       + juce::String (dev->getCurrentSampleRate()) + "Hz");
         else
-            juce::Logger::writeToLog ("[void-engine] no audio device — offline render still available");
+            juce::Logger::writeToLog ("[void-engine] no audio device - offline render still available");
         dm.deviceManager.addAudioCallback (&probe_);
 
         const auto* envId = std::getenv ("VOID_WORKER_INSTANCE_ID");
@@ -57,7 +58,8 @@ public:
         sendHello (token);
         if (telemetry_.isOpen())
             telemetry_.setSendNonBlocking (true); // lossy by contract
-        startTimerHz (30);
+        if (! std::getenv ("VOID_SKIP_TIMER"))
+            startTimerHz (30);
     }
 
     ~EngineWorker() override { stopTimer(); }
@@ -72,9 +74,17 @@ public:
             frame.clear();
             juce::MessageManager::callAsync ([this, copy] { dispatch (*copy); });
         }
-        juce::Logger::writeToLog ("[void-engine] control socket closed; exiting");
-        juce::MessageManager::callAsync ([] { juce::JUCEApplicationBase::quit(); });
+        juce::Logger::writeToLog ("[void-engine] control socket closed; exiting (fd=" +
+                                  juce::String (control_.fd()) + " fcntl=" +
+                                  juce::String (::fcntl (control_.fd(), F_GETFL)) + " errno=" +
+                                  juce::String (errno) + " " + juce::String (strerror (errno)) + ")");
+        alive_ = false;
+        juce::MessageManager::callAsync (
+            [] { juce::MessageManager::getInstance()->stopDispatchLoop(); });
     }
+
+    bool alive() const noexcept { return alive_; }
+    void setAlive (bool a) noexcept { alive_ = a; }
 
 private:
     void sendHello (const juce::String& token)
@@ -271,6 +281,7 @@ private:
         }
     }
 
+    std::atomic<bool> alive_ { true };
     voidengine::EngineSession session_;
     voidengine::RtProbe probe_;
     UdsChannel control_;
@@ -310,9 +321,15 @@ int main (int argc, char* argv[])
 
     EngineWorker worker (std::move (control), std::move (telemetry),
                          juce::String (token));
-    std::thread reader ([&worker] { worker.runReader(); });
+    std::thread reader;
+    if (! std::getenv ("VOID_NO_READER"))
+        reader = std::thread ([&worker] { worker.runReader(); });
 
-    juce::MessageManager::getInstance()->runDispatchLoop();
+    auto* mm = juce::MessageManager::getInstance();
+    // Do NOT use runDispatchLoop(): on macOS it wraps [NSApp run], and on this
+    // headless host the system posts applicationWillTerminate ~1s in, killing
+    // the worker silently. runDispatchLoopUntil() pumps CFRunLoop directly.
+    while (worker.alive() && mm->runDispatchLoopUntil (100)) {}
 
     if (reader.joinable())
         reader.detach();

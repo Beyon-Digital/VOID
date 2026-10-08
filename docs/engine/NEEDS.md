@@ -1,0 +1,35 @@
+# NEEDS — protocol/schema gaps found by the engine lane
+
+Owner: `protocol/` is integrator-owned; this file only records what the engine
+needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
+
+1. **`expected_revision` has no "skip" sentinel.** It's `ulong` with no opt-out
+   value, so the gate is a hard `== revision_` match — a client that only wants
+   best-effort application must track the exact revision. Documented behaviour,
+   workable, but a `expected_revision = 0` means "project at revision 0" and
+   there is no way to say "don't care". Consider `optional ulong` or an explicit
+   `any = 0xFFFFFFFFFFFFFFFF` convention.
+
+2. **No `name` on `InsertMidiClipOp`.** Clip naming needs a follow-up
+   `SetClipName`-style op or an added field; engine currently auto-names clips
+   `clip-<n>`.
+
+3. **`SaveProjectOp` carries only `reason`** — no target directory field, so the
+   checkpoint always lands in the container created by `CreateProjectOp` /
+   `OpenProjectOp`. That's correct per CONTRACTS §4 (container-chosen), just
+   noting there's no "save-as" / export path in schema.
+
+4. **`InsertAudioClipOp` takes `rel_path` + `asset_id`** — assets must be staged
+   in `container/assets/sha256/` *before* the op; there is no op to ingest/upload
+   an asset over the wire (intentional: no bulk data on the socket). The
+   supervisor must copy files into the container first. Documented here so the
+   coordinator lane knows ingestion is its job.
+
+5. **No op to read back undo/redo depth or list checkpoints.** `ViewKind` reads
+   cover PROJECT_SUMMARY..RECEIPT_LIST; a CHECKPOINT_LIST view would let the UI
+   show save history without touching persistence internals. Worked around with
+   RECEIPT_LIST.
+
+6. **`MeterFrame` has no per-track meter array** in this schema rev — engine
+   publishes peak/RMS pairs the schema supports; per-track meters need a schema
+   field if the mixer wants them (check with integrator before assuming).

@@ -248,7 +248,7 @@ CommandResult EngineSession::applyPersistentCommand (const vp::PersistentCommand
     if (rtCallbackActive)
     {
         // T16 tripwire: mutations must never land on the audio thread.
-        juce::Logger::writeToLog ("[rt-safety] persistent command reached audio thread — BUG");
+        juce::Logger::writeToLog ("[rt-safety] persistent command reached audio thread - BUG");
         jassertfalse;
     }
 

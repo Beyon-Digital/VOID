@@ -87,6 +87,7 @@ CommandResult EngineSession::writeCheckpoint (const juce::String& reason,
 
     // Publish: move staging → checkpoints/<id> then atomic CURRENT swap.
     const auto dest = container.getChildFile ("checkpoints").getChildFile (cpId);
+    dest.getParentDirectory().createDirectory();
     if (! staging.moveFileTo (dest))
         return { vp::AckStatus_REJECTED, vp::ErrorCode_DISK_FULL, 0, "checkpoint publish move failed" };
 
