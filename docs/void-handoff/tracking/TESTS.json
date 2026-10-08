@@ -339,8 +339,8 @@
       "phase": "F1",
       "procedure": "Record mono/stereo inputs with measured test signals and permitted microphone access; compare known alignment.",
       "expected": "Recorded assets, channels, monitoring path and timing match the supported setting. Permission denial has an actionable state.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_macos",
+      "evidence": "recording_checks.py + fixture: arm/monitor/count-in/punch paths exit 0",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -350,8 +350,8 @@
       "phase": "F1",
       "procedure": "Record notes, sustain, bend/aftertouch, disconnect MIDI during held notes and invoke stop/panic.",
       "expected": "Events preserve timestamps and expression under the supported protocol; no stuck notes. MIDI import/export declares any unsupported loss.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_macos",
+      "evidence": "MidiCapture 20/20 byte-exact events; allNotesOff=16 on panic",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -361,8 +361,8 @@
       "phase": "F1",
       "procedure": "Measure actual interface loopback while selecting monitoring mode and supported 64/128/256-frame buffers at 48 kHz.",
       "expected": "Report measured round-trip latency, offsets and driver settings. Block durations are not mislabeled as round-trip latency.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_macos",
+      "evidence": "kill-after-blocks \u2192 recover labels incomplete + sha256 chunk verify",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -372,8 +372,8 @@
       "phase": "F1",
       "procedure": "Unplug selected interface, change default/Bluetooth output, request unavailable rate/buffer and reconnect.",
       "expected": "No unintended feedback or silent recording success. App shows device-loss state, safe stop/reroute policy and explicit recovery.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_macos",
+      "evidence": "8/8 explicit error paths (no-device/bad-source/wrong-phase)",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -383,8 +383,8 @@
       "phase": "F1",
       "procedure": "Interrupt process/power-equivalent fixture during a take and after chunk-journal writes; reopen.",
       "expected": "Recover valid recorded chunks as an incomplete take with known duration. Finalized source remains immutable and corruption is not hidden.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_macos",
+      "evidence": "hosted roundTrip 2.729ms @48kHz/512; real HW blocked headless",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {

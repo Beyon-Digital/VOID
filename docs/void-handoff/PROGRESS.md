@@ -79,3 +79,9 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - studio/export: ExportSpecDto serde twin (string-int64, internally-tagged tail, midi-omits-wav), telemetry-driven progress, read-view results
 - void-ui: MixerStrip/ExportJobRow/InstrumentRack additive
 - Verified post-merge: cargo 17 suites ok (void-export 19), pnpm 135 vitest, 7 package builds + tauri bundles
+
+## 2026-10-08 ~19:20Z — Lane E (W08 recording engine side) merged (28753aa → devin/void-implementation)
+- native/void-engine/src/recording/: RecordingManager (arm/monitor/count-in/metronome/cycle+live-punch, device-loss/disk/bad-phase explicit fails), MidiCapture (lock-free fifo→20Hz drain→midi-<id>.jsonl byte-exact), TakeJournal (atomic journal.json, RIFF-walk salvage, incomplete-take labels), takeFileProvider routes takes into container; opOpenProject runs container recovery
+- tests/recording: take --midi 20/20, punch+stereo ok, kill-recovery labels incomplete (31504B chunks), panic allNotesOff=16, errors 8/8, hosted roundTrip latency 2.729ms@48k/512; baseline harness 15/15 unchanged
+- NEEDS.md §7-8: protocol has zero recording ops — engine-internal drive for now; recording ops proposed for protocol rev 2
+- Blocked honest: real hardware latency (headless), mic-permission UX path

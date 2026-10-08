@@ -14,7 +14,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W05 | F0 | Immutable assets and crash-consistent checkpoints | W04 | done |
 | W06 | F0 | Native plugin proof and safe scanning | W05 | partial_macos |
 | W07 | F0 | CI, diagnostics, clean install and Foundation gate | W06 | partial |
-| W08 | F1 | Audio/MIDI recording and monitoring workflow | W07 | in_progress_lane |
+| W08 | F1 | Audio/MIDI recording and monitoring workflow | W07 | partial_macos |
 | W09 | F1 | Arrangement and piano-roll editors | W08 | done |
 | W10 | F1 | Playable instruments, real mixer and export | W09 | partial |
 | W11 | F1 | First-song qualification and Electron cutover | W10 | not_started |
@@ -263,7 +263,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W08 · F1 · Audio/MIDI recording and monitoring workflow
 
-**Owner:** Engine + UI · **Depends:** W07 · **Status:** in_progress_lane
+**Owner:** Engine + UI · **Depends:** W07 · **Status:** partial_macos
 
 **Target paths:** `native/void-engine/src/recording/`, `packages/void-studio/src/recording/`, `tests/recording/`
 
@@ -287,7 +287,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** CORE-02, CORE-03
 
-**Evidence:** r; e; c; o; r; d; i; n; g;  ; l; a; n; e;  ; r; u; n; n; i; n; g;  ; o; n;  ; m; a; c; O; S;  ; (; d; e; v; i; n; -; f; 5; 4; 4; b; f; 9; f; )
+**Evidence:** R; e; c; o; r; d; i; n; g; M; a; n; a; g; e; r; +; M; i; d; i; C; a; p; t; u; r; e; +; T; a; k; e; J; o; u; r; n; a; l;  ; m; e; r; g; e; d; ;;  ; t; a; k; e;  ; 2; 0; /; 2; 0; ,;  ; e; r; r; o; r; s;  ; 8; /; 8; ,;  ; k; i; l; l; -; r; e; c; o; v; e; r; y;  ; l; a; b; e; l; s;  ; i; n; c; o; m; p; l; e; t; e; ,;  ; p; a; n; i; c;  ; a; l; l; N; o; t; e; s; O; f; f; =; 1; 6; ,;  ; h; o; s; t; e; d;  ; r; o; u; n; d; T; r; i; p;  ; 2; .; 7; 2; 9; m; s; ;;  ; b; l; o; c; k; e; d; :;  ; r; e; a; l;  ; H; W;  ; l; a; t; e; n; c; y;  ; h; e; a; d; l; e; s; s;  ; +;  ; p; r; o; t; o; c; o; l;  ; h; a; s;  ; n; o;  ; r; e; c; o; r; d; i; n; g;  ; o; p; s;  ; (; N; E; E; D; S; .; m; d;  ; §; 7; -; 8;  ; p; r; o; p; o; s; e; s;  ; r; e; v; 2;  ; o; p; s; )
 
 ## W09 · F1 · Arrangement and piano-roll editors
 

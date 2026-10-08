@@ -367,8 +367,8 @@
         "CORE-02",
         "CORE-03"
       ],
-      "status": "in_progress_lane",
-      "evidence": "recording lane running on macOS (devin-f544bf9f)",
+      "status": "partial_macos",
+      "evidence": "RecordingManager+MidiCapture+TakeJournal merged; take 20/20, errors 8/8, kill-recovery labels incomplete, panic allNotesOff=16, hosted roundTrip 2.729ms; blocked: real HW latency headless + protocol has no recording ops (NEEDS.md \u00a77-8 proposes rev2 ops)",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
