@@ -117,3 +117,60 @@ thread). Live under-load counters unverifiable: no audio device on this box.
   path); a dedicated run to capture the crash report is still pending.
 - Audio I/O: no device in this VM (`dm.initialise` returns no device) —
   `VOID_SKIP_DEVICE_INIT` env bypass kept for headless runs.
+
+## W08 — recording (T31–T35), engine side
+
+Host: macOS 26.6.2 arm64, Apple clang 21, ninja build `build/void-engine`,
+`void-recording-fixture` sha256 `159cac9ec7d9303e49090c6c62dc21de311ae60f86a5b60ef08a75fb094684c4` (Debug).
+No recording ops in protocol major.1 — engine subsystem driven in-process via
+fixture binary (NEEDS.md §7). All audio evidence uses TE's hosted device
+(`EnginePlayer`, 2×1ch wave inputs `Input 1`/`Input 2` + virtual `MIDI Input`).
+
+### Commands + exit codes
+
+| Scenario | Command | Exit |
+|---|---|---|
+| multitrack mono+midi | `void-recording-fixture take /tmp/vr-t1 --midi` | 0, 20/20 PASS |
+| punch-in live | `take /tmp/vr-pu --punch` | 0 |
+| stereo pair | `take /tmp/vr-st --stereo` | 0, chunks:1 2ch |
+| kill mid-take | `take /tmp/vr-k4 --kill-after-blocks 40` | 134 (SIGABRT, simulated crash) |
+| reopen + recover | `recover /tmp/vr-k4` | 0, status `incomplete` |
+| panic all-notes-off | `panic /tmp/vr-pn` | 0, allNotesOff=16, noteOffs=0 |
+| error paths | `errors /tmp/vr-er` | 0, 8/8 explicit failures |
+| hosted latency | `latency /tmp/vr-la` | 0, roundTripMs 2.729 @48k/512 |
+| full suite | `python3 tests/recording/recording_checks.py <fixture>` | 0, SUMMARY 0 failures |
+| baseline regression | `supervisor_stub.py void-engine` | 15/15 unchanged |
+
+### Artifact evidence (take b77366c529304ef, /tmp/vr-t1)
+
+- `recordings/<take>/journal.json` — `void-take-journal/1`, status `finalized`,
+  3 chunks, 3 clipIds; sha256 `a5150e0518f657ad4bdb84e03c8dd06ce71e3fc626b7aa4f833e3ed215f3ddc6`
+- `chunk-dest-a-1.wav` 102160 B, 1 ch, 33792 frames; sha256 `1892aa8df3101f8362964ea39c428b89eb003de92de562c72dd0db7c3b36adf2` (matches journal entry — sealed at finalize)
+- `chunk-dest-b-1.wav` sha256 `97352b865a4f0198d150978fffbec008cb9bf97820cb38581499066b71cd530f`
+- `midi-dest-midi.jsonl` sha256 `c7f2867ec7cd095f5520d0d23d0058429038d1ddcba0220abb56dd04850d669e` — 7 rows preserving noteOn/sustain/pitchBend/polyAftertouch/aftertouch/noteOff with `ts` + `hostNs` stamps
+- killed take `b86a1db12892444`: reopened → status `incomplete`, chunks listed with `bytesObserved=31504`, `framesObserved=10240` (RIFF-walk salvage on unfinalized data-size), no sha256 seal — never mistaken for final
+
+### Blocked (honest, not faked)
+
+- **T33 real hardware latency**: `blocked` — no audio device on this VM
+  (headless). Hosted path measured instead: `inputLatencyNumSamples=0`,
+  `outputLatencyNumSamples=131`, `recordAdjustment=0`, roundTrip=2.729 ms
+  @48 kHz/512 frames. Method for hardware: same fixture with
+  `EnginePlayer`→CoreAudio device + `getRecordAdjustment()` read-back.
+- **Mic-permission denial (T31/T34)**: `blocked` on this box — TCC mic
+  entitlement flow can't trigger headless; engine-side equivalent covered by
+  `errors` scope 1 (no device → explicit `Result::fail`, never false success)
+  and `deviceListChanged` take-fail path.
+- **Disk-full (T34)**: `startRecording` pre-checks `getBytesFreeOnVolume`
+  ≥ 64 MiB; a real ENOSPC mid-take is not reproducible on this volume —
+  path covered by code + explicit `fail()` result, runtime probe `blocked`.
+- **Default-device-change (T34)**: `deviceListChanged` listener fails a live
+  take when an armed input disappears; hot-swap of a real device `blocked`
+  (no swappable hardware present).
+
+### RT-safety note
+
+`handleIncomingMidiMessage` (Consumer callback) copies ≤3 bytes + stamps into
+a `juce::AbstractFifo` — no locks, no allocation, no disk. Journal and
+`.jsonl` writes happen on a 20 Hz `juce::Timer` (message thread) or at stop —
+never on the audio callback.
