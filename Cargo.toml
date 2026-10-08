@@ -9,6 +9,7 @@ members = [
     "crates/void-jobs",
     "crates/void-models",
     "crates/void-proposals",
+    "crates/void-producer",
     "crates/void-export",
     "crates/void-visual",
     "apps/void-tauri/src-tauri",

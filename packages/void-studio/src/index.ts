@@ -48,3 +48,6 @@ export * from './takes';
 export * from './arrangement';
 export * from './scenes';
 export * from './visuals';
+export * from './producer';
+export * from './shortcuts';
+export * from './screensets';
