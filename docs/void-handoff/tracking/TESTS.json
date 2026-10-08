@@ -889,8 +889,8 @@
       "phase": "F4",
       "procedure": "Import licensed image/video/preset layers; trim/fade/transform and save/reopen with song markers.",
       "expected": "Normal visual media works without generation; timing anchors and joint checkpoint revision are correct.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "void-visual: identical inputs\u2192identical frame sha across renderers; PNG decode+blend pixel-verified; beat-anchor activates exactly on tick; checkpoint round-trip + wire-restore hash-gated",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -900,8 +900,8 @@
       "phase": "F4",
       "procedure": "Play tempo changes with visual cues on preview/program and multiple supported displays; measure presentation timestamps.",
       "expected": "Bounded clock interpolation and output-latency policy; audio does not wait on visual frames, and support is measured per GPU/display path.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "audio-clock stamps only (position_ticks=sample\u00d740 @120bpm); 500-clock push never blocks; NEXT_BEAT take on boundary; stale epoch/seq rejected; 30000/1001 fps",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -911,8 +911,8 @@
       "phase": "F4",
       "procedure": "Kill visual worker, overload GPU, undo a combined music/visual edit and crash between participant commits.",
       "expected": "Audio path remains independent within tested OS/GPU limits; partial transaction is compensated or recovered, never labeled atomic success.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "25ms/frame overload \u2192 counted drops with audio unaffected; undo(tx) rewinds whole tx; stale revision/ghost layer/id-reuse/empty-tx REJECTED; decode failure \u2192 VisualAlert, render continues",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {

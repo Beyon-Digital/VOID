@@ -918,8 +918,8 @@
       "dependency_ids": [
         "VIS-01"
       ],
-      "status": "in_progress_lane",
-      "evidence": "lane O spawned: crates/void-visual wgpu + protocol/visual rev0 draft + tests/visual + studio visuals store",
+      "status": "partial",
+      "evidence": "crates/void-visual real wgpu engine (headless adapter, deterministic offscreen render, program frame sha da8da142\u2026), protocol/visual/void_visual.fbs draft rev0, beat/sample-anchored layers + quantized transitions, preview/program split + program-first drop order, audio-clock-only stamps, checkpoint join hash-gated, whole-tx undo; tests/visual 14/14 (T81\u00d75 T82\u00d75 T83\u00d74); studio visuals view-state + op builders (8 tests)",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],

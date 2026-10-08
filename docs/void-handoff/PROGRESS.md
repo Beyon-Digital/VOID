@@ -143,3 +143,10 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - scenes/: scene grid model + quantized launch semantics spec (native scheduling = NEEDS)
 - Integrator fixes post-merge: tokens.panel→surface (TakeLane/SceneCell), strict-null guards in w17.test.ts
 - Verified: vitest 338 total (studio 310 incl. 52 new), cargo 23 suites, both pkgs build clean
+
+## 2026-10-08 ~23:55Z — Lane O (W22 native visual engine) merged (devin/void-lane-visual → devin/void-implementation)
+- crates/void-visual: real wgpu engine — scene/layer stack, media attach (sha256 refs), transform/blend/transitions (cut/fade/wipe beat-quantized), beat+sample+timecode anchors, preview/program channels, output routes, checkpoint join, runtime w/ program-first drop order under load; headless adapter renders offscreen (frame sha da8da142…)
+- protocol/visual/void_visual.fbs draft rev0 (new contract dir; void_control.fbs untouched)
+- tests/visual: 14/14 — determinism/pixel-decode/beat-anchor/checkpoint (T81), audio-clock-only stamps + non-blocking push + boundary take + stale rejection + rational fps (T82), overload drop counters + whole-tx undo/redo + rejection taxonomy + alert-not-death (T83)
+- studio visuals/ view-state store + op builders (8 tests); studio at 318 vitest
+- Integrator fix post-merge: stray conflict marker removed from studio index.ts

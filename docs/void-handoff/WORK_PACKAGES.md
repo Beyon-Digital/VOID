@@ -28,7 +28,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W19 | F3 | Stock sound library, effects and time/pitch tools | W17, W01 | not_started |
 | W20 | F3 | Plugin compatibility, optional isolation and exchange | W18 | not_started |
 | W21 | F3 | Accompaniment, arrangement and producer gate | W16, W19, W20 | not_started |
-| W22 | F4 | Conventional native visual composition and program output | W11 | in_progress_lane |
+| W22 | F4 | Conventional native visual composition and program output | W11 | partial |
 | W23 | F4 | Generated/reactive visuals and optional camera conducting | W22, W16 | not_started |
 | W24 | F4 | Audiovisual export and visual qualification gate | W23 | not_started |
 | W25 | F5 | Notation, scoring and advanced interchange | W21 | not_started |
@@ -649,7 +649,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W22 · F4 · Conventional native visual composition and program output
 
-**Owner:** Visual engine + UI · **Depends:** W11 · **Status:** in_progress_lane
+**Owner:** Visual engine + UI · **Depends:** W11 · **Status:** partial
 
 **Target paths:** `crates/void-visual/`, `packages/void-studio/src/visuals/`, `protocol/visual/`, `tests/visual/`
 
@@ -673,7 +673,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** VIS-01
 
-**Evidence:** l; a; n; e;  ; O;  ; s; p; a; w; n; e; d; :;  ; c; r; a; t; e; s; /; v; o; i; d; -; v; i; s; u; a; l;  ; w; g; p; u;  ; +;  ; p; r; o; t; o; c; o; l; /; v; i; s; u; a; l;  ; r; e; v; 0;  ; d; r; a; f; t;  ; +;  ; t; e; s; t; s; /; v; i; s; u; a; l;  ; +;  ; s; t; u; d; i; o;  ; v; i; s; u; a; l; s;  ; s; t; o; r; e
+**Evidence:** c; r; a; t; e; s; /; v; o; i; d; -; v; i; s; u; a; l;  ; r; e; a; l;  ; w; g; p; u;  ; e; n; g; i; n; e;  ; (; h; e; a; d; l; e; s; s;  ; a; d; a; p; t; e; r; ,;  ; d; e; t; e; r; m; i; n; i; s; t; i; c;  ; o; f; f; s; c; r; e; e; n;  ; r; e; n; d; e; r; ,;  ; p; r; o; g; r; a; m;  ; f; r; a; m; e;  ; s; h; a;  ; d; a; 8; d; a; 1; 4; 2; …; ); ,;  ; p; r; o; t; o; c; o; l; /; v; i; s; u; a; l; /; v; o; i; d; _; v; i; s; u; a; l; .; f; b; s;  ; d; r; a; f; t;  ; r; e; v; 0; ,;  ; b; e; a; t; /; s; a; m; p; l; e; -; a; n; c; h; o; r; e; d;  ; l; a; y; e; r; s;  ; +;  ; q; u; a; n; t; i; z; e; d;  ; t; r; a; n; s; i; t; i; o; n; s; ,;  ; p; r; e; v; i; e; w; /; p; r; o; g; r; a; m;  ; s; p; l; i; t;  ; +;  ; p; r; o; g; r; a; m; -; f; i; r; s; t;  ; d; r; o; p;  ; o; r; d; e; r; ,;  ; a; u; d; i; o; -; c; l; o; c; k; -; o; n; l; y;  ; s; t; a; m; p; s; ,;  ; c; h; e; c; k; p; o; i; n; t;  ; j; o; i; n;  ; h; a; s; h; -; g; a; t; e; d; ,;  ; w; h; o; l; e; -; t; x;  ; u; n; d; o; ;;  ; t; e; s; t; s; /; v; i; s; u; a; l;  ; 1; 4; /; 1; 4;  ; (; T; 8; 1; ×; 5;  ; T; 8; 2; ×; 5;  ; T; 8; 3; ×; 4; ); ;;  ; s; t; u; d; i; o;  ; v; i; s; u; a; l; s;  ; v; i; e; w; -; s; t; a; t; e;  ; +;  ; o; p;  ; b; u; i; l; d; e; r; s;  ; (; 8;  ; t; e; s; t; s; )
 
 ## W23 · F4 · Generated/reactive visuals and optional camera conducting
 
