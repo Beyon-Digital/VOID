@@ -71,19 +71,83 @@ public:
 
 int main (int argc, char* argv[])
 {
-    juce::ignoreUnused (argc);
     juce::ScopedJuceInitialiser_GUI gui;
-    const auto out = juce::File (argc > 1 ? juce::String (argv[1])
-                                          : "/tmp/void-render-fixture.wav");
+
+    // Two modes:
+    //   void-render-fixture <out.wav>
+    //       T14: renders the built-in 16-bar fixture (asserts 1,536,000 frames).
+    //   void-render-fixture --edit <engine.tracktionedit> <out.wav> [--seconds N]
+    //       Loads a real checkpoint edit file and renders it through the same
+    //       te::Renderer::renderToFile path (used by F1 journey evidence while
+    //       protocol major.1 has no render op — see docs/engine/NEEDS.md).
+    juce::File editFile;
+    juce::File out ("/tmp/void-render-fixture.wav");
+    double secondsOverride = -1.0;
+    for (int i = 1; i < argc; ++i)
+    {
+        const auto a = juce::String (argv[i]);
+        if (a == "--edit" && i + 1 < argc)
+            editFile = juce::File (argv[++i]);
+        else if (a == "--seconds" && i + 1 < argc)
+            secondsOverride = juce::String (argv[++i]).getDoubleValue();
+        else if (! a.startsWith ("-"))
+            out = juce::File (a);
+    }
 
     te::Engine engine (std::make_unique<te::PropertyStorage> ("void-render-fixture"),
                        std::make_unique<SyncUIBehaviour>(),
                        std::make_unique<te::EngineBehaviour>());
-    auto edit = FixtureEdit::build (engine);
 
-    // Hard assert the render length: 16 bars @ 120 BPM 4/4 = 32 s = 1,536,000 @48k.
+    std::unique_ptr<te::Edit> edit;
+    double expectedSeconds;
+    if (editFile.existsAsFile())
+    {
+        auto state = juce::ValueTree::fromXml (editFile.loadFileAsString());
+        if (! state.isValid())
+        {
+            std::fprintf (stderr, "FAIL: edit file unreadable: %s\n",
+                          editFile.getFullPathName().toRawUTF8());
+            return 10;
+        }
+        te::Edit::Options options { engine, state, {} };
+        options.role = te::Edit::forEditing;
+        options.editFileRetriever = [editFile] { return editFile; };
+        // VOID engine gap (F1 finding): EngineSession never sets
+        // Edit::filePathResolver and VOID edits live outside a TE Project,
+        // so AUDIOCLIP `source` strings written relative to the edit file
+        // path (e.g. "../../../assets/sha256/<sha>/take.wav", anchored at
+        // checkpoints/live/engine.tracktionedit treated as a directory)
+        // resolve via getEditFileFromProjectManager() -> empty File ->
+        // process-CWD-relative and silently fail to load (wave clips render
+        // as silence). This resolver reproduces TE's write-side anchor
+        // convention — the edit FILE path itself treated as the anchor
+        // directory — which is what the engine should set on its own edit.
+        options.filePathResolver = [editFile] (const juce::String& desc)
+        {
+            return editFile.getChildFile (desc);
+        };
+        edit = std::make_unique<te::Edit> (options);
+        // Render span = declared --seconds, else the edit's own content length.
+        expectedSeconds = secondsOverride > 0.0 ? secondsOverride
+                                                : edit->getLength().inSeconds();
+        std::printf ("edit-mode: %s content=%.3f s\n",
+                     editFile.getFileName().toRawUTF8(), edit->getLength().inSeconds());
+    }
+    else
+    {
+        if (editFile != juce::File())
+        {
+            std::fprintf (stderr, "FAIL: --edit file missing: %s\n",
+                          editFile.getFullPathName().toRawUTF8());
+            return 10;
+        }
+        edit = FixtureEdit::build (engine);
+        // Hard assert the render length: 16 bars @ 120 BPM 4/4 = 32 s = 1,536,000 @48k.
+        expectedSeconds = 32.0;
+    }
+    if (secondsOverride > 0.0)
+        expectedSeconds = secondsOverride;
     edit->getTransport().stop (false, false);
-    const double expectedSeconds = 32.0;
 
     juce::AudioFormatManager fm;
     fm.registerBasicFormats();
@@ -160,14 +224,25 @@ int main (int argc, char* argv[])
         return 5;
     }
 
-    // Channel content check: stereo must be non-silent and L==R for a
-    // mono-centered synth render (onset check: peak above silence floor).
+    // Channel content check: output must be non-silent somewhere. The T14
+    // fixture has content at t=0 so the first block suffices; --edit mode
+    // may legitimately start with silence (e.g. a solo'd take that enters
+    // later), so scan the whole file.
+    const int64_t scanLen = editFile.existsAsFile()
+                              ? (int64_t) frames
+                              : std::min<int64_t> ((int64_t) frames, 8192);
     juce::AudioBuffer<float> buf ((int) channels, 8192);
-    reader->read (&buf, 0, 8192, 0, true, true);
     float peak = 0.0f;
-    for (int ch = 0; ch < (int) channels; ++ch)
-        peak = juce::jmax (peak, buf.getMagnitude (ch, 0, 8192));
-    std::printf ("first-block peak: %.6f\n", peak);
+    for (int64_t pos = 0; pos < scanLen; pos += 8192)
+    {
+        const int n = (int) juce::jmin ((int64_t) 8192, scanLen - pos);
+        reader->read (&buf, 0, n, pos, true, true);
+        for (int ch = 0; ch < (int) channels; ++ch)
+            peak = juce::jmax (peak, buf.getMagnitude (ch, 0, n));
+        if (peak >= 1e-4f && ! editFile.existsAsFile())
+            break;
+    }
+    std::printf ("peak (first %lld frames): %.6f\n", (long long) scanLen, peak);
     if (peak < 1e-4f)
     {
         std::fprintf (stderr, "FAIL: rendered output silent in first block\n");
