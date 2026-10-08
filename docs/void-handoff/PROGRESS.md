@@ -105,3 +105,10 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - void-ui: TemplateCard/RecentProjectRow/MissingAssetRow/OverlayShell; app shell wiring (launcher/notes/assets toggles/HelpButton)
 - Merge conflicts resolved: index.ts unions + NEEDS.md renumbered (W13 items 12-14, W11 items 15-17); lane fixed isTerminal star-export collision
 - Verified post-merge: cargo 23 suites, vitest 172 (studio 170), tsc clean after pkg rebuild
+
+## 2026-10-08 ~21:05Z — Lane J (W15 audio adapters) merged (devin/void-lane-audio-ai → devin/void-implementation)
+- workers/audio/: void-audio-transcribe (basic-pitch 0.4.0, 8/8 notes ≤80ms GT, 631MB RSS), void-audio-separate (htdemucs_6s SIX stems, 53MB vendored, 1.22GB RSS — satisfies 6-stem req), void-audio-generate (musicgen-small vendored ~1.9GB, real 4s audio, CC-BY-NC — warns every run), void-audio-generate-procedural (numpy additive, byte-deterministic)
+- tests/models: 6/6 via real env-i JobRunner: provenance publish, mid-render cancel → no artifacts/staging + clean retry; timing/RSS/hashes in docs/ai-jobs/EVIDENCE.md
+- Skipped honestly: htdemucs 4-stem (below count), htdemucs_ft (>2GB), ACE-Step (GPU), paid cloud
+- Merge: void-studio index union (generation + HEAD's qualified jobs re-exports); resolved, studio 177 vitest
+- Verified post-merge: cargo 23 suites, vitest 179, tsc clean

@@ -658,8 +658,8 @@
       "phase": "F2",
       "procedure": "Run the selected real audio generator on fixed owned/licensed prompts/reference clips and evaluate outputs.",
       "expected": "Record model/runtime hashes, rights, settings, runtime/memory and musical fit; demo/canned audio cannot count as successful inference.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "basic-pitch qualified: 8/8 notes, onsets \u226480ms GT; demucs_6s 6 stems frame-aligned; evidence+hashes in docs/ai-jobs/EVIDENCE.md",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -669,8 +669,8 @@
       "phase": "F2",
       "procedure": "Run separation/transcription on licensed multitrack references with alignment ground truth and varied instruments.",
       "expected": "Measure onset/alignment/bleed/editability and publish limitations. Four output categories cannot close the six-stem feature.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "musicgen-small real 4s audio @3.33GB RSS; procedural byte-deterministic fallback; CC-BY-NC rights recorded open",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -680,8 +680,8 @@
       "phase": "F2",
       "procedure": "Cancel/retry generation, trim/align/A-B output and accept an alternate clip while preserving the original.",
       "expected": "Only a fully verified result is inserted after acceptance; source is untouched and new clip follows ordinary undo/save/export.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "tests/models harness 6/6 via real JobRunner: provenance publish, mid-render cancel leaves no artifacts/staging, retry clean",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {

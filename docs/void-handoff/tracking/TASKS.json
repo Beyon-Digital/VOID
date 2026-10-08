@@ -647,8 +647,8 @@
         "AI-04",
         "AI-06"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "partial",
+      "evidence": "4 adapters qualified under real JobRunner: basic-pitch (8/8 notes \u226480ms), demucs htdemucs_6s 6-stem vendored offline, musicgen-small real audio (CC-BY-NC rights gap), procedural synth byte-deterministic; T60-62 harness 6/6 incl. mid-render cancel; gaps: NC license, bleed unmeasured, MusicGen non-deterministic",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
