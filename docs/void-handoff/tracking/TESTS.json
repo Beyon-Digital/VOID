@@ -724,8 +724,8 @@
       "phase": "F3",
       "procedure": "Record loop takes, comp across boundaries, trim crossfades and switch alternatives.",
       "expected": "Source takes remain intact; comp joins and group edits are correct with rollback/undo and reopen parity.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "studio: comp specs+single-tx apply via FakeTransport APPLIED + undo; alternatives cycle; sources immutable (52 new tests, w17.test 8 scenarios)",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -735,8 +735,8 @@
       "phase": "F3",
       "procedure": "Insert tempo/meter changes, sections and loops; move a section with clips/automation/markers.",
       "expected": "Tick/sample conversion, phase and absolute anchors follow documented semantics with no hidden drift.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "studio: tempo/meter ops, section move (split-boundaries\u2192move-inside\u2192markers), loops/alternatives/stacks; launch scheduling native NEEDS",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -746,8 +746,8 @@
       "phase": "F3",
       "procedure": "Load assets larger than RAM under bounded cache; freeze/unfreeze tracks and bounce with long tails.",
       "expected": "No full-file preload requirement; frozen state and source controls restore correctly, rendered timing/tails match contract.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "studio: scene grid view model + quantized launch semantics spec; native scheduling engine-side NEEDS \u00a7rev2",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {

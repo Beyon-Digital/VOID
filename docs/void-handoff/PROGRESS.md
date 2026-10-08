@@ -136,3 +136,10 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - T45 PARTIAL: 47 real renders of the song checkpoint in 3 min — p50 3.85s per 24s audio (5.96x realtime); 30-min multi-device run blocked on hardware
 - tests/journeys/f1/{f1_journey,wire}.py + run_offline.sh; docs/verification/F1/JOURNEY_EVIDENCE.md
 - Platform note: lane ran on Linux (engine headless-capable), evidence labeled linux+no-audio-device — not macOS
+
+## 2026-10-08 ~23:20Z — Lane N (W17 studio takes/arrangement) merged (devin/void-lane-w17ui → devin/void-implementation)
+- takes/: loop-take folders (incomplete kept), comp specs + compToOps (Remove+Insert per segment, one tx, exact asset offsets), applyComp via FakeTransport + undo, seam fades, cycle alternatives, sources immutable
+- arrangement/: tempo/meter op plans, moveSection (split-at-boundary then move-inside + marker shift + carriedSpec), copySection, loopClip materialization, alternatives/stacks/groups/sections/protected-edit client locks
+- scenes/: scene grid model + quantized launch semantics spec (native scheduling = NEEDS)
+- Integrator fixes post-merge: tokens.panel→surface (TakeLane/SceneCell), strict-null guards in w17.test.ts
+- Verified: vitest 338 total (studio 310 incl. 52 new), cargo 23 suites, both pkgs build clean

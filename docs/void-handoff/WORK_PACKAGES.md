@@ -23,12 +23,12 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W14 | F2 | Gestures, patterns, quick sampling and harmonic controls | W13 | partial |
 | W15 | F2 | Audio generation, stems and transcription adapters | W12 | partial |
 | W16 | F2 | AI/gesture regression gate | W14, W15 | partial |
-| W17 | F3 | Recording and arrangement depth | W11 | not_started |
+| W17 | F3 | Recording and arrangement depth | W11 | partial |
 | W18 | F3 | Mixer, automation and advanced MIDI | W17 | not_started |
 | W19 | F3 | Stock sound library, effects and time/pitch tools | W17, W01 | not_started |
 | W20 | F3 | Plugin compatibility, optional isolation and exchange | W18 | not_started |
 | W21 | F3 | Accompaniment, arrangement and producer gate | W16, W19, W20 | not_started |
-| W22 | F4 | Conventional native visual composition and program output | W11 | not_started |
+| W22 | F4 | Conventional native visual composition and program output | W11 | in_progress_lane |
 | W23 | F4 | Generated/reactive visuals and optional camera conducting | W22, W16 | not_started |
 | W24 | F4 | Audiovisual export and visual qualification gate | W23 | not_started |
 | W25 | F5 | Notation, scoring and advanced interchange | W21 | not_started |
@@ -513,7 +513,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W17 · F3 · Recording and arrangement depth
 
-**Owner:** Engine + UI · **Depends:** W11 · **Status:** not_started
+**Owner:** Engine + UI · **Depends:** W11 · **Status:** partial
 
 **Target paths:** `native/void-engine/src/recording/`, `packages/void-studio/src/takes/`, `packages/void-studio/src/arrangement/`
 
@@ -537,7 +537,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** Reuse already qualified foundations; justify new dependencies separately.
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** s; t; u; d; i; o; -; s; i; d; e;  ; m; e; r; g; e; d; :;  ; l; o; o; p; T; a; k; e; s;  ; m; o; d; e; l;  ; (; i; n; c; o; m; p; l; e; t; e;  ; k; e; p; t; ); ,;  ; s; w; i; p; e; C; o; m; p; /; b; u; i; l; d; C; o; m; p;  ; c; o; n; t; i; g; u; o; u; s; -; c; o; v; e; r; ,;  ; c; o; m; p; T; o; O; p; s;  ; s; i; n; g; l; e; -; t; x;  ; R; e; m; o; v; e; +; I; n; s; e; r; t;  ; w; /;  ; a; s; s; e; t;  ; o; f; f; s; e; t; s;  ; +;  ; u; n; d; o; C; o; m; p; A; p; p; l; y; ,;  ; s; e; a; m; F; a; d; e; P; l; a; n; ,;  ; c; y; c; l; e; T; a; k; e; A; t;  ; (; s; o; u; r; c; e;  ; f; r; o; z; e; n; ); ,;  ; S; e; t; T; e; m; p; o; /; T; i; m; e; S; i; g; n; a; t; u; r; e;  ; p; l; a; n; s; ,;  ; m; o; v; e; S; e; c; t; i; o; n;  ; s; p; l; i; t; s; -; t; h; e; n; -; m; o; v; e; s;  ; +;  ; m; a; r; k; e; r; s; ,;  ; a; l; t; e; r; n; a; t; i; v; e; s; ,;  ; l; o; o; p; s; ,;  ; s; t; a; c; k; s; /; g; r; o; u; p; s; ,;  ; s; c; e; n; e; s; +; q; u; a; n; t; i; z; e; d; -; l; a; u; n; c; h;  ; s; p; e; c;  ; (; n; a; t; i; v; e;  ; s; c; h; e; d; u; l; i; n; g;  ; N; E; E; D; S; ); ;;  ; e; n; g; i; n; e; -; s; i; d; e;  ; d; e; p; t; h;  ; d; e; f; e; r; r; e; d
 
 ## W18 · F3 · Mixer, automation and advanced MIDI
 
@@ -649,7 +649,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W22 · F4 · Conventional native visual composition and program output
 
-**Owner:** Visual engine + UI · **Depends:** W11 · **Status:** not_started
+**Owner:** Visual engine + UI · **Depends:** W11 · **Status:** in_progress_lane
 
 **Target paths:** `crates/void-visual/`, `packages/void-studio/src/visuals/`, `protocol/visual/`, `tests/visual/`
 
@@ -673,7 +673,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** VIS-01
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** l; a; n; e;  ; O;  ; s; p; a; w; n; e; d; :;  ; c; r; a; t; e; s; /; v; o; i; d; -; v; i; s; u; a; l;  ; w; g; p; u;  ; +;  ; p; r; o; t; o; c; o; l; /; v; i; s; u; a; l;  ; r; e; v; 0;  ; d; r; a; f; t;  ; +;  ; t; e; s; t; s; /; v; i; s; u; a; l;  ; +;  ; s; t; u; d; i; o;  ; v; i; s; u; a; l; s;  ; s; t; o; r; e
 
 ## W23 · F4 · Generated/reactive visuals and optional camera conducting
 

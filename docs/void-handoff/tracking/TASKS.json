@@ -719,8 +719,8 @@
         "T68"
       ],
       "dependency_ids": [],
-      "status": "in_progress_lane",
-      "evidence": "lane N spawned: studio-side takes/comping/arrangement/scenes; engine-side depth deferred (native/)",
+      "status": "partial",
+      "evidence": "studio-side merged: loopTakes model (incomplete kept), swipeComp/buildComp contiguous-cover, compToOps single-tx Remove+Insert w/ asset offsets + undoCompApply, seamFadePlan, cycleTakeAt (source frozen), SetTempo/TimeSignature plans, moveSection splits-then-moves + markers, alternatives, loops, stacks/groups, scenes+quantized-launch spec (native scheduling NEEDS); engine-side depth deferred",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],

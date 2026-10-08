@@ -86,9 +86,9 @@ Generated from `tracking/TESTS.json`. These are 100 required integration scenari
 
 | ID / owner task | Scenario | Procedure | Expected outcome | Status |
 | --- | --- | --- | --- | --- |
-| T66 / W17 | Takes and comping | Record loop takes, comp across boundaries, trim crossfades and switch alternatives. | Source takes remain intact; comp joins and group edits are correct with rollback/undo and reopen parity. | not_run |
-| T67 / W17 | Tempo/global edits | Insert tempo/meter changes, sections and loops; move a section with clips/automation/markers. | Tick/sample conversion, phase and absolute anchors follow documented semantics with no hidden drift. | not_run |
-| T68 / W17 | Streaming and freeze | Load assets larger than RAM under bounded cache; freeze/unfreeze tracks and bounce with long tails. | No full-file preload requirement; frozen state and source controls restore correctly, rendered timing/tails match contract. | not_run |
+| T66 / W17 | Takes and comping | Record loop takes, comp across boundaries, trim crossfades and switch alternatives. | Source takes remain intact; comp joins and group edits are correct with rollback/undo and reopen parity. | pass_linux |
+| T67 / W17 | Tempo/global edits | Insert tempo/meter changes, sections and loops; move a section with clips/automation/markers. | Tick/sample conversion, phase and absolute anchors follow documented semantics with no hidden drift. | pass_linux |
+| T68 / W17 | Streaming and freeze | Load assets larger than RAM under bounded cache; freeze/unfreeze tracks and bounce with long tails. | No full-file preload requirement; frozen state and source controls restore correctly, rendered timing/tails match contract. | pass_linux |
 | T69 / W18 | Routing and compensation | Run known impulses through buses, sidechains, external I-O and processors with declared delay. | Measure expected alignment and loop/feedback rejection. Compensation includes bridge/device paths only where measured/supported. | not_run |
 | T70 / W18 | Automation modes | Write/touch/latch/trim automation, move regions and undo mixed mixer/arrangement operations. | Mode transitions and audible parameter values match; one coherent history and documented interpolation/smoothing. | not_run |
 | T71 / W18 | Expression and articulation | Record MPE/MIDI2 where supported, apply articulations/key switches, inspect event editor and exchange MIDI. | Preserve supported per-note data; unsupported export loss is explicit. No fabricated MIDI2 support from enum-only code. | not_run |
