@@ -48,8 +48,10 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm -r test --if-present
+      # Build first: packages resolve each other via dist/ (main field), so
+      # tests need built deps present.
       - run: pnpm -r build --if-present
+      - run: pnpm -r test --if-present
 
   native:
     name: native engine (macos)
