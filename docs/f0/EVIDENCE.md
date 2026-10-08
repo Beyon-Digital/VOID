@@ -12,6 +12,8 @@ repository. No inferred passes; blocked items name the missing resource.
 | — | Doctor: rust 1.97.1 / flatc 25.9.23 / node 22.20 / pnpm 9 / cmake / ninja / c++11.4 / webkit2gtk | `tools/doctor.sh` | 8 pass, 2 warn (platform/engine-binary), 0 fail |
 | — | Rust workspace builds + all unit tests | `cargo build --workspace --all-targets && cargo test --workspace --exclude void-tauri` | PASS, 0 warnings |
 | — | Tauri shell compiles (void-tauri lib+bin) | `cargo build -p void-tauri` | PASS |
+| — | Full Tauri native bundle: `void-tauri` release binary + .deb + .rpm | `pnpm --filter void-tauri exec tauri build` | PASS (2m04s) |
+| — | void-tauri renderer vite build | `pnpm --filter void-tauri exec vite build` | PASS (197kB bundle) |
 
 ## Blocked on this platform (queued for macOS lane)
 
