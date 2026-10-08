@@ -1,0 +1,32 @@
+# void-audio-generate (facebook/musicgen-small) — pinned, verified on
+# Linux x86_64 py3.10 CPU. audiocraft 1.3.0 pins torch==2.1.0/xformers
+# and was proven working on torch 2.14.1+cpu — install it with
+# `pip install audiocraft==1.3.0 --no-deps` AFTER this file (setup.sh
+# does exactly that). CPU-only torch wheel keeps provision <2 GB.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.14.1+cpu
+torchaudio==2.11.0+cpu
+numpy==2.2.6
+einops==0.8.2
+hydra-core==1.3.7
+julius==0.2.8
+num2words==0.5.14
+sentencepiece==0.2.2
+tqdm==4.70.1
+transformers==5.19.0
+tokenizers==0.23.2
+demucs==4.1.0
+flashy==0.0.2
+soundfile==0.14.0
+spacy==3.8.16
+librosa==0.11.0
+lazy-loader==0.6
+soxr==1.1.0
+cffi==2.1.1
+av==17.1.0
+torchmetrics==1.9.0
+lightning==2.6.6
+xformers==0.0.22.post7
+protobuf==7.36.2
+safetensors==0.8.0
+huggingface_hub==1.33.0

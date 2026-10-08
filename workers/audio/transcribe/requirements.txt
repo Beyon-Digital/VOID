@@ -1,0 +1,8 @@
+# void-audio-transcribe — pinned, verified on Linux x86_64 py3.10 CPU.
+# basic-pitch 0.4.0 bundles the ICASSP-2022 weights in the wheel —
+# no weight download at provision or job time.
+# numpy<2 is REQUIRED: tflite-runtime 2.14 was built against the numpy-1
+# ABI (`_ARRAY_API not found` on numpy>=2).
+basic-pitch==0.4.0
+tflite-runtime==2.14.0
+numpy==1.26.4
