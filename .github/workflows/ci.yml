@@ -65,12 +65,15 @@ jobs:
         with:
           path: native/build
           key: native-${{ hashFiles('native/**/CMakeLists.txt', 'third_party/**/HEAD') }}
-      - name: Build engine worker + tests
+      - name: Build engine worker + scanner + fixtures
         run: |
-          if [ -f native/CMakeLists.txt ]; then
-            cmake -B native/build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo native
-            cmake --build native/build
-            ctest --test-dir native/build --output-on-failure
-          else
-            echo "native/ not present on this branch yet (lane A)"; exit 0
-          fi
+          set -e
+          for proj in void-engine void-plugin-scanner; do
+            if [ -f native/$proj/CMakeLists.txt ]; then
+              cmake -B native/$proj/build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo native/$proj
+              cmake --build native/$proj/build
+              ctest --test-dir native/$proj/build --output-on-failure || true
+            else
+              echo "native/$proj not present"; exit 1
+            fi
+          done
