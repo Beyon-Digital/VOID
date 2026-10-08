@@ -5,3 +5,6 @@ export * from './hooks';
 export * from './workspaces';
 export * from './timeline';
 export * from './piano-roll';
+export * from './instruments';
+export * from './mixer';
+export * from './export';
