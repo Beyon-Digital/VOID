@@ -36,3 +36,10 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - Lane B (Linux): devin-6e086784b902495cb8202d0741349a69 — void-project/void-assets/void-jobs + recovery failpoint tests
 - Lane C (Linux): devin-981311fdb82b4c29a0f33ec0027f8037 — void-client/void-studio/void-ui + Tauri renderer
 - Full `tauri build` verified: release binary + .deb + .rpm in 2m04s (native lane-ready)
+
+## 2026-10-08 ~16:15Z — Lane B merged (00443f1 → devin/void-implementation)
+- crates/void-project: save state machine, CURRENT atomic publish, recovery/quarantine/salvage, CoW migration, rusqlite index (manifest is authority)
+- crates/void-assets: SHA-256 store, archive guard (traversal/bomb/symlink reject), relink placeholders
+- crates/void-jobs: job state machine + resource reservations + provenance (data model)
+- tests/recovery: 22/22 green — T17 failpoints, T18 disk-full/perms, T19 traversal, T20 migration, T21 undo roundtrip
+- Full workspace re-verified post-merge: 15 suites ok, 0 failures, 0 warnings
