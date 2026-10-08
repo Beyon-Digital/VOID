@@ -61,6 +61,40 @@ hash changes accordingly). Frame count, sample rate, channel count and onset
 timing ARE deterministic; treat the recorded WAV as reference content, and
 compare candidate renders on frames+peak+onsets within tolerance, not hash.
 
+## T24 — engine-hosted plugin crash — PASS (fixture)
+
+Command:
+
+```
+PYTHONPATH=$HOME/Library/Python/3.9/lib/python/site-packages:$HOME/Library/Python/3.14/lib/python/site-packages \
+python3 native/void-engine/tests/harness/crash_fixture.py \
+  build/void-engine/void-engine_artefacts/Debug/void-engine
+```
+
+Result: **exit 0, 6/6 checks**. `InsertPluginOp` with `plugin_uid="void.crash"`
+armed the fixture (`msg=crash fixture armed (test)`); PLAY then aborted the
+worker with **SIGABRT (exit=-6)**, control socket EOF — a real process crash
+observable by a supervisor. Recovery/offering is the coordinator lane's job;
+engine-side the kill is clean and the project checkpoint persisted beforehand
+stays intact (checkpoint write verified in the same suite).
+
+## T22 — plugin scanner containment — PASS (fixture + real AU)
+
+`native/void-plugin-scanner` (JUCE console, one-shot). Commands + results:
+
+| Probe | Command | Result |
+|---|---|---|
+| Real AU | `--format AU --uid "AudioUnit:aufx,dely,appl"` | `{"found":true,...,"name":"AUDelay","manufacturer":"Apple","version":"1.6.0","category":"Effect","binarySha256":"id-sha256:9f97ba38…"}` exit 0 |
+| Bad UID | `--format AU --uid "AudioUnit:aufx,zzzz,zzzz"` | `{"found":false,"error":"No compatible plug-in format exists for this plug-in"}` exit 0 |
+| Hang | `--selftest hang` (killed @3s) | exit 137 — only scanner dies under supervisor timeout |
+| Crash | `--selftest crash` | exit 134 (SIGABRT) — only scanner dies |
+
+Incompatible-CPU-architecture probe: `blocked` — no foreign-arch plugin binary
+on this VM (would need an x86_64 .vst3 to witness refusal; recorded honestly).
+Native *editor* proof (T23): `openPluginEditor`/`closePluginEditor` ops exist
+in-process (`PluginHost.cpp`, `showWindowExplicitly`); no GUI session on this
+box to drive a visible window cycle — `blocked` on display, not code.
+
 ## T16 — RT-safety probe — partial
 
 `DeviceBridge` counts blocks/overruns/max-block-us via atomics filled in

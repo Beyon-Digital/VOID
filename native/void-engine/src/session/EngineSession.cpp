@@ -345,6 +345,14 @@ void EngineSession::applyTransportRequest (const vp::TransportRequest& req)
     {
         case vp::TransportOp_PLAY:
             tc.play (false);
+            // T24 crash fixture: an armed void.crash instance aborts the
+            // process on playback start — simulating a real in-process plugin
+            // fault on the audio path. Supervisor must observe socket death.
+            if (crashArmed_)
+            {
+                juce::Logger::writeToLog ("[void-engine] crash fixture: aborting on PLAY (T24)");
+                std::abort();
+            }
             break;
         case vp::TransportOp_STOP:
             tc.stop (true, false);
