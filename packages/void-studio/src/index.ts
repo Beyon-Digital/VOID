@@ -10,3 +10,7 @@ export * from './mixer';
 export * from './export';
 export * from './jobs';
 export * from './proposals';
+export * from './gestures';
+export * from './patterns';
+export * from './harmony';
+export * from './learn';
