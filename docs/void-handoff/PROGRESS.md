@@ -99,3 +99,9 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - crates/void-proposals: RegionContext digest→void-jobs submit→validated doc→ready record w/ provenance (generator/model/runtime/seed/doc-sha/context-sha/revision)→plan_accept revalidate→InsertNoteOp single transaction→commit/reject; stale never revives, revalidate supersedes
 - studio/proposals ranked store + ghost-note view data + ProposalCard (verbatim scores)
 - Verified post-merge: cargo 23 suites, vitest 163 (studio 135 incl. 9 proposal tests); T53 determinism + T54 single-tx accept pass
+
+## 2026-10-08 ~20:40Z — Lane I (W11 UI slice) merged (devin/void-lane-w11ui → devin/void-implementation)
+- void-studio: i18n (~90-key en catalog), templates (3 deterministic, one-transaction apply), recents (app-local cache of real opens — coordinator RECENTS_LIST absent, NEEDS §16), notes (unsent-intent drafts — no note ops in rev1, NEEDS §15), relink (sha256 verify→AttachAssetOp; ingest half coordinator-side, NEEDS §17), onboarding tour/help
+- void-ui: TemplateCard/RecentProjectRow/MissingAssetRow/OverlayShell; app shell wiring (launcher/notes/assets toggles/HelpButton)
+- Merge conflicts resolved: index.ts unions + NEEDS.md renumbered (W13 items 12-14, W11 items 15-17); lane fixed isTerminal star-export collision
+- Verified post-merge: cargo 23 suites, vitest 172 (studio 170), tsc clean after pkg rebuild
