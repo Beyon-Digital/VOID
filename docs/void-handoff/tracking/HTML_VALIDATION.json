@@ -1,0 +1,46 @@
+{
+  "scope": "Generated handoff HTML only, not VOID app",
+  "results": [
+    {
+      "test": "desktop_no_horizontal_page_overflow",
+      "passed": true
+    },
+    {
+      "test": "tasks_count",
+      "passed": true
+    },
+    {
+      "test": "tests_count",
+      "passed": true
+    },
+    {
+      "test": "features_count",
+      "passed": true
+    },
+    {
+      "test": "libraries_count",
+      "passed": true
+    },
+    {
+      "test": "search_phase_expand_collapse_empty",
+      "passed": true
+    },
+    {
+      "test": "copy_or_selection_fallback",
+      "passed": true
+    },
+    {
+      "test": "internal_anchor_targets",
+      "passed": true
+    },
+    {
+      "test": "mobile_no_horizontal_page_overflow",
+      "passed": true
+    },
+    {
+      "test": "browser_page_errors",
+      "passed": true
+    }
+  ],
+  "page_errors": []
+}

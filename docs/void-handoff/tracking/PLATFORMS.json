@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-08",
+  "policy": "Proposed qualification targets, not advertised support. Record exact OS/toolkit/device/plugin/GPU versions during implementation.",
+  "targets": [
+    {
+      "target": "macOS Apple Silicon",
+      "status": "not_tested",
+      "os_version": null,
+      "toolchain": null,
+      "audio_devices": [],
+      "plugin_formats": [
+        "AU candidates",
+        "VST3 candidate"
+      ],
+      "evidence": []
+    },
+    {
+      "target": "Windows x64",
+      "status": "not_tested",
+      "os_version": null,
+      "toolchain": null,
+      "audio_devices": [],
+      "plugin_formats": [
+        "VST3 candidate"
+      ],
+      "evidence": []
+    },
+    {
+      "target": "Named Linux x64 distribution / toolkit / audio backend",
+      "status": "not_tested",
+      "os_version": null,
+      "toolchain": null,
+      "audio_devices": [],
+      "plugin_formats": [
+        "VST3 candidate"
+      ],
+      "evidence": []
+    }
+  ]
+}

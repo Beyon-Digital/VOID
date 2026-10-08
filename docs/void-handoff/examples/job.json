@@ -1,0 +1,23 @@
+{
+  "jobId": "8a9d2f11-6165-4a51-b244-264f4d87e511",
+  "projectId": "c833d3ab-8a73-42be-b37b-0107a688f761",
+  "sourceRevision": "4",
+  "contextSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "kind": "symbolic",
+  "runtimeId": "example-qualified-runtime",
+  "runtimeSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "modelId": null,
+  "modelSha256": null,
+  "inputs": [],
+  "parameters": {
+    "bars": 4
+  },
+  "reservations": {
+    "ramBytes": "268435456",
+    "vramBytes": "0",
+    "cpuThreads": 1
+  },
+  "deadlineMonotonicNs": "1000000000000",
+  "outputScopeToken": "example-not-a-real-token",
+  "cloudConsentId": null
+}

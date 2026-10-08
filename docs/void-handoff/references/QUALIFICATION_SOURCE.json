@@ -1,0 +1,62 @@
+[
+  {
+    "id": "Q-01",
+    "test": "Offline reference render with deterministic built-in processors",
+    "required_observation": "Expected length, alignment and samples/tolerance; repeatability with fixed seeds. Third-party non-determinism is separately characterized."
+  },
+  {
+    "id": "Q-02",
+    "test": "30-minute mixed audio/MIDI session at 48 kHz; sweep 64/128/256-frame buffers on actual devices",
+    "required_observation": "Dropouts, callback maxima/percentiles, RAM/GPU/CPU and disk behavior reported by configuration. A proposed 64-playback/8-recording fixture is a stress target, not a published minimum spec."
+  },
+  {
+    "id": "Q-03",
+    "test": "UI reload, AI crash and visual restart during playback",
+    "required_observation": "No audio dependency on these workers. Engine crash is a distinct case: shell survives and offers a verified checkpoint, but playback necessarily stops."
+  },
+  {
+    "id": "Q-04",
+    "test": "Hung scan, crashing plugin and missing binary/version",
+    "required_observation": "Quarantine/recovery behavior is explicit. No false guarantee of uninterrupted audio before processing isolation is implemented."
+  },
+  {
+    "id": "Q-05",
+    "test": "Hot unplug, Bluetooth/default-device switch, sample-rate mismatch and MIDI disconnect",
+    "required_observation": "Clear state and recovery, no stuck notes, no unintended feedback, known monitoring policy."
+  },
+  {
+    "id": "Q-06",
+    "test": "Kill process at each save stage; disk full; truncated media; corrupt project/model; path traversal archive",
+    "required_observation": "Previous checkpoint is recoverable; no successful-save signal before commit; rejected untrusted imports and safe staged cleanup."
+  },
+  {
+    "id": "Q-07",
+    "test": "Automation/cue timing and native plugin editors across platforms",
+    "required_observation": "Measured sample/beat alignment, parameter state restore, focus, DPI, resize, keyboard and teardown behavior."
+  },
+  {
+    "id": "Q-08",
+    "test": "AI job storms, cancellation, stale suggestions, thermal or GPU memory pressure",
+    "required_observation": "Admission control works; resources release; performance mode reduces background load; generated changes require acceptance."
+  },
+  {
+    "id": "Q-09",
+    "test": "Visual/FFmpeg/AI worker timeout or malformed shader/model input",
+    "required_observation": "Failure remains isolated as far as the tested OS/GPU permits; audio does not wait; export errors are explicit."
+  },
+  {
+    "id": "Q-10",
+    "test": "Clean-machine installation, offline launch, signed update and rollback/recovery",
+    "required_observation": "No developer toolchain required; correct workers/runtimes present; no test automation server exposed in release builds."
+  },
+  {
+    "id": "Q-11",
+    "test": "License/SBOM/source/model-manifest audit",
+    "required_observation": "Every runtime artifact has an owner, pinned version, licence, provenance and an update path. No “unknown” components in the release manifest."
+  },
+  {
+    "id": "Q-12",
+    "test": "Musician task evaluation",
+    "required_observation": "Users complete record/compose/edit/mix/export and gesture/AI acceptance tasks without losing intent or being forced through generation."
+  }
+]

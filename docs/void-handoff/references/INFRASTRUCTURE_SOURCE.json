@@ -1,0 +1,122 @@
+[
+  {
+    "id": "INF-01",
+    "concern": "Local runtime",
+    "requirement": "Tauri app, native engine worker, bundled dependency runtime, on-demand approved model workers.",
+    "acceptance": "One installed app; end users do not install Node, a compiler, Python or pip packages manually."
+  },
+  {
+    "id": "INF-02",
+    "concern": "Audio device integration",
+    "requirement": "JUCE-backed native device path, declared OS/backend matrix, channel mapping, sample-rate/buffer negotiation and hot-plug handling.",
+    "acceptance": "Exactly one device/transport owner. Detect unsupported settings and expose monitoring latency rather than hiding it."
+  },
+  {
+    "id": "INF-03",
+    "concern": "Memory budget",
+    "requirement": "Bound waveform tiles, sample preloads, undo snapshots, decoded media, model caches, visual textures and pending jobs separately.",
+    "acceptance": "Cancellation releases reservations; long-session tests show bounded steady-state memory. Streaming is preferred to decoding all media."
+  },
+  {
+    "id": "INF-04",
+    "concern": "Real-time scheduling",
+    "requirement": "Dedicated native callback path, preallocated data structures, bounded queues and off-thread graph preparation/destruction.",
+    "acceptance": "At 48 kHz, 128 frames represent about 2.67 ms per callback—not end-to-end round-trip latency. Instrument deadlines and dropouts."
+  },
+  {
+    "id": "INF-05",
+    "concern": "Project storage",
+    "requirement": "Versioned project container, immutable hashed media, engine snapshot, SQLite metadata, journal/checkpoint recovery and migrations.",
+    "acceptance": "Disk-full, crash, interrupted write and missing media cannot silently produce a successful save."
+  },
+  {
+    "id": "INF-06",
+    "concern": "Asset/model delivery",
+    "requirement": "HTTPS object storage/CDN, versioned signed manifests, checksum verification, resumable downloads and local cache quota.",
+    "acceptance": "Model/content packs are optional. Reject tampered, unapproved or incompatible packages. No automatic code execution from downloads."
+  },
+  {
+    "id": "INF-07",
+    "concern": "Inference scheduling",
+    "requirement": "CPU/RAM/GPU admission control, bounded priority queue, cancellation, timeout, progress and limited worker concurrency.",
+    "acceptance": "Recording/performance mode can suspend heavy jobs. Small predictive work and large generation do not launch an uncontrolled competition for GPU memory."
+  },
+  {
+    "id": "INF-08",
+    "concern": "AI provenance and memory",
+    "requirement": "Store model/revision/hash, preprocessing, parameters, input hashes, seed where available, licences and acceptance history.",
+    "acceptance": "Preferences are inspectable/deletable and project-scoped by default; training on private songs is not automatic."
+  },
+  {
+    "id": "INF-09",
+    "concern": "Plugin lifecycle",
+    "requirement": "Separate scanner, timeout/quarantine database, version/architecture checks, state snapshots and missing-plugin placeholders.",
+    "acceptance": "Distinguish scanner safety from processing isolation. A broken plugin never silently corrupts the project; deliberate failure has a tested restore path."
+  },
+  {
+    "id": "INF-10",
+    "concern": "Sandbox boundaries",
+    "requirement": "Narrow Tauri capabilities, authenticated local IPC, worker filesystem scopes, safe archive/media import and no unnecessary network listener.",
+    "acceptance": "Treat native plugins and generated shaders as untrusted. Process separation alone is not an OS permission sandbox."
+  },
+  {
+    "id": "INF-11",
+    "concern": "Visual synchronization",
+    "requirement": "Audio-clock snapshots, calibrated output latency, distinct preview/program output, frame dropping and pre-rendered fallback.",
+    "acceptance": "Visuals may drop a frame; audio may not wait for visuals. Generated or imported clips share the same revisioned timing model."
+  },
+  {
+    "id": "INF-12",
+    "concern": "Build system",
+    "requirement": "Cargo workspace + CMake/Ninja native targets + a locked frontend build; a locked Python packaging path only for selected workers.",
+    "acceptance": "Pin compilers, target triples, submodules, feature flags and runtime libraries. Version the protocol between independently built artifacts."
+  },
+  {
+    "id": "INF-13",
+    "concern": "CI and provenance",
+    "requirement": "Native runners per OS, compilation caches, tests, SBOM, dependency/advisory checks, licences/notices, artifact hashes and reproducible build inputs.",
+    "acceptance": "Do not expose signing keys or run untrusted pull-request code on privileged hardware runners. Set job timeouts and cancel superseded builds."
+  },
+  {
+    "id": "INF-14",
+    "concern": "Platform signing and updates",
+    "requirement": "macOS signing/notarization, Windows signing/installer verification, Linux packaging and signed Tauri update manifests.",
+    "acceptance": "Update install/restart is blocked during recording/performance. Test interrupted updates and restore the last supported project format."
+  },
+  {
+    "id": "INF-15",
+    "concern": "Diagnostics",
+    "requirement": "Structured process logs, native crash reports/symbols, latency/dropout counters and explicit exportable diagnostic bundles.",
+    "acceptance": "No raw audio, private prompts, plugin secrets or full project content in telemetry by default. Retain logs with size/time limits."
+  },
+  {
+    "id": "INF-16",
+    "concern": "Hardware qualification",
+    "requirement": "Real audio interfaces, MIDI/MPE controllers, multiple sample rates/buffers, external displays, OS versions and GPU backends.",
+    "acceptance": "Software CI alone is not an audio-latency or hardware-compatibility certificate. Publish only the measured device matrix."
+  },
+  {
+    "id": "INF-17",
+    "concern": "Optional cloud inference",
+    "requirement": "A small authenticated API, durable job queue, object storage, GPU workers, quotas, cancellation, audit and explicit upload consent.",
+    "acceptance": "Cloud unavailability never blocks manual editing/playback. Do not require a Kubernetes cluster, vector database or training farm for the first desktop release."
+  },
+  {
+    "id": "INF-18",
+    "concern": "Optional collaboration",
+    "requirement": "Account/org permissions, encrypted transport, object-level sharing, revision conflicts, audit and explicit export/restore behavior.",
+    "acceptance": "Do not cloud-sync the live SQLite WAL or introduce distributed real-time audio edits in F1. Add collaboration after stable local revision semantics."
+  },
+  {
+    "id": "INF-19",
+    "concern": "Content/legal operations",
+    "requirement": "Software licences, model licences, sample/preset/font/IR rights, contributor notices, codec patent review and distribution source archives.",
+    "acceptance": "A MIT player does not make its samples MIT. A model’s permissive weight licence does not guarantee copyright clearance for every input/output."
+  },
+  {
+    "id": "INF-20",
+    "concern": "Release operation",
+    "requirement": "Stable/beta channels, dependency owner, backport policy, incident playbook, recovery documentation and compatibility registry.",
+    "acceptance": "No unattended dependency-major upgrades. Vulnerabilities trigger evaluated patches, not unsupervised rebuilds of the production audio stack."
+  }
+]

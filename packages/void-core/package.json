@@ -6,9 +6,10 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run"
   },
   "devDependencies": {
-    "typescript": "latest"
+    "typescript": "latest",
+    "vitest": "^3.0.0"
   }
 }

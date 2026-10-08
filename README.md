@@ -5,6 +5,36 @@
 
 -----
 
+## Implementation status (honest snapshot)
+
+> Updated during the `devin/void-implementation` work. The canonical tracker is
+> `docs/void-handoff/tracking/` (`TASKS.json`, `TESTS.json`,
+> `FEATURE_TRACEABILITY.json`) with generated views in `WORK_PACKAGES.md` /
+> `TEST_MATRIX.md` / `FEATURE_MAP.md`.
+
+**The rest of this README describes the target product, not current capability.**
+
+What exists in the repository today:
+
+- An Electron + React scaffold: window lifecycle, a mostly-empty `WebAudioAdapter`
+  (stub methods — it does **not** play, record, mix or render), domain/port
+  interfaces in `void-core`, a `SessionView` clip-matrix component, and `Knob`/`Fader`
+  style primitives.
+- A tracked implementation plan (`docs/void-handoff/`) to migrate to
+  Tauri/Rust + a native Tracktion Engine/JUCE worker per `docs/void-handoff/HANDOFF.md`.
+
+What does **not** exist yet (despite sections below describing them):
+
+- No audio/MIDI engine, playback, recording, mixing, plugin hosting or rendering.
+- No working Session/Ableton-parity feature set, no stock devices, no WASM/M4L
+  plugin runtime, no AI copilot, no visual engine, no show/cue system, no OSC/DMX.
+- No Tauri shell or native C++ worker wired into the app yet (in progress on this branch).
+
+Treat every "feature" section below as a design goal until its requirement IDs
+show evidence in `docs/void-handoff/tracking/`.
+
+-----
+
 ## What Is VOID?
 
 VOID is an Electron-based desktop application that replaces Logic Pro X for power users who want:
