@@ -70,7 +70,8 @@ This architecture makes VOID infinitely extensible. New hardware, new AI models,
 ```
 void/
 ├── apps/
-│   └── void-desktop/               # Electron shell — the app container
+│   ├── void-desktop/               # Electron shell — LEGACY, preserved until F1 cutover (docs/verification/F1/cutover-plan.md)
+│   └── void-tauri/                 # Tauri v2 shell — the production path being qualified
 │       ├── main/                   # Node.js main process
 │       │   ├── index.ts            # App lifecycle, window management, sidecar spawn
 │       │   ├── ipc/                # IPC handlers (bridge between main and renderer)
