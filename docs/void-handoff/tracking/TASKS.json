@@ -567,8 +567,8 @@
         "AI-02",
         "AI-05"
       ],
-      "status": "in_progress_lane",
-      "evidence": "lane spawned",
+      "status": "partial",
+      "evidence": "void-symbolic-worker (seeded interval-Markov+Krumhansl) + void-proposals lifecycle (digest\u2192job\u2192validated doc\u2192plan_accept\u2192single-tx InsertNoteOp\u2192commit/reject, stale-never-revives) + ranked UI; T53 determinism sha-verified, T54 single-tx accept; no wire ops for proposals (NEEDS rev2)",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],

@@ -93,3 +93,9 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - studio/jobs + void-ui JobRow/BudgetBadge/ModelRegistryList
 - Verified post-merge: cargo 20 suites ok (models 12, jobs runner 13 incl. real kills), vitest 154, studio 126
 - NEEDS.md: SubmitJob/CancelJob/JOB_LIST/MODEL_LIST/JobEvent proposed for protocol rev 2
+
+## 2026-10-08 ~20:20Z — Lane H (W13 predictive composition) merged (devin/void-lane-proposals → devin/void-implementation)
+- workers/symbolic: argv-protocol seeded interval-Markov generator (Krumhansl key estimate, duration/IOI marginals, xorshift64* seeded) — real algorithm, deterministic, no canned output/network
+- crates/void-proposals: RegionContext digest→void-jobs submit→validated doc→ready record w/ provenance (generator/model/runtime/seed/doc-sha/context-sha/revision)→plan_accept revalidate→InsertNoteOp single transaction→commit/reject; stale never revives, revalidate supersedes
+- studio/proposals ranked store + ghost-note view data + ProposalCard (verbatim scores)
+- Verified post-merge: cargo 23 suites, vitest 163 (studio 135 incl. 9 proposal tests); T53 determinism + T54 single-tx accept pass

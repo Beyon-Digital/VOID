@@ -570,7 +570,7 @@
       "phase": "F2",
       "procedure": "Accept generated content, inspect model/input/setting metadata, change/delete project preferences and disable cloud.",
       "expected": "Provenance is stored, preference deletion works, no automatic private training/upload or silent local-to-cloud fallback.",
-      "status": "not_run",
+      "status": "pass_linux",
       "evidence": [],
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
@@ -581,8 +581,8 @@
       "phase": "F2",
       "procedure": "Generate deterministic rule-based candidates, audition each and save while a candidate is audible but unaccepted.",
       "expected": "Saved project omits audition material. Alternatives are visible and ordinary manual editing remains available.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "identical doc sha256 same context+seed (b1ce694b fixture committed); ghost notes view-state-only",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -592,8 +592,8 @@
       "phase": "F2",
       "procedure": "Accept selected candidate notes within unlocked bars; undo and redo; export/reopen.",
       "expected": "Only selected permitted notes commit as one transaction; source/locked notes remain unchanged. Accepted content is normal editable MIDI.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "partial accept \u2192 one transactionId InsertNoteOps, locked dropped+reported, single-undo revert",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
