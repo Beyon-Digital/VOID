@@ -43,3 +43,12 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - crates/void-jobs: job state machine + resource reservations + provenance (data model)
 - tests/recovery: 22/22 green — T17 failpoints, T18 disk-full/perms, T19 traversal, T20 migration, T21 undo roundtrip
 - Full workspace re-verified post-merge: 15 suites ok, 0 failures, 0 warnings
+
+## 2026-10-08 ~17:20Z — Lane C merged (14851f9 → devin/void-implementation)
+- packages/void-client: typed client over Tauri command surface (string-int64 DTOs, FakeTransport, in-flight dedup, STALE_* reconciliation, bounded readViewPages)
+- packages/void-studio: view-state store only (assertViewStateOnly invariant: rejects PCM buffers/undo stacks/document keys); undo = ops to engine
+- packages/void-ui: accessible primitives (role=slider Knob/Fader, keyboard, focus rings, reduced-motion)
+- packages/void-daw: clipMatrixFromReadItems defensive adapter; WebAudioAdapter explicitly never-counts-as-audio
+- apps/void-tauri renderer: engine lifecycle + CreateProject->CommandReceipt + live ClockSnapshot/MeterFrame + engine-lost banner + read inspector
+- Verified post-merge: pnpm -r test 49/49 green; pnpm -r build incl. tauri build → deb+rpm+AppImage; cargo workspace clean
+- Fix applied: bundle icon path (AppImage bundler hard-fails without square icon entry)
