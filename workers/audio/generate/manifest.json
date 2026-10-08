@@ -1,0 +1,71 @@
+{
+  "artifacts": [
+    {
+      "bytes": "840843863",
+      "ext": "bin",
+      "required": true,
+      "sha256": "830fe5771e2835cbd305f3ffdda22d3ff38718fbbe8274bd19dc203265de7244"
+    },
+    {
+      "bytes": "236001935",
+      "ext": "bin",
+      "required": true,
+      "sha256": "37d256b525d4117f8bbf790ab448a8e9f4746cd401900fe1ae72e154b1513a30"
+    },
+    {
+      "bytes": "891646390",
+      "ext": "safetensors",
+      "required": true,
+      "sha256": "a90903540cc02cbeb7ff9f823f1a80eb778c7e22426a0e620b01c77a5ec8f5b4"
+    },
+    {
+      "bytes": "791656",
+      "ext": "model",
+      "required": true,
+      "sha256": "d60acb128cf7b7f2536e8f38a5b18a05535c9e14c7a355904270e15b0945ea86"
+    },
+    {
+      "bytes": "1389353",
+      "ext": "json",
+      "required": true,
+      "sha256": "d2acde0d8d71dd30a711834b07781b9c89feaac33fd332f60507699282740066"
+    },
+    {
+      "bytes": "1208",
+      "ext": "json",
+      "required": true,
+      "sha256": "46dd7cb62d29c81fb551e0ef1ea274c24a46ba441eeb948897706252933df033"
+    }
+  ],
+  "budgets": {
+    "cpuSeconds": "900",
+    "cpuThreads": 4,
+    "memoryBytes": "8589934592",
+    "vramBytes": "0",
+    "wallNs": "600000000000"
+  },
+  "capabilities": {
+    "hardware": [
+      "cpu"
+    ],
+    "maxInputBytes": "8192",
+    "requiresGpu": false,
+    "taskKinds": [
+      "audio_generation"
+    ]
+  },
+  "formatVersion": 1,
+  "kind": "audio",
+  "license": "code MIT; weights CC-BY-NC-4.0 (non-commercial \u2014 evaluation only, release rights open)",
+  "manifestSha256": "48b254534ad97623478b28d08157f4cc7a600ddc23f2e96ab5ab8fe235dd207c",
+  "modelId": "void.audio.generate-musicgen-small",
+  "name": "MusicGen-small text-to-music (audiocraft 1.3.0)",
+  "runtime": {
+    "executable": "void-audio-generate",
+    "executableSha256": "1d7de4af7446136867e2ef7bc17c006c49a9a45cac99a188bfb41a31f8ed5dfa",
+    "kind": "argv",
+    "workerProtocol": 1
+  },
+  "source": "HF facebook/musicgen-small (rev 4c8334b02c6ec4e8664a91979669a501ec497792) + t5-base conditioner (rev a9723ea7f1b39c1eae772870f3b547bf6ef7e6c1); audiocraft==1.3.0 --no-deps on torch 2.14.1+cpu",
+  "version": "1.0.0"
+}

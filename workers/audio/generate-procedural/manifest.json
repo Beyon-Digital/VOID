@@ -1,0 +1,34 @@
+{
+  "artifacts": [],
+  "budgets": {
+    "cpuSeconds": "120",
+    "cpuThreads": 1,
+    "memoryBytes": "1073741824",
+    "vramBytes": "0",
+    "wallNs": "120000000000"
+  },
+  "capabilities": {
+    "hardware": [
+      "cpu"
+    ],
+    "maxInputBytes": "65536",
+    "requiresGpu": false,
+    "taskKinds": [
+      "audio_generation"
+    ]
+  },
+  "formatVersion": 1,
+  "kind": "audio",
+  "license": "VOID project (deterministic DSP; no weights)",
+  "manifestSha256": "f5bf7ec76a9d648adc5655bcf08acf0f2559148043cbc84aa29d1b07e6d2cdf1",
+  "modelId": "void.audio.generate-procedural",
+  "name": "VOID procedural chord synth (additive DSP, deterministic)",
+  "runtime": {
+    "executable": "void-audio-generate-procedural",
+    "executableSha256": "a2b30d0cedbe02aa86e384122461411934b515ba3427b4157e513d0865bd7c30",
+    "kind": "argv",
+    "workerProtocol": 1
+  },
+  "source": "workers/audio/generate-procedural; kind: procedural \u2014 not a learned model",
+  "version": "1.0.0"
+}

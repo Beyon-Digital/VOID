@@ -1,0 +1,20 @@
+[package]
+name = "void-models-tests"
+description = "W15 model-worker qualification suite (T60–T62) — real argv workers through the real JobRunner"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Own workspace: the root Cargo.toml members list is integrator-owned —
+# this suite builds standalone via `cargo test --manifest-path`.
+[workspace]
+
+[dependencies]
+void-assets = { path = "../../crates/void-assets" }
+void-jobs = { path = "../../crates/void-jobs" }
+void-models = { path = "../../crates/void-models" }
+serde_json = "1"
+serde = { version = "1", features = ["derive"] }
+sha2 = "0.10"
+uuid = { version = "1", features = ["v4", "serde"] }
+tempfile = "3"

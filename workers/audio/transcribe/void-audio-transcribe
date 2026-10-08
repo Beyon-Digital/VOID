@@ -1,0 +1,6 @@
+#!/bin/sh
+# void-audio-transcribe — argv worker launcher (workers/PROTOCOL.md v1).
+# Runs the bundled .venv python directly — argv-only, no shell string,
+# works under env_clear (POSIX bash, no PATH lookup needed).
+D=${0%/*}
+exec "$D/.venv/bin/python3" -B "$D/transcribe.py" "$@"
