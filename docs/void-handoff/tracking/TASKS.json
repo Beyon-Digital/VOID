@@ -485,8 +485,8 @@
         "T48"
       ],
       "dependency_ids": [],
-      "status": "not_started",
-      "evidence": [],
+      "status": "in_progress",
+      "evidence": "cutover-plan.md written + README production-path claim fixed (integrator); lane I running for templates/recents/notes/onboarding/i18n UI slice; T44/T45/T46/T48 need macOS live-device journeys",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],

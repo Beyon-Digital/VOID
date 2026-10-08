@@ -516,7 +516,7 @@
       "procedure": "Launch packaged/default commands and inspect runtime dependency/process list after the native gate passes.",
       "expected": "No production Electron or WebAudio scheduling path remains. Old source remains in git history; actual legacy projects have tested migration or explicit compatibility limits.",
       "status": "not_run",
-      "evidence": [],
+      "evidence": "cutover staged: docs/verification/F1/cutover-plan.md; README marks Tauri production path; removal gated on T44-T46",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
