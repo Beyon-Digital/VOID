@@ -74,6 +74,7 @@ import type { ReadItem } from 'void-client';
 import { parseI64 } from 'void-client';
 import { ensureClientStarted, getClient } from './client';
 import { Dashboard } from './dashboard';
+import { HelpButton, LauncherPanel, NotesPanel, RelinkPanel, SupportOverlays } from './support';
 
 // Lazily constructed: getClient() binds the Tauri transport on first use so
 // a plain-browser preview never touches IPC at import time.
@@ -1072,7 +1073,9 @@ function PianoRollPane() {
 
 export function StudioShell() {
   const workspace = useEditor((s) => s.workspace);
+  const projectId = useStudio((s) => s.projectId);
   const [showDev, setShowDev] = React.useState(false);
+  const [showSupport, setShowSupport] = React.useState(false);
 
   React.useEffect(() => {
     injectVoidStyles();
@@ -1129,10 +1132,19 @@ export function StudioShell() {
           }
         />
         <Button
+          onClick={() => setShowSupport((v) => !v)}
+          aria-pressed={showSupport}
+          aria-label="Toggle notes and relink panels"
+          style={{ marginLeft: 'auto', fontSize: 10 }}
+        >
+          notes·assets
+        </Button>
+        <HelpButton />
+        <Button
           onClick={() => setShowDev((v) => !v)}
           aria-pressed={showDev}
           aria-label="Toggle developer panels"
-          style={{ marginLeft: 'auto', fontSize: 10 }}
+          style={{ fontSize: 10 }}
         >
           dev
         </Button>
@@ -1154,20 +1166,38 @@ export function StudioShell() {
           borderTop: `1px solid ${tokens.border}`,
         }}
       >
-        <TrackListColumn />
-        {workspace === 'compose' ? (
-          <PianoRollPane />
-        ) : workspace === 'arrange' ? (
-          <TimelinePane />
+        {!projectId ? (
+          <LauncherPanel />
         ) : (
-          <Panel title="Mix" style={{ flex: 1, margin: 12 }}>
-            <p style={label}>
-              mixer region — channel strips and meters land with the mix workspace; the
-              developer surface below carries gain/pan/meters today
-            </p>
-          </Panel>
+          <>
+            <TrackListColumn />
+            {workspace === 'compose' ? (
+              <PianoRollPane />
+            ) : workspace === 'arrange' ? (
+              <TimelinePane />
+            ) : (
+              <Panel title="Mix" style={{ flex: 1, margin: 12 }}>
+                <p style={label}>
+                  mixer region — channel strips and meters land with the mix workspace; the
+                  developer surface below carries gain/pan/meters today
+                </p>
+              </Panel>
+            )}
+          </>
         )}
       </main>
+
+      {projectId && showSupport ? (
+        <section
+          aria-label="Notes and asset recovery"
+          style={{ display: 'flex', gap: 12, padding: '0 12px 12px' }}
+        >
+          <NotesPanel />
+          <RelinkPanel />
+        </section>
+      ) : null}
+
+      <SupportOverlays />
 
       {showDev ? (
         <section
