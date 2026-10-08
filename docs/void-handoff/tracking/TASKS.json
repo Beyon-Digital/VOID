@@ -683,8 +683,8 @@
         "T65"
       ],
       "dependency_ids": [],
-      "status": "not_started",
-      "evidence": [],
+      "status": "in_progress_lane",
+      "evidence": "lane L spawned: T63 storm/invalidation/offline, T65 capability matrix, T64 usability protocol (human-needed \u2192 honest blocked)",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],

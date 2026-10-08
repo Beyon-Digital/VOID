@@ -8,7 +8,8 @@
 - Tests green: cargo 17 suites, pnpm 135 vitest, recovery 22/22, full `tauri build` → deb+rpm+AppImage.
 - Lanes done+merged (7): A engine, B persistence, C UI, D editors, E recording, F export, G AI jobs (@`70bcf73` merged) — all terminated.
 - Lanes merged: +H proposals (8 of 9 done).
-- Running lanes: K W14 gestures `devin-0e1e94b11d4843789f6faecfe11f3067` (devin/void-lane-gestures), I W11-UI `devin-d0744e7e67d44ed2ba5487127a8acc63` (devin/void-lane-w11ui), J W15 audio adapters `devin-418be1e92a9047089bd39c6302832559` (devin/void-lane-audio-ai).
+- Lanes merged: +I w11ui +J audio +K gestures (12 lanes total merged).
+- Running lanes: L W16 regression gate `devin-63720015bfec4826bf4acc6c26c5820c` (devin/void-lane-w16).
 - Done by orchestrator: docs/verification/F1/cutover-plan.md, README production-path fix, blueprint suggestion (flatc+commands — awaits approval).
 
 ## Immediate next steps (in order)
