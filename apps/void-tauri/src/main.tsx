@@ -1,9 +1,9 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Dashboard } from './ui/dashboard';
+import { StudioShell } from './ui/shell';
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Dashboard />
+    <StudioShell />
   </React.StrictMode>,
 );
