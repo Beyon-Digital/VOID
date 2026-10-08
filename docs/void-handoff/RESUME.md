@@ -11,7 +11,7 @@
 - Lanes merged: +I w11ui +J audio +K gestures (12 lanes total merged).
 - All 12 implementation lanes merged+terminated (A-L).
 - Lanes merged: +M f1journey (13 total).
-- Running: lane N W17-studio `devin-9af5e1d8340740b192753b0e24835e7f` (devin/void-lane-w17ui).
+- Running: lane N W17-studio `devin-9af5e1d8340740b192753b0e24835e7f` (devin/void-lane-w17ui); lane O W22 visual `devin-d81030cb965e4979ad67ced4784ff9ed` (devin/void-lane-visual). `devin-9af5e1d8340740b192753b0e24835e7f` (devin/void-lane-w17ui).
 - Last merge note: M ran on Linux not macOS — engine is headless-capable; F1 journey T44/T46 PASS. `devin-7cdbfd15480e43b69d1239972359c6f2`
 - W16 gate merged: F2 not-declared-complete (preview layer/wire ops/engine input gaps); T64 blocked human.
 - Everything else done or gated on macOS live-device evidence (W04/W06/W08 partial_macos; W11 journeys; W17+ dep W11).

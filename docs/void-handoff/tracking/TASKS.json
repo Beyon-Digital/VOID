@@ -918,8 +918,8 @@
       "dependency_ids": [
         "VIS-01"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "in_progress_lane",
+      "evidence": "lane O spawned: crates/void-visual wgpu + protocol/visual rev0 draft + tests/visual + studio visuals store",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
