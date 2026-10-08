@@ -152,3 +152,85 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
     invoke, then the attach) and a `RelinkAssetOp{asset_id, sha256}` that
     performs the `relink()`/`replace()` transitions server-side so the UI
     does not coordinate the two steps blind.
+
+## rev2 — W17 studio lane gaps (items 18+)
+
+18. **No per-clip fade fields.** `InsertAudioClipOp`/`TrimClipOp` carry
+    no `fade_in_ticks`/`fade_out_ticks`/`fade_shape`; T66's "trim
+    crossfades" and ARR-05 therefore store `FadeSpec{shape,lengthTicks}`
+    as studio view-state (`arrangement/fades.ts`, `takes/comp.ts`
+    seamFadePlan) applied at render time by the engine once fields land.
+    Needed: `fade_in`/`fade_out` tables on clip ops + a
+    `SetClipFadeOp{clip_id, edge, shape, ticks}` for post-insert edits.
+
+19. **No clip repeat/loop flag.** Region loops materialize today as real
+    duplicate clips (`arrangement/regions.ts loopClipOps`) — inspectable
+    and undoable but N clips not 1 clip×N. Needed: `repeats`/`loop_length`
+    on clip ops so a loop is one clip instance engine-side (ARR-03).
+
+20. **No alias/linked-instance op.** Alias groups propagate edits
+    client-side by fanning identical ops (`regions.ts aliasPropagateOps`);
+    a wire `alias_group` membership on clips would let the engine keep
+    shared-source edits atomic. Needed: `alias_group_id` field or
+    `LinkClipsOp{clip_ids, propagate}`.
+
+21. **No folder/stack/routing membership.** Folder tracks and sum stacks
+    are view-state grouping (`types.ts TrackFolder`); the engine needs
+    `SetTrackParentOp{track_id, parent_id}` or a folder flag so stacks
+    can own bus routing (ARR-03/ARR-06 audio grouping is unrouted today).
+
+22. **No group/multi-clip op atom.** ARR-06 group edits fan N identical
+    ops through `groupEditOps` — correct but verbose; a
+    `clips: [ids]` array field on Move/Trim/Remove would cut op count.
+    Optional optimization, not a correctness gap (one transaction already
+    makes it atomic).
+
+23. **No protected-edit flag.** ARR-07 protection is enforced client-side
+    only (`groups.ts assertUnprotected`) — a UI safety rail, honest.
+    A document-level `locked` flag on clips/tracks/ranges would survive
+    hostile scripts and other clients. Needed: `lock` fields + engine
+    validation.
+
+24. **No section/marker ops.** Sections and markers are view-state
+    (`arrangement/sections.ts`); every edit they drive is real ops, but
+    the section table itself never persists. Needed:
+    `SetSectionOp`/`SetMarkerOp` + fields on project document.
+
+25. **No alternative/playlist ops.** Track and project alternatives are
+    saved arrangement specs in studio state
+    (`arrangement/alternatives.ts`) applied via remove+insert; the
+    spec's persistence needs `SaveAlternativeOp{track_id, clips}` or a
+    playlist-list document area (DOC-02).
+
+26. **No scene/launch ops.** Scene slots, quantize semantics and the
+    pending→playing→stopping machine are a view model
+    (`scenes/scenes.ts`); actual sample-accurate launch/stop at the
+    boundary is engine scheduling. `sceneTransportOps` maps a bound
+    scene onto SEEK+SET_CYCLE as the only honest wire surface today.
+    Needed: `LaunchSceneOp`/`LaunchClipOp` + a launch-state view page
+    (PAT-02/PAT-03).
+
+27. **No tempo ramp.** `TempoEvent.ramp` is spec-only — `SetTempoOp`
+    is a step change; glissando/ritardando needs a `ramp_to_ticks` or
+    tempo-curve op (TIME-03 ramps).
+
+28. **No note-copy op.** MIDI comp segments insert an empty MIDI clip
+    (`takes/comp.ts midiSegmentClipIds`) because notes can't be cloned
+    from another clip; the store marks them for a follow-up engine op.
+    Needed: `CopyNotesOp{src_clip_id, dst_clip_id, region}` or
+    clip-content copy semantics (REC-05 MIDI comping).
+
+29. **No freeze/bounce render op.** Freeze is a spec + post-render clip
+    swap (`arrangement/freeze.ts`); the render itself is an engine job
+    like the W12 AI-job family — Needed: `RenderTrackOp{track_id,
+    tail_policy}` returning an asset id + completion event (ENG-05/T68).
+
+30. **No audio-record/flashback surface.** `takes/capture.ts` models the
+    consent + retention policy client-side; the circular capture buffer
+    is engine memory the wire can't expose yet. Needed: capture-arm +
+    `RecoverCaptureOp` returning an asset id (REC-06).
+
+31. **No loudness/analysis view.** Strip-silence consumes tile-level
+    peaks (`fades.ts LoudnessTile`) but no view emits them. Needed: a
+    `LOUDNESS`/`PEAKS` view page per asset (tile table, bounded) — the
+    streaming half of T68 (TIME-06 analysis product).
