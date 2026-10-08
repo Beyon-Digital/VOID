@@ -513,7 +513,7 @@ function ReadViewPanel() {
           <Button loading={busy} disabled={!attached} onClick={() => load('')}>
             Read page
           </Button>
-          <Button disabled={!attached || !entry || entry.done || busy} onClick={() => load(entry?.next_cursor ?? '')}>
+          <Button disabled={!attached || !entry || entry.done || busy} onClick={() => load(entry?.nextCursor ?? '')}>
             Next page
           </Button>
         </>
@@ -525,7 +525,7 @@ function ReadViewPanel() {
         <>
           <p style={label}>
             {view}: {entry.items.length} items · revision {entry.revision} ·{' '}
-            {entry.done ? 'exhausted' : `cursor ${entry.next_cursor || '∅'}`}
+            {entry.done ? 'exhausted' : `cursor ${entry.nextCursor || '∅'}`}
             {entry.truncated ? ' · truncated at bound' : ''}
           </p>
           <ul

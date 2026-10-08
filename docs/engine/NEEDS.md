@@ -75,3 +75,42 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
     `{kind:"JobEvent", project_id, job_id, status, percent?, message?,
     quarantined?}` (snake_case — `parseJobEvent` already reads it and
     `void-jobs::JobEvent` serializes exactly that shape).
+
+## W11-SUPPORT lane (protocol major.1 gaps — UI/coordinator-side shell features)
+
+12. **No `SetProjectNoteOp` / `SetTrackNoteOp` in the PersistentOp union.**
+    Project and track notes (WORK_PACKAGES W11, FEATURE_MAP DOC-05) have no
+    wire op, so a note typed in the UI cannot be committed to the document.
+    Studio ships the proposed op shapes in
+    `packages/void-studio/src/notes/dto.ts` (`proposedSetProjectNoteOp`,
+    `proposedSetTrackNoteOp`, `NOTE_OPS_AVAILABLE = false`) and keeps typed
+    notes as explicitly-labelled *unsent-intent drafts* (app-local, never
+    shown as document values). `notes/parse.ts` already reads `note`/`notes`
+    fields defensively out of PROJECT_SUMMARY / TRACK_LIST summaries so a
+    view field lands as soon as the coordinator emits one. Needed:
+    `SetProjectNoteOp{text}`, `SetTrackNoteOp{track_id, text}` (or a single
+    `SetNoteOp{target}`), plus a `note` field on the summary payloads.
+
+13. **No coordinator surface for the recent-projects index.** CONTRACTS §4
+    puts the recents list in coordinator-owned app-private SQLite, but no op,
+    view, or invoke exposes it — `OpenProjectOp` can reopen a container yet
+    nothing records or returns "recently opened". Until a `RECENTS_LIST`
+    view (or a `list_recent_projects` invoke) exists,
+    `packages/void-studio/src/recents/` keeps an app-local cache of *real
+    opens from this install* through an injected KeyValueStore — reopen
+    tokens only (container dir, project id, name, timestamp), written only
+    after an APPLIED create/open receipt. It is a cache, not the authority;
+    stale entries surface as failed opens, never edited to look right.
+
+14. **No asset ingest / relink-commit op.** Related to item 4: a missing
+    asset renders as a `MediaLink::Missing` placeholder, and `AttachAssetOp`
+    only registers a blob that is already inside `container/assets/sha256/`.
+    The recovery path — the user picks a file, its bytes are hashed and
+    placed into the container, then the link resolves — has no wire
+    representation. `packages/void-studio/src/relink/` does the client-side
+    sha256 verify (`verifyCandidate` → relink vs explicit-replace, mirroring
+    `void-assets::link.rs`) and builds the `AttachAssetOp`; the coordinator
+    still needs the ingest half (`IngestAssetOp{rel_path}` / a file-copy
+    invoke, then the attach) and a `RelinkAssetOp{asset_id, sha256}` that
+    performs the `relink()`/`replace()` transitions server-side so the UI
+    does not coordinate the two steps blind.
