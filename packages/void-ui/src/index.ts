@@ -9,5 +9,8 @@ export * from '../components/ClipBlock';
 export * from '../components/NoteBlock';
 export * from '../components/TransportControls';
 export * from '../components/WorkspaceTabs';
+export * from '../components/MixerStrip';
+export * from '../components/ExportJobRow';
+export * from '../components/InstrumentRack';
 export * from '../components/ticks';
 export { tokens, injectVoidStyles, focusClass, animatedClass } from '../components/styles';
