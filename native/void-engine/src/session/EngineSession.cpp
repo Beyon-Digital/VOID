@@ -72,14 +72,17 @@ public:
 EngineSession::EngineSession (uint64_t engineEpoch)
     : epoch_ (engineEpoch)
 {
+    auto beh = std::make_unique<VoidEngineBehaviour>();
+    voidBehaviour_ = beh.get();
     engine_ = std::make_unique<te::Engine> (std::make_unique<VoidPropertyStorage>(),
                                             std::make_unique<VoidUIBehaviour>(),
-                                            std::make_unique<te::EngineBehaviour>());
+                                            std::move (beh));
     engine_->getTemporaryFileManager().getTempDirectory().createDirectory();
 }
 
 EngineSession::~EngineSession()
 {
+    recording_.reset(); // panics + closes journals before the Edit dies
     if (edit_ != nullptr)
         edit_->getTransport().stop (true, false);
     edit_.reset();
@@ -361,7 +364,16 @@ void EngineSession::applyTransportRequest (const vp::TransportRequest& req)
             tc.setPosition (timeOf (req.position_ticks()));
             break;
         case vp::TransportOp_PANIC:
-            tc.stop (true, false);
+            if (recording_ != nullptr)
+            {
+                // Recording-aware panic: all-notes-off on inputs' held keys +
+                // outputs, stop keeping the partial take (W08).
+                recording_->panic();
+            }
+            else
+            {
+                tc.stop (true, false);
+            }
             // All-notes-off to every enabled MIDI output — the reserved
             // high-priority path must not queue behind edits (it doesn't:
             // this runs on the control lane).
@@ -398,6 +410,37 @@ void EngineSession::applyTransportRequest (const vp::TransportRequest& req)
         }
         default: break;
     }
+}
+
+// ===========================================================================
+// Recording summary (additive fields inside PROJECT_SUMMARY payload).
+// ===========================================================================
+juce::String EngineSession::recordingSummaryJson() const
+{
+    if (recording_ == nullptr)
+        return "{}";
+    auto* r = recording_.get();
+    juce::String phase;
+    switch (r->phase())
+    {
+        case RecordingManager::Phase::idle:      phase = "idle"; break;
+        case RecordingManager::Phase::armed:     phase = "armed"; break;
+        case RecordingManager::Phase::recording: phase = "recording"; break;
+        case RecordingManager::Phase::stopping:  phase = "stopping"; break;
+        case RecordingManager::Phase::failed:    phase = "failed"; break;
+    }
+    auto* armed = new juce::DynamicObject();
+    juce::Array<juce::var> ids;
+    for (auto& id : r->armedTrackItemIds())
+        ids.add (juce::var (id));
+    armed->setProperty ("phase", phase);
+    armed->setProperty ("isRecording", r->isRecording());
+    armed->setProperty ("armedTracks", juce::var (ids));
+    if (r->currentTake() != nullptr)
+        armed->setProperty ("takeId", r->currentTake()->takeId);
+    if (r->lastError().isNotEmpty())
+        armed->setProperty ("lastError", r->lastError());
+    return juce::JSON::toString (juce::var (armed));
 }
 
 // ===========================================================================
@@ -441,7 +484,8 @@ void EngineSession::handleRead (const vp::ReadRequest& req,
                   "\"revision\":" + juce::String (revision_) + ","
                   "\"engineEpoch\":" + juce::String (epoch_) + ","
                   "\"bpm\":" + juce::String (ts.getBpmAt (te::TimePosition::fromSeconds (0))) + ","
-                  "\"numTracks\":" + juce::String (te::getAllTracks (*edit_).size()) + "}");
+                  "\"numTracks\":" + juce::String (te::getAllTracks (*edit_).size()) + ","
+                  "\"recording\":" + recordingSummaryJson() + "}");
             break;
         }
         case vp::ViewKind_TRACK_LIST:
