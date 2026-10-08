@@ -9,7 +9,10 @@
 - Lanes done+merged (7): A engine, B persistence, C UI, D editors, E recording, F export, G AI jobs (@`70bcf73` merged) — all terminated.
 - Lanes merged: +H proposals (8 of 9 done).
 - Lanes merged: +I w11ui +J audio +K gestures (12 lanes total merged).
-- Running lanes: L W16 regression gate `devin-63720015bfec4826bf4acc6c26c5820c` (devin/void-lane-w16).
+- All 12 implementation lanes merged+terminated (A-L).
+- Running: lane M F1 journeys `devin-7cdbfd15480e43b69d1239972359c6f2` (devin/void-lane-f1journey, macOS).
+- W16 gate merged: F2 not-declared-complete (preview layer/wire ops/engine input gaps); T64 blocked human.
+- Everything else done or gated on macOS live-device evidence (W04/W06/W08 partial_macos; W11 journeys; W17+ dep W11).
 - Done by orchestrator: docs/verification/F1/cutover-plan.md, README production-path fix, blueprint suggestion (flatc+commands — awaits approval).
 
 ## Immediate next steps (in order)

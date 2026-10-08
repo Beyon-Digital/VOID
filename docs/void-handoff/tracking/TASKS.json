@@ -486,7 +486,7 @@
       ],
       "dependency_ids": [],
       "status": "in_progress",
-      "evidence": "cutover-plan.md + README fix (integrator); lane I merged: i18n(~90 keys)+3 templates+recents cache+notes drafts+relink sha256\u2192AttachAssetOp+onboarding tour; tsc clean, studio 170 tests. Remaining: T44/45/46/48 need macOS live-device + T47 cutover gated on those",
+      "evidence": "cutover staged + UI slice merged; F1 journey lane M running on macOS (T44 song journey, T46 engine churn, T45 partial)",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
