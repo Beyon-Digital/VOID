@@ -33,3 +33,22 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
 6. **`MeterFrame` has no per-track meter array** in this schema rev — engine
    publishes peak/RMS pairs the schema supports; per-track meters need a schema
    field if the mixer wants them (check with integrator before assuming).
+
+## W08 recording lane (protocol major.1 gaps — engine drives these in-process)
+
+7. **No arm/record/monitor/punch ops exist in `void_control.fbs`.** The take
+   lifecycle — input select + record-enable, monitor mode, count-in,
+   metronome, punch-in/out — has zero wire representation. Recording is
+   currently engine-internal (`src/recording/RecordingManager`, exercised via
+   `void-recording-fixture`). Needed (names proposed, not implemented):
+   `ArmTrackOp{track, input_device, monitor_mode, is_midi}`,
+   `StartRecordingOp{take_id?}`, `StopRecordingOp{discard}`,
+   `PunchOp{track, enable}`, `SetCountInOp{mode}`,
+   `SetMetronomeOp{enabled, gain, recording_only}`,
+   `SetPunchInOutOp{enabled}`, `RecordArmView`/`TakeListView` view kinds,
+   `InputDeviceLostEvent` telemetry. Until schema rev 2 the supervisor cannot
+   drive recording — W08 evidence is produced in-process only.
+
+8. **No device-enumeration view.** `arm` needs the engine's input device list
+   (names, channel configs, latencies) — an `INPUT_DEVICE_LIST` ViewKind would
+   let the supervisor build the arm UI without a device-manager round trip.

@@ -6,6 +6,7 @@
 #include <JuceHeader.h>
 #include <tracktion_engine/tracktion_engine.h>
 #include "void_control_generated.h"
+#include "../recording/RecordingManager.h"
 #include <functional>
 #include <memory>
 #include <unordered_map>
@@ -79,9 +80,19 @@ public:
     void armCrashFixture() noexcept { crashArmed_ = true; }
     bool crashArmed() const noexcept { return crashArmed_; }
 
+    /// Recording subsystem (W08). Valid while a project is open.
+    RecordingManager* recording() noexcept { return recording_.get(); }
+    /// Public track lookup for subsystems (recording, monitor routing).
+    te::AudioTrack* findTrackById (const juce::String& trackId) const { return findTrack (trackId); }
+    /// Absolute container dir as a string ("" when no project is open).
+    juce::String containerDirPath() const { return containerDirStr_; }
+
     /// Record that a plugin failed to load during project open (missing /
     /// incompatible): keeps the slot marked, never throws.
     void markPluginMissing (const juce::String& instanceId, const juce::String& reason);
+
+    /// JSON blob describing recording subsystem state for PROJECT_SUMMARY.
+    juce::String recordingSummaryJson() const;
 
 private:
     // -- persistent ops -----------------------------------------------------
@@ -187,6 +198,8 @@ private:
     std::unordered_map<std::string, juce::String>  assets_; // asset_id -> rel path
 
     bool crashArmed_ = false;
+    VoidEngineBehaviour* voidBehaviour_ = nullptr; // owned by engine_
+    std::unique_ptr<RecordingManager> recording_;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EngineSession)
 };

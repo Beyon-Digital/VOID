@@ -58,3 +58,25 @@ index maps rebuilt by `rebuildIndexes()`. No ID-prefix inference anywhere.
 STALE_EPOCH(7); `command_id` dedup via `receipts_` map keyed by command_id storing
 SHA-256 of the raw wire frame — same id+same hash → DUPLICATE(1), same id+different
 hash → COMMAND_ID_REUSE(8). APPLIED bumps `revision_` and stores receipt.
+
+## Recording (W08, engine-internal until protocol rev 2 — see NEEDS.md §7-8)
+
+| Capability | Engine call | Tracktion/JUCE symbol (exact) | Site |
+|---|---|---|---|
+| Arm input on track | `RecordingManager::arm` | `te::InputDeviceInstance::setTarget(EditItemID, moveToTrack, undo, index)` → `tl::expected<Destination*>`; `Destination::recordEnabled=true` (via `te::assignTrackAsInput` for `track:` sources, `EditUtilities.cpp:1407`) | `recording/RecordingManager.cpp` |
+| Input resolution | `resolveInput` | `WaveInputDevice`/`MidiInputDevice` from `DeviceManager` (`wave:N`/`midi:N` = Nth non-track device; `track:<voidId>`; `""` = first) | `recording/RecordingManager.cpp` |
+| Monitor mode | `setMonitor` | `te::InputDevice::setMonitorMode(MonitorMode::{off,automatic,on})` | `recording/RecordingManager.cpp` |
+| Count-in | `setCountIn` | `te::Edit::setCountInMode(Edit::CountIn)` (`tracktion_Edit.h:712`) | same |
+| Metronome | `setMetronome` | `edit->clickTrackEnabled/clickTrackGain/clickTrackRecordingOnly` (CachedValues) | same |
+| Punch | `punchIn`/`punchOut` | `te::InputDeviceInstance::setRecordingEnabled(EditItemID,bool)` live | same |
+| Start/stop take | `startRecording`/`stopRecording` | `te::TransportControl::record(false)` / `stop(discard,false)`; `ensureContextAllocated()` required before `getCurrentPlaybackContext()` | same |
+| Take file routing | `VoidEngineBehaviour::takeFileProvider` | `te::EngineBehaviour::getFileForNewAudioRecording(Track&, ext)` override (`tracktion_EngineBehaviour.h:149`) → `recordings/<takeId>/chunk-<id>-1.wav` | `recording/RecordingManager.h` |
+| Stereo config | `arm` | `te::WaveInputDevice::setChannelConfiguration(ChannelConfiguration::stereo(0)/mono(0))` | `recording/RecordingManager.cpp` |
+| Take lifecycle events | `recordingStarted/Stopped/Finished` | `te::TransportControl::Listener` (`tracktion_TransportControl.h`) | same |
+| MIDI capture | `MidiCapture::handleIncomingMidiMessage` | `te::InputDeviceInstance::Consumer` realtime callback → lock-free `juce::AbstractFifo` → 20 Hz `juce::Timer` drain writes `midi-<id>.jsonl` (sustain/bend/polyAT/chanAT byte-exact) | `recording/MidiCapture.cpp` |
+| All-notes-off | `emitAllNotesOff`, `panic` | `juce::MidiMessage::allNotesOff(ch)` ×16 → `MidiInputDevice::handleIncomingMessage` + `MidiOutputDevice::sendNoteOffMessages` | same |
+| Journal | `TakeJournalFile` | atomic tmp+rename `journal.json`; `scanChunks` RIFF-walk (JUNK/bext-aware, unfinalized data-size → file-extent estimate); `recoverIncomplete` marks orphan takes `incomplete` | `recording/TakeJournal.cpp` |
+| Recovery on open | `opOpenProject` | `TakeJournalFile::recoverIncomplete(container)` runs on every open incl. edit-file-missing containers | `session/Ops.cpp` |
+| Device-loss error | `deviceListChanged` | `juce::ChangeListener` on `DeviceManager`; take fails explicitly when a live input disappears | `recording/RecordingManager.cpp` |
+| Disk-space gate | `startRecording` | `juce::File::getBytesFreeOnVolume()` ≥ 64 MiB pre-check | same |
+| Hosted latency | fixture `latency` | `te::test_utilities::EnginePlayer` `inputLatencyNumSamples`/`outputLatencyNumSamples` + `WaveInputDevice::getRecordAdjustment()` → `te::toSamples` | `tests/recording_fixture.cpp` |

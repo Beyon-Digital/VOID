@@ -3,6 +3,7 @@
 
 #include "EngineSession.h"
 #include "../persistence/SaveBridge.h"
+#include "../recording/TakeJournal.h"
 
 namespace voidengine
 {
@@ -42,6 +43,7 @@ CommandResult EngineSession::opCreateProject (const vp::CreateProjectOp& op)
     options.numUndoLevelsToStore = 500;
     edit_ = std::make_unique<te::Edit> (options);
     edit_->state.setProperty (te::IDs::name, projectName_, nullptr);
+    recording_ = std::make_unique<RecordingManager> (*this);
 
     edit_->tempoSequence.getTempoAt (te::BeatPosition::fromBeats (0.0))
         .setBpm ((double) op.initial_bpm());
@@ -64,6 +66,7 @@ CommandResult EngineSession::opOpenProject (const vp::OpenProjectOp& op)
     if (edit_ != nullptr)
     {
         edit_->getTransport().stop (true, false);
+        recording_.reset();
         edit_.reset();
         tracks_.clear(); clips_.clear(); notes_.clear(); plugins_.clear();
         clipToTrack_.clear(); noteToClip_.clear(); meterClients_.clear();
@@ -75,6 +78,10 @@ CommandResult EngineSession::opOpenProject (const vp::OpenProjectOp& op)
     const auto projectJson = container.getChildFile ("project.json");
     if (! container.isDirectory() || ! projectJson.existsAsFile())
         return notFound ("project container");
+
+    // Recording journal recovery is container-level: orphaned takes must be
+    // labeled `incomplete` on reopen even if the edit file is absent/corrupt.
+    voidengine::TakeJournalFile::recoverIncomplete (container);
 
     const auto meta = juce::JSON::parse (projectJson.loadFileAsString());
     projectId_   = meta["projectId"].toString();
@@ -110,6 +117,8 @@ CommandResult EngineSession::opOpenProject (const vp::OpenProjectOp& op)
     revision_ = (uint64_t) storedRev;
     edit_->state.removeProperty ("voidRevision", nullptr);
 
+    recording_ = std::make_unique<RecordingManager> (*this);
+    recording_->recoverIncompleteTakes();
     rebuildIndexes();
     return ok();
 }
@@ -119,6 +128,7 @@ CommandResult EngineSession::opCloseProject (const vp::CloseProjectOp&)
     if (edit_ == nullptr)
         return notFound ("open project");
     edit_->getTransport().stop (true, false);
+    recording_.reset();
     edit_.reset();
     tracks_.clear(); clips_.clear(); notes_.clear(); plugins_.clear();
     clipToTrack_.clear(); noteToClip_.clear(); meterClients_.clear(); assets_.clear();
