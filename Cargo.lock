@@ -4261,6 +4261,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "void-export"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "sha2",
+ "tempfile",
+ "thiserror 2.0.21",
+ "tracing",
+ "uuid",
+ "void-assets",
+ "void-jobs",
+ "void-project",
+ "void-protocol",
+]
+
+[[package]]
 name = "void-jobs"
 version = "0.1.0"
 dependencies = [
