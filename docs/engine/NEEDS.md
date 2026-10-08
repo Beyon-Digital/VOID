@@ -234,3 +234,29 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
     peaks (`fades.ts LoudnessTile`) but no view emits them. Needed: a
     `LOUDNESS`/`PEAKS` view page per asset (tile table, bounded) — the
     streaming half of T68 (TIME-06 analysis product).
+
+32. **No plugin-state restore op.** `InsertPluginOp` has no state field —
+    `crates/void-exchange::plan` preserves imported plugin state blobs
+    through the missing-plugin store instead of sending them (loss
+    entry `plugin/state`). Needed: `RestorePluginStateOp{plugin_instance_id,
+    state_asset_id}` or a state field on insert (PLG-01/T76).
+
+33. **No plugin-host isolation on this platform.** `IsolationPolicy`
+    (`crates/void-exchange::isolation`) validates bounded-buffer /
+    deadline / restart-budget descriptors a native worker could enforce,
+    and `requested_policy` returns typed `IsolationUnavailable` (AAX
+    never; AU off-macOS; `NoIsolatedHost` when the worker is unbuilt).
+    Actual crash isolation needs `native/void-plugin-worker` +
+    fault-evidence on a native host (PLG-02/T75 runtime half).
+
+34. **No plugin-format runtime hosting on Linux lane.** The registry
+    records AU/VST3/CLAP descriptors + per-platform hosting history, but
+    this lane cannot load any real plugin binary; arch discovery is
+    descriptor-declared, not probed (PLG-03/T76 runtime half).
+
+35. **No clip enable/offset/marker/loop ops.** Imported dawproject clips
+    carrying `enable="false"`, `playStart` offsets, markers and loop
+    ranges emit `dropped` loss entries in `plan_import` — the wire has
+    no op for any of them (fades already tracked in item 18). Needed:
+    `SetClipEnabledOp`, `SetClipOffsetOp`, `InsertMarkerOp`,
+    `SetLoopRangeOp` (EXC-01/T77 apply leg).
