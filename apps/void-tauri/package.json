@@ -15,7 +15,9 @@
     "void-core": "workspace:*",
     "void-daw": "workspace:*",
     "void-ui": "workspace:*",
-    "@tauri-apps/api": "^2"
+    "@tauri-apps/api": "^2",
+    "void-client": "workspace:*",
+    "void-studio": "workspace:*"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",

@@ -1,6 +1,7 @@
 {
-  "name": "void-daw",
-  "version": "1.0.0",
+  "name": "void-client",
+  "version": "0.1.0",
+  "description": "Typed TypeScript client for the VOID Tauri command surface (control + telemetry channels)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -9,13 +10,11 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "void-core": "workspace:*",
-    "react": "*",
-    "void-client": "workspace:*"
+    "@tauri-apps/api": "^2"
   },
   "devDependencies": {
     "typescript": "6.0.3",
-    "@types/react": "*",
     "vitest": "^3.0.0"
-  }
+  },
+  "type": "module"
 }

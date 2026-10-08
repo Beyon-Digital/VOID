@@ -84,12 +84,18 @@ importers:
       react-dom:
         specifier: '*'
         version: 19.2.5(react@19.2.5)
+      void-client:
+        specifier: workspace:*
+        version: link:../../packages/void-client
       void-core:
         specifier: workspace:*
         version: link:../../packages/void-core
       void-daw:
         specifier: workspace:*
         version: link:../../packages/void-daw
+      void-studio:
+        specifier: workspace:*
+        version: link:../../packages/void-studio
       void-ui:
         specifier: workspace:*
         version: link:../../packages/void-ui
@@ -113,6 +119,19 @@ importers:
         specifier: ^6
         version: 6.4.2(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)
 
+  packages/void-client:
+    dependencies:
+      '@tauri-apps/api':
+        specifier: ^2
+        version: 2.12.1
+    devDependencies:
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: ^3.0.0
+        version: 3.2.7(@types/debug@4.1.13)(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)
+
   packages/void-core:
     devDependencies:
       typescript:
@@ -127,6 +146,9 @@ importers:
       react:
         specifier: '*'
         version: 19.2.5
+      void-client:
+        specifier: workspace:*
+        version: link:../void-client
       void-core:
         specifier: workspace:*
         version: link:../void-core
@@ -135,8 +157,33 @@ importers:
         specifier: '*'
         version: 19.2.14
       typescript:
-        specifier: ^5.0.0
-        version: 5.9.3
+        specifier: 6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: ^3.0.0
+        version: 3.2.7(@types/debug@4.1.13)(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)
+
+  packages/void-studio:
+    dependencies:
+      void-client:
+        specifier: workspace:*
+        version: link:../void-client
+      zustand:
+        specifier: ^5.0.12
+        version: 5.0.12(@types/react@19.2.14)(immer@11.1.4)(react@19.2.5)
+    devDependencies:
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
+      react:
+        specifier: ^19.2.5
+        version: 19.2.5
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: ^3.0.0
+        version: 3.2.7(@types/debug@4.1.13)(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)
 
   packages/void-ui:
     dependencies:
@@ -146,6 +193,13 @@ importers:
       react:
         specifier: '*'
         version: 19.2.5
+    devDependencies:
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: ^3.0.0
+        version: 3.2.7(@types/debug@4.1.13)(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)
 
 packages:
 
