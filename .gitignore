@@ -8,3 +8,4 @@ packages/void-core/tsconfig.tsbuildinfo
 
 # generated FlatBuffers bindings
 protocol/generated/
+target/
