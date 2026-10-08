@@ -1,0 +1,17 @@
+[package]
+name = "void-visual-tests"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Detached suite: not part of the main workspace — run with
+# `cargo test --manifest-path tests/visual/Cargo.toml`.
+[workspace]
+
+[dependencies]
+void-visual = { path = "../../crates/void-visual" }
+void-protocol = { path = "../../crates/void-protocol" }
+sha2 = "0.10"
+serde_json = "1"
+tempfile = "3"
+image = { version = "0.25", default-features = false, features = ["png"] }

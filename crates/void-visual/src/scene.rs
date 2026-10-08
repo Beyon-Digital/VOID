@@ -664,9 +664,21 @@ impl Scene {
             VisualOp::TakeTransitionOp { .. }
             | VisualOp::CancelTransitionOp { .. }
             | VisualOp::SnapshotVisualStateOp { .. }
-            | VisualOp::ClearVisualSceneOp {}
-            | VisualOp::VisualUndoOp { .. }
-            | VisualOp::VisualRedoOp { .. } => {}
+            | VisualOp::ClearVisualSceneOp {} => {}
+            VisualOp::VisualUndoOp { transaction_id } => {
+                if !self.can_undo(transaction_id) {
+                    return Err(VisualError::NotFound(format!(
+                        "nothing to undo for transaction '{transaction_id}'"
+                    )));
+                }
+            }
+            VisualOp::VisualRedoOp { transaction_id } => {
+                if !self.can_redo(transaction_id) {
+                    return Err(VisualError::NotFound(format!(
+                        "nothing to redo for transaction '{transaction_id}'"
+                    )));
+                }
+            }
         }
         Ok(())
     }
@@ -1024,42 +1036,110 @@ impl Scene {
         self.reindex();
     }
 
-    /// Rewind the visual half of transaction `tx` ("" = latest).
+    /// Rewind the visual half of transaction `tx` ("" = latest) —
+    /// every op committed under it, newest first. One user gesture is
+    /// one undo boundary: partial rewinds are never a valid outcome.
     pub fn undo(&mut self, tx: &str) -> bool {
-        let pos = if tx.is_empty() {
-            self.journal.len().checked_sub(1)
+        let tx_id = if tx.is_empty() {
+            match self.journal.last() {
+                Some(e) => e.transaction_id.clone(),
+                None => return false,
+            }
         } else {
-            self.journal.iter().rposition(|e| e.transaction_id == tx)
+            tx.to_string()
         };
-        let Some(pos) = pos else { return false };
-        let entry = self.journal.remove(pos);
-        // Journal the redo entry before mutating.
-        let mut redo_inverses = Vec::new();
-        for inv in &entry.inverses {
-            redo_inverses.push(self.inverse_of(inv));
+        let mut positions: Vec<usize> = self
+            .journal
+            .iter()
+            .enumerate()
+            .filter(|(_, e)| e.transaction_id == tx_id)
+            .map(|(i, _)| i)
+            .collect();
+        if positions.is_empty() {
+            return false;
         }
-        for inv in entry.inverses.iter().rev() {
-            self.apply_inverse(inv);
+        positions.sort_unstable_by(|a, b| b.cmp(a)); // newest first
+        let mut redo_entries = Vec::new();
+        for pos in positions {
+            let entry = self.journal.remove(pos);
+            let mut redo_inverses = Vec::new();
+            for inv in &entry.inverses {
+                redo_inverses.push(self.inverse_of(inv));
+            }
+            for inv in entry.inverses.iter().rev() {
+                self.apply_inverse(inv);
+            }
+            redo_entries.push(JournalEntry {
+                transaction_id: entry.transaction_id,
+                inverses: redo_inverses,
+            });
         }
-        self.redo.push(JournalEntry {
-            transaction_id: entry.transaction_id,
-            inverses: redo_inverses,
-        });
+        // Redo stack ordered oldest-first so replay matches the original
+        // application order.
+        for e in redo_entries.into_iter().rev() {
+            self.redo.push(e);
+        }
         true
     }
 
+    /// Replay an undone transaction, oldest entry first; each replayed
+    /// step is re-journaled so the transaction can be undone again.
     fn redo_op(&mut self, tx: &str) -> bool {
-        let pos = if tx.is_empty() {
-            self.redo.len().checked_sub(1)
+        let tx_id = if tx.is_empty() {
+            match self.redo.last() {
+                Some(e) => e.transaction_id.clone(),
+                None => return false,
+            }
         } else {
-            self.redo.iter().rposition(|e| e.transaction_id == tx)
+            tx.to_string()
         };
-        let Some(pos) = pos else { return false };
-        let entry = self.redo.remove(pos);
-        for inv in entry.inverses.iter() {
-            self.apply_inverse(inv);
+        let positions: Vec<usize> = self
+            .redo
+            .iter()
+            .enumerate()
+            .filter(|(_, e)| e.transaction_id == tx_id)
+            .map(|(i, _)| i)
+            .collect();
+        if positions.is_empty() {
+            return false;
+        }
+        // Remove in descending order to keep indices valid, then apply
+        // in original (ascending) order.
+        let mut entries = Vec::new();
+        for pos in positions.iter().rev() {
+            entries.push(self.redo.remove(*pos));
+        }
+        entries.reverse();
+        for entry in entries {
+            let mut new_inverses = Vec::new();
+            for inv in &entry.inverses {
+                new_inverses.push(self.inverse_of(inv));
+            }
+            for inv in &entry.inverses {
+                self.apply_inverse(inv);
+            }
+            self.journal.push(JournalEntry {
+                transaction_id: entry.transaction_id,
+                inverses: new_inverses,
+            });
         }
         true
+    }
+
+    fn can_undo(&self, tx: &str) -> bool {
+        if tx.is_empty() {
+            !self.journal.is_empty()
+        } else {
+            self.journal.iter().any(|e| e.transaction_id == tx)
+        }
+    }
+
+    fn can_redo(&self, tx: &str) -> bool {
+        if tx.is_empty() {
+            !self.redo.is_empty()
+        } else {
+            self.redo.iter().any(|e| e.transaction_id == tx)
+        }
     }
 
     /// Compute the inverse that would re-do an undone step (inverse of an

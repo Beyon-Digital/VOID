@@ -51,6 +51,9 @@ pub enum VisualAlert {
 
 enum EngineMsg {
     Command(VisualCommand),
+    /// Diagnostic/test hook: inject per-render delay to prove the drop
+    /// policy under synthetic GPU load. Never set in production paths.
+    SetFrameDelayUs(u64),
     Shutdown,
 }
 
@@ -134,6 +137,14 @@ impl VisualRuntime {
         }
     }
 
+    /// Test/diagnostic hook: inject `us` microseconds of synthetic render
+    /// latency engine-side (proves drop-under-load without a real GPU
+    /// stall). Non-blocking like every control call.
+    #[doc(hidden)]
+    pub fn set_frame_delay_us(&self, us: u64) {
+        let _ = self.tx.try_send(EngineMsg::SetFrameDelayUs(us));
+    }
+
     /// Take the latest produced frame; older frames were dropped and
     /// counted engine-side.
     pub fn take_frame(&self) -> Option<FrameEvent> {
@@ -187,18 +198,30 @@ struct Engine {
 impl Engine {
     fn run(mut self) {
         loop {
-            // Block for work; drain everything queued before rendering.
-            match self.rx.recv() {
-                Ok(EngineMsg::Shutdown) | Err(_) => return,
+            // Block for work, but wake periodically: clock snapshots land
+            // on a slot with no waker, so a bounded recv keeps frame
+            // production ticking even when no commands are queued.
+            match self
+                .rx
+                .recv_timeout(std::time::Duration::from_millis(4))
+            {
+                Ok(EngineMsg::Shutdown) | Err(mpsc::RecvTimeoutError::Disconnected) => return,
                 Ok(EngineMsg::Command(cmd)) => {
                     let receipt = self.scene.apply(&cmd);
                     let _ = self.receipt_tx.send(receipt);
                     self.after_scene_change();
                 }
+                Ok(EngineMsg::SetFrameDelayUs(us)) => {
+                    self.renderer.frame_delay_us = us;
+                }
+                Err(mpsc::RecvTimeoutError::Timeout) => {}
             }
             while let Ok(msg) = self.rx.try_recv() {
                 match msg {
                     EngineMsg::Shutdown => return,
+                    EngineMsg::SetFrameDelayUs(us) => {
+                        self.renderer.frame_delay_us = us;
+                    }
                     EngineMsg::Command(cmd) => {
                         let receipt = self.scene.apply(&cmd);
                         let _ = self.receipt_tx.send(receipt);
@@ -223,7 +246,9 @@ impl Engine {
                     }
                 }
             }
-            for ch in [VisualChannel::Preview, VisualChannel::Program] {
+            // Program renders first: under pressure the drop policy must
+            // starve PREVIEW frames before it ever starves program.
+            for ch in [VisualChannel::Program, VisualChannel::Preview] {
                 let route = self.scene.route(ch).clone();
                 if !route.enabled || route.target != OutputTarget::Offscreen {
                     continue;
