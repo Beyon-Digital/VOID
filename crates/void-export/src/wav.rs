@@ -78,8 +78,7 @@ pub fn probe_wav(path: &std::path::Path) -> Result<WavInfo> {
 
     let (audio_format, channels, sample_rate, bits_per_sample) =
         fmt.ok_or_else(|| ExportError::VerifyFailed("missing fmt chunk".into()))?;
-    let data = data_bytes
-        .ok_or_else(|| ExportError::VerifyFailed("missing data chunk".into()))?;
+    let data = data_bytes.ok_or_else(|| ExportError::VerifyFailed("missing data chunk".into()))?;
     if channels == 0 || bits_per_sample == 0 {
         return Err(ExportError::VerifyFailed("zero channels/bits".into()));
     }
@@ -188,7 +187,7 @@ mod tests {
         f.write_all(&sample_rate.to_le_bytes())?;
         let byte_rate = sample_rate * channels as u32 * (bits as u32 / 8);
         f.write_all(&byte_rate.to_le_bytes())?;
-        let block_align = (channels * (bits / 8)) as u16;
+        let block_align = channels * (bits / 8);
         f.write_all(&block_align.to_le_bytes())?;
         f.write_all(&bits.to_le_bytes())?;
         f.write_all(b"data")?;

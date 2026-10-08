@@ -61,6 +61,10 @@ impl ReceiptStore {
     pub fn len(&self) -> usize {
         self.by_command.len()
     }
+
+    pub fn is_empty(&self) -> bool {
+        self.by_command.is_empty()
+    }
 }
 
 #[cfg(test)]

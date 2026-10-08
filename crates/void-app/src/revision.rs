@@ -4,6 +4,17 @@
 
 use std::collections::HashMap;
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct NonMonotonic;
+
+impl std::fmt::Display for NonMonotonic {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str("non-monotonic revision")
+    }
+}
+
+impl std::error::Error for NonMonotonic {}
+
 #[derive(Default)]
 pub struct RevisionLedger {
     revisions: HashMap<String, u64>,
@@ -17,10 +28,10 @@ impl RevisionLedger {
 
     /// Advance to the engine-acknowledged revision. Rejects non-monotonic
     /// regressions.
-    pub fn commit(&mut self, project_id: &str, revision: u64) -> Result<u64, ()> {
+    pub fn commit(&mut self, project_id: &str, revision: u64) -> Result<u64, NonMonotonic> {
         let entry = self.revisions.entry(project_id.to_string()).or_insert(0);
         if revision <= *entry {
-            return Err(());
+            return Err(NonMonotonic);
         }
         *entry = revision;
         Ok(revision)

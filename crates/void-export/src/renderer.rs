@@ -194,7 +194,14 @@ impl ArgvRenderer {
         out_name: &str,
     ) -> Vec<OsString> {
         let mut argv = vec![self.executable.as_os_str().to_os_string()];
-        argv.extend(build_argv(spec, plan, checkpoint_dir, staging_dir, out_name, &self.base_args));
+        argv.extend(build_argv(
+            spec,
+            plan,
+            checkpoint_dir,
+            staging_dir,
+            out_name,
+            &self.base_args,
+        ));
         argv
     }
 
@@ -210,9 +217,8 @@ impl ArgvRenderer {
             cmd.env(k, v);
         }
         // argv-only: Command::new + args never touches a shell.
-        cmd.spawn().map_err(|e| {
-            ExportError::RendererFailed(format!("spawn {}: {e}", self.exe_basename()))
-        })
+        cmd.spawn()
+            .map_err(|e| ExportError::RendererFailed(format!("spawn {}: {e}", self.exe_basename())))
     }
 
     fn exe_basename(&self) -> String {

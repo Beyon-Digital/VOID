@@ -102,7 +102,7 @@ impl ExportSession {
         }
         fs::create_dir_all(&staging)?;
         void_assets::sync_dir(
-            &staging
+            staging
                 .parent()
                 .ok_or_else(|| ExportError::InvalidSpec("staging root".into()))?,
         )?;

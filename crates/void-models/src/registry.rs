@@ -166,9 +166,7 @@ impl ModelRegistry {
         let keys = st
             .query_map([], |r| Ok((r.get::<_, String>(0)?, r.get::<_, String>(1)?)))?
             .collect::<std::result::Result<Vec<_>, _>>()?;
-        keys.into_iter()
-            .map(|(id, v)| self.get(&id, &v))
-            .collect()
+        keys.into_iter().map(|(id, v)| self.get(&id, &v)).collect()
     }
 
     /// Remove a model record (user deletion / retention policy, T52).

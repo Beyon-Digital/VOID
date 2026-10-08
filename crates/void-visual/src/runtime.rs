@@ -50,7 +50,7 @@ pub enum VisualAlert {
 }
 
 enum EngineMsg {
-    Command(VisualCommand),
+    Command(Box<VisualCommand>),
     /// Diagnostic/test hook: inject per-render delay to prove the drop
     /// policy under synthetic GPU load. Never set in production paths.
     SetFrameDelayUs(u64),
@@ -121,12 +121,14 @@ impl VisualRuntime {
     /// Enqueue a command. Non-blocking — full queue returns Busy per the
     /// pending-mutation cap; the receipt arrives on `take_receipt()`.
     pub fn send_command(&self, cmd: VisualCommand) -> Result<()> {
-        self.tx.try_send(EngineMsg::Command(cmd)).map_err(|e| match e {
-            mpsc::TrySendError::Full(_) => VisualError::Busy,
-            mpsc::TrySendError::Disconnected(_) => {
-                VisualError::DeviceUnavailable("visual engine stopped".into())
-            }
-        })
+        self.tx
+            .try_send(EngineMsg::Command(Box::new(cmd)))
+            .map_err(|e| match e {
+                mpsc::TrySendError::Full(_) => VisualError::Busy,
+                mpsc::TrySendError::Disconnected(_) => {
+                    VisualError::DeviceUnavailable("visual engine stopped".into())
+                }
+            })
     }
 
     /// Latest clock snapshot. Overwrites any unconsumed snapshot — the
@@ -201,10 +203,7 @@ impl Engine {
             // Block for work, but wake periodically: clock snapshots land
             // on a slot with no waker, so a bounded recv keeps frame
             // production ticking even when no commands are queued.
-            match self
-                .rx
-                .recv_timeout(std::time::Duration::from_millis(4))
-            {
+            match self.rx.recv_timeout(std::time::Duration::from_millis(4)) {
                 Ok(EngineMsg::Shutdown) | Err(mpsc::RecvTimeoutError::Disconnected) => return,
                 Ok(EngineMsg::Command(cmd)) => {
                     let receipt = self.scene.apply(&cmd);
@@ -259,10 +258,11 @@ impl Engine {
                     self.counters.lock().unwrap().skipped_renders += 1;
                     break;
                 }
-                self.renderer.ensure_target(ch.idx(), route.width, route.height);
+                self.renderer
+                    .ensure_target(ch.idx(), route.width, route.height);
                 self.pump_video(tick);
                 let plan = self.scene.resolve(ch, tick);
-                let tpq = TICKS_PER_QUARTER as i64;
+                let tpq = TICKS_PER_QUARTER;
                 let beat_phase = (((tick % tpq) + tpq) % tpq) as f32 / tpq as f32;
                 match self.renderer.render(
                     &plan,

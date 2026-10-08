@@ -20,7 +20,9 @@ pub use budget::{monotonic_ns, JobBudget};
 pub use db::JobDb;
 pub use error::{JobError, Result};
 pub use job::{transition, JobKind, JobRecord, JobSpec, JobStatus, Reservations};
-pub use proto::{JobEvent, JobProgress, WorkerEvent, WorkerOutcome, WorkerResult, WORKER_PROTOCOL_VERSION};
+pub use proto::{
+    JobEvent, JobProgress, WorkerEvent, WorkerOutcome, WorkerResult, WORKER_PROTOCOL_VERSION,
+};
 pub use provenance::{JobBudgetRecord, JobProvenance, Measured, OutputArtifact, RuntimeProvenance};
 pub use reconcile::{reconcile, ReconcileOutcome};
 pub use runner::{ArtifactRecord, EventSink, JobRunner, RunContext, RunOutcome};

@@ -161,7 +161,7 @@ function CommandPanel() {
     setBusy(true);
     setError('');
     try {
-      const pid = `proj-${name.replace(/[^a-z0-9-]/gi, '-').toLowerCase()}`;
+      const pid = crypto.randomUUID(); // project ids must be UUIDs (is_valid_id)
       const r = await getClient().createProject({ projectId: pid, name, containerDir: dir });
       setReceipt(r);
       if (r.status === 'APPLIED') setProject(pid, r.revision);

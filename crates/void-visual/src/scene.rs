@@ -17,23 +17,48 @@ use crate::types::*;
 
 /// Known generator presets (validated built-ins — arbitrary shader code
 /// is W23 scope, not this channel).
-pub const GENERATOR_PRESETS: &[&str] =
-    &["color-bars", "checker", "gradient", "plasma", "pulse", "black"];
+pub const GENERATOR_PRESETS: &[&str] = &[
+    "color-bars",
+    "checker",
+    "gradient",
+    "plasma",
+    "pulse",
+    "black",
+];
 
 /// Max persisted undo transactions (bounded journal).
 pub const UNDO_JOURNAL_MAX: usize = 256;
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 enum Inverse {
-    InsertLayer { layer: Layer, index: i32 },
-    DeleteLayer { layer_id: String },
-    RestoreLayer { layer: Layer },
-    SetOrder { channel: VisualChannel, order: Vec<String> },
-    SetRoute { route: OutputRoute },
-    SetTransition { state: TransitionState },
+    InsertLayer {
+        layer: Layer,
+        index: i32,
+    },
+    DeleteLayer {
+        layer_id: String,
+    },
+    RestoreLayer {
+        layer: Layer,
+    },
+    SetOrder {
+        channel: VisualChannel,
+        order: Vec<String>,
+    },
+    SetRoute {
+        route: OutputRoute,
+    },
+    SetTransition {
+        state: TransitionState,
+    },
     /// Prior anchor value (None = anchor did not exist → inverse removes).
-    SetAnchor { anchor_id: String, prior: Option<VisualAnchor> },
-    RestoreAll { snapshot: Box<crate::checkpoint::VisualCheckpoint> },
+    SetAnchor {
+        anchor_id: String,
+        prior: Option<VisualAnchor>,
+    },
+    RestoreAll {
+        snapshot: Box<crate::checkpoint::VisualCheckpoint>,
+    },
 }
 
 #[derive(Debug, Clone)]
@@ -77,8 +102,14 @@ pub struct CompositionPlan {
 /// Events produced by `advance()` for telemetry/reporting.
 #[derive(Debug, Clone, PartialEq)]
 pub enum SceneEvent {
-    TransitionFired { channel: VisualChannel, at_ticks: i64 },
-    TransitionCompleted { channel: VisualChannel, at_ticks: i64 },
+    TransitionFired {
+        channel: VisualChannel,
+        at_ticks: i64,
+    },
+    TransitionCompleted {
+        channel: VisualChannel,
+        at_ticks: i64,
+    },
 }
 
 /// The visual scene: layers, anchors, transitions, routes — the
@@ -147,7 +178,12 @@ impl Scene {
 
     /// Engine-owned tempo map mirror (VisualClockSyncRequest — not a
     /// document edit, carries no revision gate).
-    pub fn sync_tempo_map(&mut self, points: Vec<crate::tempo::TempoPoint>, sample_rate: u32, revision: u64) {
+    pub fn sync_tempo_map(
+        &mut self,
+        points: Vec<crate::tempo::TempoPoint>,
+        sample_rate: u32,
+        revision: u64,
+    ) {
         self.tempo_map = TempoMap::new(points, sample_rate);
         self.tempo_map_revision = revision;
     }
@@ -206,8 +242,12 @@ impl Scene {
                 .anchors
                 .get(aid)
                 .map(|a| {
-                    self.tempo_map
-                        .anchor_ticks(a.kind, a.position_ticks, a.position_sample, a.timecode_ns)
+                    self.tempo_map.anchor_ticks(
+                        a.kind,
+                        a.position_ticks,
+                        a.position_sample,
+                        a.timecode_ns,
+                    )
                 })
                 .unwrap_or(layer.in_ticks),
             None => layer.in_ticks,
@@ -217,8 +257,12 @@ impl Scene {
                 .anchors
                 .get(aid)
                 .map(|a| {
-                    self.tempo_map
-                        .anchor_ticks(a.kind, a.position_ticks, a.position_sample, a.timecode_ns)
+                    self.tempo_map.anchor_ticks(
+                        a.kind,
+                        a.position_ticks,
+                        a.position_sample,
+                        a.timecode_ns,
+                    )
                 })
                 .unwrap_or(layer.out_ticks),
             None => layer.out_ticks,
@@ -229,7 +273,9 @@ impl Scene {
     fn resolve_ids(&self, ids: &[String], tick: i64) -> Vec<ResolvedLayer> {
         let mut out = Vec::new();
         for id in ids {
-            let Some(layer) = self.layers.get(id) else { continue };
+            let Some(layer) = self.layers.get(id) else {
+                continue;
+            };
             if !layer.visible {
                 continue;
             }
@@ -296,7 +342,11 @@ impl Scene {
             stack: self.resolve_ids(self.stack_order(channel), tick),
             incoming,
             transition_progress: progress,
-            transition_kind: if in_flight { tr.kind } else { TransitionKind::Cut },
+            transition_kind: if in_flight {
+                tr.kind
+            } else {
+                TransitionKind::Cut
+            },
             wipe_angle: if in_flight { tr.wipe_angle } else { 0.0 },
         }
     }
@@ -337,8 +387,7 @@ impl Scene {
             if tr.in_flight {
                 let done = match tr.kind {
                     TransitionKind::Cut => true, // completes on the frame it fires
-                    _ => tr.duration_ticks <= 0
-                        || tick >= tr.started_at_ticks + tr.duration_ticks,
+                    _ => tr.duration_ticks <= 0 || tick >= tr.started_at_ticks + tr.duration_ticks,
                 };
                 if done {
                     // Incoming stack ownership moves to this channel. The
@@ -419,9 +468,7 @@ impl Scene {
         }
 
         let inverses = self.apply_op(&cmd.op);
-        if !matches!(cmd.op, VisualOp::VisualRedoOp { .. })
-            && !inverses.is_empty()
-        {
+        if !matches!(cmd.op, VisualOp::VisualRedoOp { .. }) && !inverses.is_empty() {
             self.journal.push(JournalEntry {
                 transaction_id: cmd.transaction_id.clone(),
                 inverses,
@@ -482,9 +529,10 @@ impl Scene {
             }
             VisualOp::SetLayerStackOp { layer_ids, channel } => {
                 for id in layer_ids {
-                    let l = self.layers.get(id).ok_or_else(|| {
-                        VisualError::NotFound(format!("layer {id}"))
-                    })?;
+                    let l = self
+                        .layers
+                        .get(id)
+                        .ok_or_else(|| VisualError::NotFound(format!("layer {id}")))?;
                     if l.channel != *channel {
                         return Err(VisualError::BadRequest(format!(
                             "layer {id} is not on channel {channel:?}"
@@ -495,7 +543,9 @@ impl Scene {
                 dedup.sort();
                 dedup.dedup();
                 if dedup.len() != layer_ids.len() {
-                    return Err(VisualError::BadRequest("duplicate layer id in stack".into()));
+                    return Err(VisualError::BadRequest(
+                        "duplicate layer id in stack".into(),
+                    ));
                 }
             }
             VisualOp::AttachVisualMediaOp {
@@ -514,7 +564,9 @@ impl Scene {
                 }
                 require_id(asset_id, "asset_id")?;
                 if sha256.len() != 64 || !sha256.chars().all(|c| c.is_ascii_hexdigit()) {
-                    return Err(VisualError::BadRequest("sha256 must be 64 hex chars".into()));
+                    return Err(VisualError::BadRequest(
+                        "sha256 must be 64 hex chars".into(),
+                    ));
                 }
                 if media_kind.is_empty() || media_kind.len() > 32 {
                     return Err(VisualError::BadRequest("bad media_kind".into()));
@@ -575,9 +627,10 @@ impl Scene {
                 let in_t = if in_anchor_id.is_empty() {
                     None
                 } else {
-                    let a = self.anchors.get(in_anchor_id).ok_or_else(|| {
-                        VisualError::NotFound(format!("anchor {in_anchor_id}"))
-                    })?;
+                    let a = self
+                        .anchors
+                        .get(in_anchor_id)
+                        .ok_or_else(|| VisualError::NotFound(format!("anchor {in_anchor_id}")))?;
                     Some(self.tempo_map.anchor_ticks(
                         a.kind,
                         a.position_ticks,
@@ -588,9 +641,10 @@ impl Scene {
                 let out_t = if out_anchor_id.is_empty() {
                     None
                 } else {
-                    let a = self.anchors.get(out_anchor_id).ok_or_else(|| {
-                        VisualError::NotFound(format!("anchor {out_anchor_id}"))
-                    })?;
+                    let a = self
+                        .anchors
+                        .get(out_anchor_id)
+                        .ok_or_else(|| VisualError::NotFound(format!("anchor {out_anchor_id}")))?;
                     Some(self.tempo_map.anchor_ticks(
                         a.kind,
                         a.position_ticks,
@@ -637,7 +691,9 @@ impl Scene {
                 ..
             } => {
                 if state_sha256.len() != 64 {
-                    return Err(VisualError::BadRequest("state_sha256 must be 64 hex".into()));
+                    return Err(VisualError::BadRequest(
+                        "state_sha256 must be 64 hex".into(),
+                    ));
                 }
                 if snapshot_json.len() > 8 * 1024 * 1024 {
                     return Err(VisualError::BadRequest("snapshot too large".into()));
@@ -741,14 +797,20 @@ impl Scene {
                 if let Some(l) = self.layers.get_mut(layer_id) {
                     l.name = name.clone();
                 }
-                prior.map(|l| Inverse::RestoreLayer { layer: l }).into_iter().collect()
+                prior
+                    .map(|l| Inverse::RestoreLayer { layer: l })
+                    .into_iter()
+                    .collect()
             }
             VisualOp::SetLayerVisibleOp { layer_id, visible } => {
                 let prior = self.layers.get(layer_id).cloned();
                 if let Some(l) = self.layers.get_mut(layer_id) {
                     l.visible = *visible;
                 }
-                prior.map(|l| Inverse::RestoreLayer { layer: l }).into_iter().collect()
+                prior
+                    .map(|l| Inverse::RestoreLayer { layer: l })
+                    .into_iter()
+                    .collect()
             }
             VisualOp::SetLayerBlendOp {
                 layer_id,
@@ -758,7 +820,10 @@ impl Scene {
                 if let Some(l) = self.layers.get_mut(layer_id) {
                     l.blend = *blend_mode;
                 }
-                prior.map(|l| Inverse::RestoreLayer { layer: l }).into_iter().collect()
+                prior
+                    .map(|l| Inverse::RestoreLayer { layer: l })
+                    .into_iter()
+                    .collect()
             }
             VisualOp::SetLayerTransformOp {
                 layer_id,
@@ -768,7 +833,10 @@ impl Scene {
                 if let Some(l) = self.layers.get_mut(layer_id) {
                     l.transform = *transform;
                 }
-                prior.map(|l| Inverse::RestoreLayer { layer: l }).into_iter().collect()
+                prior
+                    .map(|l| Inverse::RestoreLayer { layer: l })
+                    .into_iter()
+                    .collect()
             }
             VisualOp::AttachVisualMediaOp {
                 layer_id,
@@ -788,7 +856,10 @@ impl Scene {
                         duration_ticks: *duration_ticks,
                     });
                 }
-                prior.map(|l| Inverse::RestoreLayer { layer: l }).into_iter().collect()
+                prior
+                    .map(|l| Inverse::RestoreLayer { layer: l })
+                    .into_iter()
+                    .collect()
             }
             VisualOp::SetLayerTrimOp {
                 layer_id,
@@ -802,7 +873,10 @@ impl Scene {
                     l.out_ticks = *out_ticks;
                     l.offset_ticks = *offset_ticks;
                 }
-                prior.map(|l| Inverse::RestoreLayer { layer: l }).into_iter().collect()
+                prior
+                    .map(|l| Inverse::RestoreLayer { layer: l })
+                    .into_iter()
+                    .collect()
             }
             VisualOp::SetLayerFadeOp {
                 layer_id,
@@ -814,7 +888,10 @@ impl Scene {
                     l.fade_in_ticks = *fade_in_ticks;
                     l.fade_out_ticks = *fade_out_ticks;
                 }
-                prior.map(|l| Inverse::RestoreLayer { layer: l }).into_iter().collect()
+                prior
+                    .map(|l| Inverse::RestoreLayer { layer: l })
+                    .into_iter()
+                    .collect()
             }
             VisualOp::SetVisualAnchorOp {
                 anchor_id,
@@ -873,7 +950,10 @@ impl Scene {
                         Some(out_anchor_id.clone())
                     };
                 }
-                prior.map(|l| Inverse::RestoreLayer { layer: l }).into_iter().collect()
+                prior
+                    .map(|l| Inverse::RestoreLayer { layer: l })
+                    .into_iter()
+                    .collect()
             }
             VisualOp::SetTransitionOp {
                 channel,
@@ -1009,7 +1089,8 @@ impl Scene {
                 self.layers.insert(layer.id.clone(), layer.clone());
                 if !exists && !self.order[ch.idx()].contains(&layer.id) {
                     let i = layer.index.max(0) as usize;
-                    self.order[ch.idx()].insert(i.min(self.order[ch.idx()].len()), layer.id.clone());
+                    self.order[ch.idx()]
+                        .insert(i.min(self.order[ch.idx()].len()), layer.id.clone());
                 }
             }
             Inverse::SetOrder { channel, order } => {
@@ -1226,7 +1307,11 @@ impl Scene {
         }
         for l in &cp.layers {
             let i = self.order[l.channel.idx()].len();
-            let pos = if l.index >= 0 { (l.index as usize).min(i) } else { i };
+            let pos = if l.index >= 0 {
+                (l.index as usize).min(i)
+            } else {
+                i
+            };
             self.order[l.channel.idx()].insert(pos, l.id.clone());
         }
         for a in &cp.anchors {
@@ -1234,7 +1319,7 @@ impl Scene {
         }
         self.transitions = [
             cp.transitions
-                .get(0)
+                .first()
                 .cloned()
                 .unwrap_or_else(|| TransitionState::idle(VisualChannel::Preview)),
             cp.transitions

@@ -5,7 +5,6 @@
 use std::fs;
 use std::path::{Path, PathBuf};
 
-
 use std::time::Duration;
 use void_assets::AssetStore;
 use void_jobs::{
@@ -65,7 +64,12 @@ fn fixture() -> Fixture {
     let db = JobDb::open(root.path().join("index.db")).unwrap();
     let store = AssetStore::new(root.path().join("assets"), 64 * 1024 * 1024).unwrap();
     let runtime = WorkerRuntime::new(worker_exe());
-    Fixture { root, db, store, runtime }
+    Fixture {
+        root,
+        db,
+        store,
+        runtime,
+    }
 }
 
 fn runner(f: &Fixture) -> JobRunner {
@@ -113,7 +117,12 @@ fn t49_happy_path_real_sine_wav_and_provenance() {
     f.db.submit(&s).unwrap();
     let jid = s.job_id.clone();
     let out = r.run(&s, &ctx(&f.runtime, generous())).unwrap();
-    let RunOutcome::Succeeded { artifacts, stray_files, .. } = out else {
+    let RunOutcome::Succeeded {
+        artifacts,
+        stray_files,
+        ..
+    } = out
+    else {
         panic!("expected success: {out:?}")
     };
     assert_eq!(stray_files, 0);
@@ -176,7 +185,10 @@ fn t49_worker_reported_failure_is_failed_not_succeeded() {
     }
     let rec = f.db.get(&jid).unwrap();
     assert_eq!(rec.status, JobStatus::Failed);
-    assert!(rec.result.unwrap()["error"].as_str().unwrap().contains("requested failure"));
+    assert!(rec.result.unwrap()["error"]
+        .as_str()
+        .unwrap()
+        .contains("requested failure"));
 }
 
 #[test]
@@ -186,7 +198,9 @@ fn t49_crash_without_result_line_fails() {
     let s = spec(serde_json::json!({"mode":"crash"}));
     f.db.submit(&s).unwrap();
     match r.run(&s, &ctx(&f.runtime, generous())).unwrap() {
-        RunOutcome::Failed { error, exit_code, .. } => {
+        RunOutcome::Failed {
+            error, exit_code, ..
+        } => {
             assert_eq!(exit_code, Some(3));
             assert!(error.contains("without a result line"), "{error}");
         }
@@ -205,7 +219,10 @@ fn t51_staging_escape_is_rejected() {
         o => panic!("{o:?}"),
     }
     // Nothing published, nothing imported.
-    assert!(!f.root.path().join("jobs").exists() || fs::read_dir(f.root.path().join("jobs")).unwrap().count() == 0);
+    assert!(
+        !f.root.path().join("jobs").exists()
+            || fs::read_dir(f.root.path().join("jobs")).unwrap().count() == 0
+    );
 }
 
 #[test]
@@ -243,8 +260,19 @@ fn t49_cancel_running_kill_and_late_result_quarantined() {
     let rec = f.db.get(&jid).unwrap();
     assert_eq!(rec.status, JobStatus::Cancelled);
     // No provenance/result publish; staging torn down.
-    assert!(!f.root.path().join("jobs").join(&jid).join("provenance.json").exists());
-    assert!(!f.root.path().join("staging").join(format!("job-{jid}")).exists());
+    assert!(!f
+        .root
+        .path()
+        .join("jobs")
+        .join(&jid)
+        .join("provenance.json")
+        .exists());
+    assert!(!f
+        .root
+        .path()
+        .join("staging")
+        .join(format!("job-{jid}"))
+        .exists());
 }
 
 fn ctx_static() -> RunContext<'static> {
@@ -268,7 +296,10 @@ fn t50_deadline_kills_sleeping_worker() {
     let b = budget(60, 256 * 1024 * 1024, 200_000_000);
     let started = std::time::Instant::now();
     let out = r.run(&s, &ctx(&f.runtime, b)).unwrap();
-    assert!(started.elapsed() < Duration::from_secs(10), "deadline must fire promptly");
+    assert!(
+        started.elapsed() < Duration::from_secs(10),
+        "deadline must fire promptly"
+    );
     match out {
         RunOutcome::Failed { error, .. } => assert!(error.contains("deadline"), "{error}"),
         o => panic!("{o:?}"),
@@ -330,9 +361,15 @@ fn t50_admission_four_waiting_one_heavy_two_small() {
         f.db.start(&s.job_id).unwrap();
     }
     // A third small job: running slots exhausted → Queue.
-    assert_eq!(decide(&f.db, &mk("67108864", "0", 1)).unwrap(), Admit::Queue);
+    assert_eq!(
+        decide(&f.db, &mk("67108864", "0", 1)).unwrap(),
+        Admit::Queue
+    );
     // A second heavy: heavy slot taken → Queue.
-    assert_eq!(decide(&f.db, &mk("34359738368", "0", 8)).unwrap(), Admit::Queue);
+    assert_eq!(
+        decide(&f.db, &mk("34359738368", "0", 8)).unwrap(),
+        Admit::Queue
+    );
     // Fill the waiting room: 4 queued.
     for _ in 0..4 {
         let s = mk("67108864", "0", 1);
@@ -345,7 +382,10 @@ fn t50_admission_four_waiting_one_heavy_two_small() {
     }
     // Fresh db: no contention → StartNow.
     let f2 = fixture();
-    assert_eq!(decide(&f2.db, &mk("67108864", "0", 1)).unwrap(), Admit::StartNow);
+    assert_eq!(
+        decide(&f2.db, &mk("67108864", "0", 1)).unwrap(),
+        Admit::StartNow
+    );
 }
 
 #[test]
@@ -356,14 +396,25 @@ fn t49_stray_files_counted_not_committed() {
     f.db.submit(&s).unwrap();
     let out = r.run(&s, &ctx(&f.runtime, generous())).unwrap();
     match out {
-        RunOutcome::Succeeded { artifacts, stray_files, .. } => {
+        RunOutcome::Succeeded {
+            artifacts,
+            stray_files,
+            ..
+        } => {
             assert_eq!(artifacts.len(), 1);
             assert_eq!(stray_files, 1, "stray.bin counted, never imported");
         }
         o => panic!("{o:?}"),
     }
     let prov: serde_json::Value = serde_json::from_slice(
-        &fs::read(f.root.path().join("jobs").join(&s.job_id).join("provenance.json")).unwrap(),
+        &fs::read(
+            f.root
+                .path()
+                .join("jobs")
+                .join(&s.job_id)
+                .join("provenance.json"),
+        )
+        .unwrap(),
     )
     .unwrap();
     assert_eq!(prov["measured"]["strayFiles"], 1);

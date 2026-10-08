@@ -123,17 +123,11 @@ pub fn apply_rlimits(cmd: &mut std::process::Command, budget: &JobBudget) {
     unsafe {
         cmd.pre_exec(move || {
             if cpu > 0 {
-                let r = Rlim {
-                    cur: cpu,
-                    max: cpu,
-                };
+                let r = Rlim { cur: cpu, max: cpu };
                 setrlimit(RLIMIT_CPU, &r);
             }
             if mem > 0 {
-                let r = Rlim {
-                    cur: mem,
-                    max: mem,
-                };
+                let r = Rlim { cur: mem, max: mem };
                 setrlimit(RLIMIT_AS, &r);
             }
             Ok(())

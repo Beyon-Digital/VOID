@@ -4,7 +4,7 @@
 //! Admission is a pure read of the jobs index — the coordinator calls
 //! `decide` before `start`, so policy lives in one place and the state
 //! machine stays the authority. Heavy = reserves VRAM, or >4GiB RAM, or
-//! >4 threads — inference-ish work. Small jobs interleave only when the
+//! more than 4 threads — inference-ish work. Small jobs interleave only when the
 //! running heavy's reservations leave room (approximated by the heavy
 //! count: the §2 policy is about not starving the audio thread, and a
 //! single heavy already bounds its own footprint by reservation).
@@ -40,7 +40,10 @@ pub enum Admit {
 /// not go through this queue at all (T50: "audio is not gated").
 pub fn decide(db: &JobDb, spec: &JobSpec) -> Result<Admit> {
     let jobs = db.nonterminal()?;
-    let waiting = jobs.iter().filter(|j| j.status == JobStatus::Queued).count();
+    let waiting = jobs
+        .iter()
+        .filter(|j| j.status == JobStatus::Queued)
+        .count();
     let running: Vec<&JobRecord> = jobs
         .iter()
         .filter(|j| matches!(j.status, JobStatus::Running | JobStatus::Cancelling))

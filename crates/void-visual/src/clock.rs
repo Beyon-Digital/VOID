@@ -98,10 +98,7 @@ impl ClockTracker {
 
     /// Accept or reject a snapshot. Stale epochs and non-advancing
     /// sequences are discarded and counted, never interpolated.
-    pub fn push(
-        &mut self,
-        snap: ClockSnapshot,
-    ) -> std::result::Result<ClockAccept, ClockReject> {
+    pub fn push(&mut self, snap: ClockSnapshot) -> std::result::Result<ClockAccept, ClockReject> {
         if snap.engine_epoch != self.engine_epoch {
             self.rejected_stale_epoch += 1;
             return Err(ClockReject::StaleEpoch);
@@ -184,10 +181,7 @@ mod tests {
         let mut t = ClockTracker::new(7);
         assert_eq!(t.push(snap(1, 0, 0)), Ok(ClockAccept::Established));
         assert_eq!(t.push(snap(2, 480, 480)), Ok(ClockAccept::Advanced));
-        assert_eq!(
-            t.push(snap(2, 480, 480)),
-            Err(ClockReject::StaleSequence)
-        );
+        assert_eq!(t.push(snap(2, 480, 480)), Err(ClockReject::StaleSequence));
         let mut old = snap(9, 10, 10);
         old.engine_epoch = 6;
         assert_eq!(t.push(old), Err(ClockReject::StaleEpoch));
@@ -201,10 +195,7 @@ mod tests {
         t.push(snap(1, 0, 0)).unwrap();
         t.push(snap(2, 4800, 4800)).unwrap();
         // Seek backwards on the timeline while device continues.
-        assert_eq!(
-            t.push(snap(3, 100, 9600)),
-            Ok(ClockAccept::Discontinuity)
-        );
+        assert_eq!(t.push(snap(3, 100, 9600)), Ok(ClockAccept::Discontinuity));
         // Forward jump far ahead of device progress is also a seek.
         assert_eq!(
             t.push(snap(4, 1_000_000, 10_000)),

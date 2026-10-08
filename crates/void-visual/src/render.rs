@@ -90,7 +90,9 @@ impl ChannelTarget {
             sample_count: 1,
             dimension: wgpu::TextureDimension::D2,
             format: FRAME_FORMAT,
-            usage: wgpu::TextureUsages::RENDER_ATTACHMENT | wgpu::TextureUsages::COPY_SRC | wgpu::TextureUsages::TEXTURE_BINDING,
+            usage: wgpu::TextureUsages::RENDER_ATTACHMENT
+                | wgpu::TextureUsages::COPY_SRC
+                | wgpu::TextureUsages::TEXTURE_BINDING,
             view_formats: &[],
         });
         let view = texture.create_view(&Default::default());
@@ -142,13 +144,11 @@ impl Renderer {
             backends: wgpu::Backends::all(),
             ..Default::default()
         });
-        let adapter = pollster::block_on(instance.request_adapter(
-            &wgpu::RequestAdapterOptions {
-                power_preference: wgpu::PowerPreference::LowPower,
-                compatible_surface: None,
-                force_fallback_adapter: true,
-            },
-        ))
+        let adapter = pollster::block_on(instance.request_adapter(&wgpu::RequestAdapterOptions {
+            power_preference: wgpu::PowerPreference::LowPower,
+            compatible_surface: None,
+            force_fallback_adapter: true,
+        }))
         .or_else(|_| {
             pollster::block_on(instance.request_adapter(&wgpu::RequestAdapterOptions {
                 power_preference: wgpu::PowerPreference::LowPower,
@@ -164,15 +164,13 @@ impl Renderer {
             driver: info.driver.clone(),
             driver_info: info.driver_info.clone(),
         };
-        let (device, queue) = pollster::block_on(adapter.request_device(
-            &wgpu::DeviceDescriptor {
-                label: Some("void-visual"),
-                required_features: wgpu::Features::empty(),
-                required_limits: wgpu::Limits::default(),
-                memory_hints: wgpu::MemoryHints::Performance,
-                trace: wgpu::Trace::Off,
-            },
-        ))
+        let (device, queue) = pollster::block_on(adapter.request_device(&wgpu::DeviceDescriptor {
+            label: Some("void-visual"),
+            required_features: wgpu::Features::empty(),
+            required_limits: wgpu::Limits::default(),
+            memory_hints: wgpu::MemoryHints::Performance,
+            trace: wgpu::Trace::Off,
+        }))
         .map_err(|e| VisualError::DeviceUnavailable(e.to_string()))?;
         let mut r = Self::build(device, queue, adapter_info);
         r.ensure_target(VisualChannel::Preview.idx(), width, height);
@@ -183,11 +181,7 @@ impl Renderer {
     fn build(device: wgpu::Device, queue: wgpu::Queue, adapter_info: AdapterInfo) -> Self {
         let layer_layout = device.create_bind_group_layout(&wgpu::BindGroupLayoutDescriptor {
             label: Some("layer-bgl"),
-            entries: &[
-                bgl_entry(0, true),
-                bgl_tex(1),
-                bgl_sampler(2),
-            ],
+            entries: &[bgl_entry(0, true), bgl_tex(1), bgl_sampler(2)],
         });
         let layer_module = device.create_shader_module(wgpu::ShaderModuleDescriptor {
             label: Some("layer"),
@@ -208,7 +202,12 @@ impl Renderer {
             label: Some("merge"),
             source: wgpu::ShaderSource::Wgsl(shaders::MERGE_WGSL.into()),
         });
-        let merge_pipeline = layer_pipeline(&device, &merge_layout, &merge_module, wgpu::BlendState::REPLACE);
+        let merge_pipeline = layer_pipeline(
+            &device,
+            &merge_layout,
+            &merge_module,
+            wgpu::BlendState::REPLACE,
+        );
         let sampler = device.create_sampler(&wgpu::SamplerDescriptor {
             mag_filter: wgpu::FilterMode::Linear,
             min_filter: wgpu::FilterMode::Linear,
@@ -348,20 +347,18 @@ impl Renderer {
             for layer in stack {
                 match layer.kind {
                     VisualLayerKind::Image | VisualLayerKind::Video => {
-                        let Some(key) = layer.media.as_ref().map(|m| texture_key(&layer.layer_id, &m.sha256)) else { continue };
+                        let Some(key) = layer
+                            .media
+                            .as_ref()
+                            .map(|m| texture_key(&layer.layer_id, &m.sha256))
+                        else {
+                            continue;
+                        };
                         let Some((_, texview)) = self.textures.get(&key) else {
                             continue;
                         };
                         let (tw, th) = tex_dims(&self.textures[&key].0);
-                        self.draw_layer(
-                            &mut pass,
-                            texview,
-                            tw,
-                            th,
-                            layer,
-                            out_w,
-                            out_h,
-                        );
+                        self.draw_layer(&mut pass, texview, tw, th, layer, out_w, out_h);
                     }
                     VisualLayerKind::Generator => {
                         let Some(g) = &layer.generator else { continue };
@@ -373,6 +370,7 @@ impl Renderer {
         self.queue.submit([enc.finish()]);
     }
 
+    #[allow(clippy::too_many_arguments)]
     fn draw_layer(
         &self,
         pass: &mut wgpu::RenderPass<'_>,
@@ -404,7 +402,12 @@ impl Renderer {
         let tx = cx - mxc;
         let ty = cy - myc;
         let uni = LayerUni {
-            affine: [a / out_w as f32, b / out_h as f32, c2 / out_w as f32, d / out_h as f32],
+            affine: [
+                a / out_w as f32,
+                b / out_h as f32,
+                c2 / out_w as f32,
+                d / out_h as f32,
+            ],
             offset: [tx / out_w as f32, ty / out_h as f32, layer.opacity, 0.0],
         };
         let ubuf = self
@@ -437,6 +440,7 @@ impl Renderer {
         pass.draw(0..6, 0..1);
     }
 
+    #[allow(clippy::too_many_arguments)]
     fn draw_generator(
         &mut self,
         pass: &mut wgpu::RenderPass<'_>,
@@ -466,7 +470,12 @@ impl Renderer {
                 });
             self.gen_modules.insert(
                 g.preset.clone(),
-                layer_pipeline(&self.device, &layout, &module, blend_state(BlendMode::Normal)),
+                layer_pipeline(
+                    &self.device,
+                    &layout,
+                    &module,
+                    blend_state(BlendMode::Normal),
+                ),
             );
             // Store layout alongside via a parallel map keyed by preset.
             self.gen_layouts.insert(g.preset.clone(), layout);
@@ -513,6 +522,7 @@ impl Renderer {
     /// Render a composition plan into the channel target and read it back.
     /// `clock_*` fields are copied onto the produced frame — the frame is
     /// stamped with the AUDIO clock it was rendered for.
+    #[allow(clippy::too_many_arguments)]
     pub fn render(
         &mut self,
         plan: &CompositionPlan,
@@ -571,7 +581,14 @@ impl Renderer {
         })
     }
 
-    fn merge(&mut self, a: &wgpu::TextureView, b: &wgpu::TextureView, plan: &CompositionPlan, w: u32, h: u32) {
+    fn merge(
+        &mut self,
+        a: &wgpu::TextureView,
+        b: &wgpu::TextureView,
+        plan: &CompositionPlan,
+        w: u32,
+        h: u32,
+    ) {
         let uni = MergeUni {
             progress: plan.transition_progress,
             kind: match plan.transition_kind {
@@ -613,7 +630,9 @@ impl Renderer {
         });
         let mut enc = self
             .device
-            .create_command_encoder(&wgpu::CommandEncoderDescriptor { label: Some("merge") });
+            .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                label: Some("merge"),
+            });
         {
             let view = self.targets.get(&plan.channel.idx()).unwrap().view.clone();
             let mut pass = enc.begin_render_pass(&wgpu::RenderPassDescriptor {

@@ -47,9 +47,7 @@ pub fn list_job_staging(root: &Path) -> std::io::Result<Vec<PathBuf>> {
     let mut out = Vec::new();
     for e in std::fs::read_dir(&dir)? {
         let e = e?;
-        if e.file_type()?.is_dir()
-            && e.file_name().to_string_lossy().starts_with(STAGING_PREFIX)
-        {
+        if e.file_type()?.is_dir() && e.file_name().to_string_lossy().starts_with(STAGING_PREFIX) {
             out.push(e.path());
         }
     }

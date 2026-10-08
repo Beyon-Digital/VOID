@@ -90,9 +90,9 @@ impl WorkerRuntime {
             cmd.env(k, v);
         }
         apply_rlimits(&mut cmd, budget);
-        let mut child = cmd.spawn().map_err(|e| {
-            JobError::SpawnFailed(format!("{}: {e}", self.exe_basename()))
-        })?;
+        let mut child = cmd
+            .spawn()
+            .map_err(|e| JobError::SpawnFailed(format!("{}: {e}", self.exe_basename())))?;
         if let Some(mut stdin) = child.stdin.take() {
             // Spec delivery must not hold the job hostage if the worker
             // never reads — bounded write, errors become SpawnFailed.

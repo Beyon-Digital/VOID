@@ -32,6 +32,12 @@ pub struct Coordinator {
     pub receipts: ReceiptStore,
 }
 
+impl Default for Coordinator {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Coordinator {
     pub fn new() -> Self {
         Self {
@@ -44,10 +50,16 @@ impl Coordinator {
     /// Pre-dispatch gate: everything that can be decided without touching
     /// the worker. Returns Some(rejection-fields) to fail fast, or None to
     /// proceed to dispatch.
+    ///
+    /// `lifecycle` marks ops that establish the project binding
+    /// (CreateProjectOp/OpenProjectOp): they are allowed through while the
+    /// project is `Registered` (attach in flight); every other op on a
+    /// `Registered` project still gets BUSY.
     pub fn preflight(
         &mut self,
         cmd: proto::PersistentCommand,
         payload_hash: &str,
+        lifecycle: bool,
     ) -> Option<(ErrorCode, String)> {
         // Schema/value validation (IDs, finite floats, ranges, versions).
         if let Err(r) = validate::validate_persistent_command(cmd) {
@@ -86,7 +98,9 @@ impl Coordinator {
                 return Some((ErrorCode::WORKER_FAILED, "engine not attached".into()));
             }
             ProjectState::Registered => {
-                return Some((ErrorCode::BUSY, "engine still attaching".into()));
+                if !lifecycle {
+                    return Some((ErrorCode::BUSY, "engine still attaching".into()));
+                }
             }
         }
 
@@ -175,5 +189,63 @@ mod tests {
             },
         );
         assert_eq!(c.revisions.current("p"), 5);
+    }
+
+    fn create_project_cmd(
+        command_id: &str,
+        project_id: &str,
+    ) -> flatbuffers::FlatBufferBuilder<'static> {
+        let mut b = flatbuffers::FlatBufferBuilder::new();
+        let name = b.create_string("t");
+        let dir = b.create_string("/tmp/t.void");
+        let op = proto::CreateProjectOp::create(
+            &mut b,
+            &proto::CreateProjectOpArgs {
+                name: Some(name),
+                container_dir: Some(dir),
+                sample_rate: 48000,
+                initial_bpm: 120.0,
+            },
+        );
+        let cid = b.create_string(command_id);
+        let tid = b.create_string(&uuid::Uuid::new_v4().to_string());
+        let pid = b.create_string(project_id);
+        let cmd = proto::PersistentCommand::create(
+            &mut b,
+            &proto::PersistentCommandArgs {
+                command_id: Some(cid),
+                transaction_id: Some(tid),
+                project_id: Some(pid),
+                engine_epoch: 0,
+                expected_revision: 0,
+                op_type: proto::PersistentOp::CreateProjectOp,
+                op: Some(op.as_union_value()),
+            },
+        );
+        b.finish(cmd, None);
+        b
+    }
+
+    #[test]
+    fn lifecycle_op_passes_registered_gate_others_still_busy() {
+        let project_id = uuid::Uuid::new_v4().to_string();
+        let cmd_a = create_project_cmd(&uuid::Uuid::new_v4().to_string(), &project_id);
+        let cmd_b = create_project_cmd(&uuid::Uuid::new_v4().to_string(), &project_id);
+        let a = flatbuffers::root::<proto::PersistentCommand>(cmd_a.finished_data()).unwrap();
+        let b = flatbuffers::root::<proto::PersistentCommand>(cmd_b.finished_data()).unwrap();
+
+        let mut c = Coordinator::new();
+        c.registry.register(ProjectHandle {
+            project_id: project_id.clone(),
+            container_dir: PathBuf::from("/tmp/t.void"),
+            state: ProjectState::Registered,
+            pending: Default::default(),
+        });
+
+        // Lifecycle op on a Registered (attach-in-flight) project passes.
+        assert!(c.preflight(a, "h-lifecycle", true).is_none());
+        // Any other op on the same Registered project still gets BUSY.
+        let (code, _msg) = c.preflight(b, "h-other", false).unwrap();
+        assert_eq!(code, ErrorCode::BUSY);
     }
 }

@@ -46,16 +46,15 @@ pub fn verify_asset(assets_root: &Path, media: &MediaRef) -> Result<PathBuf> {
     if !path.is_file() {
         return Err(VisualError::AssetMissing(media.rel_path.clone()));
     }
-    let mut f = std::fs::File::open(&path).map_err(|_| {
-        VisualError::AssetMissing(media.rel_path.clone())
-    })?;
+    let mut f = std::fs::File::open(&path)
+        .map_err(|_| VisualError::AssetMissing(media.rel_path.clone()))?;
     let mut h = Sha256::new();
     let mut buf = [0u8; 64 * 1024];
     let mut total = 0u64;
     loop {
-        let n = f.read(&mut buf).map_err(|e| {
-            VisualError::AssetMissing(format!("read {}: {e}", media.rel_path))
-        })?;
+        let n = f
+            .read(&mut buf)
+            .map_err(|e| VisualError::AssetMissing(format!("read {}: {e}", media.rel_path)))?;
         if n == 0 {
             break;
         }
@@ -87,7 +86,9 @@ pub fn decode_image(path: &Path) -> Result<RgbaFrame> {
         )));
     }
     if (w as u64) * (h as u64) * 4 > MAX_IMAGE_PIXELS * 4 {
-        return Err(VisualError::DecodeFailed("image exceeds pixel budget".into()));
+        return Err(VisualError::DecodeFailed(
+            "image exceeds pixel budget".into(),
+        ));
     }
     Ok(RgbaFrame {
         width: w,
@@ -145,14 +146,19 @@ impl FfmpegPuller {
         let mut child = Command::new(ffmpeg_bin)
             .args([
                 "-nostdin",
-                "-v", "error",
-                "-ss", &format!("{start_sec:.6}"),
-                "-i", path.to_str().ok_or_else(|| {
-                    VisualError::DecodeFailed("non-utf8 media path".into())
-                })?,
-                "-f", "rawvideo",
-                "-pix_fmt", "rgba",
-                "-s", &format!("{width}x{height}"),
+                "-v",
+                "error",
+                "-ss",
+                &format!("{start_sec:.6}"),
+                "-i",
+                path.to_str()
+                    .ok_or_else(|| VisualError::DecodeFailed("non-utf8 media path".into()))?,
+                "-f",
+                "rawvideo",
+                "-pix_fmt",
+                "rgba",
+                "-s",
+                &format!("{width}x{height}"),
                 "-",
             ])
             .stdout(Stdio::piped())

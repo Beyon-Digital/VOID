@@ -70,4 +70,8 @@ impl ProjectRegistry {
     pub fn len(&self) -> usize {
         self.projects.len()
     }
+
+    pub fn is_empty(&self) -> bool {
+        self.projects.is_empty()
+    }
 }

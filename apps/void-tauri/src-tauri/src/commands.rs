@@ -219,7 +219,7 @@ pub async fn send_command(state: State<'_, Arc<AppState>>, dto: Value) -> Result
             .and_then(|f| f.request_as_persistent_command())
             .ok_or_else(|| "internal: envelope did not carry a PersistentCommand".to_string())?;
         let hash = void_protocol::receipts::payload_hash("persistent", &payload);
-        if let Some((code, message)) = c.preflight(cmd, &hash) {
+        if let Some((code, message)) = c.preflight(cmd, &hash, is_lifecycle) {
             // NONE+empty message = duplicate of an applied command.
             if code == proto::ErrorCode::NONE {
                 return Ok(json!({
@@ -269,6 +269,20 @@ pub async fn send_command(state: State<'_, Arc<AppState>>, dto: Value) -> Result
                     engine_epoch: slot.engine_epoch,
                 };
             }
+        }
+    } else if is_lifecycle {
+        // Definitive non-APPLIED outcome for a lifecycle op: drop the
+        // `Registered` placeholder so the id isn't stuck as "still
+        // attaching" forever. (A reply timeout leaves it Registered — the
+        // outcome is genuinely unknown, and a retry now passes preflight
+        // anyway since lifecycle ops are allowed through `Registered`.)
+        let mut c = state.coordinator.lock().await;
+        if c.registry
+            .get(&project_id)
+            .map(|p| matches!(p.state, ProjectState::Registered))
+            .unwrap_or(false)
+        {
+            c.registry.remove(&project_id);
         }
     }
     Ok(receipt)

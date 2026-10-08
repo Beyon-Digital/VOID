@@ -56,9 +56,7 @@ fn crate_sha256() -> String {
     // No signed binary artifact exists yet (D06 distribution is blocked);
     // record a deterministic hash of name+version so provenance stays
     // sha256-shaped while remaining honest about what it covers.
-    void_assets::hex_sha256(
-        format!("void-export/{}", env!("CARGO_PKG_VERSION")).as_bytes(),
-    )
+    void_assets::hex_sha256(format!("void-export/{}", env!("CARGO_PKG_VERSION")).as_bytes())
 }
 
 /// Coordinates queued export jobs for one project container.
@@ -89,7 +87,8 @@ impl ExportRunner {
         spec.validate()?;
         let verified = void_project::verify_checkpoint(&self.root, &spec.checkpoint_id)
             .map_err(|e| ExportError::CheckpointInvalid(e.to_string()))?;
-        self.db.submit(&job_spec_for(spec, &verified.manifest_sha256)?)
+        self.db
+            .submit(&job_spec_for(spec, &verified.manifest_sha256)?)
             .map_err(ExportError::Job)
     }
 
@@ -215,7 +214,9 @@ impl ExportRunner {
 
     /// All jobs for a project, oldest first.
     pub fn list(&self, project_id: &str) -> Result<Vec<void_jobs::JobRecord>> {
-        self.db.list_for_project(project_id).map_err(ExportError::Job)
+        self.db
+            .list_for_project(project_id)
+            .map_err(ExportError::Job)
     }
 
     /// Published export dirs for the container (`exports/<jobId>`).

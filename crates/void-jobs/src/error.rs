@@ -26,7 +26,6 @@ pub enum JobError {
     LateResult(String),
 
     // ---- W12 runner surface (additive) --------------------------------
-
     #[error("io error: {0}")]
     Io(#[from] std::io::Error),
 

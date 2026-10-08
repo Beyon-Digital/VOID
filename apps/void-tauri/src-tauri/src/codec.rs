@@ -106,13 +106,9 @@ fn stro<'v>(v: &'v Value, key: &str) -> &'v str {
     v.get(key).and_then(Value::as_str).unwrap_or("")
 }
 
-fn enum_val<T: for<'de> flatbuffers::Follow<'de> + flatbuffers::Push>(
-    v: &Value,
-    key: &str,
-    map: &[(T, &str)],
-) -> Result<T, CodecError>
+fn enum_val<T>(v: &Value, key: &str, map: &[(T, &str)]) -> Result<T, CodecError>
 where
-    T: Copy + Default,
+    T: for<'de> flatbuffers::Follow<'de> + flatbuffers::Push + Copy + Default,
 {
     let name = stro(v, key);
     map.iter()
@@ -589,7 +585,7 @@ pub fn persistent_command_json(v: &Value) -> Result<Vec<u8>, CodecError> {
             project_id: Some(pid),
             engine_epoch: u64f(v, "engine_epoch")?,
             expected_revision: u64f(v, "expected_revision")?,
-            op_type: op_type,
+            op_type,
             op: Some(op),
         },
     );

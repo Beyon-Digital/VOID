@@ -51,9 +51,7 @@ pub enum RunOutcome {
     },
     /// Cancelled mid-run; whatever arrived after the token tripped is
     /// discarded (T49: late output does not commit).
-    Cancelled {
-        wall_ns: u64,
-    },
+    Cancelled { wall_ns: u64 },
 }
 
 /// Subscriber for live events (studio subscribes progress + status).
@@ -123,7 +121,13 @@ impl JobRunner {
 
     fn emit(&self, spec: &JobSpec, status: &str, percent: Option<f64>, msg: Option<String>) {
         if let Some(sink) = &self.event_sink {
-            sink(JobEvent::new(&spec.project_id, &spec.job_id, status, percent, msg));
+            sink(JobEvent::new(
+                &spec.project_id,
+                &spec.job_id,
+                status,
+                percent,
+                msg,
+            ));
         }
     }
 
@@ -152,7 +156,11 @@ impl JobRunner {
         // what commits (T49). A job cancelled while running is in
         // `cancelling`: its result is quarantined, nothing publishes.
         let recorded = match &outcome {
-            RunOutcome::Succeeded { artifacts, warnings, .. } => {
+            RunOutcome::Succeeded {
+                artifacts,
+                warnings,
+                ..
+            } => {
                 let card = serde_json::json!({
                     "v": 1,
                     "status": "succeeded",
@@ -186,7 +194,12 @@ impl JobRunner {
         // no provenance/result card and no staging survives (T49).
         let quarantined = matches!(recorded, JobStatus::Cancelling | JobStatus::Cancelled);
         if quarantined {
-            self.emit(spec, "cancelled", None, Some("late result quarantined".into()));
+            self.emit(
+                spec,
+                "cancelled",
+                None,
+                Some("late result quarantined".into()),
+            );
         } else if let RunOutcome::Succeeded {
             artifacts,
             warnings,
@@ -257,7 +270,7 @@ impl JobRunner {
             loop {
                 let mut line = String::new();
                 match reader.read_line(&mut line) {
-                    Ok(0) => return,               // EOF
+                    Ok(0) => return, // EOF
                     Ok(_) => {
                         if tx.send(Ok(line)).is_err() {
                             return; // runner gone — stop draining
@@ -408,11 +421,17 @@ impl JobRunner {
             // Declared paths are staging-relative; escapes fail the job
             // — a worker must never reach outside its staging dir.
             let rel = Path::new(a);
-            if rel.is_absolute() || rel.components().any(|c| matches!(c, std::path::Component::ParentDir)) {
+            if rel.is_absolute()
+                || rel
+                    .components()
+                    .any(|c| matches!(c, std::path::Component::ParentDir))
+            {
                 return Err(JobError::EscapesStaging(a.clone()));
             }
             let abs = staging.join(rel);
-            let canon = abs.canonicalize().map_err(|_| JobError::ArtifactNotFound(a.clone()))?;
+            let canon = abs
+                .canonicalize()
+                .map_err(|_| JobError::ArtifactNotFound(a.clone()))?;
             let staging_canon = staging.canonicalize()?;
             if !canon.starts_with(&staging_canon) {
                 return Err(JobError::EscapesStaging(a.clone()));
@@ -440,8 +459,8 @@ impl JobRunner {
             });
         }
         let _ = spec; // spec carried for future input-verification rules
-        // Stray sweep: files the worker wrote but never declared are
-        // dropped before publish — never auto-committed.
+                      // Stray sweep: files the worker wrote but never declared are
+                      // dropped before publish — never auto-committed.
         let mut strays = 0u32;
         if staging.is_dir() {
             for e in fs::read_dir(staging)?.flatten() {
@@ -474,9 +493,14 @@ impl JobRunner {
         }
         let dir = layout::job_dir(&self.project_root, &spec.job_id);
         fs::create_dir_all(&dir)?;
-        let argv = ctx.runtime.argv_for(&layout::staging_dir(&self.project_root, &spec.job_id));
+        let argv = ctx
+            .runtime
+            .argv_for(&layout::staging_dir(&self.project_root, &spec.job_id));
         let argv_sha = {
-            let joined: Vec<String> = argv.iter().map(|a| a.to_string_lossy().to_string()).collect();
+            let joined: Vec<String> = argv
+                .iter()
+                .map(|a| a.to_string_lossy().to_string())
+                .collect();
             let mut h = Sha256::new();
             h.update(joined.join("\x1f").as_bytes());
             let d: [u8; 32] = h.finalize().into();
@@ -540,9 +564,8 @@ fn reap(
     mut killed_for: KilledFor,
 ) -> Result<Option<i32>> {
     loop {
-        match child.try_wait()? {
-            Some(s) => return Ok(s.code()),
-            None => {}
+        if let Some(s) = child.try_wait()? {
+            return Ok(s.code());
         }
         if killed_for == KilledFor::None {
             if cancel.is_cancelled() {

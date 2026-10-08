@@ -696,6 +696,7 @@ dependencies = [
  "thiserror",
  "tracing",
  "uuid",
+ "void-assets",
  "void-protocol",
 ]
 

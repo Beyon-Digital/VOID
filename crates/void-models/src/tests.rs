@@ -97,8 +97,7 @@ fn path_like_executable_rejected() {
         assert!(
             matches!(
                 ModelManifest::parse_and_verify(&bytes),
-                Err(ModelError::DisallowedCapability(_))
-                    | Err(ModelError::InvalidManifest(_))
+                Err(ModelError::DisallowedCapability(_)) | Err(ModelError::InvalidManifest(_))
             ),
             "executable {exe:?} must be rejected"
         );
@@ -128,7 +127,10 @@ fn install_resolves_artifact_statuses() {
     let reg = ModelRegistry::open_memory().unwrap();
     let desc = reg.install(&bytes, &store).unwrap();
     assert_eq!(desc.status, ModelStatus::Available);
-    assert_eq!(reg.get("void.fake-synth", "1.0.0").unwrap().status, ModelStatus::Available);
+    assert_eq!(
+        reg.get("void.fake-synth", "1.0.0").unwrap().status,
+        ModelStatus::Available
+    );
 }
 
 #[test]
@@ -199,7 +201,10 @@ fn resolve_rechecks_files_after_install() {
     let desc = reg.resolve("void.fake-synth", "1.0.0", &store).unwrap();
     assert_eq!(desc.status, ModelStatus::Missing);
     // The row was updated — stale "available" never survives a resolve.
-    assert_eq!(reg.get("void.fake-synth", "1.0.0").unwrap().status, ModelStatus::Missing);
+    assert_eq!(
+        reg.get("void.fake-synth", "1.0.0").unwrap().status,
+        ModelStatus::Missing
+    );
 }
 
 #[test]

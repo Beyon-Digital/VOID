@@ -74,10 +74,10 @@ impl TempoMap {
     }
 
     fn point_index_at(&self, tick: i64) -> usize {
-        match self.points.iter().rposition(|p| p.at_ticks <= tick) {
-            Some(i) => i,
-            None => 0,
-        }
+        self.points
+            .iter()
+            .rposition(|p| p.at_ticks <= tick)
+            .unwrap_or_default()
     }
 
     /// Cumulative sample position of `tick` (0 at tick 0).
@@ -123,8 +123,8 @@ impl TempoMap {
         if sample <= 0 {
             // Negative/0 axis: first segment only.
             let bpm = self.tempo_at(0).bpm;
-            let ticks = (sample as f64) * bpm * TICKS_PER_QUARTER as f64
-                / (60.0 * self.sample_rate as f64);
+            let ticks =
+                (sample as f64) * bpm * TICKS_PER_QUARTER as f64 / (60.0 * self.sample_rate as f64);
             return Self::round_ties_away(ticks);
         }
         let mut acc_ticks = 0.0f64;
@@ -146,11 +146,12 @@ impl TempoMap {
             } else {
                 i64::MAX
             };
-            let seg_samples = self.span_samples((end_ticks.min(i64::MAX / 2) - start).max(0) as f64, *bpm);
+            let seg_samples =
+                self.span_samples((end_ticks.min(i64::MAX / 2) - start).max(0) as f64, *bpm);
             if acc_samples + seg_samples >= sample as f64 {
                 let remaining = sample as f64 - acc_samples;
-                let ticks = remaining * bpm * TICKS_PER_QUARTER as f64
-                    / (60.0 * self.sample_rate as f64);
+                let ticks =
+                    remaining * bpm * TICKS_PER_QUARTER as f64 / (60.0 * self.sample_rate as f64);
                 return Self::round_ties_away(*start as f64 + ticks);
             }
             acc_samples += seg_samples;
@@ -194,14 +195,19 @@ impl TempoMap {
     /// this map's sample rate; TIMECODE anchors convert ns -> samples ->
     /// ticks (absolute-time anchors hold wall-time position, so their
     /// *tick* position shifts with the tempo map — intended).
-    pub fn anchor_ticks(&self, kind: crate::types::AnchorKind, ticks: i64, sample: i64, timecode_ns: i64) -> i64 {
+    pub fn anchor_ticks(
+        &self,
+        kind: crate::types::AnchorKind,
+        ticks: i64,
+        sample: i64,
+        timecode_ns: i64,
+    ) -> i64 {
         match kind {
             crate::types::AnchorKind::BeatTick => ticks,
             crate::types::AnchorKind::Sample => self.tick_at_sample(sample),
             crate::types::AnchorKind::Timecode => {
-                let sample = Self::round_ties_away(
-                    (timecode_ns as f64) * (self.sample_rate as f64) / 1.0e9,
-                );
+                let sample =
+                    Self::round_ties_away((timecode_ns as f64) * (self.sample_rate as f64) / 1.0e9);
                 self.tick_at_sample(sample)
             }
         }
@@ -215,7 +221,7 @@ mod tests {
     #[test]
     fn constant_tempo_round_trip() {
         let m = TempoMap::default(); // 120bpm, 48k
-        // One quarter at 120bpm = 0.5s = 24000 samples.
+                                     // One quarter at 120bpm = 0.5s = 24000 samples.
         assert_eq!(m.sample_at_tick(TICKS_PER_QUARTER), 24_000);
         assert_eq!(m.tick_at_sample(24_000), TICKS_PER_QUARTER);
         // One bar of 4/4 = 4 quarters.
@@ -248,8 +254,14 @@ mod tests {
         assert_eq!(m.next_beat_after(0), TICKS_PER_QUARTER);
         assert_eq!(m.next_beat_after(TICKS_PER_QUARTER - 1), TICKS_PER_QUARTER);
         assert_eq!(m.next_bar_after(0), 4 * TICKS_PER_QUARTER);
-        assert_eq!(m.next_bar_after(4 * TICKS_PER_QUARTER - 1), 4 * TICKS_PER_QUARTER);
-        assert_eq!(m.next_bar_after(4 * TICKS_PER_QUARTER), 8 * TICKS_PER_QUARTER);
+        assert_eq!(
+            m.next_bar_after(4 * TICKS_PER_QUARTER - 1),
+            4 * TICKS_PER_QUARTER
+        );
+        assert_eq!(
+            m.next_bar_after(4 * TICKS_PER_QUARTER),
+            8 * TICKS_PER_QUARTER
+        );
     }
 
     #[test]

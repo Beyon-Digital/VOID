@@ -26,8 +26,8 @@ mod tests;
 
 pub use error::{ModelError, Result};
 pub use manifest::{
-    check_artifacts, is_allowed_executable, manifest_content_sha256, sign_manifest,
-    ArtifactCheck, ModelManifest,
+    check_artifacts, is_allowed_executable, manifest_content_sha256, sign_manifest, ArtifactCheck,
+    ModelManifest,
 };
 pub use model::{
     ArtifactRef, BudgetDefaults, CapabilityFlags, ModelDescriptor, ModelKind, ModelStatus,

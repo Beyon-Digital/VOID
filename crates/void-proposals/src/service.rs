@@ -187,13 +187,13 @@ impl ProposalService {
     pub fn mark_stale(&self, project_id: &str, cause: StaleCause) -> Result<usize> {
         let mut n = 0;
         for mut rec in self.store.list_for_project(project_id) {
-            if matches!(rec.status, ProposalStatus::Ready | ProposalStatus::Pending) {
-                if transition_pending(&mut rec, ProposalStatus::Stale).is_ok() {
-                    rec.stale_cause = Some(cause.clone());
-                    rec.updated_at = utc_now();
-                    self.store.save(&rec)?;
-                    n += 1;
-                }
+            if matches!(rec.status, ProposalStatus::Ready | ProposalStatus::Pending)
+                && transition_pending(&mut rec, ProposalStatus::Stale).is_ok()
+            {
+                rec.stale_cause = Some(cause.clone());
+                rec.updated_at = utc_now();
+                self.store.save(&rec)?;
+                n += 1;
             }
         }
         Ok(n)

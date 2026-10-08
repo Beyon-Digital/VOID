@@ -173,8 +173,7 @@ pub fn ticks_to_frames(ticks: i64, bpm: f64, sample_rate: u32) -> Result<u64> {
         .ok_or_else(|| ExportError::InvalidSpec("frame count overflow".into()))?;
     // Nearest, ties away from zero: (num + den/2) / den for positive num.
     let frames = (num + den / 2) / den;
-    u64::try_from(frames)
-        .map_err(|_| ExportError::InvalidSpec("frame count exceeds u64".into()))
+    u64::try_from(frames).map_err(|_| ExportError::InvalidSpec("frame count exceeds u64".into()))
 }
 
 /// Frames covered by [from_ticks, to_ticks) across a piecewise tempo map —
@@ -240,7 +239,10 @@ pub fn sanitize_output_name(name: &str) -> Result<String> {
             n.len()
         )));
     }
-    if n.starts_with('.') || !n.chars().all(|c| c.is_ascii_alphanumeric() || matches!(c, '.' | '_' | '-'))
+    if n.starts_with('.')
+        || !n
+            .chars()
+            .all(|c| c.is_ascii_alphanumeric() || matches!(c, '.' | '_' | '-'))
     {
         return Err(ExportError::InvalidSpec(format!(
             "output name {n:?} is not a scoped filename"
@@ -348,9 +350,7 @@ impl ExportSpec {
                 // ms * sr / 1000 — exact, already integral-safe.
                 ((ms as u128 * sr as u128 + 500) / 1000) as u64
             }
-            TailPolicy::Ticks { ticks } => {
-                range_to_frames(end, end + ticks, &self.tempo_map, sr)?
-            }
+            TailPolicy::Ticks { ticks } => range_to_frames(end, end + ticks, &self.tempo_map, sr)?,
         };
         let total = range_frames
             .checked_add(tail_frames)
@@ -422,10 +422,7 @@ mod tests {
         let mut s = spec();
         s.range_start_ticks = "3840000".into();
         s.range_end_ticks = "0".into();
-        assert!(matches!(
-            s.validate(),
-            Err(ExportError::InvalidSpec(_))
-        ));
+        assert!(matches!(s.validate(), Err(ExportError::InvalidSpec(_))));
     }
 
     #[test]
@@ -478,8 +475,14 @@ mod tests {
     fn piecewise_tempo_map_sums_segments() {
         // Bar 0 @120 (96000f) + bar 1 @60 (192000f) = 288000 total.
         let map = vec![
-            TempoSegment { at_ticks: "0".into(), bpm: 120.0 },
-            TempoSegment { at_ticks: "3840000".into(), bpm: 60.0 },
+            TempoSegment {
+                at_ticks: "0".into(),
+                bpm: 120.0,
+            },
+            TempoSegment {
+                at_ticks: "3840000".into(),
+                bpm: 60.0,
+            },
         ];
         let f = range_to_frames(0, 7_680_000, &map, 48_000).unwrap();
         assert_eq!(f, 288_000);

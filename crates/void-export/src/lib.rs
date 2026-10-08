@@ -28,18 +28,16 @@ mod wav;
 pub use error::{ExportError, Result};
 pub use job::{job_spec_for, ExportRunner};
 pub use layout::{
-    export_dir, exports_dir, list_exports, staging_dir, EXPORTS_DIR, PROVENANCE_FILE,
-    RESULT_FILE, STAGING_PREFIX,
+    export_dir, exports_dir, list_exports, staging_dir, EXPORTS_DIR, PROVENANCE_FILE, RESULT_FILE,
+    STAGING_PREFIX,
 };
 pub use provenance::{ArtifactRecord, ExportProvenance, ToolRecord};
-pub use renderer::{
-    argv_sha256, build_argv, ArgvRenderer, CancelToken, RenderOutcome, Renderer,
-};
+pub use renderer::{argv_sha256, build_argv, ArgvRenderer, CancelToken, RenderOutcome, Renderer};
 pub use session::{ExportReceipt, ExportSession, ExportStep};
 pub use spec::{
-    range_to_frames, sanitize_output_name, ticks_to_frames, BitDepth, ChannelLayout,
-    ExportFormat, ExportSpec, FramePlan, TailPolicy, TempoSegment, APPROVED_SAMPLE_RATES,
-    MAX_RENDER_FRAMES, TICKS_PER_QUARTER,
+    range_to_frames, sanitize_output_name, ticks_to_frames, BitDepth, ChannelLayout, ExportFormat,
+    ExportSpec, FramePlan, TailPolicy, TempoSegment, APPROVED_SAMPLE_RATES, MAX_RENDER_FRAMES,
+    TICKS_PER_QUARTER,
 };
 pub use wav::{probe_wav, verify_midi, verify_wav, WavInfo};
 
@@ -89,7 +87,7 @@ mod tests {
         f.write_all(&channels.to_le_bytes())?;
         f.write_all(&sr.to_le_bytes())?;
         f.write_all(&(sr * channels as u32 * (bits as u32 / 8)).to_le_bytes())?;
-        f.write_all(&((channels * (bits / 8)) as u16).to_le_bytes())?;
+        f.write_all(&(channels * (bits / 8)).to_le_bytes())?;
         f.write_all(&bits.to_le_bytes())?;
         f.write_all(b"data")?;
         f.write_all(&(len as u32).to_le_bytes())?;
@@ -130,15 +128,8 @@ mod tests {
                         ChannelLayout::Mono => 1,
                         ChannelLayout::Stereo => 2,
                     };
-                    write_wav(
-                        &file,
-                        ch,
-                        spec.sample_rate.unwrap(),
-                        bits,
-                        fmt,
-                        total,
-                    )
-                    .map_err(ExportError::Io)?;
+                    write_wav(&file, ch, spec.sample_rate.unwrap(), bits, fmt, total)
+                        .map_err(ExportError::Io)?;
                 }
                 ExportFormat::Midi => {
                     std::fs::write(&file, b"MThd\x00\x00\x00\x06\x00\x01\x00\x01\x03\xc0")
@@ -252,10 +243,9 @@ mod tests {
         // Published tree: artifact + provenance + result card.
         let dir = export_dir(tmp.path(), J1);
         assert!(dir.join("mix-v1.wav").is_file());
-        let prov: serde_json::Value = serde_json::from_str(
-            &std::fs::read_to_string(dir.join(PROVENANCE_FILE)).unwrap(),
-        )
-        .unwrap();
+        let prov: serde_json::Value =
+            serde_json::from_str(&std::fs::read_to_string(dir.join(PROVENANCE_FILE)).unwrap())
+                .unwrap();
         assert_eq!(prov["checkpointId"], C1);
         assert_eq!(prov["spec"]["rangeStartTicks"], "0");
         assert_eq!(prov["artifact"]["sha256"].as_str().unwrap().len(), 64);
@@ -277,7 +267,10 @@ mod tests {
         s.sample_rate = None;
         s.output_name = "clip-a".into();
         runner.submit(&s).unwrap();
-        assert_eq!(runner.run(J1, &WavFixture::ok()).unwrap(), JobStatus::Succeeded);
+        assert_eq!(
+            runner.run(J1, &WavFixture::ok()).unwrap(),
+            JobStatus::Succeeded
+        );
         assert!(export_dir(tmp.path(), J1).join("clip-a.mid").is_file());
     }
 
@@ -287,7 +280,9 @@ mod tests {
         make_checkpoint(tmp.path(), C1, &project_id);
         let runner = ExportRunner::memory(tmp.path()).unwrap();
         runner.submit(&spec(J1, C1, &project_id)).unwrap();
-        let st = runner.run(J1, &WavFixture::failing("engine exploded")).unwrap();
+        let st = runner
+            .run(J1, &WavFixture::failing("engine exploded"))
+            .unwrap();
         assert_eq!(st, JobStatus::Failed);
         assert!(!export_dir(tmp.path(), J1).exists());
         assert!(!staging_dir(tmp.path(), J1).exists());
@@ -299,7 +294,11 @@ mod tests {
         // No checkpoint dir exists for this id.
         let runner = ExportRunner::memory(tmp.path()).unwrap();
         assert!(matches!(
-            runner.submit(&spec(J1, "00000000-0000-4000-8000-00000000dead", &project_id)),
+            runner.submit(&spec(
+                J1,
+                "00000000-0000-4000-8000-00000000dead",
+                &project_id
+            )),
             Err(ExportError::CheckpointInvalid(_))
         ));
     }

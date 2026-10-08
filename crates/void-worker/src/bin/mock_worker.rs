@@ -167,7 +167,8 @@ async fn main() {
             };
             let framed = encode_frame(&resp).unwrap();
             // TransportAck rides telemetry; everything else rides control.
-            let sink = if resp.len() > 4 && flatbuffers::root::<proto::TelemetryFrame>(&resp).is_ok()
+            let sink = if resp.len() > 4
+                && flatbuffers::root::<proto::TelemetryFrame>(&resp).is_ok()
                 && req.request_as_transport_request().is_some()
             {
                 &mut telemetry

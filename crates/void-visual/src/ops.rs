@@ -119,8 +119,12 @@ pub enum VisualOp {
     ClearVisualSceneOp {},
     /// Joint audio/visual undo: rewinds this participant's ops that were
     /// committed under `transaction_id` ("" = latest transaction).
-    VisualUndoOp { transaction_id: String },
-    VisualRedoOp { transaction_id: String },
+    VisualUndoOp {
+        transaction_id: String,
+    },
+    VisualRedoOp {
+        transaction_id: String,
+    },
 }
 
 /// Wire-level command envelope (mirrors VisualPersistentCommand).
@@ -174,7 +178,12 @@ impl VisualReceipt {
         }
     }
 
-    pub fn rejected(cmd: &VisualCommand, error: VisualErrorCode, revision: u64, message: &str) -> Self {
+    pub fn rejected(
+        cmd: &VisualCommand,
+        error: VisualErrorCode,
+        revision: u64,
+        message: &str,
+    ) -> Self {
         Self {
             command_id: cmd.command_id.clone(),
             transaction_id: cmd.transaction_id.clone(),

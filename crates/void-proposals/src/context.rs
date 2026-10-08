@@ -37,6 +37,9 @@ impl TickRange {
     pub fn len(&self) -> i64 {
         self.length_ticks.parse().unwrap_or(0)
     }
+    pub fn is_empty(&self) -> bool {
+        self.len() <= 0
+    }
     pub fn end(&self) -> i64 {
         self.start() + self.len()
     }

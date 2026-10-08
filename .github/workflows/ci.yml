@@ -43,8 +43,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -65,6 +63,14 @@ jobs:
         with:
           path: native/build
           key: native-${{ hashFiles('native/**/CMakeLists.txt', 'third_party/**/HEAD') }}
+      - name: Install flatc 25.9.23
+        run: |
+          git clone --depth 1 -b v25.9.23 https://github.com/google/flatbuffers /tmp/fb
+          cmake -G Ninja -B /tmp/fb/build -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF /tmp/fb
+          cmake --build /tmp/fb/build --target flatc
+          sudo install -m755 /tmp/fb/build/flatc /usr/local/bin/flatc
+      - name: Generate protocol bindings
+        run: tools/protocol-gen.sh
       - name: Build engine worker + scanner + fixtures
         run: |
           set -e

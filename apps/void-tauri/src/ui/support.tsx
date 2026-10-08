@@ -103,7 +103,7 @@ export function LauncherPanel() {
   const createFromTemplate = async (templateId: string) => {
     const tpl = BUILTIN_TEMPLATES.find((x) => x.id === templateId);
     if (!tpl) return;
-    const projectId = `proj-${slugify(name)}`;
+    const projectId = crypto.randomUUID(); // project ids must be UUIDs (is_valid_id)
     const containerDir = dir.trim() || `./projects/${slugify(name)}.void`;
     setBusy(templateId);
     setError('');

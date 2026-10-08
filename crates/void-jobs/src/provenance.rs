@@ -92,6 +92,7 @@ pub struct Measured {
 }
 
 impl JobProvenance {
+    #[allow(clippy::too_many_arguments)]
     pub fn new(
         spec: &JobSpec,
         budget: &JobBudget,

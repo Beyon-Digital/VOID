@@ -138,12 +138,15 @@ fn fs(v: VsOut) -> @location(0) vec4<f32> {
 /// Generator preset bodies (deterministic, param-driven).
 pub fn generator_body(preset: &str) -> Option<String> {
     let body = match preset {
-        "black" => r#"
+        "black" => {
+            r#"
 fn gen(uv: vec2<f32>, u: GenU) -> vec4<f32> {
     return vec4<f32>(0.0, 0.0, 0.0, 1.0);
 }
-"#,
-        "color-bars" => r#"
+"#
+        }
+        "color-bars" => {
+            r#"
 fn gen(uv: vec2<f32>, u: GenU) -> vec4<f32> {
     // SMPTE-style bars, deterministic; seed picks hue rotation.
     let n = 8.0;
@@ -157,8 +160,10 @@ fn gen(uv: vec2<f32>, u: GenU) -> vec4<f32> {
     let a = 1.0;
     return vec4<f32>(c * a, a);
 }
-"#,
-        "checker" => r#"
+"#
+        }
+        "checker" => {
+            r#"
 fn gen(uv: vec2<f32>, u: GenU) -> vec4<f32> {
     let cells = max(u.p0.x, 2.0);
     let p = vec2<u32>(vec2<f32>(uv * cells));
@@ -166,15 +171,19 @@ fn gen(uv: vec2<f32>, u: GenU) -> vec4<f32> {
     let c = vec3<f32>(on * u.p0.y + u.p0.z * (1.0 - on));
     return vec4<f32>(c, 1.0);
 }
-"#,
-        "gradient" => r#"
+"#
+        }
+        "gradient" => {
+            r#"
 fn gen(uv: vec2<f32>, u: GenU) -> vec4<f32> {
     // Vertical two-stop gradient; p0.rgb = top, p1.rgb = bottom.
     let c = mix(u.p0.rgb, u.p1.rgb, uv.y);
     return vec4<f32>(c, 1.0);
 }
-"#,
-        "plasma" => r#"
+"#
+        }
+        "plasma" => {
+            r#"
 fn gen(uv: vec2<f32>, u: GenU) -> vec4<f32> {
     // Deterministic plasma driven by beat + seed (no wall time).
     let t = u.beat * 0.25 + u.seed;
@@ -186,8 +195,10 @@ fn gen(uv: vec2<f32>, u: GenU) -> vec4<f32> {
         0.5 + 0.5 * sin(v + 4.188));
     return vec4<f32>(c, 1.0);
 }
-"#,
-        "pulse" => r#"
+"#
+        }
+        "pulse" => {
+            r#"
 fn gen(uv: vec2<f32>, u: GenU) -> vec4<f32> {
     // Beat-synced radial pulse: radius breathes on beat_phase + rms.
     let d = distance(uv, vec2<f32>(0.5));
@@ -196,7 +207,8 @@ fn gen(uv: vec2<f32>, u: GenU) -> vec4<f32> {
     let c = vec3<f32>(u.p0.x, u.p0.y, u.p0.z) * (0.4 + u.peak * 0.6 + 0.6 * w);
     return vec4<f32>(c * w, w);
 }
-"#,
+"#
+        }
         _ => return None,
     };
     Some(body.to_string())

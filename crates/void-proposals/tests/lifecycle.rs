@@ -300,20 +300,20 @@ fn hostile_documents_rejected() {
         // score out of range / non-finite
         mk(&format!(r#"{{"id":"c1","score":1.7,"rationale":"x","notes":[{note}]}}"#)),
         // pitch out of range
-        mk(&r#"{"id":"c1","score":0.5,"rationale":"x","notes":[{"pitch":300,"velocity":90,"onsetTicks":"0","lengthTicks":"240000"}]}"#.to_string()),
+        mk(r#"{"id":"c1","score":0.5,"rationale":"x","notes":[{"pitch":300,"velocity":90,"onsetTicks":"0","lengthTicks":"240000"}]}"#),
         // unordered onsets (hostile ordering)
-        mk(&r#"{"id":"c1","score":0.5,"rationale":"x","notes":[{"pitch":60,"velocity":90,"onsetTicks":"480000","lengthTicks":"240000"},{"pitch":61,"velocity":90,"onsetTicks":"0","lengthTicks":"240000"}]}"#.to_string()),
+        mk(r#"{"id":"c1","score":0.5,"rationale":"x","notes":[{"pitch":60,"velocity":90,"onsetTicks":"480000","lengthTicks":"240000"},{"pitch":61,"velocity":90,"onsetTicks":"0","lengthTicks":"240000"}]}"#),
         // negative tick field
-        mk(&r#"{"id":"c1","score":0.5,"rationale":"x","notes":[{"pitch":60,"velocity":90,"onsetTicks":"-5","lengthTicks":"240000"}]}"#.to_string()),
+        mk(r#"{"id":"c1","score":0.5,"rationale":"x","notes":[{"pitch":60,"velocity":90,"onsetTicks":"-5","lengthTicks":"240000"}]}"#),
         // zero length
-        mk(&r#"{"id":"c1","score":0.5,"rationale":"x","notes":[{"pitch":60,"velocity":90,"onsetTicks":"0","lengthTicks":"0"}]}"#.to_string()),
+        mk(r#"{"id":"c1","score":0.5,"rationale":"x","notes":[{"pitch":60,"velocity":90,"onsetTicks":"0","lengthTicks":"0"}]}"#),
         // > MAX_CANDIDATE_NOTES notes
         mk(&format!(
             r#"{{"id":"c1","score":0.5,"rationale":"x","notes":[{}]}}"#,
-            std::iter::repeat(note).take(1100).collect::<Vec<_>>().join(",")
+            std::iter::repeat_n(note, 1100).collect::<Vec<_>>().join(",")
         )),
         // NaN score
-        mk(&r#"{"id":"c1","score":null,"rationale":"x","notes":[{"pitch":60,"velocity":90,"onsetTicks":"0","lengthTicks":"240000"}]}"#.to_string()),
+        mk(r#"{"id":"c1","score":null,"rationale":"x","notes":[{"pitch":60,"velocity":90,"onsetTicks":"0","lengthTicks":"240000"}]}"#),
     ];
     for (i, doc) in hostile.iter().enumerate() {
         assert!(

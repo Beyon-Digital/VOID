@@ -104,7 +104,10 @@ pub fn parse_worker_line(line: &str) -> Result<Option<WorkerEvent>, String> {
                 .get("percent")
                 .and_then(|p| p.as_f64())
                 .map(|p| p.clamp(0.0, 100.0));
-            let message = v.get("message").and_then(|m| m.as_str()).map(|s| s.to_string());
+            let message = v
+                .get("message")
+                .and_then(|m| m.as_str())
+                .map(|s| s.to_string());
             Ok(Some(WorkerEvent::Progress { percent, message }))
         }
         Some("result") => {
@@ -119,12 +122,17 @@ pub fn parse_worker_line(line: &str) -> Result<Option<WorkerEvent>, String> {
                 .map(|a| {
                     a.iter()
                         .filter_map(|e| {
-                            e.get("path").and_then(|p| p.as_str()).map(|s| s.to_string())
+                            e.get("path")
+                                .and_then(|p| p.as_str())
+                                .map(|s| s.to_string())
                         })
                         .collect()
                 })
                 .unwrap_or_default();
-            let error = v.get("error").and_then(|e| e.as_str()).map(|s| s.to_string());
+            let error = v
+                .get("error")
+                .and_then(|e| e.as_str())
+                .map(|s| s.to_string());
             let warnings = v
                 .get("warnings")
                 .and_then(|w| w.as_array())
