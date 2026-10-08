@@ -52,3 +52,13 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - apps/void-tauri renderer: engine lifecycle + CreateProject->CommandReceipt + live ClockSnapshot/MeterFrame + engine-lost banner + read inspector
 - Verified post-merge: pnpm -r test 49/49 green; pnpm -r build incl. tauri build → deb+rpm+AppImage; cargo workspace clean
 - Fix applied: bundle icon path (AppImage bundler hard-fails without square icon entry)
+
+## 2026-10-08 ~17:55Z — Lane A (engine) merged (2afd5e1 → devin/void-implementation)
+- T03 PASS: tracktion_engine e760754 + JUCE 37c894f real submodules; upstream TestRunner 450 cases / 22,282 assertions, exit 0, Xcode 26.6
+- W04 PASS (live wire): native/void-engine JUCE worker — UDS→WorkerHello→all 32 PersistentOps + 6 transport ops; supervisor_stub harness 15/15 exit 0 (APPLIED/DUPLICATE/STALE_REVISION/COMMAND_ID_REUSE); SAVE_DURABLE writes real checkpoint files (manifest + per-file SHA-256 + CURRENT swap); telemetry post-PLAY
+- Real bugs found+fixed: headless macOS runDispatchLoop → NSApp applicationWillTerminate killing control fd → runDispatchLoopUntil pump; checkpoint publish needed checkpoints/ parent
+- T14 PASS: render fixture 1,536,000 frames @48kHz 2ch, WAV+sha256 committed
+- T22 PASS: void-plugin-scanner subprocess — real AU scan (AUDelay/Apple), bad UID clean error, selftest hang/crash isolated
+- T24 PASS: crash fixture 6/6
+- T13/T15/T16 partial (headless: no audio device/GUI); T23 blocked (no x86_64 plugin)
+- flatbuffers submodule pinned at v25.9.23 tag commit; CI native lane already fetches submodules recursively

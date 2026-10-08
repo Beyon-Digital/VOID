@@ -6,16 +6,16 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 | ID | Gate | Package | Prerequisites | Status |
 | --- | --- | --- | --- | --- |
-| W00 | F0 | Baseline, source preservation and scope ledger | None | not_started |
-| W01 | F0 | Dependency rights and compatible version qualification | W00 | not_started |
-| W02 | F0 | Tauri shell and supervised native worker | W01 | not_started |
-| W03 | F0 | Command protocol, object IDs and bounded state views | W02 | not_started |
-| W04 | F0 | Tracktion musical model, device path and native playback | W03 | not_started |
-| W05 | F0 | Immutable assets and crash-consistent checkpoints | W04 | not_started |
-| W06 | F0 | Native plugin proof and safe scanning | W05 | not_started |
-| W07 | F0 | CI, diagnostics, clean install and Foundation gate | W06 | not_started |
+| W00 | F0 | Baseline, source preservation and scope ledger | None | done |
+| W01 | F0 | Dependency rights and compatible version qualification | W00 | done |
+| W02 | F0 | Tauri shell and supervised native worker | W01 | done |
+| W03 | F0 | Command protocol, object IDs and bounded state views | W02 | done |
+| W04 | F0 | Tracktion musical model, device path and native playback | W03 | partial_macos |
+| W05 | F0 | Immutable assets and crash-consistent checkpoints | W04 | done |
+| W06 | F0 | Native plugin proof and safe scanning | W05 | partial_macos |
+| W07 | F0 | CI, diagnostics, clean install and Foundation gate | W06 | partial |
 | W08 | F1 | Audio/MIDI recording and monitoring workflow | W07 | not_started |
-| W09 | F1 | Arrangement and piano-roll editors | W08 | not_started |
+| W09 | F1 | Arrangement and piano-roll editors | W08 | in_progress_lane |
 | W10 | F1 | Playable instruments, real mixer and export | W09 | not_started |
 | W11 | F1 | First-song qualification and Electron cutover | W10 | not_started |
 | W12 | F2 | AI job runtime, budgets and provenance | W11 | not_started |
@@ -39,7 +39,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W00 · F0 · Baseline, source preservation and scope ledger
 
-**Owner:** Integrator · **Depends:** None · **Status:** not_started
+**Owner:** Integrator · **Depends:** None · **Status:** done
 
 **Target paths:** `docs/void-handoff/`, `tracking/`, `README.md`, `migration.md`
 
@@ -63,11 +63,11 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** Reuse already qualified foundations; justify new dependencies separately.
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** p; a; c; k; e; t;  ; i; n; s; t; a; l; l; e; d; ,;  ; b; a; s; e; l; i; n; e;  ; r; e; c; o; r; d; e; d; ,;  ; S; e; s; s; i; o; n; V; i; e; w;  ; s; c; e; n; e; I; d;  ; f; i; x;  ; +;  ; v; i; t; e; s; t;  ; 3; /; 3
 
 ## W01 · F0 · Dependency rights and compatible version qualification
 
-**Owner:** Integrator · **Depends:** W00 · **Status:** not_started
+**Owner:** Integrator · **Depends:** W00 · **Status:** done
 
 **Target paths:** `docs/dependencies/`, `third_party/`, `tracking/DEPENDENCIES.json`, `Cargo.lock`, `pnpm-lock.yaml`
 
@@ -91,11 +91,11 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** CORE-01, CORE-02, CORE-03, DATA-01, DATA-02, DATA-03
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** P; I; N; S; .; m; d;  ; +;  ; Q; U; A; L; I; F; I; C; A; T; I; O; N; .; m; d; ;;  ; T; E;  ; e; 7; 6; 0; 7; 5; 4; +; J; U; C; E;  ; 3; 7; c; 8; 9; 4; f; ;;  ; u; p; s; t; r; e; a; m;  ; s; u; i; t; e;  ; 4; 5; 0; /; 2; 2; 2; 8; 2;  ; e; x; i; t;  ; 0
 
 ## W02 · F0 · Tauri shell and supervised native worker
 
-**Owner:** Platform · **Depends:** W01 · **Status:** not_started
+**Owner:** Platform · **Depends:** W01 · **Status:** done
 
 **Target paths:** `apps/void-desktop/`, `crates/void-app/`, `crates/void-worker/`, `native/void-engine/`, `CMakePresets.json`, `Cargo.toml`
 
@@ -119,11 +119,11 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** CORE-01, CORE-02, CORE-03, DATA-03
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** T; a; u; r; i;  ; v; 2;  ; s; h; e; l; l;  ; +;  ; v; o; i; d; -; w; o; r; k; e; r;  ; s; u; p; e; r; v; i; s; o; r;  ; +;  ; m; o; c; k;  ; w; o; r; k; e; r; ;;  ; w; i; r; e; _; r; o; u; n; d; t; r; i; p;  ; g; r; e; e; n; ;;  ; t; a; u; r; i;  ; b; u; i; l; d;  ; -; >;  ; d; e; b; /; r; p; m; /; A; p; p; I; m; a; g; e
 
 ## W03 · F0 · Command protocol, object IDs and bounded state views
 
-**Owner:** Platform + engine · **Depends:** W02 · **Status:** not_started
+**Owner:** Platform + engine · **Depends:** W02 · **Status:** done
 
 **Target paths:** `protocol/`, `crates/void-protocol/`, `native/void-engine/src/bridge/`, `packages/void-client/`
 
@@ -147,11 +147,11 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** DATA-02
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; _; c; o; n; t; r; o; l; .; f; b; s;  ; f; r; o; z; e; n;  ; 1; .; 0; ;;  ; 3; 2;  ; o; p; s; ;;  ; C; o; n; t; r; o; l; E; n; v; e; l; o; p; e; ;;  ; r; e; c; e; i; p; t; /; d; e; d; u; p; /; r; e; v; i; s; i; o; n;  ; s; t; o; r; e; s; ;;  ; c; o; d; e; c;  ; f; u; l; l;  ; c; o; v; e; r; a; g; e
 
 ## W04 · F0 · Tracktion musical model, device path and native playback
 
-**Owner:** Engine · **Depends:** W03 · **Status:** not_started
+**Owner:** Engine · **Depends:** W03 · **Status:** partial_macos
 
 **Target paths:** `native/void-engine/src/session/`, `native/void-engine/src/audio/`, `native/void-engine/tests/`
 
@@ -175,11 +175,11 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** CORE-02, CORE-03, DSP-03
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** n; a; t; i; v; e; /; v; o; i; d; -; e; n; g; i; n; e;  ; l; i; v; e;  ; w; i; r; e;  ; 1; 5; /; 1; 5;  ; h; a; r; n; e; s; s; ;;  ; T; 1; 3; /; T; 1; 5; /; T; 1; 6;  ; n; e; e; d;  ; a; u; d; i; o;  ; d; e; v; i; c; e; /; G; U; I
 
 ## W05 · F0 · Immutable assets and crash-consistent checkpoints
 
-**Owner:** Persistence · **Depends:** W04 · **Status:** not_started
+**Owner:** Persistence · **Depends:** W04 · **Status:** done
 
 **Target paths:** `crates/void-project/`, `crates/void-assets/`, `native/void-engine/src/persistence/`, `tests/recovery/`
 
@@ -203,11 +203,11 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** DATA-01
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; -; p; r; o; j; e; c; t; /; v; o; i; d; -; a; s; s; e; t; s; /; v; o; i; d; -; j; o; b; s;  ; +;  ; t; e; s; t; s; /; r; e; c; o; v; e; r; y;  ; 2; 2; /; 2; 2
 
 ## W06 · F0 · Native plugin proof and safe scanning
 
-**Owner:** Engine · **Depends:** W05 · **Status:** not_started
+**Owner:** Engine · **Depends:** W05 · **Status:** partial_macos
 
 **Target paths:** `native/void-plugin-scanner/`, `native/void-engine/src/plugins/`, `crates/void-plugins/`, `tests/plugins/`
 
@@ -231,11 +231,11 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** IO-01, QA-01
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; -; p; l; u; g; i; n; -; s; c; a; n; n; e; r;  ; A; U; +; s; e; l; f; t; e; s; t;  ; i; s; o; l; a; t; i; o; n; ;;  ; T; 2; 3;  ; f; o; r; e; i; g; n; -; a; r; c; h;  ; b; l; o; c; k; e; d
 
 ## W07 · F0 · CI, diagnostics, clean install and Foundation gate
 
-**Owner:** QA + release · **Depends:** W06 · **Status:** not_started
+**Owner:** QA + release · **Depends:** W06 · **Status:** partial
 
 **Target paths:** `.github/workflows/`, `tools/doctor/`, `tools/ci/`, `tests/e2e/`, `docs/verification/`
 
@@ -259,7 +259,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** QA-02, QA-03
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** c; i; .; y; m; l;  ; +;  ; d; o; c; t; o; r; .; s; h;  ; (; 8; /; 2; /; 0; );  ; +;  ; E; V; I; D; E; N; C; E; .; m; d; ;;  ; i; n; s; t; a; l; l;  ; p; a; t; h;  ; p; e; n; d; i; n; g;  ; n; a; t; i; v; e;  ; b; i; n; a; r; y;  ; o; n;  ; n; o; n; -; m; a; c
 
 ## W08 · F1 · Audio/MIDI recording and monitoring workflow
 
@@ -291,7 +291,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W09 · F1 · Arrangement and piano-roll editors
 
-**Owner:** Studio UI · **Depends:** W08 · **Status:** not_started
+**Owner:** Studio UI · **Depends:** W08 · **Status:** in_progress_lane
 
 **Target paths:** `packages/void-studio/src/timeline/`, `packages/void-studio/src/piano-roll/`, `packages/void-ui/`
 
@@ -315,7 +315,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** Reuse already qualified foundations; justify new dependencies separately.
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** l; a; n; e;  ; D;  ; s; p; a; w; n; e; d;  ; (; d; e; v; i; n; -; 0; b; 7; a; f; e; a; 8; 0; 8; c; 5; 4; 2; a; 3; 9; f; 7; f; 5; 3; 9; 3; 1; b; 3; 3; 5; 6; 0; f; )
 
 ## W10 · F1 · Playable instruments, real mixer and export
 

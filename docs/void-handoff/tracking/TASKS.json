@@ -31,8 +31,8 @@
         "T02"
       ],
       "dependency_ids": [],
-      "status": "not_started",
-      "evidence": [],
+      "status": "done",
+      "evidence": "packet installed, baseline recorded, SessionView sceneId fix + vitest 3/3",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
@@ -75,8 +75,8 @@
         "DATA-02",
         "DATA-03"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "done",
+      "evidence": "PINS.md + QUALIFICATION.md; TE e760754+JUCE 37c894f; upstream suite 450/22282 exit 0",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
@@ -119,8 +119,8 @@
         "CORE-03",
         "DATA-03"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "done",
+      "evidence": "Tauri v2 shell + void-worker supervisor + mock worker; wire_roundtrip green; tauri build -> deb/rpm/AppImage",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
@@ -160,8 +160,8 @@
       "dependency_ids": [
         "DATA-02"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "done",
+      "evidence": "void_control.fbs frozen 1.0; 32 ops; ControlEnvelope; receipt/dedup/revision stores; codec full coverage",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
@@ -201,8 +201,8 @@
         "CORE-03",
         "DSP-03"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "partial_macos",
+      "evidence": "native/void-engine live wire 15/15 harness; T13/T15/T16 need audio device/GUI",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
@@ -242,8 +242,8 @@
       "dependency_ids": [
         "DATA-01"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "done",
+      "evidence": "void-project/void-assets/void-jobs + tests/recovery 22/22",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
@@ -282,8 +282,8 @@
         "IO-01",
         "QA-01"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "partial_macos",
+      "evidence": "void-plugin-scanner AU+selftest isolation; T23 foreign-arch blocked",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
@@ -326,8 +326,8 @@
         "QA-02",
         "QA-03"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "partial",
+      "evidence": "ci.yml + doctor.sh (8/2/0) + EVIDENCE.md; install path pending native binary on non-mac",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
@@ -404,8 +404,8 @@
         "T39"
       ],
       "dependency_ids": [],
-      "status": "not_started",
-      "evidence": [],
+      "status": "in_progress_lane",
+      "evidence": "lane D spawned (devin-0b7afea808c542a39f7f53931b33560f)",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],

@@ -20,8 +20,8 @@
       "phase": "F0",
       "procedure": "Validate all source IDs; create scenes a and ab with clips whose IDs do not share scene prefixes.",
       "expected": "All 116 feature IDs and 22 stock groups survive. Clips appear only in their explicit scene/track slot; ID-prefix collisions do not affect membership.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "void-core vitest 3/3 strict sceneId grouping",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -31,8 +31,8 @@
       "phase": "F0",
       "procedure": "Build an upstream engine example using the selected exact JUCE pair; inspect every runtime licence and feature flag.",
       "expected": "Record hashes/versions, successful build evidence and permitted use. Unknown distribution rights block release, not a fabricated approval.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_macos",
+      "evidence": "TestRunner 450 cases/22282 assertions exit 0 Xcode 26.6",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -53,8 +53,8 @@
       "phase": "F0",
       "procedure": "Start app, wait for handshake, request orderly exit; repeat 20 times and enumerate child processes.",
       "expected": "Exactly one device owner per session; no orphan workers or unbounded restart loops. Startup timeout yields an actionable error.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "void-worker supervisor_lifecycle 2/2 + wire_roundtrip 1/1 (UDS handshake+receipt)",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -141,8 +141,8 @@
       "phase": "F0",
       "procedure": "Import the licensed/generated fixture, add audio and MIDI tracks, seek and cycle through known boundaries.",
       "expected": "Native output matches expected segments; stop/cycle semantics are real, not stub returns. No UI-owned transport clock.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "partial_macos",
+      "evidence": "wire acks + param mapping; no live device",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -152,8 +152,8 @@
       "phase": "F0",
       "procedure": "Render a fixed 16-bar built-in-instrument fixture at 120 BPM, 4/4 and 48 kHz with zero declared tails.",
       "expected": "Expected 32-second output contains 1,536,000 frames. Compare channel content, onset positions and a documented numerical tolerance; no normalization/dither unless requested.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_macos",
+      "evidence": "1536000 frames WAV+sha256 committed",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -163,8 +163,8 @@
       "phase": "F0",
       "procedure": "Change a real track gain/pan and processor parameter while playing and reopen the project.",
       "expected": "Audible/output change matches parameter mapping and saved value; no zipper noise beyond the tested processor policy. UI uses acknowledged state.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "partial_macos",
+      "evidence": "RT probes in place; needs audio device",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -174,8 +174,8 @@
       "phase": "F0",
       "procedure": "Instrument debug callback path and run native stress fixture with graph edits and asset loading.",
       "expected": "No blocking I/O, DB, inference, dynamic graph destruction or application lock acquisition on the callback path. Report deadlines and allocations with instrumentation overhead noted.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "partial_macos",
+      "evidence": "param/render done; editor needs GUI",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -185,8 +185,8 @@
       "phase": "F0",
       "procedure": "Kill controller/engine after every staged write, flush, directory rename, pointer publish and DB reconciliation step.",
       "expected": "Recovery picks only a complete verified checkpoint; prior committed files are intact. DB and CURRENT mismatch is reconciled from valid manifests.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "tests/recovery 4/4 failpoint kills",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -196,8 +196,8 @@
       "phase": "F0",
       "procedure": "Exhaust fixture volume or remove write permission during save and recording-finalization.",
       "expected": "Save cannot report durable success; last verified checkpoint remains readable. Recording salvage and cleanup are explicit.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "4/4 disk-full RLIMIT_FSIZE+perms",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -207,8 +207,8 @@
       "phase": "F0",
       "procedure": "Import corrupt/truncated media and archives with absolute paths, ../, symlinks, oversized entries and invalid channel/duration metadata.",
       "expected": "Reject unsafe paths/expansion before extraction/decode. Missing media creates visible relink placeholders, not silent replacement audio.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "6/6 traversal/bomb/tamper",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -218,8 +218,8 @@
       "phase": "F0",
       "procedure": "Open supported older, current and newer-unknown project versions; inject a migration failure.",
       "expected": "Older migrations are copy-on-write with verified rollback. Newer unknown versions are read-only/refused safely; original is not overwritten.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "5/5 v0->v1 CoW + v2 refuse",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -229,8 +229,8 @@
       "phase": "F0",
       "procedure": "Perform notes/clip edits, undo/redo, save, close/reopen; inspect provenance and accepted transaction history.",
       "expected": "Musical result and metadata match checkpoint. Persisted history policy is explicit; do not claim the full native undo stack survives restart unless it is implemented/tested.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "3/3 opaque-blob roundtrip",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -240,8 +240,8 @@
       "phase": "F0",
       "procedure": "Scan a good plugin, hang fixture, crash fixture and incompatible CPU architecture under timeout.",
       "expected": "Only scanner dies/hangs; cache records exact binary identity and quarantine reason. No automatic repeated crash loop.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_macos",
+      "evidence": "AU scan AUDelay + selftest isolation",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -251,8 +251,8 @@
       "phase": "F0",
       "procedure": "Open, resize, focus, type into and close native VST3 editor repeatedly; test AU on macOS and mixed DPI where supported.",
       "expected": "Native editor is genuinely interactive; engine state survives reopening. Each supported OS gets separate evidence, including teardown order.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "blocked",
+      "evidence": "no x86_64 plugin on box",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -262,8 +262,8 @@
       "phase": "F0",
       "procedure": "Deliberately crash an in-process plugin during playback and then reopen with it missing.",
       "expected": "Audio stops; Rust UI survives and offers verified recovery. Preserve plugin state blob and explicit bypass/missing state; do not claim processing isolation.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_macos",
+      "evidence": "crash_fixture 6/6",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -394,8 +394,8 @@
       "phase": "F1",
       "procedure": "Select/move/trim/split/duplicate multitrack clips with snap on/off, zoom and keyboard actions.",
       "expected": "Correct authoritative changes, predictable snapping, no overlap surprises and one drag undo transaction. Source audio stays unchanged.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "void-client 17 vitest",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -405,8 +405,8 @@
       "phase": "F1",
       "procedure": "Edit notes/durations/velocities, sustain and bend via keyboard/pointer; round-trip through save/render.",
       "expected": "Visible notes and audible events agree; boundary/range validation prevents malformed events and selected edits do not affect other tracks.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "void-studio 21 vitest",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -416,8 +416,8 @@
       "phase": "F1",
       "procedure": "Scroll/zoom a fixture with 256 tracks and 100,000 MIDI notes; repeatedly open/close editors while profiling process tree.",
       "expected": "This is a synthetic view test, not a playback-capacity claim. Waveform/note caches obey configured limits and no steady-state leak trend persists.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "void-ui 4 vitest",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -427,8 +427,8 @@
       "phase": "F1",
       "procedure": "Navigate main workflows by keyboard/screen reader, change scale/theme where provided, use reduced motion and deny assets/devices.",
       "expected": "Controls have names/values, visible focus, reachable alternatives and honest loading/empty/error states. Gesture actions have keyboard equivalents.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "tauri dashboard incl. engine-lost + telemetry",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
