@@ -17,9 +17,9 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W08 | F1 | Audio/MIDI recording and monitoring workflow | W07 | partial_macos |
 | W09 | F1 | Arrangement and piano-roll editors | W08 | done |
 | W10 | F1 | Playable instruments, real mixer and export | W09 | partial |
-| W11 | F1 | First-song qualification and Electron cutover | W10 | not_started |
+| W11 | F1 | First-song qualification and Electron cutover | W10 | in_progress |
 | W12 | F2 | AI job runtime, budgets and provenance | W11 | partial |
-| W13 | F2 | Predictive composition and safe proposal transactions | W12 | in_progress_lane |
+| W13 | F2 | Predictive composition and safe proposal transactions | W12 | partial |
 | W14 | F2 | Gestures, patterns, quick sampling and harmonic controls | W13 | not_started |
 | W15 | F2 | Audio generation, stems and transcription adapters | W12 | not_started |
 | W16 | F2 | AI/gesture regression gate | W14, W15 | not_started |
@@ -347,7 +347,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W11 · F1 · First-song qualification and Electron cutover
 
-**Owner:** Integrator + QA · **Depends:** W10 · **Status:** not_started
+**Owner:** Integrator + QA · **Depends:** W10 · **Status:** in_progress
 
 **Target paths:** `tests/journeys/`, `docs/verification/F1/`, `apps/void-desktop/`, `README.md`
 
@@ -371,7 +371,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** Reuse already qualified foundations; justify new dependencies separately.
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** c; u; t; o; v; e; r; -; p; l; a; n; .; m; d;  ; w; r; i; t; t; e; n;  ; +;  ; R; E; A; D; M; E;  ; p; r; o; d; u; c; t; i; o; n; -; p; a; t; h;  ; c; l; a; i; m;  ; f; i; x; e; d;  ; (; i; n; t; e; g; r; a; t; o; r; ); ;;  ; l; a; n; e;  ; I;  ; r; u; n; n; i; n; g;  ; f; o; r;  ; t; e; m; p; l; a; t; e; s; /; r; e; c; e; n; t; s; /; n; o; t; e; s; /; o; n; b; o; a; r; d; i; n; g; /; i; 1; 8; n;  ; U; I;  ; s; l; i; c; e; ;;  ; T; 4; 4; /; T; 4; 5; /; T; 4; 6; /; T; 4; 8;  ; n; e; e; d;  ; m; a; c; O; S;  ; l; i; v; e; -; d; e; v; i; c; e;  ; j; o; u; r; n; e; y; s
 
 ## W12 · F2 · AI job runtime, budgets and provenance
 
@@ -403,7 +403,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W13 · F2 · Predictive composition and safe proposal transactions
 
-**Owner:** Musical AI + UI · **Depends:** W12 · **Status:** in_progress_lane
+**Owner:** Musical AI + UI · **Depends:** W12 · **Status:** partial
 
 **Target paths:** `crates/void-proposals/`, `workers/symbolic/`, `packages/void-studio/src/proposals/`
 
@@ -427,7 +427,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** AI-02, AI-05
 
-**Evidence:** l; a; n; e;  ; s; p; a; w; n; e; d
+**Evidence:** v; o; i; d; -; s; y; m; b; o; l; i; c; -; w; o; r; k; e; r;  ; (; s; e; e; d; e; d;  ; i; n; t; e; r; v; a; l; -; M; a; r; k; o; v; +; K; r; u; m; h; a; n; s; l; );  ; +;  ; v; o; i; d; -; p; r; o; p; o; s; a; l; s;  ; l; i; f; e; c; y; c; l; e;  ; (; d; i; g; e; s; t; →; j; o; b; →; v; a; l; i; d; a; t; e; d;  ; d; o; c; →; p; l; a; n; _; a; c; c; e; p; t; →; s; i; n; g; l; e; -; t; x;  ; I; n; s; e; r; t; N; o; t; e; O; p; →; c; o; m; m; i; t; /; r; e; j; e; c; t; ,;  ; s; t; a; l; e; -; n; e; v; e; r; -; r; e; v; i; v; e; s; );  ; +;  ; r; a; n; k; e; d;  ; U; I; ;;  ; T; 5; 3;  ; d; e; t; e; r; m; i; n; i; s; m;  ; s; h; a; -; v; e; r; i; f; i; e; d; ,;  ; T; 5; 4;  ; s; i; n; g; l; e; -; t; x;  ; a; c; c; e; p; t; ;;  ; n; o;  ; w; i; r; e;  ; o; p; s;  ; f; o; r;  ; p; r; o; p; o; s; a; l; s;  ; (; N; E; E; D; S;  ; r; e; v; 2; )
 
 ## W14 · F2 · Gestures, patterns, quick sampling and harmonic controls
 

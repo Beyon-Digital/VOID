@@ -7,7 +7,8 @@
 - Lanes merged: A engine (`2afd5e1`), B persistence (`00443f1`), C UI (`14851f9`), D editors (`225d8e3`), E recording (`28753aa`), F export (`391d8d6`) — all terminated cleanly.
 - Tests green: cargo 17 suites, pnpm 135 vitest, recovery 22/22, full `tauri build` → deb+rpm+AppImage.
 - Lanes done+merged (7): A engine, B persistence, C UI, D editors, E recording, F export, G AI jobs (@`70bcf73` merged) — all terminated.
-- Running lanes: H proposals W13 `devin-3a01752a809c453ba320359d096c67bb` (devin/void-lane-proposals), I W11-UI `devin-d0744e7e67d44ed2ba5487127a8acc63` (devin/void-lane-w11ui), J W15 audio adapters `devin-418be1e92a9047089bd39c6302832559` (devin/void-lane-audio-ai).
+- Lanes merged: +H proposals (8 of 9 done).
+- Running lanes: K W14 gestures `devin-0e1e94b11d4843789f6faecfe11f3067` (devin/void-lane-gestures), I W11-UI `devin-d0744e7e67d44ed2ba5487127a8acc63` (devin/void-lane-w11ui), J W15 audio adapters `devin-418be1e92a9047089bd39c6302832559` (devin/void-lane-audio-ai).
 - Done by orchestrator: docs/verification/F1/cutover-plan.md, README production-path fix, blueprint suggestion (flatc+commands — awaits approval).
 
 ## Immediate next steps (in order)

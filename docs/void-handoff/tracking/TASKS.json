@@ -606,8 +606,8 @@
         "DSP-03",
         "AI-05"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "in_progress_lane",
+      "evidence": "lane K spawned (studio-side gestures/patterns/harmony/learn)",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],

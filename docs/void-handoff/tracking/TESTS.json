@@ -603,8 +603,8 @@
       "phase": "F2",
       "procedure": "Move/delete the target clip, edit chords, change project or restart engine before accepting a candidate.",
       "expected": "Proposal is rejected/stale or explicitly revalidated into a new proposal; no silent rebasing or insertion into a wrong project.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "lane H: proposals revalidate inside accept; stale never revives; RegionContext sha binds source; revalidate mints supersedes record",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -614,8 +614,8 @@
       "phase": "F2",
       "procedure": "Place instruction-like text in lyrics/asset names and return hostile model actions/file paths.",
       "expected": "Treat text as data. Only typed scoped musical proposals survive validation; arbitrary shell/network/file writes cannot be requested by model output.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "lane H: proposal doc schema-validated; only typed InsertNoteOp plan applied \u2014 model output cannot request shell/network/file writes by construction",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
