@@ -719,8 +719,8 @@
         "T68"
       ],
       "dependency_ids": [],
-      "status": "not_started",
-      "evidence": [],
+      "status": "in_progress_lane",
+      "evidence": "lane N spawned: studio-side takes/comping/arrangement/scenes; engine-side depth deferred (native/)",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
