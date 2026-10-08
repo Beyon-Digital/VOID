@@ -29,3 +29,5 @@ export * from '../components/DrumPadGrid';
 export * from '../components/ChordRegionStrip';
 export * from '../components/LearnMatrix';
 export * from '../components/LoopBrowser';
+export * from '../components/TakeLane';
+export * from '../components/SceneCell';
