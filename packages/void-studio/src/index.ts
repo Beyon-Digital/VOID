@@ -46,5 +46,6 @@ export * from './harmony';
 export * from './learn';
 export * from './takes';
 export * from './arrangement';
+export * from './audio-edit';
 export * from './scenes';
 export * from './visuals';

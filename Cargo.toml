@@ -10,6 +10,7 @@ members = [
     "crates/void-models",
     "crates/void-proposals",
     "crates/void-export",
+    "crates/void-content",
     "crates/void-visual",
     "apps/void-tauri/src-tauri",
 ]
