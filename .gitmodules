@@ -1,0 +1,6 @@
+[submodule "third_party/tracktion_engine"]
+	path = third_party/tracktion_engine
+	url = https://github.com/Tracktion/tracktion_engine
+[submodule "third_party/flatbuffers"]
+	path = third_party/flatbuffers
+	url = https://github.com/google/flatbuffers

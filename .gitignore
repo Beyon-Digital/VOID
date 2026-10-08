@@ -1,11 +1,1 @@
-node_modules
-dist
-.turbo
-packages/void-core/dist
-packages/void-daw/dist
-packages/void-core/tsconfig.tsbuildinfo
-*.tsbuildinfo
-
-# generated FlatBuffers bindings
-protocol/generated/
-target/
+build/
