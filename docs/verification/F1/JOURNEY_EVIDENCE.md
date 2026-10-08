@@ -131,12 +131,14 @@ python3 tests/journeys/f1/f1_journey.py t45 \
   --minutes 3 --seconds 24
 ```
 
-Repeated real offline renders of the T44 song checkpoint at 48 kHz.
-Numbers filled from the recorded run below. The real T45 requirement —
+Repeated real offline renders of the T44 song checkpoint (full 267-note
+mix + take, checkpoint `94e73829…`) at 48 kHz. Measured on the recorded
+run: **47 renders** in 3 min — min 3.76 s, **p50 3.85 s, max 4.02 s**
+for 24.0 s of audio → slowest = **5.96× faster than realtime**; all 47
+rendered 1 152 000-frame files successfully. The real T45 requirement —
 30-minute device-backed run with buffer sweep — is **BLOCKED**: no audio
-device exists on this host (attempted ALSA device init fails;
-shown in worker logs as `open /dev/snd/seq failed`). Callback maxima /
-xruns cannot be measured without a live device.
+device exists on this host (`open /dev/snd/seq` fails in worker logs).
+Callback maxima / xruns cannot be measured without a live device.
 
 ## Findings / engine gaps surfaced by F1
 
