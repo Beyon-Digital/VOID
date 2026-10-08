@@ -45,3 +45,5 @@ export * from './patterns';
 export * from './harmony';
 export * from './learn';
 export * from './takes';
+export * from './arrangement';
+export * from './scenes';
