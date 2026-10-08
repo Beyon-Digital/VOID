@@ -144,6 +144,57 @@ impl JobDb {
         self.set_status(job_id, JobStatus::Failed)
     }
 
+    /// Failure with a stored reason (W12): same transition as `fail`,
+    /// plus a small result card so the reason survives the process.
+    pub fn record_failure(&self, job_id: &str, error: &str) -> Result<()> {
+        let rec = self.get(job_id)?;
+        match rec.status {
+            JobStatus::Running => {
+                let card = serde_json::json!({"v":1,"status":"failed","error":error});
+                self.conn.execute(
+                    "UPDATE jobs SET status='failed', result_json=?1, updated_at=?2 WHERE job_id=?3",
+                    params![card.to_string(), self.utc_now(), job_id],
+                )?;
+                Ok(())
+            }
+            // A failing worker that already cancelled: store quarantined.
+            JobStatus::Cancelling | JobStatus::Cancelled => {
+                let card = serde_json::json!({"v":1,"status":"failed","error":error});
+                self.conn.execute(
+                    "UPDATE jobs SET result_json=?1, quarantined=1, updated_at=?2 WHERE job_id=?3",
+                    params![card.to_string(), self.utc_now(), job_id],
+                )?;
+                Ok(())
+            }
+            other => Err(JobError::LateResult(format!(
+                "job in terminal state {}",
+                other.as_str()
+            ))),
+        }
+    }
+
+    /// Jobs in one status — admission control + orphan sweep inputs.
+    pub fn list_by_status(&self, status: JobStatus) -> Result<Vec<JobRecord>> {
+        let mut st = self
+            .conn
+            .prepare("SELECT job_id FROM jobs WHERE status=?1 ORDER BY created_at")?;
+        let ids = st
+            .query_map(params![status.as_str()], |r| r.get::<_, String>(0))?
+            .collect::<rusqlite::Result<Vec<_>>>()?;
+        ids.into_iter().map(|id| self.get(&id)).collect()
+    }
+
+    /// Non-terminal jobs (queued/running/cancelling), oldest first.
+    pub fn nonterminal(&self) -> Result<Vec<JobRecord>> {
+        let mut st = self.conn.prepare(
+            "SELECT job_id FROM jobs WHERE status IN ('queued','running','cancelling') ORDER BY created_at",
+        )?;
+        let ids = st
+            .query_map([], |r| r.get::<_, String>(0))?
+            .collect::<rusqlite::Result<Vec<_>>>()?;
+        ids.into_iter().map(|id| self.get(&id)).collect()
+    }
+
     /// Record a worker result. Results for cancelled/cancelling jobs — or
     /// any terminal job — are quarantined, not applied (§6).
     pub fn record_result(&self, job_id: &str, result: &serde_json::Value) -> Result<JobStatus> {

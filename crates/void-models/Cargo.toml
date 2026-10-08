@@ -1,6 +1,6 @@
 [package]
-name = "void-jobs"
-description = "VOID AI/analysis job state machine, resource reservations, provenance (W12+)"
+name = "void-models"
+description = "VOID model registry — descriptors, manifest verification, budget defaults, local index persistence (W12, CONTRACTS.md §6)"
 version.workspace = true
 edition.workspace = true
 
