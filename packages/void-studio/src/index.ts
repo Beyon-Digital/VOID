@@ -44,3 +44,4 @@ export * from './gestures';
 export * from './patterns';
 export * from './harmony';
 export * from './learn';
+export * from './visuals';
