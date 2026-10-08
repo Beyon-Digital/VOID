@@ -112,3 +112,12 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - Skipped honestly: htdemucs 4-stem (below count), htdemucs_ft (>2GB), ACE-Step (GPU), paid cloud
 - Merge: void-studio index union (generation + HEAD's qualified jobs re-exports); resolved, studio 177 vitest
 - Verified post-merge: cargo 23 suites, vitest 179, tsc clean
+
+## 2026-10-08 ~21:30Z — Lane K (W14 gestures/patterns/harmony) merged (devin/void-lane-gestures → devin/void-implementation)
+- gestures/: contour draw + tap-rhythm w/ retained raw onsets, reversible quantize/swing/seeded-humanize render chain, armed-only capture, 1-tx commit + UndoOp, keyboard step-entry parity
+- patterns/: step editor (tie/ratchet/probability), GM pads w/ choke groups, quick-slice→InsertAudioClipOp (source immutable), deterministic loop templates
+- harmony/: 14 chord qualities w/ enharmonic spelling, overlap-free chord track, input constraint, explicit harmonic-follow→SetNoteOp+undo, ranked chord identification
+- learn/: control→param/macro mappings w/ curves+clamp, single-target arming, releaseAll on disconnect/focus-loss, idempotent PANIC
+- void-ui: GesturePad/TapPad/StepGrid/DrumPadGrid/ChordRegionStrip/LearnMatrix/LoopBrowser; docs/gestures/README.md
+- Merge: index.ts barrel unions (HEAD's qualified jobs re-exports + lane's new dirs)
+- Verified post-merge: cargo 23 suites, vitest 250 studio / 272 total

@@ -20,8 +20,8 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W11 | F1 | First-song qualification and Electron cutover | W10 | in_progress |
 | W12 | F2 | AI job runtime, budgets and provenance | W11 | partial |
 | W13 | F2 | Predictive composition and safe proposal transactions | W12 | partial |
-| W14 | F2 | Gestures, patterns, quick sampling and harmonic controls | W13 | not_started |
-| W15 | F2 | Audio generation, stems and transcription adapters | W12 | not_started |
+| W14 | F2 | Gestures, patterns, quick sampling and harmonic controls | W13 | partial |
+| W15 | F2 | Audio generation, stems and transcription adapters | W12 | partial |
 | W16 | F2 | AI/gesture regression gate | W14, W15 | not_started |
 | W17 | F3 | Recording and arrangement depth | W11 | not_started |
 | W18 | F3 | Mixer, automation and advanced MIDI | W17 | not_started |
@@ -371,7 +371,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** Reuse already qualified foundations; justify new dependencies separately.
 
-**Evidence:** c; u; t; o; v; e; r; -; p; l; a; n; .; m; d;  ; w; r; i; t; t; e; n;  ; +;  ; R; E; A; D; M; E;  ; p; r; o; d; u; c; t; i; o; n; -; p; a; t; h;  ; c; l; a; i; m;  ; f; i; x; e; d;  ; (; i; n; t; e; g; r; a; t; o; r; ); ;;  ; l; a; n; e;  ; I;  ; r; u; n; n; i; n; g;  ; f; o; r;  ; t; e; m; p; l; a; t; e; s; /; r; e; c; e; n; t; s; /; n; o; t; e; s; /; o; n; b; o; a; r; d; i; n; g; /; i; 1; 8; n;  ; U; I;  ; s; l; i; c; e; ;;  ; T; 4; 4; /; T; 4; 5; /; T; 4; 6; /; T; 4; 8;  ; n; e; e; d;  ; m; a; c; O; S;  ; l; i; v; e; -; d; e; v; i; c; e;  ; j; o; u; r; n; e; y; s
+**Evidence:** c; u; t; o; v; e; r; -; p; l; a; n; .; m; d;  ; +;  ; R; E; A; D; M; E;  ; f; i; x;  ; (; i; n; t; e; g; r; a; t; o; r; ); ;;  ; l; a; n; e;  ; I;  ; m; e; r; g; e; d; :;  ; i; 1; 8; n; (; ~; 9; 0;  ; k; e; y; s; ); +; 3;  ; t; e; m; p; l; a; t; e; s; +; r; e; c; e; n; t; s;  ; c; a; c; h; e; +; n; o; t; e; s;  ; d; r; a; f; t; s; +; r; e; l; i; n; k;  ; s; h; a; 2; 5; 6; →; A; t; t; a; c; h; A; s; s; e; t; O; p; +; o; n; b; o; a; r; d; i; n; g;  ; t; o; u; r; ;;  ; t; s; c;  ; c; l; e; a; n; ,;  ; s; t; u; d; i; o;  ; 1; 7; 0;  ; t; e; s; t; s; .;  ; R; e; m; a; i; n; i; n; g; :;  ; T; 4; 4; /; 4; 5; /; 4; 6; /; 4; 8;  ; n; e; e; d;  ; m; a; c; O; S;  ; l; i; v; e; -; d; e; v; i; c; e;  ; +;  ; T; 4; 7;  ; c; u; t; o; v; e; r;  ; g; a; t; e; d;  ; o; n;  ; t; h; o; s; e
 
 ## W12 · F2 · AI job runtime, budgets and provenance
 
@@ -431,7 +431,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W14 · F2 · Gestures, patterns, quick sampling and harmonic controls
 
-**Owner:** Studio UI + engine · **Depends:** W13 · **Status:** not_started
+**Owner:** Studio UI + engine · **Depends:** W13 · **Status:** partial
 
 **Target paths:** `packages/void-studio/src/gestures/`, `packages/void-studio/src/patterns/`, `native/void-engine/src/input/`
 
@@ -455,11 +455,11 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** DSP-03, AI-05
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** s; t; u; d; i; o; -; s; i; d; e;  ; m; e; r; g; e; d; :;  ; c; o; n; t; o; u; r; /; t; a; p;  ; g; e; s; t; u; r; e; s;  ; (; r; a; w;  ; r; e; t; a; i; n; e; d; ,;  ; r; e; v; e; r; s; i; b; l; e;  ; q; u; a; n; t; i; z; e; /; s; w; i; n; g; /; s; e; e; d; e; d; -; h; u; m; a; n; i; z; e; ,;  ; a; r; m; e; d; -; o; n; l; y;  ; c; a; p; t; u; r; e; ,;  ; k; b; d;  ; p; a; r; i; t; y; ); ,;  ; s; t; e; p;  ; p; a; t; t; e; r; n; s;  ; (; t; i; e; /; r; a; t; c; h; e; t; /; p; r; o; b; a; b; i; l; i; t; y; ); ,;  ; G; M;  ; p; a; d; s; +; c; h; o; k; e; ,;  ; q; u; i; c; k; -; s; l; i; c; e; →; I; n; s; e; r; t; A; u; d; i; o; C; l; i; p; O; p;  ; (; s; o; u; r; c; e;  ; i; m; m; u; t; a; b; l; e; ); ,;  ; c; h; o; r; d;  ; t; r; a; c; k;  ; (; 1; 4;  ; q; u; a; l; i; t; i; e; s; ,;  ; e; n; h; a; r; m; o; n; i; c; ,;  ; o; v; e; r; l; a; p; -; f; r; e; e; ,;  ; h; a; r; m; o; n; i; c; -; f; o; l; l; o; w; →; S; e; t; N; o; t; e; O; p; +; u; n; d; o; ); ,;  ; l; e; a; r; n;  ; (; a; r; m; e; d; -; o; n; l; y; ,;  ; c; u; r; v; e; s; ,;  ; r; e; l; e; a; s; e; A; l; l; ,;  ; i; d; e; m; p; o; t; e; n; t;  ; P; A; N; I; C; ); ;;  ; e; n; g; i; n; e; -; s; i; d; e;  ; i; n; p; u; t;  ; p; l; u; m; b; i; n; g;  ; =;  ; m; a; c; O; S;  ; f; o; l; l; o; w; -; u; p
 
 ## W15 · F2 · Audio generation, stems and transcription adapters
 
-**Owner:** AI workers · **Depends:** W12 · **Status:** not_started
+**Owner:** AI workers · **Depends:** W12 · **Status:** partial
 
 **Target paths:** `workers/audio/`, `crates/void-assets/`, `packages/void-studio/src/generation/`, `tests/models/`
 
@@ -483,7 +483,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** AI-03, AI-04, AI-06
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** 4;  ; a; d; a; p; t; e; r; s;  ; q; u; a; l; i; f; i; e; d;  ; u; n; d; e; r;  ; r; e; a; l;  ; J; o; b; R; u; n; n; e; r; :;  ; b; a; s; i; c; -; p; i; t; c; h;  ; (; 8; /; 8;  ; n; o; t; e; s;  ; ≤; 8; 0; m; s; ); ,;  ; d; e; m; u; c; s;  ; h; t; d; e; m; u; c; s; _; 6; s;  ; 6; -; s; t; e; m;  ; v; e; n; d; o; r; e; d;  ; o; f; f; l; i; n; e; ,;  ; m; u; s; i; c; g; e; n; -; s; m; a; l; l;  ; r; e; a; l;  ; a; u; d; i; o;  ; (; C; C; -; B; Y; -; N; C;  ; r; i; g; h; t; s;  ; g; a; p; ); ,;  ; p; r; o; c; e; d; u; r; a; l;  ; s; y; n; t; h;  ; b; y; t; e; -; d; e; t; e; r; m; i; n; i; s; t; i; c; ;;  ; T; 6; 0; -; 6; 2;  ; h; a; r; n; e; s; s;  ; 6; /; 6;  ; i; n; c; l; .;  ; m; i; d; -; r; e; n; d; e; r;  ; c; a; n; c; e; l; ;;  ; g; a; p; s; :;  ; N; C;  ; l; i; c; e; n; s; e; ,;  ; b; l; e; e; d;  ; u; n; m; e; a; s; u; r; e; d; ,;  ; M; u; s; i; c; G; e; n;  ; n; o; n; -; d; e; t; e; r; m; i; n; i; s; t; i; c
 
 ## W16 · F2 · AI/gesture regression gate
 

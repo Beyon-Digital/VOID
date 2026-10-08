@@ -625,8 +625,8 @@
       "phase": "F2",
       "procedure": "Draw melodic contours and tap off-grid rhythms, toggle scale constraint/quantize strength, preview and commit.",
       "expected": "Raw intention is retained; quantization is reversible and accepted notes can be edited/undone through normal paths.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "gestures 73 tests: contour+off-grid taps, constraint/quantize toggles, preview/commit, raw retained, normal edit+undo path",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -636,8 +636,8 @@
       "phase": "F2",
       "procedure": "Map touch/trackpad/MIDI control to a parameter, navigate elsewhere, disconnect controller and lose focus.",
       "expected": "Only armed target responds; navigation gestures do not change music. Panic/release has priority and prevents held notes.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "learn: single-target arming, navigation unaffected, disconnect/focus-loss releaseAll, idempotent PANIC priority",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -647,8 +647,8 @@
       "phase": "F2",
       "procedure": "Build drum pattern, slice licensed sample, preview loop at project tempo, apply chord constraints and undo.",
       "expected": "Result stays inspectable/editable; source sample is immutable and harmonic/tempo conversions have clear controls.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "patterns+slicing+harmony: drum grid, choke groups, slice\u2192InsertAudioClipOp source-immutable, chord constraints explicit+undo",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {

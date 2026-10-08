@@ -606,8 +606,8 @@
         "DSP-03",
         "AI-05"
       ],
-      "status": "in_progress_lane",
-      "evidence": "lane K spawned (studio-side gestures/patterns/harmony/learn)",
+      "status": "partial",
+      "evidence": "studio-side merged: contour/tap gestures (raw retained, reversible quantize/swing/seeded-humanize, armed-only capture, kbd parity), step patterns (tie/ratchet/probability), GM pads+choke, quick-slice\u2192InsertAudioClipOp (source immutable), chord track (14 qualities, enharmonic, overlap-free, harmonic-follow\u2192SetNoteOp+undo), learn (armed-only, curves, releaseAll, idempotent PANIC); engine-side input plumbing = macOS follow-up",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
