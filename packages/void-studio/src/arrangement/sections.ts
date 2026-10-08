@@ -98,7 +98,8 @@ export function moveSectionOps(
   const rStart = parseI64(region.startTicks);
   const rEnd = rStart + parseI64(region.lengthTicks);
   const transactionId = mint();
-  const ops: PersistentOp[] = [];
+  const splitOps: PersistentOp[] = [];
+  const moveOps: PersistentOp[] = [];
   const splitClipIds: string[] = [];
   for (const clip of carry.clips ? clips : []) {
     if (!regionsOverlap(
@@ -108,7 +109,7 @@ export function moveSectionOps(
     const cEnd = cStart + parseI64(clip.lengthTicks);
     const inside = cStart >= rStart && cEnd <= rEnd;
     if (inside) {
-      ops.push({
+      moveOps.push({
         MoveClipOp: {
           clip_id: clip.clipId,
           track_id: clip.trackId,
@@ -125,7 +126,7 @@ export function moveSectionOps(
     if (crossesLeft) {
       const id = mint();
       splitIds.push(id);
-      ops.push({
+      splitOps.push({
         SplitClipOp: { clip_id: clip.clipId, at_ticks: region.startTicks, new_clip_id: id },
       });
       splitClipIds.push(clip.clipId);
@@ -137,16 +138,16 @@ export function moveSectionOps(
       // otherwise the original clip holds the left part and the new id
       // holds the part after rEnd.
       const targetId = crossesLeft ? splitIds[0]! : clip.clipId;
-      ops.push({
+      splitOps.push({
         SplitClipOp: { clip_id: targetId, at_ticks: i64str(rEnd), new_clip_id: id },
       });
       splitClipIds.push(targetId);
     }
     const insideId = crossesLeft
-      ? (crossesRight ? splitIds[0]! : splitIds[0]!)
+      ? splitIds[0]!
       : (crossesRight ? clip.clipId : null);
     if (insideId !== null) {
-      ops.push({
+      moveOps.push({
         MoveClipOp: {
           clip_id: insideId,
           track_id: clip.trackId,
@@ -166,7 +167,9 @@ export function moveSectionOps(
         .map((m) => ({ markerId: m.markerId, ticks: i64str(parseI64(m.ticks) + delta) }))
     : [];
   return {
-    transactionId, ops, markerMoves, splitClipIds,
+    // splits land before moves so a crossing clip's inside piece exists
+    // when its MoveClipOp arrives.
+    transactionId, ops: [...splitOps, ...moveOps], markerMoves, splitClipIds,
     carriedSpec: { automation: carry.automation, chords: carry.chords },
   };
 }
