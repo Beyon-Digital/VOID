@@ -6,12 +6,12 @@
 ## State
 - Lanes merged: A engine (`2afd5e1`), B persistence (`00443f1`), C UI (`14851f9`), D editors (`225d8e3`), E recording (`28753aa`), F export (`391d8d6`) — all terminated cleanly.
 - Tests green: cargo 17 suites, pnpm 135 vitest, recovery 22/22, full `tauri build` → deb+rpm+AppImage.
-- Still running: Lane G AI jobs W12 — `devin-2f558329e9a040b4a1437bb9f1e0fdc3` on `devin/void-lane-aijobs`.
+- Lanes done+merged (7): A engine, B persistence, C UI, D editors, E recording, F export, G AI jobs (@`70bcf73` merged) — all terminated.
+- Running: Lane H predictive composition W13 — `devin-3a01752a809c453ba320359d096c67bb` on `devin/void-lane-proposals`.
 
 ## Immediate next steps (in order)
-1. When lane G finishes: merge `devin/void-lane-aijobs` --no-ff, verify `cargo test --workspace --exclude void-tauri` + `pnpm -r test`, update TASKS/TESTS (W12 + its T-ids), PROGRESS.md, render_views, commit, push, terminate session.
-2. Spawn next lane (slot free): W13 predictive composition lane — `crates/void-proposals/` + `workers/symbolic/` + `packages/void-studio/src/proposals/` (Linux).
-3. Then: W11 first-song qualification — needs macOS lane for the journey (create→record→edit→save→render→reopen) + Electron cutover note; or integrate `send_command` SaveProjectOp → void-project coordinator publish on my side (apps/void-tauri/src-tauri/commands.rs is integrator-owned).
+1. When lane H finishes: merge `devin/void-lane-proposals` --no-ff, verify `cargo test --workspace --exclude void-tauri` + `pnpm -r test`, update TASKS/TESTS (W13 + its T-ids), PROGRESS.md, render_views, commit, push, terminate session.
+2. 3. Then: W11 first-song qualification — needs macOS lane for the journey (create→record→edit→save→render→reopen) + Electron cutover note; or integrate `send_command` SaveProjectOp → void-project coordinator publish on my side (apps/void-tauri/src-tauri/commands.rs is integrator-owned).
 4. Blueprint update: `update_environment_config` — flatc 25.9.23 build, webkit2gtk, cmake/ninja, pnpm 9/node 22.
 5. Final draft PR `devin/void-implementation` → `main` with checkpoint report (PRs stay draft per org preference).
 
