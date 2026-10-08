@@ -1,0 +1,13 @@
+[package]
+name = "void-fake-worker"
+version = "0.1.0"
+edition = "2021"
+description = "Reference void-job-worker: deterministic tiny synth (sine WAV / tiny MIDI). Test fixture — honest real generation, never canned output."
+license = "ISC"
+
+# Detached from the repo workspace: a worker bundle builds alone.
+[workspace]
+
+[[bin]]
+name = "void-fake-worker"
+path = "src/main.rs"

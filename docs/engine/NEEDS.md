@@ -52,3 +52,26 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
 8. **No device-enumeration view.** `arm` needs the engine's input device list
    (names, channel configs, latencies) — an `INPUT_DEVICE_LIST` ViewKind would
    let the supervisor build the arm UI without a device-manager round trip.
+
+## W12 AI-jobs lane (protocol major.1 gaps — runner drives these in-process)
+
+9. **No `SubmitJobOp` / `CancelJobOp` in the PersistentOp union.** The AI job
+   lifecycle (CONTRACTS §6) has no wire ops: `WorkerKind::AI_JOB` exists but
+   nothing can enqueue or cancel a job. Needed (names proposed, not
+   implemented): `SubmitJobOp{spec}` (the job/1.0.0 envelope verbatim),
+   `CancelJobOp{job_id}`. Until then jobs are driven in-process by the
+   `void-jobs` runner and the studio builds the intended payload shapes in
+   `packages/void-studio/src/jobs/job.ts` (`submitJobOp`/`cancelJobOp`).
+
+10. **No `JOB_LIST` / `MODEL_LIST` ViewKind.** The job list (cards, budget
+    badges, progress) and the model registry read view cannot be fetched over
+    the socket. Studio parses both defensively (`parseJobCard`,
+    `parseModelRow`) so the shapes are pinned — the coordinator only needs to
+    emit them. `jobListRequest`/`modelListRequest` carry the proposed params.
+
+11. **No `JobEvent` telemetry union member.** Runner progress lines
+    (`{"v":1,"kind":"progress",...}`) and status transitions have no
+    `TelemetryEvent` representation; studio expects
+    `{kind:"JobEvent", project_id, job_id, status, percent?, message?,
+    quarantined?}` (snake_case — `parseJobEvent` already reads it and
+    `void-jobs::JobEvent` serializes exactly that shape).

@@ -14,3 +14,6 @@ export * from '../components/ExportJobRow';
 export * from '../components/InstrumentRack';
 export * from '../components/ticks';
 export { tokens, injectVoidStyles, focusClass, animatedClass } from '../components/styles';
+export * from '../components/JobRow';
+export * from '../components/BudgetBadge';
+export * from '../components/ModelRegistryList';

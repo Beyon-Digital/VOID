@@ -8,3 +8,4 @@ export * from './piano-roll';
 export * from './instruments';
 export * from './mixer';
 export * from './export';
+export * from './jobs';
