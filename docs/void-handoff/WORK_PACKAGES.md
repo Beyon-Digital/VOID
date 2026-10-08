@@ -22,7 +22,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W13 | F2 | Predictive composition and safe proposal transactions | W12 | partial |
 | W14 | F2 | Gestures, patterns, quick sampling and harmonic controls | W13 | partial |
 | W15 | F2 | Audio generation, stems and transcription adapters | W12 | partial |
-| W16 | F2 | AI/gesture regression gate | W14, W15 | not_started |
+| W16 | F2 | AI/gesture regression gate | W14, W15 | partial |
 | W17 | F3 | Recording and arrangement depth | W11 | not_started |
 | W18 | F3 | Mixer, automation and advanced MIDI | W17 | not_started |
 | W19 | F3 | Stock sound library, effects and time/pitch tools | W17, W01 | not_started |
@@ -487,7 +487,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W16 · F2 · AI/gesture regression gate
 
-**Owner:** QA · **Depends:** W14, W15 · **Status:** not_started
+**Owner:** QA · **Depends:** W14, W15 · **Status:** partial
 
 **Target paths:** `tests/journeys/ai/`, `docs/verification/F2/`, `tracking/`
 
@@ -509,7 +509,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** Reuse already qualified foundations; justify new dependencies separately.
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** F; 2;  ; g; a; t; e;  ; m; e; r; g; e; d; :;  ; T; 6; 3;  ; s; t; o; r; m;  ; P; A; S; S;  ; (; a; d; m; i; s; s; i; o; n; /; b; u; d; g; e; t; s; /; S; I; G; K; I; L; L; /; c; r; a; s; h; /; 2; -; p; r; o; j; e; c; t;  ; i; s; o; l; a; t; i; o; n; /; q; u; a; r; a; n; t; i; n; e; ); ,;  ; T; 6; 5;  ; o; f; f; l; i; n; e;  ; P; A; S; S;  ; (; u; n; s; h; a; r; e;  ; -; U; r; n;  ; e; n; v;  ; -; i; ,;  ; a; l; l;  ; s; o; c; k; e; t; s;  ; d; e; n; i; e; d; ,;  ; 7; 9; /; 7; 9;  ; m; a; n; u; a; l;  ; v; i; t; e; s; t; ,;  ; 5;  ; c; a; p; a; b; i; l; i; t; i; e; s;  ; r; e; a; l;  ; a; r; t; i; f; a; c; t; s; ); ,;  ; l; a; t; e; n; c; y;  ; m; e; a; s; u; r; e; d; ;;  ; T; 6; 4;  ; B; L; O; C; K; E; D;  ; h; u; m; a; n; -; n; e; e; d; e; d;  ; (; U; S; A; B; I; L; I; T; Y; _; P; R; O; T; O; C; O; L; .; m; d;  ; s; c; r; i; p; t; e; d; ); ;;  ; F; 2; _; G; A; T; E; .; m; d;  ; v; e; r; d; i; c; t; :;  ; n; o; t;  ; F; 2; -; c; o; m; p; l; e; t; e;  ; (; p; r; e; v; i; e; w;  ; l; a; y; e; r;  ; +;  ; w; i; r; e;  ; o; p; s;  ; +;  ; e; n; g; i; n; e;  ; i; n; p; u; t;  ; g; a; p; s; )
 
 ## W17 · F3 · Recording and arrangement depth
 

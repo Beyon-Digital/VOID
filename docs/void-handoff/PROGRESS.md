@@ -121,3 +121,11 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - void-ui: GesturePad/TapPad/StepGrid/DrumPadGrid/ChordRegionStrip/LearnMatrix/LoopBrowser; docs/gestures/README.md
 - Merge: index.ts barrel unions (HEAD's qualified jobs re-exports + lane's new dirs)
 - Verified post-merge: cargo 23 suites, vitest 250 studio / 272 total
+
+## 2026-10-08 ~22:00Z — Lane L (W16 F2 regression gate) merged (devin/void-lane-w16 → devin/void-implementation)
+- tests/journeys/ai: 18/18 (invalidation 3, latency 2, storm 6, capability 7) — real JobRunner/binaries/proposals/save path
+- T63 PASS: admission bounds (heavy/small/vram), SIGKILL→Failed+zero-provenance+retry, crash-between-lines, 9-job 2-project isolation, cooperative cancel + late-result quarantine, RLIMIT budgets
+- T65 PASS: offline_gate.sh unshare -Urn env -i (all sockets denied incl. loopback/UDP), 79/79 manual vitest in-denied-ns, void_project create+save+verify dry-run, 5 capabilities real artifacts offline
+- T64 BLOCKED honestly: human musician needed; USABILITY_PROTOCOL.md scripted (rubric + hazards)
+- F2_GATE.md verdict: NOT F2-complete — preview/audition layer (NEEDS §12), proposal wire ops (§13-14), engine input plumbing open
+- Integrator fix: generate provisioning — xformers --no-deps (torch pin conflict), HF_HUB_DISABLE_XET=1 (t5-base xet 404); journeys suite re-verified green locally post-fix

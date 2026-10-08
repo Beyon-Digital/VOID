@@ -691,8 +691,8 @@
       "phase": "F2",
       "procedure": "Combine job storms, several candidates, project switch and worker crash while playing/recording.",
       "expected": "Project/revision boundaries and budgets hold; UI shows actual job outcomes, not false completion.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "tests/journeys/ai 18/18: admission bounds, SIGKILL+retry provenance, midline-crash, 2-project isolation, late-result quarantine, budgets",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -702,8 +702,8 @@
       "phase": "F2",
       "procedure": "Have a user draw a phrase, audition alternatives, correct a transcription and continue manually with AI off.",
       "expected": "Document actual correction effort and task success; untested model suitability remains unverified.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "blocked",
+      "evidence": "blocked \u2014 needs human musician; docs/verification/F2/USABILITY_PROTOCOL.md runnable protocol",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -713,8 +713,8 @@
       "phase": "F2",
       "procedure": "Disable network and every optional model; then enable each qualified capability one at a time.",
       "expected": "Manual studio works throughout. Each claimed AI/gesture function has its own evidence and remaining model gaps are visible.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "offline_gate.sh unshare -Urn env -i: zero sockets incl loopback/UDP; 79/79 manual vitest; 5 capabilities real artifacts; save dry-run",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {

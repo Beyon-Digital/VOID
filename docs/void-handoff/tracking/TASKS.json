@@ -683,8 +683,8 @@
         "T65"
       ],
       "dependency_ids": [],
-      "status": "in_progress_lane",
-      "evidence": "lane L spawned: T63 storm/invalidation/offline, T65 capability matrix, T64 usability protocol (human-needed \u2192 honest blocked)",
+      "status": "partial",
+      "evidence": "F2 gate merged: T63 storm PASS (admission/budgets/SIGKILL/crash/2-project isolation/quarantine), T65 offline PASS (unshare -Urn env -i, all sockets denied, 79/79 manual vitest, 5 capabilities real artifacts), latency measured; T64 BLOCKED human-needed (USABILITY_PROTOCOL.md scripted); F2_GATE.md verdict: not F2-complete (preview layer + wire ops + engine input gaps)",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],

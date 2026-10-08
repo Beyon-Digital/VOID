@@ -78,9 +78,9 @@ Generated from `tracking/TESTS.json`. These are 100 required integration scenari
 | T60 / W15 | Generation worker qualification | Run the selected real audio generator on fixed owned/licensed prompts/reference clips and evaluate outputs. | Record model/runtime hashes, rights, settings, runtime/memory and musical fit; demo/canned audio cannot count as successful inference. | pass_linux |
 | T61 / W15 | Stem/transcription accuracy | Run separation/transcription on licensed multitrack references with alignment ground truth and varied instruments. | Measure onset/alignment/bleed/editability and publish limitations. Four output categories cannot close the six-stem feature. | pass_linux |
 | T62 / W15 | Generated asset insertion | Cancel/retry generation, trim/align/A-B output and accept an alternate clip while preserving the original. | Only a fully verified result is inserted after acceptance; source is untouched and new clip follows ordinary undo/save/export. | pass_linux |
-| T63 / W16 | AI concurrency regression | Combine job storms, several candidates, project switch and worker crash while playing/recording. | Project/revision boundaries and budgets hold; UI shows actual job outcomes, not false completion. | not_run |
-| T64 / W16 | Musical assistance task | Have a user draw a phrase, audition alternatives, correct a transcription and continue manually with AI off. | Document actual correction effort and task success; untested model suitability remains unverified. | not_run |
-| T65 / W16 | F2 capability evidence | Disable network and every optional model; then enable each qualified capability one at a time. | Manual studio works throughout. Each claimed AI/gesture function has its own evidence and remaining model gaps are visible. | not_run |
+| T63 / W16 | AI concurrency regression | Combine job storms, several candidates, project switch and worker crash while playing/recording. | Project/revision boundaries and budgets hold; UI shows actual job outcomes, not false completion. | pass_linux |
+| T64 / W16 | Musical assistance task | Have a user draw a phrase, audition alternatives, correct a transcription and continue manually with AI off. | Document actual correction effort and task success; untested model suitability remains unverified. | blocked |
+| T65 / W16 | F2 capability evidence | Disable network and every optional model; then enable each qualified capability one at a time. | Manual studio works throughout. Each claimed AI/gesture function has its own evidence and remaining model gaps are visible. | pass_linux |
 
 ## F3
 
