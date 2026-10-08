@@ -1,0 +1,76 @@
+name: ci
+
+on:
+  push:
+    branches: [main, 'devin/**']
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rust:
+    name: rust (unit + lint)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - name: Install flatc 25.9.23
+        run: |
+          git clone --depth 1 -b v25.9.23 https://github.com/google/flatbuffers /tmp/fb
+          cmake -G Ninja -B /tmp/fb/build -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF /tmp/fb
+          cmake --build /tmp/fb/build --target flatc
+          sudo install -m755 /tmp/fb/build/flatc /usr/local/bin/flatc
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: rust-${{ hashFiles('**/Cargo.lock') }}
+      - run: cargo fmt --all -- --check
+      - run: cargo clippy --workspace --all-targets -- -D warnings
+      - run: cargo test --workspace --exclude void-tauri
+
+  ts:
+    name: typescript (unit)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r test --if-present
+      - run: pnpm -r build --if-present
+
+  native:
+    name: native engine (macos)
+    runs-on: macos-14
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/cache@v4
+        with:
+          path: native/build
+          key: native-${{ hashFiles('native/**/CMakeLists.txt', 'third_party/**/HEAD') }}
+      - name: Build engine worker + tests
+        run: |
+          if [ -f native/CMakeLists.txt ]; then
+            cmake -B native/build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo native
+            cmake --build native/build
+            ctest --test-dir native/build --output-on-failure
+          else
+            echo "native/ not present on this branch yet (lane A)"; exit 0
+          fi

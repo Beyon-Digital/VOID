@@ -51,8 +51,7 @@ impl ReceiptStore {
     }
 
     pub fn record(&mut self, receipt: StoredReceipt) {
-        self.by_command
-            .insert(receipt.command_id.clone(), receipt);
+        self.by_command.insert(receipt.command_id.clone(), receipt);
     }
 
     pub fn get(&self, command_id: &str) -> Option<&StoredReceipt> {
@@ -80,9 +79,15 @@ mod tests {
             revision: 7,
             engine_epoch: 1,
         });
-        assert!(matches!(store.check("cmd-1", &h), DedupOutcome::Duplicate(_)));
+        assert!(matches!(
+            store.check("cmd-1", &h),
+            DedupOutcome::Duplicate(_)
+        ));
         let other = payload_hash("AddTrackOp", b"track-2");
-        assert!(matches!(store.check("cmd-1", &other), DedupOutcome::IdReuse));
+        assert!(matches!(
+            store.check("cmd-1", &other),
+            DedupOutcome::IdReuse
+        ));
         assert!(matches!(store.check("cmd-2", &other), DedupOutcome::New));
     }
 }

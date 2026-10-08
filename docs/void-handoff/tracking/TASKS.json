@@ -871,7 +871,7 @@
         "Complete advanced export/stem batches, custom shortcuts/screensets, consolidation/project import and producer regression coverage."
       ],
       "done_when": [
-        "F3 producer journeys pass with loss reports and measured compatibility. Every original feature is complete, explicitly blocked or scheduled—not silently removed."
+        "F3 producer journeys pass with loss reports and measured compatibility. Every original feature is complete, explicitly blocked or scheduled\u2014not silently removed."
       ],
       "tests": [
         "T78",

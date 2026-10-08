@@ -18,7 +18,9 @@ pub enum DispatchOutcome {
         message: String,
     },
     /// Command accepted and sent to the worker; receipt arrives async.
-    Forwarded { command_id: String },
+    Forwarded {
+        command_id: String,
+    },
     /// Worker is unavailable for this command.
     WorkerUnavailable,
     Busy,
@@ -116,6 +118,7 @@ impl Coordinator {
 }
 
 /// Enqueue a command onto the project's serialized mutation lane.
+#[allow(dead_code)]
 pub fn enqueue(registry: &mut ProjectRegistry, project_id: &str, command_id: &str) -> bool {
     match registry.get_mut(project_id) {
         Some(p) => p.try_enqueue(command_id.to_string()),
@@ -125,6 +128,7 @@ pub fn enqueue(registry: &mut ProjectRegistry, project_id: &str, command_id: &st
 
 /// A project is eligible to address the engine only while attached in the
 /// same epoch — the guard the coordinator applies before forwarding.
+#[allow(dead_code)]
 pub fn engine_ready(project_state: &ProjectState) -> bool {
     matches!(project_state, ProjectState::Attached { .. })
 }

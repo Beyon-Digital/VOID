@@ -81,9 +81,9 @@ pub struct WorkerHandle {
     pub protocol_minor: u16,
     pub engine_epoch: u64,
     pub capabilities: Vec<String>,
-    control: ControlChannel,
+    control: Option<ControlChannel>,
     #[allow(dead_code)]
-    telemetry: TelemetryChannel,
+    telemetry: Option<TelemetryChannel>,
     child: Child,
     state_tx: watch::Sender<WorkerState>,
     state_rx: watch::Receiver<WorkerState>,
@@ -99,7 +99,19 @@ impl WorkerHandle {
     }
 
     pub fn control(&mut self) -> &mut ControlChannel {
-        &mut self.control
+        self.control
+            .as_mut()
+            .expect("control channel already taken")
+    }
+
+    /// Ownership of the channel ends up split across the app's command
+    /// writers and event dispatcher — the handle keeps only lifecycle.
+    pub fn take_control(&mut self) -> Option<ControlChannel> {
+        self.control.take()
+    }
+
+    pub fn take_telemetry(&mut self) -> Option<TelemetryChannel> {
+        self.telemetry.take()
     }
 
     /// Orderly shutdown: drop the connection, then kill if it lingers.
@@ -186,14 +198,15 @@ impl Supervisor {
             Err(_) => {
                 let _ = child.kill().await;
                 cleanup_dir(&paths.dir);
-                return Err(SupervisorError::HandshakeTimeout(deadline.as_millis() as u64));
+                return Err(SupervisorError::HandshakeTimeout(
+                    deadline.as_millis() as u64
+                ));
             }
         };
 
         // Verify the buffer, unwrap the envelope, authenticate token+version.
-        let envelope = flatbuffers::root::<proto::ControlEnvelope>(&frame).map_err(|_| {
-            SupervisorError::HandshakeRejected("invalid control envelope".into())
-        })?;
+        let envelope = flatbuffers::root::<proto::ControlEnvelope>(&frame)
+            .map_err(|_| SupervisorError::HandshakeRejected("invalid control envelope".into()))?; // note: verify_buffer inside root() already validates structure
         let hello = envelope.frame_as_worker_hello().ok_or_else(|| {
             SupervisorError::HandshakeRejected(format!(
                 "first frame must be WorkerHello, got {:?}",
@@ -203,10 +216,16 @@ impl Supervisor {
         if hello.launch_token() != Some(launch_token.as_str()) {
             let _ = child.kill().await;
             cleanup_dir(&paths.dir);
-            return Err(SupervisorError::HandshakeRejected("bad launch token".into()));
+            return Err(SupervisorError::HandshakeRejected(
+                "bad launch token".into(),
+            ));
         }
         validate::negotiate(hello).map_err(|r| {
-            SupervisorError::HandshakeRejected(format!("{}: {}", r.code.variant_name().unwrap_or("?"), r.message))
+            SupervisorError::HandshakeRejected(format!(
+                "{}: {}",
+                r.code.variant_name().unwrap_or("?"),
+                r.message
+            ))
         })?;
 
         let (state_tx, state_rx) = watch::channel(WorkerState::Ready);
@@ -221,8 +240,8 @@ impl Supervisor {
                 .capabilities()
                 .map(|v| v.iter().map(|s| s.to_string()).collect())
                 .unwrap_or_default(),
-            control,
-            telemetry,
+            control: Some(control),
+            telemetry: Some(telemetry),
             child,
             state_tx,
             state_rx,
@@ -231,4 +250,5 @@ impl Supervisor {
 }
 
 /// Shared supervisor handle for app wiring.
+#[allow(dead_code)]
 pub type SharedSupervisor = Arc<Mutex<Supervisor>>;

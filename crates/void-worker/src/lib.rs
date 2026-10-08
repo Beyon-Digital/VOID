@@ -14,7 +14,7 @@ pub use supervisor::{
     HeartbeatStatus, RestartPolicy, Supervisor, SupervisorConfig, SupervisorError, WorkerHandle,
     WorkerState,
 };
-pub use transport::{ControlChannel, SocketPaths, TelemetryChannel};
+pub use transport::{ControlChannel, ControlReader, ControlWriter, SocketPaths, TelemetryChannel};
 
 pub const ENV_CONTROL_SOCK: &str = "VOID_CONTROL_SOCK";
 pub const ENV_TELEMETRY_SOCK: &str = "VOID_TELEMETRY_SOCK";

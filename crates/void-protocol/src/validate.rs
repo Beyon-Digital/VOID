@@ -75,17 +75,32 @@ pub fn validate_persistent_command(
             check_id("track", op.track_id().unwrap_or_default())?;
         }
         Op::RemoveTrackOp => {
-            check_id("track", cmd.op_as_remove_track_op().unwrap().track_id().unwrap_or_default())?;
+            check_id(
+                "track",
+                cmd.op_as_remove_track_op()
+                    .unwrap()
+                    .track_id()
+                    .unwrap_or_default(),
+            )?;
         }
         Op::SetTrackNameOp => {
-            check_id("track", cmd.op_as_set_track_name_op().unwrap().track_id().unwrap_or_default())?;
+            check_id(
+                "track",
+                cmd.op_as_set_track_name_op()
+                    .unwrap()
+                    .track_id()
+                    .unwrap_or_default(),
+            )?;
         }
         Op::SetTrackGainOp => {
             let op = cmd.op_as_set_track_gain_op().unwrap();
             check_id("track", op.track_id().unwrap_or_default())?;
             check_finite("gain_linear", op.gain_linear())?;
             if !(0.0..=4.0).contains(&op.gain_linear()) {
-                return Err(reject(ErrorCode::BAD_REQUEST, "gain out of supported range"));
+                return Err(reject(
+                    ErrorCode::BAD_REQUEST,
+                    "gain out of supported range",
+                ));
             }
         }
         Op::SetTrackPanOp => {
@@ -97,10 +112,22 @@ pub fn validate_persistent_command(
             }
         }
         Op::SetTrackMuteOp => {
-            check_id("track", cmd.op_as_set_track_mute_op().unwrap().track_id().unwrap_or_default())?;
+            check_id(
+                "track",
+                cmd.op_as_set_track_mute_op()
+                    .unwrap()
+                    .track_id()
+                    .unwrap_or_default(),
+            )?;
         }
         Op::SetTrackSoloOp => {
-            check_id("track", cmd.op_as_set_track_solo_op().unwrap().track_id().unwrap_or_default())?;
+            check_id(
+                "track",
+                cmd.op_as_set_track_solo_op()
+                    .unwrap()
+                    .track_id()
+                    .unwrap_or_default(),
+            )?;
         }
         Op::InsertAudioClipOp => {
             let op = cmd.op_as_insert_audio_clip_op().unwrap();
@@ -108,7 +135,10 @@ pub fn validate_persistent_command(
             check_id("track", op.track_id().unwrap_or_default())?;
             check_id("asset", op.asset_id().unwrap_or_default())?;
             if op.length_ticks() <= 0 {
-                return Err(reject(ErrorCode::BAD_REQUEST, "clip length must be positive"));
+                return Err(reject(
+                    ErrorCode::BAD_REQUEST,
+                    "clip length must be positive",
+                ));
             }
         }
         Op::InsertMidiClipOp => {
@@ -116,11 +146,20 @@ pub fn validate_persistent_command(
             check_id("clip", op.clip_id().unwrap_or_default())?;
             check_id("track", op.track_id().unwrap_or_default())?;
             if op.length_ticks() <= 0 {
-                return Err(reject(ErrorCode::BAD_REQUEST, "clip length must be positive"));
+                return Err(reject(
+                    ErrorCode::BAD_REQUEST,
+                    "clip length must be positive",
+                ));
             }
         }
         Op::RemoveClipOp => {
-            check_id("clip", cmd.op_as_remove_clip_op().unwrap().clip_id().unwrap_or_default())?;
+            check_id(
+                "clip",
+                cmd.op_as_remove_clip_op()
+                    .unwrap()
+                    .clip_id()
+                    .unwrap_or_default(),
+            )?;
         }
         Op::MoveClipOp => {
             let op = cmd.op_as_move_clip_op().unwrap();
@@ -131,7 +170,10 @@ pub fn validate_persistent_command(
             let op = cmd.op_as_trim_clip_op().unwrap();
             check_id("clip", op.clip_id().unwrap_or_default())?;
             if op.length_ticks() <= 0 {
-                return Err(reject(ErrorCode::BAD_REQUEST, "clip length must be positive"));
+                return Err(reject(
+                    ErrorCode::BAD_REQUEST,
+                    "clip length must be positive",
+                ));
             }
         }
         Op::SplitClipOp => {
@@ -150,7 +192,10 @@ pub fn validate_persistent_command(
                 return Err(reject(ErrorCode::BAD_REQUEST, "velocity out of range"));
             }
             if op.length_ticks() <= 0 {
-                return Err(reject(ErrorCode::BAD_REQUEST, "note length must be positive"));
+                return Err(reject(
+                    ErrorCode::BAD_REQUEST,
+                    "note length must be positive",
+                ));
             }
         }
         Op::RemoveNoteOp => {
@@ -184,11 +229,7 @@ pub fn validate_persistent_command(
             let op = cmd.op_as_attach_asset_op().unwrap();
             check_id("asset", op.asset_id().unwrap_or_default())?;
             let rel = op.rel_path().unwrap_or_default();
-            if rel.is_empty()
-                || rel.starts_with('/')
-                || rel.contains("..")
-                || rel.contains('\\')
-            {
+            if rel.is_empty() || rel.starts_with('/') || rel.contains("..") || rel.contains('\\') {
                 return Err(reject(
                     ErrorCode::BAD_REQUEST,
                     "asset path must be container-relative, no traversal",
@@ -198,25 +239,55 @@ pub fn validate_persistent_command(
         Op::InsertPluginOp => {
             let op = cmd.op_as_insert_plugin_op().unwrap();
             check_id("track", op.track_id().unwrap_or_default())?;
-            check_id("plugin_instance", op.plugin_instance_id().unwrap_or_default())?;
+            check_id(
+                "plugin_instance",
+                op.plugin_instance_id().unwrap_or_default(),
+            )?;
         }
         Op::RemovePluginOp => {
-            check_id("plugin_instance", cmd.op_as_remove_plugin_op().unwrap().plugin_instance_id().unwrap_or_default())?;
+            check_id(
+                "plugin_instance",
+                cmd.op_as_remove_plugin_op()
+                    .unwrap()
+                    .plugin_instance_id()
+                    .unwrap_or_default(),
+            )?;
         }
         Op::SetPluginParamOp => {
             let op = cmd.op_as_set_plugin_param_op().unwrap();
-            check_id("plugin_instance", op.plugin_instance_id().unwrap_or_default())?;
+            check_id(
+                "plugin_instance",
+                op.plugin_instance_id().unwrap_or_default(),
+            )?;
             check_finite("value", op.value())?;
         }
         Op::OpenPluginEditorOp => {
-            check_id("plugin_instance", cmd.op_as_open_plugin_editor_op().unwrap().plugin_instance_id().unwrap_or_default())?;
+            check_id(
+                "plugin_instance",
+                cmd.op_as_open_plugin_editor_op()
+                    .unwrap()
+                    .plugin_instance_id()
+                    .unwrap_or_default(),
+            )?;
         }
         Op::ClosePluginEditorOp => {
-            check_id("plugin_instance", cmd.op_as_close_plugin_editor_op().unwrap().plugin_instance_id().unwrap_or_default())?;
+            check_id(
+                "plugin_instance",
+                cmd.op_as_close_plugin_editor_op()
+                    .unwrap()
+                    .plugin_instance_id()
+                    .unwrap_or_default(),
+            )?;
         }
         // Ops with no numeric/ID fields to check still pass through.
-        Op::CreateProjectOp | Op::OpenProjectOp | Op::CloseProjectOp | Op::SaveProjectOp
-        | Op::CreateCheckpointOp | Op::UndoOp | Op::RedoOp | Op::SetLoopRangeOp => {}
+        Op::CreateProjectOp
+        | Op::OpenProjectOp
+        | Op::CloseProjectOp
+        | Op::SaveProjectOp
+        | Op::CreateCheckpointOp
+        | Op::UndoOp
+        | Op::RedoOp
+        | Op::SetLoopRangeOp => {}
         Op::NONE => {
             return Err(reject(ErrorCode::BAD_REQUEST, "empty operation"));
         }

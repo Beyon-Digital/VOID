@@ -49,6 +49,17 @@ pub struct ControlChannel {
     reader: FrameReader,
 }
 
+/// Write half of a split control channel (sends are serialized by the caller).
+pub struct ControlWriter {
+    stream: tokio::net::unix::OwnedWriteHalf,
+}
+
+/// Read half of a split control channel (frames in worker -> app order).
+pub struct ControlReader {
+    stream: tokio::net::unix::OwnedReadHalf,
+    reader: FrameReader,
+}
+
 /// Listener pair awaiting a worker's two connections.
 pub struct WorkerListeners {
     pub control: UnixListener,
@@ -79,6 +90,45 @@ impl ControlChannel {
         Ok(())
     }
 
+    /// Read the next complete frame payload.
+    pub async fn recv(&mut self) -> Result<Vec<u8>, TransportError> {
+        let mut chunk = [0u8; 16 * 1024];
+        loop {
+            if let Some(frame) = self.reader.next_frame()? {
+                return Ok(frame);
+            }
+            let n = self.stream.read(&mut chunk).await?;
+            if n == 0 {
+                return Err(TransportError::Closed);
+            }
+            self.reader.push(&chunk[..n]);
+        }
+    }
+
+    /// Split into independent write/read halves so sends and the event
+    /// dispatcher can run concurrently (e.g. PANIC while a receipt is owed).
+    pub fn into_split(self) -> (ControlWriter, ControlReader) {
+        let (r, w) = self.stream.into_split();
+        (
+            ControlWriter { stream: w },
+            ControlReader {
+                stream: r,
+                reader: self.reader,
+            },
+        )
+    }
+}
+
+impl ControlWriter {
+    pub async fn send(&mut self, payload: &[u8]) -> Result<(), TransportError> {
+        let frame = encode_frame(payload)?;
+        self.stream.write_all(&frame).await?;
+        self.stream.flush().await?;
+        Ok(())
+    }
+}
+
+impl ControlReader {
     /// Read the next complete frame payload.
     pub async fn recv(&mut self) -> Result<Vec<u8>, TransportError> {
         let mut chunk = [0u8; 16 * 1024];
@@ -127,12 +177,14 @@ impl TelemetryChannel {
 
 /// Worker-side helpers (used by the reference mock worker in tests and by
 /// any Rust-native worker): connect to the supervisor's sockets.
+#[allow(dead_code)]
 pub async fn connect(paths: &SocketPaths) -> Result<(UnixStream, UnixStream), TransportError> {
     let control = UnixStream::connect(&paths.control).await?;
     let telemetry = UnixStream::connect(&paths.telemetry).await?;
     Ok((control, telemetry))
 }
 
+#[allow(dead_code)]
 pub async fn send_frame(stream: &mut UnixStream, payload: &[u8]) -> Result<(), TransportError> {
     let frame = encode_frame(payload)?;
     stream.write_all(&frame).await?;
@@ -140,4 +192,4 @@ pub async fn send_frame(stream: &mut UnixStream, payload: &[u8]) -> Result<(), T
     Ok(())
 }
 
-pub const _: u32 = CONTROL_FRAME_MAX;
+const _: u32 = CONTROL_FRAME_MAX;

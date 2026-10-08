@@ -7,6 +7,7 @@ members = [
     "crates/void-project",
     "crates/void-assets",
     "crates/void-jobs",
+    "apps/void-tauri/src-tauri",
 ]
 
 [workspace.package]

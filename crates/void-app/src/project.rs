@@ -10,7 +10,9 @@ pub enum ProjectState {
     /// Persistent container exists on disk; engine may or may not be attached.
     Registered,
     /// Engine has the Edit loaded and accepts commands.
-    Attached { engine_epoch: u64 },
+    Attached {
+        engine_epoch: u64,
+    },
     /// Engine died/crashed; project is recoverable from last checkpoint.
     Recoverable,
     Closed,
