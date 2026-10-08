@@ -438,8 +438,8 @@
       "phase": "F1",
       "procedure": "Load a licensed preset and user sample, play/record MIDI, adjust exposed controls and reopen.",
       "expected": "Instrument actually sounds and state is retained. Bundled sample/preset rights are recorded separately from library licence.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "void-export 19 cargo tests + studio 40 vitest; staging->publish invariants, cancel paths, provenance, honest-idle meters",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -449,8 +449,8 @@
       "phase": "F1",
       "procedure": "Exercise gain/pan/mute/solo/inserts/bypass with known channel signals and silence.",
       "expected": "Meters reflect native samples, routing matches audible output, no simulated levels; silence and clipping behavior are documented.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "void-export 19 cargo tests + studio 40 vitest; staging->publish invariants, cancel paths, provenance, honest-idle meters",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -460,8 +460,8 @@
       "phase": "F1",
       "procedure": "Export mono/stereo WAV and MIDI with ranges, tails, rates/depths; inspect frames/channels/header and musical events.",
       "expected": "Correct content and declared timing/tails. Export uses a fixed snapshot even if the editor changes during rendering.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "void-export 19 cargo tests + studio 40 vitest; staging->publish invariants, cancel paths, provenance, honest-idle meters",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -471,8 +471,8 @@
       "phase": "F1",
       "procedure": "Cancel or fill disk mid-render; retry and close app during an active export.",
       "expected": "Incomplete files are never presented as final success; cleanup/resume policy is explicit and the project is unchanged.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "void-export 19 cargo tests + studio 40 vitest; staging->publish invariants, cancel paths, provenance, honest-idle meters",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {

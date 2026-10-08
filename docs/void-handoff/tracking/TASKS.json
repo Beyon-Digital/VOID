@@ -367,8 +367,8 @@
         "CORE-02",
         "CORE-03"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "in_progress_lane",
+      "evidence": "recording lane running on macOS (devin-f544bf9f)",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
@@ -446,8 +446,8 @@
         "DSP-10",
         "IO-01"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "partial",
+      "evidence": "non-native done: void-export (ArgvRenderer, staging->verify->provenance->publish, cancel semantics) 19/19; instruments/mixer/export studio modules 40 new vitest; mixer sends = typed UnsupportedCapability refusal. Native render job + journey pending",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],

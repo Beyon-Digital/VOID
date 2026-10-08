@@ -71,3 +71,11 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - apps/void-tauri: StudioShell (track list + timeline + piano-roll + transport), dashboard under dev toggle
 - Wire corrections logged: MoveClipOp/TrimClipOp/RemoveClipOp; CLIP_LIST scoped by track_id; SetNoteOp partial-update semantics; no DuplicateClipOp (insert-based dup)
 - Verified post-merge: 95 vitest green (67 studio), cargo 15 suites ok, vite build clean (268kB)
+
+## 2026-10-08 ~19:00Z — Lane F (W10 non-native) merged (391d8d6 → devin/void-implementation)
+- crates/void-export: ArgvRenderer (basename, env_clear, kill-on-cancel, no shell interpolation); staging->verify->provenance.json->rename publish; abort quarantines; late results discarded
+- studio/instruments: FourOsc(20p)+Sampler descriptors->InsertPluginOp/SetPluginParamOp, clamp+quantize+stale-retry
+- studio/mixer: gain/pan/mute/solo ops, METER_FRESH_MS=250 honest idle, sends=typed UnsupportedCapability refusal
+- studio/export: ExportSpecDto serde twin (string-int64, internally-tagged tail, midi-omits-wav), telemetry-driven progress, read-view results
+- void-ui: MixerStrip/ExportJobRow/InstrumentRack additive
+- Verified post-merge: cargo 17 suites ok (void-export 19), pnpm 135 vitest, 7 package builds + tauri bundles

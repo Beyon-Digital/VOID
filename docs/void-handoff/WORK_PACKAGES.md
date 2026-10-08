@@ -14,9 +14,9 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W05 | F0 | Immutable assets and crash-consistent checkpoints | W04 | done |
 | W06 | F0 | Native plugin proof and safe scanning | W05 | partial_macos |
 | W07 | F0 | CI, diagnostics, clean install and Foundation gate | W06 | partial |
-| W08 | F1 | Audio/MIDI recording and monitoring workflow | W07 | not_started |
+| W08 | F1 | Audio/MIDI recording and monitoring workflow | W07 | in_progress_lane |
 | W09 | F1 | Arrangement and piano-roll editors | W08 | done |
-| W10 | F1 | Playable instruments, real mixer and export | W09 | not_started |
+| W10 | F1 | Playable instruments, real mixer and export | W09 | partial |
 | W11 | F1 | First-song qualification and Electron cutover | W10 | not_started |
 | W12 | F2 | AI job runtime, budgets and provenance | W11 | not_started |
 | W13 | F2 | Predictive composition and safe proposal transactions | W12 | not_started |
@@ -263,7 +263,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W08 · F1 · Audio/MIDI recording and monitoring workflow
 
-**Owner:** Engine + UI · **Depends:** W07 · **Status:** not_started
+**Owner:** Engine + UI · **Depends:** W07 · **Status:** in_progress_lane
 
 **Target paths:** `native/void-engine/src/recording/`, `packages/void-studio/src/recording/`, `tests/recording/`
 
@@ -287,7 +287,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** CORE-02, CORE-03
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** r; e; c; o; r; d; i; n; g;  ; l; a; n; e;  ; r; u; n; n; i; n; g;  ; o; n;  ; m; a; c; O; S;  ; (; d; e; v; i; n; -; f; 5; 4; 4; b; f; 9; f; )
 
 ## W09 · F1 · Arrangement and piano-roll editors
 
@@ -319,7 +319,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W10 · F1 · Playable instruments, real mixer and export
 
-**Owner:** Engine + UI · **Depends:** W09 · **Status:** not_started
+**Owner:** Engine + UI · **Depends:** W09 · **Status:** partial
 
 **Target paths:** `packages/void-studio/src/instruments/`, `packages/void-studio/src/mixer/`, `crates/void-export/`, `native/void-engine/src/render/`
 
@@ -343,7 +343,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** DSP-03, DSP-10, IO-01
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** n; o; n; -; n; a; t; i; v; e;  ; d; o; n; e; :;  ; v; o; i; d; -; e; x; p; o; r; t;  ; (; A; r; g; v; R; e; n; d; e; r; e; r; ,;  ; s; t; a; g; i; n; g; -; >; v; e; r; i; f; y; -; >; p; r; o; v; e; n; a; n; c; e; -; >; p; u; b; l; i; s; h; ,;  ; c; a; n; c; e; l;  ; s; e; m; a; n; t; i; c; s; );  ; 1; 9; /; 1; 9; ;;  ; i; n; s; t; r; u; m; e; n; t; s; /; m; i; x; e; r; /; e; x; p; o; r; t;  ; s; t; u; d; i; o;  ; m; o; d; u; l; e; s;  ; 4; 0;  ; n; e; w;  ; v; i; t; e; s; t; ;;  ; m; i; x; e; r;  ; s; e; n; d; s;  ; =;  ; t; y; p; e; d;  ; U; n; s; u; p; p; o; r; t; e; d; C; a; p; a; b; i; l; i; t; y;  ; r; e; f; u; s; a; l; .;  ; N; a; t; i; v; e;  ; r; e; n; d; e; r;  ; j; o; b;  ; +;  ; j; o; u; r; n; e; y;  ; p; e; n; d; i; n; g
 
 ## W11 · F1 · First-song qualification and Electron cutover
 
