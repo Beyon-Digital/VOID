@@ -26,7 +26,8 @@ cffi==2.1.1
 av==17.1.0
 torchmetrics==1.9.0
 lightning==2.6.6
-xformers==0.0.22.post7
 protobuf==7.36.2
 safetensors==0.8.0
 huggingface_hub==1.33.0
+# xformers is GPU-only and hard-pins torch==2.1.0 — installed --no-deps
+# by setup.sh after this file (audiocraft CPU path does not import it).
