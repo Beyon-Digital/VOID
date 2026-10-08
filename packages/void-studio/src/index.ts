@@ -9,3 +9,4 @@ export * from './instruments';
 export * from './mixer';
 export * from './export';
 export * from './jobs';
+export * from './proposals';

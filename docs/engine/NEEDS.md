@@ -75,3 +75,40 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
     `{kind:"JobEvent", project_id, job_id, status, percent?, message?,
     quarantined?}` (snake_case — `parseJobEvent` already reads it and
     `void-jobs::JobEvent` serializes exactly that shape).
+
+## W13 predictive-composition lane (protocol major.1 gaps — proposals drive in-process)
+
+12. **No transient audition / ghost-note layer.** W13 wants candidates
+    auditioned in a transient engine layer excluded from persistent
+    snapshots (ghost notes that never become saved edits until accepted).
+    There is no `WorkerKind` for a preview layer and no view for it, so
+    ghost notes currently live only in the WebView-side view store
+    (`packages/void-studio/src/proposals/ghost.ts`, `ghost:true`
+    markers) and playback audition is impossible without a real engine
+    layer. Needed (names proposed, not implemented):
+    `PreviewLayerOp{proposal_id, clip_id, notes[], enable}` — a
+    non-persistent insert addressed by id, torn down on accept/reject/
+    session end; or a `PREVIEW_LAYER` ViewKind if the coordinator wants
+    it display-only. Until then "audition" renders visually but cannot
+    sound — noted as a gap, not silently faked.
+
+13. **No `PROPOSAL_LIST` ViewKind and no proposal lifecycle wire
+    commands.** Proposal records (pending→ready→accepted/rejected/stale,
+    provenance attached) cannot be read or mutated over the socket —
+    generation requests, the list read, and accept/reject confirmations
+    all stay in-process via `void-proposals`. Needed:
+    `PROPOSAL_LIST` ViewKind (record shape mirrors
+    `crates/void-proposals::ProposalRecord`, already camelCase serde),
+    `RequestProposalOp{context_digest, seed?, max_proposals}` (enqueues
+    the symbolic job), `ResolveProposalOp{proposal_id, accept|reject}`
+    for terminal transitions. The studio parses records defensively
+    (`parseProposalRecord`) so the shape is pinned.
+
+14. **No stale-invalidation telemetry.** Region edits must mark live
+    proposals stale (T55) but nothing on the wire reports a context hash
+    change keyed to proposals. Needed: a `ProposalStaleEvent{project_id,
+    proposal_id, cause}` telemetry member (JobEvent already covers job
+    progress itself, so only the proposal-specific edge is missing), or
+    piggyback `STALE_REVISION` receipts — proposals listening on command
+    receipts would catch region edits the same session makes; edits from
+    other sessions still need the dedicated event.

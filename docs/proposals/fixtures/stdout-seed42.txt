@@ -1,0 +1,6 @@
+{"v":1,"kind":"progress","percent":5,"message":"spec read"}
+{"v":1,"kind":"progress","percent":15,"message":"training interval model"}
+{"v":1,"kind":"progress","percent":40,"message":"generating candidates"}
+{"v":1,"kind":"progress","percent":80,"message":"writing proposal document"}
+{"v":1,"kind":"progress","percent":95,"message":"done"}
+{"v":1,"kind":"result","status":"succeeded","artifacts":[{"path":"proposals.json"}],"warnings":[],"error":null}
