@@ -30,3 +30,9 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 **Blocked (needs macOS/audio HW — engine lane queued):** T03 engine build, T13–T16 playback/render/RT-safety, T22–T24 plugin scan+editor. Linux cannot certify per handoff policy.
 **In progress (lanes queued behind org SWE-2 cap):** B persistence crates+recovery (T17–T21), C void-client+void-studio+UI (T36–T39), A macOS engine.
 **Next:** spawn lanes as slots free → persistence recovery tests; engine worker C++ against mock-proven contract; W06 scanner; W07 F0 evidence bundle.
+
+## 2026-10-08 ~15:53Z — All three lanes live
+- Lane A (macOS): devin-7fab108e03d247c0b3408d4f186ba06c — engine qual + void-engine worker + render/plugin evidence
+- Lane B (Linux): devin-6e086784b902495cb8202d0741349a69 — void-project/void-assets/void-jobs + recovery failpoint tests
+- Lane C (Linux): devin-981311fdb82b4c29a0f33ec0027f8037 — void-client/void-studio/void-ui + Tauri renderer
+- Full `tauri build` verified: release binary + .deb + .rpm in 2m04s (native lane-ready)
