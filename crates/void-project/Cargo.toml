@@ -1,0 +1,17 @@
+[package]
+name = "void-project"
+description = "VOID project container, checkpoint publication, migration, recovery coordinator"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+void-protocol = { path = "../void-protocol" }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+uuid = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"

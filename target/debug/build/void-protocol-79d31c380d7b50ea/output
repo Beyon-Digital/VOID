@@ -1,0 +1,1 @@
+cargo:rerun-if-changed=/home/ubuntu/repos/VOID/protocol/void_control.fbs

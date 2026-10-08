@@ -1,0 +1,21 @@
+[package]
+name = "void-app"
+description = "VOID application coordinator: project registry, revision ledger, command dispatch, permissions"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+void-protocol = { path = "../void-protocol" }
+void-worker = { path = "../void-worker" }
+flatbuffers = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+uuid = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+tracing = { workspace = true }
+parking_lot = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"

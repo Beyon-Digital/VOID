@@ -1,0 +1,17 @@
+[package]
+name = "void-assets"
+description = "VOID immutable content-addressed media assets, indexing, bounded caches"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+void-protocol = { path = "../void-protocol" }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+uuid = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"
