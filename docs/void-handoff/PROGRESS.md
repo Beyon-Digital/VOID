@@ -62,3 +62,12 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - T24 PASS: crash fixture 6/6
 - T13/T15/T16 partial (headless: no audio device/GUI); T23 blocked (no x86_64 plugin)
 - flatbuffers submodule pinned at v25.9.23 tag commit; CI native lane already fetches submodules recursively
+
+## 2026-10-08 ~18:30Z — Lane D (W09 editors) merged (225d8e3 → devin/void-implementation)
+- void-studio/timeline: clip projection + hit-testing, snap grid, drag state machine, ClipEditor (CLIP_LIST cursor paging, STALE_REVISION re-read+retry, optimistic revert)
+- void-studio/piano-roll: note projection/hit-testing, velocity lane, keymap, NoteEditor (InsertNote/SetNote/RemoveNote)
+- void-studio/workspaces: Compose/Arrange/Mix + editorStore (view-state-only invariant holds)
+- void-ui: ClipBlock/NoteBlock/TransportControls/WorkspaceTabs (additive)
+- apps/void-tauri: StudioShell (track list + timeline + piano-roll + transport), dashboard under dev toggle
+- Wire corrections logged: MoveClipOp/TrimClipOp/RemoveClipOp; CLIP_LIST scoped by track_id; SetNoteOp partial-update semantics; no DuplicateClipOp (insert-based dup)
+- Verified post-merge: 95 vitest green (67 studio), cargo 15 suites ok, vite build clean (268kB)

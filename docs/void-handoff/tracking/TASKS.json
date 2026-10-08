@@ -404,8 +404,8 @@
         "T39"
       ],
       "dependency_ids": [],
-      "status": "in_progress_lane",
-      "evidence": "lane D spawned (devin-0b7afea808c542a39f7f53931b33560f)",
+      "status": "done",
+      "evidence": "void-studio timeline/piano-roll/workspaces + void-ui ClipBlock/NoteBlock/TransportControls/WorkspaceTabs + StudioShell; 67 vitest (46 new); wire-name fixes: MoveClipOp/TrimClipOp/RemoveClipOp, CLIP_LIST, SetNoteOp+RemoveNoteOp",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],

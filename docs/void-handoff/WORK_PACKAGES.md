@@ -15,7 +15,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W06 | F0 | Native plugin proof and safe scanning | W05 | partial_macos |
 | W07 | F0 | CI, diagnostics, clean install and Foundation gate | W06 | partial |
 | W08 | F1 | Audio/MIDI recording and monitoring workflow | W07 | not_started |
-| W09 | F1 | Arrangement and piano-roll editors | W08 | in_progress_lane |
+| W09 | F1 | Arrangement and piano-roll editors | W08 | done |
 | W10 | F1 | Playable instruments, real mixer and export | W09 | not_started |
 | W11 | F1 | First-song qualification and Electron cutover | W10 | not_started |
 | W12 | F2 | AI job runtime, budgets and provenance | W11 | not_started |
@@ -291,7 +291,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W09 · F1 · Arrangement and piano-roll editors
 
-**Owner:** Studio UI · **Depends:** W08 · **Status:** in_progress_lane
+**Owner:** Studio UI · **Depends:** W08 · **Status:** done
 
 **Target paths:** `packages/void-studio/src/timeline/`, `packages/void-studio/src/piano-roll/`, `packages/void-ui/`
 
@@ -315,7 +315,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** Reuse already qualified foundations; justify new dependencies separately.
 
-**Evidence:** l; a; n; e;  ; D;  ; s; p; a; w; n; e; d;  ; (; d; e; v; i; n; -; 0; b; 7; a; f; e; a; 8; 0; 8; c; 5; 4; 2; a; 3; 9; f; 7; f; 5; 3; 9; 3; 1; b; 3; 3; 5; 6; 0; f; )
+**Evidence:** v; o; i; d; -; s; t; u; d; i; o;  ; t; i; m; e; l; i; n; e; /; p; i; a; n; o; -; r; o; l; l; /; w; o; r; k; s; p; a; c; e; s;  ; +;  ; v; o; i; d; -; u; i;  ; C; l; i; p; B; l; o; c; k; /; N; o; t; e; B; l; o; c; k; /; T; r; a; n; s; p; o; r; t; C; o; n; t; r; o; l; s; /; W; o; r; k; s; p; a; c; e; T; a; b; s;  ; +;  ; S; t; u; d; i; o; S; h; e; l; l; ;;  ; 6; 7;  ; v; i; t; e; s; t;  ; (; 4; 6;  ; n; e; w; ); ;;  ; w; i; r; e; -; n; a; m; e;  ; f; i; x; e; s; :;  ; M; o; v; e; C; l; i; p; O; p; /; T; r; i; m; C; l; i; p; O; p; /; R; e; m; o; v; e; C; l; i; p; O; p; ,;  ; C; L; I; P; _; L; I; S; T; ,;  ; S; e; t; N; o; t; e; O; p; +; R; e; m; o; v; e; N; o; t; e; O; p
 
 ## W10 · F1 · Playable instruments, real mixer and export
 
