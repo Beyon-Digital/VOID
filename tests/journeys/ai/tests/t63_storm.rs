@@ -116,6 +116,13 @@ fn t63_admission_bounds_hold_under_storm() {
         sleep_p(30000), 8 * 1024 * 1024 * 1024, "1");
     assert_eq!(decide(&db, &heavy2).unwrap(), Admit::Queue,
         "heavy #2 must queue while a heavy runs");
+    // GPU-class spec (vram reservation) is heavy too — queues behind it.
+    let mut gpu = spec(&env.id, JobKind::AudioGeneration, "void-fake-worker", "fake-model",
+        sleep_p(30000), 64 << 20, "1");
+    gpu.reservations.vram_bytes = (2 * 1024 * 1024 * 1024u64).to_string();
+    assert!(void_jobs::is_heavy(&gpu), "vram reservation must classify heavy");
+    assert_eq!(decide(&db, &gpu).unwrap(), Admit::Queue,
+        "vram-heavy must queue while a heavy runs");
 
     // Two small running -> next small queues.
     for _ in 0..2 {
