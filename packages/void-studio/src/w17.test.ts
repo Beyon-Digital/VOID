@@ -168,9 +168,9 @@ describe('T66 — loop takes, comp across boundaries, crossfades, alternatives',
       regionEndTicks: BAR,
     });
     const next = cycleTakeAt(spec, folder, '100', +1);
-    expect(next.segments[0]!.takeId).toBe('t1');
-    const wrap = cycleTakeAt(cycleTakeAt(next, folder, '100', +1), folder, '100', +1);
-    expect(wrap.segments[0]!.takeId).toBe('t0'); // wraps
+    expect(next!.segments[0]!.takeId).toBe('t1');
+    const wrap = cycleTakeAt(cycleTakeAt(next!, folder, '100', +1)!, folder, '100', +1);
+    expect(wrap!.segments[0]!.takeId).toBe('t0'); // wraps
     expect(JSON.stringify(folder.takes[0])).toBe(frozen0); // untouched
     expect(takeAt(folder, '100')?.takeId).toBe('t2'); // topmost lane wins
   });

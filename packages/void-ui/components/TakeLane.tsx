@@ -72,7 +72,7 @@ export const TakeLane: React.FC<TakeLaneProps> = React.memo(
           height,
           left: `${startFrac * 100}%`,
           width: `${widthFrac * 100}%`,
-          background: comped ? tokens.accent : tokens.panel,
+          background: comped ? tokens.accent : tokens.surface,
           border: `1px solid ${underCursor ? tokens.text : tokens.border}`,
           borderRadius: 2,
           opacity: incomplete ? 0.55 : 1,

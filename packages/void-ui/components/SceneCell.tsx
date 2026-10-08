@@ -71,7 +71,7 @@ export const SceneCell: React.FC<SceneCellProps> = React.memo(
           width: '100%',
           height: '100%',
           minHeight: 28,
-          background: empty ? 'transparent' : tokens.panel,
+          background: empty ? 'transparent' : tokens.surface,
           border: `1px solid ${PHASE_COLOR[phase]}`,
           borderLeft: `4px solid ${color ?? PHASE_COLOR[phase]}`,
           borderRadius: 2,
