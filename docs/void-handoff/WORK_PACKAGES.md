@@ -17,7 +17,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W08 | F1 | Audio/MIDI recording and monitoring workflow | W07 | partial_macos |
 | W09 | F1 | Arrangement and piano-roll editors | W08 | done |
 | W10 | F1 | Playable instruments, real mixer and export | W09 | partial |
-| W11 | F1 | First-song qualification and Electron cutover | W10 | in_progress |
+| W11 | F1 | First-song qualification and Electron cutover | W10 | partial |
 | W12 | F2 | AI job runtime, budgets and provenance | W11 | partial |
 | W13 | F2 | Predictive composition and safe proposal transactions | W12 | partial |
 | W14 | F2 | Gestures, patterns, quick sampling and harmonic controls | W13 | partial |
@@ -347,7 +347,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W11 · F1 · First-song qualification and Electron cutover
 
-**Owner:** Integrator + QA · **Depends:** W10 · **Status:** in_progress
+**Owner:** Integrator + QA · **Depends:** W10 · **Status:** partial
 
 **Target paths:** `tests/journeys/`, `docs/verification/F1/`, `apps/void-desktop/`, `README.md`
 
@@ -371,7 +371,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** Reuse already qualified foundations; justify new dependencies separately.
 
-**Evidence:** c; u; t; o; v; e; r; -; p; l; a; n; .; m; d;  ; +;  ; R; E; A; D; M; E;  ; f; i; x;  ; (; i; n; t; e; g; r; a; t; o; r; ); ;;  ; l; a; n; e;  ; I;  ; m; e; r; g; e; d; :;  ; i; 1; 8; n; (; ~; 9; 0;  ; k; e; y; s; ); +; 3;  ; t; e; m; p; l; a; t; e; s; +; r; e; c; e; n; t; s;  ; c; a; c; h; e; +; n; o; t; e; s;  ; d; r; a; f; t; s; +; r; e; l; i; n; k;  ; s; h; a; 2; 5; 6; →; A; t; t; a; c; h; A; s; s; e; t; O; p; +; o; n; b; o; a; r; d; i; n; g;  ; t; o; u; r; ;;  ; t; s; c;  ; c; l; e; a; n; ,;  ; s; t; u; d; i; o;  ; 1; 7; 0;  ; t; e; s; t; s; .;  ; R; e; m; a; i; n; i; n; g; :;  ; T; 4; 4; /; 4; 5; /; 4; 6; /; 4; 8;  ; n; e; e; d;  ; m; a; c; O; S;  ; l; i; v; e; -; d; e; v; i; c; e;  ; +;  ; T; 4; 7;  ; c; u; t; o; v; e; r;  ; g; a; t; e; d;  ; o; n;  ; t; h; o; s; e
+**Evidence:** T; 4; 4;  ; P; A; S; S;  ; 5; 7; /; 5; 7;  ; (; o; f; f; l; i; n; e;  ; f; i; r; s; t; -; s; o; n; g; :;  ; 2; 6; 7;  ; n; o; t; e; s; ,;  ; b; y; t; e; -; i; d; e; n; t; i; c; a; l;  ; s; o; l; o;  ; P; C; M;  ; a; c; r; o; s; s;  ; k; i; l; l; /; r; e; s; t; a; r; t; ,;  ; 0; -; d; i; f; f;  ; r; e; o; p; e; n; ); ,;  ; T; 4; 6;  ; P; A; S; S;  ; e; n; g; i; n; e; -; s; c; o; p; e;  ; (; f; l; a; t;  ; R; S; S;  ; 2; 5;  ; c; y; c; l; e; s; ); ,;  ; T; 4; 5;  ; p; a; r; t; i; a; l;  ; (; 4; 7;  ; r; e; n; d; e; r; s; /; 3; m; i; n; ,;  ; 5; .; 9; 6; x;  ; f; a; s; t; e; r; -; t; h; a; n; -; r; e; a; l; t; i; m; e; ;;  ; 3; 0; -; m; i; n;  ; d; e; v; i; c; e; s;  ; b; l; o; c; k; e; d; ); ,;  ; T; 4; 7;  ; c; u; t; o; v; e; r;  ; s; t; a; g; e; d; ,;  ; T; 4; 8;  ; b; l; o; c; k; e; d;  ; h; u; m; a; n; ;;  ; W; 1; 1; -; S; U; P; P; O; R; T;  ; U; I;  ; m; e; r; g; e; d
 
 ## W12 · F2 · AI job runtime, budgets and provenance
 

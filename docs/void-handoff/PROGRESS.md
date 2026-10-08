@@ -129,3 +129,10 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - T64 BLOCKED honestly: human musician needed; USABILITY_PROTOCOL.md scripted (rubric + hazards)
 - F2_GATE.md verdict: NOT F2-complete — preview/audition layer (NEEDS §12), proposal wire ops (§13-14), engine input plumbing open
 - Integrator fix: generate provisioning — xformers --no-deps (torch pin conflict), HF_HUB_DISABLE_XET=1 (t5-base xet 404); journeys suite re-verified green locally post-fix
+
+## 2026-10-08 ~22:50Z — Lane M (F1 first-song journey) merged (devin/void-lane-f1journey → devin/void-implementation)
+- T44 PASS 57/57: real worker + real UDS inside unshare -Urn env -i — create→4 tracks→take+3 MIDI clips→267 notes→mix gains/pans→plugin params→undo×2→PLAY→SAVE_DURABLE→solo render→kill -9→OpenProject rev294→0-diff views→re-render compare. Solo-take PCM 6,912,000 B byte-identical across restart; full-mix compared on 9/9 onsets + per-bar RMS (FourOsc decorrelates by design — measured not assumed). Vocal take = import-labeled (no mic on box); real take path separately proven via recording fixture
+- T46 PASS engine-scope: 25 open/edit/save/close cycles, RSS slope +8.5 kB/cycle flat; WebView churn blocked headless
+- T45 PARTIAL: 47 real renders of the song checkpoint in 3 min — p50 3.85s per 24s audio (5.96x realtime); 30-min multi-device run blocked on hardware
+- tests/journeys/f1/{f1_journey,wire}.py + run_offline.sh; docs/verification/F1/JOURNEY_EVIDENCE.md
+- Platform note: lane ran on Linux (engine headless-capable), evidence labeled linux+no-audio-device — not macOS

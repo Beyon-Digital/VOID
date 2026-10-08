@@ -482,8 +482,8 @@
       "phase": "F1",
       "procedure": "Record a vocal/test take; add drums/bass using editable MIDI; arrange, mix, undo, save, close/reopen and export with network disabled.",
       "expected": "All steps operate without a model/account. Output and reopened state match the user's edits.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "f1_journey t44 57/57 offline in unshare -Urn: 4 tracks+take+3 MIDI clips+267 notes+params+undo+PLAY telemetry+SAVE_DURABLE+kill-9+reopen rev294 0 diffs; solo PCM 6,912,000B byte-identical; mic take=import-labeled",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -493,8 +493,8 @@
       "phase": "F1",
       "procedure": "Run 30 minutes at 48 kHz with buffer sweep on actual devices; progressively increase defined playback/recording/processor workload.",
       "expected": "Report callback maxima/percentiles, dropouts, CPU, full process-tree RAM/GPU/disk. 64-playback/8-record target is a stress fixture, not a promised minimum spec.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "partial_linux",
+      "evidence": "47 renders/3min, p50 3.85s/24s audio = 5.96x realtime; real 30-min multi-device run blocked on hardware",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -504,8 +504,8 @@
       "phase": "F1",
       "procedure": "Repeat project open/close, editing and plugin editor cycles; compare warmed steady-state memory and retained objects.",
       "expected": "Configured cache/voice/job bounds are honored; investigate monotonic growth. Report native/WebView/plugin memory separately and in aggregate.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "pass_linux",
+      "evidence": "engine-scope: 25 open/edit/save/close cycles, RSS slope +8.5kB/cycle flat; WebView/plugin cycles blocked headless",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -515,8 +515,8 @@
       "phase": "F1",
       "procedure": "Launch packaged/default commands and inspect runtime dependency/process list after the native gate passes.",
       "expected": "No production Electron or WebAudio scheduling path remains. Old source remains in git history; actual legacy projects have tested migration or explicit compatibility limits.",
-      "status": "not_run",
-      "evidence": "cutover staged: docs/verification/F1/cutover-plan.md; README marks Tauri production path; removal gated on T44-T46",
+      "status": "partial_linux",
+      "evidence": "cutover staged + production-path claim fixed; removal gated on T44-46 green \u2014 T44/T46 now pass, T45/48 open",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {
@@ -526,8 +526,8 @@
       "phase": "F1",
       "procedure": "Have a musician/new user complete record, arrange, mix and export without hidden assistance; record observed problems.",
       "expected": "Document actual task completion, failures and corrections. Do not invent user testing when no participant is available.",
-      "status": "not_run",
-      "evidence": [],
+      "status": "blocked",
+      "evidence": "needs a human musician participant \u2014 not invented",
       "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
     },
     {

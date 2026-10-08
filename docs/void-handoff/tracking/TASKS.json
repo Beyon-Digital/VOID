@@ -485,8 +485,8 @@
         "T48"
       ],
       "dependency_ids": [],
-      "status": "in_progress",
-      "evidence": "cutover staged + UI slice merged; F1 journey lane M running on macOS (T44 song journey, T46 engine churn, T45 partial)",
+      "status": "partial",
+      "evidence": "T44 PASS 57/57 (offline first-song: 267 notes, byte-identical solo PCM across kill/restart, 0-diff reopen), T46 PASS engine-scope (flat RSS 25 cycles), T45 partial (47 renders/3min, 5.96x faster-than-realtime; 30-min devices blocked), T47 cutover staged, T48 blocked human; W11-SUPPORT UI merged",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
