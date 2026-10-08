@@ -18,8 +18,8 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W09 | F1 | Arrangement and piano-roll editors | W08 | done |
 | W10 | F1 | Playable instruments, real mixer and export | W09 | partial |
 | W11 | F1 | First-song qualification and Electron cutover | W10 | not_started |
-| W12 | F2 | AI job runtime, budgets and provenance | W11 | not_started |
-| W13 | F2 | Predictive composition and safe proposal transactions | W12 | not_started |
+| W12 | F2 | AI job runtime, budgets and provenance | W11 | partial |
+| W13 | F2 | Predictive composition and safe proposal transactions | W12 | in_progress_lane |
 | W14 | F2 | Gestures, patterns, quick sampling and harmonic controls | W13 | not_started |
 | W15 | F2 | Audio generation, stems and transcription adapters | W12 | not_started |
 | W16 | F2 | AI/gesture regression gate | W14, W15 | not_started |
@@ -375,7 +375,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W12 · F2 · AI job runtime, budgets and provenance
 
-**Owner:** AI platform · **Depends:** W11 · **Status:** not_started
+**Owner:** AI platform · **Depends:** W11 · **Status:** partial
 
 **Target paths:** `crates/void-jobs/`, `workers/`, `crates/void-models/`, `packages/void-studio/src/jobs/`
 
@@ -399,11 +399,11 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** AI-01, AI-02, DATA-03
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; -; m; o; d; e; l; s;  ; r; e; g; i; s; t; r; y; +; m; a; n; i; f; e; s; t;  ; v; e; r; i; f; y; +; e; x; e; c;  ; a; l; l; o; w; l; i; s; t; ;;  ; w; o; r; k; e; r; s; /; P; R; O; T; O; C; O; L; .; m; d;  ; v; 1;  ; +;  ; v; o; i; d; -; f; a; k; e; -; w; o; r; k; e; r;  ; r; e; a; l;  ; s; y; n; t; h; ;;  ; v; o; i; d; -; j; o; b; s;  ; r; u; n; n; e; r;  ; (; R; L; I; M; I; T;  ; b; u; d; g; e; t; s; ,;  ; t; h; r; e; a; d; e; d;  ; p; u; m; p; ,;  ; a; r; t; i; f; a; c; t;  ; r; e; -; h; a; s; h; ,;  ; p; r; o; v; e; n; a; n; c; e;  ; p; u; b; l; i; s; h; ,;  ; a; d; m; i; s; s; i; o; n;  ; 4; /; 1; /; 2; ,;  ; l; a; t; e; -; r; e; s; u; l; t;  ; q; u; a; r; a; n; t; i; n; e; );  ; 1; 3; /; 1; 3; ;;  ; s; t; u; d; i; o;  ; j; o; b; s;  ; 1; 9;  ; t; e; s; t; s; .;  ; M; i; s; s; i; n; g; :;  ; w; i; r; e;  ; o; p; s;  ; (; S; u; b; m; i; t; J; o; b; /; C; a; n; c; e; l; J; o; b; /; J; O; B; _; L; I; S; T; );  ; —;  ; N; E; E; D; S; .; m; d;  ; r; e; v; 2
 
 ## W13 · F2 · Predictive composition and safe proposal transactions
 
-**Owner:** Musical AI + UI · **Depends:** W12 · **Status:** not_started
+**Owner:** Musical AI + UI · **Depends:** W12 · **Status:** in_progress_lane
 
 **Target paths:** `crates/void-proposals/`, `workers/symbolic/`, `packages/void-studio/src/proposals/`
 
@@ -427,7 +427,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** AI-02, AI-05
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** l; a; n; e;  ; s; p; a; w; n; e; d
 
 ## W14 · F2 · Gestures, patterns, quick sampling and harmonic controls
 

@@ -527,8 +527,8 @@
         "AI-02",
         "DATA-03"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "partial",
+      "evidence": "void-models registry+manifest verify+exec allowlist; workers/PROTOCOL.md v1 + void-fake-worker real synth; void-jobs runner (RLIMIT budgets, threaded pump, artifact re-hash, provenance publish, admission 4/1/2, late-result quarantine) 13/13; studio jobs 19 tests. Missing: wire ops (SubmitJob/CancelJob/JOB_LIST) \u2014 NEEDS.md rev2",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],
@@ -567,8 +567,8 @@
         "AI-02",
         "AI-05"
       ],
-      "status": "not_started",
-      "evidence": [],
+      "status": "in_progress_lane",
+      "evidence": "lane spawned",
       "implementation_commit": null,
       "blocker": null,
       "readiness_evidence": [],

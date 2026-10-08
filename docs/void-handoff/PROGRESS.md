@@ -85,3 +85,11 @@ Record branch/start/current SHA; complete/active/blocked task IDs; exact tests a
 - tests/recording: take --midi 20/20, punch+stereo ok, kill-recovery labels incomplete (31504B chunks), panic allNotesOff=16, errors 8/8, hosted roundTrip latency 2.729ms@48k/512; baseline harness 15/15 unchanged
 - NEEDS.md §7-8: protocol has zero recording ops — engine-internal drive for now; recording ops proposed for protocol rev 2
 - Blocked honest: real hardware latency (headless), mic-permission UX path
+
+## 2026-10-08 ~19:45Z — Lane G (W12 AI jobs) merged (70bcf73 → devin/void-implementation)
+- crates/void-models: descriptors, manifest SHA-256 verify, executable allowlist (no remote/path exec), SQLite reconstructable index
+- workers/: PROTOCOL.md v1 (spec stdin -> progress stdout -> result exit) + void-fake-worker real deterministic sine-WAV/SMF synth (hashes in docs/ai-jobs/EVIDENCE.md)
+- crates/void-jobs: admission (4/1/2), JobBudget (RLIMIT_CPU+AS+deadline), JobRunner (env_clear spawn, threaded pumps, artifact re-hash + asset import, escape rejection, provenance+result publish, late quarantine)
+- studio/jobs + void-ui JobRow/BudgetBadge/ModelRegistryList
+- Verified post-merge: cargo 20 suites ok (models 12, jobs runner 13 incl. real kills), vitest 154, studio 126
+- NEEDS.md: SubmitJob/CancelJob/JOB_LIST/MODEL_LIST/JobEvent proposed for protocol rev 2
