@@ -40,3 +40,7 @@ export * from './proposals';
 // stores above without declaring a direct zustand dependency.
 export { useStore } from 'zustand';
 export * from './generation';
+export * from './gestures';
+export * from './patterns';
+export * from './harmony';
+export * from './learn';
