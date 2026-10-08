@@ -1,0 +1,31 @@
+# RESUME — VOID implementation session checkpoint
+
+**Last updated:** 2026-10-08 ~19:25 UTC · **Branch:** `devin/void-implementation` (pushed)
+**Orchestrator session:** https://app.devin.ai/sessions/6dfe25ed595d484a8b53d5f6e6b70695
+
+## State
+- Lanes merged: A engine (`2afd5e1`), B persistence (`00443f1`), C UI (`14851f9`), D editors (`225d8e3`), E recording (`28753aa`), F export (`391d8d6`) — all terminated cleanly.
+- Tests green: cargo 17 suites, pnpm 135 vitest, recovery 22/22, full `tauri build` → deb+rpm+AppImage.
+- Still running: Lane G AI jobs W12 — `devin-2f558329e9a040b4a1437bb9f1e0fdc3` on `devin/void-lane-aijobs`.
+
+## Immediate next steps (in order)
+1. When lane G finishes: merge `devin/void-lane-aijobs` --no-ff, verify `cargo test --workspace --exclude void-tauri` + `pnpm -r test`, update TASKS/TESTS (W12 + its T-ids), PROGRESS.md, render_views, commit, push, terminate session.
+2. Spawn next lane (slot free): W13 predictive composition lane — `crates/void-proposals/` + `workers/symbolic/` + `packages/void-studio/src/proposals/` (Linux).
+3. Then: W11 first-song qualification — needs macOS lane for the journey (create→record→edit→save→render→reopen) + Electron cutover note; or integrate `send_command` SaveProjectOp → void-project coordinator publish on my side (apps/void-tauri/src-tauri/commands.rs is integrator-owned).
+4. Blueprint update: `update_environment_config` — flatc 25.9.23 build, webkit2gtk, cmake/ninja, pnpm 9/node 22.
+5. Final draft PR `devin/void-implementation` → `main` with checkpoint report (PRs stay draft per org preference).
+
+## Gotchas learned this session
+- `$(cat path)` in child prompts arrives literal — always inline prompt text.
+- `git add -A` sweeps target/ + node_modules/ → 3.4GB pack → proxy 504. Stage named paths only.
+- flatbuffers v25.9.23 tag object `edbe1773` → commit `1872409` (submodule pin is correct).
+- Tauri AppImage bundler panics without `bundle.icon` pointing at the PNG.
+- vitest workspace tests need packages built first (dist resolution).
+- Org SWE-2 cap = 7 running sessions: poll `devin_session_create` ~9min; don't ask user.
+- Protocol has NO recording ops — lane E drove engine internally; NEEDS.md §7-8 proposes rev-2 ops.
+
+## Evidence anchors
+- `docs/f0/EVIDENCE.md` — Linux-verified commands
+- `docs/engine/EVIDENCE.md` + `docs/dependencies/QUALIFICATION.md` — macOS engine evidence
+- `docs/void-handoff/tracking/TESTS.json` — per-test status + evidence strings
+- `docs/engine/NEEDS.md` — protocol gaps for rev 2
