@@ -4326,6 +4326,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "void-proposals"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "sha2",
+ "tempfile",
+ "thiserror 2.0.21",
+ "uuid",
+ "void-assets",
+ "void-jobs",
+ "void-protocol",
+]
+
+[[package]]
 name = "void-protocol"
 version = "0.1.0"
 dependencies = [

@@ -8,6 +8,7 @@ members = [
     "crates/void-assets",
     "crates/void-jobs",
     "crates/void-models",
+    "crates/void-proposals",
     "crates/void-export",
     "apps/void-tauri/src-tauri",
 ]

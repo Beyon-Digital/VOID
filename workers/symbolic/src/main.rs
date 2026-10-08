@@ -141,7 +141,7 @@ fn dmax() -> usize {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct JobSpec {
-    #[serde(default)]
+    #[serde(default, rename = "jobId")]
     job_id: String,
     parameters: WorkerParams,
 }
