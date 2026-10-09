@@ -5,7 +5,7 @@
       "id": "S01",
       "name": "Arrange / song workspace",
       "figmaNodeId": "4:2",
-      "status": "in_progress",
+      "status": "implemented",
       "lane": "UIP2",
       "evidence": "docs/ui-handoff/tracking/UIP2_EVIDENCE.md",
       "acceptance_tests": [
@@ -26,7 +26,7 @@
       "id": "S02",
       "name": "Compose / ghost-note audition",
       "figmaNodeId": "4:108",
-      "status": "in_progress",
+      "status": "implemented",
       "lane": "devin/void-lane-uip4",
       "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
       "acceptance_tests": [
@@ -43,7 +43,7 @@
       "id": "S03",
       "name": "Compose / accepted editable notes",
       "figmaNodeId": "4:208",
-      "status": "in_progress",
+      "status": "implemented",
       "lane": "devin/void-lane-uip4",
       "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
       "acceptance_tests": [
@@ -80,7 +80,7 @@
       "id": "S06",
       "name": "Comp / audition and commit",
       "figmaNodeId": "4:508",
-      "status": "done",
+      "status": "implemented",
       "lane": "UIP5",
       "evidence": "UIP5_EVIDENCE.md",
       "acceptance_tests": [
@@ -92,7 +92,7 @@
       "id": "S07",
       "name": "Perform / clips and queued scenes",
       "figmaNodeId": "4:608",
-      "status": "done",
+      "status": "implemented",
       "lane": "UIP5",
       "evidence": "UIP5_EVIDENCE.md",
       "acceptance_tests": [
@@ -104,7 +104,7 @@
       "id": "S08",
       "name": "Gesture / draw a phrase",
       "figmaNodeId": "4:708",
-      "status": "in_progress",
+      "status": "implemented",
       "lane": "devin/void-lane-uip4",
       "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
       "acceptance_tests": [
@@ -129,7 +129,7 @@
       "id": "S10",
       "name": "Generate / audio candidates",
       "figmaNodeId": "4:908",
-      "status": "in_progress",
+      "status": "implemented",
       "lane": "devin/void-lane-uip4",
       "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
       "acceptance_tests": [
@@ -197,9 +197,9 @@
       "id": "S16",
       "name": "Library / sounds and assets",
       "figmaNodeId": "4:1508",
-      "status": "not_started",
-      "lane": null,
-      "evidence": null,
+      "status": "implemented",
+      "lane": "integrator",
+      "evidence": "docs/ui-handoff/tracking/INTEGRATOR_EVIDENCE.md",
       "acceptance_tests": [
         "UI-T20"
       ]
@@ -208,7 +208,7 @@
       "id": "S17",
       "name": "Jobs / model downloads and generation",
       "figmaNodeId": "4:1608",
-      "status": "in_progress",
+      "status": "implemented",
       "lane": "devin/void-lane-uip4",
       "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
       "acceptance_tests": [
@@ -221,7 +221,7 @@
       "id": "S18",
       "name": "Plugin / missing and quarantined",
       "figmaNodeId": "4:1708",
-      "status": "done",
+      "status": "implemented",
       "lane": "UIP5",
       "evidence": "UIP5_EVIDENCE.md",
       "acceptance_tests": [
@@ -232,7 +232,7 @@
       "id": "S19",
       "name": "Recovery / engine stopped",
       "figmaNodeId": "4:1808",
-      "status": "done",
+      "status": "implemented",
       "lane": "UIP5",
       "evidence": "UIP5_EVIDENCE.md",
       "acceptance_tests": [
@@ -244,7 +244,7 @@
       "id": "S20",
       "name": "Compose / stale suggestion",
       "figmaNodeId": "4:1908",
-      "status": "in_progress",
+      "status": "implemented",
       "lane": "devin/void-lane-uip4",
       "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
       "acceptance_tests": [
@@ -255,7 +255,7 @@
       "id": "S21",
       "name": "Save / storage unavailable",
       "figmaNodeId": "4:2008",
-      "status": "done",
+      "status": "implemented",
       "lane": "UIP5",
       "evidence": "UIP5_EVIDENCE.md",
       "acceptance_tests": [
@@ -266,7 +266,7 @@
       "id": "S22",
       "name": "Arrange / compact laptop",
       "figmaNodeId": "4:2108",
-      "status": "in_progress",
+      "status": "implemented",
       "lane": "UIP2",
       "evidence": "docs/ui-handoff/tracking/UIP2_EVIDENCE.md",
       "acceptance_tests": [
@@ -279,7 +279,7 @@
       "id": "S23",
       "name": "Arrange / daylight mode",
       "figmaNodeId": "4:2208",
-      "status": "in_progress",
+      "status": "implemented",
       "lane": "UIP2",
       "evidence": "docs/ui-handoff/tracking/UIP2_EVIDENCE.md",
       "acceptance_tests": [
@@ -301,7 +301,7 @@
       "id": "S25",
       "name": "Compose / auditioning candidate",
       "figmaNodeId": "12:1833",
-      "status": "in_progress",
+      "status": "implemented",
       "lane": "devin/void-lane-uip4",
       "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
       "acceptance_tests": [
@@ -312,7 +312,7 @@
       "id": "S26",
       "name": "Compose / selected notes accepted",
       "figmaNodeId": "12:2156",
-      "status": "in_progress",
+      "status": "implemented",
       "lane": "devin/void-lane-uip4",
       "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
       "acceptance_tests": [
@@ -335,7 +335,7 @@
       "id": "S28",
       "name": "Perform / next scene playing",
       "figmaNodeId": "12:2937",
-      "status": "done",
+      "status": "implemented",
       "lane": "UIP5",
       "evidence": "UIP5_EVIDENCE.md",
       "acceptance_tests": [
