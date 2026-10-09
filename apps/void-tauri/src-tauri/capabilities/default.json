@@ -3,5 +3,5 @@
   "identifier": "default",
   "description": "Default capability set for the VOID studio window",
   "windows": ["main"],
-  "permissions": ["core:default", "opener:default"]
+  "permissions": ["core:default", "opener:default", "updater:default"]
 }

@@ -103,3 +103,119 @@ jobs:
               echo "native/$proj not present"; exit 1
             fi
           done
+
+  # --- Lane AA additions (W07/T25 build matrix, T04/T29 audit tooling) --------
+  # Job inventory rationale: docs/ops/BUILD_MATRIX.md.
+
+  rust-windows:
+    name: rust (windows)
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      # Windows divergence from the verbatim recipe: no sudo; the default
+      # generator (VS) emits flatc.exe under Release/, added to PATH.
+      - name: Install flatc 25.9.23
+        shell: bash
+        run: |
+          git clone --depth 1 -b v25.9.23 https://github.com/google/flatbuffers /tmp/fb
+          cmake -B /tmp/fb/build -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF /tmp/fb
+          cmake --build /tmp/fb/build --config Release --target flatc
+          echo "/tmp/fb/build/Release" >> "$GITHUB_PATH"
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: rust-windows-${{ hashFiles('**/Cargo.lock') }}
+      - run: cargo fmt --all -- --check
+      # void-worker (Unix-domain-socket transport) and its dependents
+      # void-app/void-tauri do not compile on Windows — excluded here. Every
+      # other workspace crate is checked and tested: the maximal portable
+      # subset, a superset of the T25-suggested -p void-protocol/-p void-jobs
+      # suites.
+      - run: cargo check --workspace --exclude void-tauri --exclude void-app --exclude void-worker
+      - run: cargo test --workspace --exclude void-tauri --exclude void-app --exclude void-worker
+
+  rust-macos:
+    name: rust (macos)
+    runs-on: macos-14
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install flatc 25.9.23
+        run: |
+          git clone --depth 1 -b v25.9.23 https://github.com/google/flatbuffers /tmp/fb
+          cmake -G Ninja -B /tmp/fb/build -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF /tmp/fb
+          cmake --build /tmp/fb/build --target flatc
+          sudo install -m755 /tmp/fb/build/flatc /usr/local/bin/flatc
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: rust-macos-${{ hashFiles('**/Cargo.lock') }}
+      # Same gate as the ubuntu rust job: the whole workspace minus the GUI
+      # crate (void-tauri needs a display; macOS GUI qualification is F5-N02).
+      - run: cargo test --workspace --exclude void-tauri
+
+  ts-macos:
+    name: typescript (macos)
+    runs-on: macos-14
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r --filter=!void-tauri --if-present build
+      - run: pnpm --filter void-tauri exec vite build
+      - run: pnpm --filter void-tauri exec tsc --noEmit -p tsconfig.json
+      - run: pnpm -r --if-present test
+
+  ts-windows:
+    name: typescript (windows)
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r --filter=!void-tauri --if-present build
+      - run: pnpm --filter void-tauri exec vite build
+      - run: pnpm --filter void-tauri exec tsc --noEmit -p tsconfig.json
+      - run: pnpm -r --if-present test
+
+  audit:
+    name: privacy + supply-chain audit (T04/T29 tooling)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install flatc 25.9.23
+        run: |
+          git clone --depth 1 -b v25.9.23 https://github.com/google/flatbuffers /tmp/fb
+          cmake -G Ninja -B /tmp/fb/build -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF /tmp/fb
+          cmake --build /tmp/fb/build --target flatc
+          sudo install -m755 /tmp/fb/build/flatc /usr/local/bin/flatc
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: bash tools/privacy-audit.sh
+      - run: bash tools/supplychain-check.sh

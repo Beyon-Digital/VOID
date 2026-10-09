@@ -7,6 +7,7 @@ mod commands;
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .manage(std::sync::Arc::new(commands::AppState::new()))
         .invoke_handler(tauri::generate_handler![
             commands::engine_status,
