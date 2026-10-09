@@ -36,9 +36,7 @@ impl OscAddress {
             return Err(SyncError::Osc("empty address".into()));
         }
         if !s.starts_with('/') {
-            return Err(SyncError::Osc(format!(
-                "address {s:?} must start with '/'"
-            )));
+            return Err(SyncError::Osc(format!("address {s:?} must start with '/'")));
         }
         if s.len() == 1 {
             // "/" is the root — legal as a namespace root, never as a

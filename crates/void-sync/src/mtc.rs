@@ -207,7 +207,9 @@ pub fn quarter_frame_message(piece: usize, nibble: u8) -> [u8; QUARTER_FRAME_MES
 }
 
 /// Full 16-byte quarter-frame cycle for `time` (F1 nn × 8).
-pub fn encode_quarter_frames(time: &MtcTime) -> [u8; QUARTER_FRAME_COUNT * QUARTER_FRAME_MESSAGE_LEN] {
+pub fn encode_quarter_frames(
+    time: &MtcTime,
+) -> [u8; QUARTER_FRAME_COUNT * QUARTER_FRAME_MESSAGE_LEN] {
     let pieces = encode_quarter_frame_pieces(time);
     let mut out = [0u8; QUARTER_FRAME_COUNT * QUARTER_FRAME_MESSAGE_LEN];
     for (i, &nibble) in pieces.iter().enumerate() {
@@ -246,9 +248,7 @@ impl QuarterFrameAssembler {
     /// Feed one complete `F1 nn` message (`bytes[0] == 0xF1`).
     pub fn feed_message(&mut self, bytes: &[u8]) -> Result<Option<MtcTime>, SyncError> {
         if bytes.len() != QUARTER_FRAME_MESSAGE_LEN || bytes[0] != 0xF1 {
-            return Err(SyncError::Mtc(
-                "quarter-frame message must be F1 nn".into(),
-            ));
+            return Err(SyncError::Mtc("quarter-frame message must be F1 nn".into()));
         }
         self.feed_data_byte(bytes[1])
     }
@@ -301,9 +301,7 @@ pub fn demux(bytes: &[u8]) -> (Vec<MtcWireEvent>, Vec<u8>) {
     while i < bytes.len() {
         match bytes[i] {
             0xF0 => {
-                if i + FULL_MESSAGE_LEN <= bytes.len()
-                    && bytes[i + FULL_MESSAGE_LEN - 1] == 0xF7
-                {
+                if i + FULL_MESSAGE_LEN <= bytes.len() && bytes[i + FULL_MESSAGE_LEN - 1] == 0xF7 {
                     if let Ok(t) = decode_full_message(&bytes[i..i + FULL_MESSAGE_LEN]) {
                         events.push(MtcWireEvent::Full(t));
                     }

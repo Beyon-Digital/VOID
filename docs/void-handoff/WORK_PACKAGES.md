@@ -32,8 +32,8 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W23 | F4 | Generated/reactive visuals and optional camera conducting | W22, W16 | not_started |
 | W24 | F4 | Audiovisual export and visual qualification gate | W23 | not_started |
 | W25 | F5 | Notation, scoring and advanced interchange | W21 | not_started |
-| W26 | F5 | Spatial routing and delivery | W21 | not_started |
-| W27 | F5 | Synchronization, modular control and safe shows | W24, W21 | not_started |
+| W26 | F5 | Spatial routing and delivery | W21 | partial |
+| W27 | F5 | Synchronization, modular control and safe shows | W24, W21 | partial |
 | W28 | F5 | Advanced synthesis and restricted extensions | W19, W24 | not_started |
 | W29 | F5 | Full parity reconciliation and release readiness | W25, W26, W27, W28 | not_started |
 
@@ -759,7 +759,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W26 · F5 · Spatial routing and delivery
 
-**Owner:** Spatial audio · **Depends:** W21 · **Status:** not_started
+**Owner:** Spatial audio · **Depends:** W21 · **Status:** partial
 
 **Target paths:** `native/void-engine/src/spatial/`, `crates/void-export/`, `tests/spatial/`
 
@@ -781,11 +781,11 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** Reuse already qualified foundations; justify new dependencies separately.
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; -; s; p; a; t; i; a; l;  ; l; a; y; o; u; t; s; /; o; b; j; e; c; t; s; /; m; o; n; i; t; o; r; i; n; g; /; g; a; t; e;  ; —;  ; T; 9; 2; /; T; 9; 3;  ; m; o; d; e; l; -; s; i; d; e; ,;  ; r; e; n; d; e; r; e; r; +; h; e; a; d; t; r; a; c; k;  ; N; E; E; D; S;  ; [; 2; 0; 2; 6; -; 1; 0; -; 0; 9;  ; 0; 0; :; 4; 2;  ; U; T; C; ]
 
 ## W27 · F5 · Synchronization, modular control and safe shows
 
-**Owner:** Performance · **Depends:** W24, W21 · **Status:** not_started
+**Owner:** Performance · **Depends:** W24, W21 · **Status:** partial
 
 **Target paths:** `crates/void-show/`, `native/void-engine/src/sync/`, `packages/void-studio/src/perform/`
 
@@ -809,7 +809,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** IO-03, VIS-05
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; -; s; y; n; c;  ; M; T; C; /; M; M; C; /; c; l; o; c; k; /; m; a; s; t; e; r; /; O; S; C; /; D; M; X;  ; +;  ; s; h; o; w;  ; c; u; e; /; P; A; N; I; C;  ; —;  ; T; 9; 4; -; T; 9; 6;  ; p; a; s; s; _; l; i; n; u; x; ;;  ; A; b; l; e; t; o; n;  ; L; i; n; k;  ; N; o; t; I; m; p; l; e; m; e; n; t; e; d;  ; A; D; R;  ; [; 2; 0; 2; 6; -; 1; 0; -; 0; 9;  ; 0; 0; :; 4; 2;  ; U; T; C; ]
 
 ## W28 · F5 · Advanced synthesis and restricted extensions
 

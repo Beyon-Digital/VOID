@@ -66,11 +66,25 @@ pub enum ConflictResolution {
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", tag = "kind")]
 pub enum ArbiterEvent {
-    MasterClaimed { source: String },
-    ConflictRejected { held: String, attempted: String },
-    SwitchScheduled { from: String, to: String, at: String },
-    MasterSwitched { from: String, to: String },
-    MasterReleased { source: String },
+    MasterClaimed {
+        source: String,
+    },
+    ConflictRejected {
+        held: String,
+        attempted: String,
+    },
+    SwitchScheduled {
+        from: String,
+        to: String,
+        at: String,
+    },
+    MasterSwitched {
+        from: String,
+        to: String,
+    },
+    MasterReleased {
+        source: String,
+    },
 }
 
 /// The arbiter: at most one master, ever.
@@ -276,7 +290,9 @@ pub fn sync_health(
         return SyncHealth::NoMaster;
     }
     if silence_ms >= silence_lost_ms {
-        return SyncHealth::Lost { since_ms: silence_ms };
+        return SyncHealth::Lost {
+            since_ms: silence_ms,
+        };
     }
     match last_report {
         None => SyncHealth::Locked, // no measurement yet — honest: no evidence of drift

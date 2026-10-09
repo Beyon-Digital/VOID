@@ -11,3 +11,9 @@
 
 - **W19 content/sound-library** (`devin/void-lane-w19` @ fc49c3c): `crates/void-content` (sha256 manifest verify, zones/round-robin, preload/stream/offline + bounded VoiceAllocator, install→quarantine→relink lifecycle, stock inventory + license ledger LGR-0001..04), `packages/void-studio/src/audio-edit/` (transients/varispeed/pitch/tails op plans). 72 authored stock descriptors. tests/content 8/8, void-content 18/18; T73 pass_linux, T74 model-side (engine render NEEDS).
 - Post-merge: workspace cargo green; studio vitest 400; builds clean.
+
+## 2026-10-09 00:42 UTC — Lane W (W26+W27) merged
+
+- **W26 spatial** (`devin/void-lane-w26w27` @ 7057034): `crates/void-spatial` mono→22.2 layout ladder (BS.2493 table, Illegal/RequiresDeclaredDownmix matrix), ADM objects (118 cap), calibrated monitoring + declared fallback, SpatialGate gated on ValidatorRecord. T92/T93 model-side.
+- **W27 sync/show** (same branch): `crates/void-sync` byte-exact MTC (full SysEx + quarter-frame demux), 24ppqn clock math, full MMC vocabulary + SHUTTLE packing, single-master arbiter w/ drift + conflict resolution, OSC literal/pattern matching, DMX universes + 10Hz strobe ceiling, Ableton Link honest NotImplemented ADR. Studio: cue list + pairing/arming + idempotent PANIC, bounded mapping engine (MAX_CHAIN_STEPS=8). T94–T96 pass_linux.
+- tests/spatial 17/17, tests/sync 22/22; workspace + clippy clean; studio vitest 419.

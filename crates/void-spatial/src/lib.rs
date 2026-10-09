@@ -36,10 +36,9 @@ pub use gate::{
     GateEnvironment, GateVerdict, SpatialGate, SpatialOutputPath, SpatialUnavailable,
     ValidatorKind, ValidatorRecord,
 };
-pub use layout::{legality, Legality, Speaker, SpeakerAssignment, SpatialLayout};
+pub use layout::{legality, Legality, SpatialLayout, Speaker, SpeakerAssignment};
 pub use monitoring::{
-    can_drive, FallbackMode, MonitorUnavailable, MonitoringConfig, MonitorVerdict,
-    MAX_TRIM_DB,
+    can_drive, FallbackMode, MonitorUnavailable, MonitorVerdict, MonitoringConfig, MAX_TRIM_DB,
 };
 pub use objects::{
     ObjectContainerSpec, ObjectDescriptor, ObjectExtent, ObjectPosition, MAX_OBJECTS,

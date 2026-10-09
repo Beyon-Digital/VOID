@@ -1069,8 +1069,8 @@
     "T93"
    ],
    "dependency_ids": [],
-   "status": "not_started",
-   "evidence": [],
+   "status": "partial",
+   "evidence": "void-spatial layouts/objects/monitoring/gate \u2014 T92/T93 model-side, renderer+headtrack NEEDS [2026-10-09 00:42 UTC]",
    "implementation_commit": null,
    "blocker": null,
    "readiness_evidence": [],
@@ -1109,8 +1109,8 @@
     "IO-03",
     "VIS-05"
    ],
-   "status": "not_started",
-   "evidence": [],
+   "status": "partial",
+   "evidence": "void-sync MTC/MMC/clock/master/OSC/DMX + show cue/PANIC \u2014 T94-T96 pass_linux; Ableton Link NotImplemented ADR [2026-10-09 00:42 UTC]",
    "implementation_commit": null,
    "blocker": null,
    "readiness_evidence": [],

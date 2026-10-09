@@ -20,7 +20,7 @@
 use serde::{Deserialize, Serialize};
 
 use crate::layout::SpatialLayout;
-use crate::monitoring::{MonitoringConfig, MonitorVerdict};
+use crate::monitoring::{MonitorVerdict, MonitoringConfig};
 use crate::objects::ObjectContainerSpec;
 
 /// A spatial output path a caller may request.
@@ -82,7 +82,10 @@ pub enum SpatialUnavailable {
     NoMonitoringConfig,
     /// Monitor config rejected `layout` — carries the monitor verdict
     /// reason (no fallback / unreachable fallback).
-    MonitorUnreachable { layout: SpatialLayout, reason: String },
+    MonitorUnreachable {
+        layout: SpatialLayout,
+        reason: String,
+    },
     /// Monitor config failed validation (uncalibrated speakers,
     /// illegal fallback) — the config is unusable, not approximated.
     MonitoringInvalid { errors: Vec<String> },
@@ -114,7 +117,9 @@ pub enum GateVerdict {
         /// "downmix to 5.1", "binaural") — recorded, not assumed.
         monitor_route: String,
     },
-    Unavailable { reason: SpatialUnavailable },
+    Unavailable {
+        reason: SpatialUnavailable,
+    },
 }
 
 impl GateVerdict {
@@ -263,10 +268,7 @@ impl SpatialGate {
         }
 
         // 3. Head-tracking requires declared hardware.
-        if let SpatialOutputPath::Binaural {
-            head_tracked: true,
-        } = path
-        {
+        if let SpatialOutputPath::Binaural { head_tracked: true } = path {
             if !self.env.head_tracking_declared {
                 return GateVerdict::Unavailable {
                     reason: SpatialUnavailable::HeadTrackingUnavailable,
@@ -283,11 +285,12 @@ impl SpatialGate {
         // 5. A validator record covering the scope must exist —
         //    approved for licensed paths (handled above), self-check
         //    or better otherwise.
-        match (self.find_validator(scope, requires_approved(path)), requires_approved(path)) {
+        match (
+            self.find_validator(scope, requires_approved(path)),
+            requires_approved(path),
+        ) {
             (None, true) => GateVerdict::Unavailable {
-                reason: SpatialUnavailable::ExternalValidatorRequired {
-                    path: path_name,
-                },
+                reason: SpatialUnavailable::ExternalValidatorRequired { path: path_name },
             },
             (None, false) => GateVerdict::Unavailable {
                 reason: SpatialUnavailable::ApprovedValidatorRequired { path: scope.into() },
@@ -303,10 +306,7 @@ impl SpatialGate {
     /// paths render to headphones directly; bus/object paths need a
     /// monitor config that can drive the content layout (or a
     /// declared fallback for wider content).
-    fn resolve_monitoring(
-        &self,
-        path: &SpatialOutputPath,
-    ) -> Result<String, SpatialUnavailable> {
+    fn resolve_monitoring(&self, path: &SpatialOutputPath) -> Result<String, SpatialUnavailable> {
         match path {
             SpatialOutputPath::Binaural { .. } => Ok("headphones".into()),
             SpatialOutputPath::ChannelBus { layout } => {

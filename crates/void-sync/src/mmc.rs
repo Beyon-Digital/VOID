@@ -16,7 +16,7 @@ use crate::mtc::{MtcFrameRate, MtcTime};
 /// 07 for "response" frames — VOID emits commands only).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MmcFrameKind {
-    Command, // 0x06
+    Command,  // 0x06
     Response, // 0x07
 }
 
@@ -26,24 +26,30 @@ pub enum MmcFrameKind {
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", tag = "kind")]
 pub enum MmcCommand {
-    Stop,                 // 0x01
-    Play,                 // 0x02
-    DeferredPlay,         // 0x03
-    FastForward,          // 0x04
-    Rewind,               // 0x05
-    RecordStrobe,         // 0x06
-    RecordExit,           // 0x07
-    RecordPause,          // 0x08
-    Pause,                // 0x09
-    Eject,                // 0x0A
-    Chase,                // 0x0B
-    CommandErrorReset,    // 0x0C
-    MmcReset,             // 0x0D
+    Stop,              // 0x01
+    Play,              // 0x02
+    DeferredPlay,      // 0x03
+    FastForward,       // 0x04
+    Rewind,            // 0x05
+    RecordStrobe,      // 0x06
+    RecordExit,        // 0x07
+    RecordPause,       // 0x08
+    Pause,             // 0x09
+    Eject,             // 0x0A
+    Chase,             // 0x0B
+    CommandErrorReset, // 0x0C
+    MmcReset,          // 0x0D
     /// LOCATE [I/F] — command 0x44 with sub-command 0x01 (TARGET)
     /// carrying a 5-byte SMPTE time (hr mn sc fr ff).
-    Locate { time: MtcTime, subframe: u8 },
+    Locate {
+        time: MtcTime,
+        subframe: u8,
+    },
     /// SHUTTLE — 0x47, direction/speed in a 3-byte sh st sl field.
-    Shuttle { forward: bool, speed_permille: u16 },
+    Shuttle {
+        forward: bool,
+        speed_permille: u16,
+    },
 }
 
 fn command_code(c: &MmcCommand) -> u8 {
@@ -104,9 +110,7 @@ pub const MAX_MMC_MESSAGE_LEN: usize = 16;
 /// Encode `command` for `device_id` (0x00–0x7F; 0x7F = all devices).
 pub fn encode(device_id: u8, command: &MmcCommand) -> Result<Vec<u8>, SyncError> {
     if device_id > 0x7F {
-        return Err(SyncError::Mmc(format!(
-            "device id {device_id} > 0x7F"
-        )));
+        return Err(SyncError::Mmc(format!("device id {device_id} > 0x7F")));
     }
     let mut out = vec![0xF0, 0x7F, device_id, 0x06];
     match command {
@@ -207,8 +211,9 @@ pub fn decode(bytes: &[u8]) -> Result<(u8, MmcCommand), SyncError> {
                 return Err(SyncError::Mmc("SHUTTLE data byte high bit set".into()));
             }
             let forward = sh & 0x40 != 0;
-            let speed =
-                (((sh & 0x3F) as u16) << 8) | (((body[3] & 0x3F) as u16) << 2) | (body[4] & 0x03) as u16;
+            let speed = (((sh & 0x3F) as u16) << 8)
+                | (((body[3] & 0x3F) as u16) << 2)
+                | (body[4] & 0x03) as u16;
             MmcCommand::Shuttle {
                 forward,
                 speed_permille: speed,

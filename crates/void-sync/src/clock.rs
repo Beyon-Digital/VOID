@@ -119,8 +119,12 @@ enum ClockState {
 /// What a decoded transport byte means for a running clock.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ClockEvent {
-    Started { song_ticks: i64 },
-    Continued { song_ticks: i64 },
+    Started {
+        song_ticks: i64,
+    },
+    Continued {
+        song_ticks: i64,
+    },
     Stopped,
     Tick,
     /// A byte that is not a clock message.

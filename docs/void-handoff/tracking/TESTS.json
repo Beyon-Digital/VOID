@@ -1010,8 +1010,8 @@
    "phase": "F5",
    "procedure": "Render known multichannel/object fixtures and inspect layout/object metadata with actual approved validators.",
    "expected": "Every claimed spatial output is valid; unavailable licensed/specification paths are disabled rather than approximated as stereo.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "partial_linux",
+   "evidence": "lane W: layout ladder + BS.2493 22.2 + legality matrix, ADM objects, SpatialGate w/ ValidatorRecord; renderer = engine NEEDS [2026-10-09 00:42 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -1021,8 +1021,8 @@
    "phase": "F5",
    "procedure": "Play qualified output on declared speaker/headphone hardware; calibrate and fail head-tracking input.",
    "expected": "Document correct routing, safe level and fallback; hardware-unavailable scenarios remain blocked with no invented pass.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "partial_linux",
+   "evidence": "lane W: calibrated monitoring set + declared fallback; head-tracking hardware NEEDS [2026-10-09 00:42 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -1032,8 +1032,8 @@
    "phase": "F5",
    "procedure": "Test clock-master changes, network/MIDI sync loss and reconnect with actual supported endpoints.",
    "expected": "No competing transport master, drift and latency measured; ordinary local transport works without network sync.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "lane W: byte-exact MTC SysEx/quarter-frame, 24ppqn clock math, MMC vocabulary+SHUTTLE, single-master arbiter w/ drift+conflict resolution; tests/sync [2026-10-09 00:42 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -1043,8 +1043,8 @@
    "phase": "F5",
    "procedure": "Pair/arm approved fixture output, rehearse cues, disconnect network and invoke manual panic/blackout.",
    "expected": "Manual safety path wins over AI/queued actions; permission scopes and safe disconnected state are enforced.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "lane W: cue pairing/arming state machine + idempotent PANIC draining outputs; tests/sync [2026-10-09 00:42 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -1054,8 +1054,8 @@
    "phase": "F5",
    "procedure": "Exercise authorized companion/control-surface and Environment-style mappings; revoke pairing mid-session.",
    "expected": "No access after revocation; bounded controls with explicit targets; account/cloud outages do not stop local music.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "lane W: OSC literal+pattern matching, DMX 512-universes + strobe ceiling; tests/sync [2026-10-09 00:42 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {

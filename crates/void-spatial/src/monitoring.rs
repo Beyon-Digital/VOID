@@ -84,9 +84,7 @@ impl MonitoringConfig {
         // Every declared speaker needs a finite bounded trim.
         for a in self.speaker_set.speaker_assignments() {
             match self.level_calibration_db.get(&a.speaker) {
-                None => errors.push(SpatialError::MissingCalibration {
-                    speaker: a.speaker,
-                }),
+                None => errors.push(SpatialError::MissingCalibration { speaker: a.speaker }),
                 Some(t) => {
                     if !t.is_finite() {
                         errors.push(SpatialError::NonFinite {

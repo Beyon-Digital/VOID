@@ -126,9 +126,7 @@ impl DmxFixture {
                 self.fixture_id
             )));
         }
-        if self.start_address < 1
-            || self.end_address() > DMX_UNIVERSE_CHANNELS as u16
-        {
+        if self.start_address < 1 || self.end_address() > DMX_UNIVERSE_CHANNELS as u16 {
             return Err(SyncError::Dmx(format!(
                 "fixture {:?} footprint {}..{} exceeds universe",
                 self.fixture_id,
