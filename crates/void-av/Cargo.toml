@@ -1,0 +1,21 @@
+[package]
+name = "void-av"
+description = "VOID audiovisual export pipeline — FFmpeg argv-only, rational frame-rate math, staged publish, provenance (W24 non-native, CONTRACTS.md §7)"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+void-protocol = { path = "../void-protocol" }
+void-assets = { path = "../void-assets" }
+void-project = { path = "../void-project" }
+void-jobs = { path = "../void-jobs" }
+void-export = { path = "../void-export" }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+uuid = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"

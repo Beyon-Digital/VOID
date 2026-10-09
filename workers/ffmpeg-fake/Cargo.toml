@@ -1,0 +1,13 @@
+[package]
+name = "void-fake-ffmpeg"
+version = "0.1.0"
+edition = "2021"
+description = "Deterministic ffmpeg/ffprobe stand-in for offline av-pipeline testing: real argv parsing, real fixture bytes, honest failure modes. Never canned success."
+license = "ISC"
+
+# Detached from the repo workspace: worker bundles build alone.
+[workspace]
+
+[[bin]]
+name = "void-fake-ffmpeg"
+path = "src/main.rs"

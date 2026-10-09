@@ -9,6 +9,7 @@ export * from './instruments';
 export * from './mixer';
 export * from './export';
 export * from './exchange';
+export * from './av';
 // './export' and './jobs' both define `isTerminal` for different status
 // types — './export' keeps the bare name; jobs' version is qualified.
 export { isTerminal as isAiJobTerminal } from './jobs/job';

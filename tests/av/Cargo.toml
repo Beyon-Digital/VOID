@@ -1,0 +1,23 @@
+[package]
+name = "void-av-tests"
+description = "W24 av-export qualification suite (T87–T89 Linux-verifiable halves) — rational frame math, argv-only subprocess boundaries, staged publish, provenance"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Own workspace: the root Cargo.toml members list is integrator-owned —
+# this suite builds standalone via `cargo test --manifest-path`.
+[workspace]
+
+[dependencies]
+void-av = { path = "../../crates/void-av" }
+void-export = { path = "../../crates/void-export" }
+void-assets = { path = "../../crates/void-assets" }
+void-project = { path = "../../crates/void-project" }
+void-jobs = { path = "../../crates/void-jobs" }
+serde_json = "1"
+serde = { version = "1", features = ["derive"] }
+sha2 = "0.10"
+uuid = { version = "1", features = ["v4", "serde"] }
+libc = "0.2"
+tempfile = "3"
