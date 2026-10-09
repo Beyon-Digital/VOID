@@ -54,9 +54,9 @@
    "id": "S04",
    "name": "Mix / routing and device chain",
    "figmaNodeId": "4:308",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "implemented",
+   "lane": "devin/void-lane-uip3",
+   "evidence": "docs/ui-handoff/tracking/UIP3_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T05",
     "UI-T30",
@@ -141,9 +141,9 @@
    "id": "S11",
    "name": "Export / delivery check",
    "figmaNodeId": "4:1008",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "implemented",
+   "lane": "devin/void-lane-uip3",
+   "evidence": "docs/ui-handoff/tracking/UIP3_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T28",
     "UI-T29"
@@ -153,9 +153,9 @@
    "id": "S12",
    "name": "Export / completed",
    "figmaNodeId": "4:1108",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "implemented",
+   "lane": "devin/void-lane-uip3",
+   "evidence": "docs/ui-handoff/tracking/UIP3_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T28"
    ]
