@@ -210,7 +210,7 @@ impl MissingPluginStore {
 }
 
 pub fn decode_hex(s: &str) -> crate::error::Result<Vec<u8>> {
-    if s.len() % 2 != 0 || !s.bytes().all(|b| b.is_ascii_hexdigit()) {
+    if !s.len().is_multiple_of(2) || !s.bytes().all(|b| b.is_ascii_hexdigit()) {
         return Err(crate::error::ExchangeError::Malformed("state hex".into()));
     }
     Ok((0..s.len())

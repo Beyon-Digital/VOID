@@ -234,7 +234,7 @@ mod tests {
     #[test]
     fn bad_rate_and_names_rejected() {
         let mut t = template();
-        t.sample_rate = 44_100.min(0); // becomes 0 → invalid
+        t.sample_rate = 0; // becomes 0 → invalid
         assert!(plan_stem_batch(&t, &[src("t1", "a")], "x").is_err());
         let t = template();
         // Names that sanitize to the same thing collide.

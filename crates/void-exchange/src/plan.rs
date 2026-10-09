@@ -16,7 +16,7 @@ use uuid::Uuid;
 /// Deterministic id for imported elements (uuid v5 on a path string) —
 /// the same source document must produce the same ids.
 pub fn deterministic_id(scope: &str, kind: &str, ordinal: usize) -> String {
-    const NS: Uuid = Uuid::from_u128(0x764f_4944_0000_5000_8000_000000000000); // "vOID" namespace
+    const NS: Uuid = Uuid::from_u128(0x764f_4944_0000_5000_8000_0000_0000_0000); // "vOID" namespace
     Uuid::new_v5(&NS, format!("{scope}/{kind}/{ordinal}").as_bytes()).to_string()
 }
 

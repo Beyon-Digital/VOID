@@ -588,10 +588,10 @@ pub fn export_dawproject(
             _ => files.get(&name).map(|v| v.as_slice()).unwrap_or(&[]),
         };
         zw.start_file(name.clone(), opts)
-            .map_err(|e| ExchangeError::Zip(e))?;
+            .map_err(ExchangeError::Zip)?;
         zw.write_all(data).map_err(ExchangeError::Io)?;
     }
-    let cur = zw.finish().map_err(|e| ExchangeError::Zip(e))?;
+    let cur = zw.finish().map_err(ExchangeError::Zip)?;
     Ok((cur.into_inner(), loss.sorted()))
 }
 
@@ -1002,13 +1002,13 @@ pub fn import_dawproject(
     if bytes.len() as u64 > MAX_CONTAINER {
         return Err(ExchangeError::TooLarge("container > 2GiB".into()));
     }
-    let mut zip = ZipArchive::new(Cursor::new(bytes)).map_err(|e| ExchangeError::Zip(e))?;
+    let mut zip = ZipArchive::new(Cursor::new(bytes)).map_err(ExchangeError::Zip)?;
 
     let mut files: FilesMap = BTreeMap::new();
     let mut project_xml = None;
     let mut metadata_xml = None;
     for i in 0..zip.len() {
-        let mut f = zip.by_index(i).map_err(|e| ExchangeError::Zip(e))?;
+        let mut f = zip.by_index(i).map_err(ExchangeError::Zip)?;
         let name = f.name().to_string();
         if name.ends_with('/') {
             continue;

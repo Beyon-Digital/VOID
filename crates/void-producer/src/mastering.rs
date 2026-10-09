@@ -331,11 +331,10 @@ pub fn analyze_wav(
 
 fn transition(p: &mut MasteringProposal, to: MasteringStatus) -> Result<()> {
     use MasteringStatus::*;
-    let legal = match (p.status, to) {
-        (Pending | Ready, Accepted | Rejected) => true,
-        (Pending | Ready, Stale | Failed) => true,
-        _ => false,
-    };
+    let legal = matches!(
+        (p.status, to),
+        (Pending | Ready, Accepted | Rejected) | (Pending | Ready, Stale | Failed)
+    );
     if !legal {
         return Err(ProducerError::InvalidTransition {
             from: p.status.as_str(),

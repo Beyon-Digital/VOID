@@ -306,7 +306,7 @@ mod tests {
     #[test]
     fn round_robin_visits_all_before_repeating() {
         let mut rr = RoundRobin::new(3, 99);
-        let mut seen = vec![false; 3];
+        let mut seen = [false; 3];
         for _ in 0..3 {
             seen[rr.take().unwrap()] = true;
         }

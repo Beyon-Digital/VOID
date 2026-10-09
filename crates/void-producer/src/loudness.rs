@@ -55,7 +55,7 @@ impl Biquad {
     /// (f0 = 1681.974 Hz shelf, G = 3.9998439 dB, Q = 0.7071752).
     fn k_shelf(fs: f64) -> Self {
         let g = 10f64.powf(3.99984385397 / 20.0); // linear gain
-        let f0 = 1681.9744509555319;
+        let f0 = 1_681.974_450_955_532;
         let q = 0.7071752369554193;
         let k = (std::f64::consts::PI * f0 / fs).tan();
         let k2 = k * k;
@@ -433,15 +433,14 @@ mod tests {
         let fs = 48_000u32;
         let n = (fs * 12) as usize;
         let mut l = vec![0f32; n];
-        for i in 0..n {
+        for (i, v) in l.iter_mut().enumerate().take(n) {
             // Alternate 3 s of -14 dBFS and -34 dBFS halves.
-            let amp = if (i / (fs as usize * 3)) % 2 == 0 {
+            let amp = if (i / (fs as usize * 3)).is_multiple_of(2) {
                 0.2
             } else {
                 0.02
             };
-            l[i] =
-                (amp * (2.0 * std::f64::consts::PI * 1_000.0 * i as f64 / fs as f64).sin()) as f32;
+            *v = (amp * (2.0 * std::f64::consts::PI * 1_000.0 * i as f64 / fs as f64).sin()) as f32;
         }
         let r = measure(&PcmBuffer {
             sample_rate: fs,

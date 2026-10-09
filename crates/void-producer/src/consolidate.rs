@@ -212,7 +212,7 @@ mod tests {
                 referenced_by: "c2".into(),
             },
         ];
-        let plan = plan_consolidation("p", &refs, &[existing.sha256.clone()]).unwrap();
+        let plan = plan_consolidation("p", &refs, std::slice::from_ref(&existing.sha256)).unwrap();
         assert_eq!(plan.refs[1].status, RefStatus::AlreadyContained);
         let done = execute_consolidation(&plan, &store).unwrap();
         assert!(store.find(&done.refs[0].sha256.clone().unwrap()).is_some());

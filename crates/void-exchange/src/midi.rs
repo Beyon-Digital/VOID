@@ -131,8 +131,8 @@ fn us_per_quarter(bpm: f64) -> (u32, bool) {
     (rounded as u32, (exact - rounded).abs() > 1e-6)
 }
 
-fn render_track(evs: &mut Vec<Ev>) -> Vec<u8> {
-    evs.sort_by(|a, b| (a.tick, a.order).cmp(&(b.tick, b.order)));
+fn render_track(evs: &mut [Ev]) -> Vec<u8> {
+    evs.sort_by_key(|a| (a.tick, a.order));
     let mut body = Vec::with_capacity(4096);
     let mut last: i64 = 0;
     let mut running: Option<u8> = None;
@@ -557,7 +557,7 @@ pub fn import_smf(
                 running = None;
             }
             match status {
-                0x80..=0x8F | 0x90..=0x9F => {
+                0x80..=0x9F => {
                     let ch = status & 0x0F;
                     let pitch = tr.byte()?;
                     let vel = tr.byte()?;

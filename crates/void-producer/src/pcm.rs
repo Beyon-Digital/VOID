@@ -84,7 +84,7 @@ pub fn read_wav(bytes: &[u8]) -> Result<PcmBuffer> {
         (1u64 << (bits - 1)) as f64
     };
     for f in 0..frames {
-        for c in 0..ch as usize {
+        for (c, chan) in channels.iter_mut().enumerate().take(ch as usize) {
             let o = (f * ch as usize + c) * bytes_per;
             let s = match (tag, bits) {
                 (1, 16) => i16::from_le_bytes([data[o], data[o + 1]]) as f64 / norm(16),
@@ -107,7 +107,7 @@ pub fn read_wav(bytes: &[u8]) -> Result<PcmBuffer> {
                     )))
                 }
             };
-            channels[c].push(s.clamp(-1.0, 1.0) as f32);
+            chan.push(s.clamp(-1.0, 1.0) as f32);
         }
     }
     Ok(PcmBuffer {
@@ -141,8 +141,8 @@ pub fn write_wav_f32(buf: &PcmBuffer) -> Result<Vec<u8>> {
     out.extend_from_slice(b"data");
     out.extend_from_slice(&(data_len as u32).to_le_bytes());
     for f in 0..frames {
-        for c in 0..ch as usize {
-            out.extend_from_slice(&buf.channels[c][f].to_le_bytes());
+        for chan in buf.channels.iter() {
+            out.extend_from_slice(&chan[f].to_le_bytes());
         }
     }
     Ok(out)

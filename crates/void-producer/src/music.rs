@@ -169,7 +169,7 @@ impl Scale {
         self.kind
             .degrees()
             .iter()
-            .map(|d| ((self.root_pc + d) % 12) as u8)
+            .map(|d| (self.root_pc + d) % 12)
             .collect()
     }
     pub fn contains(&self, pitch: i32) -> bool {
@@ -295,7 +295,7 @@ impl ChordEvent {
 
 /// Chord active at `tick` (last event at or before it).
 pub fn chord_at(chords: &[ChordEvent], tick: i64) -> Option<&ChordEvent> {
-    chords.iter().filter(|c| c.at_ticks <= tick).last()
+    chords.iter().rfind(|c| c.at_ticks <= tick)
 }
 
 /// Swing/groove template: a fixed per-step table of timing offsets
@@ -334,9 +334,9 @@ impl GrooveTemplate {
         let push = (step as u128 * swing_ppm as u128 / 1_000_000) as i64;
         let n = (steps_per_beat * 4) as usize; // one bar
         let mut timing = vec![0i64; n];
-        for i in 0..n {
+        for (i, t) in timing.iter_mut().enumerate() {
             if i % 2 == 1 {
-                timing[i] = push;
+                *t = push;
             }
         }
         let mut accent = vec![0i32; n];

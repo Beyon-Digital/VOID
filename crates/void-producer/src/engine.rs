@@ -491,7 +491,7 @@ fn edge_condition(notes: &mut [GenNote], spec: &GenerationSpec, at_tail: bool) {
             .nearest_pitch(last_ctx.pitch + if direction >= 0 { 2 } else { -2 })
     } else {
         spec.scale
-            .nearest_pitch(last_ctx.pitch + direction.max(-2).min(2))
+            .nearest_pitch(last_ctx.pitch + direction.clamp(-2, 2))
     };
     let (lo, hi) = spec.role.register();
     first.pitch = target.clamp(lo, hi);

@@ -152,7 +152,7 @@ pub fn spec_for(req: &AccompanimentRequest) -> Result<GenerationSpec> {
 }
 
 fn hex_bytes(s: &str) -> Result<Vec<u8>> {
-    if s.len() % 2 != 0 || !s.chars().all(|c| c.is_ascii_hexdigit()) {
+    if !s.len().is_multiple_of(2) || !s.chars().all(|c| c.is_ascii_hexdigit()) {
         return Err(ProducerError::InvalidRequest("context hash not hex".into()));
     }
     Ok((0..s.len())
@@ -275,6 +275,7 @@ pub fn verify_locked_unchanged(
 /// Convenience used by tests + studio bridge: accept through the
 /// proposals crate (plan + optional indices), then verify the locked
 /// invariant on the post-apply region (caller supplies it).
+#[allow(clippy::too_many_arguments)]
 pub fn accept_plan_checked(
     rec: &ProposalRecord,
     rank: u32,
