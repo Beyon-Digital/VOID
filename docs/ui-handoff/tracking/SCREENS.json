@@ -80,9 +80,9 @@
    "id": "S06",
    "name": "Comp / audition and commit",
    "figmaNodeId": "4:508",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "done",
+   "lane": "UIP5",
+   "evidence": "UIP5_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T10",
     "UI-T11"
@@ -92,9 +92,9 @@
    "id": "S07",
    "name": "Perform / clips and queued scenes",
    "figmaNodeId": "4:608",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "done",
+   "lane": "UIP5",
+   "evidence": "UIP5_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T21",
     "UI-T22"
@@ -221,9 +221,9 @@
    "id": "S18",
    "name": "Plugin / missing and quarantined",
    "figmaNodeId": "4:1708",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "done",
+   "lane": "UIP5",
+   "evidence": "UIP5_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T25"
    ]
@@ -232,9 +232,9 @@
    "id": "S19",
    "name": "Recovery / engine stopped",
    "figmaNodeId": "4:1808",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "done",
+   "lane": "UIP5",
+   "evidence": "UIP5_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T26",
     "UI-T31"
@@ -255,9 +255,9 @@
    "id": "S21",
    "name": "Save / storage unavailable",
    "figmaNodeId": "4:2008",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "done",
+   "lane": "UIP5",
+   "evidence": "UIP5_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T27"
    ]
@@ -335,9 +335,9 @@
    "id": "S28",
    "name": "Perform / next scene playing",
    "figmaNodeId": "12:2937",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "done",
+   "lane": "UIP5",
+   "evidence": "UIP5_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T21"
    ]
