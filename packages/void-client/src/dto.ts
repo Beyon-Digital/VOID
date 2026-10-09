@@ -31,7 +31,27 @@ export type ViewKindName =
   | 'NOTE_RANGE'
   | 'ASSET_LIST'
   | 'PLUGIN_LIST'
-  | 'RECEIPT_LIST';
+  | 'RECEIPT_LIST'
+  // rev-2 (protocol minor 1). The wire also accepts the pinned snake_case
+  // spellings used by void-studio request builders ('job_list', …).
+  | 'TAKE_LIST'
+  | 'INPUT_DEVICE_LIST'
+  | 'JOB_LIST'
+  | 'MODEL_LIST'
+  | 'PROPOSAL_LIST'
+  | 'SCENE_LIST'
+  | 'take_list'
+  | 'input_device_list'
+  | 'job_list'
+  | 'model_list'
+  | 'proposal_list'
+  | 'scene_list';
+
+/** ArmTrackOp.monitor_mode values (MonitorMode enum, rev-2). */
+export type MonitorMode = 'OFF' | 'AUTOMATIC' | 'ON';
+
+/** Launch op quantize values (LaunchQuantize enum, rev-2). */
+export type LaunchQuantize = 'IMMEDIATE' | 'BAR' | 'BEAT' | 'CUSTOM';
 export type AckStatus = 'APPLIED' | 'DUPLICATE' | 'REJECTED' | 'OUTCOME_UNKNOWN';
 export type TransportState = 'STOPPED' | 'PLAYING' | 'RECORDING' | 'PAUSED';
 export type SaveStatus = 'SAVE_DURABLE' | 'SAVE_FAILED';
@@ -208,6 +228,179 @@ export interface ClosePluginEditorOp {
   plugin_instance_id: string;
 }
 
+// -- rev-2 ops (protocol minor 1) --------------------------------------------
+
+/** Arm/disarm a track for recording (NEEDS §7). */
+export interface ArmTrackOp {
+  track_id: string;
+  record_enabled?: boolean; // default true
+  /** INPUT_DEVICE_LIST row id; '' = engine default input. */
+  input_device?: string;
+  monitor_mode?: MonitorMode; // default AUTOMATIC
+  is_midi?: boolean;
+}
+
+/** Start a recording take; take_id '' = engine mints one. */
+export interface StartRecordingOp {
+  take_id?: string;
+}
+export interface StopRecordingOp {
+  /** true = discard the take instead of committing it. */
+  discard?: boolean;
+}
+/** Count-in: mode 'off' | 'bars' with bars 1..16. */
+export interface SetCountInOp {
+  mode: 'off' | 'bars';
+  bars?: number;
+}
+export interface SetMetronomeOp {
+  enabled: boolean;
+  gain?: number; // 0..1, default 0.5
+  recording_only?: boolean;
+}
+export interface SetPunchInOutOp {
+  enabled: boolean;
+  in_ticks?: I64; // required when enabled: 0 <= in < out
+  out_ticks?: I64;
+}
+
+/** serde shape of void_jobs::JobSpec — camelCase, decimal-string numerics. */
+export interface JobSpecEnvelope {
+  jobId: string;
+  projectId: string;
+  sourceRevision: I64;
+  contextSha256: string;
+  kind:
+    | 'symbolic'
+    | 'transcription'
+    | 'separation'
+    | 'audio_generation'
+    | 'visual_generation'
+    | 'analysis'
+    | 'av_export';
+  runtimeId: string;
+  runtimeSha256?: string;
+  modelId?: string;
+  modelSha256?: string;
+  inputs: string[];
+  parameters?: unknown;
+  reservations?: { ramBytes?: I64; vramBytes?: I64; cpuThreads?: number };
+  deadlineMonotonicNs?: I64;
+  outputScopeToken: string;
+  cloudConsentId?: string;
+}
+export interface SubmitJobOp {
+  spec: JobSpecEnvelope;
+}
+export interface CancelJobOp {
+  job_id: string;
+}
+export interface PauseJobOp {
+  job_id: string;
+}
+export interface InstallModelOp {
+  model_id: string;
+  model_version: string;
+  source_uri: string;
+}
+export interface RequestProposalOp {
+  context_digest: string;
+  seed?: I64;
+  max_proposals?: number; // 1..8
+}
+export interface ResolveProposalOp {
+  proposal_id: string;
+  accept: boolean;
+  /** candidate index within the proposal; -1/absent = the chosen one. */
+  candidate_rank?: number;
+}
+export interface PreviewNoteDto {
+  note_id?: string;
+  pitch: number; // 0..127
+  velocity: number; // 1..127
+  start_ticks: I64;
+  length_ticks: I64;
+}
+/** Transient non-persistent preview (audition) layer for a proposal. */
+export interface PreviewLayerOp {
+  proposal_id: string;
+  clip_id: string;
+  notes: PreviewNoteDto[];
+  enable?: boolean; // default true
+}
+/** Ingest a host-side file into container assets (NEEDS §17). */
+export interface IngestAssetOp {
+  rel_path: string;
+  media_type: string;
+}
+/** Relink a missing asset when the candidate's bytes match sha256. */
+export interface RelinkAssetOp {
+  asset_id: string;
+  sha256: string;
+}
+export interface SetPluginBypassOp {
+  plugin_instance_id: string;
+  bypassed: boolean;
+}
+export interface RescanPluginsOp {
+  /** '' = full rescan of the scanned-plugin cache. */
+  plugin_uid?: string;
+}
+export interface RestorePluginStateOp {
+  plugin_instance_id: string;
+  state_asset_id: string;
+}
+/** Checkpoint into a NEW container directory (NEEDS §3 save-as). */
+export interface SaveProjectAsOp {
+  container_dir: string;
+  name?: string;
+  reason?: string;
+}
+export interface LaunchSceneOp {
+  scene_id: string;
+  quantize?: LaunchQuantize; // default BAR
+  quantize_ticks?: I64; // required >0 when quantize = CUSTOM
+}
+export interface StopSceneOp {
+  /** '' = stop every playing slot. */
+  scene_id?: string;
+  quantize?: LaunchQuantize;
+  quantize_ticks?: I64;
+}
+export interface LaunchClipOp {
+  slot_id: string;
+  quantize?: LaunchQuantize;
+  quantize_ticks?: I64;
+}
+
+/**
+ * Pinned flat rev-2 op shapes (void-studio jobs/job.ts): a snake_case
+ * `op` discriminator with sibling fields, equivalent to the tagged form.
+ */
+export interface SubmitJobFlatOp {
+  op: 'submit_job';
+  spec: JobSpecEnvelope;
+}
+export interface CancelJobFlatOp {
+  op: 'cancel_job';
+  jobId: string;
+}
+export interface PauseJobFlatOp {
+  op: 'pause_job';
+  jobId: string;
+}
+export interface InstallModelFlatOp {
+  op: 'install_model';
+  modelId: string;
+  modelVersion: string;
+  sourceUri: string;
+}
+export type FlatPersistentOp =
+  | SubmitJobFlatOp
+  | CancelJobFlatOp
+  | PauseJobFlatOp
+  | InstallModelFlatOp;
+
 /** Tagged persistent op: exactly one key. */
 export type PersistentOp =
   | { CreateProjectOp: CreateProjectOp }
@@ -241,7 +434,33 @@ export type PersistentOp =
   | { RemovePluginOp: RemovePluginOp }
   | { SetPluginParamOp: SetPluginParamOp }
   | { OpenPluginEditorOp: OpenPluginEditorOp }
-  | { ClosePluginEditorOp: ClosePluginEditorOp };
+  | { ClosePluginEditorOp: ClosePluginEditorOp }
+  // rev-2 (protocol minor 1)
+  | { ArmTrackOp: ArmTrackOp }
+  | { StartRecordingOp: StartRecordingOp }
+  | { StopRecordingOp: StopRecordingOp }
+  | { SetCountInOp: SetCountInOp }
+  | { SetMetronomeOp: SetMetronomeOp }
+  | { SetPunchInOutOp: SetPunchInOutOp }
+  | { SubmitJobOp: SubmitJobOp }
+  | { CancelJobOp: CancelJobOp }
+  | { PauseJobOp: PauseJobOp }
+  | { InstallModelOp: InstallModelOp }
+  | { RequestProposalOp: RequestProposalOp }
+  | { ResolveProposalOp: ResolveProposalOp }
+  | { PreviewLayerOp: PreviewLayerOp }
+  | { IngestAssetOp: IngestAssetOp }
+  | { RelinkAssetOp: RelinkAssetOp }
+  | { SetPluginBypassOp: SetPluginBypassOp }
+  | { RescanPluginsOp: RescanPluginsOp }
+  | { RestorePluginStateOp: RestorePluginStateOp }
+  | { SaveProjectAsOp: SaveProjectAsOp }
+  | { LaunchSceneOp: LaunchSceneOp }
+  | { StopSceneOp: StopSceneOp }
+  | { LaunchClipOp: LaunchClipOp };
+
+/** Tagged union plus the pinned flat rev-2 op DTOs. */
+export type SendableOp = PersistentOp | FlatPersistentOp;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type PersistentOpName = KeysOfUnion<PersistentOp>;
@@ -257,7 +476,7 @@ export interface PersistentCommandDto {
   project_id: string;
   engine_epoch: I64; // u64 decimal string
   expected_revision: I64; // u64 decimal string
-  op: PersistentOp;
+  op: SendableOp;
   /** Mirrored at top level for lifecycle registration in commands.rs. */
   container_dir?: string;
 }
@@ -284,6 +503,8 @@ export interface ReadRequestDto {
   track_id?: string; // optional scope filter
   start_ticks?: I64; // NOTE_RANGE window; -1 = unbounded
   end_ticks?: I64;
+  /** JOB_LIST/PROPOSAL_LIST: include terminal-state rows (rev-2). */
+  include_terminal?: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -390,11 +611,48 @@ export interface PanicAccepted {
   accepted: true;
 }
 
+/** rev-2: job status/progress transition (NEEDS §11). */
+export interface JobEvent {
+  kind: 'JobEvent';
+  project_id: string;
+  job_id: string;
+  status:
+    | 'queued'
+    | 'running'
+    | 'succeeded'
+    | 'failed'
+    | 'cancelling'
+    | 'cancelled';
+  /** <0 means the job has not reported progress. */
+  percent: number;
+  message: string;
+  quarantined: boolean;
+}
+
+/** rev-2: a live proposal was invalidated (NEEDS §14). */
+export interface ProposalStaleEvent {
+  kind: 'ProposalStaleEvent';
+  project_id: string;
+  proposal_id: string;
+  cause: 'context_changed' | 'target_gone' | 'session_ended' | string;
+}
+
+/** rev-2: an input device an armed track needs disappeared (NEEDS §7). */
+export interface InputDeviceLostEvent {
+  kind: 'InputDeviceLostEvent';
+  project_id: string;
+  device_id: string;
+  device_name: string;
+}
+
 export type TelemetryEvent =
   | ClockSnapshot
   | MeterFrame
   | SaveResultEvent
-  | TransportAck;
+  | TransportAck
+  | JobEvent
+  | ProposalStaleEvent
+  | InputDeviceLostEvent;
 
 // -- engine lifecycle ---------------------------------------------------------
 
@@ -435,7 +693,7 @@ export function commandDto(fields: {
   projectId: string;
   engineEpoch: string | number | bigint;
   expectedRevision: string | number | bigint;
-  op: PersistentOp;
+  op: SendableOp;
 }): PersistentCommandDto {
   const dto: PersistentCommandDto = {
     command_id: fields.commandId,
