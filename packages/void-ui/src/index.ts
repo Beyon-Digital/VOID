@@ -1,4 +1,25 @@
-export * from '../components/Button';
+// Signal Studio canonical families (UI01) — legacy names (Button, Knob,
+// Fader, ClipBlock) remain exported as adapters over these.
+export * from '../components/ActionButton';
+export * from '../components/IconButton';
+export * from '../components/WorkspaceTab';
+export * from '../components/StatusBadge';
+export * from '../components/Field';
+export * from '../components/TimelineClip';
+export * from '../components/ParameterKnob';
+export * from '../components/ChannelFader';
+export * from '../components/DeviceSlot';
+export * from '../components/AssetRow';
+export * from '../components/Toast';
+export * from '../components/ValueEntry';
+export * from '../components/editing';
+export * from '../components/usePointerGesture';
+export { Button, type ButtonProps } from '../components/Button';
+export { Knob, type KnobProps } from '../components/Knob';
+export { Fader, type FaderProps } from '../components/Fader';
+export { ClipBlock, type ClipBlockProps } from '../components/ClipBlock';
+export * from '../theme/useVoidTheme';
+export { VOID_THEME_CSS, VOID_THEME_STYLE_ID } from '../theme/voidTheme';
 export * from '../components/Panel';
 export * from '../components/Meter';
 export * from '../components/TimelineRuler';

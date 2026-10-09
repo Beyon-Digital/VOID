@@ -107,7 +107,7 @@ function useEditor<T>(selector: (s: EditorState) => T): T {
 // shared transport bar — one bar, every workspace
 // ---------------------------------------------------------------------------
 
-function SharedTransportBar() {
+export function SharedTransportBar() {
   const clock = useStudio((s) => s.telemetry.clock);
   const attached = useStudio((s) => s.engine.attached);
   const viewport = useStudio((s) => s.viewport);
@@ -234,7 +234,7 @@ function useTrackRows(): { tracks: TrackRow[]; loaded: boolean } {
   }, [entry]);
 }
 
-function TrackListColumn() {
+export function TrackListColumn() {
   const { tracks, loaded } = useTrackRows();
   const selection = useStudio((s) => s.selection);
   const attached = useStudio((s) => s.engine.attached);
@@ -569,7 +569,7 @@ function TrackLane(props: { track: TrackRow; viewport: TickViewport; zoom: Zoom 
   );
 }
 
-function TimelinePane() {
+export function TimelinePane() {
   const { tracks, loaded } = useTrackRows();
   const viewport = useStudio((s) => s.viewport);
   const zoom = useStudio((s) => s.zoom);
@@ -707,7 +707,7 @@ const NOTE_ROW_H = 14;
 const VEL_LANE_H = 56;
 const GRID_W = 760;
 
-function PianoRollPane() {
+export function PianoRollPane() {
   const clipSel = useEditor((s) => s.clipSelection);
   const noteSel = useEditor((s) => s.noteSelection);
   const snap = useEditor((s) => s.snap);
