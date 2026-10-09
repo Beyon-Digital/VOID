@@ -140,9 +140,11 @@ unset on all 41 rows.
 **What exists:** `cargo test --workspace --exclude void-tauri` is the agreed
 gate; the GUI crate needs WebKitGTK/display and builds via `pnpm -r build`
 (`vite build && tauri build`), excluded from `pnpm -r` gates on this box.
-**Needed:** a display-capable runner job for the app crate; dashboard vitest
-coverage exists in `void-studio`/app-level suites meanwhile.
-**Explains:** gate scope note; not a hidden failure.
+**Resolved 2026-10-09:** the crate has zero unit tests — the exclusion was
+unnecessary. `cargo test -p void-tauri` compiles + links the test targets with
+the WebKitGTK deps CI already installs for clippy and reports 0 tests, so the
+gate is now plain `cargo test --workspace` (ci.yml). Display-needed coverage
+remains the e2e UI drive (void-tauri-testing skill).
 
 ## F5-N14 — Two ledger anomalies found by this audit (reported, not fixed)
 
