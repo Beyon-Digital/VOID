@@ -38,6 +38,7 @@ import type { ReadItem } from 'void-client';
 import { getClient } from '../../../client';
 import { useStudioCompactContext } from '../../useStudioData';
 import { exportView, lastSubmit } from './exportStore';
+import { exportJobEnvelope } from 'void-studio/src/export/job';
 
 const FORMATS: { id: ExportFormat; label: string }[] = [
   { id: 'wav', label: 'WAV' },
@@ -214,15 +215,36 @@ export default function ExportScreen() {
       lastSubmit.message = 'spec validation failed';
       return;
     }
-    // The spec validated. This shell exposes no export/job invoke — the
-    // honest report is the capability gap, not a fabricated progress bar.
-    lastSubmit.spec = spec;
-    lastSubmit.status = 'unavailable';
-    lastSubmit.message =
-      'spec validated, but this shell has no export-runner invoke (void-export is not wired to send_command) — submission held';
-    setSubmitNote(
-      `Spec for "${spec.outputName}" validated against checkpoint ${ctx.checkpointId}. Submission is unavailable: the export runner has no invoke surface on this shell yet.`,
+    // rev-2: export submit is SubmitJobOp{kind:'av_export'} — the
+    // checkpoint manifest sha pins the input bytes; runtimeSha256 is
+    // the coordinator's to pin (the UI never fabricates a runner hash).
+    const envelope = exportJobEnvelope(
+      spec,
+      save?.manifest_sha256 ?? '',
+      '',
     );
+    void getClient()
+      .sendCommand({ SubmitJobOp: { spec: envelope } })
+      .then((r) => {
+        lastSubmit.spec = spec;
+        if (r.status === 'REJECTED') {
+          lastSubmit.status = 'rejected';
+          lastSubmit.message = r.message || r.error || 'coordinator rejected the export job';
+          setSubmitNote(`Export rejected: ${lastSubmit.message}.`);
+          return;
+        }
+        lastSubmit.status = 'submitted';
+        lastSubmit.message = `submit ${r.status.toLowerCase()} — job ${envelope.jobId}`;
+        setSubmitNote(
+          `Export job submitted (${r.status.toLowerCase()}) — progress lands as JobEvents on the Jobs screen.`,
+        );
+      })
+      .catch((e) => {
+        lastSubmit.spec = spec;
+        lastSubmit.status = 'error';
+        lastSubmit.message = String(e instanceof Error ? e.message : e);
+        setSubmitNote(`Export submit failed: ${lastSubmit.message}.`);
+      });
   };
 
   const setField = exportView.getState().actions.set;

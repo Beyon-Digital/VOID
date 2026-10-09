@@ -31,6 +31,10 @@ import {
 } from 'void-studio/src/ingest';
 import type { ModelRow } from 'void-studio/src/jobs/models';
 import { parseModelList } from 'void-studio/src/jobs/models';
+import { cancelJobOp, submitJobOp } from 'void-studio/src/jobs/job';
+import type { JobSpecEnvelope } from 'void-studio/src/jobs/job';
+import type { CommandReceipt, PreviewNoteDto } from 'void-client';
+import type { StaleCause } from 'void-studio/src/proposals/types';
 import { getClient } from '../../client';
 import { useEditor } from '../useStudioData';
 
@@ -99,11 +103,16 @@ export function bindFeatureStores(): () => void {
     }
   });
   const unTelemetry = client.onTelemetry((ev) => {
-    ingestTelemetryEvent(
-      ev as unknown as Record<string, unknown>,
-      jobsStore,
-      generationStore,
-    );
+    const e = ev as unknown as Record<string, unknown>;
+    ingestTelemetryEvent(e, jobsStore, generationStore);
+    // rev-2 (NEEDS §14): pushed staleness — folds alongside the local
+    // revision/context rescan; the store dedupes by proposal id.
+    if (e.kind === 'ProposalStaleEvent') {
+      const cause =
+        typeof e.cause === 'string' ? (e.cause as StaleCause) : 'context_changed';
+      const pid = typeof e.proposal_id === 'string' ? e.proposal_id : undefined;
+      proposalsStore.getState().actions.markStale(cause, pid);
+    }
   });
   const unLost = client.onEngineLost(() => {
     // Session ended — every live proposal is stale (UI-T15).
@@ -114,6 +123,7 @@ export function bindFeatureStores(): () => void {
     rescanStaleness(proposalsStore, studioStore.getState().revision);
   });
   bound = true;
+  void refreshFeatureViews();
   return () => {
     unControl();
     unTelemetry();
@@ -128,6 +138,54 @@ export function useFeatureStores(): void {
     if (bound) return undefined;
     return bindFeatureStores();
   }, []);
+}
+
+// -- rev-2 bounded view reads (JOB_LIST / MODEL_LIST / PROPOSAL_LIST) ---------
+
+/** Read every page of a rev-2 view and return decoded summary rows.
+ * Malformed rows drop; a coordinator that rejects the view name
+ * surfaces an empty list — never a fabricated one. */
+async function readViewRows(
+  view:
+    | 'JOB_LIST'
+    | 'MODEL_LIST'
+    | 'PROPOSAL_LIST'
+    | 'TAKE_LIST'
+    | 'INPUT_DEVICE_LIST'
+    | 'SCENE_LIST',
+  opts: { includeTerminal?: boolean } = {},
+): Promise<unknown[]> {
+  const rows: unknown[] = [];
+  const client = getClient();
+  for await (const page of client.readViewPages({
+    view,
+    include_terminal: opts.includeTerminal ?? false,
+  })) {
+    for (const item of page.items ?? []) {
+      try {
+        rows.push(JSON.parse(item.summary_json));
+      } catch {
+        /* malformed row — drop, never fake */
+      }
+    }
+  }
+  return rows;
+}
+
+/**
+ * Pull the feature views the coordinator now serves (rev-2). Called
+ * from bindFeatureStores on attach and by screens on focus; each read
+ * is independent so one absent view never blanks the others.
+ */
+export async function refreshFeatureViews(): Promise<void> {
+  const [jobs, models, proposals] = await Promise.all([
+    readViewRows('JOB_LIST', { includeTerminal: true }).catch(() => null),
+    readViewRows('MODEL_LIST').catch(() => null),
+    readViewRows('PROPOSAL_LIST').catch(() => null),
+  ]);
+  if (jobs) jobsStore.getState().actions.ingestList(jobs);
+  if (models) setModelRows(parseModelList(models));
+  if (proposals) proposalsStore.getState().actions.ingestList(proposals);
 }
 
 // -- selection → facts ---------------------------------------------------------
@@ -185,7 +243,125 @@ export async function acceptProposal(proposalId: string): Promise<{
 }
 
 export function dismiss(proposalId: string): void {
+  // rev-2: ResolveProposalOp{accept:false} is the coordinator-side
+  // bookkeeping; the local ghost preview drops either way.
+  const sel = proposalsStore.getState().selection;
+  const rank =
+    sel && sel.proposalId === proposalId ? sel.candidateRank : undefined;
+  void getClient()
+    .sendCommand({
+      ResolveProposalOp: {
+        proposal_id: proposalId,
+        accept: false,
+        candidate_rank: rank,
+      },
+    })
+    .catch(() => undefined);
   dismissProposal(proposalsStore, proposalId);
+}
+
+// -- rev-2 proposal actions (NEEDS §12–14) -------------------------------------
+
+/** sha256-hex of a request context — the coordinator treats it as an
+ * opaque digest naming what the suggestions should continue. */
+async function digestContext(context: Record<string, unknown>): Promise<string> {
+  const bytes = new TextEncoder().encode(JSON.stringify(context));
+  const hash = await crypto.subtle.digest('SHA-256', bytes);
+  return Array.from(new Uint8Array(hash))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
+/** RequestProposalOp — ask the engine for continuations of a context. */
+export async function requestProposal(
+  context: Record<string, unknown>,
+  opts: { maxProposals?: number; seed?: string } = {},
+): Promise<CommandReceipt> {
+  return getClient().sendCommand({
+    RequestProposalOp: {
+      context_digest: await digestContext(context),
+      seed: opts.seed,
+      max_proposals: opts.maxProposals ?? 1,
+    },
+  });
+}
+
+/** RequestProposalOp over the current clip selection — the digest names
+ * project + track + clip + revision so the coordinator can reject a
+ * request made against stale context. */
+export async function requestSuggestion(
+  maxProposals = 3,
+): Promise<CommandReceipt> {
+  const s = studioStore.getState();
+  const sel = editorStore.getState().clipSelection;
+  return requestProposal(
+    {
+      project_id: s.projectId ?? '',
+      track_id: sel.trackId ?? '',
+      clip_id: sel.clipIds[0] ?? '',
+      revision: s.revision,
+    },
+    { maxProposals },
+  );
+}
+
+/** PreviewLayerOp — native audition of a candidate's ghost notes. */
+export async function auditionProposal(
+  proposalId: string,
+  enable = true,
+): Promise<CommandReceipt | null> {
+  const state = proposalsStore.getState();
+  const rec = state.records[proposalId];
+  if (!rec) return null;
+  const clipId = rec.context?.clipId ?? '';
+  if (!clipId) return null;
+  const rank =
+    state.selection?.proposalId === proposalId
+      ? state.selection.candidateRank
+      : (rec.candidates[0]?.rank ?? 1);
+  const cand = rec.candidates.find((c) => c.rank === rank) ?? rec.candidates[0];
+  const notes: PreviewNoteDto[] = (cand?.notes ?? []).map((n) => ({
+    note_id: '',
+    pitch: n.pitch,
+    velocity: n.velocity,
+    start_ticks: n.onsetTicks,
+    length_ticks: n.lengthTicks,
+  }));
+  return getClient().sendCommand({
+    PreviewLayerOp: {
+      proposal_id: proposalId,
+      clip_id: clipId,
+      notes,
+      enable,
+    },
+  });
+}
+
+// -- rev-2 job actions (NEEDS §9–11) --------------------------------------------
+
+/** SubmitJobOp — the pinned flat DTO form the codec accepts. */
+export function submitJobSpec(spec: JobSpecEnvelope): Promise<CommandReceipt> {
+  return getClient().sendCommand(submitJobOp(spec));
+}
+
+export function cancelJob(jobId: string): Promise<CommandReceipt> {
+  return getClient().sendCommand(cancelJobOp(jobId));
+}
+
+/** PauseJobOp — the coordinator may reject; the receipt says so. */
+export function pauseJob(jobId: string): Promise<CommandReceipt> {
+  return getClient().sendCommand({ op: 'pause_job', jobId });
+}
+
+/** InstallModelOp for a registry row (MODEL_LIST). */
+export function installModel(row: ModelRow): Promise<CommandReceipt> {
+  return getClient().sendCommand({
+    InstallModelOp: {
+      model_id: row.modelId,
+      model_version: row.version,
+      source_uri: '',
+    },
+  });
 }
 
 export async function undoAccept(proposalId: string): Promise<{

@@ -5,8 +5,9 @@
 // (`contextSha256`). Any later edit, clip removal, or session change
 // must refuse acceptance — never silently rebase musical edits.
 //
-// There is no ProposalStaleEvent on the wire yet (NEEDS.md §14), so
-// staleness is detected locally from facts the UI can observe:
+// The wire carries ProposalStaleEvent (rev-2); the local rescan remains
+// a second detector for drift between push frames. Facts observed:
+//   • revision drift — doc revision moved past sourceRevision
 //   • revision drift — doc revision moved past sourceRevision
 //   • context churn — a newer record for the same context bytes
 //   • target removal — the context clip vanished from CLIP_LIST

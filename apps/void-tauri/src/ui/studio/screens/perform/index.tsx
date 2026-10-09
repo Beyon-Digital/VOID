@@ -10,12 +10,14 @@
 //   - stop-all / all-notes-off is PANIC on the transport channel: it is
 //     acked by send, never queued behind edits (UI-T22);
 //   - region-bound scenes map to SEEK + SET_CYCLE at the boundary
-//     (sceneTransportOps) — per-slot clip triggering has no wire op yet
-//     and is surfaced as such, never faked.
-//
-// Scene definitions are session view-state (`void-studio/src/scenes`);
-// there is no SCENE_LIST wire view in protocol major.1 — the screen says
-// so instead of seeding demo scenes.
+//     (sceneTransportOps) — real transport ops;
+//   - rev-2 (protocol minor 1): LaunchSceneOp / StopSceneOp /
+//     LaunchClipOp are on the wire and are sent for every launch — a
+//     REJECTED receipt (e.g. a scene the coordinator does not know) is
+//     surfaced, never painted as a queued launch, unless the scene is
+//     region-bound and the real SEEK+SET_CYCLE mapping still applies.
+//   - SCENE_LIST is a rev-2 read view — launch-state rows fold in when
+//     the coordinator serves them; the local machine stays the paint.
 
 import * as React from 'react';
 import {
@@ -170,15 +172,57 @@ export default function PerformScreen() {
     }
   }, [nowTicks]);
 
+  /** Map the local quantize choice onto the wire enum (rev-2). */
+  const wireQuantize = (): { quantize: 'IMMEDIATE' | 'BAR' | 'BEAT' | 'CUSTOM'; quantize_ticks?: string } => {
+    if (defaultQuantize === 'immediate') return { quantize: 'IMMEDIATE' };
+    if (defaultQuantize === 'beat') return { quantize: 'BEAT' };
+    if (typeof defaultQuantize === 'object' && defaultQuantize !== null && 'ticks' in defaultQuantize)
+      return { quantize: 'CUSTOM', quantize_ticks: String(defaultQuantize.ticks) };
+    return { quantize: 'BAR' };
+  };
+
   const launchScene = (sceneId: string) => {
     setLaunchError('');
-    try {
-      // nowTicks null (engine detached / no clock) queues from tick 0 —
-      // the slot stays visibly pending until real clock telemetry lands.
-      actions.launch(sceneId, nowTicks ?? '0', defaultQuantize);
-    } catch (e) {
-      setLaunchError(String(e));
-    }
+    const scene = grid.scenes.find((s) => s.sceneId === sceneId);
+    // rev-2 LaunchSceneOp — the receipt decides whether the engine owns
+    // the launch; a rejection is surfaced, never painted as queued.
+    void getClient()
+      .sendCommand({ LaunchSceneOp: { scene_id: sceneId, ...wireQuantize() } })
+      .then((r) => {
+        if (r.status === 'REJECTED') {
+          if (!scene?.region) {
+            setLaunchError(
+              `scene launch rejected: ${r.message || r.error || 'no detail'}`,
+            );
+            return;
+          }
+          // Region-bound scenes still get the real SEEK+SET_CYCLE mapping
+          // at the boundary even when the coordinator doesn't track the
+          // scene entity.
+        }
+        try {
+          // nowTicks null (engine detached / no clock) queues from tick 0 —
+          // the slot stays visibly pending until real clock telemetry lands.
+          actions.launch(sceneId, nowTicks ?? '0', defaultQuantize);
+        } catch (e) {
+          setLaunchError(String(e));
+        }
+      })
+      .catch((e) => setLaunchError(String(e instanceof Error ? e.message : e)));
+  };
+
+  /** Per-slot clip launch (rev-2 LaunchClipOp) — the coordinator may not
+   * know a UI-minted slot id; the receipt is surfaced honestly. */
+  const launchClip = (slotId: string) => {
+    void getClient()
+      .sendCommand({ LaunchClipOp: { slot_id: slotId, ...wireQuantize() } })
+      .then((r) => {
+        if (r.status === 'REJECTED')
+          setLaunchError(
+            `clip launch rejected: ${r.message || r.error || 'no detail'}`,
+          );
+      })
+      .catch((e) => setLaunchError(String(e instanceof Error ? e.message : e)));
   };
 
   const panicAll = async () => {
@@ -186,6 +230,11 @@ export default function PerformScreen() {
     try {
       // Immediate quantize + PANIC: never queued, acked by send (UI-T22).
       actions.stopAll(nowTicks ?? '0', 'immediate');
+      // rev-2: StopSceneOp{scene_id:''} = stop every playing slot —
+      // best-effort alongside the transport PANIC.
+      void getClient()
+        .sendCommand({ StopSceneOp: { scene_id: '', quantize: 'IMMEDIATE' } })
+        .catch(() => undefined);
       await getClient().panic();
       const st = sceneStore.getState();
       const ats = new Set(
@@ -460,7 +509,13 @@ export default function PerformScreen() {
                           color={scene.color}
                           phase={phase === 'pending' || phase === 'playing' || phase === 'stopping' ? phase : 'stopped'}
                           quantizeLabel={quantizeLabel(defaultQuantize)}
-                          onLaunch={() => launchScene(scene.sceneId)}
+                          onLaunch={() => {
+                            if (slot?.content.kind === 'clip') {
+                              launchClip(slot.slotId);
+                            } else {
+                              launchScene(scene.sceneId);
+                            }
+                          }}
                           onStop={() => void panicAll()}
                         />
                         <button

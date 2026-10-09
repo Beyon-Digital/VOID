@@ -14,7 +14,9 @@ export const lastSubmit: {
   status:
     | 'idle'
     | 'ready'
+    | 'submitted'
     | 'unavailable'
-    | 'rejected';
+    | 'rejected'
+    | 'error';
   message?: string;
 } = { spec: null, status: 'idle' };

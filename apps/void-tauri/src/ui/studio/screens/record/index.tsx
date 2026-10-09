@@ -3,13 +3,15 @@
 // Real data: TRACK_LIST (armed-track choice + take lanes), PROJECT_SUMMARY's
 // `recording` block (phase / armed tracks / takeId / lastError — emitted by
 // EngineSession::recordingSummaryJson), MeterFrame telemetry for the input
-// meter, and the takes view-store folders for recorded takes.
+// meter, INPUT_DEVICE_LIST for host input enumeration, and the takes
+// view-store folders for recorded takes.
 //
-// Arm / start / monitor / count-in / metronome / punch ops are not on the
-// wire yet (docs/engine/NEEDS.md §7) — controls show the real engine phase
-// and surface that honest reason instead of simulating. STOP is a real op
-// (sendTransport STOP); stopping preserves the take per the engine contract
-// and review opens only once the retained take is visible (UI-T10).
+// rev-2 (protocol minor 1, NEEDS §7–8): arm/monitor/count-in/metronome
+// and the take lifecycle are real ops — ArmTrackOp (record_enabled +
+// input_device + monitor_mode ride one op), SetCountInOp,
+// SetMetronomeOp, StartRecordingOp, StopRecordingOp. Stopping preserves
+// the take per the engine contract and review opens only once the
+// retained take is visible (UI-T10).
 
 import * as React from 'react';
 import { ActionButton, Meter, StatusBadge, TakeLane, TrackHeader, tokens } from 'void-ui';
@@ -112,7 +114,12 @@ export default function RecordScreen() {
   const reviewTakeId = useStore(recordingView, (s) => s.reviewTakeId);
   const rActions = useStore(recordingView, (s) => s.actions);
   const [busyStop, setBusyStop] = React.useState(false);
+  const [busyStart, setBusyStart] = React.useState(false);
   const [stopError, setStopError] = React.useState('');
+  const [ctlError, setCtlError] = React.useState('');
+  const [inputDevices, setInputDevices] = React.useState<
+    { deviceId: string; name: string }[]
+  >([]);
 
   const recording = parseRecordingSummary(summary.recording ?? undefined);
   const uiState = recordingUiState({ engineAttached: attached, summary: recording, reviewing: reviewTakeId !== null });
@@ -123,6 +130,46 @@ export default function RecordScreen() {
     if (!projectId || !attached) return;
     void loadViewPage(studioStore, getClient(), 'TRACK_LIST').catch(() => undefined);
   }, [projectId, attached, revision]);
+
+  // rev-2 INPUT_DEVICE_LIST (NEEDS §8): engine-reported host inputs.
+  React.useEffect(() => {
+    if (!projectId || !attached) {
+      setInputDevices([]);
+      return;
+    }
+    let live = true;
+    const read = async () => {
+      const rows: { deviceId: string; name: string }[] = [];
+      try {
+        for await (const page of getClient().readViewPages({ view: 'INPUT_DEVICE_LIST' })) {
+          for (const it of page.items ?? []) {
+            try {
+              const p = JSON.parse(it.summary_json) as Record<string, unknown>;
+              const deviceId =
+                typeof p.device_id === 'string'
+                  ? p.device_id
+                  : typeof p.deviceId === 'string'
+                    ? p.deviceId
+                    : typeof p.id === 'string'
+                      ? p.id
+                      : it.object_id;
+              const name = typeof p.name === 'string' ? p.name : deviceId;
+              if (deviceId !== '') rows.push({ deviceId, name });
+            } catch {
+              /* malformed row — drop, never fake a device */
+            }
+          }
+        }
+      } catch {
+        /* older coordinator — the column stays honest below */
+      }
+      if (live) setInputDevices(rows);
+    };
+    void read();
+    return () => {
+      live = false;
+    };
+  }, [projectId, attached]);
 
   const tracks = trackItems(trackEntry);
   const audioTracks = tracks.filter((x) => x.kind === 'AUDIO' || x.kind === 'INSTRUMENT');
@@ -144,11 +191,16 @@ export default function RecordScreen() {
     }
   }, [recording?.phase, recording?.takeId, rActions]);
 
+  // rev-2 ops — each returns the receipt; the engine summary/telemetry
+  // remains the truth (a REJECTED receipt never repaints a badge).
+  const sendCtl = (send: () => Promise<unknown>) =>
+    send().catch((e) => setCtlError(String(e instanceof Error ? e.message : e)));
+
   const stopRecording = async () => {
     setBusyStop(true);
     setStopError('');
     try {
-      await getClient().stop(); // real sendTransport STOP — engine flushes + preserves the take
+      await getClient().sendCommand({ StopRecordingOp: { discard: false } });
     } catch (e) {
       setStopError(String(e instanceof Error ? e.message : e));
     } finally {
@@ -156,11 +208,77 @@ export default function RecordScreen() {
     }
   };
 
+  const startRecording = async () => {
+    setBusyStart(true);
+    setStopError('');
+    try {
+      await getClient().sendCommand({ StartRecordingOp: { take_id: '' } });
+    } catch (e) {
+      setStopError(String(e instanceof Error ? e.message : e));
+    } finally {
+      setBusyStart(false);
+    }
+  };
+
+  const setArm = (track: TrackItem, recordEnabled: boolean) =>
+    sendCtl(() =>
+      getClient().sendCommand({
+        ArmTrackOp: {
+          track_id: track.trackId,
+          record_enabled: recordEnabled,
+          is_midi: track.kind === 'INSTRUMENT',
+        },
+      }),
+    );
+
+  const setMonitor = (mode: 'off' | 'automatic' | 'on') => {
+    if (!focusTrackId) return;
+    rActions.setMonitorMode(mode);
+    // Monitor rides ArmTrackOp.monitor_mode — record_enabled preserves
+    // the engine-reported arm state so a monitor toggle never arms.
+    void sendCtl(() =>
+      getClient().sendCommand({
+        ArmTrackOp: {
+          track_id: focusTrackId,
+          record_enabled: armedIds.has(focusTrackId),
+          monitor_mode: mode.toUpperCase() as 'OFF' | 'AUTOMATIC' | 'ON',
+        },
+      }),
+    );
+  };
+
+  const setCountIn = (bars: number) => {
+    rActions.setCountInBars(bars);
+    void sendCtl(() =>
+      getClient().sendCommand({
+        SetCountInOp: bars === 0 ? { mode: 'off' } : { mode: 'bars', bars },
+      }),
+    );
+  };
+
+  const setMetronome = (enabled: boolean) => {
+    rActions.setMetronome(enabled);
+    void sendCtl(() => getClient().sendCommand({ SetMetronomeOp: { enabled } }));
+  };
+
+  const pickInput = (deviceId: string) => {
+    if (!focusTrackId) return;
+    void sendCtl(() =>
+      getClient().sendCommand({
+        ArmTrackOp: {
+          track_id: focusTrackId,
+          record_enabled: armedIds.has(focusTrackId),
+          input_device: deviceId,
+        },
+      }),
+    );
+  };
+
   const focusFolder = focusTrackId
     ? Object.values(folders).find((f) => f.trackId === focusTrackId)
     : undefined;
   const focusTrack = tracks.find((x) => x.trackId === focusTrackId);
-  const noWireReason = 'record ops are not on the wire yet (NEEDS §7) — the engine shows the real phase above';
+  const ctlReady = attached && focusTrackId !== null;
   const loopOn = clock ? BigInt(clock.loop_end_ticks) > BigInt(clock.loop_start_ticks) : false;
 
   const inputColumn = (
@@ -170,11 +288,40 @@ export default function RecordScreen() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: tokens.space12 }}>
           <div>
             <span style={{ fontSize: 11, color: tokens.subtle }}>Input</span>
-            <p style={{ margin: '2px 0 0', fontSize: 13, color: tokens.text, fontFamily: tokens.mono }}>
-              —
-            </p>
+            {inputDevices.length > 0 ? (
+              <select
+                aria-label="Input device"
+                disabled={!ctlReady}
+                title={ctlReady ? undefined : 'engine detached or no track in focus'}
+                onChange={(ev) => pickInput(ev.target.value)}
+                style={{
+                  marginTop: 4,
+                  width: '100%',
+                  fontSize: 13,
+                  color: tokens.text,
+                  fontFamily: tokens.mono,
+                  background: tokens.raised,
+                  border: `1px solid ${tokens.line}`,
+                  borderRadius: tokens.radius8,
+                  padding: '4px 6px',
+                }}
+              >
+                <option value="">Engine default input</option>
+                {inputDevices.map((d) => (
+                  <option key={d.deviceId} value={d.deviceId}>
+                    {d.name}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <p style={{ margin: '2px 0 0', fontSize: 13, color: tokens.text, fontFamily: tokens.mono }}>
+                engine default
+              </p>
+            )}
             <p style={{ margin: '2px 0 0', fontSize: 11, color: tokens.subtle }}>
-              input enumeration is not on the wire yet (NEEDS §8)
+              {inputDevices.length > 0
+                ? 'selecting an input re-arms the focus track on that device (ArmTrackOp.input_device)'
+                : 'INPUT_DEVICE_LIST reported no host inputs — engine default is used'}
             </p>
           </div>
           <div>
@@ -198,28 +345,53 @@ export default function RecordScreen() {
                   key={m}
                   size="sm"
                   variant={monitorMode === m ? 'secondary' : 'ghost'}
-                  disabled
-                  title={noWireReason}
-                  onClick={() => rActions.setMonitorMode(m)}
+                  disabled={!ctlReady}
+                  title={
+                    ctlReady
+                      ? 'ArmTrackOp.monitor_mode on the focus track'
+                      : 'engine detached or no track in focus'
+                  }
+                  onClick={() => setMonitor(m)}
                 >
                   {m === 'automatic' ? 'Automatic' : m === 'off' ? 'Off' : 'On'}
                 </ActionButton>
               ))}
             </div>
-            <p style={{ margin: '4px 0 0', fontSize: 11, color: tokens.subtle }}>{noWireReason}</p>
+            <p style={{ margin: '4px 0 0', fontSize: 11, color: tokens.subtle }}>
+              monitor rides ArmTrackOp on the focus track — the engine confirms it
+            </p>
           </div>
           <div style={{ display: 'flex', gap: tokens.space12, flexWrap: 'wrap' }}>
             <div>
               <span style={{ fontSize: 11, color: tokens.subtle }}>Count-in</span>
-              <p style={{ margin: '2px 0 0', fontSize: 13, color: tokens.text }}>
-                {countInBars === 0 ? 'Off' : `${countInBars} bar${countInBars === 1 ? '' : 's'}`}
-              </p>
-              <p style={{ margin: '2px 0 0', fontSize: 11, color: tokens.subtle }}>intent only — NEEDS §7</p>
+              <div role="group" aria-label="Count-in" style={{ display: 'flex', gap: 4, marginTop: 4 }}>
+                {[0, 1, 2, 4].map((b) => (
+                  <ActionButton
+                    key={b}
+                    size="sm"
+                    variant={countInBars === b ? 'secondary' : 'ghost'}
+                    disabled={!attached}
+                    title={attached ? 'SetCountInOp' : 'engine detached'}
+                    onClick={() => setCountIn(b)}
+                  >
+                    {b === 0 ? 'Off' : b}
+                  </ActionButton>
+                ))}
+              </div>
             </div>
             <div>
               <span style={{ fontSize: 11, color: tokens.subtle }}>Metronome</span>
-              <p style={{ margin: '2px 0 0', fontSize: 13, color: tokens.text }}>{metronome ? 'On' : 'Off'}</p>
-              <p style={{ margin: '2px 0 0', fontSize: 11, color: tokens.subtle }}>intent only — NEEDS §7</p>
+              <div role="group" aria-label="Metronome" style={{ display: 'flex', gap: 4, marginTop: 4 }}>
+                <ActionButton
+                  size="sm"
+                  variant={metronome ? 'secondary' : 'ghost'}
+                  disabled={!attached}
+                  title={attached ? 'SetMetronomeOp' : 'engine detached'}
+                  onClick={() => setMetronome(!metronome)}
+                >
+                  {metronome ? 'On' : 'Off'}
+                </ActionButton>
+              </div>
             </div>
             <div>
               <span style={{ fontSize: 11, color: tokens.subtle }}>Cycle</span>
@@ -258,12 +430,27 @@ export default function RecordScreen() {
                   status={armedIds.has(tr.trackId) ? 'armed' : 'queued'}
                   label={armedIds.has(tr.trackId) ? 'Armed' : '—'}
                 />
+                <ActionButton
+                  size="sm"
+                  variant={armedIds.has(tr.trackId) ? 'secondary' : 'ghost'}
+                  disabled={!attached}
+                  title={
+                    attached
+                      ? armedIds.has(tr.trackId)
+                        ? 'ArmTrackOp{record_enabled:false} — disarm'
+                        : 'ArmTrackOp{record_enabled:true} — arm for recording'
+                      : 'engine detached'
+                  }
+                  onClick={() => void setArm(tr, !armedIds.has(tr.trackId))}
+                >
+                  {armedIds.has(tr.trackId) ? 'Disarm' : 'Arm'}
+                </ActionButton>
               </div>
             ))}
           </div>
         )}
         <p style={{ margin: `${tokens.space8} 0 0`, fontSize: 11, color: tokens.subtle }}>
-          Arming is an engine-side op (NEEDS §7) — armed state shown here is reported by the engine.
+          Arm sends ArmTrackOp — the badge stays engine-reported, so a rejected arm never repaints it.
         </p>
       </section>
     </div>
@@ -333,21 +520,41 @@ export default function RecordScreen() {
           </div>
           <StatusBadge status={badge.status} label={badge.text} />
           <ActionButton
+            variant="primary"
+            loading={busyStart}
+            disabled={!attached || armedIds.size === 0 || uiState === 'recording' || busyStart || busyStop}
+            title={
+              !attached
+                ? 'engine detached'
+                : armedIds.size === 0
+                  ? 'arm a track first'
+                  : 'StartRecordingOp — engine mints the take id'
+            }
+            onClick={() => void startRecording()}
+          >
+            Record
+          </ActionButton>
+          <ActionButton
             variant="danger"
             loading={busyStop}
             disabled={uiState !== 'recording' || busyStop}
-            title={uiState === 'recording' ? 'stop and preserve the take' : noWireReason}
+            title={
+              uiState === 'recording'
+                ? 'StopRecordingOp{discard:false} — stop and preserve the take'
+                : 'not recording'
+            }
             onClick={() => void stopRecording()}
           >
             Stop recording
           </ActionButton>
         </section>
 
-        {recording?.lastError || stopError ? (
+        {recording?.lastError || stopError || ctlError ? (
           <div role="alert" style={{ ...card, borderColor: tokens.danger }}>
             <p style={{ margin: 0, fontSize: 12, color: tokens.danger }}>
               {recording?.lastError ?? ''}
               {stopError ? ` ${stopError}` : ''}
+              {ctlError ? ` ${ctlError}` : ''}
             </p>
           </div>
         ) : null}

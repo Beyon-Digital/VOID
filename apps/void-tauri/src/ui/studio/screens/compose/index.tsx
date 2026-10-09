@@ -26,7 +26,7 @@ import type { GhostNote } from 'void-studio/src/proposals/ghost';
 import { getClient } from '../../../client';
 import { useEditor, useStudioCompactContext } from '../../useStudioData';
 import { Eyebrow, ReasonNote } from '../../uip4/chrome';
-import { REASONS } from '../../uip4/flags';
+import { PROPOSAL_OPS, REASONS } from '../../uip4/flags';
 import {
   proposalsStore,
   useFeatureStores,
@@ -155,7 +155,7 @@ export default function ComposeScreen() {
       {activeRec.status === 'ready' ? (
         <>
           <Eyebrow>Preview only — no changes committed</Eyebrow>
-          <ReasonNote>{REASONS.audition}</ReasonNote>
+          {!PROPOSAL_OPS.audition ? <ReasonNote>{REASONS.audition}</ReasonNote> : null}
         </>
       ) : activeRec.status === 'pending' ? (
         <Eyebrow>Generating…</Eyebrow>

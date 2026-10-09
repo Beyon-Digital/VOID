@@ -66,6 +66,47 @@ export default function LibraryScreen() {
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
   const [busy, setBusy] = React.useState<string | null>(null);
   const [flash, setFlash] = React.useState<string | null>(null);
+  const [importOpen, setImportOpen] = React.useState(false);
+  const [importPath, setImportPath] = React.useState('');
+
+  /** rev-2 (NEEDS §17): IngestAssetOp — the coordinator hashes the
+   * host-side file into container/assets/sha256/ before the engine
+   * attaches it; a rejection is reported, never repainted. */
+  const importAsset = async () => {
+    const rel = importPath.trim();
+    if (!rel) {
+      setFlash('enter a file path on this device first');
+      return;
+    }
+    setBusy('import');
+    setFlash(null);
+    try {
+      const ext = rel.split('.').pop()?.toLowerCase() ?? '';
+      const r = await getClient().sendCommand({
+        IngestAssetOp: {
+          rel_path: rel,
+          media_type:
+            ext === 'wav' || ext === 'aif' || ext === 'aiff' || ext === 'flac' || ext === 'mp3'
+              ? ext === 'aif' ? 'aiff' : ext
+              : ext === 'mid'
+                ? 'midi'
+                : ext || 'audio',
+        },
+      });
+      if (r.status === 'REJECTED') {
+        setFlash(`import rejected: ${r.message || r.error || 'no detail'}`);
+      } else {
+        setFlash('Ingest sent — the asset lands in the list once the coordinator stages it.');
+        setImportPath('');
+        setImportOpen(false);
+        void loadViewPage(studioStore, getClient(), 'ASSET_LIST').catch(() => undefined);
+      }
+    } catch (e) {
+      setFlash(String(e instanceof Error ? e.message : e));
+    } finally {
+      setBusy(null);
+    }
+  };
 
   React.useEffect(() => {
     if (!attached) return;
@@ -377,11 +418,37 @@ export default function LibraryScreen() {
         <ActionButton
           size="sm"
           variant="subtle"
-          disabled
-          title="Asset import is not exposed on this surface yet"
+          disabled={!attached}
+          title={
+            attached
+              ? 'IngestAssetOp — stage a file on this device into the container'
+              : 'engine detached'
+          }
+          onClick={() => setImportOpen((v) => !v)}
         >
           Import your own
         </ActionButton>
+        {importOpen ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <TextInput
+              id="import-path"
+              value={importPath}
+              onChange={(ev) => setImportPath(ev.target.value)}
+              placeholder="/path/to/file.wav on this device"
+              aria-label="Path to import"
+              disabled={busy !== null}
+            />
+            <ActionButton
+              size="sm"
+              variant="primary"
+              loading={busy === 'import'}
+              disabled={importPath.trim() === '' || busy !== null}
+              onClick={() => void importAsset()}
+            >
+              Ingest file
+            </ActionButton>
+          </div>
+        ) : null}
       </div>
     </aside>
   );

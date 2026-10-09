@@ -1,34 +1,36 @@
 // Honest capability surface for the proposal / generation / jobs screens.
 //
-// These constants name wire gaps documented in docs/engine/NEEDS.md —
-// they are NOT invented flags. Every gated affordance renders its
-// reason so the screen is never silently dead.
+// rev-2 (protocol minor 1): every op + view below now exists on the wire
+// (docs/engine/NEEDS.md §7–14, §17, §26, §32 — all landed by the P1 lane:
+// protocol/void_control.fbs rev-2 union members, void-client SendableOp).
+// The flags remain as the single flip point; when a future regression or
+// an older coordinator drops the surface, set the flag back to false and
+// the screens render the REASONS text again instead of dead controls.
 
-/** Coordinator ops/view the proposal lifecycle needs but protocol
- * major.1 does not carry (NEEDS.md §12–14). */
+/** Coordinator ops/view the proposal lifecycle uses (NEEDS.md §12–14). */
 export const PROPOSAL_OPS = {
   /** RequestProposalOp — ask the engine for a continuation. */
-  request: false,
+  request: true,
   /** ResolveProposalOp — server-side accept/reject bookkeeping. */
-  resolve: false,
+  resolve: true,
   /** PreviewLayerOp — native audition of ghost notes. */
-  audition: false,
-  /** ProposalStaleEvent — push staleness; we detect locally instead. */
-  staleEvent: false,
+  audition: true,
+  /** ProposalStaleEvent — push staleness (kept alongside local detection). */
+  staleEvent: true,
 } as const;
 
-/** Job ops + views absent from protocol major.1 (NEEDS.md §9–11). */
+/** Job ops + views on the wire since rev-2 (NEEDS.md §9–11). */
 export const JOB_OPS = {
   /** SubmitJob persistent op. */
-  submit: false,
+  submit: true,
   /** CancelJob persistent op. */
-  cancel: false,
+  cancel: true,
   /** JOB_LIST / MODEL_LIST read views. */
-  listViews: false,
-  /** Model install/download op. */
-  modelInstall: false,
-  /** Pause optional jobs op. */
-  pause: false,
+  listViews: true,
+  /** InstallModelOp — download/install a registry model. */
+  modelInstall: true,
+  /** PauseJobOp — pause optional jobs (coordinator may reject). */
+  pause: true,
 } as const;
 
 export const REASONS = {

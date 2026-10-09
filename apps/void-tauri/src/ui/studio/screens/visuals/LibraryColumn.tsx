@@ -11,10 +11,11 @@ import {
   orderedChannelLayers,
   visualAssetRows,
   REASON_NO_CHANNEL,
-  REASON_NO_INGEST,
   VISUAL_COMMAND_CHANNEL,
 } from './model';
 import { useAssetListLoaded, useVisuals, visualsStore } from './stores';
+import { getClient } from '../../../client';
+import { TextInput } from 'void-ui';
 
 const label: React.CSSProperties = {
   fontFamily: tokens.mono,
@@ -34,6 +35,42 @@ export const LibraryColumn: React.FC = () => {
   const focusChannel = useVisuals((s) => s.focusedChannel);
 
   const [note, setNote] = React.useState<string | null>(null);
+  const [importOpen, setImportOpen] = React.useState(false);
+  const [importPath, setImportPath] = React.useState('');
+  const [importBusy, setImportBusy] = React.useState(false);
+
+  /** rev-2 (NEEDS §17): IngestAssetOp stages a host-side visual file
+   * into the container; the row appears when ASSET_LIST repaints. */
+  const importVisual = async () => {
+    const rel = importPath.trim();
+    if (!rel) return;
+    setImportBusy(true);
+    setNote(null);
+    try {
+      const ext = rel.split('.').pop()?.toLowerCase() ?? '';
+      const r = await getClient().sendCommand({
+        IngestAssetOp: {
+          rel_path: rel,
+          media_type: ext === 'png' || ext === 'jpg' || ext === 'jpeg' || ext === 'webp'
+            ? 'image'
+            : ext === 'mp4' || ext === 'mov' || ext === 'webm'
+              ? 'video'
+              : 'video',
+        },
+      });
+      if (r.status === 'REJECTED') {
+        setNote(`import rejected: ${r.message || r.error || 'no detail'}`);
+      } else {
+        setNote('ingest sent — the asset appears once the coordinator stages it');
+        setImportPath('');
+        setImportOpen(false);
+      }
+    } catch (e) {
+      setNote(String(e instanceof Error ? e.message : e));
+    } finally {
+      setImportBusy(false);
+    }
+  };
   const assets = React.useMemo(() => visualAssetRows(items), [items]);
   const allLayers = React.useMemo(
     () => [...orderedChannelLayers({ layers, order }, 'preview'), ...orderedChannelLayers({ layers, order }, 'program')],
@@ -145,9 +182,34 @@ export const LibraryColumn: React.FC = () => {
       </div>
 
       <div style={{ padding: tokens.space12, display: 'flex', flexDirection: 'column', gap: tokens.space8 }}>
-        <ActionButton variant="secondary" size="sm" disabled title={`unavailable — ${REASON_NO_INGEST}`}>
+        <ActionButton
+          variant="secondary"
+          size="sm"
+          disabled={!attached}
+          title={attached ? 'IngestAssetOp — stage a host file into the container' : 'engine detached'}
+          onClick={() => setImportOpen((v) => !v)}
+        >
           Import visual
         </ActionButton>
+        {importOpen ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <TextInput
+              id="vis-import-path"
+              value={importPath}
+              onChange={(ev) => setImportPath(ev.target.value)}
+              placeholder="/path/to/visual.mp4"
+              aria-label="Visual file path"
+            />
+            <ActionButton
+              variant="primary"
+              size="sm"
+              disabled={importPath.trim() === '' || importBusy}
+              onClick={() => void importVisual()}
+            >
+              Ingest file
+            </ActionButton>
+          </div>
+        ) : null}
         <ActionButton
           variant="ghost"
           size="sm"
