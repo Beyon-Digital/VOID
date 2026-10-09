@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://void.local/schemas/license-ledger.schema.json",
+  "title": "VOID license ledger",
+  "description": "Schema for docs/content-rights/ledger.json. Enforced machine-side by void_content::LicenseLedger::parse + check_against (tests/content).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "rows"],
+  "properties": {
+    "schema": { "const": "void-license-ledger/1" },
+    "rows": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/licenseRow" }
+    }
+  },
+  "$defs": {
+    "licenseRow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "license_id", "licensor", "grant", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^LGR-[0-9]{4}$",
+          "description": "Ledger id; inventory rights.agreement_ref points here."
+        },
+        "license_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Licence identifier carried on the inventory entry (e.g. LIC-ORCH-SAMPLES-01)."
+        },
+        "licensor": { "type": "string", "minLength": 1 },
+        "grant": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human summary of granted rights (bundling, redistribution scope)."
+        },
+        "status": {
+          "enum": ["required", "executed", "revoked"],
+          "description": "required = identified need, no agreement; executed = agreement_sha256 must be set; revoked = entry must not ship."
+        },
+        "scope": {
+          "type": "string",
+          "description": "Territory / usage bounds, free text."
+        },
+        "agreement_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "SHA-256 of the executed agreement artifact; required when status is executed."
+        }
+      }
+    }
+  }
+}

@@ -11,6 +11,7 @@ members = [
     "crates/void-proposals",
     "crates/void-producer",
     "crates/void-export",
+    "crates/void-content",
     "crates/void-visual",
     "crates/void-mix",
     "crates/void-exchange",

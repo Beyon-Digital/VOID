@@ -1,0 +1,37 @@
+{
+  "schema": "void-license-ledger/1",
+  "rows": [
+    {
+      "id": "LGR-0001",
+      "license_id": "LIC-ORCH-SAMPLES-01",
+      "licensor": "TBD — orchestral sample-set vendor",
+      "grant": "Multisampled piano/strings/bass/horns with articulation layers; bundling as downloadable VOID content packs with per-file checksums.",
+      "status": "required",
+      "scope": "Worldwide, bundled distribution in VOID packs; no raw-file redistribution."
+    },
+    {
+      "id": "LGR-0002",
+      "license_id": "LIC-IR-SPACES-01",
+      "licensor": "TBD — impulse-response library vendor",
+      "grant": "Acoustic-space impulse responses for the convolution reverb; bundling as downloadable content.",
+      "status": "required",
+      "scope": "Bundled/downloadable IR packs only; decompiling or resale prohibited."
+    },
+    {
+      "id": "LGR-0003",
+      "license_id": "LIC-TAPE-KEYS-01",
+      "licensor": "TBD — tape-keyboard sample vendor",
+      "grant": "Tape-sampled keyboard waveforms for the Tape Keys pack.",
+      "status": "required",
+      "scope": "Downloadable pack; attribution in pack credits if required by vendor."
+    },
+    {
+      "id": "LGR-0004",
+      "license_id": "LIC-LEGACY-PACKS-01",
+      "licensor": "TBD — legacy timbre pack vendor(s)",
+      "grant": "Original preset/sample packs covering legacy keyboard, orchestral, drum, synth, guitar and bass timbres. Outcome coverage only — no copied binaries or preset signatures.",
+      "status": "required",
+      "scope": "Downloadable packs; entries must not promise legacy project compatibility."
+    }
+  ]
+}
