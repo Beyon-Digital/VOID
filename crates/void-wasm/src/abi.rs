@@ -108,7 +108,9 @@ pub fn encode_events(events: &[NoteEvent]) -> Vec<u8> {
 }
 
 pub fn decode_events(buf: &[u8]) -> Vec<NoteEvent> {
-    buf.chunks_exact(NOTE_EVENT_SIZE)
-        .filter_map(NoteEvent::decode)
+    buf.as_chunks::<NOTE_EVENT_SIZE>()
+        .0
+        .iter()
+        .filter_map(|chunk| NoteEvent::decode(chunk))
         .collect()
 }
