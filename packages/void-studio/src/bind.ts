@@ -87,6 +87,9 @@ export async function loadViewPage(
     .actions.mergeReadPage(
       makeViewKey(view, opts.trackId, opts.startTicks, opts.endTicks),
       page,
+      // A cursor-less request starts a new read sequence: rows that no
+      // longer exist engine-side must stop lingering in the cache.
+      { fresh: !opts.cursor },
     );
   return page;
 }

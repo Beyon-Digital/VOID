@@ -807,12 +807,194 @@ impl<'a> flatbuffers::Verifiable for TransportOp {
 
 impl flatbuffers::SimpleToVerifyInSlice for TransportOp {}
 #[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
-pub const ENUM_MIN_VIEW_KIND: i8 = 0;
+pub const ENUM_MIN_MONITOR_MODE: i8 = 0;
 #[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
-pub const ENUM_MAX_VIEW_KIND: i8 = 6;
+pub const ENUM_MAX_MONITOR_MODE: i8 = 2;
 #[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
 #[allow(non_camel_case_types)]
-pub const ENUM_VALUES_VIEW_KIND: [ViewKind; 7] = [
+pub const ENUM_VALUES_MONITOR_MODE: [MonitorMode; 3] = [
+  MonitorMode::OFF,
+  MonitorMode::AUTOMATIC,
+  MonitorMode::ON,
+];
+
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[repr(transparent)]
+pub struct MonitorMode(pub i8);
+#[allow(non_upper_case_globals)]
+impl MonitorMode {
+  pub const OFF: Self = Self(0);
+  pub const AUTOMATIC: Self = Self(1);
+  pub const ON: Self = Self(2);
+
+  pub const ENUM_MIN: i8 = 0;
+  pub const ENUM_MAX: i8 = 2;
+  pub const ENUM_VALUES: &'static [Self] = &[
+    Self::OFF,
+    Self::AUTOMATIC,
+    Self::ON,
+  ];
+  /// Returns the variant's name or "" if unknown.
+  pub fn variant_name(self) -> Option<&'static str> {
+    match self {
+      Self::OFF => Some("OFF"),
+      Self::AUTOMATIC => Some("AUTOMATIC"),
+      Self::ON => Some("ON"),
+      _ => None,
+    }
+  }
+}
+impl core::fmt::Debug for MonitorMode {
+  fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    if let Some(name) = self.variant_name() {
+      f.write_str(name)
+    } else {
+      f.write_fmt(format_args!("<UNKNOWN {:?}>", self.0))
+    }
+  }
+}
+impl<'a> flatbuffers::Follow<'a> for MonitorMode {
+  type Inner = Self;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    let b = unsafe { flatbuffers::read_scalar_at::<i8>(buf, loc) };
+    Self(b)
+  }
+}
+
+impl flatbuffers::Push for MonitorMode {
+    type Output = MonitorMode;
+    #[inline]
+    unsafe fn push(&self, dst: &mut [u8], _written_len: usize) {
+        unsafe { flatbuffers::emplace_scalar::<i8>(dst, self.0); }
+    }
+}
+
+impl flatbuffers::EndianScalar for MonitorMode {
+  type Scalar = i8;
+  #[inline]
+  fn to_little_endian(self) -> i8 {
+    self.0.to_le()
+  }
+  #[inline]
+  #[allow(clippy::wrong_self_convention)]
+  fn from_little_endian(v: i8) -> Self {
+    let b = i8::from_le(v);
+    Self(b)
+  }
+}
+
+impl<'a> flatbuffers::Verifiable for MonitorMode {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    i8::run_verifier(v, pos)
+  }
+}
+
+impl flatbuffers::SimpleToVerifyInSlice for MonitorMode {}
+#[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
+pub const ENUM_MIN_LAUNCH_QUANTIZE: i8 = 0;
+#[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
+pub const ENUM_MAX_LAUNCH_QUANTIZE: i8 = 3;
+#[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
+#[allow(non_camel_case_types)]
+pub const ENUM_VALUES_LAUNCH_QUANTIZE: [LaunchQuantize; 4] = [
+  LaunchQuantize::IMMEDIATE,
+  LaunchQuantize::BAR,
+  LaunchQuantize::BEAT,
+  LaunchQuantize::CUSTOM,
+];
+
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
+#[repr(transparent)]
+pub struct LaunchQuantize(pub i8);
+#[allow(non_upper_case_globals)]
+impl LaunchQuantize {
+  pub const IMMEDIATE: Self = Self(0);
+  pub const BAR: Self = Self(1);
+  pub const BEAT: Self = Self(2);
+  pub const CUSTOM: Self = Self(3);
+
+  pub const ENUM_MIN: i8 = 0;
+  pub const ENUM_MAX: i8 = 3;
+  pub const ENUM_VALUES: &'static [Self] = &[
+    Self::IMMEDIATE,
+    Self::BAR,
+    Self::BEAT,
+    Self::CUSTOM,
+  ];
+  /// Returns the variant's name or "" if unknown.
+  pub fn variant_name(self) -> Option<&'static str> {
+    match self {
+      Self::IMMEDIATE => Some("IMMEDIATE"),
+      Self::BAR => Some("BAR"),
+      Self::BEAT => Some("BEAT"),
+      Self::CUSTOM => Some("CUSTOM"),
+      _ => None,
+    }
+  }
+}
+impl core::fmt::Debug for LaunchQuantize {
+  fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+    if let Some(name) = self.variant_name() {
+      f.write_str(name)
+    } else {
+      f.write_fmt(format_args!("<UNKNOWN {:?}>", self.0))
+    }
+  }
+}
+impl<'a> flatbuffers::Follow<'a> for LaunchQuantize {
+  type Inner = Self;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    let b = unsafe { flatbuffers::read_scalar_at::<i8>(buf, loc) };
+    Self(b)
+  }
+}
+
+impl flatbuffers::Push for LaunchQuantize {
+    type Output = LaunchQuantize;
+    #[inline]
+    unsafe fn push(&self, dst: &mut [u8], _written_len: usize) {
+        unsafe { flatbuffers::emplace_scalar::<i8>(dst, self.0); }
+    }
+}
+
+impl flatbuffers::EndianScalar for LaunchQuantize {
+  type Scalar = i8;
+  #[inline]
+  fn to_little_endian(self) -> i8 {
+    self.0.to_le()
+  }
+  #[inline]
+  #[allow(clippy::wrong_self_convention)]
+  fn from_little_endian(v: i8) -> Self {
+    let b = i8::from_le(v);
+    Self(b)
+  }
+}
+
+impl<'a> flatbuffers::Verifiable for LaunchQuantize {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    i8::run_verifier(v, pos)
+  }
+}
+
+impl flatbuffers::SimpleToVerifyInSlice for LaunchQuantize {}
+#[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
+pub const ENUM_MIN_VIEW_KIND: i8 = 0;
+#[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
+pub const ENUM_MAX_VIEW_KIND: i8 = 12;
+#[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
+#[allow(non_camel_case_types)]
+pub const ENUM_VALUES_VIEW_KIND: [ViewKind; 13] = [
   ViewKind::PROJECT_SUMMARY,
   ViewKind::TRACK_LIST,
   ViewKind::CLIP_LIST,
@@ -820,6 +1002,12 @@ pub const ENUM_VALUES_VIEW_KIND: [ViewKind; 7] = [
   ViewKind::ASSET_LIST,
   ViewKind::PLUGIN_LIST,
   ViewKind::RECEIPT_LIST,
+  ViewKind::TAKE_LIST,
+  ViewKind::INPUT_DEVICE_LIST,
+  ViewKind::JOB_LIST,
+  ViewKind::MODEL_LIST,
+  ViewKind::PROPOSAL_LIST,
+  ViewKind::SCENE_LIST,
 ];
 
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
@@ -834,9 +1022,15 @@ impl ViewKind {
   pub const ASSET_LIST: Self = Self(4);
   pub const PLUGIN_LIST: Self = Self(5);
   pub const RECEIPT_LIST: Self = Self(6);
+  pub const TAKE_LIST: Self = Self(7);
+  pub const INPUT_DEVICE_LIST: Self = Self(8);
+  pub const JOB_LIST: Self = Self(9);
+  pub const MODEL_LIST: Self = Self(10);
+  pub const PROPOSAL_LIST: Self = Self(11);
+  pub const SCENE_LIST: Self = Self(12);
 
   pub const ENUM_MIN: i8 = 0;
-  pub const ENUM_MAX: i8 = 6;
+  pub const ENUM_MAX: i8 = 12;
   pub const ENUM_VALUES: &'static [Self] = &[
     Self::PROJECT_SUMMARY,
     Self::TRACK_LIST,
@@ -845,6 +1039,12 @@ impl ViewKind {
     Self::ASSET_LIST,
     Self::PLUGIN_LIST,
     Self::RECEIPT_LIST,
+    Self::TAKE_LIST,
+    Self::INPUT_DEVICE_LIST,
+    Self::JOB_LIST,
+    Self::MODEL_LIST,
+    Self::PROPOSAL_LIST,
+    Self::SCENE_LIST,
   ];
   /// Returns the variant's name or "" if unknown.
   pub fn variant_name(self) -> Option<&'static str> {
@@ -856,6 +1056,12 @@ impl ViewKind {
       Self::ASSET_LIST => Some("ASSET_LIST"),
       Self::PLUGIN_LIST => Some("PLUGIN_LIST"),
       Self::RECEIPT_LIST => Some("RECEIPT_LIST"),
+      Self::TAKE_LIST => Some("TAKE_LIST"),
+      Self::INPUT_DEVICE_LIST => Some("INPUT_DEVICE_LIST"),
+      Self::JOB_LIST => Some("JOB_LIST"),
+      Self::MODEL_LIST => Some("MODEL_LIST"),
+      Self::PROPOSAL_LIST => Some("PROPOSAL_LIST"),
+      Self::SCENE_LIST => Some("SCENE_LIST"),
       _ => None,
     }
   }
@@ -914,10 +1120,10 @@ impl flatbuffers::SimpleToVerifyInSlice for ViewKind {}
 #[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
 pub const ENUM_MIN_PERSISTENT_OP: u8 = 0;
 #[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
-pub const ENUM_MAX_PERSISTENT_OP: u8 = 32;
+pub const ENUM_MAX_PERSISTENT_OP: u8 = 54;
 #[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
 #[allow(non_camel_case_types)]
-pub const ENUM_VALUES_PERSISTENT_OP: [PersistentOp; 33] = [
+pub const ENUM_VALUES_PERSISTENT_OP: [PersistentOp; 55] = [
   PersistentOp::NONE,
   PersistentOp::CreateProjectOp,
   PersistentOp::OpenProjectOp,
@@ -951,6 +1157,28 @@ pub const ENUM_VALUES_PERSISTENT_OP: [PersistentOp; 33] = [
   PersistentOp::SetPluginParamOp,
   PersistentOp::OpenPluginEditorOp,
   PersistentOp::ClosePluginEditorOp,
+  PersistentOp::ArmTrackOp,
+  PersistentOp::StartRecordingOp,
+  PersistentOp::StopRecordingOp,
+  PersistentOp::SetCountInOp,
+  PersistentOp::SetMetronomeOp,
+  PersistentOp::SetPunchInOutOp,
+  PersistentOp::SubmitJobOp,
+  PersistentOp::CancelJobOp,
+  PersistentOp::PauseJobOp,
+  PersistentOp::InstallModelOp,
+  PersistentOp::RequestProposalOp,
+  PersistentOp::ResolveProposalOp,
+  PersistentOp::PreviewLayerOp,
+  PersistentOp::IngestAssetOp,
+  PersistentOp::RelinkAssetOp,
+  PersistentOp::SetPluginBypassOp,
+  PersistentOp::RescanPluginsOp,
+  PersistentOp::RestorePluginStateOp,
+  PersistentOp::SaveProjectAsOp,
+  PersistentOp::LaunchSceneOp,
+  PersistentOp::StopSceneOp,
+  PersistentOp::LaunchClipOp,
 ];
 
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
@@ -991,9 +1219,31 @@ impl PersistentOp {
   pub const SetPluginParamOp: Self = Self(30);
   pub const OpenPluginEditorOp: Self = Self(31);
   pub const ClosePluginEditorOp: Self = Self(32);
+  pub const ArmTrackOp: Self = Self(33);
+  pub const StartRecordingOp: Self = Self(34);
+  pub const StopRecordingOp: Self = Self(35);
+  pub const SetCountInOp: Self = Self(36);
+  pub const SetMetronomeOp: Self = Self(37);
+  pub const SetPunchInOutOp: Self = Self(38);
+  pub const SubmitJobOp: Self = Self(39);
+  pub const CancelJobOp: Self = Self(40);
+  pub const PauseJobOp: Self = Self(41);
+  pub const InstallModelOp: Self = Self(42);
+  pub const RequestProposalOp: Self = Self(43);
+  pub const ResolveProposalOp: Self = Self(44);
+  pub const PreviewLayerOp: Self = Self(45);
+  pub const IngestAssetOp: Self = Self(46);
+  pub const RelinkAssetOp: Self = Self(47);
+  pub const SetPluginBypassOp: Self = Self(48);
+  pub const RescanPluginsOp: Self = Self(49);
+  pub const RestorePluginStateOp: Self = Self(50);
+  pub const SaveProjectAsOp: Self = Self(51);
+  pub const LaunchSceneOp: Self = Self(52);
+  pub const StopSceneOp: Self = Self(53);
+  pub const LaunchClipOp: Self = Self(54);
 
   pub const ENUM_MIN: u8 = 0;
-  pub const ENUM_MAX: u8 = 32;
+  pub const ENUM_MAX: u8 = 54;
   pub const ENUM_VALUES: &'static [Self] = &[
     Self::NONE,
     Self::CreateProjectOp,
@@ -1028,6 +1278,28 @@ impl PersistentOp {
     Self::SetPluginParamOp,
     Self::OpenPluginEditorOp,
     Self::ClosePluginEditorOp,
+    Self::ArmTrackOp,
+    Self::StartRecordingOp,
+    Self::StopRecordingOp,
+    Self::SetCountInOp,
+    Self::SetMetronomeOp,
+    Self::SetPunchInOutOp,
+    Self::SubmitJobOp,
+    Self::CancelJobOp,
+    Self::PauseJobOp,
+    Self::InstallModelOp,
+    Self::RequestProposalOp,
+    Self::ResolveProposalOp,
+    Self::PreviewLayerOp,
+    Self::IngestAssetOp,
+    Self::RelinkAssetOp,
+    Self::SetPluginBypassOp,
+    Self::RescanPluginsOp,
+    Self::RestorePluginStateOp,
+    Self::SaveProjectAsOp,
+    Self::LaunchSceneOp,
+    Self::StopSceneOp,
+    Self::LaunchClipOp,
   ];
   /// Returns the variant's name or "" if unknown.
   pub fn variant_name(self) -> Option<&'static str> {
@@ -1065,6 +1337,28 @@ impl PersistentOp {
       Self::SetPluginParamOp => Some("SetPluginParamOp"),
       Self::OpenPluginEditorOp => Some("OpenPluginEditorOp"),
       Self::ClosePluginEditorOp => Some("ClosePluginEditorOp"),
+      Self::ArmTrackOp => Some("ArmTrackOp"),
+      Self::StartRecordingOp => Some("StartRecordingOp"),
+      Self::StopRecordingOp => Some("StopRecordingOp"),
+      Self::SetCountInOp => Some("SetCountInOp"),
+      Self::SetMetronomeOp => Some("SetMetronomeOp"),
+      Self::SetPunchInOutOp => Some("SetPunchInOutOp"),
+      Self::SubmitJobOp => Some("SubmitJobOp"),
+      Self::CancelJobOp => Some("CancelJobOp"),
+      Self::PauseJobOp => Some("PauseJobOp"),
+      Self::InstallModelOp => Some("InstallModelOp"),
+      Self::RequestProposalOp => Some("RequestProposalOp"),
+      Self::ResolveProposalOp => Some("ResolveProposalOp"),
+      Self::PreviewLayerOp => Some("PreviewLayerOp"),
+      Self::IngestAssetOp => Some("IngestAssetOp"),
+      Self::RelinkAssetOp => Some("RelinkAssetOp"),
+      Self::SetPluginBypassOp => Some("SetPluginBypassOp"),
+      Self::RescanPluginsOp => Some("RescanPluginsOp"),
+      Self::RestorePluginStateOp => Some("RestorePluginStateOp"),
+      Self::SaveProjectAsOp => Some("SaveProjectAsOp"),
+      Self::LaunchSceneOp => Some("LaunchSceneOp"),
+      Self::StopSceneOp => Some("StopSceneOp"),
+      Self::LaunchClipOp => Some("LaunchClipOp"),
       _ => None,
     }
   }
@@ -1414,15 +1708,18 @@ pub struct ControlFrameUnionTableOffset {}
 #[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
 pub const ENUM_MIN_TELEMETRY_EVENT: u8 = 0;
 #[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
-pub const ENUM_MAX_TELEMETRY_EVENT: u8 = 4;
+pub const ENUM_MAX_TELEMETRY_EVENT: u8 = 7;
 #[deprecated(since = "2.0.0", note = "Use associated constants instead. This will no longer be generated in 2021.")]
 #[allow(non_camel_case_types)]
-pub const ENUM_VALUES_TELEMETRY_EVENT: [TelemetryEvent; 5] = [
+pub const ENUM_VALUES_TELEMETRY_EVENT: [TelemetryEvent; 8] = [
   TelemetryEvent::NONE,
   TelemetryEvent::ClockSnapshot,
   TelemetryEvent::MeterFrame,
   TelemetryEvent::SaveResultEvent,
   TelemetryEvent::TransportAck,
+  TelemetryEvent::JobEvent,
+  TelemetryEvent::ProposalStaleEvent,
+  TelemetryEvent::InputDeviceLostEvent,
 ];
 
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
@@ -1435,15 +1732,21 @@ impl TelemetryEvent {
   pub const MeterFrame: Self = Self(2);
   pub const SaveResultEvent: Self = Self(3);
   pub const TransportAck: Self = Self(4);
+  pub const JobEvent: Self = Self(5);
+  pub const ProposalStaleEvent: Self = Self(6);
+  pub const InputDeviceLostEvent: Self = Self(7);
 
   pub const ENUM_MIN: u8 = 0;
-  pub const ENUM_MAX: u8 = 4;
+  pub const ENUM_MAX: u8 = 7;
   pub const ENUM_VALUES: &'static [Self] = &[
     Self::NONE,
     Self::ClockSnapshot,
     Self::MeterFrame,
     Self::SaveResultEvent,
     Self::TransportAck,
+    Self::JobEvent,
+    Self::ProposalStaleEvent,
+    Self::InputDeviceLostEvent,
   ];
   /// Returns the variant's name or "" if unknown.
   pub fn variant_name(self) -> Option<&'static str> {
@@ -1453,6 +1756,9 @@ impl TelemetryEvent {
       Self::MeterFrame => Some("MeterFrame"),
       Self::SaveResultEvent => Some("SaveResultEvent"),
       Self::TransportAck => Some("TransportAck"),
+      Self::JobEvent => Some("JobEvent"),
+      Self::ProposalStaleEvent => Some("ProposalStaleEvent"),
+      Self::InputDeviceLostEvent => Some("InputDeviceLostEvent"),
       _ => None,
     }
   }
@@ -5497,6 +5803,3184 @@ impl core::fmt::Debug for ClosePluginEditorOp<'_> {
       ds.finish()
   }
 }
+pub enum ArmTrackOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct ArmTrackOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for ArmTrackOp<'a> {
+  type Inner = ArmTrackOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> ArmTrackOp<'a> {
+  pub const VT_TRACK_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_RECORD_ENABLED: flatbuffers::VOffsetT = 6;
+  pub const VT_INPUT_DEVICE: flatbuffers::VOffsetT = 8;
+  pub const VT_MONITOR_MODE: flatbuffers::VOffsetT = 10;
+  pub const VT_IS_MIDI: flatbuffers::VOffsetT = 12;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    ArmTrackOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args ArmTrackOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<ArmTrackOp<'bldr>> {
+    let mut builder = ArmTrackOpBuilder::new(_fbb);
+    if let Some(x) = args.input_device { builder.add_input_device(x); }
+    if let Some(x) = args.track_id { builder.add_track_id(x); }
+    builder.add_is_midi(args.is_midi);
+    builder.add_monitor_mode(args.monitor_mode);
+    builder.add_record_enabled(args.record_enabled);
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn track_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(ArmTrackOp::VT_TRACK_ID, None)}
+  }
+  #[inline]
+  pub fn record_enabled(&self) -> bool {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<bool>(ArmTrackOp::VT_RECORD_ENABLED, Some(true)).unwrap()}
+  }
+  #[inline]
+  pub fn input_device(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(ArmTrackOp::VT_INPUT_DEVICE, None)}
+  }
+  #[inline]
+  pub fn monitor_mode(&self) -> MonitorMode {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<MonitorMode>(ArmTrackOp::VT_MONITOR_MODE, Some(MonitorMode::AUTOMATIC)).unwrap()}
+  }
+  #[inline]
+  pub fn is_midi(&self) -> bool {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<bool>(ArmTrackOp::VT_IS_MIDI, Some(false)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for ArmTrackOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("track_id", Self::VT_TRACK_ID, false)?
+     .visit_field::<bool>("record_enabled", Self::VT_RECORD_ENABLED, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("input_device", Self::VT_INPUT_DEVICE, false)?
+     .visit_field::<MonitorMode>("monitor_mode", Self::VT_MONITOR_MODE, false)?
+     .visit_field::<bool>("is_midi", Self::VT_IS_MIDI, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct ArmTrackOpArgs<'a> {
+    pub track_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub record_enabled: bool,
+    pub input_device: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub monitor_mode: MonitorMode,
+    pub is_midi: bool,
+}
+impl<'a> Default for ArmTrackOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    ArmTrackOpArgs {
+      track_id: None,
+      record_enabled: true,
+      input_device: None,
+      monitor_mode: MonitorMode::AUTOMATIC,
+      is_midi: false,
+    }
+  }
+}
+
+pub struct ArmTrackOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> ArmTrackOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_track_id(&mut self, track_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(ArmTrackOp::VT_TRACK_ID, track_id);
+  }
+  #[inline]
+  pub fn add_record_enabled(&mut self, record_enabled: bool) {
+    self.fbb_.push_slot::<bool>(ArmTrackOp::VT_RECORD_ENABLED, record_enabled, true);
+  }
+  #[inline]
+  pub fn add_input_device(&mut self, input_device: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(ArmTrackOp::VT_INPUT_DEVICE, input_device);
+  }
+  #[inline]
+  pub fn add_monitor_mode(&mut self, monitor_mode: MonitorMode) {
+    self.fbb_.push_slot::<MonitorMode>(ArmTrackOp::VT_MONITOR_MODE, monitor_mode, MonitorMode::AUTOMATIC);
+  }
+  #[inline]
+  pub fn add_is_midi(&mut self, is_midi: bool) {
+    self.fbb_.push_slot::<bool>(ArmTrackOp::VT_IS_MIDI, is_midi, false);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> ArmTrackOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    ArmTrackOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<ArmTrackOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for ArmTrackOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("ArmTrackOp");
+      ds.field("track_id", &self.track_id());
+      ds.field("record_enabled", &self.record_enabled());
+      ds.field("input_device", &self.input_device());
+      ds.field("monitor_mode", &self.monitor_mode());
+      ds.field("is_midi", &self.is_midi());
+      ds.finish()
+  }
+}
+pub enum StartRecordingOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct StartRecordingOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for StartRecordingOp<'a> {
+  type Inner = StartRecordingOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> StartRecordingOp<'a> {
+  pub const VT_TAKE_ID: flatbuffers::VOffsetT = 4;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    StartRecordingOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args StartRecordingOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<StartRecordingOp<'bldr>> {
+    let mut builder = StartRecordingOpBuilder::new(_fbb);
+    if let Some(x) = args.take_id { builder.add_take_id(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn take_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(StartRecordingOp::VT_TAKE_ID, None)}
+  }
+}
+
+impl flatbuffers::Verifiable for StartRecordingOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("take_id", Self::VT_TAKE_ID, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct StartRecordingOpArgs<'a> {
+    pub take_id: Option<flatbuffers::WIPOffset<&'a str>>,
+}
+impl<'a> Default for StartRecordingOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    StartRecordingOpArgs {
+      take_id: None,
+    }
+  }
+}
+
+pub struct StartRecordingOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> StartRecordingOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_take_id(&mut self, take_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(StartRecordingOp::VT_TAKE_ID, take_id);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> StartRecordingOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    StartRecordingOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<StartRecordingOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for StartRecordingOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("StartRecordingOp");
+      ds.field("take_id", &self.take_id());
+      ds.finish()
+  }
+}
+pub enum StopRecordingOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct StopRecordingOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for StopRecordingOp<'a> {
+  type Inner = StopRecordingOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> StopRecordingOp<'a> {
+  pub const VT_DISCARD: flatbuffers::VOffsetT = 4;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    StopRecordingOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args StopRecordingOpArgs
+  ) -> flatbuffers::WIPOffset<StopRecordingOp<'bldr>> {
+    let mut builder = StopRecordingOpBuilder::new(_fbb);
+    builder.add_discard(args.discard);
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn discard(&self) -> bool {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<bool>(StopRecordingOp::VT_DISCARD, Some(false)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for StopRecordingOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<bool>("discard", Self::VT_DISCARD, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct StopRecordingOpArgs {
+    pub discard: bool,
+}
+impl<'a> Default for StopRecordingOpArgs {
+  #[inline]
+  fn default() -> Self {
+    StopRecordingOpArgs {
+      discard: false,
+    }
+  }
+}
+
+pub struct StopRecordingOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> StopRecordingOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_discard(&mut self, discard: bool) {
+    self.fbb_.push_slot::<bool>(StopRecordingOp::VT_DISCARD, discard, false);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> StopRecordingOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    StopRecordingOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<StopRecordingOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for StopRecordingOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("StopRecordingOp");
+      ds.field("discard", &self.discard());
+      ds.finish()
+  }
+}
+pub enum SetCountInOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct SetCountInOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for SetCountInOp<'a> {
+  type Inner = SetCountInOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> SetCountInOp<'a> {
+  pub const VT_MODE: flatbuffers::VOffsetT = 4;
+  pub const VT_BARS: flatbuffers::VOffsetT = 6;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    SetCountInOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args SetCountInOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<SetCountInOp<'bldr>> {
+    let mut builder = SetCountInOpBuilder::new(_fbb);
+    builder.add_bars(args.bars);
+    if let Some(x) = args.mode { builder.add_mode(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn mode(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(SetCountInOp::VT_MODE, None)}
+  }
+  #[inline]
+  pub fn bars(&self) -> i32 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<i32>(SetCountInOp::VT_BARS, Some(1)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for SetCountInOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("mode", Self::VT_MODE, false)?
+     .visit_field::<i32>("bars", Self::VT_BARS, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct SetCountInOpArgs<'a> {
+    pub mode: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub bars: i32,
+}
+impl<'a> Default for SetCountInOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    SetCountInOpArgs {
+      mode: None,
+      bars: 1,
+    }
+  }
+}
+
+pub struct SetCountInOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> SetCountInOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_mode(&mut self, mode: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(SetCountInOp::VT_MODE, mode);
+  }
+  #[inline]
+  pub fn add_bars(&mut self, bars: i32) {
+    self.fbb_.push_slot::<i32>(SetCountInOp::VT_BARS, bars, 1);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> SetCountInOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    SetCountInOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<SetCountInOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for SetCountInOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("SetCountInOp");
+      ds.field("mode", &self.mode());
+      ds.field("bars", &self.bars());
+      ds.finish()
+  }
+}
+pub enum SetMetronomeOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct SetMetronomeOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for SetMetronomeOp<'a> {
+  type Inner = SetMetronomeOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> SetMetronomeOp<'a> {
+  pub const VT_ENABLED: flatbuffers::VOffsetT = 4;
+  pub const VT_GAIN: flatbuffers::VOffsetT = 6;
+  pub const VT_RECORDING_ONLY: flatbuffers::VOffsetT = 8;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    SetMetronomeOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args SetMetronomeOpArgs
+  ) -> flatbuffers::WIPOffset<SetMetronomeOp<'bldr>> {
+    let mut builder = SetMetronomeOpBuilder::new(_fbb);
+    builder.add_gain(args.gain);
+    builder.add_recording_only(args.recording_only);
+    builder.add_enabled(args.enabled);
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn enabled(&self) -> bool {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<bool>(SetMetronomeOp::VT_ENABLED, Some(false)).unwrap()}
+  }
+  #[inline]
+  pub fn gain(&self) -> f32 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<f32>(SetMetronomeOp::VT_GAIN, Some(0.5)).unwrap()}
+  }
+  #[inline]
+  pub fn recording_only(&self) -> bool {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<bool>(SetMetronomeOp::VT_RECORDING_ONLY, Some(false)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for SetMetronomeOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<bool>("enabled", Self::VT_ENABLED, false)?
+     .visit_field::<f32>("gain", Self::VT_GAIN, false)?
+     .visit_field::<bool>("recording_only", Self::VT_RECORDING_ONLY, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct SetMetronomeOpArgs {
+    pub enabled: bool,
+    pub gain: f32,
+    pub recording_only: bool,
+}
+impl<'a> Default for SetMetronomeOpArgs {
+  #[inline]
+  fn default() -> Self {
+    SetMetronomeOpArgs {
+      enabled: false,
+      gain: 0.5,
+      recording_only: false,
+    }
+  }
+}
+
+pub struct SetMetronomeOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> SetMetronomeOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_enabled(&mut self, enabled: bool) {
+    self.fbb_.push_slot::<bool>(SetMetronomeOp::VT_ENABLED, enabled, false);
+  }
+  #[inline]
+  pub fn add_gain(&mut self, gain: f32) {
+    self.fbb_.push_slot::<f32>(SetMetronomeOp::VT_GAIN, gain, 0.5);
+  }
+  #[inline]
+  pub fn add_recording_only(&mut self, recording_only: bool) {
+    self.fbb_.push_slot::<bool>(SetMetronomeOp::VT_RECORDING_ONLY, recording_only, false);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> SetMetronomeOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    SetMetronomeOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<SetMetronomeOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for SetMetronomeOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("SetMetronomeOp");
+      ds.field("enabled", &self.enabled());
+      ds.field("gain", &self.gain());
+      ds.field("recording_only", &self.recording_only());
+      ds.finish()
+  }
+}
+pub enum SetPunchInOutOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct SetPunchInOutOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for SetPunchInOutOp<'a> {
+  type Inner = SetPunchInOutOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> SetPunchInOutOp<'a> {
+  pub const VT_ENABLED: flatbuffers::VOffsetT = 4;
+  pub const VT_IN_TICKS: flatbuffers::VOffsetT = 6;
+  pub const VT_OUT_TICKS: flatbuffers::VOffsetT = 8;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    SetPunchInOutOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args SetPunchInOutOpArgs
+  ) -> flatbuffers::WIPOffset<SetPunchInOutOp<'bldr>> {
+    let mut builder = SetPunchInOutOpBuilder::new(_fbb);
+    builder.add_out_ticks(args.out_ticks);
+    builder.add_in_ticks(args.in_ticks);
+    builder.add_enabled(args.enabled);
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn enabled(&self) -> bool {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<bool>(SetPunchInOutOp::VT_ENABLED, Some(false)).unwrap()}
+  }
+  #[inline]
+  pub fn in_ticks(&self) -> i64 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<i64>(SetPunchInOutOp::VT_IN_TICKS, Some(-1)).unwrap()}
+  }
+  #[inline]
+  pub fn out_ticks(&self) -> i64 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<i64>(SetPunchInOutOp::VT_OUT_TICKS, Some(-1)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for SetPunchInOutOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<bool>("enabled", Self::VT_ENABLED, false)?
+     .visit_field::<i64>("in_ticks", Self::VT_IN_TICKS, false)?
+     .visit_field::<i64>("out_ticks", Self::VT_OUT_TICKS, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct SetPunchInOutOpArgs {
+    pub enabled: bool,
+    pub in_ticks: i64,
+    pub out_ticks: i64,
+}
+impl<'a> Default for SetPunchInOutOpArgs {
+  #[inline]
+  fn default() -> Self {
+    SetPunchInOutOpArgs {
+      enabled: false,
+      in_ticks: -1,
+      out_ticks: -1,
+    }
+  }
+}
+
+pub struct SetPunchInOutOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> SetPunchInOutOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_enabled(&mut self, enabled: bool) {
+    self.fbb_.push_slot::<bool>(SetPunchInOutOp::VT_ENABLED, enabled, false);
+  }
+  #[inline]
+  pub fn add_in_ticks(&mut self, in_ticks: i64) {
+    self.fbb_.push_slot::<i64>(SetPunchInOutOp::VT_IN_TICKS, in_ticks, -1);
+  }
+  #[inline]
+  pub fn add_out_ticks(&mut self, out_ticks: i64) {
+    self.fbb_.push_slot::<i64>(SetPunchInOutOp::VT_OUT_TICKS, out_ticks, -1);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> SetPunchInOutOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    SetPunchInOutOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<SetPunchInOutOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for SetPunchInOutOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("SetPunchInOutOp");
+      ds.field("enabled", &self.enabled());
+      ds.field("in_ticks", &self.in_ticks());
+      ds.field("out_ticks", &self.out_ticks());
+      ds.finish()
+  }
+}
+pub enum JobSpecOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct JobSpec<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for JobSpec<'a> {
+  type Inner = JobSpec<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> JobSpec<'a> {
+  pub const VT_JOB_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_PROJECT_ID: flatbuffers::VOffsetT = 6;
+  pub const VT_SOURCE_REVISION: flatbuffers::VOffsetT = 8;
+  pub const VT_CONTEXT_SHA256: flatbuffers::VOffsetT = 10;
+  pub const VT_KIND: flatbuffers::VOffsetT = 12;
+  pub const VT_RUNTIME_ID: flatbuffers::VOffsetT = 14;
+  pub const VT_RUNTIME_SHA256: flatbuffers::VOffsetT = 16;
+  pub const VT_MODEL_ID: flatbuffers::VOffsetT = 18;
+  pub const VT_MODEL_SHA256: flatbuffers::VOffsetT = 20;
+  pub const VT_INPUTS: flatbuffers::VOffsetT = 22;
+  pub const VT_PARAMETERS_JSON: flatbuffers::VOffsetT = 24;
+  pub const VT_RAM_BYTES: flatbuffers::VOffsetT = 26;
+  pub const VT_VRAM_BYTES: flatbuffers::VOffsetT = 28;
+  pub const VT_CPU_THREADS: flatbuffers::VOffsetT = 30;
+  pub const VT_DEADLINE_MONOTONIC_NS: flatbuffers::VOffsetT = 32;
+  pub const VT_OUTPUT_SCOPE_TOKEN: flatbuffers::VOffsetT = 34;
+  pub const VT_CLOUD_CONSENT_ID: flatbuffers::VOffsetT = 36;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    JobSpec { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args JobSpecArgs<'args>
+  ) -> flatbuffers::WIPOffset<JobSpec<'bldr>> {
+    let mut builder = JobSpecBuilder::new(_fbb);
+    builder.add_deadline_monotonic_ns(args.deadline_monotonic_ns);
+    builder.add_vram_bytes(args.vram_bytes);
+    builder.add_ram_bytes(args.ram_bytes);
+    builder.add_source_revision(args.source_revision);
+    if let Some(x) = args.cloud_consent_id { builder.add_cloud_consent_id(x); }
+    if let Some(x) = args.output_scope_token { builder.add_output_scope_token(x); }
+    builder.add_cpu_threads(args.cpu_threads);
+    if let Some(x) = args.parameters_json { builder.add_parameters_json(x); }
+    if let Some(x) = args.inputs { builder.add_inputs(x); }
+    if let Some(x) = args.model_sha256 { builder.add_model_sha256(x); }
+    if let Some(x) = args.model_id { builder.add_model_id(x); }
+    if let Some(x) = args.runtime_sha256 { builder.add_runtime_sha256(x); }
+    if let Some(x) = args.runtime_id { builder.add_runtime_id(x); }
+    if let Some(x) = args.kind { builder.add_kind(x); }
+    if let Some(x) = args.context_sha256 { builder.add_context_sha256(x); }
+    if let Some(x) = args.project_id { builder.add_project_id(x); }
+    if let Some(x) = args.job_id { builder.add_job_id(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn job_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobSpec::VT_JOB_ID, None)}
+  }
+  #[inline]
+  pub fn project_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobSpec::VT_PROJECT_ID, None)}
+  }
+  #[inline]
+  pub fn source_revision(&self) -> u64 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<u64>(JobSpec::VT_SOURCE_REVISION, Some(0)).unwrap()}
+  }
+  #[inline]
+  pub fn context_sha256(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobSpec::VT_CONTEXT_SHA256, None)}
+  }
+  #[inline]
+  pub fn kind(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobSpec::VT_KIND, None)}
+  }
+  #[inline]
+  pub fn runtime_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobSpec::VT_RUNTIME_ID, None)}
+  }
+  #[inline]
+  pub fn runtime_sha256(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobSpec::VT_RUNTIME_SHA256, None)}
+  }
+  #[inline]
+  pub fn model_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobSpec::VT_MODEL_ID, None)}
+  }
+  #[inline]
+  pub fn model_sha256(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobSpec::VT_MODEL_SHA256, None)}
+  }
+  #[inline]
+  pub fn inputs(&self) -> Option<flatbuffers::Vector<'a, flatbuffers::ForwardsUOffset<&'a str>>> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<flatbuffers::Vector<'a, flatbuffers::ForwardsUOffset<&'a str>>>>(JobSpec::VT_INPUTS, None)}
+  }
+  #[inline]
+  pub fn parameters_json(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobSpec::VT_PARAMETERS_JSON, None)}
+  }
+  #[inline]
+  pub fn ram_bytes(&self) -> u64 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<u64>(JobSpec::VT_RAM_BYTES, Some(0)).unwrap()}
+  }
+  #[inline]
+  pub fn vram_bytes(&self) -> u64 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<u64>(JobSpec::VT_VRAM_BYTES, Some(0)).unwrap()}
+  }
+  #[inline]
+  pub fn cpu_threads(&self) -> i32 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<i32>(JobSpec::VT_CPU_THREADS, Some(0)).unwrap()}
+  }
+  #[inline]
+  pub fn deadline_monotonic_ns(&self) -> u64 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<u64>(JobSpec::VT_DEADLINE_MONOTONIC_NS, Some(0)).unwrap()}
+  }
+  #[inline]
+  pub fn output_scope_token(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobSpec::VT_OUTPUT_SCOPE_TOKEN, None)}
+  }
+  #[inline]
+  pub fn cloud_consent_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobSpec::VT_CLOUD_CONSENT_ID, None)}
+  }
+}
+
+impl flatbuffers::Verifiable for JobSpec<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("job_id", Self::VT_JOB_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("project_id", Self::VT_PROJECT_ID, false)?
+     .visit_field::<u64>("source_revision", Self::VT_SOURCE_REVISION, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("context_sha256", Self::VT_CONTEXT_SHA256, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("kind", Self::VT_KIND, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("runtime_id", Self::VT_RUNTIME_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("runtime_sha256", Self::VT_RUNTIME_SHA256, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("model_id", Self::VT_MODEL_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("model_sha256", Self::VT_MODEL_SHA256, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<flatbuffers::Vector<'_, flatbuffers::ForwardsUOffset<&'_ str>>>>("inputs", Self::VT_INPUTS, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("parameters_json", Self::VT_PARAMETERS_JSON, false)?
+     .visit_field::<u64>("ram_bytes", Self::VT_RAM_BYTES, false)?
+     .visit_field::<u64>("vram_bytes", Self::VT_VRAM_BYTES, false)?
+     .visit_field::<i32>("cpu_threads", Self::VT_CPU_THREADS, false)?
+     .visit_field::<u64>("deadline_monotonic_ns", Self::VT_DEADLINE_MONOTONIC_NS, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("output_scope_token", Self::VT_OUTPUT_SCOPE_TOKEN, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("cloud_consent_id", Self::VT_CLOUD_CONSENT_ID, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct JobSpecArgs<'a> {
+    pub job_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub project_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub source_revision: u64,
+    pub context_sha256: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub kind: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub runtime_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub runtime_sha256: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub model_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub model_sha256: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub inputs: Option<flatbuffers::WIPOffset<flatbuffers::Vector<'a, flatbuffers::ForwardsUOffset<&'a str>>>>,
+    pub parameters_json: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub ram_bytes: u64,
+    pub vram_bytes: u64,
+    pub cpu_threads: i32,
+    pub deadline_monotonic_ns: u64,
+    pub output_scope_token: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub cloud_consent_id: Option<flatbuffers::WIPOffset<&'a str>>,
+}
+impl<'a> Default for JobSpecArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    JobSpecArgs {
+      job_id: None,
+      project_id: None,
+      source_revision: 0,
+      context_sha256: None,
+      kind: None,
+      runtime_id: None,
+      runtime_sha256: None,
+      model_id: None,
+      model_sha256: None,
+      inputs: None,
+      parameters_json: None,
+      ram_bytes: 0,
+      vram_bytes: 0,
+      cpu_threads: 0,
+      deadline_monotonic_ns: 0,
+      output_scope_token: None,
+      cloud_consent_id: None,
+    }
+  }
+}
+
+pub struct JobSpecBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> JobSpecBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_job_id(&mut self, job_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobSpec::VT_JOB_ID, job_id);
+  }
+  #[inline]
+  pub fn add_project_id(&mut self, project_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobSpec::VT_PROJECT_ID, project_id);
+  }
+  #[inline]
+  pub fn add_source_revision(&mut self, source_revision: u64) {
+    self.fbb_.push_slot::<u64>(JobSpec::VT_SOURCE_REVISION, source_revision, 0);
+  }
+  #[inline]
+  pub fn add_context_sha256(&mut self, context_sha256: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobSpec::VT_CONTEXT_SHA256, context_sha256);
+  }
+  #[inline]
+  pub fn add_kind(&mut self, kind: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobSpec::VT_KIND, kind);
+  }
+  #[inline]
+  pub fn add_runtime_id(&mut self, runtime_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobSpec::VT_RUNTIME_ID, runtime_id);
+  }
+  #[inline]
+  pub fn add_runtime_sha256(&mut self, runtime_sha256: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobSpec::VT_RUNTIME_SHA256, runtime_sha256);
+  }
+  #[inline]
+  pub fn add_model_id(&mut self, model_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobSpec::VT_MODEL_ID, model_id);
+  }
+  #[inline]
+  pub fn add_model_sha256(&mut self, model_sha256: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobSpec::VT_MODEL_SHA256, model_sha256);
+  }
+  #[inline]
+  pub fn add_inputs(&mut self, inputs: flatbuffers::WIPOffset<flatbuffers::Vector<'b , flatbuffers::ForwardsUOffset<&'b  str>>>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobSpec::VT_INPUTS, inputs);
+  }
+  #[inline]
+  pub fn add_parameters_json(&mut self, parameters_json: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobSpec::VT_PARAMETERS_JSON, parameters_json);
+  }
+  #[inline]
+  pub fn add_ram_bytes(&mut self, ram_bytes: u64) {
+    self.fbb_.push_slot::<u64>(JobSpec::VT_RAM_BYTES, ram_bytes, 0);
+  }
+  #[inline]
+  pub fn add_vram_bytes(&mut self, vram_bytes: u64) {
+    self.fbb_.push_slot::<u64>(JobSpec::VT_VRAM_BYTES, vram_bytes, 0);
+  }
+  #[inline]
+  pub fn add_cpu_threads(&mut self, cpu_threads: i32) {
+    self.fbb_.push_slot::<i32>(JobSpec::VT_CPU_THREADS, cpu_threads, 0);
+  }
+  #[inline]
+  pub fn add_deadline_monotonic_ns(&mut self, deadline_monotonic_ns: u64) {
+    self.fbb_.push_slot::<u64>(JobSpec::VT_DEADLINE_MONOTONIC_NS, deadline_monotonic_ns, 0);
+  }
+  #[inline]
+  pub fn add_output_scope_token(&mut self, output_scope_token: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobSpec::VT_OUTPUT_SCOPE_TOKEN, output_scope_token);
+  }
+  #[inline]
+  pub fn add_cloud_consent_id(&mut self, cloud_consent_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobSpec::VT_CLOUD_CONSENT_ID, cloud_consent_id);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> JobSpecBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    JobSpecBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<JobSpec<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for JobSpec<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("JobSpec");
+      ds.field("job_id", &self.job_id());
+      ds.field("project_id", &self.project_id());
+      ds.field("source_revision", &self.source_revision());
+      ds.field("context_sha256", &self.context_sha256());
+      ds.field("kind", &self.kind());
+      ds.field("runtime_id", &self.runtime_id());
+      ds.field("runtime_sha256", &self.runtime_sha256());
+      ds.field("model_id", &self.model_id());
+      ds.field("model_sha256", &self.model_sha256());
+      ds.field("inputs", &self.inputs());
+      ds.field("parameters_json", &self.parameters_json());
+      ds.field("ram_bytes", &self.ram_bytes());
+      ds.field("vram_bytes", &self.vram_bytes());
+      ds.field("cpu_threads", &self.cpu_threads());
+      ds.field("deadline_monotonic_ns", &self.deadline_monotonic_ns());
+      ds.field("output_scope_token", &self.output_scope_token());
+      ds.field("cloud_consent_id", &self.cloud_consent_id());
+      ds.finish()
+  }
+}
+pub enum SubmitJobOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct SubmitJobOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for SubmitJobOp<'a> {
+  type Inner = SubmitJobOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> SubmitJobOp<'a> {
+  pub const VT_SPEC: flatbuffers::VOffsetT = 4;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    SubmitJobOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args SubmitJobOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<SubmitJobOp<'bldr>> {
+    let mut builder = SubmitJobOpBuilder::new(_fbb);
+    if let Some(x) = args.spec { builder.add_spec(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn spec(&self) -> Option<JobSpec<'a>> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<JobSpec>>(SubmitJobOp::VT_SPEC, None)}
+  }
+}
+
+impl flatbuffers::Verifiable for SubmitJobOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<JobSpec>>("spec", Self::VT_SPEC, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct SubmitJobOpArgs<'a> {
+    pub spec: Option<flatbuffers::WIPOffset<JobSpec<'a>>>,
+}
+impl<'a> Default for SubmitJobOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    SubmitJobOpArgs {
+      spec: None,
+    }
+  }
+}
+
+pub struct SubmitJobOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> SubmitJobOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_spec(&mut self, spec: flatbuffers::WIPOffset<JobSpec<'b >>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<JobSpec>>(SubmitJobOp::VT_SPEC, spec);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> SubmitJobOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    SubmitJobOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<SubmitJobOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for SubmitJobOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("SubmitJobOp");
+      ds.field("spec", &self.spec());
+      ds.finish()
+  }
+}
+pub enum CancelJobOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct CancelJobOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for CancelJobOp<'a> {
+  type Inner = CancelJobOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> CancelJobOp<'a> {
+  pub const VT_JOB_ID: flatbuffers::VOffsetT = 4;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    CancelJobOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args CancelJobOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<CancelJobOp<'bldr>> {
+    let mut builder = CancelJobOpBuilder::new(_fbb);
+    if let Some(x) = args.job_id { builder.add_job_id(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn job_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(CancelJobOp::VT_JOB_ID, None)}
+  }
+}
+
+impl flatbuffers::Verifiable for CancelJobOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("job_id", Self::VT_JOB_ID, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct CancelJobOpArgs<'a> {
+    pub job_id: Option<flatbuffers::WIPOffset<&'a str>>,
+}
+impl<'a> Default for CancelJobOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    CancelJobOpArgs {
+      job_id: None,
+    }
+  }
+}
+
+pub struct CancelJobOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> CancelJobOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_job_id(&mut self, job_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(CancelJobOp::VT_JOB_ID, job_id);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> CancelJobOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    CancelJobOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<CancelJobOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for CancelJobOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("CancelJobOp");
+      ds.field("job_id", &self.job_id());
+      ds.finish()
+  }
+}
+pub enum PauseJobOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct PauseJobOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for PauseJobOp<'a> {
+  type Inner = PauseJobOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> PauseJobOp<'a> {
+  pub const VT_JOB_ID: flatbuffers::VOffsetT = 4;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    PauseJobOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args PauseJobOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<PauseJobOp<'bldr>> {
+    let mut builder = PauseJobOpBuilder::new(_fbb);
+    if let Some(x) = args.job_id { builder.add_job_id(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn job_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(PauseJobOp::VT_JOB_ID, None)}
+  }
+}
+
+impl flatbuffers::Verifiable for PauseJobOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("job_id", Self::VT_JOB_ID, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct PauseJobOpArgs<'a> {
+    pub job_id: Option<flatbuffers::WIPOffset<&'a str>>,
+}
+impl<'a> Default for PauseJobOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    PauseJobOpArgs {
+      job_id: None,
+    }
+  }
+}
+
+pub struct PauseJobOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> PauseJobOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_job_id(&mut self, job_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(PauseJobOp::VT_JOB_ID, job_id);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> PauseJobOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    PauseJobOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<PauseJobOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for PauseJobOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("PauseJobOp");
+      ds.field("job_id", &self.job_id());
+      ds.finish()
+  }
+}
+pub enum InstallModelOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct InstallModelOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for InstallModelOp<'a> {
+  type Inner = InstallModelOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> InstallModelOp<'a> {
+  pub const VT_MODEL_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_MODEL_VERSION: flatbuffers::VOffsetT = 6;
+  pub const VT_SOURCE_URI: flatbuffers::VOffsetT = 8;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    InstallModelOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args InstallModelOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<InstallModelOp<'bldr>> {
+    let mut builder = InstallModelOpBuilder::new(_fbb);
+    if let Some(x) = args.source_uri { builder.add_source_uri(x); }
+    if let Some(x) = args.model_version { builder.add_model_version(x); }
+    if let Some(x) = args.model_id { builder.add_model_id(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn model_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(InstallModelOp::VT_MODEL_ID, None)}
+  }
+  #[inline]
+  pub fn model_version(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(InstallModelOp::VT_MODEL_VERSION, None)}
+  }
+  #[inline]
+  pub fn source_uri(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(InstallModelOp::VT_SOURCE_URI, None)}
+  }
+}
+
+impl flatbuffers::Verifiable for InstallModelOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("model_id", Self::VT_MODEL_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("model_version", Self::VT_MODEL_VERSION, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("source_uri", Self::VT_SOURCE_URI, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct InstallModelOpArgs<'a> {
+    pub model_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub model_version: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub source_uri: Option<flatbuffers::WIPOffset<&'a str>>,
+}
+impl<'a> Default for InstallModelOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    InstallModelOpArgs {
+      model_id: None,
+      model_version: None,
+      source_uri: None,
+    }
+  }
+}
+
+pub struct InstallModelOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> InstallModelOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_model_id(&mut self, model_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(InstallModelOp::VT_MODEL_ID, model_id);
+  }
+  #[inline]
+  pub fn add_model_version(&mut self, model_version: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(InstallModelOp::VT_MODEL_VERSION, model_version);
+  }
+  #[inline]
+  pub fn add_source_uri(&mut self, source_uri: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(InstallModelOp::VT_SOURCE_URI, source_uri);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> InstallModelOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    InstallModelOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<InstallModelOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for InstallModelOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("InstallModelOp");
+      ds.field("model_id", &self.model_id());
+      ds.field("model_version", &self.model_version());
+      ds.field("source_uri", &self.source_uri());
+      ds.finish()
+  }
+}
+pub enum PreviewNoteOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct PreviewNote<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for PreviewNote<'a> {
+  type Inner = PreviewNote<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> PreviewNote<'a> {
+  pub const VT_NOTE_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_PITCH: flatbuffers::VOffsetT = 6;
+  pub const VT_VELOCITY: flatbuffers::VOffsetT = 8;
+  pub const VT_START_TICKS: flatbuffers::VOffsetT = 10;
+  pub const VT_LENGTH_TICKS: flatbuffers::VOffsetT = 12;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    PreviewNote { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args PreviewNoteArgs<'args>
+  ) -> flatbuffers::WIPOffset<PreviewNote<'bldr>> {
+    let mut builder = PreviewNoteBuilder::new(_fbb);
+    builder.add_length_ticks(args.length_ticks);
+    builder.add_start_ticks(args.start_ticks);
+    if let Some(x) = args.note_id { builder.add_note_id(x); }
+    builder.add_velocity(args.velocity);
+    builder.add_pitch(args.pitch);
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn note_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(PreviewNote::VT_NOTE_ID, None)}
+  }
+  #[inline]
+  pub fn pitch(&self) -> u8 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<u8>(PreviewNote::VT_PITCH, Some(0)).unwrap()}
+  }
+  #[inline]
+  pub fn velocity(&self) -> u8 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<u8>(PreviewNote::VT_VELOCITY, Some(0)).unwrap()}
+  }
+  #[inline]
+  pub fn start_ticks(&self) -> i64 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<i64>(PreviewNote::VT_START_TICKS, Some(0)).unwrap()}
+  }
+  #[inline]
+  pub fn length_ticks(&self) -> i64 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<i64>(PreviewNote::VT_LENGTH_TICKS, Some(0)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for PreviewNote<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("note_id", Self::VT_NOTE_ID, false)?
+     .visit_field::<u8>("pitch", Self::VT_PITCH, false)?
+     .visit_field::<u8>("velocity", Self::VT_VELOCITY, false)?
+     .visit_field::<i64>("start_ticks", Self::VT_START_TICKS, false)?
+     .visit_field::<i64>("length_ticks", Self::VT_LENGTH_TICKS, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct PreviewNoteArgs<'a> {
+    pub note_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub pitch: u8,
+    pub velocity: u8,
+    pub start_ticks: i64,
+    pub length_ticks: i64,
+}
+impl<'a> Default for PreviewNoteArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    PreviewNoteArgs {
+      note_id: None,
+      pitch: 0,
+      velocity: 0,
+      start_ticks: 0,
+      length_ticks: 0,
+    }
+  }
+}
+
+pub struct PreviewNoteBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> PreviewNoteBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_note_id(&mut self, note_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(PreviewNote::VT_NOTE_ID, note_id);
+  }
+  #[inline]
+  pub fn add_pitch(&mut self, pitch: u8) {
+    self.fbb_.push_slot::<u8>(PreviewNote::VT_PITCH, pitch, 0);
+  }
+  #[inline]
+  pub fn add_velocity(&mut self, velocity: u8) {
+    self.fbb_.push_slot::<u8>(PreviewNote::VT_VELOCITY, velocity, 0);
+  }
+  #[inline]
+  pub fn add_start_ticks(&mut self, start_ticks: i64) {
+    self.fbb_.push_slot::<i64>(PreviewNote::VT_START_TICKS, start_ticks, 0);
+  }
+  #[inline]
+  pub fn add_length_ticks(&mut self, length_ticks: i64) {
+    self.fbb_.push_slot::<i64>(PreviewNote::VT_LENGTH_TICKS, length_ticks, 0);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> PreviewNoteBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    PreviewNoteBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<PreviewNote<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for PreviewNote<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("PreviewNote");
+      ds.field("note_id", &self.note_id());
+      ds.field("pitch", &self.pitch());
+      ds.field("velocity", &self.velocity());
+      ds.field("start_ticks", &self.start_ticks());
+      ds.field("length_ticks", &self.length_ticks());
+      ds.finish()
+  }
+}
+pub enum RequestProposalOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct RequestProposalOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for RequestProposalOp<'a> {
+  type Inner = RequestProposalOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> RequestProposalOp<'a> {
+  pub const VT_CONTEXT_DIGEST: flatbuffers::VOffsetT = 4;
+  pub const VT_SEED: flatbuffers::VOffsetT = 6;
+  pub const VT_MAX_PROPOSALS: flatbuffers::VOffsetT = 8;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    RequestProposalOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args RequestProposalOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<RequestProposalOp<'bldr>> {
+    let mut builder = RequestProposalOpBuilder::new(_fbb);
+    builder.add_seed(args.seed);
+    builder.add_max_proposals(args.max_proposals);
+    if let Some(x) = args.context_digest { builder.add_context_digest(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn context_digest(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(RequestProposalOp::VT_CONTEXT_DIGEST, None)}
+  }
+  #[inline]
+  pub fn seed(&self) -> u64 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<u64>(RequestProposalOp::VT_SEED, Some(0)).unwrap()}
+  }
+  #[inline]
+  pub fn max_proposals(&self) -> i32 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<i32>(RequestProposalOp::VT_MAX_PROPOSALS, Some(1)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for RequestProposalOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("context_digest", Self::VT_CONTEXT_DIGEST, false)?
+     .visit_field::<u64>("seed", Self::VT_SEED, false)?
+     .visit_field::<i32>("max_proposals", Self::VT_MAX_PROPOSALS, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct RequestProposalOpArgs<'a> {
+    pub context_digest: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub seed: u64,
+    pub max_proposals: i32,
+}
+impl<'a> Default for RequestProposalOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    RequestProposalOpArgs {
+      context_digest: None,
+      seed: 0,
+      max_proposals: 1,
+    }
+  }
+}
+
+pub struct RequestProposalOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> RequestProposalOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_context_digest(&mut self, context_digest: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(RequestProposalOp::VT_CONTEXT_DIGEST, context_digest);
+  }
+  #[inline]
+  pub fn add_seed(&mut self, seed: u64) {
+    self.fbb_.push_slot::<u64>(RequestProposalOp::VT_SEED, seed, 0);
+  }
+  #[inline]
+  pub fn add_max_proposals(&mut self, max_proposals: i32) {
+    self.fbb_.push_slot::<i32>(RequestProposalOp::VT_MAX_PROPOSALS, max_proposals, 1);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> RequestProposalOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    RequestProposalOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<RequestProposalOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for RequestProposalOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("RequestProposalOp");
+      ds.field("context_digest", &self.context_digest());
+      ds.field("seed", &self.seed());
+      ds.field("max_proposals", &self.max_proposals());
+      ds.finish()
+  }
+}
+pub enum ResolveProposalOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct ResolveProposalOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for ResolveProposalOp<'a> {
+  type Inner = ResolveProposalOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> ResolveProposalOp<'a> {
+  pub const VT_PROPOSAL_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_ACCEPT: flatbuffers::VOffsetT = 6;
+  pub const VT_CANDIDATE_RANK: flatbuffers::VOffsetT = 8;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    ResolveProposalOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args ResolveProposalOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<ResolveProposalOp<'bldr>> {
+    let mut builder = ResolveProposalOpBuilder::new(_fbb);
+    builder.add_candidate_rank(args.candidate_rank);
+    if let Some(x) = args.proposal_id { builder.add_proposal_id(x); }
+    builder.add_accept(args.accept);
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn proposal_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(ResolveProposalOp::VT_PROPOSAL_ID, None)}
+  }
+  #[inline]
+  pub fn accept(&self) -> bool {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<bool>(ResolveProposalOp::VT_ACCEPT, Some(false)).unwrap()}
+  }
+  #[inline]
+  pub fn candidate_rank(&self) -> i32 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<i32>(ResolveProposalOp::VT_CANDIDATE_RANK, Some(-1)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for ResolveProposalOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("proposal_id", Self::VT_PROPOSAL_ID, false)?
+     .visit_field::<bool>("accept", Self::VT_ACCEPT, false)?
+     .visit_field::<i32>("candidate_rank", Self::VT_CANDIDATE_RANK, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct ResolveProposalOpArgs<'a> {
+    pub proposal_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub accept: bool,
+    pub candidate_rank: i32,
+}
+impl<'a> Default for ResolveProposalOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    ResolveProposalOpArgs {
+      proposal_id: None,
+      accept: false,
+      candidate_rank: -1,
+    }
+  }
+}
+
+pub struct ResolveProposalOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> ResolveProposalOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_proposal_id(&mut self, proposal_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(ResolveProposalOp::VT_PROPOSAL_ID, proposal_id);
+  }
+  #[inline]
+  pub fn add_accept(&mut self, accept: bool) {
+    self.fbb_.push_slot::<bool>(ResolveProposalOp::VT_ACCEPT, accept, false);
+  }
+  #[inline]
+  pub fn add_candidate_rank(&mut self, candidate_rank: i32) {
+    self.fbb_.push_slot::<i32>(ResolveProposalOp::VT_CANDIDATE_RANK, candidate_rank, -1);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> ResolveProposalOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    ResolveProposalOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<ResolveProposalOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for ResolveProposalOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("ResolveProposalOp");
+      ds.field("proposal_id", &self.proposal_id());
+      ds.field("accept", &self.accept());
+      ds.field("candidate_rank", &self.candidate_rank());
+      ds.finish()
+  }
+}
+pub enum PreviewLayerOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct PreviewLayerOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for PreviewLayerOp<'a> {
+  type Inner = PreviewLayerOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> PreviewLayerOp<'a> {
+  pub const VT_PROPOSAL_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_CLIP_ID: flatbuffers::VOffsetT = 6;
+  pub const VT_NOTES: flatbuffers::VOffsetT = 8;
+  pub const VT_ENABLE: flatbuffers::VOffsetT = 10;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    PreviewLayerOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args PreviewLayerOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<PreviewLayerOp<'bldr>> {
+    let mut builder = PreviewLayerOpBuilder::new(_fbb);
+    if let Some(x) = args.notes { builder.add_notes(x); }
+    if let Some(x) = args.clip_id { builder.add_clip_id(x); }
+    if let Some(x) = args.proposal_id { builder.add_proposal_id(x); }
+    builder.add_enable(args.enable);
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn proposal_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(PreviewLayerOp::VT_PROPOSAL_ID, None)}
+  }
+  #[inline]
+  pub fn clip_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(PreviewLayerOp::VT_CLIP_ID, None)}
+  }
+  #[inline]
+  pub fn notes(&self) -> Option<flatbuffers::Vector<'a, flatbuffers::ForwardsUOffset<PreviewNote<'a>>>> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<flatbuffers::Vector<'a, flatbuffers::ForwardsUOffset<PreviewNote>>>>(PreviewLayerOp::VT_NOTES, None)}
+  }
+  #[inline]
+  pub fn enable(&self) -> bool {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<bool>(PreviewLayerOp::VT_ENABLE, Some(false)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for PreviewLayerOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("proposal_id", Self::VT_PROPOSAL_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("clip_id", Self::VT_CLIP_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<flatbuffers::Vector<'_, flatbuffers::ForwardsUOffset<PreviewNote>>>>("notes", Self::VT_NOTES, false)?
+     .visit_field::<bool>("enable", Self::VT_ENABLE, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct PreviewLayerOpArgs<'a> {
+    pub proposal_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub clip_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub notes: Option<flatbuffers::WIPOffset<flatbuffers::Vector<'a, flatbuffers::ForwardsUOffset<PreviewNote<'a>>>>>,
+    pub enable: bool,
+}
+impl<'a> Default for PreviewLayerOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    PreviewLayerOpArgs {
+      proposal_id: None,
+      clip_id: None,
+      notes: None,
+      enable: false,
+    }
+  }
+}
+
+pub struct PreviewLayerOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> PreviewLayerOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_proposal_id(&mut self, proposal_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(PreviewLayerOp::VT_PROPOSAL_ID, proposal_id);
+  }
+  #[inline]
+  pub fn add_clip_id(&mut self, clip_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(PreviewLayerOp::VT_CLIP_ID, clip_id);
+  }
+  #[inline]
+  pub fn add_notes(&mut self, notes: flatbuffers::WIPOffset<flatbuffers::Vector<'b , flatbuffers::ForwardsUOffset<PreviewNote<'b >>>>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(PreviewLayerOp::VT_NOTES, notes);
+  }
+  #[inline]
+  pub fn add_enable(&mut self, enable: bool) {
+    self.fbb_.push_slot::<bool>(PreviewLayerOp::VT_ENABLE, enable, false);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> PreviewLayerOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    PreviewLayerOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<PreviewLayerOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for PreviewLayerOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("PreviewLayerOp");
+      ds.field("proposal_id", &self.proposal_id());
+      ds.field("clip_id", &self.clip_id());
+      ds.field("notes", &self.notes());
+      ds.field("enable", &self.enable());
+      ds.finish()
+  }
+}
+pub enum IngestAssetOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct IngestAssetOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for IngestAssetOp<'a> {
+  type Inner = IngestAssetOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> IngestAssetOp<'a> {
+  pub const VT_REL_PATH: flatbuffers::VOffsetT = 4;
+  pub const VT_MEDIA_TYPE: flatbuffers::VOffsetT = 6;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    IngestAssetOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args IngestAssetOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<IngestAssetOp<'bldr>> {
+    let mut builder = IngestAssetOpBuilder::new(_fbb);
+    if let Some(x) = args.media_type { builder.add_media_type(x); }
+    if let Some(x) = args.rel_path { builder.add_rel_path(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn rel_path(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(IngestAssetOp::VT_REL_PATH, None)}
+  }
+  #[inline]
+  pub fn media_type(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(IngestAssetOp::VT_MEDIA_TYPE, None)}
+  }
+}
+
+impl flatbuffers::Verifiable for IngestAssetOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("rel_path", Self::VT_REL_PATH, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("media_type", Self::VT_MEDIA_TYPE, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct IngestAssetOpArgs<'a> {
+    pub rel_path: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub media_type: Option<flatbuffers::WIPOffset<&'a str>>,
+}
+impl<'a> Default for IngestAssetOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    IngestAssetOpArgs {
+      rel_path: None,
+      media_type: None,
+    }
+  }
+}
+
+pub struct IngestAssetOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> IngestAssetOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_rel_path(&mut self, rel_path: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(IngestAssetOp::VT_REL_PATH, rel_path);
+  }
+  #[inline]
+  pub fn add_media_type(&mut self, media_type: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(IngestAssetOp::VT_MEDIA_TYPE, media_type);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> IngestAssetOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    IngestAssetOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<IngestAssetOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for IngestAssetOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("IngestAssetOp");
+      ds.field("rel_path", &self.rel_path());
+      ds.field("media_type", &self.media_type());
+      ds.finish()
+  }
+}
+pub enum RelinkAssetOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct RelinkAssetOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for RelinkAssetOp<'a> {
+  type Inner = RelinkAssetOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> RelinkAssetOp<'a> {
+  pub const VT_ASSET_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_SHA256: flatbuffers::VOffsetT = 6;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    RelinkAssetOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args RelinkAssetOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<RelinkAssetOp<'bldr>> {
+    let mut builder = RelinkAssetOpBuilder::new(_fbb);
+    if let Some(x) = args.sha256 { builder.add_sha256(x); }
+    if let Some(x) = args.asset_id { builder.add_asset_id(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn asset_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(RelinkAssetOp::VT_ASSET_ID, None)}
+  }
+  #[inline]
+  pub fn sha256(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(RelinkAssetOp::VT_SHA256, None)}
+  }
+}
+
+impl flatbuffers::Verifiable for RelinkAssetOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("asset_id", Self::VT_ASSET_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("sha256", Self::VT_SHA256, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct RelinkAssetOpArgs<'a> {
+    pub asset_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub sha256: Option<flatbuffers::WIPOffset<&'a str>>,
+}
+impl<'a> Default for RelinkAssetOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    RelinkAssetOpArgs {
+      asset_id: None,
+      sha256: None,
+    }
+  }
+}
+
+pub struct RelinkAssetOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> RelinkAssetOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_asset_id(&mut self, asset_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(RelinkAssetOp::VT_ASSET_ID, asset_id);
+  }
+  #[inline]
+  pub fn add_sha256(&mut self, sha256: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(RelinkAssetOp::VT_SHA256, sha256);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> RelinkAssetOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    RelinkAssetOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<RelinkAssetOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for RelinkAssetOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("RelinkAssetOp");
+      ds.field("asset_id", &self.asset_id());
+      ds.field("sha256", &self.sha256());
+      ds.finish()
+  }
+}
+pub enum SetPluginBypassOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct SetPluginBypassOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for SetPluginBypassOp<'a> {
+  type Inner = SetPluginBypassOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> SetPluginBypassOp<'a> {
+  pub const VT_PLUGIN_INSTANCE_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_BYPASSED: flatbuffers::VOffsetT = 6;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    SetPluginBypassOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args SetPluginBypassOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<SetPluginBypassOp<'bldr>> {
+    let mut builder = SetPluginBypassOpBuilder::new(_fbb);
+    if let Some(x) = args.plugin_instance_id { builder.add_plugin_instance_id(x); }
+    builder.add_bypassed(args.bypassed);
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn plugin_instance_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(SetPluginBypassOp::VT_PLUGIN_INSTANCE_ID, None)}
+  }
+  #[inline]
+  pub fn bypassed(&self) -> bool {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<bool>(SetPluginBypassOp::VT_BYPASSED, Some(false)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for SetPluginBypassOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("plugin_instance_id", Self::VT_PLUGIN_INSTANCE_ID, false)?
+     .visit_field::<bool>("bypassed", Self::VT_BYPASSED, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct SetPluginBypassOpArgs<'a> {
+    pub plugin_instance_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub bypassed: bool,
+}
+impl<'a> Default for SetPluginBypassOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    SetPluginBypassOpArgs {
+      plugin_instance_id: None,
+      bypassed: false,
+    }
+  }
+}
+
+pub struct SetPluginBypassOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> SetPluginBypassOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_plugin_instance_id(&mut self, plugin_instance_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(SetPluginBypassOp::VT_PLUGIN_INSTANCE_ID, plugin_instance_id);
+  }
+  #[inline]
+  pub fn add_bypassed(&mut self, bypassed: bool) {
+    self.fbb_.push_slot::<bool>(SetPluginBypassOp::VT_BYPASSED, bypassed, false);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> SetPluginBypassOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    SetPluginBypassOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<SetPluginBypassOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for SetPluginBypassOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("SetPluginBypassOp");
+      ds.field("plugin_instance_id", &self.plugin_instance_id());
+      ds.field("bypassed", &self.bypassed());
+      ds.finish()
+  }
+}
+pub enum RescanPluginsOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct RescanPluginsOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for RescanPluginsOp<'a> {
+  type Inner = RescanPluginsOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> RescanPluginsOp<'a> {
+  pub const VT_PLUGIN_UID: flatbuffers::VOffsetT = 4;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    RescanPluginsOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args RescanPluginsOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<RescanPluginsOp<'bldr>> {
+    let mut builder = RescanPluginsOpBuilder::new(_fbb);
+    if let Some(x) = args.plugin_uid { builder.add_plugin_uid(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn plugin_uid(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(RescanPluginsOp::VT_PLUGIN_UID, None)}
+  }
+}
+
+impl flatbuffers::Verifiable for RescanPluginsOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("plugin_uid", Self::VT_PLUGIN_UID, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct RescanPluginsOpArgs<'a> {
+    pub plugin_uid: Option<flatbuffers::WIPOffset<&'a str>>,
+}
+impl<'a> Default for RescanPluginsOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    RescanPluginsOpArgs {
+      plugin_uid: None,
+    }
+  }
+}
+
+pub struct RescanPluginsOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> RescanPluginsOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_plugin_uid(&mut self, plugin_uid: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(RescanPluginsOp::VT_PLUGIN_UID, plugin_uid);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> RescanPluginsOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    RescanPluginsOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<RescanPluginsOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for RescanPluginsOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("RescanPluginsOp");
+      ds.field("plugin_uid", &self.plugin_uid());
+      ds.finish()
+  }
+}
+pub enum RestorePluginStateOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct RestorePluginStateOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for RestorePluginStateOp<'a> {
+  type Inner = RestorePluginStateOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> RestorePluginStateOp<'a> {
+  pub const VT_PLUGIN_INSTANCE_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_STATE_ASSET_ID: flatbuffers::VOffsetT = 6;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    RestorePluginStateOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args RestorePluginStateOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<RestorePluginStateOp<'bldr>> {
+    let mut builder = RestorePluginStateOpBuilder::new(_fbb);
+    if let Some(x) = args.state_asset_id { builder.add_state_asset_id(x); }
+    if let Some(x) = args.plugin_instance_id { builder.add_plugin_instance_id(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn plugin_instance_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(RestorePluginStateOp::VT_PLUGIN_INSTANCE_ID, None)}
+  }
+  #[inline]
+  pub fn state_asset_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(RestorePluginStateOp::VT_STATE_ASSET_ID, None)}
+  }
+}
+
+impl flatbuffers::Verifiable for RestorePluginStateOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("plugin_instance_id", Self::VT_PLUGIN_INSTANCE_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("state_asset_id", Self::VT_STATE_ASSET_ID, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct RestorePluginStateOpArgs<'a> {
+    pub plugin_instance_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub state_asset_id: Option<flatbuffers::WIPOffset<&'a str>>,
+}
+impl<'a> Default for RestorePluginStateOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    RestorePluginStateOpArgs {
+      plugin_instance_id: None,
+      state_asset_id: None,
+    }
+  }
+}
+
+pub struct RestorePluginStateOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> RestorePluginStateOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_plugin_instance_id(&mut self, plugin_instance_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(RestorePluginStateOp::VT_PLUGIN_INSTANCE_ID, plugin_instance_id);
+  }
+  #[inline]
+  pub fn add_state_asset_id(&mut self, state_asset_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(RestorePluginStateOp::VT_STATE_ASSET_ID, state_asset_id);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> RestorePluginStateOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    RestorePluginStateOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<RestorePluginStateOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for RestorePluginStateOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("RestorePluginStateOp");
+      ds.field("plugin_instance_id", &self.plugin_instance_id());
+      ds.field("state_asset_id", &self.state_asset_id());
+      ds.finish()
+  }
+}
+pub enum SaveProjectAsOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct SaveProjectAsOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for SaveProjectAsOp<'a> {
+  type Inner = SaveProjectAsOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> SaveProjectAsOp<'a> {
+  pub const VT_CONTAINER_DIR: flatbuffers::VOffsetT = 4;
+  pub const VT_NAME: flatbuffers::VOffsetT = 6;
+  pub const VT_REASON: flatbuffers::VOffsetT = 8;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    SaveProjectAsOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args SaveProjectAsOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<SaveProjectAsOp<'bldr>> {
+    let mut builder = SaveProjectAsOpBuilder::new(_fbb);
+    if let Some(x) = args.reason { builder.add_reason(x); }
+    if let Some(x) = args.name { builder.add_name(x); }
+    if let Some(x) = args.container_dir { builder.add_container_dir(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn container_dir(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(SaveProjectAsOp::VT_CONTAINER_DIR, None)}
+  }
+  #[inline]
+  pub fn name(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(SaveProjectAsOp::VT_NAME, None)}
+  }
+  #[inline]
+  pub fn reason(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(SaveProjectAsOp::VT_REASON, None)}
+  }
+}
+
+impl flatbuffers::Verifiable for SaveProjectAsOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("container_dir", Self::VT_CONTAINER_DIR, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("name", Self::VT_NAME, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("reason", Self::VT_REASON, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct SaveProjectAsOpArgs<'a> {
+    pub container_dir: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub name: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub reason: Option<flatbuffers::WIPOffset<&'a str>>,
+}
+impl<'a> Default for SaveProjectAsOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    SaveProjectAsOpArgs {
+      container_dir: None,
+      name: None,
+      reason: None,
+    }
+  }
+}
+
+pub struct SaveProjectAsOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> SaveProjectAsOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_container_dir(&mut self, container_dir: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(SaveProjectAsOp::VT_CONTAINER_DIR, container_dir);
+  }
+  #[inline]
+  pub fn add_name(&mut self, name: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(SaveProjectAsOp::VT_NAME, name);
+  }
+  #[inline]
+  pub fn add_reason(&mut self, reason: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(SaveProjectAsOp::VT_REASON, reason);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> SaveProjectAsOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    SaveProjectAsOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<SaveProjectAsOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for SaveProjectAsOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("SaveProjectAsOp");
+      ds.field("container_dir", &self.container_dir());
+      ds.field("name", &self.name());
+      ds.field("reason", &self.reason());
+      ds.finish()
+  }
+}
+pub enum LaunchSceneOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct LaunchSceneOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for LaunchSceneOp<'a> {
+  type Inner = LaunchSceneOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> LaunchSceneOp<'a> {
+  pub const VT_SCENE_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_QUANTIZE: flatbuffers::VOffsetT = 6;
+  pub const VT_QUANTIZE_TICKS: flatbuffers::VOffsetT = 8;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    LaunchSceneOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args LaunchSceneOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<LaunchSceneOp<'bldr>> {
+    let mut builder = LaunchSceneOpBuilder::new(_fbb);
+    builder.add_quantize_ticks(args.quantize_ticks);
+    if let Some(x) = args.scene_id { builder.add_scene_id(x); }
+    builder.add_quantize(args.quantize);
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn scene_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(LaunchSceneOp::VT_SCENE_ID, None)}
+  }
+  #[inline]
+  pub fn quantize(&self) -> LaunchQuantize {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<LaunchQuantize>(LaunchSceneOp::VT_QUANTIZE, Some(LaunchQuantize::BAR)).unwrap()}
+  }
+  #[inline]
+  pub fn quantize_ticks(&self) -> i64 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<i64>(LaunchSceneOp::VT_QUANTIZE_TICKS, Some(0)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for LaunchSceneOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("scene_id", Self::VT_SCENE_ID, false)?
+     .visit_field::<LaunchQuantize>("quantize", Self::VT_QUANTIZE, false)?
+     .visit_field::<i64>("quantize_ticks", Self::VT_QUANTIZE_TICKS, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct LaunchSceneOpArgs<'a> {
+    pub scene_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub quantize: LaunchQuantize,
+    pub quantize_ticks: i64,
+}
+impl<'a> Default for LaunchSceneOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    LaunchSceneOpArgs {
+      scene_id: None,
+      quantize: LaunchQuantize::BAR,
+      quantize_ticks: 0,
+    }
+  }
+}
+
+pub struct LaunchSceneOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> LaunchSceneOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_scene_id(&mut self, scene_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(LaunchSceneOp::VT_SCENE_ID, scene_id);
+  }
+  #[inline]
+  pub fn add_quantize(&mut self, quantize: LaunchQuantize) {
+    self.fbb_.push_slot::<LaunchQuantize>(LaunchSceneOp::VT_QUANTIZE, quantize, LaunchQuantize::BAR);
+  }
+  #[inline]
+  pub fn add_quantize_ticks(&mut self, quantize_ticks: i64) {
+    self.fbb_.push_slot::<i64>(LaunchSceneOp::VT_QUANTIZE_TICKS, quantize_ticks, 0);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> LaunchSceneOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    LaunchSceneOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<LaunchSceneOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for LaunchSceneOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("LaunchSceneOp");
+      ds.field("scene_id", &self.scene_id());
+      ds.field("quantize", &self.quantize());
+      ds.field("quantize_ticks", &self.quantize_ticks());
+      ds.finish()
+  }
+}
+pub enum StopSceneOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct StopSceneOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for StopSceneOp<'a> {
+  type Inner = StopSceneOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> StopSceneOp<'a> {
+  pub const VT_SCENE_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_QUANTIZE: flatbuffers::VOffsetT = 6;
+  pub const VT_QUANTIZE_TICKS: flatbuffers::VOffsetT = 8;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    StopSceneOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args StopSceneOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<StopSceneOp<'bldr>> {
+    let mut builder = StopSceneOpBuilder::new(_fbb);
+    builder.add_quantize_ticks(args.quantize_ticks);
+    if let Some(x) = args.scene_id { builder.add_scene_id(x); }
+    builder.add_quantize(args.quantize);
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn scene_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(StopSceneOp::VT_SCENE_ID, None)}
+  }
+  #[inline]
+  pub fn quantize(&self) -> LaunchQuantize {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<LaunchQuantize>(StopSceneOp::VT_QUANTIZE, Some(LaunchQuantize::BAR)).unwrap()}
+  }
+  #[inline]
+  pub fn quantize_ticks(&self) -> i64 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<i64>(StopSceneOp::VT_QUANTIZE_TICKS, Some(0)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for StopSceneOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("scene_id", Self::VT_SCENE_ID, false)?
+     .visit_field::<LaunchQuantize>("quantize", Self::VT_QUANTIZE, false)?
+     .visit_field::<i64>("quantize_ticks", Self::VT_QUANTIZE_TICKS, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct StopSceneOpArgs<'a> {
+    pub scene_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub quantize: LaunchQuantize,
+    pub quantize_ticks: i64,
+}
+impl<'a> Default for StopSceneOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    StopSceneOpArgs {
+      scene_id: None,
+      quantize: LaunchQuantize::BAR,
+      quantize_ticks: 0,
+    }
+  }
+}
+
+pub struct StopSceneOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> StopSceneOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_scene_id(&mut self, scene_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(StopSceneOp::VT_SCENE_ID, scene_id);
+  }
+  #[inline]
+  pub fn add_quantize(&mut self, quantize: LaunchQuantize) {
+    self.fbb_.push_slot::<LaunchQuantize>(StopSceneOp::VT_QUANTIZE, quantize, LaunchQuantize::BAR);
+  }
+  #[inline]
+  pub fn add_quantize_ticks(&mut self, quantize_ticks: i64) {
+    self.fbb_.push_slot::<i64>(StopSceneOp::VT_QUANTIZE_TICKS, quantize_ticks, 0);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> StopSceneOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    StopSceneOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<StopSceneOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for StopSceneOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("StopSceneOp");
+      ds.field("scene_id", &self.scene_id());
+      ds.field("quantize", &self.quantize());
+      ds.field("quantize_ticks", &self.quantize_ticks());
+      ds.finish()
+  }
+}
+pub enum LaunchClipOpOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct LaunchClipOp<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for LaunchClipOp<'a> {
+  type Inner = LaunchClipOp<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> LaunchClipOp<'a> {
+  pub const VT_SLOT_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_QUANTIZE: flatbuffers::VOffsetT = 6;
+  pub const VT_QUANTIZE_TICKS: flatbuffers::VOffsetT = 8;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    LaunchClipOp { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args LaunchClipOpArgs<'args>
+  ) -> flatbuffers::WIPOffset<LaunchClipOp<'bldr>> {
+    let mut builder = LaunchClipOpBuilder::new(_fbb);
+    builder.add_quantize_ticks(args.quantize_ticks);
+    if let Some(x) = args.slot_id { builder.add_slot_id(x); }
+    builder.add_quantize(args.quantize);
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn slot_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(LaunchClipOp::VT_SLOT_ID, None)}
+  }
+  #[inline]
+  pub fn quantize(&self) -> LaunchQuantize {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<LaunchQuantize>(LaunchClipOp::VT_QUANTIZE, Some(LaunchQuantize::BAR)).unwrap()}
+  }
+  #[inline]
+  pub fn quantize_ticks(&self) -> i64 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<i64>(LaunchClipOp::VT_QUANTIZE_TICKS, Some(0)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for LaunchClipOp<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("slot_id", Self::VT_SLOT_ID, false)?
+     .visit_field::<LaunchQuantize>("quantize", Self::VT_QUANTIZE, false)?
+     .visit_field::<i64>("quantize_ticks", Self::VT_QUANTIZE_TICKS, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct LaunchClipOpArgs<'a> {
+    pub slot_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub quantize: LaunchQuantize,
+    pub quantize_ticks: i64,
+}
+impl<'a> Default for LaunchClipOpArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    LaunchClipOpArgs {
+      slot_id: None,
+      quantize: LaunchQuantize::BAR,
+      quantize_ticks: 0,
+    }
+  }
+}
+
+pub struct LaunchClipOpBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> LaunchClipOpBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_slot_id(&mut self, slot_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(LaunchClipOp::VT_SLOT_ID, slot_id);
+  }
+  #[inline]
+  pub fn add_quantize(&mut self, quantize: LaunchQuantize) {
+    self.fbb_.push_slot::<LaunchQuantize>(LaunchClipOp::VT_QUANTIZE, quantize, LaunchQuantize::BAR);
+  }
+  #[inline]
+  pub fn add_quantize_ticks(&mut self, quantize_ticks: i64) {
+    self.fbb_.push_slot::<i64>(LaunchClipOp::VT_QUANTIZE_TICKS, quantize_ticks, 0);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> LaunchClipOpBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    LaunchClipOpBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<LaunchClipOp<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for LaunchClipOp<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("LaunchClipOp");
+      ds.field("slot_id", &self.slot_id());
+      ds.field("quantize", &self.quantize());
+      ds.field("quantize_ticks", &self.quantize_ticks());
+      ds.finish()
+  }
+}
 pub enum PersistentCommandOffset {}
 #[derive(Copy, Clone, PartialEq)]
 
@@ -6071,6 +9555,336 @@ impl<'a> PersistentCommand<'a> {
     }
   }
 
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_arm_track_op(&self) -> Option<ArmTrackOp<'a>> {
+    if self.op_type() == PersistentOp::ArmTrackOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { ArmTrackOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_start_recording_op(&self) -> Option<StartRecordingOp<'a>> {
+    if self.op_type() == PersistentOp::StartRecordingOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { StartRecordingOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_stop_recording_op(&self) -> Option<StopRecordingOp<'a>> {
+    if self.op_type() == PersistentOp::StopRecordingOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { StopRecordingOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_set_count_in_op(&self) -> Option<SetCountInOp<'a>> {
+    if self.op_type() == PersistentOp::SetCountInOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { SetCountInOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_set_metronome_op(&self) -> Option<SetMetronomeOp<'a>> {
+    if self.op_type() == PersistentOp::SetMetronomeOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { SetMetronomeOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_set_punch_in_out_op(&self) -> Option<SetPunchInOutOp<'a>> {
+    if self.op_type() == PersistentOp::SetPunchInOutOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { SetPunchInOutOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_submit_job_op(&self) -> Option<SubmitJobOp<'a>> {
+    if self.op_type() == PersistentOp::SubmitJobOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { SubmitJobOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_cancel_job_op(&self) -> Option<CancelJobOp<'a>> {
+    if self.op_type() == PersistentOp::CancelJobOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { CancelJobOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_pause_job_op(&self) -> Option<PauseJobOp<'a>> {
+    if self.op_type() == PersistentOp::PauseJobOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { PauseJobOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_install_model_op(&self) -> Option<InstallModelOp<'a>> {
+    if self.op_type() == PersistentOp::InstallModelOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { InstallModelOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_request_proposal_op(&self) -> Option<RequestProposalOp<'a>> {
+    if self.op_type() == PersistentOp::RequestProposalOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { RequestProposalOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_resolve_proposal_op(&self) -> Option<ResolveProposalOp<'a>> {
+    if self.op_type() == PersistentOp::ResolveProposalOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { ResolveProposalOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_preview_layer_op(&self) -> Option<PreviewLayerOp<'a>> {
+    if self.op_type() == PersistentOp::PreviewLayerOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { PreviewLayerOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_ingest_asset_op(&self) -> Option<IngestAssetOp<'a>> {
+    if self.op_type() == PersistentOp::IngestAssetOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { IngestAssetOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_relink_asset_op(&self) -> Option<RelinkAssetOp<'a>> {
+    if self.op_type() == PersistentOp::RelinkAssetOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { RelinkAssetOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_set_plugin_bypass_op(&self) -> Option<SetPluginBypassOp<'a>> {
+    if self.op_type() == PersistentOp::SetPluginBypassOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { SetPluginBypassOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_rescan_plugins_op(&self) -> Option<RescanPluginsOp<'a>> {
+    if self.op_type() == PersistentOp::RescanPluginsOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { RescanPluginsOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_restore_plugin_state_op(&self) -> Option<RestorePluginStateOp<'a>> {
+    if self.op_type() == PersistentOp::RestorePluginStateOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { RestorePluginStateOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_save_project_as_op(&self) -> Option<SaveProjectAsOp<'a>> {
+    if self.op_type() == PersistentOp::SaveProjectAsOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { SaveProjectAsOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_launch_scene_op(&self) -> Option<LaunchSceneOp<'a>> {
+    if self.op_type() == PersistentOp::LaunchSceneOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { LaunchSceneOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_stop_scene_op(&self) -> Option<StopSceneOp<'a>> {
+    if self.op_type() == PersistentOp::StopSceneOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { StopSceneOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn op_as_launch_clip_op(&self) -> Option<LaunchClipOp<'a>> {
+    if self.op_type() == PersistentOp::LaunchClipOp {
+      self.op().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { LaunchClipOp::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
 }
 
 impl flatbuffers::Verifiable for PersistentCommand<'_> {
@@ -6119,6 +9933,28 @@ impl flatbuffers::Verifiable for PersistentCommand<'_> {
           PersistentOp::SetPluginParamOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<SetPluginParamOp>>("PersistentOp::SetPluginParamOp", pos),
           PersistentOp::OpenPluginEditorOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<OpenPluginEditorOp>>("PersistentOp::OpenPluginEditorOp", pos),
           PersistentOp::ClosePluginEditorOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<ClosePluginEditorOp>>("PersistentOp::ClosePluginEditorOp", pos),
+          PersistentOp::ArmTrackOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<ArmTrackOp>>("PersistentOp::ArmTrackOp", pos),
+          PersistentOp::StartRecordingOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<StartRecordingOp>>("PersistentOp::StartRecordingOp", pos),
+          PersistentOp::StopRecordingOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<StopRecordingOp>>("PersistentOp::StopRecordingOp", pos),
+          PersistentOp::SetCountInOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<SetCountInOp>>("PersistentOp::SetCountInOp", pos),
+          PersistentOp::SetMetronomeOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<SetMetronomeOp>>("PersistentOp::SetMetronomeOp", pos),
+          PersistentOp::SetPunchInOutOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<SetPunchInOutOp>>("PersistentOp::SetPunchInOutOp", pos),
+          PersistentOp::SubmitJobOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<SubmitJobOp>>("PersistentOp::SubmitJobOp", pos),
+          PersistentOp::CancelJobOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<CancelJobOp>>("PersistentOp::CancelJobOp", pos),
+          PersistentOp::PauseJobOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<PauseJobOp>>("PersistentOp::PauseJobOp", pos),
+          PersistentOp::InstallModelOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<InstallModelOp>>("PersistentOp::InstallModelOp", pos),
+          PersistentOp::RequestProposalOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<RequestProposalOp>>("PersistentOp::RequestProposalOp", pos),
+          PersistentOp::ResolveProposalOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<ResolveProposalOp>>("PersistentOp::ResolveProposalOp", pos),
+          PersistentOp::PreviewLayerOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<PreviewLayerOp>>("PersistentOp::PreviewLayerOp", pos),
+          PersistentOp::IngestAssetOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<IngestAssetOp>>("PersistentOp::IngestAssetOp", pos),
+          PersistentOp::RelinkAssetOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<RelinkAssetOp>>("PersistentOp::RelinkAssetOp", pos),
+          PersistentOp::SetPluginBypassOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<SetPluginBypassOp>>("PersistentOp::SetPluginBypassOp", pos),
+          PersistentOp::RescanPluginsOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<RescanPluginsOp>>("PersistentOp::RescanPluginsOp", pos),
+          PersistentOp::RestorePluginStateOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<RestorePluginStateOp>>("PersistentOp::RestorePluginStateOp", pos),
+          PersistentOp::SaveProjectAsOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<SaveProjectAsOp>>("PersistentOp::SaveProjectAsOp", pos),
+          PersistentOp::LaunchSceneOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<LaunchSceneOp>>("PersistentOp::LaunchSceneOp", pos),
+          PersistentOp::StopSceneOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<StopSceneOp>>("PersistentOp::StopSceneOp", pos),
+          PersistentOp::LaunchClipOp => v.verify_union_variant::<flatbuffers::ForwardsUOffset<LaunchClipOp>>("PersistentOp::LaunchClipOp", pos),
           _ => Ok(()),
         }
      })?
@@ -6432,6 +10268,160 @@ impl core::fmt::Debug for PersistentCommand<'_> {
             ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
           }
         },
+        PersistentOp::ArmTrackOp => {
+          if let Some(x) = self.op_as_arm_track_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::StartRecordingOp => {
+          if let Some(x) = self.op_as_start_recording_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::StopRecordingOp => {
+          if let Some(x) = self.op_as_stop_recording_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::SetCountInOp => {
+          if let Some(x) = self.op_as_set_count_in_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::SetMetronomeOp => {
+          if let Some(x) = self.op_as_set_metronome_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::SetPunchInOutOp => {
+          if let Some(x) = self.op_as_set_punch_in_out_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::SubmitJobOp => {
+          if let Some(x) = self.op_as_submit_job_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::CancelJobOp => {
+          if let Some(x) = self.op_as_cancel_job_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::PauseJobOp => {
+          if let Some(x) = self.op_as_pause_job_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::InstallModelOp => {
+          if let Some(x) = self.op_as_install_model_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::RequestProposalOp => {
+          if let Some(x) = self.op_as_request_proposal_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::ResolveProposalOp => {
+          if let Some(x) = self.op_as_resolve_proposal_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::PreviewLayerOp => {
+          if let Some(x) = self.op_as_preview_layer_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::IngestAssetOp => {
+          if let Some(x) = self.op_as_ingest_asset_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::RelinkAssetOp => {
+          if let Some(x) = self.op_as_relink_asset_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::SetPluginBypassOp => {
+          if let Some(x) = self.op_as_set_plugin_bypass_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::RescanPluginsOp => {
+          if let Some(x) = self.op_as_rescan_plugins_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::RestorePluginStateOp => {
+          if let Some(x) = self.op_as_restore_plugin_state_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::SaveProjectAsOp => {
+          if let Some(x) = self.op_as_save_project_as_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::LaunchSceneOp => {
+          if let Some(x) = self.op_as_launch_scene_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::StopSceneOp => {
+          if let Some(x) = self.op_as_stop_scene_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        PersistentOp::LaunchClipOp => {
+          if let Some(x) = self.op_as_launch_clip_op() {
+            ds.field("op", &x)
+          } else {
+            ds.field("op", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
         _ => {
           let x: Option<()> = None;
           ds.field("op", &x)
@@ -6680,6 +10670,7 @@ impl<'a> ReadRequest<'a> {
   pub const VT_TRACK_ID: flatbuffers::VOffsetT = 14;
   pub const VT_START_TICKS: flatbuffers::VOffsetT = 16;
   pub const VT_END_TICKS: flatbuffers::VOffsetT = 18;
+  pub const VT_INCLUDE_TERMINAL: flatbuffers::VOffsetT = 20;
 
   #[inline]
   pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
@@ -6698,6 +10689,7 @@ impl<'a> ReadRequest<'a> {
     if let Some(x) = args.cursor { builder.add_cursor(x); }
     if let Some(x) = args.project_id { builder.add_project_id(x); }
     if let Some(x) = args.request_id { builder.add_request_id(x); }
+    builder.add_include_terminal(args.include_terminal);
     builder.add_view(args.view);
     builder.finish()
   }
@@ -6759,6 +10751,13 @@ impl<'a> ReadRequest<'a> {
     // which contains a valid value in this slot
     unsafe { self._tab.get::<i64>(ReadRequest::VT_END_TICKS, Some(-1)).unwrap()}
   }
+  #[inline]
+  pub fn include_terminal(&self) -> bool {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<bool>(ReadRequest::VT_INCLUDE_TERMINAL, Some(false)).unwrap()}
+  }
 }
 
 impl flatbuffers::Verifiable for ReadRequest<'_> {
@@ -6776,6 +10775,7 @@ impl flatbuffers::Verifiable for ReadRequest<'_> {
      .visit_field::<flatbuffers::ForwardsUOffset<&str>>("track_id", Self::VT_TRACK_ID, false)?
      .visit_field::<i64>("start_ticks", Self::VT_START_TICKS, false)?
      .visit_field::<i64>("end_ticks", Self::VT_END_TICKS, false)?
+     .visit_field::<bool>("include_terminal", Self::VT_INCLUDE_TERMINAL, false)?
      .finish();
     Ok(())
   }
@@ -6789,6 +10789,7 @@ pub struct ReadRequestArgs<'a> {
     pub track_id: Option<flatbuffers::WIPOffset<&'a str>>,
     pub start_ticks: i64,
     pub end_ticks: i64,
+    pub include_terminal: bool,
 }
 impl<'a> Default for ReadRequestArgs<'a> {
   #[inline]
@@ -6802,6 +10803,7 @@ impl<'a> Default for ReadRequestArgs<'a> {
       track_id: None,
       start_ticks: -1,
       end_ticks: -1,
+      include_terminal: false,
     }
   }
 }
@@ -6844,6 +10846,10 @@ impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> ReadRequestBuilder<'a, 'b, A> {
     self.fbb_.push_slot::<i64>(ReadRequest::VT_END_TICKS, end_ticks, -1);
   }
   #[inline]
+  pub fn add_include_terminal(&mut self, include_terminal: bool) {
+    self.fbb_.push_slot::<bool>(ReadRequest::VT_INCLUDE_TERMINAL, include_terminal, false);
+  }
+  #[inline]
   pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> ReadRequestBuilder<'a, 'b, A> {
     let start = _fbb.start_table();
     ReadRequestBuilder {
@@ -6869,6 +10875,7 @@ impl core::fmt::Debug for ReadRequest<'_> {
       ds.field("track_id", &self.track_id());
       ds.field("start_ticks", &self.start_ticks());
       ds.field("end_ticks", &self.end_ticks());
+      ds.field("include_terminal", &self.include_terminal());
       ds.finish()
   }
 }
@@ -9407,6 +13414,450 @@ impl core::fmt::Debug for TransportAck<'_> {
       ds.finish()
   }
 }
+pub enum JobEventOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct JobEvent<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for JobEvent<'a> {
+  type Inner = JobEvent<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> JobEvent<'a> {
+  pub const VT_PROJECT_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_JOB_ID: flatbuffers::VOffsetT = 6;
+  pub const VT_STATUS: flatbuffers::VOffsetT = 8;
+  pub const VT_PERCENT: flatbuffers::VOffsetT = 10;
+  pub const VT_MESSAGE: flatbuffers::VOffsetT = 12;
+  pub const VT_QUARANTINED: flatbuffers::VOffsetT = 14;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    JobEvent { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args JobEventArgs<'args>
+  ) -> flatbuffers::WIPOffset<JobEvent<'bldr>> {
+    let mut builder = JobEventBuilder::new(_fbb);
+    if let Some(x) = args.message { builder.add_message(x); }
+    builder.add_percent(args.percent);
+    if let Some(x) = args.status { builder.add_status(x); }
+    if let Some(x) = args.job_id { builder.add_job_id(x); }
+    if let Some(x) = args.project_id { builder.add_project_id(x); }
+    builder.add_quarantined(args.quarantined);
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn project_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobEvent::VT_PROJECT_ID, None)}
+  }
+  #[inline]
+  pub fn job_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobEvent::VT_JOB_ID, None)}
+  }
+  #[inline]
+  pub fn status(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobEvent::VT_STATUS, None)}
+  }
+  #[inline]
+  pub fn percent(&self) -> f32 {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<f32>(JobEvent::VT_PERCENT, Some(-1.0)).unwrap()}
+  }
+  #[inline]
+  pub fn message(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(JobEvent::VT_MESSAGE, None)}
+  }
+  #[inline]
+  pub fn quarantined(&self) -> bool {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<bool>(JobEvent::VT_QUARANTINED, Some(false)).unwrap()}
+  }
+}
+
+impl flatbuffers::Verifiable for JobEvent<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("project_id", Self::VT_PROJECT_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("job_id", Self::VT_JOB_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("status", Self::VT_STATUS, false)?
+     .visit_field::<f32>("percent", Self::VT_PERCENT, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("message", Self::VT_MESSAGE, false)?
+     .visit_field::<bool>("quarantined", Self::VT_QUARANTINED, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct JobEventArgs<'a> {
+    pub project_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub job_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub status: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub percent: f32,
+    pub message: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub quarantined: bool,
+}
+impl<'a> Default for JobEventArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    JobEventArgs {
+      project_id: None,
+      job_id: None,
+      status: None,
+      percent: -1.0,
+      message: None,
+      quarantined: false,
+    }
+  }
+}
+
+pub struct JobEventBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> JobEventBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_project_id(&mut self, project_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobEvent::VT_PROJECT_ID, project_id);
+  }
+  #[inline]
+  pub fn add_job_id(&mut self, job_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobEvent::VT_JOB_ID, job_id);
+  }
+  #[inline]
+  pub fn add_status(&mut self, status: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobEvent::VT_STATUS, status);
+  }
+  #[inline]
+  pub fn add_percent(&mut self, percent: f32) {
+    self.fbb_.push_slot::<f32>(JobEvent::VT_PERCENT, percent, -1.0);
+  }
+  #[inline]
+  pub fn add_message(&mut self, message: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(JobEvent::VT_MESSAGE, message);
+  }
+  #[inline]
+  pub fn add_quarantined(&mut self, quarantined: bool) {
+    self.fbb_.push_slot::<bool>(JobEvent::VT_QUARANTINED, quarantined, false);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> JobEventBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    JobEventBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<JobEvent<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for JobEvent<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("JobEvent");
+      ds.field("project_id", &self.project_id());
+      ds.field("job_id", &self.job_id());
+      ds.field("status", &self.status());
+      ds.field("percent", &self.percent());
+      ds.field("message", &self.message());
+      ds.field("quarantined", &self.quarantined());
+      ds.finish()
+  }
+}
+pub enum ProposalStaleEventOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct ProposalStaleEvent<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for ProposalStaleEvent<'a> {
+  type Inner = ProposalStaleEvent<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> ProposalStaleEvent<'a> {
+  pub const VT_PROJECT_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_PROPOSAL_ID: flatbuffers::VOffsetT = 6;
+  pub const VT_CAUSE: flatbuffers::VOffsetT = 8;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    ProposalStaleEvent { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args ProposalStaleEventArgs<'args>
+  ) -> flatbuffers::WIPOffset<ProposalStaleEvent<'bldr>> {
+    let mut builder = ProposalStaleEventBuilder::new(_fbb);
+    if let Some(x) = args.cause { builder.add_cause(x); }
+    if let Some(x) = args.proposal_id { builder.add_proposal_id(x); }
+    if let Some(x) = args.project_id { builder.add_project_id(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn project_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(ProposalStaleEvent::VT_PROJECT_ID, None)}
+  }
+  #[inline]
+  pub fn proposal_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(ProposalStaleEvent::VT_PROPOSAL_ID, None)}
+  }
+  #[inline]
+  pub fn cause(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(ProposalStaleEvent::VT_CAUSE, None)}
+  }
+}
+
+impl flatbuffers::Verifiable for ProposalStaleEvent<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("project_id", Self::VT_PROJECT_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("proposal_id", Self::VT_PROPOSAL_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("cause", Self::VT_CAUSE, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct ProposalStaleEventArgs<'a> {
+    pub project_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub proposal_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub cause: Option<flatbuffers::WIPOffset<&'a str>>,
+}
+impl<'a> Default for ProposalStaleEventArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    ProposalStaleEventArgs {
+      project_id: None,
+      proposal_id: None,
+      cause: None,
+    }
+  }
+}
+
+pub struct ProposalStaleEventBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> ProposalStaleEventBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_project_id(&mut self, project_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(ProposalStaleEvent::VT_PROJECT_ID, project_id);
+  }
+  #[inline]
+  pub fn add_proposal_id(&mut self, proposal_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(ProposalStaleEvent::VT_PROPOSAL_ID, proposal_id);
+  }
+  #[inline]
+  pub fn add_cause(&mut self, cause: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(ProposalStaleEvent::VT_CAUSE, cause);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> ProposalStaleEventBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    ProposalStaleEventBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<ProposalStaleEvent<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for ProposalStaleEvent<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("ProposalStaleEvent");
+      ds.field("project_id", &self.project_id());
+      ds.field("proposal_id", &self.proposal_id());
+      ds.field("cause", &self.cause());
+      ds.finish()
+  }
+}
+pub enum InputDeviceLostEventOffset {}
+#[derive(Copy, Clone, PartialEq)]
+
+pub struct InputDeviceLostEvent<'a> {
+  pub _tab: flatbuffers::Table<'a>,
+}
+
+impl<'a> flatbuffers::Follow<'a> for InputDeviceLostEvent<'a> {
+  type Inner = InputDeviceLostEvent<'a>;
+  #[inline]
+  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+    Self { _tab: unsafe { flatbuffers::Table::new(buf, loc) } }
+  }
+}
+
+impl<'a> InputDeviceLostEvent<'a> {
+  pub const VT_PROJECT_ID: flatbuffers::VOffsetT = 4;
+  pub const VT_DEVICE_ID: flatbuffers::VOffsetT = 6;
+  pub const VT_DEVICE_NAME: flatbuffers::VOffsetT = 8;
+
+  #[inline]
+  pub unsafe fn init_from_table(table: flatbuffers::Table<'a>) -> Self {
+    InputDeviceLostEvent { _tab: table }
+  }
+  #[allow(unused_mut)]
+  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: flatbuffers::Allocator + 'bldr>(
+    _fbb: &'mut_bldr mut flatbuffers::FlatBufferBuilder<'bldr, A>,
+    args: &'args InputDeviceLostEventArgs<'args>
+  ) -> flatbuffers::WIPOffset<InputDeviceLostEvent<'bldr>> {
+    let mut builder = InputDeviceLostEventBuilder::new(_fbb);
+    if let Some(x) = args.device_name { builder.add_device_name(x); }
+    if let Some(x) = args.device_id { builder.add_device_id(x); }
+    if let Some(x) = args.project_id { builder.add_project_id(x); }
+    builder.finish()
+  }
+
+
+  #[inline]
+  pub fn project_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(InputDeviceLostEvent::VT_PROJECT_ID, None)}
+  }
+  #[inline]
+  pub fn device_id(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(InputDeviceLostEvent::VT_DEVICE_ID, None)}
+  }
+  #[inline]
+  pub fn device_name(&self) -> Option<&'a str> {
+    // Safety:
+    // Created from valid Table for this object
+    // which contains a valid value in this slot
+    unsafe { self._tab.get::<flatbuffers::ForwardsUOffset<&str>>(InputDeviceLostEvent::VT_DEVICE_NAME, None)}
+  }
+}
+
+impl flatbuffers::Verifiable for InputDeviceLostEvent<'_> {
+  #[inline]
+  fn run_verifier(
+    v: &mut flatbuffers::Verifier, pos: usize
+  ) -> Result<(), flatbuffers::InvalidFlatbuffer> {
+    use self::flatbuffers::Verifiable;
+    v.visit_table(pos)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("project_id", Self::VT_PROJECT_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("device_id", Self::VT_DEVICE_ID, false)?
+     .visit_field::<flatbuffers::ForwardsUOffset<&str>>("device_name", Self::VT_DEVICE_NAME, false)?
+     .finish();
+    Ok(())
+  }
+}
+pub struct InputDeviceLostEventArgs<'a> {
+    pub project_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub device_id: Option<flatbuffers::WIPOffset<&'a str>>,
+    pub device_name: Option<flatbuffers::WIPOffset<&'a str>>,
+}
+impl<'a> Default for InputDeviceLostEventArgs<'a> {
+  #[inline]
+  fn default() -> Self {
+    InputDeviceLostEventArgs {
+      project_id: None,
+      device_id: None,
+      device_name: None,
+    }
+  }
+}
+
+pub struct InputDeviceLostEventBuilder<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> {
+  fbb_: &'b mut flatbuffers::FlatBufferBuilder<'a, A>,
+  start_: flatbuffers::WIPOffset<flatbuffers::TableUnfinishedWIPOffset>,
+}
+impl<'a: 'b, 'b, A: flatbuffers::Allocator + 'a> InputDeviceLostEventBuilder<'a, 'b, A> {
+  #[inline]
+  pub fn add_project_id(&mut self, project_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(InputDeviceLostEvent::VT_PROJECT_ID, project_id);
+  }
+  #[inline]
+  pub fn add_device_id(&mut self, device_id: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(InputDeviceLostEvent::VT_DEVICE_ID, device_id);
+  }
+  #[inline]
+  pub fn add_device_name(&mut self, device_name: flatbuffers::WIPOffset<&'b  str>) {
+    self.fbb_.push_slot_always::<flatbuffers::WIPOffset<_>>(InputDeviceLostEvent::VT_DEVICE_NAME, device_name);
+  }
+  #[inline]
+  pub fn new(_fbb: &'b mut flatbuffers::FlatBufferBuilder<'a, A>) -> InputDeviceLostEventBuilder<'a, 'b, A> {
+    let start = _fbb.start_table();
+    InputDeviceLostEventBuilder {
+      fbb_: _fbb,
+      start_: start,
+    }
+  }
+  #[inline]
+  pub fn finish(self) -> flatbuffers::WIPOffset<InputDeviceLostEvent<'a>> {
+    let o = self.fbb_.end_table(self.start_);
+    flatbuffers::WIPOffset::new(o.value())
+  }
+}
+
+impl core::fmt::Debug for InputDeviceLostEvent<'_> {
+  fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+    let mut ds = f.debug_struct("InputDeviceLostEvent");
+      ds.field("project_id", &self.project_id());
+      ds.field("device_id", &self.device_id());
+      ds.field("device_name", &self.device_name());
+      ds.finish()
+  }
+}
 pub enum TelemetryFrameOffset {}
 #[derive(Copy, Clone, PartialEq)]
 
@@ -9516,6 +13967,51 @@ impl<'a> TelemetryFrame<'a> {
     }
   }
 
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn event_as_job_event(&self) -> Option<JobEvent<'a>> {
+    if self.event_type() == TelemetryEvent::JobEvent {
+      self.event().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { JobEvent::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn event_as_proposal_stale_event(&self) -> Option<ProposalStaleEvent<'a>> {
+    if self.event_type() == TelemetryEvent::ProposalStaleEvent {
+      self.event().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { ProposalStaleEvent::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
+  #[inline]
+  #[allow(non_snake_case)]
+  pub fn event_as_input_device_lost_event(&self) -> Option<InputDeviceLostEvent<'a>> {
+    if self.event_type() == TelemetryEvent::InputDeviceLostEvent {
+      self.event().map(|t| {
+       // Safety:
+       // Created from a valid Table for this object
+       // Which contains a valid union in this slot
+       unsafe { InputDeviceLostEvent::init_from_table(t) }
+     })
+    } else {
+      None
+    }
+  }
+
 }
 
 impl flatbuffers::Verifiable for TelemetryFrame<'_> {
@@ -9531,6 +14027,9 @@ impl flatbuffers::Verifiable for TelemetryFrame<'_> {
           TelemetryEvent::MeterFrame => v.verify_union_variant::<flatbuffers::ForwardsUOffset<MeterFrame>>("TelemetryEvent::MeterFrame", pos),
           TelemetryEvent::SaveResultEvent => v.verify_union_variant::<flatbuffers::ForwardsUOffset<SaveResultEvent>>("TelemetryEvent::SaveResultEvent", pos),
           TelemetryEvent::TransportAck => v.verify_union_variant::<flatbuffers::ForwardsUOffset<TransportAck>>("TelemetryEvent::TransportAck", pos),
+          TelemetryEvent::JobEvent => v.verify_union_variant::<flatbuffers::ForwardsUOffset<JobEvent>>("TelemetryEvent::JobEvent", pos),
+          TelemetryEvent::ProposalStaleEvent => v.verify_union_variant::<flatbuffers::ForwardsUOffset<ProposalStaleEvent>>("TelemetryEvent::ProposalStaleEvent", pos),
+          TelemetryEvent::InputDeviceLostEvent => v.verify_union_variant::<flatbuffers::ForwardsUOffset<InputDeviceLostEvent>>("TelemetryEvent::InputDeviceLostEvent", pos),
           _ => Ok(()),
         }
      })?
@@ -9608,6 +14107,27 @@ impl core::fmt::Debug for TelemetryFrame<'_> {
         },
         TelemetryEvent::TransportAck => {
           if let Some(x) = self.event_as_transport_ack() {
+            ds.field("event", &x)
+          } else {
+            ds.field("event", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        TelemetryEvent::JobEvent => {
+          if let Some(x) = self.event_as_job_event() {
+            ds.field("event", &x)
+          } else {
+            ds.field("event", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        TelemetryEvent::ProposalStaleEvent => {
+          if let Some(x) = self.event_as_proposal_stale_event() {
+            ds.field("event", &x)
+          } else {
+            ds.field("event", &"InvalidFlatbuffer: Union discriminant does not match value.")
+          }
+        },
+        TelemetryEvent::InputDeviceLostEvent => {
+          if let Some(x) = self.event_as_input_device_lost_event() {
             ds.field("event", &x)
           } else {
             ds.field("event", &"InvalidFlatbuffer: Union discriminant does not match value.")

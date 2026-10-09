@@ -1,0 +1,24 @@
+/* Legacy token aliases — map pre-Signal var names to the Signal Studio tokens. */
+/* Existing engine-lane components reference these names via inline var() refs; */
+/* new code must use the canonical tokens in tokens.css only. */
+:root, [data-void-theme="dark"] {
+  --void-surface-raised: var(--void-raised);
+  --void-border: var(--void-line);
+  --void-text-primary: var(--void-text);
+  --void-text-secondary: var(--void-muted);
+  --void-text-muted: var(--void-subtle);
+  --void-warn: var(--void-orange);
+  --void-ok: var(--void-mint);
+  --void-radius: var(--void-radius-8);
+}
+
+[data-void-theme="daylight"] {
+  --void-surface-raised: var(--void-raised);
+  --void-border: var(--void-line);
+  --void-text-primary: var(--void-text);
+  --void-text-secondary: var(--void-muted);
+  --void-text-muted: var(--void-subtle);
+  --void-warn: var(--void-orange);
+  --void-ok: var(--void-mint);
+  --void-radius: var(--void-radius-8);
+}

@@ -102,8 +102,14 @@ export interface StudioActions {
   togglePanel(panel: PanelId): void;
   setFocusedRegion(region: string, restoreTarget?: string): void;
 
-  /** Merge one read page into the bounded cache for key. */
-  mergeReadPage(key: string, page: ReadResponse): void;
+  /** Merge one read page into the bounded cache for key. Pass
+   * `{fresh: true}` on the first page of a new read sequence — the
+   * entry is replaced, so rows the engine dropped stop lingering. */
+  mergeReadPage(
+    key: string,
+    page: ReadResponse,
+    opts?: { fresh?: boolean },
+  ): void;
   /** Drop all projections — required on project/epoch change. */
   clearProjections(): void;
 
@@ -190,7 +196,7 @@ export function createStudioStore(init?: Partial<StudioViewState>): StudioStore 
       setFocusedRegion: (region, restoreTarget) =>
         set({ focus: { region, restoreTarget } }),
 
-      mergeReadPage: (key, page) =>
+      mergeReadPage: (key, page, opts) =>
         set((s) => {
           const prev = s.views[key] ?? {
             items: [],
@@ -200,9 +206,23 @@ export function createStudioStore(init?: Partial<StudioViewState>): StudioStore 
             truncated: false,
             received: 0,
           };
-          const items = prev.items.concat(page.items);
+          // Upsert by object_id: a re-sent row updates in place rather
+          // than shadowing itself as a duplicate tail entry.
+          const items = opts?.fresh ? [] : prev.items.slice();
+          const index = new Map<string, number>();
+          for (let i = 0; i < items.length; i++) index.set(items[i].object_id, i);
+          for (const it of page.items) {
+            const at = index.get(it.object_id);
+            if (at === undefined) {
+              index.set(it.object_id, items.length);
+              items.push(it);
+            } else {
+              items[at] = it;
+            }
+          }
           const truncated =
-            prev.truncated || items.length > VIEW_PAGE_ITEM_MAX;
+            (opts?.fresh ? false : prev.truncated) ||
+            items.length > VIEW_PAGE_ITEM_MAX;
           return {
             views: {
               ...s.views,
@@ -212,7 +232,7 @@ export function createStudioStore(init?: Partial<StudioViewState>): StudioStore 
                 nextCursor: page.next_cursor,
                 done: page.done,
                 truncated,
-                received: prev.received + page.items.length,
+                received: (opts?.fresh ? 0 : prev.received) + page.items.length,
               },
             },
           };

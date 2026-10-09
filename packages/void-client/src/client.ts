@@ -17,11 +17,11 @@ import {
   MeterFrame,
   PanicAccepted,
   PersistentCommandDto,
-  PersistentOp,
   ReadItem,
   ReadRequestDto,
   ReadResponse,
   SaveResultEvent,
+  SendableOp,
   TelemetryEvent,
   TransportAck,
   TransportRequestDto,
@@ -200,7 +200,7 @@ export class VoidClient {
    * payload-hash check covers resends after completion).
    */
   async sendCommand(
-    op: PersistentOp,
+    op: SendableOp,
     opts: SendCommandOptions = {},
   ): Promise<CommandReceipt> {
     const commandId = opts.commandId ?? this.ids();
@@ -303,7 +303,13 @@ export class VoidClient {
   // -- read views ---------------------------------------------------------------
 
   /** One bounded page of a view (<=2000 items / <=512KiB server-side). */
-  readView(req: Omit<ReadRequestDto, 'request_id' | 'project_id'> & { projectId?: string }): Promise<ReadResponse> {
+  readView(
+    req: Omit<ReadRequestDto, 'request_id' | 'project_id'> & {
+      projectId?: string;
+      /** Pinned camelCase alias (void-studio jobListRequest). */
+      includeTerminal?: boolean;
+    },
+  ): Promise<ReadResponse> {
     const dto: ReadRequestDto = {
       request_id: this.ids(),
       project_id: req.projectId ?? this.projectId,
@@ -313,6 +319,7 @@ export class VoidClient {
       track_id: req.track_id ?? '',
       start_ticks: req.start_ticks ?? '-1',
       end_ticks: req.end_ticks ?? '-1',
+      include_terminal: req.include_terminal ?? req.includeTerminal ?? false,
     };
     return this.transport.invoke<ReadResponse>('read_view', { dto });
   }

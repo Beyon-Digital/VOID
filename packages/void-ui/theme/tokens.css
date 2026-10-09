@@ -1,19 +1,91 @@
-:root {
-  --void-bg: #0a0a0a;
-  --void-panel-bg: #171717;
-  --void-surface: #262626;
-  --void-border: #404040;
-
-  --void-accent: #7c3aed;
-  --void-accent-hover: #8b5cf6;
-
-  --void-text-primary: #f3f4f6;
-  --void-text-secondary: #9ca3af;
-  --void-text-muted: #6b7280;
-
-  --void-radius: 4px;
-  --void-spacing-sm: 4px;
-  --void-spacing-md: 8px;
-  --void-spacing-lg: 16px;
-  --void-spacing-xl: 24px;
+/* VOID / Signal Studio v1 — semantic tokens, not a complete application stylesheet. */
+/* Ported verbatim from docs/ui-handoff/VOID_Tokens.css (UI00). */
+/* No font binaries are bundled. Obtain and license approved fonts through the project build. */
+:root, [data-void-theme="dark"] {
+  color-scheme: dark;
+  --void-bg: #111214;
+  --void-surface: #191B1E;
+  --void-raised: #23262A;
+  --void-hover: #30343A;
+  --void-line: #353A40;
+  --void-text: #F0F2EB;
+  --void-muted: #ADB4B9;
+  --void-subtle: #7F8990;
+  --void-accent: #D8FC71;
+  --void-on-accent: #172004;
+  --void-accent-soft: #29331B;
+  --void-violet: #C4B0FB;
+  --void-violet-soft: #322943;
+  --void-blue: #9BCDF4;
+  --void-blue-soft: #203443;
+  --void-mint: #8ED9B3;
+  --void-mint-soft: #1E352B;
+  --void-orange: #F6BB81;
+  --void-orange-soft: #3C2D21;
+  --void-danger: #FF918C;
+  --void-danger-soft: #422728;
+  --void-white: #FFFFFF;
+  --void-ink: #111214;
+  --void-space-0: 0px;
+  --void-space-4: 4px;
+  --void-space-8: 8px;
+  --void-space-12: 12px;
+  --void-space-16: 16px;
+  --void-space-20: 20px;
+  --void-space-24: 24px;
+  --void-space-32: 32px;
+  --void-space-40: 40px;
+  --void-space-48: 48px;
+  --void-radius-0: 0px;
+  --void-radius-4: 4px;
+  --void-radius-8: 8px;
+  --void-radius-12: 12px;
+  --void-radius-16: 16px;
+  --void-radius-24: 24px;
+  --void-font-body: "Inter", system-ui, sans-serif;
+  --void-font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --void-font-numeric: "IBM Plex Mono", ui-monospace, monospace;
 }
+
+[data-void-theme="daylight"] {
+  color-scheme: light;
+  --void-bg: #F2F2EF;
+  --void-surface: #FFFFFF;
+  --void-raised: #E5E7E3;
+  --void-hover: #D7DBD5;
+  --void-line: #CED4CC;
+  --void-text: #171B19;
+  --void-muted: #515B57;
+  --void-subtle: #68726D;
+  --void-accent: #506B0B;
+  --void-on-accent: #FFFFFF;
+  --void-accent-soft: #EDF5D8;
+  --void-violet: #6846AD;
+  --void-violet-soft: #EAE2FA;
+  --void-blue: #245C84;
+  --void-blue-soft: #DCECF7;
+  --void-mint: #236849;
+  --void-mint-soft: #DDF2E5;
+  --void-orange: #90571D;
+  --void-orange-soft: #FAEAD7;
+  --void-danger: #B22F36;
+  --void-danger-soft: #FBE4E5;
+  --void-white: #FFFFFF;
+  --void-ink: #111214;
+}
+
+:where(.void-studio) { color: var(--void-text); background: var(--void-bg); font-family: var(--void-font-body); }
+.void-type-display { font-family: var(--void-font-display); font-size: 3rem; line-height: 1.16667; font-weight: 700; }
+.void-type-heading { font-family: var(--void-font-display); font-size: 1.75rem; line-height: 1.28571; font-weight: 700; }
+.void-type-title { font-family: var(--void-font-display); font-size: 1.25rem; line-height: 1.40000; font-weight: 500; }
+.void-type-body { font-family: var(--void-font-body); font-size: 0.875rem; line-height: 1.42857; font-weight: 400; }
+.void-type-label { font-family: var(--void-font-body); font-size: 0.8125rem; line-height: 1.38462; font-weight: 500; }
+.void-type-strong { font-family: var(--void-font-body); font-size: 0.8125rem; line-height: 1.38462; font-weight: 600; }
+.void-type-small { font-family: var(--void-font-body); font-size: 0.75rem; line-height: 1.41667; font-weight: 400; }
+.void-type-micro { font-family: var(--void-font-body); font-size: 0.6875rem; line-height: 1.45455; font-weight: 500; }
+.void-type-numeric { font-family: var(--void-font-numeric); font-size: 0.75rem; line-height: 1.50000; font-weight: 400; }
+.void-type-time { font-family: var(--void-font-numeric); font-size: 1.5rem; line-height: 1.33333; font-weight: 500; }
+.void-type-numeric, .void-type-time { font-variant-numeric: tabular-nums; }
+:where(.void-studio) :focus-visible { outline: 2px solid var(--void-accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .void-studio { scroll-behavior: auto; } }
+/* Container strategy: collapse secondary panels around the compact reference; never scale the entire UI as a bitmap. */

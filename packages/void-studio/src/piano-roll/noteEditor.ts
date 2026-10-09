@@ -156,6 +156,7 @@ export class NoteEditor {
     const clipEnd = (parseI64(clip.startTicks) + parseI64(clip.lengthTicks)).toString(10);
     const notes: NoteView[] = [];
     let dropped = 0;
+    let fresh = true;
     for await (const page of this.client.readViewPages({
       view: 'NOTE_RANGE',
       track_id: clip.trackId,
@@ -168,7 +169,9 @@ export class NoteEditor {
         .actions.mergeReadPage(
           makeViewKey('NOTE_RANGE', clip.trackId, clip.startTicks, clipEnd),
           page,
+          { fresh },
         );
+      fresh = false;
       for (const item of page.items as ReadItem[]) {
         const n = parseNoteItem(item);
         if (n && n.clipId === clip.clipId) notes.push(n);

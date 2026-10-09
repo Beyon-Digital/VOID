@@ -90,6 +90,21 @@ enum TransportOp : byte {
   SET_TEMPO_LIVE = 5,    // preview only; committed change goes via SetTempoOp
 }
 
+// Monitor mode for a record-enabled track (NEEDS §7).
+enum MonitorMode : byte {
+  OFF = 0,
+  AUTOMATIC = 1,
+  ON = 2,
+}
+
+// Quantized launch boundary for scene/clip launch ops (NEEDS §26).
+enum LaunchQuantize : byte {
+  IMMEDIATE = 0,
+  BAR = 1,
+  BEAT = 2,
+  CUSTOM = 3, // quantize_ticks carries the span
+}
+
 // Bounded paged read of coordinator/engine state.
 enum ViewKind : byte {
   PROJECT_SUMMARY = 0,
@@ -99,6 +114,13 @@ enum ViewKind : byte {
   ASSET_LIST = 4,
   PLUGIN_LIST = 5,
   RECEIPT_LIST = 6,
+  // rev-2 (minor 1): append-only — see docs/engine/NEEDS.md.
+  TAKE_LIST = 7,          // recorded takes for the open project (§7)
+  INPUT_DEVICE_LIST = 8,  // engine input devices for arming (§8)
+  JOB_LIST = 9,           // AI/export job cards (§10)
+  MODEL_LIST = 10,        // model registry rows (§10)
+  PROPOSAL_LIST = 11,     // proposal records w/ status + provenance (§13)
+  SCENE_LIST = 12,        // launch-state page: scenes x slots (§26)
 }
 
 // ---------------------------------------------------------------------------
@@ -215,6 +237,94 @@ table SetPluginParamOp  { plugin_instance_id: string; param_id: string; value: f
 table OpenPluginEditorOp { plugin_instance_id: string; }
 table ClosePluginEditorOp { plugin_instance_id: string; }
 
+// ---------------------------------------------------------------------------
+// rev-2 ops (protocol minor 1) — append-only; NEEDS.md items each cite.
+// ---------------------------------------------------------------------------
+
+// Take lifecycle (NEEDS §7): record-enable + input select + monitor mode in
+// one op; record_enabled=false disarms. input_device names an
+// INPUT_DEVICE_LIST row; empty = engine default input.
+table ArmTrackOp {
+  track_id: string;
+  record_enabled: bool = true;
+  input_device: string;
+  monitor_mode: MonitorMode = AUTOMATIC;
+  is_midi: bool = false;
+}
+
+table StartRecordingOp { take_id: string; }  // empty = engine mints one
+table StopRecordingOp  { discard: bool = false; }
+
+// Count-in/metronome/punch (NEEDS §7). mode: "off" | "bars".
+table SetCountInOp    { mode: string; bars: int = 1; }
+table SetMetronomeOp  { enabled: bool; gain: float = 0.5; recording_only: bool = false; }
+table SetPunchInOutOp { enabled: bool; in_ticks: long = -1; out_ticks: long = -1; }
+
+// AI/export job lifecycle (NEEDS §9). JobSpec mirrors
+// void_jobs::JobSpec (job/1.0.0 envelope): the DTO carries the camelCase
+// serde shape verbatim; the coordinator re-validates before enqueue.
+table JobSpec {
+  job_id: string;
+  project_id: string;
+  source_revision: ulong;
+  context_sha256: string;
+  kind: string;            // symbolic|transcription|separation|audio_generation|visual_generation|analysis|av_export
+  runtime_id: string;
+  runtime_sha256: string;
+  model_id: string;
+  model_sha256: string;
+  inputs: [string];        // asset/content hashes the job reads
+  parameters_json: string; // opaque spec echo — worker-defined shape
+  ram_bytes: ulong;
+  vram_bytes: ulong;
+  cpu_threads: int;
+  deadline_monotonic_ns: ulong;
+  output_scope_token: string;
+  cloud_consent_id: string;
+}
+
+table SubmitJobOp     { spec: JobSpec; }
+table CancelJobOp     { job_id: string; }
+table PauseJobOp      { job_id: string; }
+table InstallModelOp  { model_id: string; model_version: string; source_uri: string; }
+
+// Proposal lifecycle (NEEDS §12-14): request generation, resolve
+// accept/reject, and a transient non-persistent preview (audition) layer.
+table PreviewNote {
+  note_id: string;      // may be empty — engine assigns on commit
+  pitch: ubyte;
+  velocity: ubyte;
+  start_ticks: long;
+  length_ticks: long;
+}
+
+table RequestProposalOp { context_digest: string; seed: ulong; max_proposals: int = 1; }
+table ResolveProposalOp { proposal_id: string; accept: bool; candidate_rank: int = -1; }
+table PreviewLayerOp    { proposal_id: string; clip_id: string; notes: [PreviewNote]; enable: bool; }
+
+// Asset ingest + relink (NEEDS §17): rel_path names a host-side file the
+// coordinator hashes and stages into container/assets/sha256/ before the
+// engine attaches it; RelinkAssetOp performs relink()/replace() on a
+// missing link when the candidate's bytes match the recorded sha256.
+table IngestAssetOp { rel_path: string; media_type: string; }
+table RelinkAssetOp { asset_id: string; sha256: string; }
+
+// Plugin control (P2 "plugin recovery"): bypass, rescan of the scanned
+// cache, and state restore for imported plugin instances (NEEDS §32).
+table SetPluginBypassOp     { plugin_instance_id: string; bypassed: bool; }
+table RescanPluginsOp       { plugin_uid: string; }  // empty = full rescan
+table RestorePluginStateOp  { plugin_instance_id: string; state_asset_id: string; }
+
+// Save-as (NEEDS §3): checkpoint into a NEW container directory; the
+// original container stays untouched. container_dir is absolute.
+table SaveProjectAsOp { container_dir: string; name: string; reason: string; }
+
+// Scene launch (NEEDS §26): quantize=CUSTOM uses quantize_ticks as the
+// span; StopSceneOp with an empty scene_id stops every playing slot.
+table LaunchSceneOp { scene_id: string; quantize: LaunchQuantize = BAR; quantize_ticks: long = 0; }
+table StopSceneOp   { scene_id: string; quantize: LaunchQuantize = BAR; quantize_ticks: long = 0; }
+table LaunchClipOp  { slot_id: string; quantize: LaunchQuantize = BAR; quantize_ticks: long = 0; }
+
 union PersistentOp {
   CreateProjectOp,
   OpenProjectOp,
@@ -248,6 +358,29 @@ union PersistentOp {
   SetPluginParamOp,
   OpenPluginEditorOp,
   ClosePluginEditorOp,
+  // rev-2 (append only)
+  ArmTrackOp,
+  StartRecordingOp,
+  StopRecordingOp,
+  SetCountInOp,
+  SetMetronomeOp,
+  SetPunchInOutOp,
+  SubmitJobOp,
+  CancelJobOp,
+  PauseJobOp,
+  InstallModelOp,
+  RequestProposalOp,
+  ResolveProposalOp,
+  PreviewLayerOp,
+  IngestAssetOp,
+  RelinkAssetOp,
+  SetPluginBypassOp,
+  RescanPluginsOp,
+  RestorePluginStateOp,
+  SaveProjectAsOp,
+  LaunchSceneOp,
+  StopSceneOp,
+  LaunchClipOp,
 }
 
 // ---------------------------------------------------------------------------
@@ -285,6 +418,7 @@ table ReadRequest {
   track_id: string;      // optional scope filter
   start_ticks: long = -1; // NOTE_RANGE window
   end_ticks: long = -1;
+  include_terminal: bool = false; // JOB_LIST/PROPOSAL_LIST: include terminal rows
 }
 
 // Plugin scanner task (runs in the scanner subprocess, never the engine).
@@ -435,11 +569,41 @@ table TransportAck {
   error: ErrorCode;
 }
 
+// Job progress/status transitions (NEEDS §11). status is the void-jobs
+// snake_case state machine (queued|running|succeeded|failed|cancelling|
+// cancelled); percent < 0 means the job has not reported progress.
+table JobEvent {
+  project_id: string;
+  job_id: string;
+  status: string;
+  percent: float = -1.0;
+  message: string;
+  quarantined: bool = false;
+}
+
+// A live proposal was invalidated by an edit/session edge (NEEDS §14).
+// cause: "context_changed" | "target_gone" | "session_ended".
+table ProposalStaleEvent {
+  project_id: string;
+  proposal_id: string;
+  cause: string;
+}
+
+// An input device an armed track depends on disappeared (NEEDS §7).
+table InputDeviceLostEvent {
+  project_id: string;
+  device_id: string;
+  device_name: string;
+}
+
 union TelemetryEvent {
   ClockSnapshot,
   MeterFrame,
   SaveResultEvent,
   TransportAck,
+  JobEvent,
+  ProposalStaleEvent,
+  InputDeviceLostEvent,
 }
 
 // Top-level frame on the telemetry socket.

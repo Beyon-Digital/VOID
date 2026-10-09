@@ -4,93 +4,93 @@
   {
    "name": "ActionButton",
    "variants": 7,
-   "status": "not_started",
-   "lane": null,
-   "evidence": null
+   "status": "verified",
+   "lane": "ui01",
+   "evidence": "packages/void-ui/components/ActionButton.tsx (primary/secondary/ghost/danger/subtle, sm/md, loading/disabled); gallery #/dev/gallery both themes; void-ui build+vitest exit 0"
   },
   {
    "name": "WorkspaceTab",
    "variants": 2,
-   "status": "not_started",
-   "lane": null,
-   "evidence": null
+   "status": "verified",
+   "lane": "ui01",
+   "evidence": "packages/void-ui/components/WorkspaceTab.tsx (active/inactive/badge/shortcut); used by StudioHeader tablist; gallery #/dev/gallery"
   },
   {
    "name": "StatusBadge",
    "variants": 6,
-   "status": "not_started",
-   "lane": null,
-   "evidence": null
+   "status": "verified",
+   "lane": "ui01",
+   "evidence": "packages/void-ui/components/StatusBadge.tsx (ready/armed/recording/queued/playing/unavailable/error/saved/dirty/processing/disconnected); gallery #/dev/gallery"
   },
   {
    "name": "Field",
    "variants": 4,
-   "status": "not_started",
-   "lane": null,
-   "evidence": null
+   "status": "verified",
+   "lane": "ui01",
+   "evidence": "packages/void-ui/components/Field.tsx + TextInput (label/unit/hint/error/inline, htmlFor wiring); gallery #/dev/gallery"
   },
   {
    "name": "TrackHeader",
    "variants": 6,
-   "status": "not_started",
-   "lane": null,
-   "evidence": null
+   "status": "verified",
+   "lane": "ui01",
+   "evidence": "packages/void-ui/components/TrackHeader.tsx (selected/muted/soloed/kind, M/S buttons, keyboard select); rendered by TrackListColumn; gallery #/dev/gallery"
   },
   {
    "name": "TimelineClip",
    "variants": 4,
-   "status": "not_started",
-   "lane": null,
-   "evidence": null
+   "status": "verified",
+   "lane": "ui01",
+   "evidence": "packages/void-ui/components/TimelineClip.tsx \u2014 ONE component, variants audio/midi/ghost + selected/pending; trim zones; ClipBlock kept as adapter; gallery #/dev/gallery"
   },
   {
    "name": "ParameterKnob",
    "variants": 2,
-   "status": "not_started",
-   "lane": null,
-   "evidence": null
+   "status": "verified",
+   "lane": "ui01",
+   "evidence": "packages/void-ui/components/ParameterKnob.tsx (drag pointer-capture, shift=fine, wheel, arrows, Enter\u2192numeric entry, dbl-click reset, Escape-cancel) on components/editing.ts + usePointerGesture.ts; editing.test.ts covers contracts (22 tests pass)"
   },
   {
    "name": "ChannelFader",
    "variants": 10,
-   "status": "not_started",
-   "lane": null,
-   "evidence": null
+   "status": "verified",
+   "lane": "ui01",
+   "evidence": "packages/void-ui/components/ChannelFader.tsx \u2014 continuous level (never stepped), same contract set as ParameterKnob; meter overlay; editing.test.ts covers contracts"
   },
   {
    "name": "DeviceSlot",
    "variants": 3,
-   "status": "not_started",
-   "lane": null,
-   "evidence": null
+   "status": "verified",
+   "lane": "ui01",
+   "evidence": "packages/void-ui/components/DeviceSlot.tsx (loaded/empty/failed/bypassed/selected; power toggle, remove, add affordance); gallery #/dev/gallery"
   },
   {
    "name": "AssetRow",
    "variants": 2,
-   "status": "not_started",
-   "lane": null,
-   "evidence": null
+   "status": "verified",
+   "lane": "ui01",
+   "evidence": "packages/void-ui/components/AssetRow.tsx (kind chip, meta, missing state, additive select, dbl-click activate); gallery #/dev/gallery"
   },
   {
    "name": "SceneCell",
    "variants": 4,
-   "status": "not_started",
-   "lane": null,
-   "evidence": null
+   "status": "verified",
+   "lane": "ui01",
+   "evidence": "packages/void-ui/components/SceneCell.tsx (stopped/pending/playing/stopping phases \u2014 queued!=playing; tokens; gallery #/dev/gallery)"
   },
   {
    "name": "Toast",
    "variants": 3,
-   "status": "not_started",
-   "lane": null,
-   "evidence": null
+   "status": "verified",
+   "lane": "ui01",
+   "evidence": "packages/void-ui/components/Toast.tsx + useToasts + ToastViewport (info/success/warning/error, action, auto-dismiss honoring reduced-motion, role=alert for errors); gallery #/dev/gallery"
   },
   {
    "name": "IconButton",
    "variants": 4,
-   "status": "not_started",
-   "lane": null,
-   "evidence": null
+   "status": "verified",
+   "lane": "ui01",
+   "evidence": "packages/void-ui/components/IconButton.tsx (ghost/solid/danger, sm/md/lg, aria-pressed, required aria-label); gallery #/dev/gallery"
   }
  ]
 }
