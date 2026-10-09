@@ -5389,6 +5389,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "void-producer"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "sha2",
+ "tempfile",
+ "thiserror 2.0.21",
+ "uuid",
+ "void-assets",
+ "void-export",
+ "void-jobs",
+ "void-proposals",
+ "void-protocol",
+]
+
+[[package]]
 name = "void-project"
 version = "0.1.0"
 dependencies = [

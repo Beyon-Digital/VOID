@@ -51,3 +51,6 @@ export * from './scenes';
 export * from './visuals';
 export * from './automation';
 export * from './midi';
+export * from './producer';
+export * from './shortcuts';
+export * from './screensets';
