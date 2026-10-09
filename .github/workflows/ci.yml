@@ -120,14 +120,20 @@ jobs:
         with:
           components: rustfmt
       # Windows divergence from the verbatim recipe: no sudo; the default
-      # generator (VS) emits flatc.exe under Release/, added to PATH.
+      # generator (VS) emits flatc.exe under Release/. GITHUB_PATH needs a
+      # Windows-style path — bash /tmp maps to %LocalAppData%\Temp, so
+      # translate with cygpath or the entry is a no-op.
       - name: Install flatc 25.9.23
         shell: bash
         run: |
           git clone --depth 1 -b v25.9.23 https://github.com/google/flatbuffers /tmp/fb
           cmake -B /tmp/fb/build -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF /tmp/fb
           cmake --build /tmp/fb/build --config Release --target flatc
-          echo "/tmp/fb/build/Release" >> "$GITHUB_PATH"
+          flatc_dir="$(find /tmp/fb/build -name flatc.exe -printf '%h\n' | head -1)"
+          cygpath -w "$flatc_dir" >> "$GITHUB_PATH"
+      - name: Verify flatc
+        shell: bash
+        run: flatc --version
       - uses: actions/cache@v4
         with:
           path: |

@@ -75,7 +75,12 @@ jobs:
           git clone --depth 1 -b v25.9.23 https://github.com/google/flatbuffers /tmp/fb
           cmake -B /tmp/fb/build -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF /tmp/fb
           cmake --build /tmp/fb/build --config Release --target flatc
-          echo "/tmp/fb/build/Release" >> "$GITHUB_PATH"
+          flatc_dir="$(find /tmp/fb/build -name flatc.exe -printf '%h\n' | head -1)"
+          cygpath -w "$flatc_dir" >> "$GITHUB_PATH"
+      - name: Verify flatc
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        run: flatc --version
 
       - name: Generate protocol bindings
         shell: bash
