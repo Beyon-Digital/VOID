@@ -14,8 +14,10 @@ import { Card, Eyebrow, Mono, ReasonNote, Row, Stack } from './chrome';
 import { PROPOSAL_OPS, REASONS } from './flags';
 import {
   acceptProposal,
+  auditionProposal,
   dismiss,
   proposalsStore,
+  requestSuggestion,
   undoAccept,
   useProposals,
 } from './runtime';
@@ -62,11 +64,22 @@ export const SuggestionPanel: React.FC<{ proposalId?: string }> = ({
     .map((id) => records[id])
     .filter((r): r is ProposalRecord => !!r);
   const [flash, setFlash] = React.useState<string | null>(null);
+  const [auditioning, setAuditioning] = React.useState(false);
 
   const notify = (msg: string) => {
     setFlash(msg);
     window.setTimeout(() => setFlash((m) => (m === msg ? null : m)), 5000);
   };
+
+  /** RequestProposalOp — the digest binds request → live selection so
+   * a coordinator never pairs the ask with stale context. */
+  const ask = () =>
+    void requestSuggestion()
+      .then((r) => {
+        if (r.status === 'REJECTED' || r.status === 'OUTCOME_UNKNOWN')
+          notify(`suggestion request ${r.status.toLowerCase()} — ${r.message || 'no detail'}`);
+      })
+      .catch((e) => notify(String(e instanceof Error ? e.message : e)));
 
   if (!rec) {
     return (
@@ -83,12 +96,13 @@ export const SuggestionPanel: React.FC<{ proposalId?: string }> = ({
           <Button
             variant="primary"
             size="sm"
-            disabled
-            title={REASONS.proposalRequest}
+            disabled={!PROPOSAL_OPS.request}
+            title={PROPOSAL_OPS.request ? 'RequestProposalOp on the selected clip' : REASONS.proposalRequest}
+            onClick={ask}
           >
             Suggest a continuation
           </Button>
-          <ReasonNote>{REASONS.proposalRequest}</ReasonNote>
+          {!PROPOSAL_OPS.request ? <ReasonNote>{REASONS.proposalRequest}</ReasonNote> : null}
         </Card>
         {list.length > 0 ? (
           <Card>
@@ -147,12 +161,13 @@ export const SuggestionPanel: React.FC<{ proposalId?: string }> = ({
           <Button
             variant="secondary"
             size="sm"
-            disabled
-            title={REASONS.proposalRequest}
+            disabled={!PROPOSAL_OPS.request}
+            title={PROPOSAL_OPS.request ? 'RequestProposalOp — re-ask over current context' : REASONS.proposalRequest}
+            onClick={ask}
           >
             Refresh suggestion
           </Button>
-          <ReasonNote>{REASONS.proposalRequest}</ReasonNote>
+          {!PROPOSAL_OPS.request ? <ReasonNote>{REASONS.proposalRequest}</ReasonNote> : null}
           <Button
             variant="ghost"
             size="sm"
@@ -197,10 +212,16 @@ export const SuggestionPanel: React.FC<{ proposalId?: string }> = ({
         <Card>
           <StatusBadge status="error" label="Generation failed" />
           <ReasonNote>{rec.error ?? 'The generator reported a failure.'}</ReasonNote>
-          <Button variant="secondary" size="sm" disabled title={REASONS.proposalRequest}>
+          <Button
+            variant="secondary"
+            size="sm"
+            disabled={!PROPOSAL_OPS.request}
+            title={PROPOSAL_OPS.request ? 'RequestProposalOp' : REASONS.proposalRequest}
+            onClick={ask}
+          >
             Try again
           </Button>
-          <ReasonNote>{REASONS.proposalRequest}</ReasonNote>
+          {!PROPOSAL_OPS.request ? <ReasonNote>{REASONS.proposalRequest}</ReasonNote> : null}
         </Card>
       ) : null}
 
@@ -270,10 +291,26 @@ export const SuggestionPanel: React.FC<{ proposalId?: string }> = ({
               <Button
                 variant="secondary"
                 size="sm"
-                disabled
-                title={REASONS.audition}
+                disabled={!PROPOSAL_OPS.audition}
+                title={
+                  PROPOSAL_OPS.audition
+                    ? auditioning
+                      ? 'PreviewLayerOp{enable:false} — stop the preview'
+                      : 'PreviewLayerOp{enable:true} — hear the ghost notes'
+                    : REASONS.audition
+                }
+                onClick={() =>
+                  void auditionProposal(rec.proposalId, !auditioning)
+                    .then((r) => {
+                      if (r === null) return;
+                      if (r.status === 'APPLIED' || r.status === 'DUPLICATE')
+                        setAuditioning((a) => !a);
+                      else notify(`audition ${r.status.toLowerCase()} — ${r.message || 'no detail'}`);
+                    })
+                    .catch((e) => notify(String(e instanceof Error ? e.message : e)))
+                }
               >
-                Audition
+                {auditioning ? 'Stop audition' : 'Audition'}
               </Button>
               <Button
                 variant="primary"

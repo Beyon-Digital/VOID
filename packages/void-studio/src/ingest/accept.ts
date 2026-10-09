@@ -107,6 +107,21 @@ export async function acceptProposalCandidate(
       noteIds,
       plan.droppedIndices,
     );
+    // rev-2 (NEEDS §14): ResolveProposalOp — server-side bookkeeping
+    // for the committed notes. Best-effort: the edits already landed,
+    // and the next PROPOSAL_LIST read reconciles status if the
+    // coordinator rejects the resolve.
+    try {
+      await client.sendCommand({
+        ResolveProposalOp: {
+          proposal_id: rec.proposalId,
+          accept: true,
+          candidate_rank: plan.candidateRank,
+        },
+      });
+    } catch {
+      /* bookkeeping only — PROPOSAL_LIST is the reconciling read */
+    }
     return {
       ok: true,
       transactionId: plan.transactionId,
@@ -192,9 +207,9 @@ export async function undoAcceptedTransaction(
 /**
  * Dismiss a proposal's ghost preview. Ghost notes are view state, so
  * dropping them never touches committed notes — dismiss-after-partial
- * removes only ghosts (UI-T16). The coordinator-side record resolve
- * op does not exist yet (NEEDS.md §14); the store drops the record
- * from view and the caller states that honestly.
+ * removes only ghosts (UI-T16). The caller sends ResolveProposalOp
+ * {accept:false} for the coordinator-side bookkeeping (rev-2,
+ * NEEDS.md §14); the store drops the record from view regardless.
  */
 export function dismissProposal(
   proposals: ProposalsStore,

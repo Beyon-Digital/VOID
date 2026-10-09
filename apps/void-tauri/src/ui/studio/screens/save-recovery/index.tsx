@@ -43,9 +43,48 @@ export default function SaveRecoveryScreen() {
   const lastDurable = useRecovery((s) => s.lastDurableSave);
   const lastFailed = useRecovery((s) => s.lastFailedSave);
 
-  const [busy, setBusy] = React.useState<'save' | 'checkpoint' | null>(null);
+  const [busy, setBusy] = React.useState<'save' | 'checkpoint' | 'save-as' | null>(null);
   const [error, setError] = React.useState('');
   const [note, setNote] = React.useState('');
+  const [saveAsOpen, setSaveAsOpen] = React.useState(false);
+  const [saveAsDir, setSaveAsDir] = React.useState('');
+  const [saveAsName, setSaveAsName] = React.useState('');
+
+  /** rev-2 (NEEDS §30): SaveProjectAsOp checkpoints the song into a NEW
+   * container dir — the destination the failed write couldn't reach. */
+  const saveAs = async () => {
+    const dir = saveAsDir.trim();
+    if (!dir) {
+      setError('enter a destination directory first');
+      return;
+    }
+    setBusy('save-as');
+    setError('');
+    setNote('');
+    try {
+      const out = await sendWithStaleRetry(
+        getClient(),
+        {
+          SaveProjectAsOp: {
+            container_dir: dir,
+            name: saveAsName.trim(),
+            reason: 'checkpoint to a new location after the previous save failed',
+          },
+        },
+        {},
+      );
+      if (receiptFailed(out.receipt)) {
+        setError(describeReceiptError(out.receipt));
+      } else {
+        setNote('save-as issued — durable only once the engine reports SAVE_DURABLE for the new container');
+        setSaveAsOpen(false);
+      }
+    } catch (e) {
+      setError(String(e instanceof Error ? e.message : e));
+    } finally {
+      setBusy(null);
+    }
+  };
 
   React.useEffect(() => {
     ensureRecoveryBound();
@@ -175,9 +214,40 @@ export default function SaveRecoveryScreen() {
           >
             Write checkpoint
           </ActionButton>
-          <ActionButton variant="secondary" disabled title="there is no save-destination op on the wire — fix the target outside this screen and retry">
+          <ActionButton
+            variant="secondary"
+            disabled={!canWrite || busy !== null}
+            title={canWrite ? 'SaveProjectAsOp — checkpoint into a new container dir' : 'engine detached'}
+            onClick={() => setSaveAsOpen((v) => !v)}
+          >
             Choose another location…
           </ActionButton>
+          {saveAsOpen ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, maxWidth: 420 }}>
+              <input
+                value={saveAsDir}
+                onChange={(ev) => setSaveAsDir(ev.target.value)}
+                placeholder="/path/to/new/container"
+                aria-label="New container directory"
+                style={{ padding: '6px 8px' }}
+              />
+              <input
+                value={saveAsName}
+                onChange={(ev) => setSaveAsName(ev.target.value)}
+                placeholder="container name (optional)"
+                aria-label="New container name"
+                style={{ padding: '6px 8px' }}
+              />
+              <ActionButton
+                variant="primary"
+                loading={busy === 'save-as'}
+                disabled={saveAsDir.trim() === '' || busy !== null}
+                onClick={() => void saveAs()}
+              >
+                Save to new location
+              </ActionButton>
+            </div>
+          ) : null}
         </div>
 
         {note ? (

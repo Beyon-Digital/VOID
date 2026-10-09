@@ -77,3 +77,42 @@ Lane: `devin/void-lane-uip4` (base `79ef7f22fe68142eb498677e911176ee77353db2` on
   events only.
 - **Asset/candidate audition** playback — NEEDS §12: honest disabled state.
 - No seeded/demo data anywhere in production UI.
+
+## P2 lane (void-p2-ungate) — NEEDS gates now live on rev-2 wire
+
+Ungated every deferred affordance onto the shipped protocol. All sends go
+through `sendCommand` on the real P1 op surface; DUPLICATE receipts are
+benign, REJECTED/OUTCOME_UNKNOWN surface verbatim — nothing repaints ahead
+of engine truth.
+
+- **Record (S05)**: StartRecordingOp{take_id:''} / StopRecordingOp{discard},
+  ArmTrackOp{record_enabled, monitor_mode, input_device, is_midi},
+  SetCountInOp{mode:'off'|'bars'}, SetMetronomeOp; INPUT_DEVICE_LIST populates
+  the input select.
+- **Compose lifecycle (S20–S22)**: RequestProposalOp{context_digest=SHA-256,
+  seed, max_proposals}, PreviewLayerOp + PreviewNote for audition toggle,
+  ResolveProposalOp{accept, candidate_rank} on accept AND on dismiss;
+  ProposalStaleEvent marks records stale on telemetry.
+- **Jobs (S23)**: SubmitJobOp / CancelJobOp / PauseJobOp / InstallModelOp;
+  JOB_LIST(include_terminal), MODEL_LIST, PROPOSAL_LIST read on bind via
+  readViewPages; JobEvent frames drive the same store paths.
+- **Generate (S21)**: submit_builds a JobSpecEnvelope{kind:'audio_generation'}
+  and sends SubmitJobOp; REJECTED flashes the coordinator reason.
+- **Perform (S17)**: LaunchSceneOp / StopSceneOp{scene_id:'' for panic} /
+  LaunchClipOp with quantize mapped to the enum; REJECTED surfaces and
+  skips the local queue unless a region-bound fallback already wires
+  SEEK+SET_CYCLE.
+- **Plugin recovery (S18)**: RescanPluginsOp{plugin_uid:''} and
+  SetPluginBypassOp{plugin_instance_id, bypassed:false}.
+- **Library (S07) + visuals ingest (S09)**: IngestAssetOp{rel_path,
+  media_type} via a path field — the coordinator stages the file and the
+  list repaints.
+- **Export (S26)**: validated spec → exportJobEnvelope →
+  SubmitJobOp{kind:'av_export'}; contextSha256 = checkpoint manifest sha,
+  runtimeSha256 left for the coordinator to pin (never fabricated).
+- **Save recovery (S25)**: SaveProjectAsOp{container_dir, name, reason}
+  behind a destination field.
+
+Still honestly gated: visual layer/channel commands (no voidvis op exists),
+plugin rescan of a single uid only (full rescan wired), monitor OFF when the
+coordinator rejects AUTOMATIC (status rides ArmTrackOp).

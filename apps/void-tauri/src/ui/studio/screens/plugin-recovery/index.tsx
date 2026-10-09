@@ -77,6 +77,45 @@ export default function PluginRecoveryScreen() {
     if (receiptFailed(out.receipt)) throw new Error(describeReceiptError(out.receipt));
   };
 
+  // rev-2 (NEEDS §32): RescanPluginsOp{plugin_uid:''} = full rescan of
+  // the scanned-plugin cache — a real coordinator op, not a fake locate.
+  const rescan = async () => {
+    setBusy(true);
+    setOpError('');
+    setNotice('');
+    try {
+      await send({ RescanPluginsOp: { plugin_uid: '' } });
+      setNotice('rescan requested — reload after the scanner finishes');
+      await refresh();
+    } catch (e) {
+      setOpError(String(e));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  // rev-2: SetPluginBypassOp flips bypass on a real instance. The slot
+  // repaints only when PLUGIN_LIST reports the new status.
+  const setBypass = async (slot: PluginSlotItem, bypassed: boolean) => {
+    setBusy(true);
+    setOpError('');
+    setNotice('');
+    try {
+      await send({
+        SetPluginBypassOp: {
+          plugin_instance_id: slot.instanceId,
+          bypassed,
+        },
+      });
+      setNotice(bypassed ? 'bypass requested' : 'un-bypass requested');
+      await refresh();
+    } catch (e) {
+      setOpError(String(e));
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const removeInstance = async (slot: PluginSlotItem) => {
     setBusy(true);
     setOpError('');
@@ -183,11 +222,23 @@ export default function PluginRecoveryScreen() {
               <ActionButton
                 variant="secondary"
                 size="sm"
-                disabled
-                title="a plugin rescan/locate is not exposed on the control surface — install or rescan from outside this screen, then reload"
+                disabled={busy}
+                title="RescanPluginsOp — full rescan of the plugin cache; the row clears only if the engine reports it again"
+                onClick={() => void rescan()}
               >
-                Locate… unavailable
+                Rescan plugins
               </ActionButton>
+              {slot.status === 'BYPASSED' ? (
+                <ActionButton
+                  variant="secondary"
+                  size="sm"
+                  disabled={busy}
+                  title="SetPluginBypassOp{bypassed:false}"
+                  onClick={() => void setBypass(slot, false)}
+                >
+                  Enable
+                </ActionButton>
+              ) : null}
               <ActionButton
                 variant="secondary"
                 size="sm"
@@ -289,9 +340,9 @@ export default function PluginRecoveryScreen() {
         ) : null}
 
         <RecoveryNote>
-          Bypass is visible state, never a silent discard: there is no bypass
-          command on the wire, so a bypassed slot stays bypassed until the
-          engine resolves it. Removing a missing instance is explicit and
+          Bypass is visible state, never a silent discard: un-bypass sends
+          SetPluginBypassOp and the row only clears when the engine reports
+          the slot active again. Removing a missing instance is explicit and
           undoable as part of the command journal.
         </RecoveryNote>
       </RecoveryMain>

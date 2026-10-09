@@ -1,9 +1,10 @@
 // Generate screen — audio candidates (S10).
 //
 // Candidates arrive as generation records from the jobs/generation
-// stores (real coordinator job events). The request form is honest:
-// submitting a job needs the coordinator SubmitJob op, absent in
-// protocol major.1 — the button stays disabled with the reason shown.
+// stores (real coordinator job events + the rev-2 JOB_LIST read view).
+// The request form sends SubmitJobOp{kind:'audio_generation'} — the
+// coordinator re-validates the envelope before enqueue, and the job
+// card paints from JobEvent telemetry, never from the send (UI-T19).
 //
 // "Use this audio" is REAL: AttachAssetOp (sha256 + container-relative
 // path + media type from the artifact record) then InsertAudioClipOp
@@ -12,7 +13,9 @@
 import * as React from 'react';
 import { Button, StatusBadge, tokens } from 'void-ui';
 import type { GenerationRecord } from 'void-studio/src/generation/store';
+import type { JobSpecEnvelope } from 'void-studio/src/jobs/job';
 import type { ModelRow } from 'void-studio/src/jobs/models';
+import { studioStore } from 'void-studio';
 import { getClient } from '../../../client';
 import {
   useEditor,
@@ -28,10 +31,11 @@ import {
   Row,
   Stack,
 } from '../../uip4/chrome';
-import { REASONS } from '../../uip4/flags';
+import { JOB_OPS, REASONS } from '../../uip4/flags';
 import {
   generationStore,
   go,
+  submitJobSpec,
   useFeatureStores,
   useGeneration,
   useModelRows,
@@ -158,6 +162,77 @@ export default function GenerateScreen() {
   const [flash, setFlash] = React.useState<string | null>(null);
 
   const chosen = audioModels.find((m) => m.modelId === modelId) ?? audioModels[0];
+
+  /** SubmitJobOp — audio_generation envelope from the form's real
+   * values; contextSha256 digests the ask (project+track+revision+
+   * prompt+duration) so the coordinator can reject a stale context. */
+  const submitGenerate = async () => {
+    const text = prompt.trim();
+    if (!text) {
+      setFlash('describe what to generate first');
+      return;
+    }
+    if (!chosen) {
+      setFlash('no installed audio model — pick one in Jobs');
+      return;
+    }
+    const s = studioStore.getState();
+    const digestCtx = JSON.stringify({
+      projectId: s.projectId,
+      trackId,
+      revision: s.revision,
+      prompt: text,
+      durationBars: Number(duration),
+    });
+    const hash = await crypto.subtle.digest(
+      'SHA-256',
+      new TextEncoder().encode(digestCtx),
+    );
+    const contextSha256 = Array.from(new Uint8Array(hash))
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
+    const jobId = crypto.randomUUID();
+    const spec: JobSpecEnvelope = {
+      jobId,
+      projectId: s.projectId ?? '',
+      sourceRevision: String(s.revision ?? '0'),
+      contextSha256,
+      kind: 'audio_generation',
+      runtimeId: String(chosen.runtime),
+      runtimeSha256: chosen.manifestSha256,
+      modelId: chosen.modelId,
+      modelSha256: chosen.manifestSha256,
+      inputs: [],
+      parameters: {
+        prompt: text,
+        durationBars: Number(duration),
+        trackId: trackId ?? null,
+        bpm: summary.bpm,
+      },
+      reservations: {
+        ramBytes: '0',
+        vramBytes: '0',
+        cpuThreads: chosen.cpuThreads || 1,
+      },
+      deadlineMonotonicNs: '0',
+      outputScopeToken: '',
+    };
+    try {
+      const r = await submitJobSpec(spec);
+      if (r.status === 'REJECTED') {
+        setFlash(`submit rejected: ${r.message || r.error}`);
+        return;
+      }
+      generationStore.getState().actions.requestJob({
+        jobId,
+        modelId: chosen.modelId,
+        prompt: text,
+      });
+      setFlash('Job submitted — the card below tracks coordinator JobEvents.');
+    } catch (e) {
+      setFlash(String(e instanceof Error ? e.message : e));
+    }
+  };
 
   /** Attach the accepted artifact then insert it as an audio clip —
    * one transaction. */
@@ -292,13 +367,22 @@ export default function GenerateScreen() {
       <Button
         variant="primary"
         size="sm"
-        disabled
-        title={REASONS.jobSubmit}
+        disabled={!JOB_OPS.submit || !chosen}
+        title={
+          !JOB_OPS.submit
+            ? REASONS.jobSubmit
+            : !chosen
+              ? 'no installed audio model — pick one in Jobs'
+              : `SubmitJobOp — audio_generation on ${chosen.name}`
+        }
+        onClick={() => void submitGenerate()}
       >
         Generate 3 candidates
       </Button>
       <ReasonNote>
-        {REASONS.jobSubmit} {REASONS.modelInstall}
+        {JOB_OPS.submit
+          ? 'SubmitJobOp — the coordinator re-validates the envelope; results land as JobEvents.'
+          : `${REASONS.jobSubmit} ${REASONS.modelInstall}`}
       </ReasonNote>
     </Card>
   );

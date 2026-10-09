@@ -233,8 +233,13 @@ describe('accept lifecycle', () => {
     });
     expect(out.ok).toBe(true);
     expect(out.noteIds).toHaveLength(2);
-    expect(ops).toHaveLength(2);
+    // rev-2: musical writes + the best-effort ResolveProposalOp bookkeeping
+    expect(ops).toHaveLength(3);
     expect((ops[0] as { InsertNoteOp: { clip_id: string } }).InsertNoteOp.clip_id).toBe('clip-1');
+    expect((ops[2] as { ResolveProposalOp: { proposal_id: string; accept: boolean } }).ResolveProposalOp).toMatchObject({
+      proposal_id: 'p1',
+      accept: true,
+    });
     expect(s.getState().records.p1?.status).toBe('accepted');
     expect(s.getState().records.p1?.accepted?.transactionId).toBe(out.transactionId);
 
@@ -301,8 +306,10 @@ describe('accept lifecycle', () => {
       targetClipExists: true,
     });
     expect(out.ok).toBe(true);
-    expect(sent).toHaveLength(1);
+    // 1 InsertNoteOp musical write + ResolveProposalOp bookkeeping
+    expect(sent).toHaveLength(2);
     expect(sent[0].InsertNoteOp.start_ticks).toBe('1200000');
+    expect((sent[1] as { ResolveProposalOp: { accept: boolean } }).ResolveProposalOp.accept).toBe(true);
   });
 
   it('dismiss removes ghosts but leaves committed notes untouched', () => {

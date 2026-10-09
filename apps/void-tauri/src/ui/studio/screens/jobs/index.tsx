@@ -1,9 +1,10 @@
 // Jobs screen — job queue + model registry (S17).
 //
-// Cards are real coordinator job events folded into the jobs store.
-// Submit/cancel/pause/model-install ops don't exist in protocol
-// major.1, so those affordances render disabled with their reason —
-// nothing fakes a submission or a cancellation (UI-T19/T32).
+// Cards are real coordinator job events folded into the jobs store,
+// plus the rev-2 JOB_LIST/MODEL_LIST read views. Cancel/pause/install
+// send real ops (CancelJobOp / PauseJobOp / InstallModelOp); the card
+// stays coordinator-painted — a rejected receipt never changes it
+// (UI-T19/T32).
 
 import * as React from 'react';
 import {
@@ -29,7 +30,16 @@ import {
   Stack,
 } from '../../uip4/chrome';
 import { JOB_OPS, REASONS } from '../../uip4/flags';
-import { go, useFeatureStores, useJobs, useModelRows } from '../../uip4/runtime';
+import {
+  cancelJob,
+  go,
+  installModel,
+  pauseJob,
+  refreshFeatureViews,
+  useFeatureStores,
+  useJobs,
+  useModelRows,
+} from '../../uip4/runtime';
 
 type Filter = 'all' | 'generations' | 'downloads' | 'completed';
 
@@ -64,6 +74,13 @@ export default function JobsScreen() {
   const loaded = useJobs((s) => s.loaded);
   const models = useModelRows();
   const [filter, setFilter] = React.useState<Filter>('all');
+  const [selectedModel, setSelectedModel] = React.useState<string | null>(null);
+  const [opError, setOpError] = React.useState('');
+
+  const sendOp = (send: () => Promise<unknown>) =>
+    send()
+      .then(() => setOpError(''))
+      .catch((e) => setOpError(String(e instanceof Error ? e.message : e)));
 
   const list = order
     .map((id) => cards[id])
@@ -117,12 +134,27 @@ export default function JobsScreen() {
         <Button
           variant="secondary"
           size="sm"
-          disabled
-          title={REASONS.jobPause}
+          disabled={!JOB_OPS.pause || active.length === 0}
+          title={
+            JOB_OPS.pause
+              ? active.length === 0
+                ? 'no running or queued jobs to pause'
+                : 'PauseJobOp on every active job — the coordinator may still refuse a job'
+              : REASONS.jobPause
+          }
+          onClick={() =>
+            void sendOp(() =>
+              Promise.all(active.map((c) => pauseJob(c.jobId))),
+            )
+          }
         >
           Pause optional jobs
         </Button>
-        <ReasonNote>{REASONS.jobPause}</ReasonNote>
+        <ReasonNote>
+          {JOB_OPS.pause
+            ? 'Pause sends PauseJobOp per active job; the card only moves when a JobEvent confirms it.'
+            : REASONS.jobPause}
+        </ReasonNote>
       </Card>
       <Card>
         <Eyebrow>Updates</Eyebrow>
@@ -166,10 +198,21 @@ export default function JobsScreen() {
               memoryBytes={c.memoryBytes}
               quarantined={c.quarantined}
               artifactCount={c.artifacts.length}
+              onCancel={
+                JOB_OPS.cancel
+                  ? (jobId) =>
+                      void sendOp(() => cancelJob(jobId))
+                  : undefined
+              }
             />
           ))
         )}
-        <ReasonNote>{REASONS.jobCancel}</ReasonNote>
+        <ReasonNote>
+          {JOB_OPS.cancel
+            ? 'Cancel sends CancelJobOp — the row updates on the coordinator JobEvent.'
+            : REASONS.jobCancel}
+        </ReasonNote>
+        {opError ? <ReasonNote>op rejected: {opError}</ReasonNote> : null}
       </Card>
       <Card>
         <Row justify="space-between">
@@ -206,22 +249,44 @@ export default function JobsScreen() {
           emptyLabel={
             models.loaded
               ? 'No models registered'
-              : 'Registry not pushed yet — MODEL_LIST read view is not in this build'
+              : JOB_OPS.listViews
+                ? 'Reading MODEL_LIST…'
+                : 'Registry not pushed yet — MODEL_LIST read view is not in this build'
           }
+          onSelect={(id) => setSelectedModel(id)}
         />
         <Divider />
         <Button
           variant="secondary"
           size="sm"
-          disabled
-          title={REASONS.modelInstall}
+          disabled={!JOB_OPS.modelInstall || selectedModel === null}
+          title={
+            !JOB_OPS.modelInstall
+              ? REASONS.modelInstall
+              : selectedModel === null
+                ? 'pick a registry row first'
+                : `InstallModelOp for ${selectedModel}`
+          }
+          onClick={() => {
+            const row = models.rows.find((m) => m.modelId === selectedModel);
+            if (row) void sendOp(() => installModel(row));
+          }}
         >
           Install model…
         </Button>
         <ReasonNote>
-          {REASONS.modelInstall} Installs are always your choice — nothing
-          downloads automatically.
+          {JOB_OPS.modelInstall
+            ? 'InstallModelOp installs the selected registry row — nothing downloads without your pick.'
+            : `${REASONS.modelInstall} Installs are always your choice — nothing downloads automatically.`}
         </ReasonNote>
+        <Button
+          variant="ghost"
+          size="sm"
+          title="Re-read JOB_LIST + MODEL_LIST"
+          onClick={() => void refreshFeatureViews()}
+        >
+          Refresh lists
+        </Button>
       </Card>
       <Card>
         <Eyebrow>Budgets</Eyebrow>
