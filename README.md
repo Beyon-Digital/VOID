@@ -968,3 +968,29 @@ ANTHROPIC_API_KEY=
 1. **Audio runs in the renderer process.** Web Audio API is not available in the main process. The `WebAudioAdapter` lives in renderer. IPC is only used to bridge hardware events (MIDI, OSC) from main to renderer.
 1. **The sidecar port is 7842.** Always. Configurable via `VOID_SIDECAR_PORT` env var but default is 7842.
 1. **When in doubt, emit an event.** If a module needs to tell another module something happened, it emits a typed event on `VoidEventBus`. It does not call a function on the other module.
+
+-----
+
+## Verification and release readiness
+
+*Added by Lane Y (W29 audit, branch `devin/void-lane-w29`, base `9099089`).*
+
+The honest snapshot above predates the W00–W28 lane merges. Current verified
+state lives in the F5 evidence pack:
+
+- `docs/verification/F5/F5_RECONCILIATION.md` — per-work-package status with
+  commit SHAs, test counts, and NEEDS pointers.
+- `docs/verification/F5/FEATURE_MATRIX.md` — derived supported-feature and
+  device/platform matrix (Linux-verified vs macOS-engine-qualified vs
+  model-side vs open NEEDS).
+- `docs/verification/F5/RESIDUAL_RISKS.md` — every partial/blocked/deferred or
+  unsupported-interop item with its owning NEEDS entry.
+- `docs/release/RELEASE_CANDIDATE.md` — candidate report (platforms,
+  install/recovery, rights audit, privacy).
+- `python3 docs/verification/F5/trace_check.py` — coverage audit: every
+  non-pass test row must map to a resolvable NEEDS entry. Output committed at
+  `docs/verification/F5/TRACE_AUDIT.json`.
+
+Green gate on this box: `pnpm install --frozen-lockfile` → `pnpm --filter
+void-client --filter void-core --filter void-daw --filter void-ui build` →
+`cargo test --workspace --exclude void-tauri` (146/146) → `pnpm -r test`.
