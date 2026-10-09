@@ -37,3 +37,37 @@
 - `docs/engine/EVIDENCE.md` + `docs/dependencies/QUALIFICATION.md` — macOS engine evidence
 - `docs/void-handoff/tracking/TESTS.json` — per-test status + evidence strings
 - `docs/engine/NEEDS.md` — protocol gaps for rev 2
+
+---
+## Resume checkpoint — 2026-10-09 00:08 UTC
+
+HEAD: `devin/void-implementation` after W18/W20/W21 merges + CI fixes (push through cb29310a..tracking).
+
+### Merged so far
+W00–W17 (F0–F2) + W18 mixer/automation/MIDI, W20 exchange/registry, W21 producer; W17/W22 partials already in.
+
+### Lanes in flight (child sessions)
+- Q `devin-f6389950` W19 content/sound-library → branch devin/void-lane-w19 (was suspended, nudged to resume)
+- T `devin-33dd1c8e` W23 reactive visuals → devin/void-lane-w23
+- U `devin-1de4718d` W24 av export → devin/void-lane-w24
+- V `devin-15d23c46` W25 notation → devin/void-lane-w25
+- W `devin-87ada6ad` W26+W27 spatial+sync → devin/void-lane-w26w27
+- X `devin-c7e488d9` W28 wasm sandbox → devin/void-lane-w28
+
+### Not yet spawned
+- W29 parity/release (lane Y) — last, after the six above merge.
+
+### Merge procedure (repeat per lane)
+1. `git fetch origin devin/void-lane-<x>`; `git merge --no-ff` into devin/void-implementation.
+2. Conflicts: root Cargo.toml members = union; Cargo.lock regenerate if broken; packages/void-studio/src/index.ts = union of export lines (watch for stray `<<<<<<<` markers).
+3. Gate: `cargo test --workspace --exclude void-tauri` exit 0; each `tests/<lane>` suite; `pnpm -r --if-present test`; `pnpm --filter void-studio --filter void-ui build`.
+4. Update tracking/TASKS.json + TESTS.json + append PROGRESS.md; `python3 docs/void-handoff/tools/render_views.py`; commit; push.
+5. Terminate the child session (frees SWE-2 slot).
+
+### CI gotchas fixed this round
+- pnpm flag order: `pnpm -r --if-present build` (flag before command).
+- void-tauri excluded from ts-job recursive build (`tauri build` needs WebKitGTK); kept `vite build` + `tsc --noEmit` steps.
+- Generated protocol bindings are gitignored — CI runs tools/protocol-gen.sh; flatc 25.9.23 installed from source in both native/rust jobs.
+
+### Suite counts at this checkpoint
+cargo workspace green; detached: recovery 22/22, visual 14/14, mix 14/14, exchange 12/12, producer 12/12; vitest 405 (studio 377).
