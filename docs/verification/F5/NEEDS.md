@@ -112,9 +112,12 @@ dependency manifest tamper half is already evidenced.
 `generate-procedural/setup.sh` (numpy-only); the other five tests fail with
 explicit "not provisioned" panics until `setup.sh` runs (basic-pitch `.tflite`,
 htdemucs_6s 53MB, musicgen ~1.9GB + T5 ~891MB downloads).
-**Needed:** document provisioning as a suite precondition (or a skip-marker);
-the lane-recorded pass evidence stands from a provisioned box.
-**Explains:** reproduction caveat on T60–T62 evidence.
+**Resolved 2026-10-09:** provisioning is a documented suite precondition —
+the test file header already states `workers/audio/<dir>/setup.sh` is required
+and fails loudly (never skipped/faked). Verified 6/6 green on the integrator
+box with all three worker venvs provisioned (`generate`, `separate`,
+`transcribe` + vendored weights). Each fresh box runs setup.sh once; that is
+the reproduction contract, not a code gap.
 
 ## F5-N11 — Engine waveclip resolver gap (blocks real-media reopen)
 

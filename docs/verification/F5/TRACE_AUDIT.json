@@ -3,8 +3,8 @@
   "generated_by": "docs/verification/F5/trace_check.py (Lane Y / W29)",
   "repo": "Beyon-Digital/VOID",
   "audit_branch": "devin/void-implementation",
-  "audit_head": "e6d4a087c1cd136ce198ccc3193eff09972a9a81",
-  "integration_branch_head": "e6d4a087c1cd136ce198ccc3193eff09972a9a81",
+  "audit_head": "a9c6d3f9a1493c402ec08357ae1f146038bc396b",
+  "integration_branch_head": "a9c6d3f9a1493c402ec08357ae1f146038bc396b",
   "policy": "blocked/not_run/partial_* are not-done; ledger statuses are reported, never upgraded.",
   "test_status_counts": {
     "pass_linux": 65,
