@@ -49,3 +49,9 @@ T08–T12 (protocol validation/idempotency/stale/bounded/timebase) and T49–T51
 - **Lane AA** (`devin/void-lane-infra` @ 199979e): `.github/workflows/release.yml` tag-triggered 3-OS tauri matrix → draft release (signing env-wired, key material gated); `tauri-plugin-updater` wired w/ fail-closed placeholder pubkey; `tools/privacy-audit.sh` 8 pass/2 warn; `tools/supplychain-check.sh` 7 pass (vendored SQLite 3.46.0 pinned); ci.yml +rust-windows +rust-macos +ts-macos +ts-windows +audit jobs; docs/ops/*; OPS-N01..N09 (signing keys, runtime drills, engine-in-bundle).
 - **F5-N01 reconciliation**: FEATURE_TRACEABILITY derived from TESTS.json — 80 verified / 36 partial; stock 22/22 partial; INFRASTRUCTURE 17 partial; DEPENDENCIES 3 qualified (Tracktion/JUCE/FlatBuffers) + 12 in_use; PLATFORMS linux=tested, macOS=partial, windows=not_tested.
 - F5-N10/N13/N14 resolved earlier this session (models suite 6/6 provisioned; void-tauri in cargo gate; T01/T52 evidence).
+
+## 2026-10-09 03:19 UTC — Lane BB (macOS) merged + infra tracking
+
+- **Lane BB** (`devin/void-lane-macos`): full workspace green on macOS 26.6.2 — cargo 45 blocks, clippy -D warnings, pnpm 462 vitest, `tauri build` → real VOID.app + .dmg; native engine + fixtures rebuilt (T14 1.536M frames, supervisor_stub 15/15, crash 6/6). Fixes: Darwin CLOCK_MONOTONIC=6 + RLIMIT_AS=5 (deadlines never tripped), `sun_path` 12-char slug (TMPDIR overflow), parallel `cargo build` test-binary race gated OnceLock, **F5-N11 waveclip resolver** (reopen-with-media APPLIED, deleted blob → REJECTED ASSET_MISSING, waveclip_checks.py 9/9).
+- Windows fixes: void-assets `sync_dir` no-op off unix (File::open(dir) = PermissionDenied on Windows); ci/release flatc PATH cygpath fix.
+- Tracking: T04 pass; T25–T29, T47, T13/15/16, T50 updated with lane AA/BB evidence.

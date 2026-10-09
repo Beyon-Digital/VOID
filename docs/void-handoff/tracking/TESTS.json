@@ -42,8 +42,8 @@
    "phase": "F0",
    "procedure": "Inspect the SQLite version actually loaded by Rust/workers, review relevant upstream advisories and tamper with a dependency/model manifest.",
    "expected": "Supported patched build is selected; checksum/signature failures reject the artifact. A host sqlite CLI version is not evidence about a bundled library.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "tools/supplychain-check.sh 7 pass: flatc pin, cargo metadata dep audit (0 git deps/wildcards), vendored SQLite 3.46.0 via libsqlite3-sys [2026-10-09 03:19 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -142,7 +142,7 @@
    "procedure": "Import the licensed/generated fixture, add audio and MIDI tracks, seek and cycle through known boundaries.",
    "expected": "Native output matches expected segments; stop/cycle semantics are real, not stub returns. No UI-owned transport clock.",
    "status": "partial_macos",
-   "evidence": "wire acks + param mapping; no live device",
+   "evidence": "lane BB: engine + fixtures rebuilt on macOS, T14 render 1,536,000 frames, supervisor_stub 15/15; live audio device still NEEDS [2026-10-09 03:19 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -164,7 +164,7 @@
    "procedure": "Change a real track gain/pan and processor parameter while playing and reopen the project.",
    "expected": "Audible/output change matches parameter mapping and saved value; no zipper noise beyond the tested processor policy. UI uses acknowledged state.",
    "status": "partial_macos",
-   "evidence": "RT probes in place; needs audio device",
+   "evidence": "lane BB macOS rebuild + harness green; live-device param mapping remains hardware NEEDS [2026-10-09 03:19 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -175,7 +175,7 @@
    "procedure": "Instrument debug callback path and run native stress fixture with graph edits and asset loading.",
    "expected": "No blocking I/O, DB, inference, dynamic graph destruction or application lock acquisition on the callback path. Report deadlines and allocations with instrumentation overhead noted.",
    "status": "partial_macos",
-   "evidence": "param/render done; editor needs GUI",
+   "evidence": "lane BB: Darwin rlimit IDs fixed + monotonic clock fixed on macOS; RT-safety device proof remains NEEDS [2026-10-09 03:19 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -273,8 +273,8 @@
    "phase": "F0",
    "procedure": "Run frontend, Rust, C++ builds/tests on the declared OS/toolchain matrix, including clean-cache jobs.",
    "expected": "Exact inputs and output hashes recorded. Unsupported targets are blocked/unverified, not inferred from another OS.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "partial_linux",
+   "evidence": "release.yml 3-OS tauri matrix + ci.yml rust-windows/rust-macos/ts-macos/ts-windows jobs added (lane AA); per-target qualification = lanes BB/F5-N02 [2026-10-09 03:19 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -284,8 +284,8 @@
    "phase": "F0",
    "procedure": "Inspect workflows and trigger a harmless deliberate timeout on a test branch.",
    "expected": "Every job has a deadline; superseded runs cancel; untrusted PRs receive no signing secrets or privileged hardware runner execution.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "partial_linux",
+   "evidence": "docs/ops/CI_TIMEOUTS.md timeout budget per job + concurrency cancel-in-progress documented (lane AA); runtime drill = OPS NEEDS [2026-10-09 03:19 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -295,8 +295,8 @@
    "phase": "F0",
    "procedure": "Install a release-like build on a clean VM/machine without Node/Python/compiler development tools; launch offline.",
    "expected": "All selected workers/runtimes load; conventional studio starts offline. Unsigned builds are internal-only and clearly labeled.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "partial_linux",
+   "evidence": "release.yml draft-release bundles (.deb/.rpm/AppImage/.dmg/.msi) + docs/ops/INSTALL.md; clean-VM install test = OPS NEEDS [2026-10-09 03:19 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -306,8 +306,8 @@
    "phase": "F0",
    "procedure": "Verify OS signatures/notarization and updater manifest signature with authorized credentials; attempt tampered/interrupted update and update during recording.",
    "expected": "Tampered payload rejected, recording/performance blocks install/restart, interrupted update has tested recovery. Missing keys means blocked, never passed.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "partial_linux",
+   "evidence": "tauri-plugin-updater wired + createUpdaterArtifacts + GitHub endpoint + env-keyed signing (unsigned until key material, OPS-N01) [2026-10-09 03:19 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -317,8 +317,8 @@
    "phase": "F0",
    "procedure": "Generate errors with private paths, prompts, source audio and fake credential tokens; inspect logs/crash bundles.",
    "expected": "Redaction and bounded rotation work; no raw audio/private prompts/secrets by default. Diagnostic export requires explicit user action.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "partial_linux",
+   "evidence": "tools/privacy-audit.sh 8 pass/2 warn static sweep committed + ci audit job; runtime drill = OPS NEEDS [2026-10-09 03:19 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -516,7 +516,7 @@
    "procedure": "Launch packaged/default commands and inspect runtime dependency/process list after the native gate passes.",
    "expected": "No production Electron or WebAudio scheduling path remains. Old source remains in git history; actual legacy projects have tested migration or explicit compatibility limits.",
    "status": "partial_linux",
-   "evidence": "cutover staged + production-path claim fixed; removal gated on T44-46 green \u2014 T44/T46 now pass, T45/48 open",
+   "evidence": "VOID.app + .dmg built on macOS (lane BB tauri build 0); electron cutover decision still open [2026-10-09 03:19 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -549,7 +549,7 @@
    "procedure": "Launch heavy generation while recording, simulate GPU OOM and saturated memory budget, then retry safely.",
    "expected": "Heavy work is refused/paused/cancelled according to policy; audio is not gated by inference. No uncontrolled model-loading fanout.",
    "status": "pass_linux",
-   "evidence": "void-jobs admission budgets 4/1/2 + RLIMIT_CPU/AS + deadline enforcement \u2014 kill paths tested [2026-10-09 01:10 UTC]",
+   "evidence": "admission 4/1/2 + RLIMIT budgets verified linux+macos (lane BB Darwin ids); GPU-VRAM contention remains F5-N09 hardware gap [2026-10-09 03:19 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {

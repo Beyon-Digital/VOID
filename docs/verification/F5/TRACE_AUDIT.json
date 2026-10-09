@@ -3,16 +3,16 @@
   "generated_by": "docs/verification/F5/trace_check.py (Lane Y / W29)",
   "repo": "Beyon-Digital/VOID",
   "audit_branch": "devin/void-implementation",
-  "audit_head": "10caff64866519d532a67e7cdee7c6b488b8c054",
-  "integration_branch_head": "a17571bb449a1efb31d075a031028a6489e9a5ba",
+  "audit_head": "9003b3a712daab4d1b201d36ceae6e90b7f9d77c",
+  "integration_branch_head": "b5abb14659d75859112847c8a47db930aee5d3d2",
   "policy": "blocked/not_run/partial_* are not-done; ledger statuses are reported, never upgraded.",
   "test_status_counts": {
-    "pass_linux": 65,
+    "pass_linux": 66,
     "pass_macos": 9,
-    "not_run": 10,
+    "not_run": 4,
     "partial_macos": 3,
     "blocked": 3,
-    "partial_linux": 10
+    "partial_linux": 15
   },
   "task_status_counts": {
     "done": 6,
@@ -53,14 +53,6 @@
   },
   "evidence_anomalies": {},
   "non_pass_rows": {
-    "T04": {
-      "status": "not_run",
-      "task": "W01",
-      "needs": [
-        "docs/verification/F5/NEEDS.md#F5-N08"
-      ],
-      "class": "spec_unrun"
-    },
     "T06": {
       "status": "not_run",
       "task": "W02",
@@ -111,7 +103,7 @@
       "class": "hardware_blocked"
     },
     "T25": {
-      "status": "not_run",
+      "status": "partial_linux",
       "task": "W07",
       "needs": [
         "docs/verification/F5/NEEDS.md#F5-N02",
@@ -120,7 +112,7 @@
       "class": "hardware_blocked"
     },
     "T26": {
-      "status": "not_run",
+      "status": "partial_linux",
       "task": "W07",
       "needs": [
         "docs/verification/F5/NEEDS.md#F5-N05"
@@ -128,7 +120,7 @@
       "class": "spec_unrun"
     },
     "T27": {
-      "status": "not_run",
+      "status": "partial_linux",
       "task": "W07",
       "needs": [
         "docs/verification/F5/NEEDS.md#F5-N03"
@@ -136,7 +128,7 @@
       "class": "approval_blocked"
     },
     "T28": {
-      "status": "not_run",
+      "status": "partial_linux",
       "task": "W07",
       "needs": [
         "docs/verification/F5/NEEDS.md#F5-N03"
@@ -144,7 +136,7 @@
       "class": "approval_blocked"
     },
     "T29": {
-      "status": "not_run",
+      "status": "partial_linux",
       "task": "W07",
       "needs": [
         "docs/verification/F5/NEEDS.md#F5-N04"
@@ -306,8 +298,8 @@
     "T04": {
       "task_id": "W01",
       "phase": "F0",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "pass_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "spec_unrun",
         "needs": [
@@ -526,8 +518,8 @@
     "T25": {
       "task_id": "W07",
       "phase": "F0",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "partial_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "hardware_blocked",
         "needs": [
@@ -540,8 +532,8 @@
     "T26": {
       "task_id": "W07",
       "phase": "F0",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "partial_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "spec_unrun",
         "needs": [
@@ -553,8 +545,8 @@
     "T27": {
       "task_id": "W07",
       "phase": "F0",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "partial_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "approval_blocked",
         "needs": [
@@ -566,8 +558,8 @@
     "T28": {
       "task_id": "W07",
       "phase": "F0",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "partial_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "approval_blocked",
         "needs": [
@@ -579,8 +571,8 @@
     "T29": {
       "task_id": "W07",
       "phase": "F0",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "partial_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "spec_unrun",
         "needs": [

@@ -4,3 +4,6 @@ dist/
 .turbo/
 target/
 *.tsbuildinfo
+
+__pycache__/
+*.pyc
