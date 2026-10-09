@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<score-partwise version="4.0">
+  <movement-title>Two Voices</movement-title>
+  <part-list>
+    <part-group number="1" type="start"><group-name>Strings</group-name></part-group>
+    <score-part id="V1"><part-name>Violin I</part-name></score-part>
+    <score-part id="V2"><part-name>Cello</part-name></score-part>
+    <part-group number="1" type="stop"/>
+  </part-list>
+  <part id="V1">
+    <measure number="1">
+      <attributes>
+        <divisions>24</divisions>
+        <key><fifths>2</fifths></key>
+        <time><beats>3</beats><beat-type>4</beat-type></time>
+        <clef><sign>G</sign><line>2</line></clef>
+      </attributes>
+      <direction>
+        <direction-type><dynamics><mf/></dynamics></direction-type>
+        <staff>1</staff>
+        <sound dynamics="80"/>
+      </direction>
+      <note id="v1a">
+        <pitch><step>F</step><alter>1</alter><octave>5</octave></pitch>
+        <duration>12</duration><voice>1</voice><type>eighth</type>
+        <beam number="1">begin</beam>
+        <notations><slur type="start" number="1"/></notations>
+      </note>
+      <note id="v1b">
+        <pitch><step>G</step><octave>5</octave></pitch>
+        <duration>12</duration><voice>1</voice><type>eighth</type>
+        <beam number="1">end</beam>
+      </note>
+      <note id="v1c">
+        <pitch><step>A</step><octave>5</octave></pitch>
+        <duration>24</duration><voice>1</voice><type>quarter</type>
+        <notations><slur type="stop" number="1"/></notations>
+      </note>
+      <note id="v1d">
+        <pitch><step>B</step><octave>5</octave></pitch>
+        <duration>24</duration><voice>1</voice><type>quarter</type>
+      </note>
+      <backup><duration>72</duration></backup>
+      <note id="v1e">
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>24</duration><voice>2</voice><type>quarter</type>
+      </note>
+      <note id="v1f">
+        <pitch><step>E</step><octave>4</octave></pitch>
+        <duration>24</duration><voice>2</voice><type>quarter</type>
+      </note>
+      <note id="v1g">
+        <pitch><step>C</step><alter>1</alter><octave>4</octave></pitch>
+        <duration>24</duration><voice>2</voice><type>quarter</type>
+      </note>
+    </measure>
+  </part>
+  <part id="V2">
+    <measure number="1">
+      <attributes>
+        <divisions>24</divisions>
+        <key><fifths>2</fifths></key>
+        <time><beats>3</beats><beat-type>4</beat-type></time>
+        <clef><sign>F</sign><line>4</line></clef>
+      </attributes>
+      <direction>
+        <direction-type><wedge type="crescendo"/></direction-type>
+        <staff>1</staff>
+      </direction>
+      <note id="v2a">
+        <pitch><step>D</step><octave>3</octave></pitch>
+        <duration>16</duration><voice>1</voice><type>eighth</type>
+        <time-modification>
+          <actual-notes>3</actual-notes><normal-notes>2</normal-notes><normal-type>eighth</normal-type>
+        </time-modification>
+        <notations><tuplet type="start" number="1"/></notations>
+      </note>
+      <note id="v2b">
+        <pitch><step>F</step><alter>1</alter><octave>3</octave></pitch>
+        <duration>16</duration><voice>1</voice><type>eighth</type>
+        <time-modification><actual-notes>3</actual-notes><normal-notes>2</normal-notes></time-modification>
+      </note>
+      <note id="v2c">
+        <pitch><step>A</step><octave>3</octave></pitch>
+        <duration>16</duration><voice>1</voice><type>eighth</type>
+        <time-modification><actual-notes>3</actual-notes><normal-notes>2</normal-notes></time-modification>
+        <notations><tuplet type="stop" number="1"/></notations>
+      </note>
+      <note id="v2d">
+        <pitch><step>D</step><octave>4</octave></pitch>
+        <duration>24</duration><voice>1</voice><type>quarter</type>
+      </note>
+      <note>
+        <chord/>
+        <pitch><step>A</step><octave>4</octave></pitch>
+        <duration>24</duration><voice>1</voice><type>quarter</type>
+      </note>
+      <direction>
+        <direction-type><wedge type="stop"/></direction-type>
+        <staff>1</staff>
+      </direction>
+    </measure>
+  </part>
+</score-partwise>

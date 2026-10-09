@@ -20,6 +20,7 @@ members = [
     "crates/void-wasm",
     "crates/void-visfx",
     "crates/void-av",
+    "crates/void-notation",
     "apps/void-tauri/src-tauri",
 ]
 

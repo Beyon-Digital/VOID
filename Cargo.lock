@@ -5927,6 +5927,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "void-notation"
+version = "0.1.0"
+dependencies = [
+ "quick-xml 0.42.0",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror 2.0.21",
+ "uuid",
+ "void-exchange",
+]
+
+[[package]]
 name = "void-producer"
 version = "0.1.0"
 dependencies = [
