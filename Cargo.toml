@@ -12,6 +12,7 @@ members = [
     "crates/void-export",
     "crates/void-visual",
     "crates/void-mix",
+    "crates/void-exchange",
     "apps/void-tauri/src-tauri",
 ]
 
