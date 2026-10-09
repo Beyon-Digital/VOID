@@ -1186,8 +1186,8 @@
     "T100"
    ],
    "dependency_ids": [],
-   "status": "not_started",
-   "evidence": [],
+   "status": "partial",
+   "evidence": "docs/verification/F5/* reconciliation+matrix+risks+trace audit (T99 pass, T100 partial); docs/release/RELEASE_CANDIDATE.md rc.1; release itself authorization-gated F5-N12 [2026-10-09 01:32 UTC]",
    "implementation_commit": null,
    "blocker": null,
    "readiness_evidence": [],

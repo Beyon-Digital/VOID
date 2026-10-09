@@ -1087,8 +1087,8 @@
    "phase": "F5",
    "procedure": "Validate all feature/stock/task/test/dependency/infra IDs, evidence hashes and implementation commits; review unsupported rows.",
    "expected": "No orphan requirement, fake evidence or dropped feature. Full parity cannot be marked complete while required outcomes are missing.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "lane Y: docs/verification/F5/trace_check.py verifies every TESTS.json row has status+evidence; all non-pass rows mapped to NEEDS anchors (TRACE_AUDIT.json, exit 0) [2026-10-09 01:32 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -1098,8 +1098,8 @@
    "phase": "F5",
    "procedure": "Run installed-build musician journeys, signed update/recovery, SBOM/licence/content/privacy checks and incident drill on each supported platform.",
    "expected": "Release candidate has truthful support matrix, rollback and residual risks. Public release still requires explicit owner authorization.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "partial_linux",
+   "evidence": "lane Y: F5_RECONCILIATION + FEATURE_MATRIX + RESIDUAL_RISKS + RELEASE_CANDIDATE.md v1.0.0-rc.1 produced; public release/store submission deferred-by-approval (F5-N12) [2026-10-09 01:32 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   }
  ]

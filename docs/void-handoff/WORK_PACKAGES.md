@@ -35,7 +35,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W26 | F5 | Spatial routing and delivery | W21 | partial |
 | W27 | F5 | Synchronization, modular control and safe shows | W24, W21 | partial |
 | W28 | F5 | Advanced synthesis and restricted extensions | W19, W24 | partial |
-| W29 | F5 | Full parity reconciliation and release readiness | W25, W26, W27, W28 | not_started |
+| W29 | F5 | Full parity reconciliation and release readiness | W25, W26, W27, W28 | partial |
 
 ## W00 · F0 · Baseline, source preservation and scope ledger
 
@@ -841,7 +841,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W29 · F5 · Full parity reconciliation and release readiness
 
-**Owner:** Integrator + QA · **Depends:** W25, W26, W27, W28 · **Status:** not_started
+**Owner:** Integrator + QA · **Depends:** W25, W26, W27, W28 · **Status:** partial
 
 **Target paths:** `docs/verification/F5/`, `tracking/`, `docs/release/`, `README.md`
 
@@ -865,4 +865,4 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** Reuse already qualified foundations; justify new dependencies separately.
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** d; o; c; s; /; v; e; r; i; f; i; c; a; t; i; o; n; /; F; 5; /; *;  ; r; e; c; o; n; c; i; l; i; a; t; i; o; n; +; m; a; t; r; i; x; +; r; i; s; k; s; +; t; r; a; c; e;  ; a; u; d; i; t;  ; (; T; 9; 9;  ; p; a; s; s; ,;  ; T; 1; 0; 0;  ; p; a; r; t; i; a; l; ); ;;  ; d; o; c; s; /; r; e; l; e; a; s; e; /; R; E; L; E; A; S; E; _; C; A; N; D; I; D; A; T; E; .; m; d;  ; r; c; .; 1; ;;  ; r; e; l; e; a; s; e;  ; i; t; s; e; l; f;  ; a; u; t; h; o; r; i; z; a; t; i; o; n; -; g; a; t; e; d;  ; F; 5; -; N; 1; 2;  ; [; 2; 0; 2; 6; -; 1; 0; -; 0; 9;  ; 0; 1; :; 3; 2;  ; U; T; C; ]

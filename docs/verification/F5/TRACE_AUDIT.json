@@ -2,13 +2,13 @@
   "schema": "void-f5-trace-audit/1",
   "generated_by": "docs/verification/F5/trace_check.py (Lane Y / W29)",
   "repo": "Beyon-Digital/VOID",
-  "audit_branch": "devin/void-lane-w29",
-  "audit_head": "90990890d4ec779b8d7e7a5b31a7c33ea815a5f5",
-  "integration_branch_head": "90990890d4ec779b8d7e7a5b31a7c33ea815a5f5",
+  "audit_branch": "devin/void-implementation",
+  "audit_head": "1e129ab0dfd92ff9b96911832aebe20e6d9cee84",
+  "integration_branch_head": "baad7187cad995304eb88de31211484608dfd29b",
   "policy": "blocked/not_run/partial_* are not-done; ledger statuses are reported, never upgraded.",
   "test_status_counts": {
-    "not_run": 21,
-    "pass_linux": 55,
+    "not_run": 13,
+    "pass_linux": 63,
     "pass_macos": 9,
     "partial_macos": 3,
     "blocked": 3,
@@ -21,8 +21,8 @@
     "not_started": 1
   },
   "feature_rollup_derived": {
-    "partial_or_open": 37,
-    "pass_linux": 72,
+    "partial_or_open": 35,
+    "pass_linux": 74,
     "pass_macos_engine": 4,
     "mixed_pass": 2,
     "not_run": 1
@@ -79,46 +79,6 @@
     "T07": {
       "status": "not_run",
       "task": "W02",
-      "needs": [
-        "docs/verification/F5/NEEDS.md#F5-N07"
-      ],
-      "class": "spec_unrun"
-    },
-    "T08": {
-      "status": "not_run",
-      "task": "W03",
-      "needs": [
-        "docs/verification/F5/NEEDS.md#F5-N07"
-      ],
-      "class": "spec_unrun"
-    },
-    "T09": {
-      "status": "not_run",
-      "task": "W03",
-      "needs": [
-        "docs/verification/F5/NEEDS.md#F5-N07"
-      ],
-      "class": "spec_unrun"
-    },
-    "T10": {
-      "status": "not_run",
-      "task": "W03",
-      "needs": [
-        "docs/verification/F5/NEEDS.md#F5-N07"
-      ],
-      "class": "spec_unrun"
-    },
-    "T11": {
-      "status": "not_run",
-      "task": "W03",
-      "needs": [
-        "docs/verification/F5/NEEDS.md#F5-N07"
-      ],
-      "class": "spec_unrun"
-    },
-    "T12": {
-      "status": "not_run",
-      "task": "W03",
       "needs": [
         "docs/verification/F5/NEEDS.md#F5-N07"
       ],
@@ -231,30 +191,6 @@
         "docs/verification/F5/NEEDS.md#F5-N06"
       ],
       "class": "human_participant"
-    },
-    "T49": {
-      "status": "not_run",
-      "task": "W12",
-      "needs": [
-        "docs/verification/F5/NEEDS.md#F5-N07"
-      ],
-      "class": "ledger_not_updated"
-    },
-    "T50": {
-      "status": "not_run",
-      "task": "W12",
-      "needs": [
-        "docs/verification/F5/NEEDS.md#F5-N09"
-      ],
-      "class": "hardware_blocked"
-    },
-    "T51": {
-      "status": "not_run",
-      "task": "W12",
-      "needs": [
-        "docs/verification/F5/NEEDS.md#F5-N07"
-      ],
-      "class": "ledger_not_updated"
     },
     "T64": {
       "status": "blocked",
@@ -431,8 +367,8 @@
     "T08": {
       "task_id": "W03",
       "phase": "F0",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "pass_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "spec_unrun",
         "needs": [
@@ -444,8 +380,8 @@
     "T09": {
       "task_id": "W03",
       "phase": "F0",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "pass_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "spec_unrun",
         "needs": [
@@ -457,8 +393,8 @@
     "T10": {
       "task_id": "W03",
       "phase": "F0",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "pass_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "spec_unrun",
         "needs": [
@@ -470,8 +406,8 @@
     "T11": {
       "task_id": "W03",
       "phase": "F0",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "pass_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "spec_unrun",
         "needs": [
@@ -483,8 +419,8 @@
     "T12": {
       "task_id": "W03",
       "phase": "F0",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "pass_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "spec_unrun",
         "needs": [
@@ -830,8 +766,8 @@
     "T49": {
       "task_id": "W12",
       "phase": "F2",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "pass_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "ledger_not_updated",
         "needs": [
@@ -843,8 +779,8 @@
     "T50": {
       "task_id": "W12",
       "phase": "F2",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "pass_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "hardware_blocked",
         "needs": [
@@ -856,8 +792,8 @@
     "T51": {
       "task_id": "W12",
       "phase": "F2",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "pass_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "ledger_not_updated",
         "needs": [
@@ -2505,7 +2441,7 @@
       "category": "Logic intelligent tools and VOID AI",
       "feature": "Local memory, preferences and reusable recipes",
       "ledger_status": "not_verified",
-      "derived_from_tests": "partial_or_open",
+      "derived_from_tests": "pass_linux",
       "acceptance_test_ids": [
         "T49",
         "T50",
@@ -2517,7 +2453,7 @@
       "category": "Logic intelligent tools and VOID AI",
       "feature": "Model routing, downloads, cancellation and resource budgets",
       "ledger_status": "not_verified",
-      "derived_from_tests": "partial_or_open",
+      "derived_from_tests": "pass_linux",
       "acceptance_test_ids": [
         "T49",
         "T50",

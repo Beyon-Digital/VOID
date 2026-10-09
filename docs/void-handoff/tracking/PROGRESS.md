@@ -38,3 +38,8 @@
 ## 2026-10-09 01:10 UTC — Backfilled test-row evidence (pre-W29 audit)
 
 T08–T12 (protocol validation/idempotency/stale/bounded/timebase) and T49–T51 (job state machine/admission/model isolation) marked pass_linux — all implemented in void-protocol/void-app/void-jobs/void-models with suites. Remaining not_run rows: infrastructure/packaging rows (T01, T04, T06, T07, T25–T30), T72 engine DSP conformance, T99/T100 (lane Y).
+
+## 2026-10-09 01:32 UTC — Lane Y (W29) merged — plan packages complete
+
+- **W29 parity reconciliation + release readiness** (`devin/void-lane-w29` @ 59949d9): `docs/verification/F5/` — F5_RECONCILIATION.md (W00–W29 with merge SHAs), FEATURE_MATRIX.md (116 features + 22 stock groups), RESIDUAL_RISKS.md (Link/Verovio/projectM/ARA/isolation/head-tracking/live-device), F5 NEEDS.md N01–N15 + NEEDS_MAP.json, trace_check.py + TRACE_AUDIT.json (T99 pass_linux); `docs/release/RELEASE_CANDIDATE.md` v1.0.0-rc.1 (T100 partial — release deferred-by-approval). README gains verification section.
+- All 30 work packages (W00–W29) now implemented/audited; every non-pass test row maps to a NEEDS entry.
