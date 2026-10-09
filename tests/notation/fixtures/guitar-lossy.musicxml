@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1"><part-name>Guitar</part-name></score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>24</divisions>
+        <time><beats>2</beats><beat-type>4</beat-type></time>
+        <clef><sign>TAB</sign><line>5</line></clef>
+      </attributes>
+      <print>
+        <page-layout><page-height>1696</page-height><page-width>1200</page-width></page-layout>
+      </print>
+      <harmony>
+        <root><root-step>C</root-step></root>
+        <kind>major</kind>
+      </harmony>
+      <note id="g1">
+        <pitch><step>E</step><octave>2</octave></pitch>
+        <duration>24</duration><voice>1</voice><type>quarter</type>
+        <notations><technical><string>6</string><fret>0</fret></technical></notations>
+      </note>
+      <note id="g2">
+        <pitch><step>A</step><octave>2</octave></pitch>
+        <duration>12</duration><voice>1</voice><type>eighth</type>
+        <notations>
+          <technical><string>5</string><fret>0</fret></technical>
+          <ornaments><trill-mark/></ornaments>
+        </notations>
+      </note>
+      <note id="g3">
+        <grace/><pitch><step>B</step><octave>2</octave></pitch>
+      </note>
+      <note id="g4">
+        <pitch><step>D</step><octave>3</octave></pitch>
+        <duration>12</duration><voice>1</voice><type>eighth</type>
+        <notations><technical><string>4</string><fret>0</fret></technical></notations>
+      </note>
+      <barline location="right">
+        <bar-style>light-heavy</bar-style>
+        <repeat direction="backward"/>
+      </barline>
+    </measure>
+  </part>
+</score-partwise>
