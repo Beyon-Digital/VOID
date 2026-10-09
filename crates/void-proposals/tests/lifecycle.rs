@@ -12,22 +12,31 @@ use void_proposals::*;
 
 const WORKER: &str = "../../workers/symbolic";
 
+// Every test in this binary calls worker_bin(); without a OnceLock the
+// first run races several `cargo build` invocations on the same target
+// dir (observed as a NotFound on macOS CI).
 fn worker_bin() -> PathBuf {
-    let exe = Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join(WORKER)
-        .join(format!(
-            "target/debug/void-symbolic-worker{}",
-            std::env::consts::EXE_SUFFIX
-        ));
-    if !exe.exists() {
-        let status = Command::new("cargo")
-            .args(["build", "--manifest-path", &format!("{WORKER}/Cargo.toml")])
-            .current_dir(env!("CARGO_MANIFEST_DIR"))
-            .status()
-            .expect("cargo build worker");
-        assert!(status.success(), "worker build failed");
-    }
-    exe
+    static BUILT: std::sync::OnceLock<PathBuf> = std::sync::OnceLock::new();
+    BUILT
+        .get_or_init(|| {
+            let exe = Path::new(env!("CARGO_MANIFEST_DIR"))
+                .join(WORKER)
+                .join(format!(
+                    "target/debug/void-symbolic-worker{}",
+                    std::env::consts::EXE_SUFFIX
+                ));
+            if !exe.exists() {
+                let status = Command::new("cargo")
+                    .args(["build", "--manifest-path", &format!("{WORKER}/Cargo.toml")])
+                    .current_dir(env!("CARGO_MANIFEST_DIR"))
+                    .status()
+                    .expect("cargo build worker");
+                assert!(status.success(), "worker build failed");
+            }
+            assert!(exe.exists(), "worker binary missing at {}", exe.display());
+            exe.canonicalize().unwrap_or(exe)
+        })
+        .clone()
 }
 
 struct Fx {
