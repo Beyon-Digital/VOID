@@ -25,7 +25,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W16 | F2 | AI/gesture regression gate | W14, W15 | partial |
 | W17 | F3 | Recording and arrangement depth | W11 | partial |
 | W18 | F3 | Mixer, automation and advanced MIDI | W17 | partial |
-| W19 | F3 | Stock sound library, effects and time/pitch tools | W17, W01 | not_started |
+| W19 | F3 | Stock sound library, effects and time/pitch tools | W17, W01 | partial |
 | W20 | F3 | Plugin compatibility, optional isolation and exchange | W18 | partial |
 | W21 | F3 | Accompaniment, arrangement and producer gate | W16, W19, W20 | partial |
 | W22 | F4 | Conventional native visual composition and program output | W11 | partial |
@@ -567,7 +567,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W19 · F3 · Stock sound library, effects and time/pitch tools
 
-**Owner:** DSP + content · **Depends:** W17, W01 · **Status:** not_started
+**Owner:** DSP + content · **Depends:** W17, W01 · **Status:** partial
 
 **Target paths:** `native/void-engine/src/devices/`, `packages/void-studio/src/audio-edit/`, `content/`, `docs/content-rights/`
 
@@ -591,7 +591,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** DSP-01, DSP-02, DSP-04, DSP-05, DSP-07, DSP-08, DSP-09
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; -; c; o; n; t; e; n; t;  ; (; m; a; n; i; f; e; s; t; /; z; o; n; e; s; /; s; t; r; e; a; m; i; n; g; /; l; i; f; e; c; y; c; l; e; /; i; n; v; e; n; t; o; r; y; );  ; +;  ; a; u; d; i; o; -; e; d; i; t;  ; s; t; u; d; i; o;  ; m; o; d; e; l;  ; +;  ; l; i; c; e; n; s; e;  ; l; e; d; g; e; r; ;;  ; T; 7; 3;  ; p; a; s; s; ,;  ; T; 7; 4;  ; m; o; d; e; l; -; s; i; d; e;  ; [; 2; 0; 2; 6; -; 1; 0; -; 0; 9;  ; 0; 0; :; 1; 0;  ; U; T; C; ]
 
 ## W20 · F3 · Plugin compatibility, optional isolation and exchange
 

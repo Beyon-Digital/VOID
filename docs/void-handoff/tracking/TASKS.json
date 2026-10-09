@@ -800,8 +800,8 @@
     "DSP-08",
     "DSP-09"
    ],
-   "status": "not_started",
-   "evidence": [],
+   "status": "partial",
+   "evidence": "void-content (manifest/zones/streaming/lifecycle/inventory) + audio-edit studio model + license ledger; T73 pass, T74 model-side [2026-10-09 00:10 UTC]",
    "implementation_commit": null,
    "blocker": null,
    "readiness_evidence": [],

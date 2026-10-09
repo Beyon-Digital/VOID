@@ -6,3 +6,8 @@
 - **W21 producer** (`devin/void-lane-w21` @ b07c972): `crates/void-producer` deterministic accompaniment/inpaint/vary (T78), BS.1770 loudness + mastering plan (T79), stem-batch export + producer gate (T80); shortcuts + screensets stores. tests/producer 12/12.
 - Post-merge: `cargo test --workspace --exclude void-tauri` exit 0; vitest 405 (studio 377); studio+ui tsc clean.
 - Also fixed: PR #42 ts job — `pnpm -r build` reached `apps/void-tauri`'s `vite build && tauri build` which needs WebKitGTK; excluded void-tauri from recursive build, kept `vite build` + `tsc --noEmit` coverage steps.
+
+## 2026-10-09 00:10 UTC — Lane Q (W19) merged
+
+- **W19 content/sound-library** (`devin/void-lane-w19` @ fc49c3c): `crates/void-content` (sha256 manifest verify, zones/round-robin, preload/stream/offline + bounded VoiceAllocator, install→quarantine→relink lifecycle, stock inventory + license ledger LGR-0001..04), `packages/void-studio/src/audio-edit/` (transients/varispeed/pitch/tails op plans). 72 authored stock descriptors. tests/content 8/8, void-content 18/18; T73 pass_linux, T74 model-side (engine render NEEDS).
+- Post-merge: workspace cargo green; studio vitest 400; builds clean.

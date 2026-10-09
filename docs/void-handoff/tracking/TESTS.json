@@ -801,8 +801,8 @@
    "phase": "F3",
    "procedure": "Stream zones/layers/round robins, install/tamper/remove a content pack and reopen dependent projects.",
    "expected": "Voices/cache bounded; licensed content manifest verified; missing content is relinkable and source ownership is retained.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "lane Q (w19): manifest sha256 verify, tamper\u2192quarantine\u2192relink, 72 stock descriptors, voice budgets; tests/content 8/8 + void-content 18/18 [2026-10-09 00:10 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -812,8 +812,8 @@
    "phase": "F3",
    "procedure": "Edit detected audio notes, time-stretch transients/voice, repair a sample and request six-stem separation.",
    "expected": "Musical quality and nondestructive reversibility are evaluated; unsupported material/models remain visible gaps.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "partial_linux",
+   "evidence": "lane Q (w19): audio-edit model \u2014 transients/varispeed(rational)/pitch(immutable)/tails op plans; DSP rendering = engine NEEDS [2026-10-09 00:10 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
