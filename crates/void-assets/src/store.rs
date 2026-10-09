@@ -237,8 +237,18 @@ pub fn file_sha256(path: &Path) -> Result<String> {
 }
 
 /// fsync a directory so the rename inside it is durable.
+/// POSIX-only idiom: Windows cannot open a directory as a `File`, so this is
+/// a no-op there — payload files themselves are already `sync_all`ed at write
+/// time, which is what carries durability on Windows.
 pub fn sync_dir(path: &Path) -> Result<()> {
-    File::open(path)?.sync_all()?;
+    #[cfg(unix)]
+    {
+        File::open(path)?.sync_all()?;
+    }
+    #[cfg(not(unix))]
+    {
+        let _ = path;
+    }
     Ok(())
 }
 
