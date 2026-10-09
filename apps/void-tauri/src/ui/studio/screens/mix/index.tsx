@@ -56,6 +56,8 @@ import { mixAutomation, mixView, mixerBinding, refreshTracks } from './mixStore'
 
 const AUTOMATION_MODES: AutomationMode[] = ['off', 'read', 'touch', 'latch', 'write', 'trim'];
 
+const EMPTY_ITEMS: ReadItem[] = [];
+
 function formatDb(db: number): string {
   return db <= MIN_DB ? '-∞' : `${db >= 0 ? '+' : ''}${db.toFixed(1)}`;
 }
@@ -105,8 +107,10 @@ export default function MixScreen() {
     return () => window.clearInterval(t);
   }, []);
 
-  const items: ReadItem[] = trackEntry?.items ?? [];
-  const pluginItems: ReadItem[] = pluginEntry?.items ?? [];
+  // Stable references: `?? []` inline would be a fresh array every render and
+  // the [items] effect below would loop setStrips → re-render forever.
+  const items: ReadItem[] = trackEntry?.items ?? EMPTY_ITEMS;
+  const pluginItems: ReadItem[] = pluginEntry?.items ?? EMPTY_ITEMS;
 
   // Re-derive strips on every TRACK_LIST page; keep last-accepted mixer
   // values and pending flags where the summary doesn't carry the field.

@@ -7,7 +7,7 @@
 // seeded fixtures. Panels and viewport are view state in studioStore.
 
 import * as React from 'react';
-import { injectVoidStyles, tokens } from 'void-ui';
+import { globalEscapeStack, injectVoidStyles, tokens } from 'void-ui';
 import {
   editorStore,
   loadViewPage,
@@ -28,6 +28,10 @@ function Drawer(props: {
   onClose: () => void;
   children: React.ReactNode;
 }) {
+  const { onClose } = props;
+  // Register on the shared escape stack so Escape closes the drawer even when
+  // focus is outside it (the shell consumes Escape before other handlers).
+  React.useEffect(() => globalEscapeStack.push(onClose), [onClose]);
   return (
     <div
       role="dialog"
