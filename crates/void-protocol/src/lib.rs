@@ -17,7 +17,9 @@ pub mod validate;
 pub use generated::voidproto as proto;
 
 pub const PROTOCOL_MAJOR: u16 = 1;
-pub const PROTOCOL_MINOR: u16 = 0;
+/// Minor 1 = rev-2: take/scene/job/model/proposal views + recording, ingest,
+/// bypass, rescan, save-as, proposal, job, and launch ops (NEEDS.md).
+pub const PROTOCOL_MINOR: u16 = 1;
 
 /// Musical time resolution: ticks per quarter note (CONTRACTS.md §1).
 pub const TICKS_PER_QUARTER: i64 = 960_000;
