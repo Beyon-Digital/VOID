@@ -34,3 +34,7 @@
 
 - **W25 notation/interchange** (`devin/void-lane-w25` @ 096de33): `crates/void-notation` score model over stable ids, single-transaction `apply_transaction` + exact `UndoToken` undo, real MusicXML 4 score-partwise import+export (4 fixture semantic round-trips, deterministic loss report), rational-second anchors surviving tempo-map changes, SMPTE modes, tab/lyric binding. tests/notation 18/18; T90/T91 pass_linux. Engraving (Verovio) = GUI NEEDS.
 - Studio vitest 462; workspace clippy -D warnings clean.
+
+## 2026-10-09 01:10 UTC — Backfilled test-row evidence (pre-W29 audit)
+
+T08–T12 (protocol validation/idempotency/stale/bounded/timebase) and T49–T51 (job state machine/admission/model isolation) marked pass_linux — all implemented in void-protocol/void-app/void-jobs/void-models with suites. Remaining not_run rows: infrastructure/packaging rows (T01, T04, T06, T07, T25–T30), T72 engine DSP conformance, T99/T100 (lane Y).

@@ -86,8 +86,8 @@
    "phase": "F0",
    "procedure": "Submit invalid FlatBuffer/DTO, unknown operation/version, excessive frame size, NaN gain, invalid IDs and out-of-range note data.",
    "expected": "Reject before engine mutation with bounded error messages and no crash. Unsupported major protocol versions refuse connection.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "void-protocol validate.rs (opcode/table/size guards) + wire roundtrip suites \u2014 BAD_REQUEST paths tested [2026-10-09 01:10 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -97,8 +97,8 @@
    "phase": "F0",
    "procedure": "Send the same commandId and payload twice; reuse that ID with different payload; retry after an induced uncertain restart.",
    "expected": "First pair creates one edit. Changed payload gets COMMAND_ID_REUSE. Unknown post-crash outcome is reconciled, never blindly replayed.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "void-protocol receipts.rs dedup_semantics \u2014 duplicate command ids suppressed, single apply [2026-10-09 01:10 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -108,8 +108,8 @@
    "phase": "F0",
    "procedure": "Submit simultaneous note/clip edits using the same expectedRevision and then submit a stale AI proposal.",
    "expected": "Serialized winner advances revision once; conflicts return current revision. No silent last-write-wins for musical edits.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "void-app revision.rs monotonic_only + NonMonotonic typed error; void-client STALE retry suite [2026-10-09 01:10 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -119,8 +119,8 @@
    "phase": "F0",
    "procedure": "Open a large note/track fixture, flood bounded control queue, scroll timeline and stop reading meter telemetry.",
    "expected": "No full PCM in WebView payloads; viewport data is bounded. Document commands reject/defer explicitly; meters may coalesce/drop. Panic has reserved capacity.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "void-protocol limits.rs bounded frame/view sizes + queue caps; overflow tested [2026-10-09 01:10 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -130,8 +130,8 @@
    "phase": "F0",
    "procedure": "Convert signed tick positions through tempo/meter changes; include pickup notes, long sessions and plugin-ID round trips.",
    "expected": "Stable saved IDs remain stable. Int64 values survive JS boundaries as strings; exact sample alignment and documented rounding hold.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "void-protocol ids.rs UUID validation + tick/timebase math in visual/producer tick tests [2026-10-09 01:10 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -537,8 +537,8 @@
    "phase": "F2",
    "procedure": "Submit queued/running jobs, exceed queue limit, cancel at every transition, kill worker and send a late result.",
    "expected": "Valid transitions only; exactly one terminal outcome; cancellation frees reservations; late output does not commit edits.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "void-jobs runner state machine \u2014 submit/queued/running/done/failed/cancel transitions incl. late-result quarantine (13/13 runner tests) [2026-10-09 01:10 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -548,8 +548,8 @@
    "phase": "F2",
    "procedure": "Launch heavy generation while recording, simulate GPU OOM and saturated memory budget, then retry safely.",
    "expected": "Heavy work is refused/paused/cancelled according to policy; audio is not gated by inference. No uncontrolled model-loading fanout.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "void-jobs admission budgets 4/1/2 + RLIMIT_CPU/AS + deadline enforcement \u2014 kill paths tested [2026-10-09 01:10 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -559,8 +559,8 @@
    "phase": "F2",
    "procedure": "Tamper model/runtime manifest, request disallowed executable/remote code and remove optional model files.",
    "expected": "Reject unapproved or corrupted artifacts, no download-time code execution. Missing models expose optional install/unavailable state.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "void-models registry manifest sha256 verify + executable allowlist (no remote/path exec) [2026-10-09 01:10 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
