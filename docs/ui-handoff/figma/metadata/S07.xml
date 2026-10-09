@@ -1,0 +1,191 @@
+<frame id="4:608" name="S07 / Perform / clips and queued scenes" x="3600" y="1260" width="1600" height="1000">
+  <frame id="4:609" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:610" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:611" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:612" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:613" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:614" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+      <text id="4:615" name="Project · saved on this device" x="0" y="18" width="154" height="16" />
+    </frame>
+    <frame id="4:616" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:617" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:619" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:621" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:623" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:625" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:627" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:628" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:634" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:640" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:646" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:648" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:649" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:651" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:653" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:654" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:655" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:661" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:667" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:673" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:679" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:685" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:686" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:687" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:688" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:689" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:690" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:691" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:692" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:693" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:694" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:695" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:697" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:699" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="6:2390" name="Performance workspace" x="0" y="0" width="1344" height="856">
+      <frame id="6:2391" name="Performance tools" x="20" y="20" width="1304" height="62">
+        <frame id="6:2392" name="Performance title" x="0" y="2" width="430" height="58">
+          <text id="6:2393" name="Play the room." x="0" y="0" width="195" height="36" />
+          <text id="6:2394" name="Scenes stay in time. Your next move stays visible." x="0" y="40" width="281" height="17" />
+        </frame>
+        <frame id="6:2395" name="Flexible space" x="446" y="30.5" width="552" height="1" />
+        <instance id="6:2396" name="VOID / StatusBadge" x="1014" y="18" width="142" height="26" />
+        <instance id="6:2398" name="go/S01" x="1172" y="13" width="132" height="36" />
+      </frame>
+      <frame id="6:2400" name="Track columns" x="20" y="98" width="1304" height="44">
+        <frame id="6:2401" name="Scene column" x="0" y="0" width="176" height="44" />
+        <frame id="6:2402" name="Dust kit" x="184" y="0" width="180" height="44">
+          <text id="6:2403" name="Dust kit" x="12" y="13" width="49" height="18" />
+        </frame>
+        <frame id="6:2404" name="Satin bass" x="372" y="0" width="180" height="44">
+          <text id="6:2405" name="Satin bass" x="12" y="13" width="66" height="18" />
+        </frame>
+        <frame id="6:2406" name="Velvet keys" x="560" y="0" width="180" height="44">
+          <text id="6:2407" name="Velvet keys" x="12" y="13" width="73" height="18" />
+        </frame>
+        <frame id="6:2408" name="Lead vocal" x="748" y="0" width="180" height="44">
+          <text id="6:2409" name="Lead vocal" x="12" y="13" width="68" height="18" />
+        </frame>
+        <frame id="6:2410" name="Atmosphere" x="936" y="0" width="180" height="44">
+          <text id="6:2411" name="Atmosphere" x="12" y="13" width="77" height="18" />
+        </frame>
+        <frame id="6:2412" name="Visual cues" x="1124" y="0" width="180" height="44">
+          <text id="6:2413" name="Visual cues" x="12" y="13" width="73" height="18" />
+        </frame>
+      </frame>
+      <frame id="6:2414" name="Scene 1" x="20" y="158" width="1304" height="126">
+        <frame id="6:2415" name="Scene launch" x="0" y="5" width="176" height="116">
+          <text id="6:2416" name="01" x="12" y="12" width="15" height="18" />
+          <text id="6:2417" name="Intro / arrive" x="12" y="38" width="77" height="18" />
+          <instance id="6:2418" name="go/S07" x="12" y="64" width="152" height="36" />
+        </frame>
+        <instance id="6:2420" name="VOID / SceneCell" x="184" y="5" width="180" height="116" />
+        <instance id="6:2425" name="VOID / SceneCell" x="372" y="5" width="180" height="116" />
+        <instance id="6:2430" name="VOID / SceneCell" x="560" y="5" width="180" height="116" />
+        <instance id="6:2435" name="VOID / SceneCell" x="748" y="5" width="180" height="116" />
+        <instance id="6:2438" name="VOID / SceneCell" x="936" y="5" width="180" height="116" />
+        <instance id="6:2443" name="go/S09" x="1124" y="5" width="180" height="116" />
+      </frame>
+      <frame id="6:2448" name="Scene 2" x="20" y="300" width="1304" height="126">
+        <frame id="6:2449" name="Scene launch" x="0" y="5" width="176" height="116">
+          <text id="6:2450" name="02" x="12" y="12" width="15" height="18" />
+          <text id="6:2451" name="Verse / settle" x="12" y="38" width="84" height="18" />
+          <instance id="6:2452" name="go/S07" x="12" y="64" width="152" height="36" />
+        </frame>
+        <instance id="6:2454" name="VOID / SceneCell" x="184" y="5" width="180" height="116" />
+        <instance id="6:2459" name="VOID / SceneCell" x="372" y="5" width="180" height="116" />
+        <instance id="6:2464" name="VOID / SceneCell" x="560" y="5" width="180" height="116" />
+        <instance id="6:2469" name="VOID / SceneCell" x="748" y="5" width="180" height="116" />
+        <instance id="6:2474" name="VOID / SceneCell" x="936" y="5" width="180" height="116" />
+        <instance id="6:2479" name="go/S09" x="1124" y="5" width="180" height="116" />
+      </frame>
+      <frame id="6:2484" name="Scene 3" x="20" y="442" width="1304" height="126">
+        <frame id="6:2485" name="Scene launch" x="0" y="5" width="176" height="116">
+          <text id="6:2486" name="03" x="12" y="12" width="15" height="18" />
+          <text id="6:2487" name="Lift / build" x="12" y="38" width="64" height="18" />
+          <instance id="6:2488" name="go/S28" x="12" y="64" width="152" height="36" />
+        </frame>
+        <instance id="6:2490" name="VOID / SceneCell" x="184" y="5" width="180" height="116" />
+        <instance id="6:2495" name="VOID / SceneCell" x="372" y="5" width="180" height="116" />
+        <instance id="6:2500" name="VOID / SceneCell" x="560" y="5" width="180" height="116" />
+        <instance id="6:2505" name="VOID / SceneCell" x="748" y="5" width="180" height="116" />
+        <instance id="6:2510" name="VOID / SceneCell" x="936" y="5" width="180" height="116" />
+        <instance id="6:2515" name="go/S09" x="1124" y="5" width="180" height="116" />
+      </frame>
+      <frame id="6:2520" name="Scene 4" x="20" y="584" width="1304" height="126">
+        <frame id="6:2521" name="Scene launch" x="0" y="5" width="176" height="116">
+          <text id="6:2522" name="04" x="12" y="12" width="15" height="18" />
+          <text id="6:2523" name="Chorus / release" x="12" y="38" width="104" height="18" />
+          <instance id="6:2524" name="go/S07" x="12" y="64" width="152" height="36" />
+        </frame>
+        <instance id="6:2526" name="VOID / SceneCell" x="184" y="5" width="180" height="116" />
+        <instance id="6:2531" name="VOID / SceneCell" x="372" y="5" width="180" height="116" />
+        <instance id="6:2536" name="VOID / SceneCell" x="560" y="5" width="180" height="116" />
+        <instance id="6:2541" name="VOID / SceneCell" x="748" y="5" width="180" height="116" />
+        <instance id="6:2546" name="VOID / SceneCell" x="936" y="5" width="180" height="116" />
+        <instance id="6:2551" name="go/S09" x="1124" y="5" width="180" height="116" />
+      </frame>
+      <frame id="6:2556" name="Performance footer" x="20" y="726" width="1304" height="100">
+        <frame id="6:2557" name="Current and next" x="16" y="18" width="680" height="64">
+          <text id="6:2558" name="NOW  02 Verse     →     NEXT  03 Lift" x="0" y="0" width="223" height="18" />
+          <text id="6:2559" name="Launch at bar 17. Native clock owns timing; visuals follow." x="0" y="26" width="325" height="17" />
+        </frame>
+        <frame id="6:2560" name="Flexible space" x="716" y="49.5" width="200" height="1" />
+        <instance id="6:2561" name="go/S08" x="936" y="32" width="180" height="36" />
+        <instance id="6:2563" name="go/S09" x="1136" y="32" width="152" height="36" />
+      </frame>
+    </frame>
+    <frame id="6:2565" name="Performance safety" x="1344" y="0" width="256" height="856">
+      <text id="6:2566" name="PROGRAM" x="20" y="20" width="56" height="16" />
+      <text id="6:2567" name="Preview first." x="20" y="52" width="126" height="28" />
+      <instance id="6:2568" name="VOID / StatusBadge" x="20" y="96" width="152" height="26" />
+      <frame id="6:2570" name="Visual miniature" x="20" y="138" width="216" height="176">
+        <frame id="6:2571" name="Contour 0" x="0" y="0" width="216" height="176" />
+        <frame id="6:2573" name="Contour 1" x="0" y="0" width="216" height="176" />
+        <frame id="6:2575" name="Contour 2" x="0" y="0" width="216" height="176" />
+        <frame id="6:2577" name="Contour 3" x="0" y="0" width="216" height="176" />
+        <frame id="6:2579" name="Contour 4" x="0" y="0" width="216" height="176" />
+        <frame id="6:2581" name="Contour 5" x="0" y="0" width="216" height="176" />
+        <frame id="6:2583" name="Contour 6" x="0" y="0" width="216" height="176" />
+        <frame id="6:2585" name="Contour 7" x="0" y="0" width="216" height="176" />
+        <frame id="6:2587" name="Contour 8" x="0" y="0" width="216" height="176" />
+      </frame>
+      <instance id="6:2589" name="go/S09" x="20" y="330" width="216" height="36" />
+      <frame id="6:2591" name="Divider" x="20" y="382" width="216" height="1" />
+      <text id="6:2592" name="NEXT SCENE" x="20" y="399" width="69" height="16" />
+      <text id="6:2593" name="03 / Lift" x="20" y="431" width="108" height="36" />
+      <text id="6:2594" name="Queued for the next bar boundary." x="20" y="483" width="216" height="17" />
+      <frame id="6:2595" name="Launch grid" x="20" y="516" width="216" height="30">
+        <text id="6:2596" name="Launch grid" x="0" y="6.5" width="67" height="17" />
+        <frame id="6:2597" name="Flexible space" x="75" y="14.5" width="97" height="1" />
+        <text id="6:2598" name="1 bar" x="180" y="6" width="36" height="18" />
+      </frame>
+      <frame id="6:2599" name="Follow action" x="20" y="562" width="216" height="30">
+        <text id="6:2600" name="Follow action" x="0" y="6.5" width="75" height="17" />
+        <frame id="6:2601" name="Flexible space" x="83" y="14.5" width="103" height="1" />
+        <text id="6:2602" name="Off" x="194" y="6" width="22" height="18" />
+      </frame>
+      <frame id="6:2603" name="Flexible space" x="20" y="608" width="1" height="91" />
+      <text id="6:2604" name="Safety stays one action away." x="20" y="715" width="216" height="17" />
+      <instance id="6:2605" name="go/S01" x="20" y="748" width="216" height="36" />
+      <instance id="6:2607" name="go/S09" x="20" y="800" width="216" height="36" />
+    </frame>
+  </frame>
+  <frame id="4:700" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:701" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:702" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:703" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:704" name="Flexible space" x="342" y="13.5" width="958" height="1" />
+    <text id="4:705" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="4:706" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:707" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

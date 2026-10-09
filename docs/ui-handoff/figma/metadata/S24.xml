@@ -1,0 +1,251 @@
+<frame id="4:2308" name="S24 / Score / notation workspace" x="5360" y="5980" width="1600" height="1000">
+  <frame id="4:2309" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:2310" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:2311" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:2312" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:2313" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:2314" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+      <text id="4:2315" name="Project · saved on this device" x="0" y="18" width="154" height="16" />
+    </frame>
+    <frame id="4:2316" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:2317" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:2319" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:2321" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:2323" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:2325" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:2327" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:2328" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:2334" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:2340" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:2346" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:2348" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:2349" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:2351" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:2353" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:2354" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:2355" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:2361" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:2367" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:2373" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:2379" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:2385" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:2386" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:2387" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:2388" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:2389" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:2390" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:2391" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:2392" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:2393" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:2394" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:2395" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:2397" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:2399" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="10:2062" name="Score tools" x="0" y="0" width="248" height="856">
+      <instance id="10:2063" name="VOID / StatusBadge" x="24" y="24" width="168" height="26" />
+      <text id="10:2065" name="Score" x="24" y="66" width="78" height="36" />
+      <instance id="10:2066" name="VOID / ActionButton" x="24" y="118" width="200" height="36" />
+      <instance id="10:2068" name="go/S02" x="24" y="170" width="200" height="36" />
+      <frame id="10:2070" name="Divider" x="24" y="222" width="200" height="1" />
+      <text id="10:2071" name="PARTS" x="24" y="239" width="36" height="16" />
+      <instance id="10:2072" name="VOID / ActionButton" x="24" y="271" width="200" height="36" />
+      <instance id="10:2074" name="VOID / ActionButton" x="24" y="323" width="200" height="36" />
+      <instance id="10:2076" name="VOID / ActionButton" x="24" y="375" width="200" height="36" />
+      <frame id="10:2078" name="Key" x="24" y="427" width="200" height="30">
+        <text id="10:2079" name="Key" x="0" y="6.5" width="21" height="17" />
+        <frame id="10:2080" name="Flexible space" x="33" y="14.5" width="104" height="1" />
+        <text id="10:2081" name="A minor" x="149" y="6" width="51" height="18" />
+      </frame>
+      <frame id="10:2082" name="Meter" x="24" y="473" width="200" height="30">
+        <text id="10:2083" name="Meter" x="0" y="6.5" width="34" height="17" />
+        <frame id="10:2084" name="Flexible space" x="46" y="14.5" width="120" height="1" />
+        <text id="10:2085" name="4/4" x="178" y="6" width="22" height="18" />
+      </frame>
+      <frame id="10:2086" name="Display" x="24" y="519" width="200" height="30">
+        <text id="10:2087" name="Display" x="0" y="6.5" width="42" height="17" />
+        <frame id="10:2088" name="Flexible space" x="54" y="14.5" width="83" height="1" />
+        <text id="10:2089" name="Concert" x="149" y="6" width="51" height="18" />
+      </frame>
+      <frame id="10:2090" name="Flexible space" x="24" y="565" width="1" height="165" />
+      <text id="10:2091" name="Engraving is a view of editable music, not a separate song." x="24" y="746" width="200" height="34" />
+      <instance id="10:2092" name="go/S01" x="24" y="796" width="200" height="36" />
+    </frame>
+    <frame id="10:2094" name="Score canvas" x="248" y="0" width="1080" height="856">
+      <frame id="10:2095" name="Notation controls" x="24" y="24" width="1032" height="44">
+        <text id="10:2096" name="Full score" x="0" y="13" width="61" height="18" />
+        <frame id="10:2097" name="Flexible space" x="73" y="21.5" width="659" height="1" />
+        <instance id="10:2098" name="VOID / ActionButton" x="744" y="4" width="132" height="36" />
+        <instance id="10:2100" name="VOID / ActionButton" x="888" y="4" width="144" height="36" />
+      </frame>
+      <frame id="10:2102" name="Notation paper / layout specimen" x="24" y="84" width="1032" height="744">
+        <text id="10:2103" name="MIDNIGHT CIRCUIT" x="324" y="40" width="241" height="36" />
+        <text id="10:2104" name="Piano / score layout study" x="404" y="84" width="147" height="17" />
+        <frame id="10:2105" name="Staff system 0" x="0" y="0" width="1032" height="744">
+          <vector id="10:2106" name="Vector" x="80" y="164" width="870" height="101" />
+        </frame>
+        <ellipse id="10:2107" name="Engraved note" x="120" y="177.5" width="10" height="7" />
+        <rounded-rectangle id="10:2108" name="Stem" x="129" y="148.5" width="1.2000000476837158" height="33" />
+        <text id="10:2109" name="1" x="90" y="134" width="6" height="16" />
+        <ellipse id="10:2110" name="Engraved note" x="170" y="173" width="10" height="7" />
+        <rounded-rectangle id="10:2111" name="Stem" x="179" y="144" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2112" name="Engraved note" x="220" y="164" width="10" height="7" />
+        <rounded-rectangle id="10:2113" name="Stem" x="229" y="135" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2114" name="Engraved note" x="270" y="168.5" width="10" height="7" />
+        <rounded-rectangle id="10:2115" name="Stem" x="279" y="139.5" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2116" name="Engraved note" x="320" y="182" width="10" height="7" />
+        <rounded-rectangle id="10:2117" name="Stem" x="329" y="153" width="1.2000000476837158" height="33" />
+        <text id="10:2118" name="2" x="290" y="134" width="7" height="16" />
+        <ellipse id="10:2119" name="Engraved note" x="370" y="173" width="10" height="7" />
+        <rounded-rectangle id="10:2120" name="Stem" x="379" y="144" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2121" name="Engraved note" x="420" y="168.5" width="10" height="7" />
+        <rounded-rectangle id="10:2122" name="Stem" x="429" y="139.5" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2123" name="Engraved note" x="470" y="164" width="10" height="7" />
+        <rounded-rectangle id="10:2124" name="Stem" x="479" y="135" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2125" name="Engraved note" x="520" y="177.5" width="10" height="7" />
+        <rounded-rectangle id="10:2126" name="Stem" x="529" y="148.5" width="1.2000000476837158" height="33" />
+        <text id="10:2127" name="3" x="490" y="134" width="8" height="16" />
+        <ellipse id="10:2128" name="Engraved note" x="570" y="173" width="10" height="7" />
+        <rounded-rectangle id="10:2129" name="Stem" x="579" y="144" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2130" name="Engraved note" x="620" y="164" width="10" height="7" />
+        <rounded-rectangle id="10:2131" name="Stem" x="629" y="135" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2132" name="Engraved note" x="670" y="168.5" width="10" height="7" />
+        <rounded-rectangle id="10:2133" name="Stem" x="679" y="139.5" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2134" name="Engraved note" x="720" y="182" width="10" height="7" />
+        <rounded-rectangle id="10:2135" name="Stem" x="729" y="153" width="1.2000000476837158" height="33" />
+        <text id="10:2136" name="4" x="690" y="134" width="8" height="16" />
+        <ellipse id="10:2137" name="Engraved note" x="770" y="173" width="10" height="7" />
+        <rounded-rectangle id="10:2138" name="Stem" x="779" y="144" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2139" name="Engraved note" x="820" y="168.5" width="10" height="7" />
+        <rounded-rectangle id="10:2140" name="Stem" x="829" y="139.5" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2141" name="Engraved note" x="870" y="164" width="10" height="7" />
+        <rounded-rectangle id="10:2142" name="Stem" x="879" y="135" width="1.2000000476837158" height="33" />
+        <frame id="10:2143" name="Staff system 1" x="0" y="0" width="1032" height="744">
+          <vector id="10:2144" name="Vector" x="80" y="344" width="870" height="101" />
+        </frame>
+        <ellipse id="10:2145" name="Engraved note" x="120" y="357.5" width="10" height="7" />
+        <rounded-rectangle id="10:2146" name="Stem" x="129" y="328.5" width="1.2000000476837158" height="33" />
+        <text id="10:2147" name="5" x="90" y="314" width="7" height="16" />
+        <ellipse id="10:2148" name="Engraved note" x="170" y="353" width="10" height="7" />
+        <rounded-rectangle id="10:2149" name="Stem" x="179" y="324" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2150" name="Engraved note" x="220" y="344" width="10" height="7" />
+        <rounded-rectangle id="10:2151" name="Stem" x="229" y="315" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2152" name="Engraved note" x="270" y="348.5" width="10" height="7" />
+        <rounded-rectangle id="10:2153" name="Stem" x="279" y="319.5" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2154" name="Engraved note" x="320" y="362" width="10" height="7" />
+        <rounded-rectangle id="10:2155" name="Stem" x="329" y="333" width="1.2000000476837158" height="33" />
+        <text id="10:2156" name="6" x="290" y="314" width="7" height="16" />
+        <ellipse id="10:2157" name="Engraved note" x="370" y="353" width="10" height="7" />
+        <rounded-rectangle id="10:2158" name="Stem" x="379" y="324" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2159" name="Engraved note" x="420" y="348.5" width="10" height="7" />
+        <rounded-rectangle id="10:2160" name="Stem" x="429" y="319.5" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2161" name="Engraved note" x="470" y="344" width="10" height="7" />
+        <rounded-rectangle id="10:2162" name="Stem" x="479" y="315" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2163" name="Engraved note" x="520" y="357.5" width="10" height="7" />
+        <rounded-rectangle id="10:2164" name="Stem" x="529" y="328.5" width="1.2000000476837158" height="33" />
+        <text id="10:2165" name="7" x="490" y="314" width="7" height="16" />
+        <ellipse id="10:2166" name="Engraved note" x="570" y="353" width="10" height="7" />
+        <rounded-rectangle id="10:2167" name="Stem" x="579" y="324" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2168" name="Engraved note" x="620" y="344" width="10" height="7" />
+        <rounded-rectangle id="10:2169" name="Stem" x="629" y="315" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2170" name="Engraved note" x="670" y="348.5" width="10" height="7" />
+        <rounded-rectangle id="10:2171" name="Stem" x="679" y="319.5" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2172" name="Engraved note" x="720" y="362" width="10" height="7" />
+        <rounded-rectangle id="10:2173" name="Stem" x="729" y="333" width="1.2000000476837158" height="33" />
+        <text id="10:2174" name="8" x="690" y="314" width="7" height="16" />
+        <ellipse id="10:2175" name="Engraved note" x="770" y="353" width="10" height="7" />
+        <rounded-rectangle id="10:2176" name="Stem" x="779" y="324" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2177" name="Engraved note" x="820" y="348.5" width="10" height="7" />
+        <rounded-rectangle id="10:2178" name="Stem" x="829" y="319.5" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2179" name="Engraved note" x="870" y="344" width="10" height="7" />
+        <rounded-rectangle id="10:2180" name="Stem" x="879" y="315" width="1.2000000476837158" height="33" />
+        <frame id="10:2181" name="Staff system 2" x="0" y="0" width="1032" height="744">
+          <vector id="10:2182" name="Vector" x="80" y="524" width="870" height="101" />
+        </frame>
+        <ellipse id="10:2183" name="Engraved note" x="120" y="537.5" width="10" height="7" />
+        <rounded-rectangle id="10:2184" name="Stem" x="129" y="508.5" width="1.2000000476837158" height="33" />
+        <text id="10:2185" name="9" x="90" y="494" width="7" height="16" />
+        <ellipse id="10:2186" name="Engraved note" x="170" y="533" width="10" height="7" />
+        <rounded-rectangle id="10:2187" name="Stem" x="179" y="504" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2188" name="Engraved note" x="220" y="524" width="10" height="7" />
+        <rounded-rectangle id="10:2189" name="Stem" x="229" y="495" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2190" name="Engraved note" x="270" y="528.5" width="10" height="7" />
+        <rounded-rectangle id="10:2191" name="Stem" x="279" y="499.5" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2192" name="Engraved note" x="320" y="542" width="10" height="7" />
+        <rounded-rectangle id="10:2193" name="Stem" x="329" y="513" width="1.2000000476837158" height="33" />
+        <text id="10:2194" name="10" x="290" y="494" width="13" height="16" />
+        <ellipse id="10:2195" name="Engraved note" x="370" y="533" width="10" height="7" />
+        <rounded-rectangle id="10:2196" name="Stem" x="379" y="504" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2197" name="Engraved note" x="420" y="528.5" width="10" height="7" />
+        <rounded-rectangle id="10:2198" name="Stem" x="429" y="499.5" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2199" name="Engraved note" x="470" y="524" width="10" height="7" />
+        <rounded-rectangle id="10:2200" name="Stem" x="479" y="495" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2201" name="Engraved note" x="520" y="537.5" width="10" height="7" />
+        <rounded-rectangle id="10:2202" name="Stem" x="529" y="508.5" width="1.2000000476837158" height="33" />
+        <text id="10:2203" name="11" x="490" y="494" width="11" height="16" />
+        <ellipse id="10:2204" name="Engraved note" x="570" y="533" width="10" height="7" />
+        <rounded-rectangle id="10:2205" name="Stem" x="579" y="504" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2206" name="Engraved note" x="620" y="524" width="10" height="7" />
+        <rounded-rectangle id="10:2207" name="Stem" x="629" y="495" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2208" name="Engraved note" x="670" y="528.5" width="10" height="7" />
+        <rounded-rectangle id="10:2209" name="Stem" x="679" y="499.5" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2210" name="Engraved note" x="720" y="542" width="10" height="7" />
+        <rounded-rectangle id="10:2211" name="Stem" x="729" y="513" width="1.2000000476837158" height="33" />
+        <text id="10:2212" name="12" x="690" y="494" width="12" height="16" />
+        <ellipse id="10:2213" name="Engraved note" x="770" y="533" width="10" height="7" />
+        <rounded-rectangle id="10:2214" name="Stem" x="779" y="504" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2215" name="Engraved note" x="820" y="528.5" width="10" height="7" />
+        <rounded-rectangle id="10:2216" name="Stem" x="829" y="499.5" width="1.2000000476837158" height="33" />
+        <ellipse id="10:2217" name="Engraved note" x="870" y="524" width="10" height="7" />
+        <rounded-rectangle id="10:2218" name="Stem" x="879" y="495" width="1.2000000476837158" height="33" />
+        <text id="10:2219" name="Illustrative engraving · final notation comes from the native score model" x="260" y="706" width="376" height="16" />
+      </frame>
+    </frame>
+    <frame id="10:2220" name="Notation inspector" x="1328" y="0" width="272" height="856">
+      <text id="10:2221" name="NOTATION" x="20" y="20" width="57" height="16" />
+      <text id="10:2222" name="Selected passage" x="20" y="52" width="172" height="28" />
+      <frame id="10:2223" name="Part" x="20" y="96" width="232" height="30">
+        <text id="10:2224" name="Part" x="0" y="6.5" width="24" height="17" />
+        <frame id="10:2225" name="Flexible space" x="36" y="14.5" width="104" height="1" />
+        <text id="10:2226" name="Velvet keys" x="152" y="6" width="80" height="18" />
+      </frame>
+      <frame id="10:2227" name="Bars" x="20" y="142" width="232" height="30">
+        <text id="10:2228" name="Bars" x="0" y="6.5" width="26" height="17" />
+        <frame id="10:2229" name="Flexible space" x="38" y="14.5" width="153" height="1" />
+        <text id="10:2230" name="9–12" x="203" y="6" width="29" height="18" />
+      </frame>
+      <frame id="10:2231" name="Voice" x="20" y="188" width="232" height="30">
+        <text id="10:2232" name="Voice" x="0" y="6.5" width="32" height="17" />
+        <frame id="10:2233" name="Flexible space" x="44" y="14.5" width="168" height="1" />
+        <text id="10:2234" name="1" x="224" y="6" width="8" height="18" />
+      </frame>
+      <frame id="10:2235" name="Quantize view" x="20" y="234" width="232" height="30">
+        <text id="10:2236" name="Quantize view" x="0" y="6.5" width="81" height="17" />
+        <frame id="10:2237" name="Flexible space" x="93" y="14.5" width="98" height="1" />
+        <text id="10:2238" name="1/16" x="203" y="6" width="29" height="18" />
+      </frame>
+      <frame id="10:2239" name="Divider" x="20" y="280" width="232" height="1" />
+      <text id="10:2240" name="Display quantization does not rewrite your performance." x="20" y="297" width="232" height="34" />
+      <instance id="10:2241" name="go/S02" x="20" y="347" width="232" height="36" />
+      <frame id="10:2243" name="Flexible space" x="20" y="399" width="1" height="370" />
+      <text id="10:2244" name="Specialist workflow. Engraving, notation editing and export need dedicated implementation tests." x="20" y="785" width="232" height="51" />
+    </frame>
+  </frame>
+  <frame id="4:2400" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:2401" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:2402" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:2403" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:2404" name="Flexible space" x="342" y="13.5" width="958" height="1" />
+    <text id="4:2405" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="4:2406" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:2407" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

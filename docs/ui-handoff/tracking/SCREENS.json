@@ -1,0 +1,346 @@
+{
+ "schema": "ui-screens/1",
+ "screens": [
+  {
+   "id": "S01",
+   "name": "Arrange / song workspace",
+   "figmaNodeId": "4:2",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T02",
+    "UI-T03",
+    "UI-T04",
+    "UI-T06",
+    "UI-T07",
+    "UI-T08",
+    "UI-T30",
+    "UI-T31",
+    "UI-T33",
+    "UI-T35",
+    "UI-T36"
+   ]
+  },
+  {
+   "id": "S02",
+   "name": "Compose / ghost-note audition",
+   "figmaNodeId": "4:108",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T06",
+    "UI-T07",
+    "UI-T08",
+    "UI-T12",
+    "UI-T13",
+    "UI-T14",
+    "UI-T16"
+   ]
+  },
+  {
+   "id": "S03",
+   "name": "Compose / accepted editable notes",
+   "figmaNodeId": "4:208",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T13"
+   ]
+  },
+  {
+   "id": "S04",
+   "name": "Mix / routing and device chain",
+   "figmaNodeId": "4:308",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T05",
+    "UI-T30",
+    "UI-T33",
+    "UI-T35"
+   ]
+  },
+  {
+   "id": "S05",
+   "name": "Record / input and take lanes",
+   "figmaNodeId": "4:408",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T09",
+    "UI-T10"
+   ]
+  },
+  {
+   "id": "S06",
+   "name": "Comp / audition and commit",
+   "figmaNodeId": "4:508",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T10",
+    "UI-T11"
+   ]
+  },
+  {
+   "id": "S07",
+   "name": "Perform / clips and queued scenes",
+   "figmaNodeId": "4:608",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T21",
+    "UI-T22"
+   ]
+  },
+  {
+   "id": "S08",
+   "name": "Gesture / draw a phrase",
+   "figmaNodeId": "4:708",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T17",
+    "UI-T18",
+    "UI-T33"
+   ]
+  },
+  {
+   "id": "S09",
+   "name": "Visuals / preview and program",
+   "figmaNodeId": "4:808",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T23",
+    "UI-T24"
+   ]
+  },
+  {
+   "id": "S10",
+   "name": "Generate / audio candidates",
+   "figmaNodeId": "4:908",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T19",
+    "UI-T20"
+   ]
+  },
+  {
+   "id": "S11",
+   "name": "Export / delivery check",
+   "figmaNodeId": "4:1008",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T28",
+    "UI-T29"
+   ]
+  },
+  {
+   "id": "S12",
+   "name": "Export / completed",
+   "figmaNodeId": "4:1108",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T28"
+   ]
+  },
+  {
+   "id": "S13",
+   "name": "Projects / start here",
+   "figmaNodeId": "4:1208",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T01"
+   ]
+  },
+  {
+   "id": "S14",
+   "name": "New project / starting point",
+   "figmaNodeId": "4:1308",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T01"
+   ]
+  },
+  {
+   "id": "S15",
+   "name": "Setup / audio and MIDI",
+   "figmaNodeId": "4:1408",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T09"
+   ]
+  },
+  {
+   "id": "S16",
+   "name": "Library / sounds and assets",
+   "figmaNodeId": "4:1508",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T20"
+   ]
+  },
+  {
+   "id": "S17",
+   "name": "Jobs / model downloads and generation",
+   "figmaNodeId": "4:1608",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T19",
+    "UI-T32",
+    "UI-T36"
+   ]
+  },
+  {
+   "id": "S18",
+   "name": "Plugin / missing and quarantined",
+   "figmaNodeId": "4:1708",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T25"
+   ]
+  },
+  {
+   "id": "S19",
+   "name": "Recovery / engine stopped",
+   "figmaNodeId": "4:1808",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T26",
+    "UI-T31"
+   ]
+  },
+  {
+   "id": "S20",
+   "name": "Compose / stale suggestion",
+   "figmaNodeId": "4:1908",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T15"
+   ]
+  },
+  {
+   "id": "S21",
+   "name": "Save / storage unavailable",
+   "figmaNodeId": "4:2008",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T27"
+   ]
+  },
+  {
+   "id": "S22",
+   "name": "Arrange / compact laptop",
+   "figmaNodeId": "4:2108",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T02",
+    "UI-T03",
+    "UI-T04"
+   ]
+  },
+  {
+   "id": "S23",
+   "name": "Arrange / daylight mode",
+   "figmaNodeId": "4:2208",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T03"
+   ]
+  },
+  {
+   "id": "S24",
+   "name": "Score / notation workspace",
+   "figmaNodeId": "4:2308",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T34"
+   ]
+  },
+  {
+   "id": "S25",
+   "name": "Compose / auditioning candidate",
+   "figmaNodeId": "12:1833",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T12"
+   ]
+  },
+  {
+   "id": "S26",
+   "name": "Compose / selected notes accepted",
+   "figmaNodeId": "12:2156",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T13",
+    "UI-T14"
+   ]
+  },
+  {
+   "id": "S27",
+   "name": "Arrange / empty new project",
+   "figmaNodeId": "12:2479",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T01"
+   ]
+  },
+  {
+   "id": "S28",
+   "name": "Perform / next scene playing",
+   "figmaNodeId": "12:2937",
+   "status": "not_started",
+   "lane": null,
+   "evidence": null,
+   "acceptance_tests": [
+    "UI-T21"
+   ]
+  }
+ ]
+}

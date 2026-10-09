@@ -1,0 +1,288 @@
+<frame id="4:2208" name="S23 / Arrange / daylight mode" x="3600" y="5980" width="1600" height="1000">
+  <frame id="4:2209" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:2210" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:2211" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:2212" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:2213" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:2214" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+      <text id="4:2215" name="Project · saved on this device" x="0" y="18" width="154" height="16" />
+    </frame>
+    <frame id="4:2216" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:2217" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:2219" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:2221" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:2223" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:2225" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:2227" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:2228" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:2234" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:2240" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:2246" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:2248" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:2249" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:2251" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:2253" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:2254" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:2255" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:2261" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:2267" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:2273" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:2279" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:2285" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:2286" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:2287" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:2288" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:2289" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:2290" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:2291" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:2292" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:2293" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:2294" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:2295" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:2297" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:2299" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="5:1404" name="SoundLibrary" x="0" y="0" width="224" height="856">
+      <text id="5:1405" name="SOUNDS" x="16" y="16" width="47" height="16" />
+      <instance id="5:1406" name="go/S16" x="16" y="44" width="192" height="40" />
+      <frame id="5:1408" name="Library filter" x="16" y="96" width="192" height="28">
+        <instance id="5:1409" name="VOID / StatusBadge" x="0" y="1" width="84" height="26" />
+        <instance id="5:1411" name="go/S16" x="92" y="1" width="92" height="26" />
+      </frame>
+      <text id="5:1413" name="INSTRUMENTS" x="16" y="136" width="80" height="16" />
+      <instance id="5:1414" name="go/S02" x="16" y="164" width="192" height="56" />
+      <instance id="5:1417" name="go/S02" x="16" y="232" width="192" height="56" />
+      <instance id="5:1420" name="go/S02" x="16" y="300" width="192" height="56" />
+      <instance id="5:1423" name="go/S02" x="16" y="368" width="192" height="56" />
+      <instance id="5:1426" name="go/S02" x="16" y="436" width="192" height="56" />
+      <frame id="5:1429" name="Divider" x="16" y="504" width="192" height="1" />
+      <text id="5:1430" name="COLLECTIONS" x="16" y="517" width="78" height="16" />
+      <text id="5:1431" name="go/S16" x="16" y="545" width="58" height="18" />
+      <text id="5:1432" name="go/S16" x="16" y="575" width="89" height="18" />
+      <text id="5:1433" name="go/S16" x="16" y="605" width="89" height="18" />
+      <text id="5:1434" name="go/S16" x="16" y="635" width="101" height="18" />
+      <frame id="5:1435" name="Flexible space" x="16" y="665" width="1" height="49" />
+      <instance id="5:1436" name="go/S10" x="16" y="726" width="192" height="36" />
+      <frame id="5:1438" name="Browser audition" x="16" y="774" width="192" height="66">
+        <text id="5:1439" name="Velvet keys" x="12" y="12" width="71" height="18" />
+        <text id="5:1440" name="Audition on selection  ·  A3" x="12" y="34" width="141" height="16" />
+      </frame>
+    </frame>
+    <frame id="5:1441" name="Arrangement" x="224" y="0" width="1112" height="856">
+      <frame id="5:1442" name="Arrangement tools" x="0" y="0" width="1112" height="44">
+        <text id="5:1443" name="Arrangement" x="8" y="13" width="84" height="18" />
+        <frame id="5:1444" name="Flexible space" x="104" y="21.5" width="648" height="1" />
+        <instance id="5:1445" name="VOID / ActionButton" x="764" y="4" width="104" height="36" />
+        <instance id="5:1447" name="VOID / ActionButton" x="880" y="4" width="104" height="36" />
+        <instance id="5:1449" name="go/S16" x="996" y="4" width="108" height="36" />
+      </frame>
+      <frame id="5:1451" name="Song sections and ruler" x="0" y="44" width="1112" height="56">
+        <frame id="5:1452" name="Track list header" x="0" y="0" width="196" height="56">
+          <text id="5:1453" name="TRACKS" x="12" y="12" width="45" height="16" />
+          <text id="5:1454" name="6 tracks" x="12" y="32" width="46" height="17" />
+        </frame>
+        <frame id="5:1455" name="Time ruler" x="196" y="0" width="916" height="56">
+          <rounded-rectangle id="5:1456" name="Section" x="0" y="0" width="227" height="26" />
+          <text id="5:1457" name="Intro" x="10" y="5" width="25" height="16" />
+          <rounded-rectangle id="5:1458" name="Section" x="229" y="0" width="227" height="26" />
+          <text id="5:1459" name="Verse" x="239" y="5" width="31" height="16" />
+          <rounded-rectangle id="5:1460" name="Section" x="458" y="0" width="227" height="26" />
+          <text id="5:1461" name="Lift" x="468" y="5" width="18" height="16" />
+          <rounded-rectangle id="5:1462" name="Section" x="687" y="0" width="227" height="26" />
+          <text id="5:1463" name="Chorus" x="697" y="5" width="38" height="16" />
+          <text id="5:1464" name="1" x="10" y="34" width="8" height="18" />
+          <text id="5:1465" name="5" x="124.5" y="34" width="8" height="18" />
+          <text id="5:1466" name="9" x="239" y="34" width="8" height="18" />
+          <text id="5:1467" name="13" x="353.5" y="34" width="15" height="18" />
+          <text id="5:1468" name="17" x="468" y="34" width="15" height="18" />
+          <text id="5:1469" name="21" x="582.5" y="34" width="15" height="18" />
+          <text id="5:1470" name="25" x="697" y="34" width="15" height="18" />
+          <text id="5:1471" name="29" x="811.5" y="34" width="15" height="18" />
+          <rounded-rectangle id="5:1472" name="Loop span 9–17" x="229" y="27" width="229" height="2" />
+        </frame>
+      </frame>
+      <frame id="5:1473" name="Track 1 / Dust kit" x="0" y="100" width="1112" height="76">
+        <instance id="5:1474" name="go/S02" x="0" y="0" width="196" height="76" />
+        <frame id="5:1486" name="Timeline lane / Dust kit" x="196" y="0" width="916" height="76">
+          <frame id="5:1487" name="Musical grid" x="0" y="0" width="916" height="76">
+            <vector id="5:1488" name="Vector" x="0" y="0" width="916" height="76" />
+          </frame>
+          <instance id="5:1489" name="go/S02" x="4" y="7" width="221" height="62" />
+          <instance id="5:1493" name="go/S02" x="233" y="7" width="221" height="62" />
+          <instance id="5:1497" name="go/S02" x="462" y="7" width="221" height="62" />
+          <instance id="5:1501" name="go/S02" x="691" y="7" width="221" height="62" />
+        </frame>
+      </frame>
+      <frame id="5:1505" name="Track 2 / Satin bass" x="0" y="176" width="1112" height="76">
+        <instance id="5:1506" name="go/S02" x="0" y="0" width="196" height="76" />
+        <frame id="5:1518" name="Timeline lane / Satin bass" x="196" y="0" width="916" height="76">
+          <frame id="5:1519" name="Musical grid" x="0" y="0" width="916" height="76">
+            <vector id="5:1520" name="Vector" x="0" y="0" width="916" height="76" />
+          </frame>
+          <instance id="5:1521" name="go/S02" x="118.5" y="7" width="106.5" height="62" />
+          <instance id="5:1525" name="go/S02" x="233" y="7" width="221" height="62" />
+          <instance id="5:1529" name="go/S02" x="462" y="7" width="221" height="62" />
+          <instance id="5:1533" name="go/S02" x="691" y="7" width="221" height="62" />
+        </frame>
+      </frame>
+      <frame id="5:1537" name="Track 3 / Velvet keys" x="0" y="252" width="1112" height="76">
+        <instance id="5:1538" name="go/S02" x="0" y="0" width="196" height="76" />
+        <frame id="5:1550" name="Timeline lane / Velvet keys" x="196" y="0" width="916" height="76">
+          <frame id="5:1551" name="Musical grid" x="0" y="0" width="916" height="76">
+            <vector id="5:1552" name="Vector" x="0" y="0" width="916" height="76" />
+          </frame>
+          <instance id="5:1553" name="go/S02" x="4" y="7" width="221" height="62" />
+          <instance id="5:1557" name="go/S02" x="233" y="7" width="221" height="62" />
+          <instance id="5:1561" name="go/S02" x="462" y="7" width="221" height="62" />
+          <instance id="5:1565" name="go/S02" x="691" y="7" width="106.5" height="62" />
+        </frame>
+      </frame>
+      <frame id="5:1569" name="Track 4 / Lead vocal" x="0" y="328" width="1112" height="76">
+        <instance id="5:1570" name="go/S05" x="0" y="0" width="196" height="76" />
+        <frame id="5:1582" name="Timeline lane / Lead vocal" x="196" y="0" width="916" height="76">
+          <frame id="5:1583" name="Musical grid" x="0" y="0" width="916" height="76">
+            <vector id="5:1584" name="Vector" x="0" y="0" width="916" height="76" />
+          </frame>
+          <instance id="5:1585" name="go/S06" x="233" y="7" width="192.375" height="62" />
+          <instance id="5:1589" name="go/S06" x="490.625" y="7" width="163.75" height="62" />
+          <instance id="5:1593" name="go/S06" x="719.625" y="7" width="163.75" height="62" />
+        </frame>
+      </frame>
+      <frame id="5:1597" name="Track 5 / Atmosphere" x="0" y="404" width="1112" height="76">
+        <instance id="5:1598" name="go/S02" x="0" y="0" width="196" height="76" />
+        <frame id="5:1610" name="Timeline lane / Atmosphere" x="196" y="0" width="916" height="76">
+          <frame id="5:1611" name="Musical grid" x="0" y="0" width="916" height="76">
+            <vector id="5:1612" name="Vector" x="0" y="0" width="916" height="76" />
+          </frame>
+          <instance id="5:1613" name="go/S02" x="4" y="7" width="450" height="62" />
+          <instance id="5:1617" name="go/S02" x="462" y="7" width="450" height="62" />
+        </frame>
+      </frame>
+      <frame id="5:1621" name="Track 6 / Visual cues" x="0" y="480" width="1112" height="76">
+        <instance id="5:1622" name="go/S09" x="0" y="0" width="196" height="76" />
+        <frame id="5:1634" name="Timeline lane / Visual cues" x="196" y="0" width="916" height="76">
+          <frame id="5:1635" name="Musical grid" x="0" y="0" width="916" height="76">
+            <vector id="5:1636" name="Vector" x="0" y="0" width="916" height="76" />
+          </frame>
+          <instance id="5:1637" name="go/S09" x="4" y="7" width="221" height="62" />
+          <instance id="5:1641" name="go/S09" x="233" y="7" width="221" height="62" />
+          <instance id="5:1645" name="go/S09" x="462" y="7" width="221" height="62" />
+          <instance id="5:1649" name="go/S09" x="691" y="7" width="221" height="62" />
+        </frame>
+      </frame>
+      <frame id="5:1653" name="Contextual device dock" x="0" y="556" width="1112" height="300">
+        <frame id="5:1654" name="Editor modes" x="16" y="16" width="1080" height="36">
+          <text id="5:1655" name="VELVET KEYS" x="0" y="10" width="73" height="16" />
+          <frame id="5:1656" name="Flexible space" x="81" y="17.5" width="687" height="1" />
+          <instance id="5:1657" name="VOID / ActionButton" x="776" y="0" width="104" height="36" />
+          <instance id="5:1659" name="go/S02" x="888" y="0" width="100" height="36" />
+          <instance id="5:1661" name="go/S08" x="996" y="0" width="84" height="36" />
+        </frame>
+        <frame id="5:1663" name="Instrument and chain" x="16" y="68" width="1080" height="210">
+          <frame id="5:1664" name="Instrument identity" x="0" y="27" width="196" height="156">
+            <text id="5:1665" name="4OSC" x="12" y="12" width="72" height="36" />
+            <text id="5:1666" name="Velvet keys" x="12" y="52" width="71" height="18" />
+            <text id="5:1667" name="Native instrument" x="12" y="74" width="94" height="16" />
+            <instance id="5:1668" name="go/S04" x="12" y="94" width="150" height="36" />
+          </frame>
+          <instance id="5:1670" name="VOID / ParameterKnob" x="212" y="52" width="80" height="106" />
+          <instance id="5:1675" name="VOID / ParameterKnob" x="308" y="52" width="80" height="106" />
+          <instance id="5:1680" name="VOID / ParameterKnob" x="404" y="52" width="80" height="106" />
+          <instance id="5:1685" name="VOID / ParameterKnob" x="500" y="52" width="80" height="106" />
+          <frame id="5:1690" name="Signal chain" x="596" y="37" width="320" height="136">
+            <text id="5:1691" name="DEVICE CHAIN" x="0" y="0" width="78" height="16" />
+            <frame id="5:1692" name="Devices" x="0" y="28" width="320" height="52">
+              <instance id="5:1693" name="go/S04" x="0" y="0" width="148" height="52" />
+              <instance id="5:1696" name="go/S04" x="156" y="0" width="148" height="52" />
+            </frame>
+            <text id="5:1699" name="4OSC  →  Studio EQ  →  Music bus" x="0" y="92" width="181" height="16" />
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+    <frame id="5:1700" name="RegionInspector" x="1336" y="0" width="264" height="856">
+      <text id="5:1701" name="REGION / MIDI" x="16" y="16" width="76" height="16" />
+      <text id="5:1702" name="Velvet keys" x="16" y="44" width="110" height="28" />
+      <instance id="5:1703" name="VOID / StatusBadge" x="16" y="84" width="104" height="26" />
+      <frame id="5:1705" name="Divider" x="16" y="122" width="232" height="1" />
+      <text id="5:1706" name="Timing &amp; feel" x="16" y="135" width="82" height="18" />
+      <frame id="5:1707" name="Start" x="16" y="165" width="232" height="28">
+        <text id="5:1708" name="Start" x="0" y="5.5" width="29" height="17" />
+        <frame id="5:1709" name="Flexible space" x="37" y="13.5" width="151" height="1" />
+        <text id="5:1710" name="9.1.1" x="196" y="5" width="36" height="18" />
+      </frame>
+      <frame id="5:1711" name="Length" x="16" y="205" width="232" height="28">
+        <text id="5:1712" name="Length" x="0" y="5.5" width="40" height="17" />
+        <frame id="5:1713" name="Flexible space" x="48" y="13.5" width="132" height="1" />
+        <text id="5:1714" name="8 bars" x="188" y="5" width="44" height="18" />
+      </frame>
+      <frame id="5:1715" name="Quantize" x="16" y="245" width="232" height="28">
+        <text id="5:1716" name="Quantize" x="0" y="5.5" width="51" height="17" />
+        <frame id="5:1717" name="Flexible space" x="59" y="13.5" width="136" height="1" />
+        <text id="5:1718" name="1/16" x="203" y="5" width="29" height="18" />
+      </frame>
+      <frame id="5:1719" name="Strength" x="16" y="285" width="232" height="28">
+        <text id="5:1720" name="Strength" x="0" y="5.5" width="50" height="17" />
+        <frame id="5:1721" name="Flexible space" x="58" y="13.5" width="144" height="1" />
+        <text id="5:1722" name="85%" x="210" y="5" width="22" height="18" />
+      </frame>
+      <frame id="5:1723" name="Swing" x="16" y="325" width="232" height="28">
+        <text id="5:1724" name="Swing" x="0" y="5.5" width="35" height="17" />
+        <frame id="5:1725" name="Flexible space" x="43" y="13.5" width="159" height="1" />
+        <text id="5:1726" name="12%" x="210" y="5" width="22" height="18" />
+      </frame>
+      <frame id="5:1727" name="Divider" x="16" y="365" width="232" height="1" />
+      <text id="5:1728" name="Pitch" x="16" y="378" width="33" height="18" />
+      <frame id="5:1729" name="Transpose" x="16" y="408" width="232" height="28">
+        <text id="5:1730" name="Transpose" x="0" y="5.5" width="60" height="17" />
+        <frame id="5:1731" name="Flexible space" x="68" y="13.5" width="127" height="1" />
+        <text id="5:1732" name="0 st" x="203" y="5" width="29" height="18" />
+      </frame>
+      <frame id="5:1733" name="Scale" x="16" y="448" width="232" height="28">
+        <text id="5:1734" name="Scale" x="0" y="5.5" width="31" height="17" />
+        <frame id="5:1735" name="Flexible space" x="39" y="13.5" width="134" height="1" />
+        <text id="5:1736" name="A minor" x="181" y="5" width="51" height="18" />
+      </frame>
+      <frame id="5:1737" name="Velocity" x="16" y="488" width="232" height="28">
+        <text id="5:1738" name="Velocity" x="0" y="5.5" width="46" height="17" />
+        <frame id="5:1739" name="Flexible space" x="54" y="13.5" width="112" height="1" />
+        <text id="5:1740" name="Original" x="174" y="5" width="58" height="18" />
+      </frame>
+      <frame id="5:1741" name="Divider" x="16" y="528" width="232" height="1" />
+      <text id="5:1742" name="Signal" x="16" y="541" width="39" height="18" />
+      <frame id="5:1743" name="Instrument" x="16" y="571" width="232" height="28">
+        <text id="5:1744" name="Instrument" x="0" y="5.5" width="62" height="17" />
+        <frame id="5:1745" name="Flexible space" x="70" y="13.5" width="125" height="1" />
+        <text id="5:1746" name="4OSC" x="203" y="5" width="29" height="18" />
+      </frame>
+      <frame id="5:1747" name="Output" x="16" y="611" width="232" height="28">
+        <text id="5:1748" name="Output" x="0" y="5.5" width="40" height="17" />
+        <frame id="5:1749" name="Flexible space" x="48" y="13.5" width="111" height="1" />
+        <text id="5:1750" name="Music bus" x="167" y="5" width="65" height="18" />
+      </frame>
+      <frame id="5:1751" name="Flexible space" x="16" y="651" width="1" height="21" />
+      <frame id="5:1752" name="Scoped creative action" x="16" y="684" width="232" height="156">
+        <text id="5:1753" name="Keep the idea moving." x="16" y="16" width="140" height="18" />
+        <text id="5:1754" name="Suggest a continuation of this region. Nothing changes until you accept." x="16" y="46" width="200" height="51" />
+        <instance id="5:1755" name="go/S02" x="16" y="109" width="200" height="36" />
+      </frame>
+    </frame>
+  </frame>
+  <frame id="4:2300" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:2301" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:2302" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:2303" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:2304" name="Flexible space" x="342" y="13.5" width="958" height="1" />
+    <text id="4:2305" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="4:2306" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:2307" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

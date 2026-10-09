@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "1.0.0",
+  "migrations": [
+    {
+      "from": null,
+      "to": "1.0.0",
+      "change": "Initial delivered Figma design and canonical ID map; 24 base screens plus four interaction states.",
+      "dataMutation": "None; design-only task.",
+      "compatibility": "Refines original D08 design-source absence. Preserve the original W00–W29 architecture and functional scope."
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+<frame id="4:2008" name="S21 / Save / storage unavailable" x="80" y="5980" width="1600" height="1000">
+  <frame id="4:2009" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:2010" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:2011" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:2012" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:2013" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:2014" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+      <text id="4:2015" name="Project · saved on this device" x="0" y="18" width="120" height="16" />
+    </frame>
+    <frame id="4:2016" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:2017" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:2019" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:2021" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:2023" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:2025" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:2027" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:2028" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:2034" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:2040" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:2046" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:2048" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:2049" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:2051" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:2053" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:2054" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:2055" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:2061" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:2067" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:2073" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:2079" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:2085" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:2086" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:2087" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:2088" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:2089" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:2090" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:2091" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:2092" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:2093" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:2094" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:2095" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:2097" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:2099" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="10:2021" name="save recovery layout" x="0" y="0" width="1600" height="856">
+      <frame id="10:2022" name="save issue panel" x="40" y="40" width="952" height="776">
+        <instance id="10:2023" name="VOID / StatusBadge" x="36" y="36" width="166" height="26" />
+        <text id="10:2025" name="Your edits are here.
+The save did not finish." x="36" y="86" width="537" height="112" />
+        <text id="10:2026" name="The selected location is unavailable. Keep this session open and choose another location before closing." x="36" y="222" width="880" height="20" />
+        <frame id="10:2027" name="Preserved state" x="36" y="266" width="880" height="166">
+          <frame id="10:2028" name="Project" x="20" y="20" width="840" height="30">
+            <text id="10:2029" name="Project" x="0" y="6.5" width="40" height="17" />
+            <frame id="10:2030" name="Flexible space" x="52" y="14.5" width="660" height="1" />
+            <text id="10:2031" name="Midnight circuit" x="724" y="6" width="116" height="18" />
+          </frame>
+          <frame id="10:2032" name="Unsaved changes" x="20" y="62" width="840" height="30">
+            <text id="10:2033" name="Unsaved changes" x="0" y="6.5" width="102" height="17" />
+            <frame id="10:2034" name="Flexible space" x="114" y="14.5" width="498" height="1" />
+            <text id="10:2035" name="12 edits since last checkpoint" x="624" y="6" width="216" height="18" />
+          </frame>
+          <frame id="10:2036" name="Last good checkpoint" x="20" y="104" width="840" height="30">
+            <text id="10:2037" name="Last good checkpoint" x="0" y="6.5" width="123" height="17" />
+            <frame id="10:2038" name="Flexible space" x="135" y="14.5" width="484" height="1" />
+            <text id="10:2039" name="Revision 128 · on this device" x="631" y="6" width="209" height="18" />
+          </frame>
+        </frame>
+        <frame id="10:2040" name="Flexible space" x="36" y="456" width="1" height="171" />
+        <frame id="10:2041" name="Recovery actions" x="36" y="651" width="880" height="48">
+          <instance id="10:2042" name="go/S01" x="0" y="6" width="256" height="36" />
+          <instance id="10:2044" name="go/S01" x="272" y="6" width="236" height="36" />
+        </frame>
+        <text id="10:2046" name="“Saved” appears only after a durable, verified checkpoint is published." x="36" y="723" width="880" height="17" />
+      </frame>
+      <frame id="10:2047" name="Recovery details" x="1032" y="40" width="528" height="776">
+        <text id="10:2048" name="Protect the work first." x="24" y="24" width="480" height="36" />
+        <frame id="10:2049" name="Recovery step 0" x="24" y="84" width="480" height="134">
+          <text id="10:2050" name="01 / Keep the project open" x="20" y="20" width="165" height="18" />
+          <text id="10:2051" name="Your current in-memory edits remain available." x="20" y="50" width="440" height="20" />
+        </frame>
+        <frame id="10:2052" name="Recovery step 1" x="24" y="242" width="480" height="134">
+          <text id="10:2053" name="02 / Choose a writable folder" x="20" y="20" width="182" height="18" />
+          <text id="10:2054" name="Write a new checkpoint, do not overwrite the last good one." x="20" y="50" width="440" height="20" />
+        </frame>
+        <frame id="10:2055" name="Recovery step 2" x="24" y="400" width="480" height="134">
+          <text id="10:2056" name="03 / Verify before closing" x="20" y="20" width="159" height="18" />
+          <text id="10:2057" name="Confirm the success state and output location." x="20" y="50" width="440" height="20" />
+        </frame>
+        <frame id="10:2058" name="Flexible space" x="24" y="558" width="1" height="93" />
+        <instance id="10:2059" name="go/S15" x="24" y="675" width="248" height="36" />
+        <text id="10:2061" name="Diagnostic exports must redact private paths, keys and content." x="24" y="735" width="480" height="17" />
+      </frame>
+    </frame>
+  </frame>
+  <frame id="4:2100" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:2101" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:2102" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:2103" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:2104" name="Flexible space" x="342" y="13.5" width="872" height="1" />
+    <text id="4:2105" name="Not saved · choose a location" x="1230" y="6" width="155" height="16" />
+    <text id="4:2106" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:2107" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

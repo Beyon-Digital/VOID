@@ -1,0 +1,158 @@
+<frame id="4:708" name="S08 / Gesture / draw a phrase" x="5360" y="1260" width="1600" height="1000">
+  <frame id="4:709" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:710" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:711" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:712" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:713" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:714" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+      <text id="4:715" name="Project · saved on this device" x="0" y="18" width="154" height="16" />
+    </frame>
+    <frame id="4:716" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:717" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:719" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:721" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:723" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:725" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:727" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:728" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:734" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:740" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:746" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:748" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:749" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:751" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:753" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:754" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:755" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:761" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:767" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:773" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:779" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:785" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:786" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:787" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:788" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:789" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:790" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:791" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:792" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:793" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:794" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:795" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:797" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:799" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="6:2609" name="Gesture mapping" x="0" y="0" width="280" height="856">
+      <instance id="6:2610" name="VOID / StatusBadge" x="20" y="20" width="146" height="26" />
+      <text id="6:2612" name="Velvet keys" x="20" y="62" width="154" height="36" />
+      <text id="6:2613" name="Draw melody" x="20" y="114" width="87" height="20" />
+      <frame id="6:2614" name="Divider" x="20" y="150" width="240" height="1" />
+      <instance id="6:2615" name="VOID / ActionButton" x="20" y="167" width="240" height="36" />
+      <instance id="6:2617" name="VOID / ActionButton" x="20" y="219" width="240" height="36" />
+      <instance id="6:2619" name="VOID / ActionButton" x="20" y="271" width="240" height="36" />
+      <frame id="6:2621" name="Divider" x="20" y="323" width="240" height="1" />
+      <frame id="6:2622" name="Vertical" x="20" y="340" width="240" height="30">
+        <text id="6:2623" name="Vertical" x="0" y="6.5" width="43" height="17" />
+        <frame id="6:2624" name="Flexible space" x="51" y="14.5" width="145" height="1" />
+        <text id="6:2625" name="Pitch" x="204" y="6" width="36" height="18" />
+      </frame>
+      <frame id="6:2626" name="Horizontal" x="20" y="386" width="240" height="30">
+        <text id="6:2627" name="Horizontal" x="0" y="6.5" width="58" height="17" />
+        <frame id="6:2628" name="Flexible space" x="66" y="14.5" width="137" height="1" />
+        <text id="6:2629" name="Time" x="211" y="6" width="29" height="18" />
+      </frame>
+      <frame id="6:2630" name="Scale" x="20" y="432" width="240" height="30">
+        <text id="6:2631" name="Scale" x="0" y="6.5" width="31" height="17" />
+        <frame id="6:2632" name="Flexible space" x="39" y="14.5" width="142" height="1" />
+        <text id="6:2633" name="A minor" x="189" y="6" width="51" height="18" />
+      </frame>
+      <frame id="6:2634" name="Grid" x="20" y="478" width="240" height="30">
+        <text id="6:2635" name="Grid" x="0" y="6.5" width="24" height="17" />
+        <frame id="6:2636" name="Flexible space" x="32" y="14.5" width="171" height="1" />
+        <text id="6:2637" name="1/16" x="211" y="6" width="29" height="18" />
+      </frame>
+      <frame id="6:2638" name="Strength" x="20" y="524" width="240" height="30">
+        <text id="6:2639" name="Strength" x="0" y="6.5" width="50" height="17" />
+        <frame id="6:2640" name="Flexible space" x="58" y="14.5" width="152" height="1" />
+        <text id="6:2641" name="85%" x="218" y="6" width="22" height="18" />
+      </frame>
+      <text id="6:2642" name="Quantization is reversible. Keep the original contour." x="20" y="570" width="240" height="34" />
+      <frame id="6:2643" name="Flexible space" x="20" y="620" width="1" height="72" />
+      <instance id="6:2644" name="VOID / StatusBadge" x="20" y="708" width="180" height="26" />
+      <text id="6:2646" name="Camera is optional. No camera is required to compose." x="20" y="750" width="240" height="34" />
+      <instance id="6:2647" name="go/S02" x="20" y="800" width="240" height="36" />
+    </frame>
+    <frame id="6:2649" name="Gesture canvas workspace" x="280" y="0" width="1320" height="856">
+      <frame id="6:2650" name="Gesture header" x="28" y="28" width="1264" height="80">
+        <frame id="6:2651" name="Gesture heading" x="0" y="0" width="860" height="80">
+          <text id="6:2652" name="Draw the shape. Keep the music." x="0" y="0" width="440" height="36" />
+          <text id="6:2653" name="Your movement becomes editable notes—not a flattened recording." x="0" y="44" width="448" height="20" />
+        </frame>
+        <frame id="6:2654" name="Flexible space" x="876" y="39.5" width="232" height="1" />
+        <instance id="6:2655" name="VOID / ActionButton" x="1124" y="22" width="140" height="36" />
+      </frame>
+      <frame id="6:2657" name="Melody gesture canvas" x="28" y="128" width="1264" height="450">
+        <frame id="6:2658" name="Gesture grid" x="0" y="0" width="1264" height="450">
+          <vector id="6:2659" name="Vector" x="0" y="0" width="1264" height="450" />
+        </frame>
+        <text id="6:2660" name="E5" x="16" y="28" width="14" height="16" />
+        <text id="6:2661" name="C5" x="16" y="83" width="15" height="16" />
+        <text id="6:2662" name="A4" x="16" y="138" width="15" height="16" />
+        <text id="6:2663" name="G4" x="16" y="193" width="16" height="16" />
+        <text id="6:2664" name="E4" x="16" y="248" width="14" height="16" />
+        <text id="6:2665" name="C4" x="16" y="303" width="16" height="16" />
+        <text id="6:2666" name="A3" x="16" y="358" width="15" height="16" />
+        <frame id="6:2667" name="Raw gesture contour" x="0" y="0" width="1264" height="450">
+          <vector id="6:2668" name="Vector" x="70" y="82.62017822265625" width="1150" height="274.63800048828125" />
+        </frame>
+        <rounded-rectangle id="6:2669" name="Predicted note 0" x="80" y="348" width="98" height="22" />
+        <text id="6:2670" name="A3" x="90" y="351" width="15" height="16" />
+        <rounded-rectangle id="6:2671" name="Predicted note 1" x="230" y="282" width="98" height="22" />
+        <text id="6:2672" name="C4" x="240" y="285" width="16" height="16" />
+        <rounded-rectangle id="6:2673" name="Predicted note 2" x="385" y="186" width="98" height="22" />
+        <text id="6:2674" name="G4" x="395" y="189" width="16" height="16" />
+        <rounded-rectangle id="6:2675" name="Predicted note 3" x="537" y="128" width="98" height="22" />
+        <text id="6:2676" name="C5" x="547" y="131" width="15" height="16" />
+        <rounded-rectangle id="6:2677" name="Predicted note 4" x="688" y="182" width="98" height="22" />
+        <text id="6:2678" name="G4" x="698" y="185" width="16" height="16" />
+        <rounded-rectangle id="6:2679" name="Predicted note 5" x="838" y="218" width="98" height="22" />
+        <text id="6:2680" name="E4" x="848" y="221" width="14" height="16" />
+        <rounded-rectangle id="6:2681" name="Predicted note 6" x="989" y="124" width="98" height="22" />
+        <text id="6:2682" name="C5" x="999" y="127" width="15" height="16" />
+        <rounded-rectangle id="6:2683" name="Predicted note 7" x="1139" y="70" width="98" height="22" />
+        <text id="6:2684" name="E5" x="1149" y="73" width="14" height="16" />
+        <text id="6:2685" name="Original contour  /  snapped note interpretation" x="24" y="418" width="247" height="16" />
+      </frame>
+      <frame id="6:2686" name="Gesture state" x="28" y="598" width="1264" height="68">
+        <instance id="6:2687" name="VOID / StatusBadge" x="16" y="21" width="132" height="26" />
+        <text id="6:2689" name="8 notes  ·  4 bars  ·  no changes committed" x="168" y="25" width="265" height="18" />
+        <frame id="6:2690" name="Flexible space" x="453" y="33.5" width="616" height="1" />
+        <text id="6:2691" name="Hold Space to audition" x="1089" y="25" width="159" height="18" />
+      </frame>
+      <frame id="6:2692" name="Gesture commit" x="28" y="686" width="1264" height="72">
+        <text id="6:2693" name="Lost input or focus? Held notes stop safely." x="0" y="27.5" width="245" height="17" />
+        <frame id="6:2694" name="Flexible space" x="261" y="35.5" width="675" height="1" />
+        <instance id="6:2695" name="go/S02" x="952" y="18" width="116" height="36" />
+        <instance id="6:2697" name="go/S03" x="1084" y="18" width="180" height="36" />
+      </frame>
+      <text id="6:2699" name="Keyboard alternative: place notes in the piano roll. Escape cancels the active gesture." x="28" y="778" width="1264" height="17" />
+    </frame>
+  </frame>
+  <frame id="4:800" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:801" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:802" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:803" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:804" name="Flexible space" x="342" y="13.5" width="958" height="1" />
+    <text id="4:805" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="4:806" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:807" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.
