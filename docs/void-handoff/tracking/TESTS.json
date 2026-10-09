@@ -1065,8 +1065,8 @@
    "phase": "F5",
    "procedure": "Load malicious/infinite-loop/oversized-memory modules, request network/files and hot reload during playback.",
    "expected": "Fuel/memory/time limits and denied ambient access; old known-good module/state remains recoverable; no unqualified real-time execution.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "lane X: void-wasm real wasmtime host \u2014 capability grant set + ambient deny, fuel+epoch deadline, CancelToken, ResourceLimiter, sha256 registry, ABI void-wasm/1; tests/wasm 31/31 incl. adversarial WAT fixtures (spinner/hog/sneak-net/hoarder) [2026-10-09 00:51 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -1076,8 +1076,8 @@
    "phase": "F5",
    "procedure": "Test every enabled advanced instrument/save patch and ARA or plugin-export integration against its selected SDK and rights.",
    "expected": "Musical outcomes and host/API compatibility are real; blocked rights/features remain open and no unauthorized native binary is published.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "partial_linux",
+   "evidence": "lane X: ARA + plugin-export gates evidence-only qualify (ADRs 0001/0002); synthesis engine = native NEEDS [2026-10-09 00:51 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {

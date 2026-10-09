@@ -1147,8 +1147,8 @@
    "dependency_ids": [
     "EXT-01"
    ],
-   "status": "not_started",
-   "evidence": [],
+   "status": "partial",
+   "evidence": "void-wasm restricted host + registry + gates (T97 pass_linux, T98 gates-side) [2026-10-09 00:51 UTC]",
    "implementation_commit": null,
    "blocker": null,
    "readiness_evidence": [],

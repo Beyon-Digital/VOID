@@ -719,7 +719,7 @@ impl ModuleInstance {
                 granted: out_cap,
             });
         }
-        if written as usize % abi::NOTE_EVENT_SIZE != 0 {
+        if !(written as usize).is_multiple_of(abi::NOTE_EVENT_SIZE) {
             return Err(WasmError::AbiViolation(format!(
                 "midi_xform returned {written} bytes — not a multiple of {}",
                 abi::NOTE_EVENT_SIZE

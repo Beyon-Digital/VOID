@@ -17,3 +17,8 @@
 - **W26 spatial** (`devin/void-lane-w26w27` @ 7057034): `crates/void-spatial` mono→22.2 layout ladder (BS.2493 table, Illegal/RequiresDeclaredDownmix matrix), ADM objects (118 cap), calibrated monitoring + declared fallback, SpatialGate gated on ValidatorRecord. T92/T93 model-side.
 - **W27 sync/show** (same branch): `crates/void-sync` byte-exact MTC (full SysEx + quarter-frame demux), 24ppqn clock math, full MMC vocabulary + SHUTTLE packing, single-master arbiter w/ drift + conflict resolution, OSC literal/pattern matching, DMX universes + 10Hz strobe ceiling, Ableton Link honest NotImplemented ADR. Studio: cue list + pairing/arming + idempotent PANIC, bounded mapping engine (MAX_CHAIN_STEPS=8). T94–T96 pass_linux.
 - tests/spatial 17/17, tests/sync 22/22; workspace + clippy clean; studio vitest 419.
+
+## 2026-10-09 00:51 UTC — Lane X (W28) merged
+
+- **W28 wasm sandbox** (`devin/void-lane-w28` @ 43ac142): `crates/void-wasm` real wasmtime 37 restricted host — capability grant set + ambient deny (single void_host.log surface), manifest v1 + DeclaredLimits, sha256+import-scan spec vetting, void-wasm/1 ABI (24B NoteEvent), fuel/epoch deadline + CancelToken, ResourceLimiter, sha256-verified versioned registry w/ revoke+LKG, ARA/plugin-export evidence-only gates. tests/wasm 31/31 (12 real WAT→wasm fixtures incl. adversarial). Studio extensions surface (view-state, snake_case i64 DTOs). T97 pass_linux, T98 gates-side.
+- Workspace clippy -D warnings clean; studio vitest 428.

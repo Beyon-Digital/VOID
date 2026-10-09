@@ -34,7 +34,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W25 | F5 | Notation, scoring and advanced interchange | W21 | not_started |
 | W26 | F5 | Spatial routing and delivery | W21 | partial |
 | W27 | F5 | Synchronization, modular control and safe shows | W24, W21 | partial |
-| W28 | F5 | Advanced synthesis and restricted extensions | W19, W24 | not_started |
+| W28 | F5 | Advanced synthesis and restricted extensions | W19, W24 | partial |
 | W29 | F5 | Full parity reconciliation and release readiness | W25, W26, W27, W28 | not_started |
 
 ## W00 · F0 · Baseline, source preservation and scope ledger
@@ -813,7 +813,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W28 · F5 · Advanced synthesis and restricted extensions
 
-**Owner:** DSP + extensions · **Depends:** W19, W24 · **Status:** not_started
+**Owner:** DSP + extensions · **Depends:** W19, W24 · **Status:** partial
 
 **Target paths:** `native/void-engine/src/instruments/`, `crates/void-extensions/`, `packages/void-studio/src/patches/`
 
@@ -837,7 +837,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** EXT-01
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; -; w; a; s; m;  ; r; e; s; t; r; i; c; t; e; d;  ; h; o; s; t;  ; +;  ; r; e; g; i; s; t; r; y;  ; +;  ; g; a; t; e; s;  ; (; T; 9; 7;  ; p; a; s; s; _; l; i; n; u; x; ,;  ; T; 9; 8;  ; g; a; t; e; s; -; s; i; d; e; );  ; [; 2; 0; 2; 6; -; 1; 0; -; 0; 9;  ; 0; 0; :; 5; 1;  ; U; T; C; ]
 
 ## W29 · F5 · Full parity reconciliation and release readiness
 
