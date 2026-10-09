@@ -15,7 +15,10 @@ const WORKER: &str = "../../workers/symbolic";
 fn worker_bin() -> PathBuf {
     let exe = Path::new(env!("CARGO_MANIFEST_DIR"))
         .join(WORKER)
-        .join("target/debug/void-symbolic-worker");
+        .join(format!(
+            "target/debug/void-symbolic-worker{}",
+            std::env::consts::EXE_SUFFIX
+        ));
     if !exe.exists() {
         let status = Command::new("cargo")
             .args(["build", "--manifest-path", &format!("{WORKER}/Cargo.toml")])

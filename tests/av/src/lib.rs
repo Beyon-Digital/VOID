@@ -30,7 +30,10 @@ pub fn fake_ffmpeg() -> PathBuf {
             .status()
             .expect("spawn cargo build for void-fake-ffmpeg");
         assert!(st.success(), "cargo build of void-fake-ffmpeg failed");
-        let p = root.join("workers/ffmpeg-fake/target/debug/void-fake-ffmpeg");
+        let p = root.join(format!(
+            "workers/ffmpeg-fake/target/debug/void-fake-ffmpeg{}",
+            std::env::consts::EXE_SUFFIX
+        ));
         assert!(p.is_file(), "void-fake-ffmpeg binary missing at {p:?}");
         p
     })

@@ -21,13 +21,19 @@ pub fn fixture_exe(name: &str) -> PathBuf {
 
 /// `workers/fake` reference worker (built by this suite's setup).
 pub fn fake_worker() -> PathBuf {
-    let p = repo_root().join("workers/fake/target/debug/void-fake-worker");
+    let p = repo_root().join(format!(
+        "workers/fake/target/debug/void-fake-worker{}",
+        std::env::consts::EXE_SUFFIX
+    ));
     assert!(p.is_file(), "void-fake-worker not built — run `cargo build --manifest-path workers/fake/Cargo.toml`");
     p
 }
 
 pub fn symbolic_worker() -> PathBuf {
-    let p = repo_root().join("workers/symbolic/target/debug/void-symbolic-worker");
+    let p = repo_root().join(format!(
+        "workers/symbolic/target/debug/void-symbolic-worker{}",
+        std::env::consts::EXE_SUFFIX
+    ));
     assert!(p.is_file(), "void-symbolic-worker not built — run `cargo build --manifest-path workers/symbolic/Cargo.toml`");
     p
 }

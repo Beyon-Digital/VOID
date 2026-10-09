@@ -31,7 +31,10 @@ fn worker_exe() -> PathBuf {
             .status()
             .expect("cargo build fake worker");
         assert!(status.success(), "fake worker build failed");
-        let exe = root.join("workers/fake/target/debug/void-fake-worker");
+        let exe = root.join(format!(
+            "workers/fake/target/debug/void-fake-worker{}",
+            std::env::consts::EXE_SUFFIX
+        ));
         assert!(exe.is_file(), "fake worker binary missing at {exe:?}");
         exe
     })
