@@ -1,0 +1,8 @@
+
+## 2026-10-09 00:07 UTC — Lanes P (W18), R (W20), S (W21) merged
+
+- **W18 mixer/automation/MIDI** (`devin/void-lane-w18` @ 77ab63c): `crates/void-mix` routing graph (sends/aux/multi-out/external-IO/VCA, named loop rejection, layout legality matrix, per-node delay compensation), studio automation modes + midi/mpe/articulation/step. tests/mix 14/14; T69–T71 pass_linux.
+- **W20 exchange/registry** (`devin/void-lane-w20` @ 59f0a80): `crates/void-exchange` ~5.4k lines — `.dawproject` ZIP+XML roundtrip byte-deterministic + zero-loss (T77), `void-plugin-registry/1` + `void-missing-plugins/1` preserved-blob rehydrate verdicts (T76 spec-side), `IsolationPolicy` validation (T75 spec-side). tests/exchange 12/12.
+- **W21 producer** (`devin/void-lane-w21` @ b07c972): `crates/void-producer` deterministic accompaniment/inpaint/vary (T78), BS.1770 loudness + mastering plan (T79), stem-batch export + producer gate (T80); shortcuts + screensets stores. tests/producer 12/12.
+- Post-merge: `cargo test --workspace --exclude void-tauri` exit 0; vitest 405 (studio 377); studio+ui tsc clean.
+- Also fixed: PR #42 ts job — `pnpm -r build` reached `apps/void-tauri`'s `vite build && tauri build` which needs WebKitGTK; excluded void-tauri from recursive build, kept `vite build` + `tsc --noEmit` coverage steps.
