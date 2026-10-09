@@ -12,7 +12,7 @@
 
 import type {
   CommandReceipt,
-  PersistentOp,
+  SendableOp,
   VoidClient,
 } from 'void-client';
 
@@ -40,7 +40,7 @@ export function receiptFailed(r: CommandReceipt): boolean {
  */
 export async function sendWithStaleRetry(
   client: VoidClient,
-  op: PersistentOp,
+  op: SendableOp,
   issue: EditIssue = {},
 ): Promise<EditOutcome> {
   const first = await client.sendCommand(op, {
