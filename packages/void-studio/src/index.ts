@@ -44,6 +44,7 @@ export * from './proposals';
 export { useStore } from 'zustand';
 export * from './generation';
 export * from './gestures';
+export * from './notation';
 export * from './patterns';
 export * from './harmony';
 export * from './learn';
