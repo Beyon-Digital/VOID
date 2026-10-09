@@ -6008,6 +6008,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "void-visfx"
+version = "0.1.0"
+dependencies = [
+ "naga",
+ "serde",
+ "serde_json",
+ "sha2",
+ "tempfile",
+ "thiserror 2.0.21",
+ "uuid",
+ "void-assets",
+ "void-jobs",
+ "void-protocol",
+ "void-visual",
+]
+
+[[package]]
 name = "void-visual"
 version = "0.1.0"
 dependencies = [

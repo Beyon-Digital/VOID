@@ -58,3 +58,4 @@ export * from './screensets';
 export * from './spatial';
 export * from './sync';
 export * from './show';
+export * from './visual-gen';

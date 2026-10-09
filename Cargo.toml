@@ -18,6 +18,7 @@ members = [
     "crates/void-spatial",
     "crates/void-sync",
     "crates/void-wasm",
+    "crates/void-visfx",
     "apps/void-tauri/src-tauri",
 ]
 
