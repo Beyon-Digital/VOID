@@ -16,7 +16,6 @@
 import * as React from 'react';
 import { ActionButton, Meter, StatusBadge, TakeLane, TrackHeader, tokens } from 'void-ui';
 import {
-  createTakeStudioStore,
   makeViewKey,
   parseRecordingSummary,
   recordingUiState,
@@ -24,18 +23,19 @@ import {
   useStore,
   useStudio,
   useStudioActions,
+  useTakes,
   loadViewPage,
   studioStore,
   type ReadViewEntry,
 } from 'void-studio';
 import { getClient } from '../../../client';
 import { useProjectSummary, useStudioCompactContext } from '../../useStudioData';
+import { loadTakeFolders } from '../shared/views';
 
 function navigate(id: string) {
   window.location.hash = `/${id}`;
 }
 
-const takeStudio = createTakeStudioStore();
 const recordingView = createRecordingViewStore();
 
 const label: React.CSSProperties = {
@@ -107,7 +107,7 @@ export default function RecordScreen() {
   const meters = useStudio((s) => s.telemetry.meters);
   const summary = useProjectSummary();
   const selectTrack = useStudioActions().selectTrack;
-  const folders = useStore(takeStudio, (s) => s.folders);
+  const folders = useTakes((s) => s.folders);
   const monitorMode = useStore(recordingView, (s) => s.monitorMode);
   const countInBars = useStore(recordingView, (s) => s.countInBars);
   const metronome = useStore(recordingView, (s) => s.metronome);
@@ -129,6 +129,13 @@ export default function RecordScreen() {
   React.useEffect(() => {
     if (!projectId || !attached) return;
     void loadViewPage(studioStore, getClient(), 'TRACK_LIST').catch(() => undefined);
+  }, [projectId, attached, revision]);
+
+  // TAKE_LIST → shared take store: a take kept at stop lands in the
+  // lanes here and in the comp screen's folder list.
+  React.useEffect(() => {
+    if (!projectId || !attached) return;
+    void loadTakeFolders().catch(() => undefined);
   }, [projectId, attached, revision]);
 
   // rev-2 INPUT_DEVICE_LIST (NEEDS §8): engine-reported host inputs.

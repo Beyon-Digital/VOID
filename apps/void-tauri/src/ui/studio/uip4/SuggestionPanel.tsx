@@ -42,14 +42,17 @@ function recStatus(rec: ProposalRecord): {
   }
 }
 
-function spanLabel(rec: ProposalRecord, rank: number): string {
+function spanTicks(rec: ProposalRecord, rank: number): string {
   const cand = rec.candidates.find((c) => c.rank === rank) ?? rec.candidates[0];
-  if (!cand || cand.notes.length === 0) return '—';
+  if (!cand || cand.notes.length === 0) return '0';
   const last = cand.notes.reduce((a, b) =>
     BigInt(a.onsetTicks) > BigInt(b.onsetTicks) ? a : b,
   );
-  const end = BigInt(last.onsetTicks) + BigInt(last.lengthTicks);
-  return `${formatBarBeat(end.toString(10))}`;
+  return (BigInt(last.onsetTicks) + BigInt(last.lengthTicks)).toString(10);
+}
+
+function spanLabel(rec: ProposalRecord, rank: number): string {
+  return formatBarBeat(spanTicks(rec, rank));
 }
 
 export const SuggestionPanel: React.FC<{ proposalId?: string }> = ({
@@ -271,7 +274,7 @@ export const SuggestionPanel: React.FC<{ proposalId?: string }> = ({
                   score={c.score}
                   rationale={c.rationale}
                   noteCount={c.notes.length}
-                  spanTicks={spanLabel(rec, c.rank)}
+                  spanTicks={spanTicks(rec, c.rank)}
                   previewing={isSel}
                   status="ready"
                   generatorId={rec.provenance?.generatorId}

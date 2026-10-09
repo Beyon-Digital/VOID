@@ -206,12 +206,12 @@ describe('editor store invariants', () => {
 describe('view cache bounds', () => {
   it('caps a view at VIEW_PAGE_ITEM_MAX items and marks it truncated', () => {
     const store = createStudioStore();
-    const page = (n: number) => ({
+    const page = (n: number, from = 0) => ({
       kind: 'ReadResponse' as const,
       request_id: 'r',
       revision: '1',
       items: Array.from({ length: n }, (_, i) => ({
-        object_id: `o${i}`,
+        object_id: `o${from + i}`,
         summary_json: '{}',
       })),
       next_cursor: 'c',
@@ -219,7 +219,9 @@ describe('view cache bounds', () => {
       error: 'NONE' as const,
     });
     store.getState().actions.mergeReadPage('CLIP_LIST||0|', page(VIEW_PAGE_ITEM_MAX - 1));
-    store.getState().actions.mergeReadPage('CLIP_LIST||0|', page(10));
+    store
+      .getState()
+      .actions.mergeReadPage('CLIP_LIST||0|', page(10, VIEW_PAGE_ITEM_MAX - 1));
     const entry = store.getState().views['CLIP_LIST||0|'] as ReadViewEntry;
     expect(entry.items.length).toBe(VIEW_PAGE_ITEM_MAX);
     expect(entry.truncated).toBe(true);

@@ -11,9 +11,9 @@
 //   - audition is display state: the screen marks the take under the
 //     cursor and says so — a preview engine layer is NEEDS §12, not faked.
 //
-// Honest empties: protocol major.1 has no TAKE_LIST view — folders reach
-// the store from the recording/caller side. With no folders the screen
-// says exactly that instead of seeding demo takes.
+// Folders: TAKE_LIST (protocol minor 1) → the shared take store; rows
+// the engine drops are removed, never kept as ghosts. When the view is
+// empty the screen says exactly that instead of seeding demo takes.
 
 import * as React from 'react';
 import {
@@ -24,15 +24,15 @@ import {
   injectVoidStyles,
 } from 'void-ui';
 import {
-  createTakeStudioStore,
   describeReceiptError,
   parseClipItem,
   planCompApply,
   applyCompPlan,
   receiptFailed,
   setSegmentTake,
-  useStore,
   useStudio,
+  useTakes,
+  takeStudioStore,
   validateComp,
   CompApplyError,
   type ClipView,
@@ -40,11 +40,12 @@ import {
 } from 'void-studio';
 import { getClient } from '../../../client';
 import { useStudioCompactContext } from '../../useStudioData';
-import { loadAllPages, parseTrackRow, type TrackRow } from '../shared/views';
-
-const takeStore = createTakeStudioStore();
-const useTakes = <T,>(sel: (s: ReturnType<typeof takeStore.getState>) => T): T =>
-  useStore(takeStore, sel);
+import {
+  loadAllPages,
+  loadTakeFolders,
+  parseTrackRow,
+  type TrackRow,
+} from '../shared/views';
 
 const LANE_H = 40;
 
@@ -74,6 +75,12 @@ export default function CompScreen() {
   const openFolder = openComp
     ? Object.values(folders).find((f) => f.trackId === openComp.trackId)
     : undefined;
+
+  // TAKE_LIST → shared take store (same source the record lanes use).
+  React.useEffect(() => {
+    if (!projectId || !engineAttached) return;
+    void loadTakeFolders().catch(() => undefined);
+  }, [projectId, engineAttached, revision]);
 
   // Track names for lane headers (TRACK_LIST).
   React.useEffect(() => {
@@ -395,9 +402,9 @@ export default function CompScreen() {
                         comped={comped}
                         onPick={(takeId) => {
                           // Pick this take for the selected segment, if any.
-                          const sel = takeStore.getState().selection;
+                          const sel = takeStudioStore.getState().selection;
                           if (sel && sel.compId === openComp.compId) {
-                            const spec = takeStore.getState().comps[openComp.compId];
+                            const spec = takeStudioStore.getState().comps[openComp.compId];
                             if (spec) {
                               actions.upsertComp(setSegmentTake(spec, sel.segmentId, takeId));
                               return;

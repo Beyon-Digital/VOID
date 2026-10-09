@@ -132,7 +132,9 @@ impl MockState {
                     .and_then(|o| o.take_id())
                     .filter(|t| !t.is_empty())
                     .map(|t| t.to_string())
-                    .unwrap_or_else(|| format!("{:08x}-mock-take", self.revision));
+                    .unwrap_or_else(|| {
+                        format!("99999999-0000-4000-8000-{:012x}", self.revision + 1)
+                    });
                 self.recording = true;
                 self.recording_take = Some(take);
             }
@@ -787,7 +789,10 @@ fn build_save_event(state: &MockState, cmd: &proto::PersistentCommand<'_>) -> Ve
     let mut tb = FlatBufferBuilder::new();
     let pid = tb.create_string(&state.project_id);
     let cid = tb.create_string(cmd.command_id().unwrap_or(""));
-    let ck = tb.create_string(&format!("ck-{:06}", state.checkpoint_seq));
+    let ck = tb.create_string(&format!(
+        "cccccccc-0000-4000-8000-{:012x}",
+        state.checkpoint_seq
+    ));
     let sha = tb.create_string(SHA_MANIFEST);
     let msg = tb.create_string("saved by mock worker");
     let ev = proto::SaveResultEvent::create(

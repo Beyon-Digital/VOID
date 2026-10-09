@@ -58,6 +58,7 @@ export class ClipEditor {
   ): Promise<{ clips: ClipView[]; dropped: number }> {
     const clips: ClipView[] = [];
     let dropped = 0;
+    let fresh = true;
     for await (const page of this.client.readViewPages({
       view: 'CLIP_LIST',
       track_id: trackId,
@@ -70,7 +71,9 @@ export class ClipEditor {
         .actions.mergeReadPage(
           makeViewKey('CLIP_LIST', trackId, opts.startTicks, opts.endTicks),
           page,
+          { fresh },
         );
+      fresh = false;
       for (const item of page.items as ReadItem[]) {
         const c = parseClipItem(item);
         if (c) clips.push(c);

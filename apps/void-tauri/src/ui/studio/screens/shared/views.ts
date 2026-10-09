@@ -3,7 +3,13 @@
 // studio store cache so panels share one view of the data.
 
 import { getClient } from '../../../client';
-import { loadViewPage, makeViewKey, studioStore } from 'void-studio';
+import {
+  foldersFromTakeRows,
+  loadViewPage,
+  makeViewKey,
+  studioStore,
+  takeStudioStore,
+} from 'void-studio';
 import type { ReadItem, ViewKindName } from 'void-client';
 
 export interface LoadedView {
@@ -33,6 +39,22 @@ export async function loadAllPages(
     cursor = page.next_cursor;
   }
   return { items, revision };
+}
+
+/** Read TAKE_LIST and fold rows into the shared take store — record
+ * lanes and the comp screen both render these folders. Rows the
+ * engine no longer reports get dropped from the store. */
+export async function loadTakeFolders(): Promise<void> {
+  const { items } = await loadAllPages('TAKE_LIST');
+  const seen = new Set<string>();
+  const actions = takeStudioStore.getState().actions;
+  for (const folder of foldersFromTakeRows(items)) {
+    seen.add(folder.folderId);
+    actions.upsertFolder(folder);
+  }
+  for (const id of Object.keys(takeStudioStore.getState().folders)) {
+    if (!seen.has(id)) actions.removeFolder(id);
+  }
 }
 
 /** Items already in the store cache for a view (synchronous read). */
