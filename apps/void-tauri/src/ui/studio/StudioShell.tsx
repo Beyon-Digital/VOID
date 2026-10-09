@@ -47,6 +47,9 @@ import {
   useStudioCompact,
 } from './useStudioData';
 
+/** Routes that render without an open project (S13 launcher flow + S15 setup). */
+const PROJECT_FREE_SCREENS = new Set(['projects', 'new-project', 'setup', 'dev-gallery']);
+
 export function SignalStudioShell() {
   const [route, navigateRaw] = useHashRoute('arrange');
   const compact = useStudioCompact();
@@ -122,6 +125,11 @@ export function SignalStudioShell() {
 
   const screenId = route.replace(/\//g, '-');
   const Screen = screenFor(screenId);
+  // Screens that work without an open project (S13/S14/S15); anything else
+  // falls back to the projects screen (S13) — the LauncherPanel stays as the
+  // fallback while the registry hasn't discovered one.
+  const HomeScreen = screenFor('projects');
+  const needsProject = !projectId && !PROJECT_FREE_SCREENS.has(screenId);
 
   return (
     <VoidThemeProvider
@@ -146,8 +154,12 @@ export function SignalStudioShell() {
           aria-labelledby={isWorkspaceId(screenId) ? `workspace-tab-${screenId}` : undefined}
           style={{ display: 'flex', flex: 1, minHeight: 0, overflow: 'hidden' }}
         >
-          {!projectId && screenId !== 'dev-gallery' ? (
-            <LauncherPanel />
+          {needsProject ? (
+            HomeScreen ? (
+              <HomeScreen />
+            ) : (
+              <LauncherPanel />
+            )
           ) : Screen ? (
             <Screen />
           ) : (

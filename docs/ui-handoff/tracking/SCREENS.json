@@ -68,9 +68,9 @@
    "id": "S05",
    "name": "Record / input and take lanes",
    "figmaNodeId": "4:408",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "verified",
+   "lane": "devin/void-lane-uip1",
+   "evidence": "UIP1_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T09",
     "UI-T10"
@@ -164,9 +164,9 @@
    "id": "S13",
    "name": "Projects / start here",
    "figmaNodeId": "4:1208",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "verified",
+   "lane": "devin/void-lane-uip1",
+   "evidence": "UIP1_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T01"
    ]
@@ -175,9 +175,9 @@
    "id": "S14",
    "name": "New project / starting point",
    "figmaNodeId": "4:1308",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "verified",
+   "lane": "devin/void-lane-uip1",
+   "evidence": "UIP1_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T01"
    ]
@@ -186,9 +186,9 @@
    "id": "S15",
    "name": "Setup / audio and MIDI",
    "figmaNodeId": "4:1408",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "verified",
+   "lane": "devin/void-lane-uip1",
+   "evidence": "UIP1_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T09"
    ]
@@ -324,9 +324,9 @@
    "id": "S27",
    "name": "Arrange / empty new project",
    "figmaNodeId": "12:2479",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "verified",
+   "lane": "devin/void-lane-uip1",
+   "evidence": "UIP1_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T01"
    ]
