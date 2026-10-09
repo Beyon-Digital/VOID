@@ -9,8 +9,8 @@
    "phase": "F0",
    "procedure": "Fetch default branch, inspect repository instructions and dirty files, then run existing scripts with time limits.",
    "expected": "Record SHA, tool versions, exit codes and pre-existing failures. Preserve local/newer work; no reset to the historical baseline.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "W00 baseline: packet install + sceneId fix commits 33acc07/2fa4970, doctor.sh 8 pass/2 warn/0 fail, F0 vertical slice on wire round-trip [2026-10-09 02:20 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -571,7 +571,7 @@
    "procedure": "Accept generated content, inspect model/input/setting metadata, change/delete project preferences and disable cloud.",
    "expected": "Provenance is stored, preference deletion works, no automatic private training/upload or silent local-to-cloud fallback.",
    "status": "pass_linux",
-   "evidence": [],
+   "evidence": "void-jobs provenance publish + late-result quarantine + manifest sha256 verify suites (provenance.rs + runner tests 13/13) [2026-10-09 02:20 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {

@@ -6,7 +6,7 @@ Generated from `tracking/TESTS.json`. These are 100 required integration scenari
 
 | ID / owner task | Scenario | Procedure | Expected outcome | Status |
 | --- | --- | --- | --- | --- |
-| T01 / W00 | Repository baseline | Fetch default branch, inspect repository instructions and dirty files, then run existing scripts with time limits. | Record SHA, tool versions, exit codes and pre-existing failures. Preserve local/newer work; no reset to the historical baseline. | not_run |
+| T01 / W00 | Repository baseline | Fetch default branch, inspect repository instructions and dirty files, then run existing scripts with time limits. | Record SHA, tool versions, exit codes and pre-existing failures. Preserve local/newer work; no reset to the historical baseline. | pass_linux |
 | T02 / W00 | Scope and relationship regression | Validate all source IDs; create scenes a and ab with clips whose IDs do not share scene prefixes. | All 116 feature IDs and 22 stock groups survive. Clips appear only in their explicit scene/track slot; ID-prefix collisions do not affect membership. | pass_linux |
 | T03 / W01 | Dependency lock and rights | Build an upstream engine example using the selected exact JUCE pair; inspect every runtime licence and feature flag. | Record hashes/versions, successful build evidence and permitted use. Unknown distribution rights block release, not a fabricated approval. | pass_macos |
 | T04 / W01 | SQLite and supply-chain checks | Inspect the SQLite version actually loaded by Rust/workers, review relevant upstream advisories and tamper with a dependency/model manifest. | Supported patched build is selected; checksum/signature failures reject the artifact. A host sqlite CLI version is not evidence about a bundled library. | not_run |

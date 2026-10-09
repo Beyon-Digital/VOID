@@ -3,29 +3,27 @@
   "generated_by": "docs/verification/F5/trace_check.py (Lane Y / W29)",
   "repo": "Beyon-Digital/VOID",
   "audit_branch": "devin/void-implementation",
-  "audit_head": "1e129ab0dfd92ff9b96911832aebe20e6d9cee84",
-  "integration_branch_head": "baad7187cad995304eb88de31211484608dfd29b",
+  "audit_head": "094f49ca802f65dc9314eefcfa3d8f41d7bb3524",
+  "integration_branch_head": "094f49ca802f65dc9314eefcfa3d8f41d7bb3524",
   "policy": "blocked/not_run/partial_* are not-done; ledger statuses are reported, never upgraded.",
   "test_status_counts": {
-    "not_run": 13,
-    "pass_linux": 63,
+    "pass_linux": 65,
     "pass_macos": 9,
+    "not_run": 10,
     "partial_macos": 3,
     "blocked": 3,
-    "partial_linux": 9
+    "partial_linux": 10
   },
   "task_status_counts": {
     "done": 6,
     "partial_macos": 3,
-    "partial": 20,
-    "not_started": 1
+    "partial": 21
   },
   "feature_rollup_derived": {
-    "partial_or_open": 35,
+    "partial_or_open": 36,
     "pass_linux": 74,
     "pass_macos_engine": 4,
-    "mixed_pass": 2,
-    "not_run": 1
+    "mixed_pass": 2
   },
   "stock_rollup_derived": {
     "partial_or_open": 21,
@@ -51,15 +49,6 @@
     "T52": "Status pass_linux but evidence field is empty \u2014 the only pass row without evidence. Reported per lane rules; not corrected."
   },
   "non_pass_rows": {
-    "T01": {
-      "status": "not_run",
-      "task": "W00",
-      "needs": [
-        "docs/verification/F5/NEEDS.md#F5-N14",
-        "docs/verification/F5/NEEDS.md#F5-N07"
-      ],
-      "class": "ledger_not_updated"
-    },
     "T04": {
       "status": "not_run",
       "task": "W01",
@@ -270,16 +259,8 @@
       ],
       "class": "approval_blocked"
     },
-    "T99": {
-      "status": "not_run",
-      "task": "W29",
-      "needs": [
-        "docs/verification/F5/NEEDS.md#F5-N15"
-      ],
-      "class": "audit_deliverable"
-    },
     "T100": {
-      "status": "not_run",
+      "status": "partial_linux",
       "task": "W29",
       "needs": [
         "docs/verification/F5/NEEDS.md#F5-N15"
@@ -293,8 +274,8 @@
     "T01": {
       "task_id": "W00",
       "phase": "F0",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "pass_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "ledger_not_updated",
         "needs": [
@@ -806,15 +787,14 @@
       "task_id": "W12",
       "phase": "F2",
       "status": "pass_linux",
-      "has_evidence": false,
+      "has_evidence": true,
       "needs_map": {
         "class": "ledger_not_updated",
         "needs": [
           "docs/verification/F5/NEEDS.md#F5-N14"
         ],
         "note": "pass_linux with EMPTY evidence string \u2014 reported, not fixed (integrator owns statuses)."
-      },
-      "anomaly": "Status pass_linux but evidence field is empty \u2014 the only pass row without evidence. Reported per lane rules; not corrected."
+      }
     },
     "T53": {
       "task_id": "W13",
@@ -1201,8 +1181,8 @@
     "T99": {
       "task_id": "W29",
       "phase": "F5",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "pass_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "audit_deliverable",
         "needs": [
@@ -1214,8 +1194,8 @@
     "T100": {
       "task_id": "W29",
       "phase": "F5",
-      "status": "not_run",
-      "has_evidence": false,
+      "status": "partial_linux",
+      "has_evidence": true,
       "needs_map": {
         "class": "audit_deliverable",
         "needs": [
@@ -1431,7 +1411,7 @@
     },
     "W29": {
       "phase": "F5",
-      "status": "not_started",
+      "status": "partial",
       "has_evidence": true,
       "implementation_commit": null,
       "blocker": null
@@ -2787,7 +2767,7 @@
       "category": "Specialist workflows and product completeness",
       "feature": "Installer, updates, diagnostics and production QA",
       "ledger_status": "not_verified",
-      "derived_from_tests": "not_run",
+      "derived_from_tests": "partial_or_open",
       "acceptance_test_ids": [
         "T25",
         "T26",
@@ -3095,9 +3075,10 @@
     }
   },
   "notes": [
-    "T52: pass row without evidence \u2014 declared anomaly",
     "map declares tasks_with_evidence anyway: ['W29']"
   ],
-  "result": "pass",
-  "failures": []
+  "result": "fail",
+  "failures": [
+    "evidence_anomalies declared ['T52'] != found []"
+  ]
 }
