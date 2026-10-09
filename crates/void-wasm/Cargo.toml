@@ -1,0 +1,19 @@
+[package]
+name = "void-wasm"
+description = "VOID W28 restricted WASM module host — capability manifests, fuel/memory limits, epoch-deadline cancellation, sha256-verified versioned registry, last-known-good hot reload (T97/T98 Linux halves)"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+wasmtime = { workspace = true }
+wasmparser = { workspace = true }
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+uuid = { workspace = true }
+
+[dev-dependencies]
+wat = { workspace = true }
+tempfile = "3"

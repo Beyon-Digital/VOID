@@ -17,6 +17,7 @@ members = [
     "crates/void-exchange",
     "crates/void-spatial",
     "crates/void-sync",
+    "crates/void-wasm",
     "apps/void-tauri/src-tauri",
 ]
 
@@ -40,6 +41,12 @@ anyhow = "1"
 tracing = "0.1"
 tracing-subscriber = "0.3"
 parking_lot = "0.12"
+# W28 lane (void-wasm): wasmtime is the EXT-01-selected restricted
+# runtime (Apache-2.0 + LLVM exception). Exact pins — security surface,
+# no floating ranges. `wat` is dev-only (test fixtures).
+wasmtime = "=37.0.2"
+wasmparser = "=0.259.0"
+wat = "=1.259.0"
 
 [profile.release]
 # Keep debug symbols for diagnostics; LTO for binary size.
