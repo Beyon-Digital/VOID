@@ -1,354 +1,354 @@
 {
- "schema": "ui-tests/1",
- "tests": [
-  {
-   "id": "UI-T01",
-   "screens": [
-    "S13",
-    "S14",
-    "S27"
-   ],
-   "action": "Create a blank project from home.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T02",
-   "screens": [
-    "S01",
-    "S22"
-   ],
-   "action": "Select a region and change workspaces repeatedly.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T03",
-   "screens": [
-    "S01",
-    "S22",
-    "S23"
-   ],
-   "action": "Exercise 1600\u00d71000 and 1280\u00d7832 in both themes.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T04",
-   "screens": [
-    "S01",
-    "S22"
-   ],
-   "action": "Use 200% text scaling with keyboard navigation.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T05",
-   "screens": [
-    "S04"
-   ],
-   "action": "Drag, fine-adjust, type values, press arrows, reset and undo.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T06",
-   "screens": [
-    "S01",
-    "S02"
-   ],
-   "action": "Replay the same edit commandId after a dropped acknowledgement.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T07",
-   "screens": [
-    "S01",
-    "S02"
-   ],
-   "action": "Test tempo changes, zooming, off-grid notes, loop edges and sample boundaries.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T08",
-   "screens": [
-    "S01",
-    "S02"
-   ],
-   "action": "Type a space, shortcuts and IME composition inside fields; then exit.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T09",
-   "screens": [
-    "S15",
-    "S05"
-   ],
-   "action": "Deny microphone permission or remove the selected device.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T10",
-   "screens": [
-    "S05",
-    "S06"
-   ],
-   "action": "Record, stop, review, cancel comp and reopen project.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T11",
-   "screens": [
-    "S06"
-   ],
-   "action": "Choose three phrases from four takes, commit and undo.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T12",
-   "screens": [
-    "S02",
-    "S25"
-   ],
-   "action": "Request notes, audition and stop without accepting.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T13",
-   "screens": [
-    "S02",
-    "S26",
-    "S03"
-   ],
-   "action": "Accept four selected notes, then accept the remaining four.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T14",
-   "screens": [
-    "S26",
-    "S02"
-   ],
-   "action": "Undo the last accepted subset; alternatively discard remaining ghosts.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T15",
-   "screens": [
-    "S20"
-   ],
-   "action": "Change the song while the suggestion is generating.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T16",
-   "screens": [
-    "S02"
-   ],
-   "action": "Return malformed notes, unknown IDs, out-of-range velocities or nonfinite time.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T17",
-   "screens": [
-    "S08"
-   ],
-   "action": "Draw with pointer capture, lose focus, cancel, reconnect and commit.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T18",
-   "screens": [
-    "S08"
-   ],
-   "action": "Use piano roll/keyboard without camera or continuous movement.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T19",
-   "screens": [
-    "S10",
-    "S17"
-   ],
-   "action": "Cancel, exhaust memory or kill a worker mid-job.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T20",
-   "screens": [
-    "S10",
-    "S16"
-   ],
-   "action": "Accept a generated result, move source folder and reopen.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T21",
-   "screens": [
-    "S07",
-    "S28"
-   ],
-   "action": "Queue a scene just before and just after a bar boundary.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T22",
-   "screens": [
-    "S07"
-   ],
-   "action": "Trigger all-notes-off or stop all clips while optional workers are busy.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T23",
-   "screens": [
-    "S09"
-   ],
-   "action": "Open visuals and generate a candidate with an external display connected.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T24",
-   "screens": [
-    "S09"
-   ],
-   "action": "Kill renderer or overload GPU during playback.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T25",
-   "screens": [
-    "S18"
-   ],
-   "action": "Reopen with an unavailable or quarantined plugin.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T26",
-   "screens": [
-    "S19"
-   ],
-   "action": "Terminate native engine or force a plugin crash on the in-process path.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T27",
-   "screens": [
-    "S21"
-   ],
-   "action": "Simulate no space, denied write or disappearing destination.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T28",
-   "screens": [
-    "S11",
-    "S12"
-   ],
-   "action": "Export a known fixture, including tails, then compare bytes/sample properties.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T29",
-   "screens": [
-    "S11"
-   ],
-   "action": "Disconnect routing, remove an asset and disable a plugin.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T30",
-   "screens": [
-    "S01",
-    "S04"
-   ],
-   "action": "Open large fixture, scroll/zoom and operate meters for a long session.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T31",
-   "screens": [
-    "S01",
-    "S19"
-   ],
-   "action": "Reload presentation while native playback/recording is active.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T32",
-   "screens": [
-    "S17"
-   ],
-   "action": "Attempt worker path escape, unapproved upload and unauthorized device command.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T33",
-   "screens": [
-    "S01",
-    "S04",
-    "S08"
-   ],
-   "action": "Screen-reader and keyboard-test controls, selection and errors.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T34",
-   "screens": [
-    "S24"
-   ],
-   "action": "Change display quantization and map selection back to the piano roll.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T35",
-   "screens": [
-    "S01",
-    "S04"
-   ],
-   "action": "Open, focus, resize and close a real VST3/AU editor on each supported OS.",
-   "status": "not_started",
-   "evidence": null
-  },
-  {
-   "id": "UI-T36",
-   "screens": [
-    "S01",
-    "S17"
-   ],
-   "action": "Offer update during recording, performance or unsaved changes.",
-   "status": "not_started",
-   "evidence": null
-  }
- ]
+  "schema": "ui-tests/1",
+  "tests": [
+    {
+      "id": "UI-T01",
+      "screens": [
+        "S13",
+        "S14",
+        "S27"
+      ],
+      "action": "Create a blank project from home.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T02",
+      "screens": [
+        "S01",
+        "S22"
+      ],
+      "action": "Select a region and change workspaces repeatedly.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T03",
+      "screens": [
+        "S01",
+        "S22",
+        "S23"
+      ],
+      "action": "Exercise 1600\u00d71000 and 1280\u00d7832 in both themes.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T04",
+      "screens": [
+        "S01",
+        "S22"
+      ],
+      "action": "Use 200% text scaling with keyboard navigation.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T05",
+      "screens": [
+        "S04"
+      ],
+      "action": "Drag, fine-adjust, type values, press arrows, reset and undo.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T06",
+      "screens": [
+        "S01",
+        "S02"
+      ],
+      "action": "Replay the same edit commandId after a dropped acknowledgement.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T07",
+      "screens": [
+        "S01",
+        "S02"
+      ],
+      "action": "Test tempo changes, zooming, off-grid notes, loop edges and sample boundaries.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T08",
+      "screens": [
+        "S01",
+        "S02"
+      ],
+      "action": "Type a space, shortcuts and IME composition inside fields; then exit.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T09",
+      "screens": [
+        "S15",
+        "S05"
+      ],
+      "action": "Deny microphone permission or remove the selected device.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T10",
+      "screens": [
+        "S05",
+        "S06"
+      ],
+      "action": "Record, stop, review, cancel comp and reopen project.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T11",
+      "screens": [
+        "S06"
+      ],
+      "action": "Choose three phrases from four takes, commit and undo.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T12",
+      "screens": [
+        "S02",
+        "S25"
+      ],
+      "action": "Request notes, audition and stop without accepting.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T13",
+      "screens": [
+        "S02",
+        "S26",
+        "S03"
+      ],
+      "action": "Accept four selected notes, then accept the remaining four.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T14",
+      "screens": [
+        "S26",
+        "S02"
+      ],
+      "action": "Undo the last accepted subset; alternatively discard remaining ghosts.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T15",
+      "screens": [
+        "S20"
+      ],
+      "action": "Change the song while the suggestion is generating.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T16",
+      "screens": [
+        "S02"
+      ],
+      "action": "Return malformed notes, unknown IDs, out-of-range velocities or nonfinite time.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T17",
+      "screens": [
+        "S08"
+      ],
+      "action": "Draw with pointer capture, lose focus, cancel, reconnect and commit.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T18",
+      "screens": [
+        "S08"
+      ],
+      "action": "Use piano roll/keyboard without camera or continuous movement.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T19",
+      "screens": [
+        "S10",
+        "S17"
+      ],
+      "action": "Cancel, exhaust memory or kill a worker mid-job.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T20",
+      "screens": [
+        "S10",
+        "S16"
+      ],
+      "action": "Accept a generated result, move source folder and reopen.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T21",
+      "screens": [
+        "S07",
+        "S28"
+      ],
+      "action": "Queue a scene just before and just after a bar boundary.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T22",
+      "screens": [
+        "S07"
+      ],
+      "action": "Trigger all-notes-off or stop all clips while optional workers are busy.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T23",
+      "screens": [
+        "S09"
+      ],
+      "action": "Open visuals and generate a candidate with an external display connected.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T24",
+      "screens": [
+        "S09"
+      ],
+      "action": "Kill renderer or overload GPU during playback.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T25",
+      "screens": [
+        "S18"
+      ],
+      "action": "Reopen with an unavailable or quarantined plugin.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T26",
+      "screens": [
+        "S19"
+      ],
+      "action": "Terminate native engine or force a plugin crash on the in-process path.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T27",
+      "screens": [
+        "S21"
+      ],
+      "action": "Simulate no space, denied write or disappearing destination.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T28",
+      "screens": [
+        "S11",
+        "S12"
+      ],
+      "action": "Export a known fixture, including tails, then compare bytes/sample properties.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T29",
+      "screens": [
+        "S11"
+      ],
+      "action": "Disconnect routing, remove an asset and disable a plugin.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T30",
+      "screens": [
+        "S01",
+        "S04"
+      ],
+      "action": "Open large fixture, scroll/zoom and operate meters for a long session.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T31",
+      "screens": [
+        "S01",
+        "S19"
+      ],
+      "action": "Reload presentation while native playback/recording is active.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T32",
+      "screens": [
+        "S17"
+      ],
+      "action": "Attempt worker path escape, unapproved upload and unauthorized device command.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T33",
+      "screens": [
+        "S01",
+        "S04",
+        "S08"
+      ],
+      "action": "Screen-reader and keyboard-test controls, selection and errors.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T34",
+      "screens": [
+        "S24"
+      ],
+      "action": "Change display quantization and map selection back to the piano roll.",
+      "status": "verified",
+      "evidence": "packages/void-studio/src/notation/derive.test.ts (16) + apps/void-tauri/src/ui/studio/screens/score/model.test.ts (10); recorded Chrome run docs/ui-handoff/tracking/evidence/UIP7-score-*.png; UIP7_EVIDENCE.md"
+    },
+    {
+      "id": "UI-T35",
+      "screens": [
+        "S01",
+        "S04"
+      ],
+      "action": "Open, focus, resize and close a real VST3/AU editor on each supported OS.",
+      "status": "not_started",
+      "evidence": null
+    },
+    {
+      "id": "UI-T36",
+      "screens": [
+        "S01",
+        "S17"
+      ],
+      "action": "Offer update during recording, performance or unsaved changes.",
+      "status": "not_started",
+      "evidence": null
+    }
+  ]
 }
