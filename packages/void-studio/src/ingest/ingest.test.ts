@@ -285,10 +285,10 @@ describe('accept lifecycle', () => {
     ingestControlEvent({ kind: 'proposal', record: proposal() }, s);
     s.getState().actions.select('p1', 1);
     s.getState().actions.toggleIndex(1);
-    const sent: { InsertNoteOp: { start_ticks: string } }[] = [];
+    const sent: ({ InsertNoteOp: { start_ticks: string } } | { ResolveProposalOp: { accept: boolean } })[] = [];
     t.respond('send_command', (args) => {
       const dto = (args as {
-        dto: { op: { InsertNoteOp: { start_ticks: string } }; transaction_id: string };
+        dto: { op: { InsertNoteOp: { start_ticks: string } } | { ResolveProposalOp: { accept: boolean } }; transaction_id: string };
       }).dto;
       sent.push(dto.op);
       const receipt: CommandReceipt = {
@@ -308,7 +308,7 @@ describe('accept lifecycle', () => {
     expect(out.ok).toBe(true);
     // 1 InsertNoteOp musical write + ResolveProposalOp bookkeeping
     expect(sent).toHaveLength(2);
-    expect(sent[0].InsertNoteOp.start_ticks).toBe('1200000');
+    expect((sent[0] as { InsertNoteOp: { start_ticks: string } }).InsertNoteOp.start_ticks).toBe('1200000');
     expect((sent[1] as { ResolveProposalOp: { accept: boolean } }).ResolveProposalOp.accept).toBe(true);
   });
 
