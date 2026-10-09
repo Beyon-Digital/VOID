@@ -1,0 +1,3189 @@
+{
+  "schema": "void-f5-trace-audit/1",
+  "generated_by": "docs/verification/F5/trace_check.py (Lane Y / W29)",
+  "repo": "Beyon-Digital/VOID",
+  "audit_branch": "devin/void-implementation",
+  "audit_head": "4bc9004d25ed121fcfeb20dd76674867272d8d12",
+  "integration_branch_head": "4bc9004d25ed121fcfeb20dd76674867272d8d12",
+  "policy": "blocked/not_run/partial_* are not-done; ledger statuses are reported, never upgraded.",
+  "test_status_counts": {
+    "pass_linux": 66,
+    "pass_macos": 9,
+    "not_run": 4,
+    "partial_macos": 3,
+    "blocked": 3,
+    "partial_linux": 15
+  },
+  "task_status_counts": {
+    "done": 6,
+    "partial_macos": 3,
+    "partial": 21
+  },
+  "feature_rollup_derived": {
+    "partial_or_open": 36,
+    "pass_linux": 74,
+    "pass_macos_engine": 4,
+    "mixed_pass": 2
+  },
+  "stock_rollup_derived": {
+    "partial_or_open": 21,
+    "pass_linux": 1
+  },
+  "feature_ledger_status_counts": {
+    "partial": 36,
+    "verified": 80
+  },
+  "stock_ledger_status_counts": {
+    "partial": 22
+  },
+  "infra_status_counts": {
+    "partial": 17,
+    "not_verified": 1,
+    "optional_not_authorized": 2
+  },
+  "dep_qualification_counts": {
+    "in_use": 12,
+    "qualified": 3,
+    "unqualified": 26
+  },
+  "platform_status_counts": {
+    "partial": 1,
+    "not_tested": 1,
+    "tested": 1
+  },
+  "evidence_anomalies": {},
+  "non_pass_rows": {
+    "T06": {
+      "status": "not_run",
+      "task": "W02",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N07"
+      ],
+      "class": "spec_unrun"
+    },
+    "T07": {
+      "status": "not_run",
+      "task": "W02",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N07"
+      ],
+      "class": "spec_unrun"
+    },
+    "T13": {
+      "status": "partial_macos",
+      "task": "W04",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N02"
+      ],
+      "class": "hardware_blocked"
+    },
+    "T15": {
+      "status": "partial_macos",
+      "task": "W04",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N02"
+      ],
+      "class": "hardware_blocked"
+    },
+    "T16": {
+      "status": "partial_macos",
+      "task": "W04",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N02"
+      ],
+      "class": "hardware_blocked"
+    },
+    "T23": {
+      "status": "blocked",
+      "task": "W06",
+      "needs": [
+        "docs/engine/NEEDS.md#34. **No plugin-format runtime hosting",
+        "docs/verification/F5/NEEDS.md#F5-N02"
+      ],
+      "class": "hardware_blocked"
+    },
+    "T25": {
+      "status": "partial_linux",
+      "task": "W07",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N02",
+        "docs/verification/F5/NEEDS.md#F5-N03"
+      ],
+      "class": "hardware_blocked"
+    },
+    "T26": {
+      "status": "partial_linux",
+      "task": "W07",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N05"
+      ],
+      "class": "spec_unrun"
+    },
+    "T27": {
+      "status": "partial_linux",
+      "task": "W07",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N03"
+      ],
+      "class": "approval_blocked"
+    },
+    "T28": {
+      "status": "partial_linux",
+      "task": "W07",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N03"
+      ],
+      "class": "approval_blocked"
+    },
+    "T29": {
+      "status": "partial_linux",
+      "task": "W07",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N04"
+      ],
+      "class": "spec_unrun"
+    },
+    "T30": {
+      "status": "not_run",
+      "task": "W07",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N07",
+        "docs/verification/F5/NEEDS.md#F5-N02"
+      ],
+      "class": "spec_unrun"
+    },
+    "T45": {
+      "status": "partial_linux",
+      "task": "W11",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N02"
+      ],
+      "class": "hardware_blocked"
+    },
+    "T47": {
+      "status": "partial_linux",
+      "task": "W11",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N06",
+        "docs/verification/F5/NEEDS.md#F5-N02"
+      ],
+      "class": "spec_unrun"
+    },
+    "T48": {
+      "status": "blocked",
+      "task": "W11",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N06"
+      ],
+      "class": "human_participant"
+    },
+    "T64": {
+      "status": "blocked",
+      "task": "W16",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N06"
+      ],
+      "class": "human_participant"
+    },
+    "T72": {
+      "status": "not_run",
+      "task": "W19",
+      "needs": [
+        "docs/content-rights/NEEDS.md#6. **Stock-processor DSP"
+      ],
+      "class": "engine_gap"
+    },
+    "T74": {
+      "status": "partial_linux",
+      "task": "W19",
+      "needs": [
+        "docs/content-rights/NEEDS.md#2. **Transient detection",
+        "docs/content-rights/NEEDS.md#3. **Pitch analysis"
+      ],
+      "class": "engine_gap"
+    },
+    "T75": {
+      "status": "partial_linux",
+      "task": "W20",
+      "needs": [
+        "docs/engine/NEEDS.md#33. **No plugin-host isolation"
+      ],
+      "class": "engine_gap"
+    },
+    "T76": {
+      "status": "partial_linux",
+      "task": "W20",
+      "needs": [
+        "docs/engine/NEEDS.md#34. **No plugin-format runtime hosting",
+        "docs/verification/F5/NEEDS.md#F5-N02"
+      ],
+      "class": "engine_gap"
+    },
+    "T85": {
+      "status": "partial_linux",
+      "task": "W23",
+      "needs": [
+        "docs/visfx/NEEDS.md#NEEDS W23-05",
+        "docs/visfx/NEEDS.md#NEEDS W23-04"
+      ],
+      "class": "engine_gap"
+    },
+    "T92": {
+      "status": "partial_linux",
+      "task": "W26",
+      "needs": [
+        "docs/show/NEEDS.md#1. **Dolby Atmos ADM BWF",
+        "docs/show/NEEDS.md#2. **Dolby Atmos MP4"
+      ],
+      "class": "engine_gap"
+    },
+    "T93": {
+      "status": "partial_linux",
+      "task": "W26",
+      "needs": [
+        "docs/show/NEEDS.md#3. **Head-tracking hardware probing",
+        "docs/show/NEEDS.md#4. **Monitor reachability"
+      ],
+      "class": "hardware_blocked"
+    },
+    "T98": {
+      "status": "partial_linux",
+      "task": "W28",
+      "needs": [
+        "docs/wasm/NEEDS.md#N4 \u2014 ARA integration",
+        "docs/wasm/NEEDS.md#N5 \u2014 native plugin export"
+      ],
+      "class": "approval_blocked"
+    },
+    "T100": {
+      "status": "partial_linux",
+      "task": "W29",
+      "needs": [
+        "docs/verification/F5/NEEDS.md#F5-N15"
+      ],
+      "class": "audit_deliverable"
+    }
+  },
+  "uncovered_not_done_rows": [],
+  "tasks_without_evidence": [],
+  "tests": {
+    "T01": {
+      "task_id": "W00",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "ledger_not_updated",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N14",
+          "docs/verification/F5/NEEDS.md#F5-N07"
+        ],
+        "note": "W00 is done with baseline commits; the T01 row itself was never flipped."
+      }
+    },
+    "T02": {
+      "task_id": "W00",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T03": {
+      "task_id": "W01",
+      "phase": "F0",
+      "status": "pass_macos",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T04": {
+      "task_id": "W01",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "spec_unrun",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N08"
+        ],
+        "note": "SQLite linked-build/advisory review is an open TODO in docs/dependencies/PINS.md; manifest-tamper half is covered by tests/content."
+      }
+    },
+    "T05": {
+      "task_id": "W02",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T06": {
+      "task_id": "W02",
+      "phase": "F0",
+      "status": "not_run",
+      "has_evidence": false,
+      "needs_map": {
+        "class": "spec_unrun",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N07"
+        ],
+        "note": "Renderer reload during live playback never run as a journey; supervisor/wire lifecycle covered by void-worker tests."
+      }
+    },
+    "T07": {
+      "task_id": "W02",
+      "phase": "F0",
+      "status": "not_run",
+      "has_evidence": false,
+      "needs_map": {
+        "class": "spec_unrun",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N07"
+        ],
+        "note": "Adversarial peer/secret checks exist at unit level; the written scenario never ran end-to-end."
+      }
+    },
+    "T08": {
+      "task_id": "W03",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "spec_unrun",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N07"
+        ],
+        "note": "Codec rejects are unit-tested in void-protocol/void-client; scenario row not executed as specified."
+      }
+    },
+    "T09": {
+      "task_id": "W03",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "spec_unrun",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N07"
+        ],
+        "note": "Dedup/COMMAND_ID_REUSE covered by void-client vitest; crash-recovery reconciliation covered by tests/recovery; row not updated."
+      }
+    },
+    "T10": {
+      "task_id": "W03",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "spec_unrun",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N07"
+        ],
+        "note": "Stale-revision path covered by void-client/void-studio sendWithStaleRetry tests; concurrent-winner scenario not run as written."
+      }
+    },
+    "T11": {
+      "task_id": "W03",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "spec_unrun",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N07"
+        ],
+        "note": "Bounded views/BUSY/panic-priority constants tested in unit suites; live flood scenario unrun."
+      }
+    },
+    "T12": {
+      "task_id": "W03",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "spec_unrun",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N07"
+        ],
+        "note": "String-int64 round-trips + tick conversion covered in codec/vitest; long-session boundary run unrun."
+      }
+    },
+    "T13": {
+      "task_id": "W04",
+      "phase": "F0",
+      "status": "partial_macos",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "hardware_blocked",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N02"
+        ],
+        "note": "Wire acks + param mapping verified; no live audio device on the qualifying box."
+      }
+    },
+    "T14": {
+      "task_id": "W04",
+      "phase": "F0",
+      "status": "pass_macos",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T15": {
+      "task_id": "W04",
+      "phase": "F0",
+      "status": "partial_macos",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "hardware_blocked",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N02"
+        ],
+        "note": "RT probes in place; needs a real audio device."
+      }
+    },
+    "T16": {
+      "task_id": "W04",
+      "phase": "F0",
+      "status": "partial_macos",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "hardware_blocked",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N02"
+        ],
+        "note": "Callback-path instrumentation exists; needs device-native stress measurement."
+      }
+    },
+    "T17": {
+      "task_id": "W05",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T18": {
+      "task_id": "W05",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T19": {
+      "task_id": "W05",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T20": {
+      "task_id": "W05",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T21": {
+      "task_id": "W05",
+      "phase": "F0",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T22": {
+      "task_id": "W06",
+      "phase": "F0",
+      "status": "pass_macos",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T23": {
+      "task_id": "W06",
+      "phase": "F0",
+      "status": "blocked",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "hardware_blocked",
+        "needs": [
+          "docs/engine/NEEDS.md#34. **No plugin-format runtime hosting",
+          "docs/verification/F5/NEEDS.md#F5-N02"
+        ],
+        "note": "No x86_64 plugin binary or GUI on lane boxes; native editor lifecycle unverifiable here."
+      }
+    },
+    "T24": {
+      "task_id": "W06",
+      "phase": "F0",
+      "status": "pass_macos",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T25": {
+      "task_id": "W07",
+      "phase": "F0",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "hardware_blocked",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N02",
+          "docs/verification/F5/NEEDS.md#F5-N03"
+        ],
+        "note": "Native build matrix needs macOS/Windows build hosts; only the Tauri Linux bundle exists (unsigned)."
+      }
+    },
+    "T26": {
+      "task_id": "W07",
+      "phase": "F0",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "spec_unrun",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N05"
+        ],
+        "note": "Workflows carry timeouts; the deliberate-timeout/superseded-run drill never ran."
+      }
+    },
+    "T27": {
+      "task_id": "W07",
+      "phase": "F0",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "approval_blocked",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N03"
+        ],
+        "note": "Clean-machine install needs a packaged build + VM; bundles exist unsigned (internal-only)."
+      }
+    },
+    "T28": {
+      "task_id": "W07",
+      "phase": "F0",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "approval_blocked",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N03"
+        ],
+        "note": "Signing credentials + updater infra absent; D06 blocks authorization silently assumed here."
+      }
+    },
+    "T29": {
+      "task_id": "W07",
+      "phase": "F0",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "spec_unrun",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N04"
+        ],
+        "note": "No adversarial log/crash-bundle privacy sweep has run."
+      }
+    },
+    "T30": {
+      "task_id": "W07",
+      "phase": "F0",
+      "status": "not_run",
+      "has_evidence": false,
+      "needs_map": {
+        "class": "spec_unrun",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N07",
+          "docs/verification/F5/NEEDS.md#F5-N02"
+        ],
+        "note": "F0 vertical slice on a real device; engine lanes delivered parts (T14 render, crash fixture) but the slice never ran as written."
+      }
+    },
+    "T31": {
+      "task_id": "W08",
+      "phase": "F1",
+      "status": "pass_macos",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T32": {
+      "task_id": "W08",
+      "phase": "F1",
+      "status": "pass_macos",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T33": {
+      "task_id": "W08",
+      "phase": "F1",
+      "status": "pass_macos",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T34": {
+      "task_id": "W08",
+      "phase": "F1",
+      "status": "pass_macos",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T35": {
+      "task_id": "W08",
+      "phase": "F1",
+      "status": "pass_macos",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T36": {
+      "task_id": "W09",
+      "phase": "F1",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T37": {
+      "task_id": "W09",
+      "phase": "F1",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T38": {
+      "task_id": "W09",
+      "phase": "F1",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T39": {
+      "task_id": "W09",
+      "phase": "F1",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T40": {
+      "task_id": "W10",
+      "phase": "F1",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T41": {
+      "task_id": "W10",
+      "phase": "F1",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T42": {
+      "task_id": "W10",
+      "phase": "F1",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T43": {
+      "task_id": "W10",
+      "phase": "F1",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T44": {
+      "task_id": "W11",
+      "phase": "F1",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T45": {
+      "task_id": "W11",
+      "phase": "F1",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "hardware_blocked",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N02"
+        ],
+        "note": "47 renders/3min at 5.96x realtime verified; the 30-min multi-device run needs hardware."
+      }
+    },
+    "T46": {
+      "task_id": "W11",
+      "phase": "F1",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T47": {
+      "task_id": "W11",
+      "phase": "F1",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "spec_unrun",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N06",
+          "docs/verification/F5/NEEDS.md#F5-N02"
+        ],
+        "note": "Cutover staged; closure gated on T45 (hardware) + T48 (human)."
+      }
+    },
+    "T48": {
+      "task_id": "W11",
+      "phase": "F1",
+      "status": "blocked",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "human_participant",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N06"
+        ],
+        "note": "Needs a real musician session; protocol scripted, never run."
+      }
+    },
+    "T49": {
+      "task_id": "W12",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "ledger_not_updated",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N07"
+        ],
+        "note": "Job state machine exercised by tests/journeys/ai (18/18 incl. kill/cancel/late-result); TESTS.json row never updated."
+      }
+    },
+    "T50": {
+      "task_id": "W12",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "hardware_blocked",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N09"
+        ],
+        "note": "CPU/RAM admission tested with rlimits; real GPU-OOM contention needs a discrete GPU."
+      }
+    },
+    "T51": {
+      "task_id": "W12",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "ledger_not_updated",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N07"
+        ],
+        "note": "Model manifest tamper/quarantine covered by tests/models + void-content; row never updated."
+      }
+    },
+    "T52": {
+      "task_id": "W12",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "ledger_not_updated",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N14"
+        ],
+        "note": "pass_linux with EMPTY evidence string \u2014 reported, not fixed (integrator owns statuses)."
+      }
+    },
+    "T53": {
+      "task_id": "W13",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T54": {
+      "task_id": "W13",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T55": {
+      "task_id": "W13",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T56": {
+      "task_id": "W13",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T57": {
+      "task_id": "W14",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T58": {
+      "task_id": "W14",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T59": {
+      "task_id": "W14",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T60": {
+      "task_id": "W15",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T61": {
+      "task_id": "W15",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T62": {
+      "task_id": "W15",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T63": {
+      "task_id": "W16",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T64": {
+      "task_id": "W16",
+      "phase": "F2",
+      "status": "blocked",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "human_participant",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N06"
+        ],
+        "note": "Needs a real human musical-assistance session; USABILITY_PROTOCOL.md runnable."
+      }
+    },
+    "T65": {
+      "task_id": "W16",
+      "phase": "F2",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T66": {
+      "task_id": "W17",
+      "phase": "F3",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T67": {
+      "task_id": "W17",
+      "phase": "F3",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T68": {
+      "task_id": "W17",
+      "phase": "F3",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T69": {
+      "task_id": "W18",
+      "phase": "F3",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T70": {
+      "task_id": "W18",
+      "phase": "F3",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T71": {
+      "task_id": "W18",
+      "phase": "F3",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T72": {
+      "task_id": "W19",
+      "phase": "F3",
+      "status": "not_run",
+      "has_evidence": false,
+      "needs_map": {
+        "class": "engine_gap",
+        "needs": [
+          "docs/content-rights/NEEDS.md#6. **Stock-processor DSP"
+        ],
+        "note": "Every stock processor needs real DSP conformance runs; all inventory rows sit at needs_dsp."
+      }
+    },
+    "T73": {
+      "task_id": "W19",
+      "phase": "F3",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T74": {
+      "task_id": "W19",
+      "phase": "F3",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "engine_gap",
+        "needs": [
+          "docs/content-rights/NEEDS.md#2. **Transient detection",
+          "docs/content-rights/NEEDS.md#3. **Pitch analysis"
+        ],
+        "note": "Marker/pitch models verified; detection + correction renderers are engine DSP."
+      }
+    },
+    "T75": {
+      "task_id": "W20",
+      "phase": "F3",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "engine_gap",
+        "needs": [
+          "docs/engine/NEEDS.md#33. **No plugin-host isolation"
+        ],
+        "note": "IsolationPolicy spec-side only; needs native/void-plugin-worker + fault evidence on a native host."
+      }
+    },
+    "T76": {
+      "task_id": "W20",
+      "phase": "F3",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "engine_gap",
+        "needs": [
+          "docs/engine/NEEDS.md#34. **No plugin-format runtime hosting",
+          "docs/verification/F5/NEEDS.md#F5-N02"
+        ],
+        "note": "Registry/missing-plugin descriptors + rehydrate verdicts; no real plugin binary on this lane."
+      }
+    },
+    "T77": {
+      "task_id": "W20",
+      "phase": "F3",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T78": {
+      "task_id": "W21",
+      "phase": "F3",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T79": {
+      "task_id": "W21",
+      "phase": "F3",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T80": {
+      "task_id": "W21",
+      "phase": "F3",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T81": {
+      "task_id": "W22",
+      "phase": "F4",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T82": {
+      "task_id": "W22",
+      "phase": "F4",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T83": {
+      "task_id": "W22",
+      "phase": "F4",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T84": {
+      "task_id": "W23",
+      "phase": "F4",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T85": {
+      "task_id": "W23",
+      "phase": "F4",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "engine_gap",
+        "needs": [
+          "docs/visfx/NEEDS.md#NEEDS W23-05",
+          "docs/visfx/NEEDS.md#NEEDS W23-04"
+        ],
+        "note": "projectM is an ADR (evidence-only, OpenGL interop unproven); preview/program output plumbing engine-side."
+      }
+    },
+    "T86": {
+      "task_id": "W23",
+      "phase": "F4",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T87": {
+      "task_id": "W24",
+      "phase": "F4",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T88": {
+      "task_id": "W24",
+      "phase": "F4",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T89": {
+      "task_id": "W24",
+      "phase": "F4",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T90": {
+      "task_id": "W25",
+      "phase": "F5",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T91": {
+      "task_id": "W25",
+      "phase": "F5",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T92": {
+      "task_id": "W26",
+      "phase": "F5",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "engine_gap",
+        "needs": [
+          "docs/show/NEEDS.md#1. **Dolby Atmos ADM BWF",
+          "docs/show/NEEDS.md#2. **Dolby Atmos MP4"
+        ],
+        "note": "Layout legality + ADM object model verified; ADM-BWF/MP4 encodes need licensed toolchain + external validator."
+      }
+    },
+    "T93": {
+      "task_id": "W26",
+      "phase": "F5",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "hardware_blocked",
+        "needs": [
+          "docs/show/NEEDS.md#3. **Head-tracking hardware probing",
+          "docs/show/NEEDS.md#4. **Monitor reachability"
+        ],
+        "note": "Head-tracking hardware + physical trim verification unavailable; declared-fallback model is verified."
+      }
+    },
+    "T94": {
+      "task_id": "W27",
+      "phase": "F5",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T95": {
+      "task_id": "W27",
+      "phase": "F5",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T96": {
+      "task_id": "W27",
+      "phase": "F5",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T97": {
+      "task_id": "W28",
+      "phase": "F5",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": null
+    },
+    "T98": {
+      "task_id": "W28",
+      "phase": "F5",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "approval_blocked",
+        "needs": [
+          "docs/wasm/NEEDS.md#N4 \u2014 ARA integration",
+          "docs/wasm/NEEDS.md#N5 \u2014 native plugin export"
+        ],
+        "note": "ARA + plugin-export are evidence-only gates (ADRs 0001/0002); rights/SDK qualification not authorized."
+      }
+    },
+    "T99": {
+      "task_id": "W29",
+      "phase": "F5",
+      "status": "pass_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "audit_deliverable",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N15"
+        ],
+        "note": "This audit: trace_check.py + TRACE_AUDIT.json + reconciliation docs on devin/void-lane-w29; integrator flips status on acceptance."
+      }
+    },
+    "T100": {
+      "task_id": "W29",
+      "phase": "F5",
+      "status": "partial_linux",
+      "has_evidence": true,
+      "needs_map": {
+        "class": "audit_deliverable",
+        "needs": [
+          "docs/verification/F5/NEEDS.md#F5-N15"
+        ],
+        "note": "Release-candidate doc + residual risks committed; public release still gated by D06 authorization."
+      }
+    }
+  },
+  "tasks": {
+    "W00": {
+      "phase": "F0",
+      "status": "done",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W01": {
+      "phase": "F0",
+      "status": "done",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W02": {
+      "phase": "F0",
+      "status": "done",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W03": {
+      "phase": "F0",
+      "status": "done",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W04": {
+      "phase": "F0",
+      "status": "partial_macos",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W05": {
+      "phase": "F0",
+      "status": "done",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W06": {
+      "phase": "F0",
+      "status": "partial_macos",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W07": {
+      "phase": "F0",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W08": {
+      "phase": "F1",
+      "status": "partial_macos",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W09": {
+      "phase": "F1",
+      "status": "done",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W10": {
+      "phase": "F1",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W11": {
+      "phase": "F1",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W12": {
+      "phase": "F2",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W13": {
+      "phase": "F2",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W14": {
+      "phase": "F2",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W15": {
+      "phase": "F2",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W16": {
+      "phase": "F2",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W17": {
+      "phase": "F3",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W18": {
+      "phase": "F3",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W19": {
+      "phase": "F3",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W20": {
+      "phase": "F3",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W21": {
+      "phase": "F3",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W22": {
+      "phase": "F4",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W23": {
+      "phase": "F4",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W24": {
+      "phase": "F4",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W25": {
+      "phase": "F5",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W26": {
+      "phase": "F5",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W27": {
+      "phase": "F5",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W28": {
+      "phase": "F5",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    },
+    "W29": {
+      "phase": "F5",
+      "status": "partial",
+      "has_evidence": true,
+      "implementation_commit": null,
+      "blocker": null
+    }
+  },
+  "features": {
+    "DOC-01": {
+      "category": "Projects and recovery",
+      "feature": "Project create, open, save and templates",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T17",
+        "T18",
+        "T19",
+        "T20",
+        "T21",
+        "T44",
+        "T45",
+        "T46",
+        "T47",
+        "T48"
+      ]
+    },
+    "DOC-02": {
+      "category": "Projects and recovery",
+      "feature": "Project alternatives and track alternatives",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "DOC-03": {
+      "category": "Projects and recovery",
+      "feature": "Backups, undo and redo",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T17",
+        "T18",
+        "T19",
+        "T20",
+        "T21",
+        "T36",
+        "T37",
+        "T38",
+        "T39"
+      ]
+    },
+    "DOC-04": {
+      "category": "Projects and recovery",
+      "feature": "Consolidate, relink and clean media",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T78",
+        "T79",
+        "T80"
+      ]
+    },
+    "DOC-05": {
+      "category": "Projects and recovery",
+      "feature": "Project/track notes and project information",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T44",
+        "T45",
+        "T46",
+        "T47",
+        "T48"
+      ]
+    },
+    "DOC-06": {
+      "category": "Projects and recovery",
+      "feature": "Import tracks/settings from another project",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T78",
+        "T79",
+        "T80"
+      ]
+    },
+    "ENG-01": {
+      "category": "Audio engine and hardware",
+      "feature": "Audio device, input/output and buffer setup",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T13",
+        "T14",
+        "T15",
+        "T16",
+        "T31",
+        "T32",
+        "T33",
+        "T34",
+        "T35"
+      ]
+    },
+    "ENG-02": {
+      "category": "Audio engine and hardware",
+      "feature": "Sample-accurate transport, seek, pause and stop",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T13",
+        "T14",
+        "T15",
+        "T16"
+      ]
+    },
+    "ENG-03": {
+      "category": "Audio engine and hardware",
+      "feature": "Low-latency monitoring and recording alignment",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_macos_engine",
+      "acceptance_test_ids": [
+        "T31",
+        "T32",
+        "T33",
+        "T34",
+        "T35"
+      ]
+    },
+    "ENG-04": {
+      "category": "Audio engine and hardware",
+      "feature": "Plugin delay compensation and sidechain timing",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T69",
+        "T70",
+        "T71"
+      ]
+    },
+    "ENG-05": {
+      "category": "Audio engine and hardware",
+      "feature": "Disk streaming, CPU meters, freeze and bounce-in-place",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "ENG-06": {
+      "category": "Audio engine and hardware",
+      "feature": "Mono, stereo, dual-mono and multichannel processing",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T69",
+        "T70",
+        "T71"
+      ]
+    },
+    "TIME-01": {
+      "category": "Transport and global musical structure",
+      "feature": "Tempo, meter, key and cycle loop",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T13",
+        "T14",
+        "T15",
+        "T16",
+        "T31",
+        "T32",
+        "T33",
+        "T34",
+        "T35"
+      ]
+    },
+    "TIME-02": {
+      "category": "Transport and global musical structure",
+      "feature": "Metronome, count-in and punch boundaries",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_macos_engine",
+      "acceptance_test_ids": [
+        "T31",
+        "T32",
+        "T33",
+        "T34",
+        "T35"
+      ]
+    },
+    "TIME-03": {
+      "category": "Transport and global musical structure",
+      "feature": "Tempo/signature maps and tempo curves",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "TIME-04": {
+      "category": "Transport and global musical structure",
+      "feature": "Markers, arrangement sections and global edits",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "TIME-05": {
+      "category": "Transport and global musical structure",
+      "feature": "Chord track, region chords and harmonic follow",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T57",
+        "T58",
+        "T59"
+      ]
+    },
+    "TIME-06": {
+      "category": "Transport and global musical structure",
+      "feature": "Smart Tempo, beat mapping and groove track",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "REC-01": {
+      "category": "Recording and takes",
+      "feature": "Audio recording: mono/stereo and multitrack",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_macos_engine",
+      "acceptance_test_ids": [
+        "T31",
+        "T32",
+        "T33",
+        "T34",
+        "T35"
+      ]
+    },
+    "REC-02": {
+      "category": "Recording and takes",
+      "feature": "MIDI and software-instrument recording",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_macos_engine",
+      "acceptance_test_ids": [
+        "T31",
+        "T32",
+        "T33",
+        "T34",
+        "T35"
+      ]
+    },
+    "REC-03": {
+      "category": "Recording and takes",
+      "feature": "Overdub, replace, step input and note repeat",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "REC-04": {
+      "category": "Recording and takes",
+      "feature": "Loop takes, take folders and punch recording",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "REC-05": {
+      "category": "Recording and takes",
+      "feature": "Quick-swipe-style comping and take editing",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "REC-06": {
+      "category": "Recording and takes",
+      "feature": "Flashback capture: recent MIDI and audio",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "ARR-01": {
+      "category": "Tracks and linear arrangement",
+      "feature": "Track list, timeline, waveform and region editing",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T36",
+        "T37",
+        "T38",
+        "T39"
+      ]
+    },
+    "ARR-02": {
+      "category": "Tracks and linear arrangement",
+      "feature": "Snap, marquee, alignment guides and drag modes",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T36",
+        "T37",
+        "T38",
+        "T39"
+      ]
+    },
+    "ARR-03": {
+      "category": "Tracks and linear arrangement",
+      "feature": "Region loops, repeats, aliases and folders",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "ARR-04": {
+      "category": "Tracks and linear arrangement",
+      "feature": "Region gain, mute, solo, reverse and delay",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T36",
+        "T37",
+        "T38",
+        "T39"
+      ]
+    },
+    "ARR-05": {
+      "category": "Tracks and linear arrangement",
+      "feature": "Fades, crossfades and silence removal",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "ARR-06": {
+      "category": "Tracks and linear arrangement",
+      "feature": "Track stacks, groups, hide/protect and search",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "ARR-07": {
+      "category": "Tracks and linear arrangement",
+      "feature": "Batch region processing and render-in-place",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "EDIT-01": {
+      "category": "Audio correction and sample editing",
+      "feature": "Flex Time: transient and sustained-material stretching",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "EDIT-02": {
+      "category": "Audio correction and sample editing",
+      "feature": "Flex Pitch: note-level audio pitch editing",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "EDIT-03": {
+      "category": "Audio correction and sample editing",
+      "feature": "Varispeed and linked/unlinked time-pitch changes",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "EDIT-04": {
+      "category": "Audio correction and sample editing",
+      "feature": "Audio-file editing and repair tools",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "EDIT-05": {
+      "category": "Audio correction and sample editing",
+      "feature": "Transient detection, drum replacement and audio-to-MIDI",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T60",
+        "T61",
+        "T62",
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "EDIT-06": {
+      "category": "Audio correction and sample editing",
+      "feature": "Stem Splitter: vocals, drums, bass, guitar, piano, other",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T60",
+        "T61",
+        "T62",
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "MIDI-01": {
+      "category": "MIDI editing and performance data",
+      "feature": "Piano roll: pitch, duration and velocity",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T36",
+        "T37",
+        "T38",
+        "T39"
+      ]
+    },
+    "MIDI-02": {
+      "category": "MIDI editing and performance data",
+      "feature": "Timing/pitch quantization, swing and humanize",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T57",
+        "T58",
+        "T59"
+      ]
+    },
+    "MIDI-03": {
+      "category": "MIDI editing and performance data",
+      "feature": "CC lanes, sustain, pitch bend and aftertouch",
+      "ledger_status": "verified",
+      "derived_from_tests": "mixed_pass",
+      "acceptance_test_ids": [
+        "T31",
+        "T32",
+        "T33",
+        "T34",
+        "T35",
+        "T36",
+        "T37",
+        "T38",
+        "T39"
+      ]
+    },
+    "MIDI-04": {
+      "category": "MIDI editing and performance data",
+      "feature": "Event List, Step Editor and MIDI Transform",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T69",
+        "T70",
+        "T71"
+      ]
+    },
+    "MIDI-05": {
+      "category": "MIDI editing and performance data",
+      "feature": "MPE and MIDI 2.0 data handling",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T69",
+        "T70",
+        "T71"
+      ]
+    },
+    "MIDI-06": {
+      "category": "MIDI editing and performance data",
+      "feature": "Articulation sets, key switches and external MIDI",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T69",
+        "T70",
+        "T71"
+      ]
+    },
+    "MIDI-07": {
+      "category": "MIDI editing and performance data",
+      "feature": "MIDI import/export and track/channel demix",
+      "ledger_status": "verified",
+      "derived_from_tests": "mixed_pass",
+      "acceptance_test_ids": [
+        "T31",
+        "T32",
+        "T33",
+        "T34",
+        "T35",
+        "T40",
+        "T41",
+        "T42",
+        "T43"
+      ]
+    },
+    "PAT-01": {
+      "category": "Patterns and Live Loops",
+      "feature": "Step Sequencer: note and automation patterns",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T57",
+        "T58",
+        "T59"
+      ]
+    },
+    "PAT-02": {
+      "category": "Patterns and Live Loops",
+      "feature": "Pattern recording, variation and MIDI conversion",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "PAT-03": {
+      "category": "Patterns and Live Loops",
+      "feature": "Live Loops: track-by-scene cell grid",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "PAT-04": {
+      "category": "Patterns and Live Loops",
+      "feature": "Quantized clip/scene launch and live capture",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "PAT-05": {
+      "category": "Patterns and Live Loops",
+      "feature": "Remix performance and controller triggering",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T66",
+        "T67",
+        "T68"
+      ]
+    },
+    "MIX-01": {
+      "category": "Mixing and automation",
+      "feature": "Mixer strips: gain, pan, mute, solo and real meters",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T40",
+        "T41",
+        "T42",
+        "T43"
+      ]
+    },
+    "MIX-02": {
+      "category": "Mixing and automation",
+      "feature": "Insert chains, bypass and channel-strip presets",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T40",
+        "T41",
+        "T42",
+        "T43"
+      ]
+    },
+    "MIX-03": {
+      "category": "Mixing and automation",
+      "feature": "Sends, aux returns, subgroups and sidechains",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T69",
+        "T70",
+        "T71"
+      ]
+    },
+    "MIX-04": {
+      "category": "Mixing and automation",
+      "feature": "VCA, mixer groups, multi-output instruments and external I/O",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T69",
+        "T70",
+        "T71"
+      ]
+    },
+    "MIX-05": {
+      "category": "Mixing and automation",
+      "feature": "Automation lanes and read/touch/latch/write modes",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T69",
+        "T70",
+        "T71"
+      ]
+    },
+    "MIX-06": {
+      "category": "Mixing and automation",
+      "feature": "Automation trim, relative edits and region moves",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T69",
+        "T70",
+        "T71"
+      ]
+    },
+    "MIX-07": {
+      "category": "Mixing and automation",
+      "feature": "Smart Controls, MIDI learn and performance macros",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T57",
+        "T58",
+        "T59"
+      ]
+    },
+    "MIX-08": {
+      "category": "Mixing and automation",
+      "feature": "Mixer undo and loudness-aware A/B",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T69",
+        "T70",
+        "T71"
+      ]
+    },
+    "SND-01": {
+      "category": "Instruments, sampling and sound library",
+      "feature": "Playable stock instruments and synthesizer patches",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T40",
+        "T41",
+        "T42",
+        "T43"
+      ]
+    },
+    "SND-02": {
+      "category": "Instruments, sampling and sound library",
+      "feature": "Quick sampling, slicing and drum-pad mapping",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T57",
+        "T58",
+        "T59"
+      ]
+    },
+    "SND-03": {
+      "category": "Instruments, sampling and sound library",
+      "feature": "Multisampling, zones, layers and round robins",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "SND-04": {
+      "category": "Instruments, sampling and sound library",
+      "feature": "Granular, additive, spectral, wavetable and physical synthesis",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T97",
+        "T98"
+      ]
+    },
+    "SND-05": {
+      "category": "Instruments, sampling and sound library",
+      "feature": "Loop/sample browser and musical preview",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T57",
+        "T58",
+        "T59"
+      ]
+    },
+    "SND-06": {
+      "category": "Instruments, sampling and sound library",
+      "feature": "Downloadable sound packs and storage management",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "SND-07": {
+      "category": "Instruments, sampling and sound library",
+      "feature": "User patches, Auto Sampler-style capture and import",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "FX-01": {
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "EQ, filtering and spectrum matching",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "FX-02": {
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "Compression, limiting, gating, de-essing and dynamics",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "FX-03": {
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "Reverb, delay and convolution",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "FX-04": {
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "Distortion, saturation, amps and pedals",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "FX-05": {
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "Modulation, imaging and rhythmic multi-effects",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "FX-06": {
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "Pitch correction, shifter and vocal transformation",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "FX-07": {
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "MIDI effects and sandboxed scripting",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T97",
+        "T98"
+      ]
+    },
+    "FX-08": {
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "Meters, tuner, gain, test signal and utility processors",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T40",
+        "T41",
+        "T42",
+        "T43"
+      ]
+    },
+    "HOST-01": {
+      "category": "Third-party devices and extensibility",
+      "feature": "Audio Units v2/v3 instruments and effects",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T22",
+        "T23",
+        "T24",
+        "T75",
+        "T76",
+        "T77"
+      ]
+    },
+    "HOST-02": {
+      "category": "Third-party devices and extensibility",
+      "feature": "Plugin scan, validation and crash recovery",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T22",
+        "T23",
+        "T24",
+        "T75",
+        "T76",
+        "T77"
+      ]
+    },
+    "HOST-03": {
+      "category": "Third-party devices and extensibility",
+      "feature": "ARA/editor integration and instrument multi-output",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T75",
+        "T76",
+        "T77",
+        "T97",
+        "T98"
+      ]
+    },
+    "HOST-04": {
+      "category": "Third-party devices and extensibility",
+      "feature": "WASM devices and controlled live reload",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T97",
+        "T98"
+      ]
+    },
+    "HOST-05": {
+      "category": "Third-party devices and extensibility",
+      "feature": "VST3 and CLAP hosting \u2014 VOID extension, not Logic feature",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T22",
+        "T23",
+        "T24",
+        "T75",
+        "T76",
+        "T77"
+      ]
+    },
+    "INTEL-01": {
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Session Players: drummer, bass, keyboard and synth styles",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T78",
+        "T79",
+        "T80"
+      ]
+    },
+    "INTEL-02": {
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Chord ID and harmonic analysis",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T53",
+        "T54",
+        "T55",
+        "T56",
+        "T57",
+        "T58",
+        "T59"
+      ]
+    },
+    "INTEL-03": {
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Mastering Assistant",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T78",
+        "T79",
+        "T80"
+      ]
+    },
+    "INTEL-04": {
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Predictive notes, drums, chords and phrase completion",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T53",
+        "T54",
+        "T55",
+        "T56"
+      ]
+    },
+    "INTEL-05": {
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Arrangement and orchestration copilot",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T78",
+        "T79",
+        "T80"
+      ]
+    },
+    "INTEL-06": {
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Text/reference-to-audio: loops, one-shots and stems",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T60",
+        "T61",
+        "T62"
+      ]
+    },
+    "INTEL-07": {
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Audio continuation, inpainting and variations",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T78",
+        "T79",
+        "T80"
+      ]
+    },
+    "INTEL-08": {
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Local memory, preferences and reusable recipes",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T49",
+        "T50",
+        "T51",
+        "T52"
+      ]
+    },
+    "INTEL-09": {
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Model routing, downloads, cancellation and resource budgets",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T49",
+        "T50",
+        "T51",
+        "T52"
+      ]
+    },
+    "GEST-01": {
+      "category": "Gesture-first composition \u2014 VOID additions",
+      "feature": "Draw a melodic contour and tap a rhythm",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T57",
+        "T58",
+        "T59"
+      ]
+    },
+    "GEST-02": {
+      "category": "Gesture-first composition \u2014 VOID additions",
+      "feature": "Touch/trackpad macros and harmonic gestures",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T57",
+        "T58",
+        "T59"
+      ]
+    },
+    "GEST-03": {
+      "category": "Gesture-first composition \u2014 VOID additions",
+      "feature": "MIDI/MPE expressive performance",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T69",
+        "T70",
+        "T71"
+      ]
+    },
+    "GEST-04": {
+      "category": "Gesture-first composition \u2014 VOID additions",
+      "feature": "Camera-hand conducting, optional and local",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T84",
+        "T85",
+        "T86"
+      ]
+    },
+    "GEST-05": {
+      "category": "Gesture-first composition \u2014 VOID additions",
+      "feature": "Gesture recording, quantized launches and undo",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T57",
+        "T58",
+        "T59"
+      ]
+    },
+    "GEST-06": {
+      "category": "Gesture-first composition \u2014 VOID additions",
+      "feature": "Keyboard/accessibility equivalents for every gesture",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T57",
+        "T58",
+        "T59"
+      ]
+    },
+    "VIS-01": {
+      "category": "Visual timeline and stage \u2014 VOID additions",
+      "feature": "Imported images, video and conventional visual presets",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T81",
+        "T82",
+        "T83"
+      ]
+    },
+    "VIS-02": {
+      "category": "Visual timeline and stage \u2014 VOID additions",
+      "feature": "Generated artwork, visual loops and video",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T84",
+        "T85",
+        "T86"
+      ]
+    },
+    "VIS-03": {
+      "category": "Visual timeline and stage \u2014 VOID additions",
+      "feature": "Audio-reactive visuals and beat-synced changes",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T81",
+        "T82",
+        "T83",
+        "T84",
+        "T85",
+        "T86"
+      ]
+    },
+    "VIS-04": {
+      "category": "Visual timeline and stage \u2014 VOID additions",
+      "feature": "Scene graphs, shader presets and safe generated shaders",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T84",
+        "T85",
+        "T86"
+      ]
+    },
+    "VIS-05": {
+      "category": "Visual timeline and stage \u2014 VOID additions",
+      "feature": "Preview, full-screen and multi-display outputs",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T81",
+        "T82",
+        "T83"
+      ]
+    },
+    "VIS-06": {
+      "category": "Visual timeline and stage \u2014 VOID additions",
+      "feature": "Projection mapping and show cues",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T94",
+        "T95",
+        "T96"
+      ]
+    },
+    "VIS-07": {
+      "category": "Visual timeline and stage \u2014 VOID additions",
+      "feature": "OSC/DMX integration and external show control",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T94",
+        "T95",
+        "T96"
+      ]
+    },
+    "VIS-08": {
+      "category": "Visual timeline and stage \u2014 VOID additions",
+      "feature": "Audio-plus-video export and reproducible rendering",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T87",
+        "T88",
+        "T89"
+      ]
+    },
+    "OUT-01": {
+      "category": "Delivery and interoperability",
+      "feature": "Stereo/mono audio bounce and export",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T40",
+        "T41",
+        "T42",
+        "T43"
+      ]
+    },
+    "OUT-02": {
+      "category": "Delivery and interoperability",
+      "feature": "Offline/realtime bounce, dither and normalization",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T78",
+        "T79",
+        "T80"
+      ]
+    },
+    "OUT-03": {
+      "category": "Delivery and interoperability",
+      "feature": "Batch stems, regions and instrument renders",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T78",
+        "T79",
+        "T80"
+      ]
+    },
+    "OUT-04": {
+      "category": "Delivery and interoperability",
+      "feature": "AAF, Final Cut XML and MusicXML interchange",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T90",
+        "T91"
+      ]
+    },
+    "OUT-05": {
+      "category": "Delivery and interoperability",
+      "feature": "Logic/GarageBand project migration",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T90",
+        "T91"
+      ]
+    },
+    "OUT-06": {
+      "category": "Delivery and interoperability",
+      "feature": "Surround routing and binaural monitoring",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T92",
+        "T93"
+      ]
+    },
+    "OUT-07": {
+      "category": "Delivery and interoperability",
+      "feature": "Dolby Atmos beds, objects and ADM BWF",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T92",
+        "T93"
+      ]
+    },
+    "OUT-08": {
+      "category": "Delivery and interoperability",
+      "feature": "Atmos MP4 QC, head tracking and spatial formats",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T92",
+        "T93"
+      ]
+    },
+    "PRO-01": {
+      "category": "Specialist workflows and product completeness",
+      "feature": "Notation editor, parts, lyrics and tablature",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T90",
+        "T91"
+      ]
+    },
+    "PRO-02": {
+      "category": "Specialist workflows and product completeness",
+      "feature": "Movie scoring and absolute timecode",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T90",
+        "T91"
+      ]
+    },
+    "PRO-03": {
+      "category": "Specialist workflows and product completeness",
+      "feature": "MTC, MIDI Clock output, MMC and Ableton Link",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T94",
+        "T95",
+        "T96"
+      ]
+    },
+    "PRO-04": {
+      "category": "Specialist workflows and product completeness",
+      "feature": "Logic Remote-style companion and control surfaces",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T94",
+        "T95",
+        "T96"
+      ]
+    },
+    "PRO-05": {
+      "category": "Specialist workflows and product completeness",
+      "feature": "Custom shortcuts, screensets and flexible workspaces",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T78",
+        "T79",
+        "T80"
+      ]
+    },
+    "PRO-06": {
+      "category": "Specialist workflows and product completeness",
+      "feature": "Accessibility, help, onboarding and localization",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T36",
+        "T37",
+        "T38",
+        "T39",
+        "T44",
+        "T45",
+        "T46",
+        "T47",
+        "T48"
+      ]
+    },
+    "PRO-07": {
+      "category": "Specialist workflows and product completeness",
+      "feature": "Environment-style MIDI/modular routing",
+      "ledger_status": "verified",
+      "derived_from_tests": "pass_linux",
+      "acceptance_test_ids": [
+        "T94",
+        "T95",
+        "T96"
+      ]
+    },
+    "PRO-08": {
+      "category": "Specialist workflows and product completeness",
+      "feature": "Installer, updates, diagnostics and production QA",
+      "ledger_status": "partial",
+      "derived_from_tests": "partial_or_open",
+      "acceptance_test_ids": [
+        "T25",
+        "T26",
+        "T27",
+        "T28",
+        "T29",
+        "T30",
+        "T99",
+        "T100"
+      ]
+    }
+  },
+  "stock": {
+    "STOCK-01": {
+      "kind": "Core synthesis",
+      "names": "Alchemy; Retro Synth; ES1; ES2; EFM1; ES E; ES M; ES P",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T40",
+        "T41",
+        "T42",
+        "T43",
+        "T72",
+        "T73",
+        "T74",
+        "T97",
+        "T98"
+      ]
+    },
+    "STOCK-02": {
+      "kind": "Sampling",
+      "names": "Quick Sampler; Sampler; Sample Alchemy",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T57",
+        "T58",
+        "T59",
+        "T72",
+        "T73",
+        "T74",
+        "T97",
+        "T98"
+      ]
+    },
+    "STOCK-03": {
+      "kind": "Drums",
+      "names": "Drum Kit Designer; Drum Machine Designer; Drum Synth; Ultrabeat",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T40",
+        "T41",
+        "T42",
+        "T43",
+        "T57",
+        "T58",
+        "T59",
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "STOCK-04": {
+      "kind": "Acoustic and orchestral",
+      "names": "Studio Bass; Studio Piano; Studio Strings; Studio Horns",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "STOCK-05": {
+      "kind": "Vintage and modeled",
+      "names": "Vintage B3 Organ; Vintage Clav; Vintage Electric Piano; Vintage Mellotron; Sculpture",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T72",
+        "T73",
+        "T74",
+        "T97",
+        "T98"
+      ]
+    },
+    "STOCK-06": {
+      "kind": "Vocoder and infrastructure",
+      "names": "EVOC 20 PolySynth; External Instrument; Klopfgeist",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T31",
+        "T32",
+        "T33",
+        "T34",
+        "T35",
+        "T69",
+        "T70",
+        "T71",
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "STOCK-07": {
+      "kind": "Legacy sound coverage",
+      "names": "Bass; Church Organ; Drum Kits; Electric Clav(inet); Electric Piano; Guitar; Horns; Piano; Sound Effects; Strings; Tuned Percussion; Voice; Woodwind; Tonewheel Organ; Analog Basic/Mono/Pad/Swirl/Sync; Digital Basic/Mono/Stepper; Hybrid Basic/Morph",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T72",
+        "T73",
+        "T74",
+        "T97",
+        "T98"
+      ]
+    },
+    "STOCK-08": {
+      "kind": "Amps and pedal rack",
+      "names": "Amp Designer; Bass Amp Designer; Pedalboard",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "STOCK-09": {
+      "kind": "Delays",
+      "names": "Delay Designer; Echo; Sample Delay; Stereo Delay; Tape Delay",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "STOCK-10": {
+      "kind": "Saturation and distortion",
+      "names": "Bitcrusher; ChromaGlow; Clip Distortion; Distortion; Distortion II; Overdrive; Phase Distortion",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "STOCK-11": {
+      "kind": "Dynamics",
+      "names": "Adaptive Limiter; Compressor; DeEsser 2; Enveloper; Expander; Limiter; Multipressor; Noise Gate; Surround Compressor",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T72",
+        "T73",
+        "T74",
+        "T92",
+        "T93"
+      ]
+    },
+    "STOCK-12": {
+      "kind": "Equalization",
+      "names": "Channel EQ; Linear Phase EQ; Match EQ; Single Band EQ; Vintage Console EQ; Vintage Graphic EQ; Vintage Tube EQ",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "STOCK-13": {
+      "kind": "Filters and vocoding",
+      "names": "AutoFilter; EVOC 20 Filterbank; EVOC 20 TrackOscillator; Fuzz-Wah; Spectral Gate",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T72",
+        "T73",
+        "T74",
+        "T97",
+        "T98"
+      ]
+    },
+    "STOCK-14": {
+      "kind": "Modulation",
+      "names": "Chorus; Ensemble; Flanger; Microphaser; Modulation Delay; Phaser; RingShifter; Rotor Cabinet; Scanner Vibrato; Spreader; Tremolo",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "STOCK-15": {
+      "kind": "Rhythmic multi-effects",
+      "names": "Beat Breaker; Phat FX; Remix FX; Step FX",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T66",
+        "T67",
+        "T68",
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "STOCK-16": {
+      "kind": "Pitch and voice",
+      "names": "Pitch Correction; Pitch Shifter; Vocal Transformer",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "STOCK-17": {
+      "kind": "Reverbs",
+      "names": "ChromaVerb; Space Designer; Quantec Room Simulator; EnVerb; SilverVerb",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    },
+    "STOCK-18": {
+      "kind": "Imaging and spatial",
+      "names": "Binaural Post-Processing; Spatial Audio Monitoring; Direction Mixer; Stereo Spread; Dolby Atmos",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T92",
+        "T93"
+      ]
+    },
+    "STOCK-19": {
+      "kind": "Meters and utilities",
+      "names": "BPM Counter; Correlation Meter; Level Meter; Loudness Meter; MultiMeter; Surround MultiMeter; Tuner; Auto Sampler; Down Mixer; Gain; Multichannel Gain; I/O; Test Oscillator",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T40",
+        "T41",
+        "T42",
+        "T43",
+        "T69",
+        "T70",
+        "T71",
+        "T72",
+        "T73",
+        "T74",
+        "T92",
+        "T93"
+      ]
+    },
+    "STOCK-20": {
+      "kind": "MIDI processors",
+      "names": "Arpeggiator; Chord Trigger; Modifier; Modulator; Note Repeater; Randomizer; Scripter; Transposer; Velocity Processor",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T57",
+        "T58",
+        "T59",
+        "T69",
+        "T70",
+        "T71",
+        "T97",
+        "T98"
+      ]
+    },
+    "STOCK-21": {
+      "kind": "Mastering",
+      "names": "Mastering Assistant",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "pass_linux",
+      "via_task_tests": [
+        "T78",
+        "T79",
+        "T80"
+      ]
+    },
+    "STOCK-22": {
+      "kind": "Legacy effects",
+      "names": "AVerb; Bass Amp; DeEsser; Denoiser; Ducker; DJ EQ; Fat EQ; Single-Band EQ; Silver EQ; GoldVerb; Grooveshifter; Guitar Amp Pro; PlatinumVerb",
+      "ledger_status": "partial",
+      "derived_from_owner_tests": "partial_or_open",
+      "via_task_tests": [
+        "T72",
+        "T73",
+        "T74"
+      ]
+    }
+  },
+  "notes": [
+    "DOC-02: nonstandard impl status 'verified'",
+    "DOC-03: nonstandard impl status 'verified'",
+    "DOC-04: nonstandard impl status 'verified'",
+    "DOC-06: nonstandard impl status 'verified'",
+    "ENG-03: nonstandard impl status 'verified'",
+    "ENG-04: nonstandard impl status 'verified'",
+    "ENG-05: nonstandard impl status 'verified'",
+    "ENG-06: nonstandard impl status 'verified'",
+    "TIME-02: nonstandard impl status 'verified'",
+    "TIME-03: nonstandard impl status 'verified'",
+    "TIME-04: nonstandard impl status 'verified'",
+    "TIME-05: nonstandard impl status 'verified'",
+    "TIME-06: nonstandard impl status 'verified'",
+    "REC-01: nonstandard impl status 'verified'",
+    "REC-02: nonstandard impl status 'verified'",
+    "REC-03: nonstandard impl status 'verified'",
+    "REC-04: nonstandard impl status 'verified'",
+    "REC-05: nonstandard impl status 'verified'",
+    "REC-06: nonstandard impl status 'verified'",
+    "ARR-01: nonstandard impl status 'verified'",
+    "ARR-02: nonstandard impl status 'verified'",
+    "ARR-03: nonstandard impl status 'verified'",
+    "ARR-04: nonstandard impl status 'verified'",
+    "ARR-05: nonstandard impl status 'verified'",
+    "ARR-06: nonstandard impl status 'verified'",
+    "ARR-07: nonstandard impl status 'verified'",
+    "MIDI-01: nonstandard impl status 'verified'",
+    "MIDI-02: nonstandard impl status 'verified'",
+    "MIDI-03: nonstandard impl status 'verified'",
+    "MIDI-04: nonstandard impl status 'verified'",
+    "MIDI-05: nonstandard impl status 'verified'",
+    "MIDI-06: nonstandard impl status 'verified'",
+    "MIDI-07: nonstandard impl status 'verified'",
+    "PAT-01: nonstandard impl status 'verified'",
+    "PAT-02: nonstandard impl status 'verified'",
+    "PAT-03: nonstandard impl status 'verified'",
+    "PAT-04: nonstandard impl status 'verified'",
+    "PAT-05: nonstandard impl status 'verified'",
+    "MIX-01: nonstandard impl status 'verified'",
+    "MIX-02: nonstandard impl status 'verified'",
+    "MIX-03: nonstandard impl status 'verified'",
+    "MIX-04: nonstandard impl status 'verified'",
+    "MIX-05: nonstandard impl status 'verified'",
+    "MIX-06: nonstandard impl status 'verified'",
+    "MIX-07: nonstandard impl status 'verified'",
+    "MIX-08: nonstandard impl status 'verified'",
+    "SND-01: nonstandard impl status 'verified'",
+    "SND-02: nonstandard impl status 'verified'",
+    "SND-05: nonstandard impl status 'verified'",
+    "FX-08: nonstandard impl status 'verified'",
+    "INTEL-01: nonstandard impl status 'verified'",
+    "INTEL-02: nonstandard impl status 'verified'",
+    "INTEL-03: nonstandard impl status 'verified'",
+    "INTEL-04: nonstandard impl status 'verified'",
+    "INTEL-05: nonstandard impl status 'verified'",
+    "INTEL-06: nonstandard impl status 'verified'",
+    "INTEL-07: nonstandard impl status 'verified'",
+    "INTEL-08: nonstandard impl status 'verified'",
+    "INTEL-09: nonstandard impl status 'verified'",
+    "GEST-01: nonstandard impl status 'verified'",
+    "GEST-02: nonstandard impl status 'verified'",
+    "GEST-03: nonstandard impl status 'verified'",
+    "GEST-05: nonstandard impl status 'verified'",
+    "GEST-06: nonstandard impl status 'verified'",
+    "VIS-01: nonstandard impl status 'verified'",
+    "VIS-05: nonstandard impl status 'verified'",
+    "VIS-06: nonstandard impl status 'verified'",
+    "VIS-07: nonstandard impl status 'verified'",
+    "VIS-08: nonstandard impl status 'verified'",
+    "OUT-01: nonstandard impl status 'verified'",
+    "OUT-02: nonstandard impl status 'verified'",
+    "OUT-03: nonstandard impl status 'verified'",
+    "OUT-04: nonstandard impl status 'verified'",
+    "OUT-05: nonstandard impl status 'verified'",
+    "PRO-01: nonstandard impl status 'verified'",
+    "PRO-02: nonstandard impl status 'verified'",
+    "PRO-03: nonstandard impl status 'verified'",
+    "PRO-04: nonstandard impl status 'verified'",
+    "PRO-05: nonstandard impl status 'verified'",
+    "PRO-07: nonstandard impl status 'verified'",
+    "INF-01: nonstandard infra status 'partial'",
+    "INF-03: nonstandard infra status 'partial'",
+    "INF-04: nonstandard infra status 'partial'",
+    "INF-05: nonstandard infra status 'partial'",
+    "INF-06: nonstandard infra status 'partial'",
+    "INF-07: nonstandard infra status 'partial'",
+    "INF-08: nonstandard infra status 'partial'",
+    "INF-09: nonstandard infra status 'partial'",
+    "INF-10: nonstandard infra status 'partial'",
+    "INF-11: nonstandard infra status 'partial'",
+    "INF-12: nonstandard infra status 'partial'",
+    "INF-13: nonstandard infra status 'partial'",
+    "INF-14: nonstandard infra status 'partial'",
+    "INF-15: nonstandard infra status 'partial'",
+    "INF-16: nonstandard infra status 'partial'",
+    "INF-19: nonstandard infra status 'partial'",
+    "INF-20: nonstandard infra status 'partial'",
+    "CORE-01: nonstandard dep status 'in_use'",
+    "CORE-02: nonstandard dep status 'qualified'",
+    "CORE-03: nonstandard dep status 'qualified'",
+    "DSP-03: nonstandard dep status 'in_use'",
+    "IO-01: nonstandard dep status 'in_use'",
+    "IO-04: nonstandard dep status 'in_use'",
+    "DATA-01: nonstandard dep status 'in_use'",
+    "DATA-02: nonstandard dep status 'qualified'",
+    "DATA-03: nonstandard dep status 'in_use'",
+    "AI-03: nonstandard dep status 'in_use'",
+    "AI-04: nonstandard dep status 'in_use'",
+    "VIS-01: nonstandard dep status 'in_use'",
+    "VIS-03: nonstandard dep status 'in_use'",
+    "EXT-01: nonstandard dep status 'in_use'",
+    "QA-03: nonstandard dep status 'in_use'"
+  ],
+  "result": "pass",
+  "failures": []
+}

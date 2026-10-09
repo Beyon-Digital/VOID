@@ -1,0 +1,12 @@
+[package]
+name = "tests-notation"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace]
+
+[dependencies]
+void-notation = { path = "../../crates/void-notation" }
+void-exchange = { path = "../../crates/void-exchange" }
+serde_json = "1"

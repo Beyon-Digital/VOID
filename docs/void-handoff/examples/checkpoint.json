@@ -1,0 +1,26 @@
+{
+  "formatVersion": 1,
+  "projectId": "c833d3ab-8a73-42be-b37b-0107a688f761",
+  "checkpointId": "8a9d2f11-6165-4a51-b244-264f4d87e511",
+  "parentCheckpointId": null,
+  "revision": "4",
+  "engineRevision": "EXAMPLE-MUST-REPLACE-WITH-EXACT-COMMIT",
+  "createdAt": "2026-10-08T00:00:00Z",
+  "engineSnapshot": {
+    "path": "engine.tracktionedit",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "bytes": "123"
+  },
+  "appState": {
+    "path": "app-state.json",
+    "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "bytes": "456"
+  },
+  "commandReceipts": {
+    "path": "command-receipts.json",
+    "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "bytes": "789"
+  },
+  "assetHashes": [],
+  "manifestState": "complete"
+}

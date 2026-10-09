@@ -1,0 +1,10 @@
+[package]
+name = "void-mix"
+description = "VOID mixer routing model — sends/aux buses/VCA groups/multi-output nodes/external I-O, loop rejection, per-node delay compensation, channel-layout validation (W18, T69)"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }

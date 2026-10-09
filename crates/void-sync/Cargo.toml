@@ -1,0 +1,10 @@
+[package]
+name = "void-sync"
+description = "VOID synchronization model — MTC encode/decode, MIDI Clock, MMC, tempo-master arbitration, OSC address-space and DMX descriptors (W27, T94 spec side)"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }

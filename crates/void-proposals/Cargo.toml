@@ -1,0 +1,18 @@
+[package]
+name = "void-proposals"
+description = "VOID predictive-composition proposal lifecycle: generation jobs, validated proposal records, provenance, accept/reject (W13)"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+void-protocol = { path = "../void-protocol" }
+void-jobs = { path = "../void-jobs" }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+uuid = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"
+void-assets = { path = "../void-assets" }

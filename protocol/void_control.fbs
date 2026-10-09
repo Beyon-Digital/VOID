@@ -1,0 +1,448 @@
+// VOID native control protocol — FlatBuffers schema (protocol major 1, minor 0).
+// Normative semantics live in docs/void-handoff/CONTRACTS.md and
+// protocol/README.md. This file is the single source of truth for the
+// Rust coordinator <-> C++ engine/worker wire format. Regenerate bindings
+// with tools/protocol-gen.sh (pinned flatc 25.9.23) after any edit.
+//
+// Conventions:
+//  * All IDs are opaque UUID strings (stable across engine epochs).
+//  * Musical positions/lengths are signed ticks, 960_000 ticks per quarter.
+//    Sample positions are signed frames at the declared sample rate.
+//    int64 here means native int64 on the wire; JSON DTOs carry decimal
+//    strings (see packages/void-client).
+//  * `revisions` are monotonic u64 coordinator revisions; `engine_epoch` is
+//    a monotonic u64 that increments on every engine process start.
+//
+// NOTE: flatbuffers resolves references in order — types must be declared
+// before use. File order: shared enums -> persistent ops -> request payloads
+// -> response/event payloads -> frame envelopes.
+
+namespace voidproto;
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+enum WorkerKind : byte {
+  ENGINE = 0,
+  PLUGIN_SCANNER = 1,
+  AI_JOB = 2,
+  VISUAL = 3,
+}
+
+enum AckStatus : byte {
+  APPLIED = 0,
+  DUPLICATE = 1,
+  REJECTED = 2,
+  OUTCOME_UNKNOWN = 3,
+}
+
+enum ErrorCode : ushort {
+  NONE = 0,
+  BAD_REQUEST = 1,
+  UNSUPPORTED_VERSION = 2,
+  UNSUPPORTED_CAPABILITY = 3,
+  NOT_AUTHORIZED = 4,
+  NOT_FOUND = 5,
+  STALE_REVISION = 6,
+  STALE_EPOCH = 7,
+  COMMAND_ID_REUSE = 8,
+  BUSY = 9,
+  DEVICE_UNAVAILABLE = 10,
+  ASSET_MISSING = 11,
+  PLUGIN_UNAVAILABLE = 12,
+  DISK_FULL = 13,
+  WORKER_FAILED = 14,
+  CANCELLED = 15,
+  OUTCOME_UNKNOWN = 16,
+}
+
+enum TrackKind : byte {
+  AUDIO = 0,
+  MIDI = 1,
+  INSTRUMENT = 2,
+  BUS = 3,
+}
+
+enum ClipKind : byte {
+  AUDIO = 0,
+  MIDI = 1,
+}
+
+enum TransportState : byte {
+  STOPPED = 0,
+  PLAYING = 1,
+  RECORDING = 2,
+  PAUSED = 3,
+}
+
+enum SaveStatus : byte {
+  SAVE_DURABLE = 0,
+  SAVE_FAILED = 1,
+}
+
+enum TransportOp : byte {
+  PLAY = 0,
+  STOP = 1,
+  SEEK = 2,
+  PANIC = 3,             // all-notes-off + stop; reserved high-priority path
+  SET_CYCLE = 4,
+  SET_TEMPO_LIVE = 5,    // preview only; committed change goes via SetTempoOp
+}
+
+// Bounded paged read of coordinator/engine state.
+enum ViewKind : byte {
+  PROJECT_SUMMARY = 0,
+  TRACK_LIST = 1,
+  CLIP_LIST = 2,
+  NOTE_RANGE = 3,
+  ASSET_LIST = 4,
+  PLUGIN_LIST = 5,
+  RECEIPT_LIST = 6,
+}
+
+// ---------------------------------------------------------------------------
+// Persistent command operations (serialized document edits; union member
+// order is part of the wire contract — append only).
+// ---------------------------------------------------------------------------
+
+table CreateProjectOp {
+  name: string;
+  // Absolute .void container directory chosen by the coordinator.
+  container_dir: string;
+  sample_rate: uint = 48000;
+  initial_bpm: float = 120.0;
+}
+
+table OpenProjectOp {
+  container_dir: string;
+}
+
+table CloseProjectOp {}
+
+table AddTrackOp {
+  track_id: string;
+  kind: TrackKind;
+  name: string;
+  index: int = -1; // -1 appends
+}
+
+table RemoveTrackOp { track_id: string; }
+
+table SetTrackNameOp { track_id: string; name: string; }
+
+// Linear gain, finite only (NaN/Inf rejected by validators before apply).
+table SetTrackGainOp { track_id: string; gain_linear: float; }
+table SetTrackPanOp  { track_id: string; pan: float; } // -1.0..1.0
+table SetTrackMuteOp { track_id: string; muted: bool; }
+table SetTrackSoloOp { track_id: string; soloed: bool; }
+
+// asset_id references an immutable verified blob under assets/sha256/.
+table InsertAudioClipOp {
+  clip_id: string;
+  track_id: string;
+  asset_id: string;
+  start_ticks: long;
+  length_ticks: long;
+  offset_ticks: long = 0;
+}
+
+table InsertMidiClipOp {
+  clip_id: string;
+  track_id: string;
+  start_ticks: long;
+  length_ticks: long;
+}
+
+table RemoveClipOp { clip_id: string; }
+table MoveClipOp   { clip_id: string; track_id: string; start_ticks: long; }
+table TrimClipOp   { clip_id: string; start_ticks: long; length_ticks: long; offset_ticks: long = 0; }
+table SplitClipOp  { clip_id: string; at_ticks: long; new_clip_id: string; }
+
+table InsertNoteOp {
+  clip_id: string;
+  note_id: string;
+  pitch: ubyte;          // 0..127
+  velocity: ubyte;       // 1..127
+  start_ticks: long;
+  length_ticks: long;
+}
+
+table RemoveNoteOp { clip_id: string; note_id: string; }
+
+table SetNoteOp {
+  clip_id: string;
+  note_id: string;
+  pitch: int = -1;       // -1 = unchanged
+  velocity: int = -1;
+  start_ticks: long = -1;
+  length_ticks: long = -1;
+}
+
+table SetTempoOp      { at_ticks: long; bpm: float; }
+table SetTimeSignatureOp { at_ticks: long; numerator: ubyte; denominator: ubyte; }
+table SetLoopRangeOp  { start_ticks: long; end_ticks: long; enabled: bool; }
+
+table SaveProjectOp    { reason: string; }
+table CreateCheckpointOp { reason: string; }
+table UndoOp           { transaction_id: string; } // empty = latest
+table RedoOp           { transaction_id: string; }
+
+// Register an already-imported immutable asset with the engine.
+table AttachAssetOp {
+  asset_id: string;
+  sha256: string;
+  media_type: string;   // "wav", "aiff", "midi", ...
+  // Project-relative path under assets/sha256/ — never an absolute or
+  // traversing path; validated before engine use.
+  rel_path: string;
+  channels: int = 0;
+  duration_ticks: long = 0;
+}
+
+// Route a plugin slot on a track (engine-hosted; isolation is W20 scope).
+table InsertPluginOp {
+  track_id: string;
+  slot: int = -1;
+  plugin_instance_id: string;
+  // Scanner-cache identity: format string (e.g. "VST3", "AU") + UID/path.
+  format: string;
+  plugin_uid: string;
+}
+
+table RemovePluginOp    { plugin_instance_id: string; }
+table SetPluginParamOp  { plugin_instance_id: string; param_id: string; value: float; }
+table OpenPluginEditorOp { plugin_instance_id: string; }
+table ClosePluginEditorOp { plugin_instance_id: string; }
+
+union PersistentOp {
+  CreateProjectOp,
+  OpenProjectOp,
+  CloseProjectOp,
+  AddTrackOp,
+  RemoveTrackOp,
+  SetTrackNameOp,
+  SetTrackGainOp,
+  SetTrackPanOp,
+  SetTrackMuteOp,
+  SetTrackSoloOp,
+  InsertAudioClipOp,
+  InsertMidiClipOp,
+  RemoveClipOp,
+  MoveClipOp,
+  TrimClipOp,
+  SplitClipOp,
+  InsertNoteOp,
+  RemoveNoteOp,
+  SetNoteOp,
+  SetTempoOp,
+  SetTimeSignatureOp,
+  SetLoopRangeOp,
+  SaveProjectOp,
+  CreateCheckpointOp,
+  UndoOp,
+  RedoOp,
+  AttachAssetOp,
+  InsertPluginOp,
+  RemovePluginOp,
+  SetPluginParamOp,
+  OpenPluginEditorOp,
+  ClosePluginEditorOp,
+}
+
+// ---------------------------------------------------------------------------
+// Control channel payloads: app -> worker
+// ---------------------------------------------------------------------------
+
+// Persistent command: serialized, revision-bearing, exactly-once tracked.
+table PersistentCommand {
+  command_id: string;
+  transaction_id: string;  // one user gesture/acceptance == one transaction
+  project_id: string;
+  engine_epoch: ulong;
+  expected_revision: ulong;
+  op: PersistentOp;
+}
+
+// Transport/control request: scoped, non-persistent; never a fake edit.
+table TransportRequest {
+  request_id: string;
+  project_id: string;
+  engine_epoch: ulong;
+  op: TransportOp;
+  position_ticks: long = -1;   // SEEK only; -1 = n/a
+  cycle_start_ticks: long = 0; // SET_CYCLE only
+  cycle_end_ticks: long = 0;
+  value: float = 0.0;          // generic payload (e.g. tempo)
+}
+
+table ReadRequest {
+  request_id: string;
+  project_id: string;
+  view: ViewKind;
+  cursor: string;        // opaque continuation token; "" = start
+  limit: uint = 0;       // 0 = server default (<= 2000 objects / 512 KiB)
+  track_id: string;      // optional scope filter
+  start_ticks: long = -1; // NOTE_RANGE window
+  end_ticks: long = -1;
+}
+
+// Plugin scanner task (runs in the scanner subprocess, never the engine).
+table PluginScanRequest {
+  request_id: string;
+  plugin_path: string;    // absolute path coordinator vetted for scanner root
+  format: string;         // "VST3" | "AU" | ...
+}
+
+union ControlRequest {
+  PersistentCommand,
+  TransportRequest,
+  ReadRequest,
+  PluginScanRequest,
+}
+
+// First frame on every control connection; the only frame carrying the
+// launch token. Sent worker -> app within the handshake deadline.
+table WorkerHello {
+  worker_kind: WorkerKind;
+  worker_instance_id: string;
+  protocol_major: ushort;
+  protocol_minor: ushort;
+  launch_token: string;   // 128-bit token passed via env at spawn
+  engine_epoch: ulong;    // nonzero for ENGINE workers
+  capabilities: [string]; // e.g. "tracktion/3.x", "plugin-editor", "offline-render"
+}
+
+// ---------------------------------------------------------------------------
+// Control channel payloads: worker -> app
+// ---------------------------------------------------------------------------
+
+table CommandReceipt {
+  command_id: string;
+  transaction_id: string;
+  status: AckStatus;
+  error: ErrorCode;
+  revision: ulong;         // resulting projectRevision (APPLIED) or current (conflict)
+  engine_epoch: ulong;
+  message: string;         // safe user-facing text; never raw paths/secrets
+  payload_hash: string;    // canonical hash of the applied payload (dup detect)
+}
+
+table ReadItem {
+  object_id: string;
+  summary_json: string;    // small bounded JSON projection of the object
+}
+
+table ReadResponse {
+  request_id: string;
+  revision: ulong;
+  items: [ReadItem];
+  next_cursor: string;     // "" when exhausted
+  done: bool;
+  error: ErrorCode;
+}
+
+table PluginScanResult {
+  request_id: string;
+  ok: bool;
+  quarantined: bool;
+  // Cacheable identity: binary hash, version, architecture, declared I/O.
+  plugin_uid: string;
+  binary_sha256: string;
+  name: string;
+  version: string;
+  arch: string;
+  error: ErrorCode;
+  message: string;
+}
+
+union ControlEvent {
+  CommandReceipt,
+  ReadResponse,
+  PluginScanResult,
+}
+
+// ---------------------------------------------------------------------------
+// Frame envelopes (either direction on the control socket; the allowed
+// variant set differs per direction — see protocol/README.md).
+// ---------------------------------------------------------------------------
+
+table RequestFrame {
+  request: ControlRequest;
+}
+
+table EventFrame {
+  event: ControlEvent;
+}
+
+union ControlFrame {
+  WorkerHello,
+  RequestFrame,
+  EventFrame,
+}
+
+// FlatBuffer roots must be tables — this is the actual frame sent on the
+// control socket in both directions.
+table ControlEnvelope {
+  frame: ControlFrame;
+}
+
+// ---------------------------------------------------------------------------
+// Telemetry channel (lossy; worker -> app). May be coalesced/dropped to
+// <=30 updates/sec per subscription. Never carries persistent edits.
+// ---------------------------------------------------------------------------
+
+table ClockSnapshot {
+  project_id: string;
+  engine_epoch: ulong;
+  timeline_sample: long;        // position on the (possibly looping) timeline
+  device_sample_counter: long;  // monotonic device counter — no loop wrap
+  sample_rate: uint;
+  transport_state: TransportState;
+  loop_start_ticks: long;
+  loop_end_ticks: long;
+  tempo_map_revision: ulong;
+  sequence: ulong;              // per-epoch monotonic
+  host_clock_ns: ulong;         // monotonic host clock
+}
+
+table MeterFrame {
+  project_id: string;
+  engine_epoch: ulong;
+  track_id: string;
+  peak_l: float;
+  peak_r: float;
+  rms_l: float;
+  rms_r: float;
+  clipped: bool;
+  sequence: ulong;
+}
+
+table SaveResultEvent {
+  project_id: string;
+  command_id: string;
+  status: SaveStatus;
+  revision: ulong;
+  checkpoint_id: string;
+  manifest_sha256: string;
+  error: ErrorCode;
+  message: string;
+}
+
+table TransportAck {
+  request_id: string;
+  ok: bool;
+  error: ErrorCode;
+}
+
+union TelemetryEvent {
+  ClockSnapshot,
+  MeterFrame,
+  SaveResultEvent,
+  TransportAck,
+}
+
+// Top-level frame on the telemetry socket.
+table TelemetryFrame {
+  event: TelemetryEvent;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "void-studio",
+  "version": "0.1.0",
+  "description": "VOID workspace view state \u2014 selection, viewport, panels, focus; read-view driven, never a song clone",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "void-client": "workspace:*",
+    "zustand": "^5.0.12"
+  },
+  "peerDependencies": {
+    "react": "*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "react": "^19.2.5",
+    "typescript": "6.0.3",
+    "vitest": "^3.0.0"
+  },
+  "type": "module"
+}

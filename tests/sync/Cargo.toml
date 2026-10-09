@@ -1,0 +1,14 @@
+[package]
+name = "void-sync-tests"
+description = "W27 sync suite (T94 model side) — MTC byte fixtures, clock math, MMC, master arbitration, drift, OSC bounds, DMX descriptors"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Detached suite: not part of the main workspace — run with
+# `cargo test --manifest-path tests/sync/Cargo.toml`.
+[workspace]
+
+[dependencies]
+void-sync = { path = "../../crates/void-sync" }
+serde = { version = "1", features = ["derive"] }

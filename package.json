@@ -6,7 +6,15 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "doctor": "./tools/doctor.sh",
+    "dev:native": "cargo build -p void-worker --bin void-mock-worker && pnpm --filter void-tauri dev",
+    "build:native": "cargo build --workspace --release",
+    "test:unit": "turbo run test",
+    "test:rust": "cargo test --workspace --exclude void-tauri",
+    "test:contract": "cargo test -p void-worker --test supervisor_lifecycle",
+    "verify:packet": "python3 docs/void-handoff/tools/validate_packet.py",
+    "protocol:gen": "./tools/protocol-gen.sh"
   },
   "devDependencies": {
     "electron-vite": "^5.0.0",

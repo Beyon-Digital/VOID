@@ -1,7 +1,9 @@
-node_modules
-dist
-.turbo
-packages/void-core/dist
-packages/void-daw/dist
-packages/void-core/tsconfig.tsbuildinfo
+build/
+node_modules/
+dist/
+.turbo/
+target/
 *.tsbuildinfo
+
+__pycache__/
+*.pyc

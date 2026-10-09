@@ -1,0 +1,17 @@
+[package]
+name = "void-content"
+description = "VOID stock content library — pack manifests, multisample zones/streaming, install/tamper/relink lifecycle (W19, SND-03, SND-06, T73)"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+void-assets = { path = "../void-assets" }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+uuid = { workspace = true }
+semver = "1"
+
+[dev-dependencies]
+tempfile = "3"

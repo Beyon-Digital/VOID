@@ -1,0 +1,21 @@
+[package]
+name = "void-producer-tests"
+description = "W21 producer gate suite (T78–T80 Linux-verifiable halves) — accompaniment determinism/locked-region invariants, BS.1770 mastering lifecycle, stems/consolidation/alternatives/import planners"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Own workspace: the root Cargo.toml members list is integrator-owned —
+# this suite builds standalone via `cargo test --manifest-path`.
+[workspace]
+
+[dependencies]
+void-producer = { path = "../../crates/void-producer" }
+void-proposals = { path = "../../crates/void-proposals" }
+void-assets = { path = "../../crates/void-assets" }
+void-export = { path = "../../crates/void-export" }
+serde_json = "1"
+serde = { version = "1", features = ["derive"] }
+sha2 = "0.10"
+uuid = { version = "1", features = ["v4", "serde"] }
+tempfile = "3"

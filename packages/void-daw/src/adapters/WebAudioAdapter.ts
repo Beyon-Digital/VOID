@@ -1,4 +1,12 @@
 // Adapter: implements AudioPort
+//
+// WARNING — NOT IMPLEMENTED AUDIO. This is a browser-AudioContext stub from
+// the pre-engine prototype. It does not connect to the VOID engine worker:
+// transport methods issue no engine commands, analysers/peaks always return
+// zeros, and track/clip calls mutate nothing. It must never be counted as
+// real audio — real audio lives in the C++/Tracktion worker and real
+// transport/meters flow over void://control and void://telemetry. Kept only
+// to satisfy the AudioPort interface while prototype code is ported.
 import { AudioPort, AudioTrackRef, ClipRef, AudioNodeRef, TrackType, ClipData } from 'void-core';
 
 export class WebAudioAdapter implements AudioPort {
@@ -65,6 +73,7 @@ export class WebAudioAdapter implements AudioPort {
   getAnalyserData(trackId: string, fftSize: number): Float32Array {
     // ⚡ Bolt: Cache TypedArray (Float32Array) instead of instantiating a new one on every call
     // This prevents severe garbage collection pressure and UI micro-stutters during high-frequency polling
+    // NOTE: zero-filled — never wire this to visible meters as live data.
     let cached = this.analyserDataCache.get(trackId);
     if (!cached || cached.length !== fftSize) {
       cached = new Float32Array(fftSize);
@@ -74,6 +83,7 @@ export class WebAudioAdapter implements AudioPort {
   }
 
   getPeakLevel(trackId: string): { peak: number; rms: number } {
+    // Always zero — stub only; real levels come from MeterFrame telemetry.
     return { peak: 0, rms: 0 };
   }
 }

@@ -1,0 +1,296 @@
+{
+ "schema": "void-f5-needs-map/1",
+ "branch": "devin/void-lane-w29",
+ "base": "devin/void-implementation",
+ "purpose": "Machine-readable mapping from every non-pass TESTS.json row (and the declared ledger anomalies) to the NEEDS entry that records the gap. Refs are '<repo-relative path>#<literal substring present in that file>'; trace_check.py asserts each substring exists.",
+ "classes": {
+  "ledger_not_updated": "Underlying work happened; the ledger row was never updated by its lane.",
+  "spec_unrun": "Components verified in suites; the written scenario was never executed end-to-end on a qualified target.",
+  "hardware_blocked": "Needs a device/GPU/display this workspace does not provide.",
+  "approval_blocked": "Needs explicit owner authorization or purchased/licensed rights (D06).",
+  "engine_gap": "Needs native engine/schema work recorded in a lane NEEDS file.",
+  "human_participant": "Needs a real human usability session; not inventable.",
+  "audit_deliverable": "This lane's own deliverable; pending integrator acceptance.",
+  "provisioning_gate": "Suite needs worker provisioning (setup.sh) before it can run."
+ },
+ "tests": {
+  "T01": {
+   "class": "ledger_not_updated",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N14",
+    "docs/verification/F5/NEEDS.md#F5-N07"
+   ],
+   "note": "W00 is done with baseline commits; the T01 row itself was never flipped."
+  },
+  "T04": {
+   "class": "spec_unrun",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N08"
+   ],
+   "note": "SQLite linked-build/advisory review is an open TODO in docs/dependencies/PINS.md; manifest-tamper half is covered by tests/content."
+  },
+  "T06": {
+   "class": "spec_unrun",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N07"
+   ],
+   "note": "Renderer reload during live playback never run as a journey; supervisor/wire lifecycle covered by void-worker tests."
+  },
+  "T07": {
+   "class": "spec_unrun",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N07"
+   ],
+   "note": "Adversarial peer/secret checks exist at unit level; the written scenario never ran end-to-end."
+  },
+  "T08": {
+   "class": "spec_unrun",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N07"
+   ],
+   "note": "Codec rejects are unit-tested in void-protocol/void-client; scenario row not executed as specified."
+  },
+  "T09": {
+   "class": "spec_unrun",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N07"
+   ],
+   "note": "Dedup/COMMAND_ID_REUSE covered by void-client vitest; crash-recovery reconciliation covered by tests/recovery; row not updated."
+  },
+  "T10": {
+   "class": "spec_unrun",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N07"
+   ],
+   "note": "Stale-revision path covered by void-client/void-studio sendWithStaleRetry tests; concurrent-winner scenario not run as written."
+  },
+  "T11": {
+   "class": "spec_unrun",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N07"
+   ],
+   "note": "Bounded views/BUSY/panic-priority constants tested in unit suites; live flood scenario unrun."
+  },
+  "T12": {
+   "class": "spec_unrun",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N07"
+   ],
+   "note": "String-int64 round-trips + tick conversion covered in codec/vitest; long-session boundary run unrun."
+  },
+  "T13": {
+   "class": "hardware_blocked",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N02"
+   ],
+   "note": "Wire acks + param mapping verified; no live audio device on the qualifying box."
+  },
+  "T15": {
+   "class": "hardware_blocked",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N02"
+   ],
+   "note": "RT probes in place; needs a real audio device."
+  },
+  "T16": {
+   "class": "hardware_blocked",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N02"
+   ],
+   "note": "Callback-path instrumentation exists; needs device-native stress measurement."
+  },
+  "T23": {
+   "class": "hardware_blocked",
+   "needs": [
+    "docs/engine/NEEDS.md#34. **No plugin-format runtime hosting",
+    "docs/verification/F5/NEEDS.md#F5-N02"
+   ],
+   "note": "No x86_64 plugin binary or GUI on lane boxes; native editor lifecycle unverifiable here."
+  },
+  "T25": {
+   "class": "hardware_blocked",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N02",
+    "docs/verification/F5/NEEDS.md#F5-N03"
+   ],
+   "note": "Native build matrix needs macOS/Windows build hosts; only the Tauri Linux bundle exists (unsigned)."
+  },
+  "T26": {
+   "class": "spec_unrun",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N05"
+   ],
+   "note": "Workflows carry timeouts; the deliberate-timeout/superseded-run drill never ran."
+  },
+  "T27": {
+   "class": "approval_blocked",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N03"
+   ],
+   "note": "Clean-machine install needs a packaged build + VM; bundles exist unsigned (internal-only)."
+  },
+  "T28": {
+   "class": "approval_blocked",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N03"
+   ],
+   "note": "Signing credentials + updater infra absent; D06 blocks authorization silently assumed here."
+  },
+  "T29": {
+   "class": "spec_unrun",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N04"
+   ],
+   "note": "No adversarial log/crash-bundle privacy sweep has run."
+  },
+  "T30": {
+   "class": "spec_unrun",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N07",
+    "docs/verification/F5/NEEDS.md#F5-N02"
+   ],
+   "note": "F0 vertical slice on a real device; engine lanes delivered parts (T14 render, crash fixture) but the slice never ran as written."
+  },
+  "T45": {
+   "class": "hardware_blocked",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N02"
+   ],
+   "note": "47 renders/3min at 5.96x realtime verified; the 30-min multi-device run needs hardware."
+  },
+  "T47": {
+   "class": "spec_unrun",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N06",
+    "docs/verification/F5/NEEDS.md#F5-N02"
+   ],
+   "note": "Cutover staged; closure gated on T45 (hardware) + T48 (human)."
+  },
+  "T48": {
+   "class": "human_participant",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N06"
+   ],
+   "note": "Needs a real musician session; protocol scripted, never run."
+  },
+  "T49": {
+   "class": "ledger_not_updated",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N07"
+   ],
+   "note": "Job state machine exercised by tests/journeys/ai (18/18 incl. kill/cancel/late-result); TESTS.json row never updated."
+  },
+  "T50": {
+   "class": "hardware_blocked",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N09"
+   ],
+   "note": "CPU/RAM admission tested with rlimits; real GPU-OOM contention needs a discrete GPU."
+  },
+  "T51": {
+   "class": "ledger_not_updated",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N07"
+   ],
+   "note": "Model manifest tamper/quarantine covered by tests/models + void-content; row never updated."
+  },
+  "T52": {
+   "class": "ledger_not_updated",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N14"
+   ],
+   "note": "pass_linux with EMPTY evidence string \u2014 reported, not fixed (integrator owns statuses)."
+  },
+  "T64": {
+   "class": "human_participant",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N06"
+   ],
+   "note": "Needs a real human musical-assistance session; USABILITY_PROTOCOL.md runnable."
+  },
+  "T72": {
+   "class": "engine_gap",
+   "needs": [
+    "docs/content-rights/NEEDS.md#6. **Stock-processor DSP"
+   ],
+   "note": "Every stock processor needs real DSP conformance runs; all inventory rows sit at needs_dsp."
+  },
+  "T74": {
+   "class": "engine_gap",
+   "needs": [
+    "docs/content-rights/NEEDS.md#2. **Transient detection",
+    "docs/content-rights/NEEDS.md#3. **Pitch analysis"
+   ],
+   "note": "Marker/pitch models verified; detection + correction renderers are engine DSP."
+  },
+  "T75": {
+   "class": "engine_gap",
+   "needs": [
+    "docs/engine/NEEDS.md#33. **No plugin-host isolation"
+   ],
+   "note": "IsolationPolicy spec-side only; needs native/void-plugin-worker + fault evidence on a native host."
+  },
+  "T76": {
+   "class": "engine_gap",
+   "needs": [
+    "docs/engine/NEEDS.md#34. **No plugin-format runtime hosting",
+    "docs/verification/F5/NEEDS.md#F5-N02"
+   ],
+   "note": "Registry/missing-plugin descriptors + rehydrate verdicts; no real plugin binary on this lane."
+  },
+  "T85": {
+   "class": "engine_gap",
+   "needs": [
+    "docs/visfx/NEEDS.md#NEEDS W23-05",
+    "docs/visfx/NEEDS.md#NEEDS W23-04"
+   ],
+   "note": "projectM is an ADR (evidence-only, OpenGL interop unproven); preview/program output plumbing engine-side."
+  },
+  "T92": {
+   "class": "engine_gap",
+   "needs": [
+    "docs/show/NEEDS.md#1. **Dolby Atmos ADM BWF",
+    "docs/show/NEEDS.md#2. **Dolby Atmos MP4"
+   ],
+   "note": "Layout legality + ADM object model verified; ADM-BWF/MP4 encodes need licensed toolchain + external validator."
+  },
+  "T93": {
+   "class": "hardware_blocked",
+   "needs": [
+    "docs/show/NEEDS.md#3. **Head-tracking hardware probing",
+    "docs/show/NEEDS.md#4. **Monitor reachability"
+   ],
+   "note": "Head-tracking hardware + physical trim verification unavailable; declared-fallback model is verified."
+  },
+  "T98": {
+   "class": "approval_blocked",
+   "needs": [
+    "docs/wasm/NEEDS.md#N4 \u2014 ARA integration",
+    "docs/wasm/NEEDS.md#N5 \u2014 native plugin export"
+   ],
+   "note": "ARA + plugin-export are evidence-only gates (ADRs 0001/0002); rights/SDK qualification not authorized."
+  },
+  "T99": {
+   "class": "audit_deliverable",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N15"
+   ],
+   "note": "This audit: trace_check.py + TRACE_AUDIT.json + reconciliation docs on devin/void-lane-w29; integrator flips status on acceptance."
+  },
+  "T100": {
+   "class": "audit_deliverable",
+   "needs": [
+    "docs/verification/F5/NEEDS.md#F5-N15"
+   ],
+   "note": "Release-candidate doc + residual risks committed; public release still gated by D06 authorization."
+  }
+ },
+ "tasks_without_evidence": {},
+ "evidence_anomalies": {},
+ "subtest_ledgers": {
+  "FEATURE_TRACEABILITY.implementation_status": "all 116 features + 22 stock groups 'not_verified' \u2014 never maintained; rollup derived from mapped test statuses instead (see F5-N01).",
+  "INFRASTRUCTURE.status": "18 'not_verified' + 2 'optional_not_authorized'.",
+  "DEPENDENCIES.qualification_status": "all 41 'unqualified'; license_approval unset on all rows (TE/JUCE distribution blocked \u2014 PINS.md).",
+  "PLATFORMS.status": "all 3 targets 'not_tested' in the ledger despite pass_macos evidence existing."
+ }
+}

@@ -1,0 +1,15 @@
+{
+  "protocolMajor": 1,
+  "protocolMinor": 0,
+  "commandId": "8a9d2f11-6165-4a51-b244-264f4d87e511",
+  "transactionId": "7d00c66c-d8e3-4fbe-a01c-2a3b406013a1",
+  "projectId": "c833d3ab-8a73-42be-b37b-0107a688f761",
+  "engineEpoch": "ab5a1ae0-42c6-4886-afbe-10ddbd281691",
+  "expectedRevision": "0",
+  "operation": "track.create",
+  "payload": {
+    "trackId": "4ab0afc3-4c42-4e22-b5f0-ddd208f08c31",
+    "name": "Bass",
+    "kind": "instrument"
+  }
+}

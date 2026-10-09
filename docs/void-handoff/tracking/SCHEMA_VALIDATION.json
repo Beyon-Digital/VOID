@@ -1,0 +1,36 @@
+{
+  "schema_examples": [
+    {
+      "schema": "command",
+      "result": "passed",
+      "scope": "Schema and illustrative example only"
+    },
+    {
+      "schema": "job",
+      "result": "passed",
+      "scope": "Schema and illustrative example only"
+    },
+    {
+      "schema": "checkpoint",
+      "result": "passed",
+      "scope": "Schema and illustrative example only"
+    },
+    {
+      "schema": "evidence",
+      "result": "passed",
+      "scope": "Schema and illustrative example only"
+    }
+  ],
+  "negative_cases_rejected": [
+    "operation",
+    "expectedRevision",
+    "commandId",
+    "extra payload key",
+    "invalid track kind",
+    "path traversal"
+  ],
+  "application_tests_run": 0,
+  "limitations": [
+    "Shape/example validation only. No binary protocol compiled, actual asset hashes verified, or application/hardware executed."
+  ]
+}

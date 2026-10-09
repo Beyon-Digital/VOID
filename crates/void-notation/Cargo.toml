@@ -1,0 +1,21 @@
+[package]
+name = "void-notation"
+description = "VOID notation + scoring — stable-id score model, single-transaction edit ops with undo, MusicXML 4 partwise interchange with deterministic loss reports, movie-scoring absolute-time anchors and declared timecode modes (W25, T90/T91 non-native halves)"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+# Canonical `void-loss/1` report type (W20) — MusicXML interchange emits the
+# same deterministic loss shape as dawproject/SMF so the studio consumes one
+# report format. Pulls void-protocol transitively (flatc 25.9.23 on PATH).
+void-exchange = { path = "../void-exchange" }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true, features = ["v5"] }
+# Already in the tree (void-exchange, pinned =0.42.0): keeps the
+# integrator-owned lockfile stable.
+quick-xml = "=0.42.0"
+
+[dev-dependencies]
+tempfile = "3"

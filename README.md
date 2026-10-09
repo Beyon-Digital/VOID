@@ -5,6 +5,36 @@
 
 -----
 
+## Implementation status (honest snapshot)
+
+> Updated during the `devin/void-implementation` work. The canonical tracker is
+> `docs/void-handoff/tracking/` (`TASKS.json`, `TESTS.json`,
+> `FEATURE_TRACEABILITY.json`) with generated views in `WORK_PACKAGES.md` /
+> `TEST_MATRIX.md` / `FEATURE_MAP.md`.
+
+**The rest of this README describes the target product, not current capability.**
+
+What exists in the repository today:
+
+- An Electron + React scaffold: window lifecycle, a mostly-empty `WebAudioAdapter`
+  (stub methods — it does **not** play, record, mix or render), domain/port
+  interfaces in `void-core`, a `SessionView` clip-matrix component, and `Knob`/`Fader`
+  style primitives.
+- A tracked implementation plan (`docs/void-handoff/`) to migrate to
+  Tauri/Rust + a native Tracktion Engine/JUCE worker per `docs/void-handoff/HANDOFF.md`.
+
+What does **not** exist yet (despite sections below describing them):
+
+- No audio/MIDI engine, playback, recording, mixing, plugin hosting or rendering.
+- No working Session/Ableton-parity feature set, no stock devices, no WASM/M4L
+  plugin runtime, no AI copilot, no visual engine, no show/cue system, no OSC/DMX.
+- No Tauri shell or native C++ worker wired into the app yet (in progress on this branch).
+
+Treat every "feature" section below as a design goal until its requirement IDs
+show evidence in `docs/void-handoff/tracking/`.
+
+-----
+
 ## What Is VOID?
 
 VOID is an Electron-based desktop application that replaces Logic Pro X for power users who want:
@@ -40,7 +70,8 @@ This architecture makes VOID infinitely extensible. New hardware, new AI models,
 ```
 void/
 ├── apps/
-│   └── void-desktop/               # Electron shell — the app container
+│   ├── void-desktop/               # Electron shell — LEGACY, preserved until F1 cutover (docs/verification/F1/cutover-plan.md)
+│   └── void-tauri/                 # Tauri v2 shell — the production path being qualified
 │       ├── main/                   # Node.js main process
 │       │   ├── index.ts            # App lifecycle, window management, sidecar spawn
 │       │   ├── ipc/                # IPC handlers (bridge between main and renderer)
@@ -937,3 +968,29 @@ ANTHROPIC_API_KEY=
 1. **Audio runs in the renderer process.** Web Audio API is not available in the main process. The `WebAudioAdapter` lives in renderer. IPC is only used to bridge hardware events (MIDI, OSC) from main to renderer.
 1. **The sidecar port is 7842.** Always. Configurable via `VOID_SIDECAR_PORT` env var but default is 7842.
 1. **When in doubt, emit an event.** If a module needs to tell another module something happened, it emits a typed event on `VoidEventBus`. It does not call a function on the other module.
+
+-----
+
+## Verification and release readiness
+
+*Added by Lane Y (W29 audit, branch `devin/void-lane-w29`, base `9099089`).*
+
+The honest snapshot above predates the W00–W28 lane merges. Current verified
+state lives in the F5 evidence pack:
+
+- `docs/verification/F5/F5_RECONCILIATION.md` — per-work-package status with
+  commit SHAs, test counts, and NEEDS pointers.
+- `docs/verification/F5/FEATURE_MATRIX.md` — derived supported-feature and
+  device/platform matrix (Linux-verified vs macOS-engine-qualified vs
+  model-side vs open NEEDS).
+- `docs/verification/F5/RESIDUAL_RISKS.md` — every partial/blocked/deferred or
+  unsupported-interop item with its owning NEEDS entry.
+- `docs/release/RELEASE_CANDIDATE.md` — candidate report (platforms,
+  install/recovery, rights audit, privacy).
+- `python3 docs/verification/F5/trace_check.py` — coverage audit: every
+  non-pass test row must map to a resolvable NEEDS entry. Output committed at
+  `docs/verification/F5/TRACE_AUDIT.json`.
+
+Green gate on this box: `pnpm install --frozen-lockfile` → `pnpm --filter
+void-client --filter void-core --filter void-daw --filter void-ui build` →
+`cargo test --workspace --exclude void-tauri` (146/146) → `pnpm -r test`.

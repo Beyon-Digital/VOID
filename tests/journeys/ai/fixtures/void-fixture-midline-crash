@@ -1,0 +1,7 @@
+#!/bin/sh
+# T63 fixture: speaks protocol v1, then dies MID-LINE — writes a truncated
+# result object with no newline and SIGKILLs itself. The runner must see
+# a protocol violation + nonzero exit, never a 'succeeded'.
+printf '{"v":1,"kind":"progress","percent":10,"message":"midline fixture"}\n'
+printf '{"v":1,"kind":"result","status":"succeeded","artifacts":[{"path":"nev'
+kill -9 $$

@@ -1,0 +1,17 @@
+[package]
+name = "void-protocol"
+description = "VOID native control protocol: FlatBuffers bindings, framing, validation, receipts"
+version.workspace = true
+edition.workspace = true
+
+[build-dependencies]
+# flatc is invoked at build time; pin enforced by build.rs.
+flatbuffers = { workspace = true }
+
+[dependencies]
+flatbuffers = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+uuid = { workspace = true }
+sha2 = { workspace = true }

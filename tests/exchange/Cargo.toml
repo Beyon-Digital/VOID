@@ -1,0 +1,19 @@
+[package]
+name = "void-exchange-tests"
+description = "W20 exchange suite (T75–T77) — interchange round-trips, registry, isolation policy"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Own workspace: the root Cargo.toml members list is integrator-owned —
+# this suite builds standalone via `cargo test --manifest-path`.
+[workspace]
+
+[dependencies]
+void-exchange = { path = "../../crates/void-exchange" }
+serde_json = "1"
+serde = { version = "1", features = ["derive"] }
+sha2 = "0.10"
+uuid = { version = "1", features = ["v4", "serde"] }
+zip = { version = "2", default-features = false, features = ["deflate"] }
+tempfile = "3"

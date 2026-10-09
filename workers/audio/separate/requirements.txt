@@ -1,0 +1,8 @@
+# void-audio-separate — pinned, verified on Linux x86_64 py3.10 CPU.
+# CPU-only torch wheel (PyPI default pulls multi-GB CUDA deps on
+# Linux; the +cpu wheel keeps the provision under the 2 GB rule).
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.14.1+cpu
+demucs==4.1.0
+numpy==1.26.4
+soundfile==0.14.0

@@ -1,0 +1,14 @@
+[package]
+name = "void-mix-tests"
+description = "W18 mixer suite (T69–T71) — routing loops, delay compensation, channel layouts, automation/MIDI evidence"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Detached suite: not part of the main workspace — run with
+# `cargo test --manifest-path tests/mix/Cargo.toml`.
+[workspace]
+
+[dependencies]
+void-mix = { path = "../../crates/void-mix" }
+serde_json = "1"

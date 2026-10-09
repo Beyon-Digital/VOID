@@ -1,0 +1,6 @@
+{
+  "scope": "Packet integrity only; no VOID build/audio/AI/hardware tests executed",
+  "checks_passed": 504,
+  "errors": [],
+  "result": "PASS"
+}

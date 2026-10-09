@@ -1,0 +1,29 @@
+[package]
+name = "void-visual"
+description = "VOID native visual engine — wgpu layer compositor, beat-anchored timeline, preview/program channels, drop-on-load output (W22, CONTRACTS.md §7)"
+version.workspace = true
+edition.workspace = true
+
+[features]
+default = []
+# Optional native-window output path (winit surface). Headless/offscreen
+# rendering works without it; enable only where a display is available.
+window = ["dep:winit"]
+
+[dependencies]
+void-protocol = { path = "../void-protocol" }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+uuid = { workspace = true }
+tracing = { workspace = true }
+parking_lot = { workspace = true }
+wgpu = "=25.0.2"
+pollster = "0.4"
+bytemuck = { version = "1", features = ["derive"] }
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+winit = { version = "0.30", optional = true }
+
+[dev-dependencies]
+tempfile = "3"

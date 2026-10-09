@@ -1,0 +1,1362 @@
+{
+ "title": "VOID \u2014 Integration Stack & Infrastructure",
+ "version": "1.0.0",
+ "date": "2026-10-07",
+ "status": "Inherited research catalog plus qualification fields; no library combination was built or benchmarked for this packet.",
+ "scope": "Desktop studio first; macOS, Windows and Linux qualification. No repository changes.",
+ "assumptions": [
+  "Tauri/Rust platform with C++ permitted is accepted direction.",
+  "Proprietary or mixed distribution remains possible; open-sourcing VOID has not been approved.",
+  "The initial release remains local-first; cloud inference and collaboration are optional."
+ ],
+ "libraries": [
+  {
+   "id": "CORE-01",
+   "area": "Foundation",
+   "name": "Tauri + Rust",
+   "phase": "F0",
+   "license": "MIT / Apache-2.0",
+   "proof": "Established desktop framework; not evidence that VOID audio is already qualified.",
+   "docs": "Strong: architecture, capabilities, packaging, updater and test guides.",
+   "reuse": "Desktop lifecycle, menus, file dialogs, windows, scoped native commands and updates.",
+   "custom": "Keep the shell small. Rust supervises workers and owns app services. React/TS remains a bounded presentation layer.",
+   "risk": "System WebViews vary by OS. Native plugin windows and GPU output need platform tests; Rust does not eliminate WebView leaks.",
+   "sources": [
+    "tauri",
+    "taurirepo",
+    "capabilities"
+   ],
+   "research_status": "Default",
+   "qualification_status": "in_use",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "Tauri v2 shell + Rust workspace builds/tests green all CI jobs [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W01",
+    "W02"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "CORE-02",
+   "area": "Foundation",
+   "name": "Tracktion Engine",
+   "phase": "F0",
+   "license": "GPL / commercial; separate from JUCE",
+   "proof": "Direct production evidence: Waveform Free is built on this engine.",
+   "docs": "Good examples/tutorials/tests; some API documentation remains incomplete.",
+   "reuse": "Use its musical Edit model rather than writing another sequencer. See the capability boundary below.",
+   "custom": "Build a narrow command adapter and stable object-ID mapping. Preserve engine save/load and musical undo behind the adapter.",
+   "risk": "Not a complete studio UI. Confirm licensed major version, supported JUCE revision and native-window integration before committing.",
+   "sources": [
+    "te",
+    "tefeatures",
+    "teproduct",
+    "techanges"
+   ],
+   "research_status": "Default",
+   "qualification_status": "qualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "submodule e760754 + upstream TestRunner 450 cases/22282 assertions on macOS [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W01",
+    "W02",
+    "W04",
+    "W08"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "CORE-03",
+   "area": "Foundation",
+   "name": "JUCE",
+   "phase": "F0",
+   "license": "AGPL-3.0 / commercial; separate Tracktion agreement",
+   "proof": "Established audio framework; underpins the selected engine and shipping plugins.",
+   "docs": "Strong API reference, examples, tutorials and release notes.",
+   "reuse": "Audio/MIDI devices, DSP primitives, plugin hosting, native plugin windows, OSC and platform glue.",
+   "custom": "One device/transport owner in the C++ worker. Reuse hosted formats before adding separate hosts.",
+   "risk": "A plugin creation format is not necessarily a host format. Qualify AU/VST3 explicitly; do not promise AAX hosting. Pin the engine-compatible JUCE pair.",
+   "sources": [
+    "juce",
+    "jucelicense",
+    "jucedocs",
+    "jucerelease"
+   ],
+   "research_status": "Default",
+   "qualification_status": "qualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "submodule 37c894f + TestRunner evidence with Tracktion [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W01",
+    "W02",
+    "W04",
+    "W08"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "ALT-01",
+   "area": "Engine alternatives",
+   "name": "Ardour / libardour",
+   "phase": "F0",
+   "license": "Copyleft; confirm selected source licence and dependencies",
+   "proof": "Shipping professional DAW with a real backend.",
+   "docs": "Large developer/API documentation; headless example is described as a demonstration.",
+   "reuse": "A substantial audio/session foundation when a copyleft product or full application fork is intentional.",
+   "custom": "Adapt application-shaped APIs, session/UI coupling and integration contracts.",
+   "risk": "Not the lowest-friction embeddable SDK. More fork/architecture responsibility than the default path.",
+   "sources": [
+    "ardour"
+   ],
+   "research_status": "Alternative",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "ALT-02",
+   "area": "Engine alternatives",
+   "name": "Carla",
+   "phase": "F3",
+   "license": "GPL-2.0-or-later",
+   "proof": "Shipping multi-format plugin host.",
+   "docs": "README/build instructions and examples; feature maturity is mixed.",
+   "reuse": "Consider for an explicitly compatible copyleft host architecture or as a reference.",
+   "custom": "Avoid installing a second competing host beside Tracktion without a defined gap.",
+   "risk": "Its README identifies plugin bridging/transport work as experimental. Do not sell it as a turnkey crash-isolation subsystem.",
+   "sources": [
+    "carla"
+   ],
+   "research_status": "Alternative",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "ALT-03",
+   "area": "Engine alternatives",
+   "name": "Cockos WDL",
+   "phase": "F3",
+   "license": "Permissive notices per component; review exact files",
+   "proof": "Cockos states that its own applications use WDL.",
+   "docs": "Source-oriented utility library rather than a complete DAW SDK.",
+   "reuse": "Use a narrowly justified utility or DSP component when the selected engine lacks it.",
+   "custom": "Wrap only the module needed; retain notice and regression fixtures.",
+   "risk": "WDL is not the REAPER engine and does not supply REAPER-level session behavior.",
+   "sources": [
+    "wdl",
+    "cockos"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "DSP-01",
+   "area": "Audio and instruments",
+   "name": "Signalsmith Stretch",
+   "phase": "F1",
+   "license": "MIT",
+   "proof": "Listed in current Tracktion dependencies; also used by Audiomentations.",
+   "docs": "Useful API-level timing, latency and formant documentation.",
+   "reuse": "Pitch/time processing; prefer the version already integrated by the engine.",
+   "custom": "Map warp edits and preserve input/output latency and render tails; add musical quality fixtures.",
+   "risk": "Not a Flex Pitch editor. The author warns that modest time ratios sound best; extreme ratios need listening tests.",
+   "sources": [
+    "stretch",
+    "te"
+   ],
+   "research_status": "Default",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W19"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "DSP-02",
+   "area": "Audio and instruments",
+   "name": "Rubber Band / SoundTouch",
+   "phase": "F3",
+   "license": "Rubber Band: GPL-2.0+ / commercial. SoundTouch: LGPL-2.1.",
+   "proof": "Long-lived specialist libraries; Rubber Band has a published release history.",
+   "docs": "Dedicated API and licensing guides.",
+   "reuse": "Alternative stretch/pitch backend when the selected default fails quality or performance tests.",
+   "custom": "Benchmark the same transient, voice and polyphonic fixtures, then select one backend per use case.",
+   "risk": "Do not add every stretcher. Check linkage, latency and additional licensing; a library swap does not create an editing workflow.",
+   "sources": [
+    "rubberband",
+    "rubberlicense",
+    "soundtouch"
+   ],
+   "research_status": "Alternative",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W19"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "DSP-03",
+   "area": "Audio and instruments",
+   "name": "Tracktion stock instruments and effects",
+   "phase": "F1",
+   "license": "Covered by selected engine/component licences",
+   "proof": "Shipped engine features include 4OSC, a simple sampler and basic effects.",
+   "docs": "Engine feature reference and example projects.",
+   "reuse": "Bootstrap playable synth, one-shots, basic EQ/dynamics/delay and routing without a new DSP framework.",
+   "custom": "Build instrument controls, curated presets, browser metadata and MIDI/automation mappings.",
+   "risk": "This is a starter palette, not an Alchemy/Kontakt-scale sound library. Sound content must be original or licensed separately.",
+   "sources": [
+    "tefeatures"
+   ],
+   "research_status": "Default",
+   "qualification_status": "in_use",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "Tracktion submodule ships stock devices; native engine references [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W04",
+    "W10",
+    "W14"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "DSP-04",
+   "area": "Audio and instruments",
+   "name": "FluidSynth",
+   "phase": "F1",
+   "license": "LGPL-2.1 family; verify exact distribution build",
+   "proof": "Official site lists integrations including LMMS, MusE and Qsynth.",
+   "docs": "API/development documentation and maintained source repository.",
+   "reuse": "SoundFont instrument playback for a reusable initial acoustic/general instrument palette.",
+   "custom": "Drive its synthesis from the engine. Do not create a competing FluidSynth device driver or enable an unnecessary command server.",
+   "risk": "SF2 playback is not full SFZ/Kontakt multisampling. Approve every sound bank separately and bound voices/sample memory.",
+   "sources": [
+    "fluid",
+    "fluidrepo"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W19"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "DSP-05",
+   "area": "Audio and instruments",
+   "name": "Airwindows Consolidated library",
+   "phase": "F3",
+   "license": "MIT for the specified core library; wrappers bring separate dependencies",
+   "proof": "Shipping Airwindows Consolidated DAW and VCV Rack products.",
+   "docs": "Good user manuals; developer registry documentation is explicitly unfinished.",
+   "reuse": "The airwin-registry CMake target exposes reusable effect implementations.",
+   "custom": "Ship a tested curated subset with VOID controls, presets, loudness matching and parameter automation.",
+   "risk": "Do not pull whole wrapper builds indiscriminately. Validate CPU, gain, denormals, sample-rate behavior and tails per effect.",
+   "sources": [
+    "airwindows"
+   ],
+   "research_status": "Default",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W19"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "DSP-06",
+   "area": "Audio and instruments",
+   "name": "sfizz",
+   "phase": "F3",
+   "license": "BSD-2-Clause core in reviewed source; audit transitive components",
+   "proof": "Shipped SFZ library/plugins, but original repository archived on 21 June 2026.",
+   "docs": "API/opcode material exists; forward maintenance is unresolved.",
+   "reuse": "Potential advanced SFZ engine only after identifying a credible maintained successor or funding a fork.",
+   "custom": "A successor/fork needs an owner, security patch channel, reproducible builds and regression corpus.",
+   "risk": "Not the default for a maintenance-first project. An old release being usable is not proof of future maintenance.",
+   "sources": [
+    "sfizz"
+   ],
+   "research_status": "Hold",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "DSP-07",
+   "area": "Audio and instruments",
+   "name": "HISE",
+   "phase": "F3",
+   "license": "GPL-3.0 / commercial; JUCE separately licensed",
+   "proof": "Instrument-building toolkit with an actual export workflow and player ecosystem.",
+   "docs": "Extensive developer documentation and community support.",
+   "reuse": "Alternative for sophisticated sample-based instruments and effects.",
+   "custom": "Prefer authoring a native instrument plugin hosted by VOID before trying to embed the whole authoring environment.",
+   "risk": "Large toolkit overlap; additional commercial agreement for a closed distribution. Benchmark memory and disk-streaming requirements.",
+   "sources": [
+    "hise",
+    "hisedocs"
+   ],
+   "research_status": "Alternative",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W19"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "DSP-08",
+   "area": "Audio and instruments",
+   "name": "Surge XT",
+   "phase": "F3",
+   "license": "GPL-3.0",
+   "proof": "Shipping synthesizer with commercial-product ancestry and regular platform releases.",
+   "docs": "Developer build/test guides and user documentation.",
+   "reuse": "Support user-installed Surge XT as a first-class compatibility target.",
+   "custom": "Persist plugin state and expose macros/automation through the standard host path.",
+   "risk": "Do not copy its GPL source into a proprietary engine. Any bundling or derivative needs a distribution/licence review.",
+   "sources": [
+    "surge"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W19"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "DSP-09",
+   "area": "Audio and instruments",
+   "name": "libebur128",
+   "phase": "F3",
+   "license": "MIT",
+   "proof": "Mature specialist C library with loudness/true-peak conformance tests; downstream app usage not independently established here.",
+   "docs": "Small documented C API and example/test programs.",
+   "reuse": "Loudness, loudness range and true-peak measurement.",
+   "custom": "Display metering, target-based export checks and reference comparison; allocate state outside the audio callback.",
+   "risk": "Meters are not automatic mastering. Conformance tests and channel-layout validation remain release gates.",
+   "sources": [
+    "ebur"
+   ],
+   "research_status": "Default",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W19"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "DSP-10",
+   "area": "Audio and instruments",
+   "name": "libsndfile",
+   "phase": "F1",
+   "license": "LGPL-2.1; codecs may add obligations",
+   "proof": "Long-lived native audio-file library with team stewardship and fuzz/regression infrastructure.",
+   "docs": "Detailed build/format documentation and examples.",
+   "reuse": "Add a file format only when JUCE/engine support does not cover the requirement.",
+   "custom": "Use controlled import workers and normalized internal assets.",
+   "risk": "Do not maintain duplicate decoder paths for the same format without need; fuzz malformed media and cap decoded sizes.",
+   "sources": [
+    "sndfile"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W10"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "IO-01",
+   "area": "Plugins and exchange",
+   "name": "Steinberg VST 3 SDK",
+   "phase": "F1",
+   "license": "Current upstream SDK: MIT",
+   "proof": "Vendor SDK and developer portal for the VST3 plugin ecosystem.",
+   "docs": "Strong interface docs, examples and validation tools.",
+   "reuse": "Native third-party instrument/effect interoperability via JUCE.",
+   "custom": "Build scan cache, quarantine, compatible plugin versions, missing-plugin recovery and state restoration.",
+   "risk": "Current MIT licensing does not grant rights to VST2 or third-party plugins. Use the licence of the exact bundled SDK revision.",
+   "sources": [
+    "vst",
+    "vstdocs"
+   ],
+   "research_status": "Default",
+   "qualification_status": "in_use",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "native/void-plugin-scanner + engine VST3 handling code paths [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W06",
+    "W10",
+    "W20"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "IO-02",
+   "area": "Plugins and exchange",
+   "name": "CLAP",
+   "phase": "F3",
+   "license": "MIT",
+   "proof": "Published audio plugin standard with ecosystem implementations.",
+   "docs": "API header specification, extensions and support material.",
+   "reuse": "Add CLAP when the required plugin audience justifies another host adapter.",
+   "custom": "Explicitly implement and test host extensions, state, events and plugin windows.",
+   "risk": "Do not infer CLAP host support merely because an unrelated JUCE project exports CLAP plugins.",
+   "sources": [
+    "clap",
+    "claplicense"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W20"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "IO-03",
+   "area": "Plugins and exchange",
+   "name": "Ableton Link",
+   "phase": "F5",
+   "license": "GPL-2.0+ / proprietary alternative",
+   "proof": "Ableton-maintained synchronization SDK.",
+   "docs": "Conceptual clock docs, example apps and a behavior test plan.",
+   "reuse": "Cross-device beat/tempo/phase synchronization for performance.",
+   "custom": "Translate device latency/clock snapshots and apply user-approved tempo ownership rules.",
+   "risk": "Network sync is not the internal sample clock. Obtain appropriate rights and qualify the exact feature set/version.",
+   "sources": [
+    "link"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W27"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "IO-04",
+   "area": "Plugins and exchange",
+   "name": "DAWproject",
+   "phase": "F3",
+   "license": "MIT format/reference implementation",
+   "proof": "Official repository lists Bitwig, Studio One, Cubase and other adopters.",
+   "docs": "Schema, examples and documented object model.",
+   "reuse": "Cross-DAW arrangement/interchange path alongside audio stems and Standard MIDI Files.",
+   "custom": "Map a declared subset and produce a loss report for unsupported instruments, automation or routing.",
+   "risk": "Not a universal .logicx importer. Plugin availability/state and DAW-specific features can still prevent exact round trips.",
+   "sources": [
+    "dawproject"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "in_use",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "void-exchange implements .dawproject format round-trip (tests/exchange 12/12) [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W20"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "DATA-01",
+   "area": "Platform infrastructure",
+   "name": "SQLite",
+   "phase": "F0",
+   "license": "Public-domain core",
+   "proof": "Widely deployed in operating systems, browsers and applications.",
+   "docs": "Extensive documentation, backup API and WAL details.",
+   "reuse": "Local project metadata, asset index, job history, provenance and searchable preferences.",
+   "custom": "Rust coordinates durable checkpoints with the engine snapshot; media remains immutable files, not large DB blobs.",
+   "risk": "Use a patched supported build; do not cloud-sync a live WAL database or put it on a network filesystem. SQLite alone does not atomically commit external media.",
+   "sources": [
+    "sqlite",
+    "wal",
+    "backup"
+   ],
+   "research_status": "Default",
+   "qualification_status": "in_use",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "rusqlite bundled 3.46.0 \u2014 void-jobs DB + void-content license ledger [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W01",
+    "W05"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "DATA-02",
+   "area": "Platform infrastructure",
+   "name": "FlatBuffers",
+   "phase": "F0",
+   "license": "Apache-2.0",
+   "proof": "Established cross-language serialization project.",
+   "docs": "Rust/C++ examples and schema evolution guidance.",
+   "reuse": "Versioned control messages and compact read-only state/telemetry snapshots.",
+   "custom": "Define protocol negotiation, bounded frames, command IDs, validation and explicit backpressure.",
+   "risk": "Not a transport, scheduler or sandbox. No serialization or WebView IPC inside the audio callback; use native preallocated buffers where PCM must cross processes.",
+   "sources": [
+    "flatbuffers"
+   ],
+   "research_status": "Default",
+   "qualification_status": "qualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "flatc 25.9.23 pinned, generated bindings CI-regenerated, wire round-trip tested [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W01",
+    "W03"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "DATA-03",
+   "area": "Platform infrastructure",
+   "name": "Tokio and a small Rust service layer",
+   "phase": "F0",
+   "license": "Tokio: MIT; review each additional crate separately",
+   "proof": "Tokio documents production adoption outside audio.",
+   "docs": "Strong async/network/process documentation.",
+   "reuse": "Worker supervision, downloads, local IPC and cancellable background jobs.",
+   "custom": "Use bounded queues; isolate database/disk work and CPU-heavy tasks. Add serialization/logging/HTTP crates only as needed.",
+   "risk": "Tokio is not the real-time audio scheduler. An async task can still block, allocate or monopolize CPU.",
+   "sources": [
+    "tokio"
+   ],
+   "research_status": "Default",
+   "qualification_status": "in_use",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "tokio in workspace dep tree (19 Cargo.toml/src refs) [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W01",
+    "W02",
+    "W12"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "AI-01",
+   "area": "AI and gestures",
+   "name": "ONNX Runtime",
+   "phase": "F2",
+   "license": "MIT runtime; model licences independent",
+   "proof": "Direct production evidence: Windows, Office, Azure Cognitive Services and Bing.",
+   "docs": "Strong APIs, provider matrix and optimization guides.",
+   "reuse": "Portable inference for compact qualified analysis/transcription/gesture models.",
+   "custom": "Select execution provider per hardware and model; package a CPU fallback when practical. Audit and disable optional runtime diagnostic collection by default; verify the packaged build has no unexpected telemetry.",
+   "risk": "Provider support varies. A proven runtime does not validate a particular music model or its exported graph.",
+   "sources": [
+    "onnx",
+    "onnxep",
+    "onnxrepo"
+   ],
+   "research_status": "Default",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W12"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "AI-02",
+   "area": "AI and gestures",
+   "name": "llama.cpp",
+   "phase": "F2",
+   "license": "MIT runtime; chosen weights independently licensed",
+   "proof": "Established local-inference runtime; not a production musical autocomplete system by itself.",
+   "docs": "Build/backend docs, server tools and structured-output grammar support.",
+   "reuse": "Small local language-model inference for intent interpretation and symbolic proposals.",
+   "custom": "Typed tools, project context selection, constrained MIDI proposals, caching and cancellation remain VOID responsibilities.",
+   "risk": "No model runs on the audio thread. Pin runtime/model revisions; enforce output validation instead of trusting generated JSON.",
+   "sources": [
+    "llama"
+   ],
+   "research_status": "Default",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W12",
+    "W13"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "AI-03",
+   "area": "AI and gestures",
+   "name": "Demucs, author-maintained fork",
+   "phase": "F2",
+   "license": "MIT code; audit downloaded model artifacts",
+   "proof": "Author lists adoption by UVR, Audiostrip, MVSep and related tools.",
+   "docs": "Usable CLI/Python documentation; fork explicitly warns of slow maintenance and no expected new features.",
+   "reuse": "Stem separation as a replaceable offline worker.",
+   "custom": "Package a tested runtime/model bundle and retain output alignment, source hash and job provenance.",
+   "risk": "Meta original is archived. Even the author fork needs an owned patch strategy; do not promote it to an unmaintained hard core dependency.",
+   "sources": [
+    "demucs",
+    "demucsarchive"
+   ],
+   "research_status": "Evaluate",
+   "qualification_status": "in_use",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "demucs htdemucs_6s real worker qualified \u2014 6 stems, tests/models 6/6 [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W15"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "AI-04",
+   "area": "AI and gestures",
+   "name": "Spotify Basic Pitch",
+   "phase": "F2",
+   "license": "Apache-2.0 project; verify packaged artifacts",
+   "proof": "Publisher-backed audio-to-MIDI project with a working model/demo; not proof of perfect production transcription.",
+   "docs": "Installation, inference and limitation guidance.",
+   "reuse": "Assist conversion of recorded musical audio into editable note candidates.",
+   "custom": "Provide correction UI, confidence and original-audio A/B. Prefer isolated sources when possible.",
+   "risk": "Not a next-note autocomplete model, and not a substitute for stem separation. Validate polyphony, bends and note timing.",
+   "sources": [
+    "pitch"
+   ],
+   "research_status": "Evaluate",
+   "qualification_status": "in_use",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "Spotify Basic Pitch real worker qualified \u2014 onsets \u226480ms, tests/models 6/6 [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W15"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "AI-05",
+   "area": "AI and gestures",
+   "name": "music21, code-only/no-corpus build",
+   "phase": "F2",
+   "license": "BSD-3-Clause code; corpus has separate restrictions",
+   "proof": "Long-established computational musicology toolkit.",
+   "docs": "Extensive user guide and reference documentation.",
+   "reuse": "Offline chord/key analysis, symbolic-music utilities and proposal validation helpers.",
+   "custom": "Build fast native constraints only where interaction latency requires them; run richer analysis in a worker.",
+   "risk": "Do not redistribute or train from its bundled corpus automatically. Current Python requirements must match the packaged worker.",
+   "sources": [
+    "music21",
+    "music21repo"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W13",
+    "W14"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "AI-06",
+   "area": "AI and gestures",
+   "name": "ACE-Step 1.5",
+   "phase": "F2",
+   "license": "MIT project; approve exact model weight licences and provenance",
+   "proof": "Emerging music-generation project, not established DAW infrastructure.",
+   "docs": "Project docs and author benchmarks; VOID suitability remains unmeasured.",
+   "reuse": "Candidate for prompt-conditioned generated audio assets.",
+   "custom": "Asynchronous job adapter, audition, alignment, regeneration, acceptance and cache lifecycle.",
+   "risk": "Do not repeat author speed/VRAM claims as VOID guarantees. Missing model/network must never disable ordinary composition.",
+   "sources": [
+    "ace"
+   ],
+   "research_status": "Evaluate",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W15"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "AI-07",
+   "area": "AI and gestures",
+   "name": "Diffusers + approved visual model",
+   "phase": "F4",
+   "license": "Apache-2.0 library; FLUX.1-schnell card specifies Apache-2.0 weights",
+   "proof": "Diffusers lists adoption by InvokeAI and Apple-related tooling.",
+   "docs": "Strong pipeline and optimization docs.",
+   "reuse": "Generate images or pre-rendered visual assets in a pinned worker; FLUX.1-schnell is one licence-clear evaluation example, not a claim of best current quality.",
+   "custom": "Add asset provenance, resolution limits, cancellation, seed/config capture and audition before publishing to a project.",
+   "risk": "Weight/runtime/content rights are separate. Video models require their own selection and hardware budget; no instant live generation promise.",
+   "sources": [
+    "diffusers",
+    "flux"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W23"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "AI-08",
+   "area": "AI and gestures",
+   "name": "Essentia",
+   "phase": "F2",
+   "license": "AGPL/commercial code path; models have separate non-commercial/proprietary terms",
+   "proof": "Specialist music-analysis framework; do not assume its model terms match its code.",
+   "docs": "Detailed algorithm and licensing documentation.",
+   "reuse": "Broad music feature analysis if a commercial/compatible licence is justified.",
+   "custom": "Compile only required algorithms and clear every selected model/dependency.",
+   "risk": "Not a blanket permissive add-on. Prefer smaller approved features until its breadth is needed.",
+   "sources": [
+    "essentia"
+   ],
+   "research_status": "Alternative",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "AI-09",
+   "area": "AI and gestures",
+   "name": "MediaPipe Hand Landmarker",
+   "phase": "F2",
+   "license": "Project/asset licence review required for the exact SDK and task bundle",
+   "proof": "Google-maintained perception SDK; musical gesture UX is not supplied.",
+   "docs": "Task guides, callbacks and image/video/live running modes.",
+   "reuse": "Camera landmarks and tracking rather than custom computer vision training.",
+   "custom": "Native or isolated worker integration, confidence filtering, calibration, clutch, smoothing and note-off safety. Touch/trackpad/MIDI come first.",
+   "risk": "Dropped frames/occlusion must not leave stuck notes. Camera consent, local processing and timestamp mapping are product work.",
+   "sources": [
+    "mediapipe"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W23"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "VIS-01",
+   "area": "Visuals and specialist",
+   "name": "wgpu",
+   "phase": "F4",
+   "license": "MIT / Apache-2.0",
+   "proof": "Official project identifies usage in Firefox, Servo and Deno.",
+   "docs": "Backend/API docs; regular breaking-release cadence requires pinning.",
+   "reuse": "Native cross-platform GPU rendering foundation.",
+   "custom": "VOID still supplies layers, scene graph, visual automation, shader controls and output scheduling. Start with a separate native output window.",
+   "risk": "Not an off-the-shelf visual editor. No automatic zero-copy embedding into a Tauri WebView or projectM OpenGL context.",
+   "sources": [
+    "wgpu"
+   ],
+   "research_status": "Default",
+   "qualification_status": "in_use",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "wgpu in void-visual native engine crates [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W22"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "VIS-02",
+   "area": "Visuals and specialist",
+   "name": "projectM",
+   "phase": "F4",
+   "license": "LGPL-2.1 core; presets and frontends separately licensed",
+   "proof": "Shipped integration: Kodi; original ecosystem also includes media-player use.",
+   "docs": "Core API/build docs; repository warns some frontends are outdated/development previews.",
+   "reuse": "Optional MilkDrop-style audio-reactive preset renderer with existing visual behavior.",
+   "custom": "Isolate an OpenGL-based output path and distribute only approved presets. Feed copied bounded analysis/PCM data, not blocking audio calls.",
+   "risk": "Do not rebuild its shader parser, but do not force it into wgpu as if APIs matched. A transition plan is needed for compositing/export.",
+   "sources": [
+    "projectm",
+    "kodi"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W23"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "VIS-03",
+   "area": "Visuals and specialist",
+   "name": "FFmpeg",
+   "phase": "F4",
+   "license": "Build-dependent: LGPL default paths; optional GPL/nonfree components change obligations",
+   "proof": "Long-established native media infrastructure.",
+   "docs": "Extensive tool/library docs and an explicit redistribution checklist.",
+   "reuse": "Decode/transcode audiovisual assets and produce final synchronized exports.",
+   "custom": "Versioned controlled worker with input/output manifests and bounded resources.",
+   "risk": "Approve a specific codec/build matrix, not a random binary download. Patents and third-party codec terms need separate review. Never run codecs in the audio callback.",
+   "sources": [
+    "ffmpeg",
+    "ffmpeglicense"
+   ],
+   "research_status": "Default",
+   "qualification_status": "in_use",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "ffmpeg argv exporter in void-av (tests/av 29/29) [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W24"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "VIS-04",
+   "area": "Visuals and specialist",
+   "name": "Verovio",
+   "phase": "F5",
+   "license": "LGPL-3.0; review transitive code/fonts",
+   "proof": "Shipping online editor/viewer and supported native/web bindings.",
+   "docs": "Reference book, integration examples and C++ API.",
+   "reuse": "Score engraving from MEI and supported import formats such as MusicXML.",
+   "custom": "Map notes to notation objects, interactive edits, selections and layout preferences.",
+   "risk": "Engraving is not a complete score editor; it does not supply Logic-style notation workflow for free.",
+   "sources": [
+    "verovio"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W25"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "VIS-05",
+   "area": "Visuals and specialist",
+   "name": "Open Lighting Architecture",
+   "phase": "F5",
+   "license": "Mixed components; LGPL client and GPL-related code require review",
+   "proof": "Established lighting-protocol framework with hardware adapters.",
+   "docs": "API/tutorial/build documentation.",
+   "reuse": "DMX/sACN and equipment transport through its daemon/client architecture.",
+   "custom": "VOID creates cue rules, approved fixture profiles, rehearsal, output permission and a manual blackout path.",
+   "risk": "Windows support is partial. Do not make stage control a dependency of the studio or let generated instructions directly actuate fixtures.",
+   "sources": [
+    "ola"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W27"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "EXT-01",
+   "area": "Visuals and specialist",
+   "name": "Wasmtime",
+   "phase": "F5",
+   "license": "Apache-2.0 with LLVM exception",
+   "proof": "Established Bytecode Alliance WebAssembly runtime.",
+   "docs": "Runtime/security/API documentation.",
+   "reuse": "A future restricted environment for custom procedural/generative modules.",
+   "custom": "Design an explicit capability API with resource limits, cancellation and no ambient filesystem/network rights.",
+   "risk": "Runtime sandboxing is not automatic real-time suitability; untrusted modules stay outside the critical playback path until proven.",
+   "sources": [
+    "wasmtime"
+   ],
+   "research_status": "Optional",
+   "qualification_status": "in_use",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "wasmtime 37.0.2 in void-wasm sandbox (tests/wasm 31/31) [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W28"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "QA-01",
+   "area": "Quality and delivery",
+   "name": "pluginval + vendor validators",
+   "phase": "F1",
+   "license": "pluginval GPL-3.0 as a separate test tool; vendor tools separately reviewed",
+   "proof": "Purpose-built audio-plugin validation tool with headless operation.",
+   "docs": "CLI examples and test documentation.",
+   "reuse": "Exercise fixtures and embedded/generated plugins in CI; add VST3 SDK validators and platform AU tools.",
+   "custom": "Host integration tests, crash/restore tests and hardware loopback are still needed.",
+   "risk": "Do not link GPL test-tool code into an unrelated proprietary runtime. Plugin validation does not certify the host or every third-party plugin.",
+   "sources": [
+    "pluginval",
+    "vstdocs"
+   ],
+   "research_status": "Default",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W06",
+    "W20"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "QA-02",
+   "area": "Quality and delivery",
+   "name": "WebdriverIO Tauri service",
+   "phase": "F0",
+   "license": "Inspect service/plugin licences at the pinned revision",
+   "proof": "Official current Tauri-recommended E2E integration.",
+   "docs": "Current setup guides explain Windows/Linux/macOS and embedded driver mode.",
+   "reuse": "Reusable cross-platform desktop E2E tests rather than a custom UI automation framework.",
+   "custom": "Use test-only embedded automation plugins and command hooks; remove them from production builds.",
+   "risk": "Direct tauri-driver still lacks macOS WKWebView support, but the current embedded service supports macOS. Native plugin/editor/device tests need additional coverage.",
+   "sources": [
+    "wdio"
+   ],
+   "research_status": "Default",
+   "qualification_status": "unqualified",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W07"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  },
+  {
+   "id": "QA-03",
+   "area": "Quality and delivery",
+   "name": "Tauri updater + native CI packaging",
+   "phase": "F0",
+   "license": "Tauri plugin terms plus OS signing/distribution terms",
+   "proof": "Documented cross-platform installer and update path.",
+   "docs": "Strong signing/static manifest configuration examples.",
+   "reuse": "Signed update artifacts and staged release channels. A static HTTPS manifest can serve initial updates.",
+   "custom": "Protect signing keys, build nested workers, notarize/sign platform artifacts, retain matching sources/notices and test update interruption.",
+   "risk": "Updater signature does not replace OS code signing. Never install/restart during recording or a live performance.",
+   "sources": [
+    "updater"
+   ],
+   "research_status": "Default",
+   "qualification_status": "in_use",
+   "pinned_revision": null,
+   "license_approval": null,
+   "evidence": [
+    "tauri-plugin-updater wired + release.yml matrix (lane AA); signing key material authorization-gated [2026-10-09 02:57 UTC]"
+   ],
+   "owner": "Integrator assigns at phase entry",
+   "execution_tasks": [
+    "W07"
+   ],
+   "activation_rule": "Only activate for a justified task after exact revision/build/licence/security and functional evidence. Alternatives are not cumulative requirements."
+  }
+ ],
+ "sources": {
+  "te": {
+   "title": "Tracktion Engine: source, licensing, examples and bundled libraries",
+   "url": "https://github.com/Tracktion/tracktion_engine"
+  },
+  "tefeatures": {
+   "title": "Tracktion Engine: feature inventory and Waveform Free provenance",
+   "url": "https://github.com/Tracktion/tracktion_engine/blob/develop/FEATURES.md"
+  },
+  "teproduct": {
+   "title": "Tracktion: Engine product overview",
+   "url": "https://www.tracktion.com/develop/tracktion-engine"
+  },
+  "techanges": {
+   "title": "Tracktion Engine: changelist",
+   "url": "https://github.com/Tracktion/tracktion_engine/blob/develop/CHANGELIST.md"
+  },
+  "juce": {
+   "title": "JUCE: framework and documentation entry points",
+   "url": "https://github.com/juce-framework/JUCE"
+  },
+  "jucelicense": {
+   "title": "JUCE: current licence file",
+   "url": "https://github.com/juce-framework/JUCE/blob/master/LICENSE.md"
+  },
+  "jucedocs": {
+   "title": "JUCE API reference",
+   "url": "https://docs.juce.com/master/"
+  },
+  "jucerelease": {
+   "title": "JUCE release history",
+   "url": "https://github.com/juce-framework/JUCE/releases"
+  },
+  "tauri": {
+   "title": "Tauri: process model",
+   "url": "https://v2.tauri.app/concept/process-model/"
+  },
+  "taurirepo": {
+   "title": "Tauri: source and licence",
+   "url": "https://github.com/tauri-apps/tauri"
+  },
+  "capabilities": {
+   "title": "Tauri: capabilities and their security boundary",
+   "url": "https://tauri.app/security/capabilities/"
+  },
+  "updater": {
+   "title": "Tauri: signed updater and static update manifests",
+   "url": "https://v2.tauri.app/plugin/updater/"
+  },
+  "wdio": {
+   "title": "Tauri: current cross-platform WebDriver guidance",
+   "url": "https://v2.tauri.app/develop/tests/webdriver/"
+  },
+  "ardour": {
+   "title": "Ardour: backend and headless developer documentation",
+   "url": "https://ardour.org/files/doxygen/index.html"
+  },
+  "carla": {
+   "title": "Carla: plugin host, licensing and work-in-progress features",
+   "url": "https://github.com/falkTX/Carla"
+  },
+  "wdl": {
+   "title": "Cockos WDL: reusable C++ utilities",
+   "url": "https://cockos.com/wdl/"
+  },
+  "cockos": {
+   "title": "Cockos: products and WDL provenance",
+   "url": "https://cockos.com/"
+  },
+  "stretch": {
+   "title": "Signalsmith Stretch: API, licence and integrations",
+   "url": "https://github.com/Signalsmith-Audio/signalsmith-stretch"
+  },
+  "rubberband": {
+   "title": "Rubber Band: library and release information",
+   "url": "https://www.breakfastquay.com/rubberband/"
+  },
+  "rubberlicense": {
+   "title": "Rubber Band: licensing",
+   "url": "https://breakfastquay.com/rubberband/license.html"
+  },
+  "soundtouch": {
+   "title": "SoundTouch: licensing",
+   "url": "https://surina.net/soundtouch/license.html"
+  },
+  "fluid": {
+   "title": "FluidSynth: integrations and documentation",
+   "url": "https://www.fluidsynth.org/"
+  },
+  "fluidrepo": {
+   "title": "FluidSynth: source and releases",
+   "url": "https://github.com/FluidSynth/fluidsynth"
+  },
+  "airwindows": {
+   "title": "Airwindows Consolidated: reusable library and licences",
+   "url": "https://github.com/baconpaul/airwin2rack"
+  },
+  "sfizz": {
+   "title": "sfizz: repository archive and release history",
+   "url": "https://github.com/sfztools/sfizz/releases"
+  },
+  "hise": {
+   "title": "HISE: toolkit and licensing",
+   "url": "https://hise.dev/"
+  },
+  "hisedocs": {
+   "title": "HISE: documentation and separate JUCE licensing",
+   "url": "https://docs.hise.dev/introduction/"
+  },
+  "surge": {
+   "title": "Surge XT: shipping synthesizer, developer guide and GPL licence",
+   "url": "https://github.com/surge-synthesizer/surge"
+  },
+  "ebur": {
+   "title": "libebur128: MIT loudness library, API and tests",
+   "url": "https://github.com/jiixyj/libebur128"
+  },
+  "sndfile": {
+   "title": "libsndfile: formats, build instructions and LGPL licence",
+   "url": "https://github.com/libsndfile/libsndfile"
+  },
+  "vst": {
+   "title": "VST 3 SDK: current MIT licence",
+   "url": "https://github.com/steinbergmedia/vst3sdk/blob/master/LICENSE.txt"
+  },
+  "vstdocs": {
+   "title": "Steinberg: VST 3 developer portal",
+   "url": "https://steinbergmedia.github.io/vst3_dev_portal/pages/Getting%2BStarted/Links.html"
+  },
+  "clap": {
+   "title": "CLAP: audio plugin API",
+   "url": "https://github.com/free-audio/clap"
+  },
+  "claplicense": {
+   "title": "CLAP: open licensing overview",
+   "url": "https://www.cleveraudio.org/1-feature-overview/_open_licnese/"
+  },
+  "link": {
+   "title": "Ableton Link: API, clock model, tests and licensing",
+   "url": "https://github.com/ableton/link"
+  },
+  "sqlite": {
+   "title": "SQLite: production deployment evidence",
+   "url": "https://sqlite.org/mostdeployed.html"
+  },
+  "wal": {
+   "title": "SQLite: WAL limitations, durability and 2026 bug fix",
+   "url": "https://sqlite.org/wal.html"
+  },
+  "backup": {
+   "title": "SQLite: online backup API",
+   "url": "https://sqlite.org/backup.html"
+  },
+  "flatbuffers": {
+   "title": "FlatBuffers: Rust/C++ code generation, compatibility and licence",
+   "url": "https://github.com/google/flatbuffers"
+  },
+  "tokio": {
+   "title": "Tokio: runtime and production users",
+   "url": "https://tokio.rs/"
+  },
+  "onnx": {
+   "title": "ONNX Runtime: Microsoft production usage",
+   "url": "https://onnxruntime.ai/"
+  },
+  "onnxrepo": {
+   "title": "ONNX Runtime: source licence and diagnostic collection notice",
+   "url": "https://github.com/microsoft/onnxruntime"
+  },
+  "onnxep": {
+   "title": "ONNX Runtime: execution providers and support levels",
+   "url": "https://onnxruntime.ai/docs/execution-providers/"
+  },
+  "llama": {
+   "title": "llama.cpp: local inference, grammars and hardware backends",
+   "url": "https://github.com/ggml-org/llama.cpp"
+  },
+  "demucs": {
+   "title": "Demucs: author-maintained fork, adoption and maintenance caveat",
+   "url": "https://github.com/adefossez/demucs"
+  },
+  "demucsarchive": {
+   "title": "Meta Demucs: archived original repository",
+   "url": "https://github.com/facebookresearch/demucs/releases"
+  },
+  "pitch": {
+   "title": "Spotify Basic Pitch: audio-to-MIDI model and limitations",
+   "url": "https://github.com/spotify/basic-pitch"
+  },
+  "music21": {
+   "title": "music21: BSD code and separately licensed corpus",
+   "url": "https://music21.org/music21docs/about/about.html"
+  },
+  "music21repo": {
+   "title": "music21: current compatibility, documentation and no-corpus option",
+   "url": "https://github.com/cuthbertLab/music21"
+  },
+  "ace": {
+   "title": "ACE-Step 1.5: generation implementation and model documentation",
+   "url": "https://github.com/ACE-Step/ACE-Step-1.5"
+  },
+  "diffusers": {
+   "title": "Diffusers: pipelines, licence and downstream adoption",
+   "url": "https://github.com/huggingface/diffusers"
+  },
+  "flux": {
+   "title": "FLUX.1-schnell: publisher model card and weight licence",
+   "url": "https://huggingface.co/black-forest-labs/FLUX.1-schnell"
+  },
+  "essentia": {
+   "title": "Essentia: code, model and dependency licensing",
+   "url": "https://essentia.upf.edu/licensing_information.html"
+  },
+  "mediapipe": {
+   "title": "MediaPipe: hand landmark pipeline and running modes",
+   "url": "https://developers.google.com/edge/mediapipe/solutions/vision/hand_landmarker/android"
+  },
+  "wgpu": {
+   "title": "wgpu: native graphics backends, adoption and release policy",
+   "url": "https://github.com/gfx-rs/wgpu"
+  },
+  "projectm": {
+   "title": "projectM: reusable OpenGL visualizer, licences and frontend caveats",
+   "url": "https://github.com/projectM-visualizer/projectm"
+  },
+  "kodi": {
+   "title": "Kodi: shipped projectM integration",
+   "url": "https://kodi.tv/addons/omega/visualization.projectm/"
+  },
+  "ffmpeg": {
+   "title": "FFmpeg: distribution, build and licence obligations",
+   "url": "https://www.ffmpeg.org/legal.html"
+  },
+  "ffmpeglicense": {
+   "title": "FFmpeg: optional GPL and incompatible build components",
+   "url": "https://ffmpeg.org/doxygen/trunk/md_LICENSE.html"
+  },
+  "dawproject": {
+   "title": "DAWproject: open exchange format and supported DAWs",
+   "url": "https://github.com/bitwig/dawproject"
+  },
+  "verovio": {
+   "title": "Verovio: engraving, bindings, reference book and licence",
+   "url": "https://github.com/rism-digital/verovio"
+  },
+  "ola": {
+   "title": "Open Lighting Architecture: platform, protocols and documentation",
+   "url": "https://github.com/OpenLightingProject/ola"
+  },
+  "wasmtime": {
+   "title": "Wasmtime: WebAssembly runtime and security model",
+   "url": "https://github.com/bytecodealliance/wasmtime"
+  },
+  "pluginval": {
+   "title": "pluginval: standalone/headless validation and GPL licence",
+   "url": "https://github.com/Tracktion/pluginval"
+  }
+ },
+ "handoff_date": "2026-10-08"
+}

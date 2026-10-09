@@ -1,0 +1,1203 @@
+{
+ "schema_version": "1.0.0",
+ "date": "2026-10-08",
+ "repository": "Beyon-Digital/VOID",
+ "baseline_commit": "4135db035a93b57b6b9c1f3814ff6189e4aae74a",
+ "completion_policy": "All done_when conditions and referenced test evidence must pass; blockers never become passes. Proceed to ready work on independent lanes.",
+ "tasks": [
+  {
+   "id": "W00",
+   "phase": "F0",
+   "title": "Baseline, source preservation and scope ledger",
+   "owner": "Integrator",
+   "depends_on": [],
+   "paths": [
+    "docs/void-handoff/",
+    "tracking/",
+    "README.md",
+    "migration.md"
+   ],
+   "steps": [
+    "Read repository instructions, current branch, open PRs and package scripts; record the actual starting SHA and dirty/untracked changes without discarding them.",
+    "Install this packet under docs/void-handoff/. Preserve the reference snapshots. Reconcile any newer code by requirement ID; do not replay a migration over completed work.",
+    "Run the existing build/test commands with time limits; record failures honestly. Correct README claims so architecture declarations are not called implemented features.",
+    "Replace clip-ID-prefix scene membership with explicit sceneId/trackId relationships when migrating the SessionView; add a collision regression test."
+   ],
+   "done_when": [
+    "Starting SHA, environment and observed checks recorded. Every original feature is present in FEATURE_TRACEABILITY.json. Existing source/history is preserved."
+   ],
+   "tests": [
+    "T01",
+    "T02"
+   ],
+   "dependency_ids": [],
+   "status": "done",
+   "evidence": "packet installed, baseline recorded, SessionView sceneId fix + vitest 3/3",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W01",
+   "phase": "F0",
+   "title": "Dependency rights and compatible version qualification",
+   "owner": "Integrator",
+   "depends_on": [
+    "W00"
+   ],
+   "paths": [
+    "docs/dependencies/",
+    "third_party/",
+    "tracking/DEPENDENCIES.json",
+    "Cargo.lock",
+    "pnpm-lock.yaml"
+   ],
+   "steps": [
+    "Review the exact Tracktion/JUCE pair and upstream example builds; use C++20 where required by the selected engine, not an invented SDK API.",
+    "Pin exact engine/JUCE/submodule/toolchain/SDK revisions, feature flags, licences and source hashes. Start with the engine-supplied compatible JUCE revision.",
+    "Record a valid development-use path and a separate distribution-rights state. Do not buy licences, relicense the repository or publish binaries automatically.",
+    "Review advisory status including the actual linked SQLite build. Keep optional and evaluation libraries out of the initial installer."
+   ],
+   "done_when": [
+    "Dependency compatibility evidence exists; development may proceed only within recorded permitted use. Distribution stays blocked while rights/signing/content approval is unknown."
+   ],
+   "tests": [
+    "T03",
+    "T04"
+   ],
+   "dependency_ids": [
+    "CORE-01",
+    "CORE-02",
+    "CORE-03",
+    "DATA-01",
+    "DATA-02",
+    "DATA-03"
+   ],
+   "status": "done",
+   "evidence": "PINS.md + QUALIFICATION.md; TE e760754+JUCE 37c894f; upstream suite 450/22282 exit 0",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W02",
+   "phase": "F0",
+   "title": "Tauri shell and supervised native worker",
+   "owner": "Platform",
+   "depends_on": [
+    "W01"
+   ],
+   "paths": [
+    "apps/void-desktop/",
+    "crates/void-app/",
+    "crates/void-worker/",
+    "native/void-engine/",
+    "CMakePresets.json",
+    "Cargo.toml"
+   ],
+   "steps": [
+    "Add the Tauri target beside the existing Electron entrypoint until F1 cutover; reuse UI tokens where useful, not the stub audio backend.",
+    "Build a C++ worker using the selected JUCE message loop and engine examples. Rust supervises worker identity, startup readiness, heartbeat, bounded restart and graceful shutdown.",
+    "Create a restrictive local control channel using Unix-domain sockets or named pipes; use per-launch secrets/inherited handles, peer checks and scoped permissions. No public or unauthenticated loopback API.",
+    "Keep a WebView reload distinct from closing the application. Confirm all child processes terminate after an intentional app exit."
+   ],
+   "done_when": [
+    "A real Rust shell starts, handshakes with and stops the C++ process. Renderer restart preserves the worker; engine restart produces a new epoch and explicit stopped/recovery state."
+   ],
+   "tests": [
+    "T05",
+    "T06",
+    "T07"
+   ],
+   "dependency_ids": [
+    "CORE-01",
+    "CORE-02",
+    "CORE-03",
+    "DATA-03"
+   ],
+   "status": "done",
+   "evidence": "Tauri v2 shell + void-worker supervisor + mock worker; wire_roundtrip green; tauri build -> deb/rpm/AppImage",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W03",
+   "phase": "F0",
+   "title": "Command protocol, object IDs and bounded state views",
+   "owner": "Platform + engine",
+   "depends_on": [
+    "W02"
+   ],
+   "paths": [
+    "protocol/",
+    "crates/void-protocol/",
+    "native/void-engine/src/bridge/",
+    "packages/void-client/"
+   ],
+   "steps": [
+    "Implement CONTRACTS.md and validate schemas. Generate compatible Rust/C++ FlatBuffers bindings and typed frontend DTOs; do not pass unvalidated JSON through to engine APIs.",
+    "Serialize document mutation off the audio callback; carry commandId/projectId/expectedRevision/engineEpoch and stable object IDs.",
+    "Implement duplicate-ID receipts, payload-hash conflict rejection, revision conflicts, paginated/viewport reads and snapshot-plus-delta reattachment.",
+    "Use bounded control queues and lossy meter telemetry. Clock, recordings and audio buffers must not travel through WebView events."
+   ],
+   "done_when": [
+    "Malformed, duplicate, stale and out-of-scope requests have deterministic outcomes; frontend state reattaches without loading the whole project."
+   ],
+   "tests": [
+    "T08",
+    "T09",
+    "T10",
+    "T11",
+    "T12"
+   ],
+   "dependency_ids": [
+    "DATA-02"
+   ],
+   "status": "done",
+   "evidence": "void_control.fbs frozen 1.0; 32 ops; ControlEnvelope; receipt/dedup/revision stores; codec full coverage",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W04",
+   "phase": "F0",
+   "title": "Tracktion musical model, device path and native playback",
+   "owner": "Engine",
+   "depends_on": [
+    "W03"
+   ],
+   "paths": [
+    "native/void-engine/src/session/",
+    "native/void-engine/src/audio/",
+    "native/void-engine/tests/"
+   ],
+   "steps": [
+    "Instantiate one authoritative engine Edit and device manager. Map project/track/clip/note/parameter IDs with saved metadata; never derive relationships from ID prefixes.",
+    "Implement create project, import approved WAV, add audio/MIDI/instrument track, note insertion and transport start/stop/seek/cycle using actual engine APIs.",
+    "Run graph preparation, asset I/O and disposal off the audio callback. Use engine scheduling and latency facilities before inventing alternatives.",
+    "Build an offline render test fixture and real native output playback. A generated test tone is a test asset, not simulated user audio."
+   ],
+   "done_when": [
+    "Fixture playback/render works through the native graph. UI values change audible native parameters, not only local component state."
+   ],
+   "tests": [
+    "T13",
+    "T14",
+    "T15",
+    "T16"
+   ],
+   "dependency_ids": [
+    "CORE-02",
+    "CORE-03",
+    "DSP-03"
+   ],
+   "status": "partial_macos",
+   "evidence": "native/void-engine live wire 15/15 harness; T13/T15/T16 need audio device/GUI",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W05",
+   "phase": "F0",
+   "title": "Immutable assets and crash-consistent checkpoints",
+   "owner": "Persistence",
+   "depends_on": [
+    "W04"
+   ],
+   "paths": [
+    "crates/void-project/",
+    "crates/void-assets/",
+    "native/void-engine/src/persistence/",
+    "tests/recovery/"
+   ],
+   "steps": [
+    "Implement the project container, content-hashed media, complete checkpoint manifest and CURRENT pointer defined in CONTRACTS.md.",
+    "Capture engine state, app metadata and coordinated revision at a serialized mutation barrier while audio continues. Write, flush, verify and atomically publish a complete checkpoint.",
+    "Make the checkpoint manifest the save authority; SQLite is a reconstructable index for committed checkpoints and a transactional store for app jobs. Do not claim a transaction spanning DB and files.",
+    "Retain previous verified checkpoints, recover uncertain commands safely and migrate older project schemas by copy-on-write. Refuse overwrite of newer unsupported formats."
+   ],
+   "done_when": [
+    "Crash/disk-full at every save boundary never destroys the last committed project. Save success means a complete verified published checkpoint, not queued writes."
+   ],
+   "tests": [
+    "T17",
+    "T18",
+    "T19",
+    "T20",
+    "T21"
+   ],
+   "dependency_ids": [
+    "DATA-01"
+   ],
+   "status": "done",
+   "evidence": "void-project/void-assets/void-jobs + tests/recovery 22/22",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W06",
+   "phase": "F0",
+   "title": "Native plugin proof and safe scanning",
+   "owner": "Engine",
+   "depends_on": [
+    "W05"
+   ],
+   "paths": [
+    "native/void-plugin-scanner/",
+    "native/void-engine/src/plugins/",
+    "crates/void-plugins/",
+    "tests/plugins/"
+   ],
+   "steps": [
+    "Run discovery/scan in a short-lived process with timeout and quarantine. Cache exact plugin binary/version/architecture identity.",
+    "Load one known legally usable VST3 fixture and exercise its native editor and state; test AU separately on macOS. Start with engine-hosted processing, clearly labeled not isolated.",
+    "Test editor open/close, resize, focus, DPI, keyboard and project-close teardown. Preserve unknown/missing plugin state blobs for later restoration.",
+    "Provoke scan hang and engine/plugin crash. Distinguish scanner failure, engine failure and future isolated runtime failure."
+   ],
+   "done_when": [
+    "Native plugin processing and native editor actually work on the first tested OS; other OS rows remain unverified until tested. Engine failure stops audio but leaves the Rust shell able to recover."
+   ],
+   "tests": [
+    "T22",
+    "T23",
+    "T24"
+   ],
+   "dependency_ids": [
+    "IO-01",
+    "QA-01"
+   ],
+   "status": "partial_macos",
+   "evidence": "void-plugin-scanner AU+selftest isolation; T23 foreign-arch blocked",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W07",
+   "phase": "F0",
+   "title": "CI, diagnostics, clean install and Foundation gate",
+   "owner": "QA + release",
+   "depends_on": [
+    "W06"
+   ],
+   "paths": [
+    ".github/workflows/",
+    "tools/doctor/",
+    "tools/ci/",
+    "tests/e2e/",
+    "docs/verification/"
+   ],
+   "steps": [
+    "Build on native OS runners with pinned toolchains, job timeouts, bounded matrix concurrency and cancellation of superseded branch runs.",
+    "Add structured redacted logs, callback/dropout counters and process-tree resource snapshots. Keep instrumentation that allocates out of real-time release callbacks.",
+    "Test release-like installation without a development toolchain. Use OS signing/notarization when credentials exist; unsigned internal builds must be labeled and cannot pass signed-release checks.",
+    "Prove UI reload + real plugin + save/reopen + offline render. Publish F0 evidence per platform; retain the Electron path until F1 is accepted."
+   ],
+   "done_when": [
+    "F0 software gate passes with exact commands and artifacts. Hardware/signing rows are passed only with real evidence, otherwise explicitly blocked; next nondependent work may continue."
+   ],
+   "tests": [
+    "T25",
+    "T26",
+    "T27",
+    "T28",
+    "T29",
+    "T30"
+   ],
+   "dependency_ids": [
+    "QA-02",
+    "QA-03"
+   ],
+   "status": "partial",
+   "evidence": "ci.yml + doctor.sh (8/2/0) + EVIDENCE.md; install path pending native binary on non-mac",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W08",
+   "phase": "F1",
+   "title": "Audio/MIDI recording and monitoring workflow",
+   "owner": "Engine + UI",
+   "depends_on": [
+    "W07"
+   ],
+   "paths": [
+    "native/void-engine/src/recording/",
+    "packages/void-studio/src/recording/",
+    "tests/recording/"
+   ],
+   "steps": [
+    "Implement input/output setup, arm, monitoring mode, count-in, metronome, cycle/punch boundaries and mono/stereo multitrack recording.",
+    "Capture MIDI with timestamps, sustain/bend/aftertouch, latency alignment and MIDI import/export/demix. Add all-notes-off on disconnect, stop and panic.",
+    "Write growing recordings into a recoverable recording journal with persisted chunk lengths; incomplete takes are recovered and labeled, not mistaken for final assets.",
+    "Handle denied microphone permission, device loss, rate/buffer mismatch, full disk and changing default devices without surprise feedback or false recording success."
+   ],
+   "done_when": [
+    "A person can record voice and MIDI offline, hear the intended monitoring path and recover a partial take after an induced failure. Hardware latency is measured, not inferred from buffer size."
+   ],
+   "tests": [
+    "T31",
+    "T32",
+    "T33",
+    "T34",
+    "T35"
+   ],
+   "dependency_ids": [
+    "CORE-02",
+    "CORE-03"
+   ],
+   "status": "partial_macos",
+   "evidence": "RecordingManager+MidiCapture+TakeJournal merged; take 20/20, errors 8/8, kill-recovery labels incomplete, panic allNotesOff=16, hosted roundTrip 2.729ms; blocked: real HW latency headless + protocol has no recording ops (NEEDS.md \u00a77-8 proposes rev2 ops)",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W09",
+   "phase": "F1",
+   "title": "Arrangement and piano-roll editors",
+   "owner": "Studio UI",
+   "depends_on": [
+    "W08"
+   ],
+   "paths": [
+    "packages/void-studio/src/timeline/",
+    "packages/void-studio/src/piano-roll/",
+    "packages/void-ui/"
+   ],
+   "steps": [
+    "Create Compose/Arrange/Mix workspaces with consistent transport and track selection. No approved Figma file exists in this packet: build a functional original UI, not a fictitious design match.",
+    "Implement virtualized tracks, multiresolution waveform tiles, region select/move/trim/split/duplicate, snapping and explicit scene/track slots.",
+    "Implement piano-roll pitch/start/duration/velocity edits and CC lanes with pointer and keyboard controls; group a drag into one history transaction.",
+    "Keep viewport caches bounded and reconcile optimistic feedback with authoritative acknowledgements. Implement focus, range semantics, reduced motion and empty/error states."
+   ],
+   "done_when": [
+    "Edits change real audio/MIDI, survive save/reopen and have coherent undo. Large arrangements do not clone all sample data into JavaScript."
+   ],
+   "tests": [
+    "T36",
+    "T37",
+    "T38",
+    "T39"
+   ],
+   "dependency_ids": [],
+   "status": "done",
+   "evidence": "void-studio timeline/piano-roll/workspaces + void-ui ClipBlock/NoteBlock/TransportControls/WorkspaceTabs + StudioShell; 67 vitest (46 new); wire-name fixes: MoveClipOp/TrimClipOp/RemoveClipOp, CLIP_LIST, SetNoteOp+RemoveNoteOp",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W10",
+   "phase": "F1",
+   "title": "Playable instruments, real mixer and export",
+   "owner": "Engine + UI",
+   "depends_on": [
+    "W09"
+   ],
+   "paths": [
+    "packages/void-studio/src/instruments/",
+    "packages/void-studio/src/mixer/",
+    "crates/void-export/",
+    "native/void-engine/src/render/"
+   ],
+   "steps": [
+    "Expose engine starter synth/sampler and utility processors with original/cleared presets; use existing DSP and approved sample assets.",
+    "Implement gain/pan/mute/solo, real meters, insert/bypass and channel presets; use safe monitoring defaults and display actual clipping.",
+    "Implement mono/stereo WAV and MIDI export with selected range, sample rate, bit depth, tails and a progress/cancel/failure flow.",
+    "Keep renders on an immutable checkpoint/snapshot; edits after render start do not silently change the output. Stage files and publish only completed results."
+   ],
+   "done_when": [
+    "A complete short song containing a recording, MIDI instrument, edits and mix settings renders correctly offline; no network/model requirement."
+   ],
+   "tests": [
+    "T40",
+    "T41",
+    "T42",
+    "T43"
+   ],
+   "dependency_ids": [
+    "DSP-03",
+    "DSP-10",
+    "IO-01"
+   ],
+   "status": "partial",
+   "evidence": "non-native done: void-export (ArgvRenderer, staging->verify->provenance->publish, cancel semantics) 19/19; instruments/mixer/export studio modules 40 new vitest; mixer sends = typed UnsupportedCapability refusal. Native render job + journey pending",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W11",
+   "phase": "F1",
+   "title": "First-song qualification and Electron cutover",
+   "owner": "Integrator + QA",
+   "depends_on": [
+    "W10"
+   ],
+   "paths": [
+    "tests/journeys/",
+    "docs/verification/F1/",
+    "apps/void-desktop/",
+    "README.md"
+   ],
+   "steps": [
+    "Run the full first-song journey and all failure-path tests on supported targets. Measure 30-minute workloads using the fixture and hardware policy.",
+    "Add templates, recent projects, project/track notes, relink recovery, help/onboarding and localizable copy.",
+    "Remove Electron packaging/default startup and WebAudio production routing only after native equivalence for implemented workflows is demonstrated. Preserve git history and any legacy project importer that is actually needed.",
+    "Publish supported configurations, limitations and status evidence. Do not label the complete Logic parity roadmap finished at this gate."
+   ],
+   "done_when": [
+    "F1 acceptance report proves one complete offline song and recovery. The Tauri application is the production path; remaining phases stay open in the tracker."
+   ],
+   "tests": [
+    "T44",
+    "T45",
+    "T46",
+    "T47",
+    "T48"
+   ],
+   "dependency_ids": [],
+   "status": "partial",
+   "evidence": "T44 PASS 57/57 (offline first-song: 267 notes, byte-identical solo PCM across kill/restart, 0-diff reopen), T46 PASS engine-scope (flat RSS 25 cycles), T45 partial (47 renders/3min, 5.96x faster-than-realtime; 30-min devices blocked), T47 cutover staged, T48 blocked human; W11-SUPPORT UI merged",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W12",
+   "phase": "F2",
+   "title": "AI job runtime, budgets and provenance",
+   "owner": "AI platform",
+   "depends_on": [
+    "W11"
+   ],
+   "paths": [
+    "crates/void-jobs/",
+    "workers/",
+    "crates/void-models/",
+    "packages/void-studio/src/jobs/"
+   ],
+   "steps": [
+    "Implement job state machine, bounded queue, reservation-based RAM/VRAM/CPU admission, progress, deadlines, cancellation and orphan cleanup.",
+    "Add signed model manifests, version/hash checks, optional downloads, inspectable project-scoped memory and deletion/retention rules.",
+    "Integrate one qualified compact runtime/model first; bundle a locked worker runtime rather than requiring users to install Python.",
+    "No hidden cloud fallback, raw private-project telemetry, arbitrary shell tool or automatic training. Store permitted inputs, model/runtime revision, settings and accepted-output provenance."
+   ],
+   "done_when": [
+    "Jobs may fail or be unavailable without disabling the manual studio. Cancellation releases resources and late results cannot mutate the project."
+   ],
+   "tests": [
+    "T49",
+    "T50",
+    "T51",
+    "T52"
+   ],
+   "dependency_ids": [
+    "AI-01",
+    "AI-02",
+    "DATA-03"
+   ],
+   "status": "partial",
+   "evidence": "void-models registry+manifest verify+exec allowlist; workers/PROTOCOL.md v1 + void-fake-worker real synth; void-jobs runner (RLIMIT budgets, threaded pump, artifact re-hash, provenance publish, admission 4/1/2, late-result quarantine) 13/13; studio jobs 19 tests. Missing: wire ops (SubmitJob/CancelJob/JOB_LIST) \u2014 NEEDS.md rev2",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W13",
+   "phase": "F2",
+   "title": "Predictive composition and safe proposal transactions",
+   "owner": "Musical AI + UI",
+   "depends_on": [
+    "W12"
+   ],
+   "paths": [
+    "crates/void-proposals/",
+    "workers/symbolic/",
+    "packages/void-studio/src/proposals/"
+   ],
+   "steps": [
+    "Start with deterministic scale/chord/rhythm rules and optionally a compact qualified model; expose ghost notes and several candidates inside the piano roll/pads.",
+    "Use a scoped context digest of notes, chords, meter, key, selected bars, locked regions and instrument; never send the whole song by default.",
+    "Audition in a transient engine layer excluded from persistent snapshots. Support partial accept, reject, regenerate, editable accepted notes and one-step undo.",
+    "Reject or explicitly revalidate stale results; never let project lyrics, filenames or model outputs escalate permissions or execute arbitrary code."
+   ],
+   "done_when": [
+    "A user can compose with manual notes, audition a continuation, accept part of it, undo and reopen the original state; candidates do not become saved edits until accepted."
+   ],
+   "tests": [
+    "T53",
+    "T54",
+    "T55",
+    "T56"
+   ],
+   "dependency_ids": [
+    "AI-02",
+    "AI-05"
+   ],
+   "status": "partial",
+   "evidence": "void-symbolic-worker (seeded interval-Markov+Krumhansl) + void-proposals lifecycle (digest\u2192job\u2192validated doc\u2192plan_accept\u2192single-tx InsertNoteOp\u2192commit/reject, stale-never-revives) + ranked UI; T53 determinism sha-verified, T54 single-tx accept; no wire ops for proposals (NEEDS rev2)",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W14",
+   "phase": "F2",
+   "title": "Gestures, patterns, quick sampling and harmonic controls",
+   "owner": "Studio UI + engine",
+   "depends_on": [
+    "W13"
+   ],
+   "paths": [
+    "packages/void-studio/src/gestures/",
+    "packages/void-studio/src/patterns/",
+    "native/void-engine/src/input/"
+   ],
+   "steps": [
+    "Implement pointer/touch/trackpad melodic contours and rhythmic taps, raw timing retention, reversible quantize/swing/humanize and gesture preview/commit.",
+    "Add step patterns, quick sample slicing, drum pads, loop browser, chord track/harmonic constraints and explicitly armed MIDI-learn/macros.",
+    "Provide keyboard/numeric alternatives for each gesture; gestures must not steal ordinary navigation or leave a note on.",
+    "Keep camera optional for F4 and advanced MIDI/MPE depth in F3; do not make camera access a prerequisite to gesture composition."
+   ],
+   "done_when": [
+    "Draw/tap/adjust a phrase, audition it, accept and undo using pointer and keyboard; normal editing still works with gestures/AI disabled."
+   ],
+   "tests": [
+    "T57",
+    "T58",
+    "T59"
+   ],
+   "dependency_ids": [
+    "DSP-03",
+    "AI-05"
+   ],
+   "status": "partial",
+   "evidence": "studio-side merged: contour/tap gestures (raw retained, reversible quantize/swing/seeded-humanize, armed-only capture, kbd parity), step patterns (tie/ratchet/probability), GM pads+choke, quick-slice\u2192InsertAudioClipOp (source immutable), chord track (14 qualities, enharmonic, overlap-free, harmonic-follow\u2192SetNoteOp+undo), learn (armed-only, curves, releaseAll, idempotent PANIC); engine-side input plumbing = macOS follow-up",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W15",
+   "phase": "F2",
+   "title": "Audio generation, stems and transcription adapters",
+   "owner": "AI workers",
+   "depends_on": [
+    "W12"
+   ],
+   "paths": [
+    "workers/audio/",
+    "crates/void-assets/",
+    "packages/void-studio/src/generation/",
+    "tests/models/"
+   ],
+   "steps": [
+    "Qualify separate adapters for generation, separation and audio-to-MIDI; do not treat a model name as a completed workflow.",
+    "Measure task quality, editability, timing/channel alignment, duration, hardware use and rights using owned/licensed fixtures.",
+    "Offer source/result A-B, crop/align, alternative clips, retry/cancel and acceptance; keep originals immutable and generated media normal editable assets.",
+    "Demucs/Basic Pitch/ACE-Step remain replaceable candidates. Four stems do not fulfill the six-stem requirement; unsupported categories remain explicitly open for F3."
+   ],
+   "done_when": [
+    "At least the enabled qualified worker has real output and end-to-end acceptance evidence. Unqualified models are disabled with reason, not faked by canned demo output."
+   ],
+   "tests": [
+    "T60",
+    "T61",
+    "T62"
+   ],
+   "dependency_ids": [
+    "AI-03",
+    "AI-04",
+    "AI-06"
+   ],
+   "status": "partial",
+   "evidence": "4 adapters qualified under real JobRunner: basic-pitch (8/8 notes \u226480ms), demucs htdemucs_6s 6-stem vendored offline, musicgen-small real audio (CC-BY-NC rights gap), procedural synth byte-deterministic; T60-62 harness 6/6 incl. mid-render cancel; gaps: NC license, bleed unmeasured, MusicGen non-deterministic",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W16",
+   "phase": "F2",
+   "title": "AI/gesture regression gate",
+   "owner": "QA",
+   "depends_on": [
+    "W14",
+    "W15"
+   ],
+   "paths": [
+    "tests/journeys/ai/",
+    "docs/verification/F2/",
+    "tracking/"
+   ],
+   "steps": [
+    "Exercise job storms, stale revisions, locked notes, prompt injection, GPU out-of-memory, cancellation and offline behavior.",
+    "Run usability tasks for ghost-note acceptance, rhythms and correction with musician feedback; record results, not invented approval.",
+    "Measure inference and interaction latency per model/hardware without putting models on the musical clock. Record material phase gaps before declaring F2 complete."
+   ],
+   "done_when": [
+    "F2 workflows and resource/failure gates pass for every enabled capability. Claims distinguish rule-based assistance, measured models and deferred candidates."
+   ],
+   "tests": [
+    "T63",
+    "T64",
+    "T65"
+   ],
+   "dependency_ids": [],
+   "status": "partial",
+   "evidence": "F2 gate merged: T63 storm PASS (admission/budgets/SIGKILL/crash/2-project isolation/quarantine), T65 offline PASS (unshare -Urn env -i, all sockets denied, 79/79 manual vitest, 5 capabilities real artifacts), latency measured; T64 BLOCKED human-needed (USABILITY_PROTOCOL.md scripted); F2_GATE.md verdict: not F2-complete (preview layer + wire ops + engine input gaps)",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W17",
+   "phase": "F3",
+   "title": "Recording and arrangement depth",
+   "owner": "Engine + UI",
+   "depends_on": [
+    "W11"
+   ],
+   "paths": [
+    "native/void-engine/src/recording/",
+    "packages/void-studio/src/takes/",
+    "packages/void-studio/src/arrangement/"
+   ],
+   "steps": [
+    "Add loop takes, comping, overdub/replace, step input, repeat and bounded recent-MIDI/audio capture with explicit retention.",
+    "Add project/track alternatives, region loops/aliases/folders, fades/crossfades, silence removal, stacks/groups, global sections and protected edits.",
+    "Use engine capabilities for tempo maps/curves, beat mapping/groove, freeze/bounce and streaming; ensure edits, compensation and saved state agree.",
+    "Build explicit track-by-scene clip slots, quantized clip/scene launch and stop, live capture to arrangement, pattern variations/MIDI conversion and controller remix actions. Launch scheduling remains native; no UI-clock triggers."
+   ],
+   "done_when": [
+    "Comp an existing recording, edit arrangement/tempo and switch alternatives without damaging source takes; validate timing and recoverability."
+   ],
+   "tests": [
+    "T66",
+    "T67",
+    "T68"
+   ],
+   "dependency_ids": [],
+   "status": "partial",
+   "evidence": "studio-side merged: loopTakes model (incomplete kept), swipeComp/buildComp contiguous-cover, compToOps single-tx Remove+Insert w/ asset offsets + undoCompApply, seamFadePlan, cycleTakeAt (source frozen), SetTempo/TimeSignature plans, moveSection splits-then-moves + markers, alternatives, loops, stacks/groups, scenes+quantized-launch spec (native scheduling NEEDS); engine-side depth deferred",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W18",
+   "phase": "F3",
+   "title": "Mixer, automation and advanced MIDI",
+   "owner": "Engine + UI",
+   "depends_on": [
+    "W17"
+   ],
+   "paths": [
+    "native/void-engine/src/routing/",
+    "packages/void-studio/src/automation/",
+    "packages/void-studio/src/midi/"
+   ],
+   "steps": [
+    "Expose sends/aux/VCA/groups/multi-output/external I-O, delay compensation and channel-layout validation.",
+    "Add read/touch/latch/write automation, trim/relative edits, move-with-region semantics and audible A-B with shared undo.",
+    "Add event/step editors, transforms, articulations, keyswitches, external MIDI and MPE. MIDI 2.0 support needs end-to-end timestamp/expression preservation and declared fallback, not only a type definition."
+   ],
+   "done_when": [
+    "Impulse/automation fixtures verify routed timing; expression and sustain survive record/edit/export where the declared format supports them."
+   ],
+   "tests": [
+    "T69",
+    "T70",
+    "T71"
+   ],
+   "dependency_ids": [],
+   "status": "partial",
+   "evidence": "void-mix routing graph + delay comp (tests/mix 14/14); automation+midi studio suites (T69-T71 pass_linux). Engine-hosted DSP conformance (T72) still needs native engine. [2026-10-09 00:07 UTC]",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W19",
+   "phase": "F3",
+   "title": "Stock sound library, effects and time/pitch tools",
+   "owner": "DSP + content",
+   "depends_on": [
+    "W17",
+    "W01"
+   ],
+   "paths": [
+    "native/void-engine/src/devices/",
+    "packages/void-studio/src/audio-edit/",
+    "content/",
+    "docs/content-rights/"
+   ],
+   "steps": [
+    "Build curated effect and instrument coverage using the named stock inventory as musical outcomes, not Apple branding or copied presets.",
+    "Use selected stretch DSP; implement transient markers, varispeed, repair, note-level pitch UI, correction/shifting and render-tail handling.",
+    "Add streaming multisamples/zones/round robins, user patches, sampler capture and downloadable cleared packs. Evaluate deeper synthesis separately for F5.",
+    "Validate six-stem separation separately from four-stem candidates, drum replacement/transcription, metering/loudness and automated-mastering review."
+   ],
+   "done_when": [
+    "Each shipped processor/instrument has listening and numerical tests, source/rights and bounded resources. Unmet specialist sound families stay tracked."
+   ],
+   "tests": [
+    "T72",
+    "T73",
+    "T74"
+   ],
+   "dependency_ids": [
+    "DSP-01",
+    "DSP-02",
+    "DSP-04",
+    "DSP-05",
+    "DSP-07",
+    "DSP-08",
+    "DSP-09"
+   ],
+   "status": "partial",
+   "evidence": "void-content (manifest/zones/streaming/lifecycle/inventory) + audio-edit studio model + license ledger; T73 pass, T74 model-side [2026-10-09 00:10 UTC]",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W20",
+   "phase": "F3",
+   "title": "Plugin compatibility, optional isolation and exchange",
+   "owner": "Plugins + platform",
+   "depends_on": [
+    "W18"
+   ],
+   "paths": [
+    "native/void-engine/src/plugins/",
+    "native/void-plugin-worker/",
+    "crates/void-interchange/",
+    "tests/interchange/"
+   ],
+   "steps": [
+    "Qualify AUv2/AUv3 and VST3 on supported systems. Add a real CLAP host only when selected; do not confuse exporter support with hosting.",
+    "Implement processing isolation as its own feature using bounded native buffers, deadlines, mute/bypass fallback, bridge-latency accounting and safe restart. Process separation is not a complete OS sandbox.",
+    "Build declarative supported-format import/export and loss reports, including DAWproject if selected; retain audio stems/MIDI interchange.",
+    "Preserve missing plugin state and compatibility registry; never promise native .logicx round trips or AAX hosting."
+   ],
+   "done_when": [
+    "For isolation-enabled plugins, deliberately crashing one worker leaves other tested tracks usable with declared added latency. Otherwise report engine-hosted limitation, not false isolation."
+   ],
+   "tests": [
+    "T75",
+    "T76",
+    "T77"
+   ],
+   "dependency_ids": [
+    "IO-01",
+    "IO-02",
+    "IO-04",
+    "QA-01"
+   ],
+   "status": "partial",
+   "evidence": "void-exchange: .dawproject roundtrip byte-deterministic (T77 pass); isolation policy + registry spec-side (T75/T76 partial \u2014 no plugin runtime on Linux) [2026-10-09 00:07 UTC]",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W21",
+   "phase": "F3",
+   "title": "Accompaniment, arrangement and producer gate",
+   "owner": "Musical AI + QA",
+   "depends_on": [
+    "W16",
+    "W19",
+    "W20"
+   ],
+   "paths": [
+    "workers/symbolic/",
+    "packages/void-studio/src/players/",
+    "docs/verification/F3/"
+   ],
+   "steps": [
+    "Add inspectable drum/bass/keyboard/synth accompaniment, arrangement/orchestration proposals, inpainting/continuation and variations with protected source regions.",
+    "Add analysis-led mastering proposals with meters, audition and explicit acceptance; do not call a loudness meter a mastering assistant.",
+    "Complete advanced export/stem batches, custom shortcuts/screensets, consolidation/project import and producer regression coverage."
+   ],
+   "done_when": [
+    "F3 producer journeys pass with loss reports and measured compatibility. Every original feature is complete, explicitly blocked or scheduled\u2014not silently removed."
+   ],
+   "tests": [
+    "T78",
+    "T79",
+    "T80"
+   ],
+   "dependency_ids": [],
+   "status": "partial",
+   "evidence": "void-producer: accompaniment determinism, BS.1770 mastering, producer gate (T78-T80 pass_linux) [2026-10-09 00:07 UTC]",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W22",
+   "phase": "F4",
+   "title": "Conventional native visual composition and program output",
+   "owner": "Visual engine + UI",
+   "depends_on": [
+    "W11"
+   ],
+   "paths": [
+    "crates/void-visual/",
+    "packages/void-studio/src/visuals/",
+    "protocol/visual/",
+    "tests/visual/"
+   ],
+   "steps": [
+    "Use a separate native wgpu output window first, with optional preview copies; do not require unproven zero-copy WebView embedding.",
+    "Implement normal images/video/presets, layers/transforms/blends, transitions, beat/sample/timecode anchors, preview/program distinction and multi-display selection.",
+    "Use audio-clock snapshots and calibrated presentation latency. Drop visual frames under load; audio never waits on GPU or decoder work.",
+    "Implement joint audio/visual checkpoint/history semantics using the transaction protocol; model independent output and preview failure states."
+   ],
+   "done_when": [
+    "An imported visual sequence follows a saved song through edit/reopen/output; renderer crash and slow frames do not block the native audio callback."
+   ],
+   "tests": [
+    "T81",
+    "T82",
+    "T83"
+   ],
+   "dependency_ids": [
+    "VIS-01"
+   ],
+   "status": "partial",
+   "evidence": "crates/void-visual real wgpu engine (headless adapter, deterministic offscreen render, program frame sha da8da142\u2026), protocol/visual/void_visual.fbs draft rev0, beat/sample-anchored layers + quantized transitions, preview/program split + program-first drop order, audio-clock-only stamps, checkpoint join hash-gated, whole-tx undo; tests/visual 14/14 (T81\u00d75 T82\u00d75 T83\u00d74); studio visuals view-state + op builders (8 tests)",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W23",
+   "phase": "F4",
+   "title": "Generated/reactive visuals and optional camera conducting",
+   "owner": "Visual AI + gestures",
+   "depends_on": [
+    "W22",
+    "W16"
+   ],
+   "paths": [
+    "workers/visual/",
+    "crates/void-visual/",
+    "workers/gestures/",
+    "packages/void-studio/src/visuals/"
+   ],
+   "steps": [
+    "Add approved visual-generation jobs as normal assets. Prefer declarative scene parameters to arbitrary generated code.",
+    "Add audio-feature mappings and validated shader presets; generated shaders compile off playback with resource/time limits, watchdog and known-good fallback.",
+    "Evaluate projectM as a distinct OpenGL path with its own rights and compositing/export tests; do not force it into wgpu without proof.",
+    "Optional local camera landmarks require consent, calibration, clutch, confidence threshold, smoothing and loss-triggered note release."
+   ],
+   "done_when": [
+    "AI/visual/camera failures leave editable musical state intact; generated material requires explicit acceptance and tracking loss never produces stuck notes."
+   ],
+   "tests": [
+    "T84",
+    "T85",
+    "T86"
+   ],
+   "dependency_ids": [
+    "AI-07",
+    "AI-09",
+    "VIS-02"
+   ],
+   "status": "partial",
+   "evidence": "void-visfx shader vetting + scene-gen adapter + camera policy \u2014 T84/T86 pass, T85 adapter-side [2026-10-09 01:04 UTC]",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W24",
+   "phase": "F4",
+   "title": "Audiovisual export and visual qualification gate",
+   "owner": "Media + QA",
+   "depends_on": [
+    "W23"
+   ],
+   "paths": [
+    "workers/export/",
+    "crates/void-export/",
+    "tests/av/",
+    "docs/verification/F4/"
+   ],
+   "steps": [
+    "Integrate an approved FFmpeg build/codec matrix with argv-only subprocess execution, restricted inputs and bounded resources.",
+    "Render from an immutable checkpoint with exact rational video frame rate and audio sample time; handle fractional frame rates, tails and explicit duration.",
+    "Persist source/model/render configuration and characterize nondeterministic output rather than promising bit-identical model or GPU rerenders.",
+    "Test visual-worker/GPU/export failure, absent codec, disk full, timeouts and update blocking during performance."
+   ],
+   "done_when": [
+    "Conventional and generated visuals export in sync with the reference audio, with correct duration and explicit errors. F4 claims match tested GPU/codec paths."
+   ],
+   "tests": [
+    "T87",
+    "T88",
+    "T89"
+   ],
+   "dependency_ids": [
+    "VIS-03"
+   ],
+   "status": "partial",
+   "evidence": "void-av argv-only ffmpeg exporter + verify/publish session \u2014 T87-T89 pass_linux [2026-10-09 01:04 UTC]",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W25",
+   "phase": "F5",
+   "title": "Notation, scoring and advanced interchange",
+   "owner": "Specialist editor",
+   "depends_on": [
+    "W21"
+   ],
+   "paths": [
+    "packages/void-studio/src/score/",
+    "crates/void-notation/",
+    "crates/void-interchange/"
+   ],
+   "steps": [
+    "Integrate qualified score engraving such as Verovio; implement actual selection/edit/parts/lyrics/tab workflows over stable musical IDs.",
+    "Add movie scoring with absolute-time anchors, declared timecode modes and loss-aware MusicXML/AAF/Final Cut interchange.",
+    "Qualify Logic/GarageBand migration only for formats/specifications lawfully supported; provide stems/MIDI alternatives and explicit unsupported-feature reports."
+   ],
+   "done_when": [
+    "Notation edits round-trip to musical events and supported export fixtures pass; no implied complete proprietary project conversion."
+   ],
+   "tests": [
+    "T90",
+    "T91"
+   ],
+   "dependency_ids": [
+    "VIS-04"
+   ],
+   "status": "partial",
+   "evidence": "void-notation score model + MusicXML 4 interchange + anchors \u2014 T90/T91 pass_linux; engraving (Verovio) = GUI NEEDS [2026-10-09 01:09 UTC]",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W26",
+   "phase": "F5",
+   "title": "Spatial routing and delivery",
+   "owner": "Spatial audio",
+   "depends_on": [
+    "W21"
+   ],
+   "paths": [
+    "native/void-engine/src/spatial/",
+    "crates/void-export/",
+    "tests/spatial/"
+   ],
+   "steps": [
+    "Implement tested multichannel/surround and binaural paths, speaker/object metadata and clear monitoring configuration.",
+    "Gate Atmos/ADM BWF/MP4/head-tracking work on actual specifications, licensed dependencies and reference validators. Do not use a generic stereo export as a proxy.",
+    "Make unsupported outputs unavailable with a reason. Continue other F5 work when licensing or hardware blocks this lane."
+   ],
+   "done_when": [
+    "Every enabled spatial deliverable validates externally and on declared playback hardware; blocked commercial/specification requirements remain open."
+   ],
+   "tests": [
+    "T92",
+    "T93"
+   ],
+   "dependency_ids": [],
+   "status": "partial",
+   "evidence": "void-spatial layouts/objects/monitoring/gate \u2014 T92/T93 model-side, renderer+headtrack NEEDS [2026-10-09 00:42 UTC]",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W27",
+   "phase": "F5",
+   "title": "Synchronization, modular control and safe shows",
+   "owner": "Performance",
+   "depends_on": [
+    "W24",
+    "W21"
+   ],
+   "paths": [
+    "crates/void-show/",
+    "native/void-engine/src/sync/",
+    "packages/void-studio/src/perform/"
+   ],
+   "steps": [
+    "Add MTC/MIDI Clock/MMC and qualified Ableton Link with explicit tempo-master rules and measured latency.",
+    "Add projection mapping, cue/rehearsal workflow and scoped OSC/DMX transport. Physical output requires pairing, arming, profiles and independent manual panic/blackout.",
+    "Implement Environment-style MIDI/modular mappings and optional companion/control-surface contracts without putting accounts/cloud on the playback path.",
+    "Do not permit generated instructions to directly actuate stage hardware; strobe limits and safe-disconnect behavior are explicit controls."
+   ],
+   "done_when": [
+    "Sync and show fixtures pass on declared devices; manual stop/blackout and disconnect override generated/queued actions."
+   ],
+   "tests": [
+    "T94",
+    "T95",
+    "T96"
+   ],
+   "dependency_ids": [
+    "IO-03",
+    "VIS-05"
+   ],
+   "status": "partial",
+   "evidence": "void-sync MTC/MMC/clock/master/OSC/DMX + show cue/PANIC \u2014 T94-T96 pass_linux; Ableton Link NotImplemented ADR [2026-10-09 00:42 UTC]",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W28",
+   "phase": "F5",
+   "title": "Advanced synthesis and restricted extensions",
+   "owner": "DSP + extensions",
+   "depends_on": [
+    "W19",
+    "W24"
+   ],
+   "paths": [
+    "native/void-engine/src/instruments/",
+    "crates/void-extensions/",
+    "packages/void-studio/src/patches/"
+   ],
+   "steps": [
+    "Cover advanced synthesis/resynthesis/physical-modelling outcomes using selected maintained integrations, with independent content and API reviews.",
+    "Add restricted WASM/declarative modules with explicit capabilities, fuel/memory limits, cancellation and no ambient filesystem/network. Start outside the critical audio path.",
+    "Gate native plugin export and ARA on confirmed SDK rights/compatibility. Do not turn the runtime into an unrestricted code agent.",
+    "Bring forward the original WASM feature IDs; their implementation is deliberately deferred from the older F4 plan into this hardened F5 lane."
+   ],
+   "done_when": [
+    "Enabled extension/instrument workflows have load/save, limits, recovery and rights evidence; unsupported code/plugin-export features are not falsely marked shipped."
+   ],
+   "tests": [
+    "T97",
+    "T98"
+   ],
+   "dependency_ids": [
+    "EXT-01"
+   ],
+   "status": "partial",
+   "evidence": "void-wasm restricted host + registry + gates (T97 pass_linux, T98 gates-side) [2026-10-09 00:51 UTC]",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  },
+  {
+   "id": "W29",
+   "phase": "F5",
+   "title": "Full parity reconciliation and release readiness",
+   "owner": "Integrator + QA",
+   "depends_on": [
+    "W25",
+    "W26",
+    "W27",
+    "W28"
+   ],
+   "paths": [
+    "docs/verification/F5/",
+    "tracking/",
+    "docs/release/",
+    "README.md"
+   ],
+   "steps": [
+    "Reconcile all 116 features, 22 stock groups, 41 dependency decisions, 20 infrastructure requirements and every test against exact commits and evidence.",
+    "Separate complete outcomes from partial, blocked, deferred-by-approval and unsupported interoperability. No blanket Logic-equivalence claim.",
+    "Run clean-machine installation/update/recovery and full musician workflows across supported platforms. Audit runtime contents, model/content rights and privacy.",
+    "Prepare a release candidate and incident/rollback playbook; public release, store submission, licence purchase and scope removal still require explicit authorization."
+   ],
+   "done_when": [
+    "Release report includes supported feature/device matrix, residual risks and reproducible evidence. Any unresolved requirement prevents a full-parity completion claim, not unrelated work."
+   ],
+   "tests": [
+    "T99",
+    "T100"
+   ],
+   "dependency_ids": [],
+   "status": "partial",
+   "evidence": "docs/verification/F5/* reconciliation+matrix+risks+trace audit (T99 pass, T100 partial); docs/release/RELEASE_CANDIDATE.md rc.1; release itself authorization-gated F5-N12 [2026-10-09 01:32 UTC]",
+   "implementation_commit": null,
+   "blocker": null,
+   "readiness_evidence": [],
+   "readiness_target": null,
+   "external_qualification_blockers": []
+  }
+ ],
+ "dependency_semantics": {
+  "default": "A prerequisite is satisfied by complete, or documented development_ready on the same tested target where only explicitly recorded external qualification gates remain. It is not satisfied by blocked, a mock, a passing screenshot, or a plan.",
+  "development_ready": "Requires native functional/software/failure-path evidence for the dependent task, integrator signoff and a list of unresolved external hardware/OS/signing gates. Never means qualified, fully complete or releasable.",
+  "distribution": "All applicable platform, signing, rights, hardware and individual feature tests plus owner authorization are still required. No incomplete task can be advertised as full parity."
+ }
+}

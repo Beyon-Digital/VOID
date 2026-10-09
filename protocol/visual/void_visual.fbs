@@ -1,0 +1,548 @@
+// VOID visual channel protocol — FlatBuffers schema (DRAFT rev0:
+// visual protocol major 0, minor 1 — draft revision; breaking changes
+// bump minor until the contract freezes at major 1).
+//
+// Normative semantics live in docs/void-handoff/CONTRACTS.md §7 (plugin,
+// visual and export contracts) and docs/visual/README.md. This file is
+// the single source of truth for the coordinator <-> visual worker wire
+// format. It is a NEW contract on a NEW channel: it does not extend
+// void_control.fbs, which stays integrator-owned. Wire conventions mirror
+// void_control.fbs exactly (see protocol/README.md):
+//
+//  * All IDs are opaque UUID strings (stable across engine epochs).
+//  * Musical positions are signed ticks, 960_000 ticks per quarter.
+//    Sample positions are signed frames at the declared sample rate.
+//    int64/uint64 here means native ints on the wire; JSON DTOs carry
+//    decimal strings.
+//  * `revision` fields are monotonic u64 coordinator revisions;
+//    `engine_epoch` increments on every engine process start.
+//  * Framing is `u32 LE len | flatbuffer payload`, len <= 1 MiB.
+//  * Persistent ops serialize on a per-project mutation lane with
+//    expected_revision gating; every command emits exactly one
+//    VisualReceipt. Telemetry is lossy and may be coalesced/dropped.
+//
+// File order (flatbuffers resolves in order): shared enums -> payload
+// structs/tables -> persistent ops -> request payloads -> response/event
+// payloads -> frame envelopes.
+
+namespace voidvis;
+
+// ---------------------------------------------------------------------------
+// Enums (VisualAckStatus / VisualErrorCode mirror void_control.fbs
+// AckStatus / ErrorCode member-for-member — same numeric values).
+// ---------------------------------------------------------------------------
+
+enum VisualAckStatus : byte {
+  APPLIED = 0,
+  DUPLICATE = 1,
+  REJECTED = 2,
+  OUTCOME_UNKNOWN = 3,
+}
+
+enum VisualErrorCode : ushort {
+  NONE = 0,
+  BAD_REQUEST = 1,
+  UNSUPPORTED_VERSION = 2,
+  UNSUPPORTED_CAPABILITY = 3,
+  NOT_AUTHORIZED = 4,
+  NOT_FOUND = 5,
+  STALE_REVISION = 6,
+  STALE_EPOCH = 7,
+  COMMAND_ID_REUSE = 8,
+  BUSY = 9,
+  DEVICE_UNAVAILABLE = 10,
+  ASSET_MISSING = 11,
+  PLUGIN_UNAVAILABLE = 12,
+  DISK_FULL = 13,
+  WORKER_FAILED = 14,
+  CANCELLED = 15,
+  OUTCOME_UNKNOWN = 16,
+  // Visual-specific codes start at 100; values < 100 never change meaning.
+  DECODE_FAILED = 100,
+  NO_ADAPTER = 101,
+  OUTPUT_LOST = 102,
+}
+
+enum VisualLayerKind : byte {
+  IMAGE = 0,      // still image, decoded from an immutable asset blob
+  VIDEO = 1,      // decoded video (bounded pull decoder, argv-only spawn)
+  GENERATOR = 2,  // built-in deterministic procedural preset (no assets)
+}
+
+enum BlendMode : byte {
+  NORMAL = 0,     // source-over alpha
+  ADD = 1,        // saturated additive
+  MULTIPLY = 2,   // src * dst
+  SCREEN = 3,     // src + dst - src*dst
+}
+
+// Preview is a monitor path; program is the audience-facing output. Every
+// persistent visual edit targets a channel explicitly — there is no
+// implicit broadcast.
+enum VisualChannel : byte {
+  PREVIEW = 0,
+  PROGRAM = 1,
+}
+
+// Anchor kinds map a timeline position onto the transport clock:
+//   BEAT_TICK — musical position in ticks (moves with tempo edits)
+//   SAMPLE    — absolute timeline position in samples (tempo-invariant)
+//   TIMECODE  — absolute media time in nanoseconds (converted to samples
+//               at the declared sample rate; tempo-invariant)
+enum AnchorKind : byte {
+  BEAT_TICK = 0,
+  SAMPLE = 1,
+  TIMECODE = 2,
+}
+
+enum TransitionKind : byte {
+  CUT = 0,    // instantaneous channel swap
+  FADE = 1,   // linear crossfade over duration_ticks
+  WIPE = 2,   // spatial wipe over duration_ticks (wipe_angle radians)
+}
+
+// Beat-quantized timing for armed transitions/cues.
+enum QuantizeMode : byte {
+  IMMEDIATE = 0,   // fire on the next produced frame
+  NEXT_BEAT = 1,   // fire when the clock crosses the next quarter boundary
+  NEXT_BAR = 2,    // fire at the next bar boundary of the current meter
+}
+
+enum OutputTarget : byte {
+  OFFSCREEN = 0,  // render to offscreen target + readback (headless path)
+  WINDOW = 1,     // present to a native surface on display_id
+}
+
+enum VisualViewKind : byte {
+  SCENE_SUMMARY = 0,
+  LAYER_LIST = 1,
+  ANCHOR_LIST = 2,
+  OUTPUT_LIST = 3,
+  TRANSITION_STATE = 4,
+}
+
+// ---------------------------------------------------------------------------
+// Payload tables
+// ---------------------------------------------------------------------------
+
+// One tempo-map point. The tempo map is engine-owned musical state; it is
+// mirrored to the visual channel by VisualClockSyncRequest so tick<->sample
+// conversion uses the identical map revision named by ClockSnapshot.
+table TempoPoint {
+  at_ticks: long;
+  bpm: float;
+  numerator: ubyte = 4;
+  denominator: ubyte = 4;
+}
+
+// Layer transform: position in output pixels, uniform/axis scale, rotation
+// in radians, opacity 0..1. All floats must be finite (validators reject
+// NaN/Inf before apply, as void_control validators do).
+table VisualTransform {
+  x: float = 0.0;
+  y: float = 0.0;
+  scale_x: float = 1.0;
+  scale_y: float = 1.0;
+  rotation_rad: float = 0.0;
+  opacity: float = 1.0;
+}
+
+// Generator preset descriptor (kind GENERATOR). `preset` names a built-in
+// validated generator (e.g. "color-bars", "plasma", "checker", "pulse");
+// arbitrary shader code is not accepted on this channel (W23 scope).
+table GeneratorSpec {
+  preset: string;
+  seed: ulong = 0;
+  param_json: string;   // bounded JSON params, validated per preset
+}
+
+// ---------------------------------------------------------------------------
+// Persistent ops (serialized document edits; union order is append-only).
+// ---------------------------------------------------------------------------
+
+// Atomically replace the whole preview stack order, bottom -> top.
+table SetLayerStackOp {
+  layer_ids: [string];
+  channel: VisualChannel;
+}
+
+table AddVisualLayerOp {
+  layer_id: string;
+  kind: VisualLayerKind;
+  name: string;
+  index: int = -1;          // -1 appends to top of the channel's stack
+  channel: VisualChannel;
+  generator: GeneratorSpec; // required when kind == GENERATOR
+}
+
+table RemoveVisualLayerOp { layer_id: string; }
+table SetLayerNameOp      { layer_id: string; name: string; }
+table SetLayerVisibleOp   { layer_id: string; visible: bool; }
+table SetLayerBlendOp     { layer_id: string; blend_mode: BlendMode; }
+table SetLayerTransformOp { layer_id: string; transform: VisualTransform; }
+
+// Media attach: asset_id/sha256 reference an IMMUTABLE verified blob under
+// assets/sha256/ (mirrors AttachAssetOp). rel_path is project-relative,
+// never absolute or traversing. Changing media is a remove+add, not a
+// mutate — blob contents never change under an asset id.
+table AttachVisualMediaOp {
+  layer_id: string;
+  asset_id: string;
+  sha256: string;
+  media_kind: string;    // "png" | "jpeg" | "mjpeg" | "h264" | ...
+  rel_path: string;
+  duration_ticks: long = 0;   // 0 = still/looping source
+}
+
+// Trim: the layer's media window in *timeline ticks* — the span of song
+// time this layer occupies before anchors are consulted (T81 trim).
+// in_ticks < out_ticks; offset_ticks shifts the media read head.
+table SetLayerTrimOp {
+  layer_id: string;
+  in_ticks: long;
+  out_ticks: long;
+  offset_ticks: long = 0;
+}
+
+// Fade: linear opacity ramps at the edges of the layer's active window
+// (T81 fade). Fade-in starts at the in point; fade-out ends at the out
+// point. Zero disables that edge.
+table SetLayerFadeOp {
+  layer_id: string;
+  fade_in_ticks: long = 0;
+  fade_out_ticks: long = 0;
+}
+
+// Anchors bind visual events to the song. A Set replaces the anchor's
+// position; the anchor's identity is stable across tempo edits (a
+// BEAT_TICK anchor follows the tempo map; SAMPLE/TIMECODE anchors hold
+// absolute time).
+table SetVisualAnchorOp {
+  anchor_id: string;
+  kind: AnchorKind;
+  position_ticks: long = 0;      // BEAT_TICK
+  position_sample: long = 0;     // SAMPLE
+  timecode_ns: long = 0;         // TIMECODE (absolute nanoseconds)
+}
+table RemoveVisualAnchorOp { anchor_id: string; }
+
+// Bind a layer's active window to anchors instead of raw trim ticks.
+// Empty ids unbind that edge (falls back to trim range). If both are set,
+// out_anchor must resolve to a position > in_anchor at apply time.
+table BindLayerAnchorOp {
+  layer_id: string;
+  in_anchor_id: string;
+  out_anchor_id: string;
+}
+
+// Arm/replace the pending transition on a channel. duration_ticks is the
+// musical length of the transition envelope; quantize selects when an
+// armed transition fires relative to the beat grid.
+table SetTransitionOp {
+  channel: VisualChannel;    // channel the transition runs on
+  kind: TransitionKind;
+  duration_ticks: long = 0;  // 0 = instantaneous even for FADE/WIPE
+  quantize: QuantizeMode;
+  wipe_angle: float = 0.0;   // WIPE only, radians
+}
+
+// Fire the armed transition: preview stack becomes program stack over the
+// armed duration (take = classic video-switcher AUTO). With quantize
+// armed, the take waits for the next beat/bar boundary.
+table TakeTransitionOp { channel: VisualChannel; }
+
+// Disarm without firing.
+table CancelTransitionOp { channel: VisualChannel; }
+
+// Route a channel to an output. OFFSCREEN keeps the headless readback
+// path; WINDOW presents to the native surface on display_id (opaque
+// monitor token from an OUTPUT_LIST read; empty = primary).
+table SetOutputRouteOp {
+  channel: VisualChannel;
+  target: OutputTarget;
+  display_id: string;
+  width: uint;
+  height: uint;
+  fps_num: uint = 60;
+  fps_den: uint = 1;         // rational frame rate (CONTRACTS.md §7)
+  readback: bool = true;     // offscreen readback even when windowed
+}
+
+// Checkpoint join: publish the visual scene snapshot that belongs inside
+// the project checkpoint identified by checkpoint_id (stored under
+// checkpoints/<id>/app-state.json "visual" section / companion file).
+// Produces a VisualCheckpointEvent with the canonical payload hash.
+table SnapshotVisualStateOp { checkpoint_id: string; }
+
+// Restore the visual scene from a checkpoint's published snapshot bytes
+// (coordinator reads the checkpoint and passes the payload in).
+table RestoreVisualStateOp {
+  checkpoint_id: string;
+  state_sha256: string;        // integrity check against published payload
+  snapshot: VisualStateSnapshot;
+}
+
+// Drop every layer/anchor/transition on the project (new-song reset).
+table ClearVisualSceneOp {}
+
+// Joint audio/visual undo (T83): the coordinator groups musical and
+// visual ops under one transaction_id; VisualUndoOp rewinds the visual
+// participant's half of that transaction when the combined undo fires.
+table VisualUndoOp   { transaction_id: string; } // empty = latest
+table VisualRedoOp   { transaction_id: string; }
+
+union VisualPersistentOp {
+  SetLayerStackOp,
+  AddVisualLayerOp,
+  RemoveVisualLayerOp,
+  SetLayerNameOp,
+  SetLayerVisibleOp,
+  SetLayerBlendOp,
+  SetLayerTransformOp,
+  AttachVisualMediaOp,
+  SetLayerTrimOp,
+  SetLayerFadeOp,
+  SetVisualAnchorOp,
+  RemoveVisualAnchorOp,
+  BindLayerAnchorOp,
+  SetTransitionOp,
+  TakeTransitionOp,
+  CancelTransitionOp,
+  SetOutputRouteOp,
+  SnapshotVisualStateOp,
+  RestoreVisualStateOp,
+  ClearVisualSceneOp,
+  VisualUndoOp,
+  VisualRedoOp,
+}
+
+// ---------------------------------------------------------------------------
+// Control channel payloads: coordinator -> visual worker
+// ---------------------------------------------------------------------------
+
+// Persistent visual command: serialized, revision-bearing, exactly-once
+// tracked — identical discipline to void_control PersistentCommand.
+table VisualPersistentCommand {
+  command_id: string;
+  transaction_id: string;    // one user gesture == one transaction
+  project_id: string;
+  engine_epoch: ulong;
+  expected_revision: ulong;
+  op: VisualPersistentOp;
+}
+
+// Engine-owned clock mirror: tempo map + transport state so visuals can
+// convert ClockSnapshot samples to ticks/beats. Re-sent on every
+// tempo_map_revision change; NOT a document edit (no revision gate).
+table VisualClockSyncRequest {
+  request_id: string;
+  project_id: string;
+  tempo_map_revision: ulong;
+  tempo_points: [TempoPoint];
+  ticks_per_quarter: long = 960000;
+}
+
+// Bounded paged read of visual state (same bounds as void_control reads:
+// <= 2000 items / <= 512 KiB per page).
+table VisualReadRequest {
+  request_id: string;
+  project_id: string;
+  view: VisualViewKind;
+  cursor: string;
+  limit: uint = 0;
+  channel: VisualChannel;   // optional scope where meaningful
+}
+
+union VisualControlRequest {
+  VisualPersistentCommand,
+  VisualClockSyncRequest,
+  VisualReadRequest,
+}
+
+// First frame on the control connection — mirrors WorkerHello with the
+// same launch-token discipline (worker kind is implied by the channel).
+table VisualHello {
+  worker_instance_id: string;
+  protocol_major: ushort;
+  protocol_minor: ushort;
+  launch_token: string;
+  capabilities: [string];   // e.g. "wgpu/25", "offscreen", "window", "video/ffmpeg"
+}
+
+// ---------------------------------------------------------------------------
+// Control channel payloads: visual worker -> coordinator
+// ---------------------------------------------------------------------------
+
+table VisualReceipt {
+  command_id: string;
+  transaction_id: string;
+  status: VisualAckStatus;
+  error: VisualErrorCode;
+  revision: ulong;          // resulting visual revision (APPLIED) or current
+  engine_epoch: ulong;
+  message: string;
+  payload_hash: string;     // canonical hash of applied payload (dup detect)
+}
+
+table VisualReadItem {
+  object_id: string;
+  summary_json: string;     // small bounded JSON projection
+}
+
+table VisualReadResponse {
+  request_id: string;
+  revision: ulong;
+  items: [VisualReadItem];
+  next_cursor: string;
+  done: bool;
+  error: VisualErrorCode;
+}
+
+// Emitted once per SnapshotVisualStateOp — carries the canonical snapshot
+// and its hash so the coordinator can embed it in the checkpoint manifest.
+table VisualCheckpointEvent {
+  command_id: string;
+  checkpoint_id: string;
+  revision: ulong;
+  state_sha256: string;
+  snapshot: VisualStateSnapshot;
+}
+
+union VisualControlEvent {
+  VisualReceipt,
+  VisualReadResponse,
+  VisualCheckpointEvent,
+}
+
+// ---------------------------------------------------------------------------
+// Snapshot payload — canonical visual scene encoding for checkpoint join.
+// Stored in project checkpoints; restores a scene bit-for-bit.
+// ---------------------------------------------------------------------------
+
+table VisualLayerState {
+  layer_id: string;
+  kind: VisualLayerKind;
+  name: string;
+  channel: VisualChannel;
+  index: int;
+  visible: bool;
+  blend_mode: BlendMode;
+  transform: VisualTransform;
+  asset_id: string;
+  sha256: string;
+  media_kind: string;
+  rel_path: string;
+  in_ticks: long;
+  out_ticks: long;
+  offset_ticks: long;
+  fade_in_ticks: long;
+  fade_out_ticks: long;
+  in_anchor_id: string;
+  out_anchor_id: string;
+  generator: GeneratorSpec;
+}
+
+table VisualTransitionState {
+  channel: VisualChannel;
+  armed: bool;
+  kind: TransitionKind;
+  duration_ticks: long;
+  quantize: QuantizeMode;
+  wipe_angle: float;
+  // Nonzero when the transition is in flight: the tick the take fires.
+  fires_at_ticks: long;
+}
+
+table VisualOutputRouteState {
+  channel: VisualChannel;
+  target: OutputTarget;
+  display_id: string;
+  width: uint;
+  height: uint;
+  fps_num: uint;
+  fps_den: uint;
+  readback: bool;
+}
+
+table VisualAnchorState {
+  anchor_id: string;
+  kind: AnchorKind;
+  position_ticks: long;
+  position_sample: long;
+  timecode_ns: long;
+}
+
+table VisualStateSnapshot {
+  revision: ulong;
+  engine_epoch: ulong;
+  layers: [VisualLayerState];
+  anchors: [VisualAnchorState];
+  transitions: [VisualTransitionState];
+  routes: [VisualOutputRouteState];
+  tempo_map_revision: ulong;  // which tempo map revision this layout assumes
+}
+
+// ---------------------------------------------------------------------------
+// Frame envelopes (control socket; allowed variants differ per direction
+// — same rule as void_control frames).
+// ---------------------------------------------------------------------------
+
+table VisualRequestFrame { request: VisualControlRequest; }
+table VisualEventFrame   { event: VisualControlEvent; }
+
+union VisualControlFrame {
+  VisualHello,
+  VisualRequestFrame,
+  VisualEventFrame,
+}
+
+// FlatBuffer roots must be tables — actual frame on the visual control
+// socket in both directions.
+table VisualEnvelope {
+  frame: VisualControlFrame;
+}
+
+// ---------------------------------------------------------------------------
+// Telemetry channel (lossy; visual worker -> coordinator). May be
+// coalesced/dropped to <= 30 updates/sec. Never carries persistent edits.
+// ---------------------------------------------------------------------------
+
+// One per produced frame per channel. The frame's timing fields are the
+// AUDIO clock fields it was rendered for — proof that the visual path
+// follows the audio clock and never invents its own time.
+table VisualFrameTelemetry {
+  channel: VisualChannel;
+  sequence: ulong;              // visual frame sequence (per channel)
+  position_ticks: long;         // resolved musical position rendered
+  timeline_sample: long;        // ClockSnapshot.timeline_sample served
+  device_sample_counter: long;  // ClockSnapshot counter served
+  host_clock_ns: ulong;         // ClockSnapshot host clock served
+  clock_sequence: ulong;        // ClockSnapshot.sequence served
+  render_us: ulong;             // measured render wall time (diagnostic)
+  dropped_clocks: ulong;        // cumulative clock snapshots coalesced away
+  dropped_frames: ulong;        // cumulative frames dropped under load
+  width: uint;
+  height: uint;
+  frame_sha256: string;         // produced frame content hash (readback path)
+  engine_epoch: ulong;
+}
+
+// Non-fatal visual fault: decode failure, missing asset, output loss,
+// adapter change. Severity is implicit in the code; audio is unaffected.
+table VisualAlertEvent {
+  layer_id: string;        // empty when not layer-scoped
+  channel: VisualChannel;
+  error: VisualErrorCode;
+  message: string;
+  sequence: ulong;
+}
+
+union VisualTelemetryEvent {
+  VisualFrameTelemetry,
+  VisualAlertEvent,
+}
+
+// Top-level frame on the visual telemetry socket.
+table VisualTelemetryEnvelope {
+  event: VisualTelemetryEvent;
+}

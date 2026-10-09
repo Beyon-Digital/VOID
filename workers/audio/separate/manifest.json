@@ -1,0 +1,47 @@
+{
+  "artifacts": [
+    {
+      "bytes": "54885744",
+      "ext": "safetensors",
+      "required": true,
+      "sha256": "d2a1745f0744721f6b8ca5bf469b67c651ea5ed1b52998cab033b2158609d411"
+    },
+    {
+      "bytes": "21",
+      "ext": "yaml",
+      "required": true,
+      "sha256": "207405151270af8fd81c2373c25d27950916682ac91dca7884a11ce13dad6f58"
+    }
+  ],
+  "budgets": {
+    "cpuSeconds": "600",
+    "cpuThreads": 4,
+    "memoryBytes": "6442450944",
+    "vramBytes": "0",
+    "wallNs": "600000000000"
+  },
+  "capabilities": {
+    "hardware": [
+      "cpu"
+    ],
+    "maxInputBytes": "104857600",
+    "requiresGpu": false,
+    "taskKinds": [
+      "separation"
+    ]
+  },
+  "formatVersion": 1,
+  "kind": "audio",
+  "license": "MIT",
+  "manifestSha256": "933801fdb96c07375d8fafd68aa5174c30d9de58efa18a3dab7161973308bf22",
+  "modelId": "void.audio.separate-htdemucs-6s",
+  "name": "HTDemucs-6s stem separation (demucs 4.1.0, 6 stems)",
+  "runtime": {
+    "executable": "void-audio-separate",
+    "executableSha256": "ee728c9b9db08aa2ef5e81df3196a293c0e54eb0742d377806b75fd0db91b590",
+    "kind": "argv",
+    "workerProtocol": 1
+  },
+  "source": "PyPI demucs==4.1.0; weights vendored from HF adefossez/HTDemucs-6s (rev 3c5ee475be622df764938de97e4281a7b07ffa58), 5c90dfd2.safetensors",
+  "version": "1.0.0"
+}

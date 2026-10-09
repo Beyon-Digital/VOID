@@ -1,0 +1,125 @@
+{
+  "type": "object",
+  "properties": {
+    "evidenceId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "taskId": {
+      "type": "string",
+      "pattern": "^W[0-9]{2}$"
+    },
+    "testId": {
+      "type": "string",
+      "pattern": "^T[0-9]{2,3}$"
+    },
+    "status": {
+      "enum": [
+        "passed",
+        "failed",
+        "blocked",
+        "not_run"
+      ]
+    },
+    "buildSha": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "os": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "architecture": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "toolchains": {
+          "type": "object"
+        },
+        "hardware": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "os",
+        "architecture",
+        "toolchains",
+        "hardware"
+      ],
+      "additionalProperties": false
+    },
+    "procedure": {
+      "type": "string"
+    },
+    "exitCode": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "observed": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?![A-Za-z]:).+$"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "bytes": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)$"
+          }
+        },
+        "required": [
+          "path",
+          "sha256",
+          "bytes"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "evidenceId",
+    "taskId",
+    "testId",
+    "status",
+    "buildSha",
+    "environment",
+    "procedure",
+    "exitCode",
+    "observed",
+    "artifacts",
+    "limitations"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://void.invalid/schemas/evidence/1.0.0",
+  "title": "VOID implementation evidence record"
+}

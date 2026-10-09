@@ -1,0 +1,20 @@
+{
+  "evidenceId": "8a9d2f11-6165-4a51-b244-264f4d87e511",
+  "taskId": "W00",
+  "testId": "T01",
+  "status": "not_run",
+  "buildSha": null,
+  "environment": {
+    "os": null,
+    "architecture": null,
+    "toolchains": {},
+    "hardware": {}
+  },
+  "procedure": "Replace with actual execution steps.",
+  "exitCode": null,
+  "observed": "No implementation test run. This is a schema example only.",
+  "artifacts": [],
+  "limitations": [
+    "Do not use this example as evidence of a passed check."
+  ]
+}

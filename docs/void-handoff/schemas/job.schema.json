@@ -1,0 +1,134 @@
+{
+  "type": "object",
+  "properties": {
+    "jobId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "projectId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "sourceRevision": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)$"
+    },
+    "contextSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "kind": {
+      "enum": [
+        "symbolic",
+        "transcription",
+        "separation",
+        "audio_generation",
+        "visual_generation",
+        "analysis",
+        "av_export"
+      ]
+    },
+    "runtimeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "runtimeSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "modelId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "modelSha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "inputs": {
+      "type": "array",
+      "maxItems": 128,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Must pass the selected runtime/task-specific schema as a second validation step; not arbitrary execution arguments."
+    },
+    "reservations": {
+      "type": "object",
+      "properties": {
+        "ramBytes": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)$"
+        },
+        "vramBytes": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)$"
+        },
+        "cpuThreads": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 256
+        }
+      },
+      "required": [
+        "ramBytes",
+        "vramBytes",
+        "cpuThreads"
+      ],
+      "additionalProperties": false
+    },
+    "deadlineMonotonicNs": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)$"
+    },
+    "outputScopeToken": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 256
+    },
+    "cloudConsentId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "uuid"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "jobId",
+    "projectId",
+    "sourceRevision",
+    "contextSha256",
+    "kind",
+    "runtimeId",
+    "runtimeSha256",
+    "modelId",
+    "modelSha256",
+    "inputs",
+    "parameters",
+    "reservations",
+    "deadlineMonotonicNs",
+    "outputScopeToken",
+    "cloudConsentId"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://void.invalid/schemas/job/1.0.0",
+  "title": "VOID scoped worker job"
+}

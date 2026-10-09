@@ -1,0 +1,14 @@
+[package]
+name = "void-spatial-tests"
+description = "W26 spatial suite (T92/T93 model side) — layout legality, object bounds, monitoring fallback, gate verdicts"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Detached suite: not part of the main workspace — run with
+# `cargo test --manifest-path tests/spatial/Cargo.toml`.
+[workspace]
+
+[dependencies]
+void-spatial = { path = "../../crates/void-spatial" }
+serde = { version = "1", features = ["derive"] }

@@ -1,0 +1,2821 @@
+{
+  "reportVersion": "1.0",
+  "auditDate": "2026-10-07",
+  "repository": "Beyon-Digital/VOID",
+  "branch": "main",
+  "commit": "4135db035a93b57b6b9c1f3814ff6189e4aae74a",
+  "baseline": "Logic Pro for Mac 12.4; 12.3 user-guide taxonomy supplemented by release notes",
+  "validation": "Static source audit. No local build, app launch, audio hardware test, dependency vulnerability scan or DSP benchmark executed.",
+  "features": [
+    {
+      "id": "DOC-01",
+      "category": "Projects and recovery",
+      "feature": "Project create, open, save and templates",
+      "phase": "F1",
+      "status": "Contract only",
+      "build": "Versioned document, project folder, recent-project picker, atomic save and useful default templates.",
+      "test": "Create a project; save; restart; reopen with the same musical result.",
+      "depends": "F0 document schema; F1 asset store",
+      "sources": [
+        "A02",
+        "A18"
+      ],
+      "evidence": [
+        "R03",
+        "R09",
+        "R20"
+      ]
+    },
+    {
+      "id": "DOC-02",
+      "category": "Projects and recovery",
+      "feature": "Project alternatives and track alternatives",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Branch revisions without duplicating immutable media; preserve plugin states per alternative.",
+      "test": "Switch alternatives and return without changing the source take.",
+      "depends": "F0 document schema; F1 asset store",
+      "sources": [
+        "A02",
+        "A18"
+      ],
+      "evidence": [
+        "R03",
+        "R09",
+        "R20"
+      ]
+    },
+    {
+      "id": "DOC-03",
+      "category": "Projects and recovery",
+      "feature": "Backups, undo and redo",
+      "phase": "F1",
+      "status": "Not found",
+      "build": "Command journal, bounded undo snapshots, crash recovery and explicit destructive-change confirmation.",
+      "test": "Crash during each save step; recover either the last complete revision or its successor.",
+      "depends": "F0 document schema; F1 asset store",
+      "sources": [
+        "A02",
+        "A18"
+      ],
+      "evidence": [
+        "R03",
+        "R09",
+        "R20"
+      ]
+    },
+    {
+      "id": "DOC-04",
+      "category": "Projects and recovery",
+      "feature": "Consolidate, relink and clean media",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Content-hashed assets, portable project archive, missing-file resolver and reference-aware cleanup.",
+      "test": "Move a project to a new machine; never remove assets referenced by an alternative.",
+      "depends": "F0 document schema; F1 asset store",
+      "sources": [
+        "A02",
+        "A18"
+      ],
+      "evidence": [
+        "R03",
+        "R09",
+        "R20"
+      ]
+    },
+    {
+      "id": "DOC-05",
+      "category": "Projects and recovery",
+      "feature": "Project/track notes and project information",
+      "phase": "F1",
+      "status": "Not found",
+      "build": "Local notes, credits, sample rate, tempo/key summary, used assets and storage totals.",
+      "test": "Notes survive save/reopen; metadata matches the document, not stale UI state.",
+      "depends": "F0 document schema; F1 asset store",
+      "sources": [
+        "A02",
+        "A18"
+      ],
+      "evidence": [
+        "R03",
+        "R09",
+        "R20"
+      ]
+    },
+    {
+      "id": "DOC-06",
+      "category": "Projects and recovery",
+      "feature": "Import tracks/settings from another project",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Merge selected tracks, routing, assets and plugin states with ID remapping and preview.",
+      "test": "No ID collisions or dangling sends after repeated imports.",
+      "depends": "F0 document schema; F1 asset store",
+      "sources": [
+        "A02",
+        "A18"
+      ],
+      "evidence": [
+        "R03",
+        "R09",
+        "R20"
+      ]
+    },
+    {
+      "id": "ENG-01",
+      "category": "Audio engine and hardware",
+      "feature": "Audio device, input/output and buffer setup",
+      "phase": "F1",
+      "status": "Not found",
+      "build": "Native device selection, channel configuration, sample-rate negotiation and a device-loss state. Certify macOS first; stage Windows/Linux separately.",
+      "test": "Record/play on the declared interface matrix; recover safely after unplugging an interface.",
+      "depends": "F0 engine proof; document-to-engine adapter",
+      "sources": [
+        "A02",
+        "A07",
+        "A13"
+      ],
+      "evidence": [
+        "R02",
+        "R12",
+        "R19"
+      ]
+    },
+    {
+      "id": "ENG-02",
+      "category": "Audio engine and hardware",
+      "feature": "Sample-accurate transport, seek, pause and stop",
+      "phase": "F1",
+      "status": "Stub",
+      "build": "One audio clock, scheduled events, tempo conversion, note chase, click-free seek and explicit stop semantics.",
+      "test": "Offline event positions agree with fixtures within one sample; no stuck notes on seek.",
+      "depends": "F0 engine proof; document-to-engine adapter",
+      "sources": [
+        "A02",
+        "A07",
+        "A13"
+      ],
+      "evidence": [
+        "R02",
+        "R12",
+        "R19"
+      ]
+    },
+    {
+      "id": "ENG-03",
+      "category": "Audio engine and hardware",
+      "feature": "Low-latency monitoring and recording alignment",
+      "phase": "F1",
+      "status": "Not found",
+      "build": "Record-arm, input monitor, measured input/output compensation and documented low-latency bypass rules.",
+      "test": "Loopback impulse test reports actual round-trip and recorded alignment error.",
+      "depends": "F0 engine proof; document-to-engine adapter",
+      "sources": [
+        "A02",
+        "A07",
+        "A13"
+      ],
+      "evidence": [
+        "R02",
+        "R12",
+        "R19"
+      ]
+    },
+    {
+      "id": "ENG-04",
+      "category": "Audio engine and hardware",
+      "feature": "Plugin delay compensation and sidechain timing",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Latency propagation through tracks, buses, sends, multi-output instruments and external inserts.",
+      "test": "Impulse/null fixtures stay aligned when insert latency changes during playback.",
+      "depends": "F0 engine proof; document-to-engine adapter",
+      "sources": [
+        "A02",
+        "A07",
+        "A13"
+      ],
+      "evidence": [
+        "R02",
+        "R12",
+        "R19"
+      ]
+    },
+    {
+      "id": "ENG-05",
+      "category": "Audio engine and hardware",
+      "feature": "Disk streaming, CPU meters, freeze and bounce-in-place",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Bounded read-ahead/cache, xruns telemetry, frozen renders and reversible offline processing.",
+      "test": "Stress sessions exceed RAM-sized media safely; unfreeze restores editable state.",
+      "depends": "F0 engine proof; document-to-engine adapter",
+      "sources": [
+        "A02",
+        "A07",
+        "A13"
+      ],
+      "evidence": [
+        "R02",
+        "R12",
+        "R19"
+      ]
+    },
+    {
+      "id": "ENG-06",
+      "category": "Audio engine and hardware",
+      "feature": "Mono, stereo, dual-mono and multichannel processing",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Typed channel layouts, explicit conversion nodes, pan laws and format validation.",
+      "test": "No silent channel loss; reject invalid graph connections before playback.",
+      "depends": "F0 engine proof; document-to-engine adapter",
+      "sources": [
+        "A02",
+        "A07",
+        "A13"
+      ],
+      "evidence": [
+        "R02",
+        "R12",
+        "R19"
+      ]
+    },
+    {
+      "id": "TIME-01",
+      "category": "Transport and global musical structure",
+      "feature": "Tempo, meter, key and cycle loop",
+      "phase": "F1",
+      "status": "Stub",
+      "build": "Implement BPM/meter controls, musical ruler, loop boundaries and key metadata rather than empty setters.",
+      "test": "A 7/8 loop repeats correctly; stopping sends note-off for sustained MIDI.",
+      "depends": "F1 transport; stable timebase",
+      "sources": [
+        "A02",
+        "A27"
+      ],
+      "evidence": [
+        "R02",
+        "R03",
+        "R24"
+      ]
+    },
+    {
+      "id": "TIME-02",
+      "category": "Transport and global musical structure",
+      "feature": "Metronome, count-in and punch boundaries",
+      "phase": "F1",
+      "status": "Not found",
+      "build": "Configurable click and count-in scheduled by the engine; distinguish pre-roll from recorded material.",
+      "test": "Count-in and first recorded note align at every supported buffer size.",
+      "depends": "F1 transport; stable timebase",
+      "sources": [
+        "A02",
+        "A27"
+      ],
+      "evidence": [
+        "R02",
+        "R03",
+        "R24"
+      ]
+    },
+    {
+      "id": "TIME-03",
+      "category": "Transport and global musical structure",
+      "feature": "Tempo/signature maps and tempo curves",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Versioned piecewise tempo and meter maps; convert ticks to samples and back deterministically.",
+      "test": "Round-trip conversions remain correct across tempo ramps and meter changes.",
+      "depends": "F1 transport; stable timebase",
+      "sources": [
+        "A02",
+        "A27"
+      ],
+      "evidence": [
+        "R02",
+        "R03",
+        "R24"
+      ]
+    },
+    {
+      "id": "TIME-04",
+      "category": "Transport and global musical structure",
+      "feature": "Markers, arrangement sections and global edits",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Named sections with move/copy/repeat operations that update clips, automation, chords and visuals together.",
+      "test": "Moving a chorus preserves every linked lane and supports single-step undo.",
+      "depends": "F1 transport; stable timebase",
+      "sources": [
+        "A02",
+        "A27"
+      ],
+      "evidence": [
+        "R02",
+        "R03",
+        "R24"
+      ]
+    },
+    {
+      "id": "TIME-05",
+      "category": "Transport and global musical structure",
+      "feature": "Chord track, region chords and harmonic follow",
+      "phase": "F2",
+      "status": "Not found",
+      "build": "Structured chord objects with local overrides, voicing policy and explicit follow behavior.",
+      "test": "A region override does not change unrelated accompaniment or original notes.",
+      "depends": "F1 transport; stable timebase",
+      "sources": [
+        "A02",
+        "A27"
+      ],
+      "evidence": [
+        "R02",
+        "R03",
+        "R24"
+      ]
+    },
+    {
+      "id": "TIME-06",
+      "category": "Transport and global musical structure",
+      "feature": "Smart Tempo, beat mapping and groove track",
+      "phase": "F3",
+      "status": "Contract only",
+      "build": "Analysis jobs produce editable beat/downbeat/tempo maps; allow keep/adapt choices and manual correction.",
+      "test": "Bad beat detection can be repaired without stretching the original file irreversibly.",
+      "depends": "F1 transport; stable timebase",
+      "sources": [
+        "A02",
+        "A27"
+      ],
+      "evidence": [
+        "R02",
+        "R03",
+        "R24"
+      ]
+    },
+    {
+      "id": "REC-01",
+      "category": "Recording and takes",
+      "feature": "Audio recording: mono/stereo and multitrack",
+      "phase": "F1",
+      "status": "Stub",
+      "build": "Stream input to recoverable files; arm per track; show actual waveforms and input levels.",
+      "test": "Record two inputs simultaneously, stop, reopen and export both without lost samples.",
+      "depends": "F1 engine + assets; F3 take graph",
+      "sources": [
+        "A04",
+        "A03"
+      ],
+      "evidence": [
+        "R02",
+        "R03",
+        "R25"
+      ]
+    },
+    {
+      "id": "REC-02",
+      "category": "Recording and takes",
+      "feature": "MIDI and software-instrument recording",
+      "phase": "F1",
+      "status": "Contract only",
+      "build": "Timestamp notes/CC, route devices/channels, render a built-in instrument and record MIDI separately from audio.",
+      "test": "Recorded notes, sustain and pitch bend replay correctly after save/reopen.",
+      "depends": "F1 engine + assets; F3 take graph",
+      "sources": [
+        "A04",
+        "A03"
+      ],
+      "evidence": [
+        "R02",
+        "R03",
+        "R25"
+      ]
+    },
+    {
+      "id": "REC-03",
+      "category": "Recording and takes",
+      "feature": "Overdub, replace, step input and note repeat",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Explicit recording modes with clear destination, source retention and configurable note-repeat clock.",
+      "test": "Each mode produces the expected event set with undo, including loop crossings.",
+      "depends": "F1 engine + assets; F3 take graph",
+      "sources": [
+        "A04",
+        "A03"
+      ],
+      "evidence": [
+        "R02",
+        "R03",
+        "R25"
+      ]
+    },
+    {
+      "id": "REC-04",
+      "category": "Recording and takes",
+      "feature": "Loop takes, take folders and punch recording",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Non-destructive take lanes, take IDs, punch ranges and compensating crossfades.",
+      "test": "A failed take never overwrites an earlier recorded file.",
+      "depends": "F1 engine + assets; F3 take graph",
+      "sources": [
+        "A04",
+        "A03"
+      ],
+      "evidence": [
+        "R02",
+        "R03",
+        "R25"
+      ]
+    },
+    {
+      "id": "REC-05",
+      "category": "Recording and takes",
+      "feature": "Quick-swipe-style comping and take editing",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Audition lanes, select comp segments, edit seams, duplicate comps and reversible flatten.",
+      "test": "Comp seams render without gaps/clicks on the test corpus; source takes remain available.",
+      "depends": "F1 engine + assets; F3 take graph",
+      "sources": [
+        "A04",
+        "A03"
+      ],
+      "evidence": [
+        "R02",
+        "R03",
+        "R25"
+      ]
+    },
+    {
+      "id": "REC-06",
+      "category": "Recording and takes",
+      "feature": "Flashback capture: recent MIDI and audio",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Consent-aware bounded capture buffers, clear armed-state indication and recovery into takes.",
+      "test": "Capture the intended recent passage; purge disabled buffers and respect disk limits.",
+      "depends": "F1 engine + assets; F3 take graph",
+      "sources": [
+        "A04",
+        "A03"
+      ],
+      "evidence": [
+        "R02",
+        "R03",
+        "R25"
+      ]
+    },
+    {
+      "id": "ARR-01",
+      "category": "Tracks and linear arrangement",
+      "feature": "Track list, timeline, waveform and region editing",
+      "phase": "F1",
+      "status": "Not found",
+      "build": "Build the actual arrangement workspace: add/select/move/split/trim/copy/delete clips with zoom, scroll and sample-aware waveforms.",
+      "test": "Make a complete short arrangement using only manual tools and keyboard commands.",
+      "depends": "F1 document/transport; F3 section-aware edits",
+      "sources": [
+        "A26",
+        "A02"
+      ],
+      "evidence": [
+        "R03",
+        "R19",
+        "R01"
+      ]
+    },
+    {
+      "id": "ARR-02",
+      "category": "Tracks and linear arrangement",
+      "feature": "Snap, marquee, alignment guides and drag modes",
+      "phase": "F1",
+      "status": "Not found",
+      "build": "A common edit-intent layer for pointer/keyboard, grid-relative and absolute snaps, overlap modes and precise numeric input.",
+      "test": "Zoom level never changes the committed musical position.",
+      "depends": "F1 document/transport; F3 section-aware edits",
+      "sources": [
+        "A26",
+        "A02"
+      ],
+      "evidence": [
+        "R03",
+        "R19",
+        "R01"
+      ]
+    },
+    {
+      "id": "ARR-03",
+      "category": "Tracks and linear arrangement",
+      "feature": "Region loops, repeats, aliases and folders",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Distinguish linked instances from independent copies; support explicit flattening and nested arrangement groups.",
+      "test": "Editing an alias follows documented propagation; copying does not accidentally link.",
+      "depends": "F1 document/transport; F3 section-aware edits",
+      "sources": [
+        "A26",
+        "A02"
+      ],
+      "evidence": [
+        "R03",
+        "R19",
+        "R01"
+      ]
+    },
+    {
+      "id": "ARR-04",
+      "category": "Tracks and linear arrangement",
+      "feature": "Region gain, mute, solo, reverse and delay",
+      "phase": "F1",
+      "status": "Stub",
+      "build": "Non-destructive per-clip transforms, visible gain and clearly scoped clip-versus-track control.",
+      "test": "A reversed/gain-edited clip leaves its source asset hash unchanged.",
+      "depends": "F1 document/transport; F3 section-aware edits",
+      "sources": [
+        "A26",
+        "A02"
+      ],
+      "evidence": [
+        "R03",
+        "R19",
+        "R01"
+      ]
+    },
+    {
+      "id": "ARR-05",
+      "category": "Tracks and linear arrangement",
+      "feature": "Fades, crossfades and silence removal",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Editable fade curves, automatic seam fades, threshold-based strip-silence analysis and audition.",
+      "test": "Selection boundaries and fades remain sample-consistent after trimming and stretching.",
+      "depends": "F1 document/transport; F3 section-aware edits",
+      "sources": [
+        "A26",
+        "A02"
+      ],
+      "evidence": [
+        "R03",
+        "R19",
+        "R01"
+      ]
+    },
+    {
+      "id": "ARR-06",
+      "category": "Tracks and linear arrangement",
+      "feature": "Track stacks, groups, hide/protect and search",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Folder and summing stacks, group-scoped edits, hidden-track search and protected-track enforcement.",
+      "test": "Group edits cannot modify locked tracks; routing survives stack reordering.",
+      "depends": "F1 document/transport; F3 section-aware edits",
+      "sources": [
+        "A26",
+        "A02"
+      ],
+      "evidence": [
+        "R03",
+        "R19",
+        "R01"
+      ]
+    },
+    {
+      "id": "ARR-07",
+      "category": "Tracks and linear arrangement",
+      "feature": "Batch region processing and render-in-place",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Preview a processing chain; render to new assets; retain originals and undo relationships.",
+      "test": "Cancel or failure never replaces the source clip with a partial render.",
+      "depends": "F1 document/transport; F3 section-aware edits",
+      "sources": [
+        "A26",
+        "A02"
+      ],
+      "evidence": [
+        "R03",
+        "R19",
+        "R01"
+      ]
+    },
+    {
+      "id": "EDIT-01",
+      "category": "Audio correction and sample editing",
+      "feature": "Flex Time: transient and sustained-material stretching",
+      "phase": "F3",
+      "status": "Contract only",
+      "build": "Integrate or license stretch DSP; expose transient/tonal/polyphonic strategies, warp anchors and quality modes.",
+      "test": "Blind listening and transient/tuning fixtures meet declared limits, not just a UI demo.",
+      "depends": "F3 DSP pipeline + offline jobs",
+      "sources": [
+        "A06",
+        "A12"
+      ],
+      "evidence": [
+        "R02",
+        "R20",
+        "R23"
+      ]
+    },
+    {
+      "id": "EDIT-02",
+      "category": "Audio correction and sample editing",
+      "feature": "Flex Pitch: note-level audio pitch editing",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Pitch analysis, correction curves, drift/vibrato/formant controls and reversible regional edits.",
+      "test": "Monophonic vocal fixtures retain boundaries; uncertain detections are editable.",
+      "depends": "F3 DSP pipeline + offline jobs",
+      "sources": [
+        "A06",
+        "A12"
+      ],
+      "evidence": [
+        "R02",
+        "R20",
+        "R23"
+      ]
+    },
+    {
+      "id": "EDIT-03",
+      "category": "Audio correction and sample editing",
+      "feature": "Varispeed and linked/unlinked time-pitch changes",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Separate project speed, tempo adaptation and pitch shifting with explicit render semantics.",
+      "test": "Playback and export agree under each mode and tempo map.",
+      "depends": "F3 DSP pipeline + offline jobs",
+      "sources": [
+        "A06",
+        "A12"
+      ],
+      "evidence": [
+        "R02",
+        "R20",
+        "R23"
+      ]
+    },
+    {
+      "id": "EDIT-04",
+      "category": "Audio correction and sample editing",
+      "feature": "Audio-file editing and repair tools",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Sample editor, zero-crossing snaps, normalize, DC removal, phase invert, silence and protected source copies.",
+      "test": "Edits have a visible history and cannot corrupt the original audio asset.",
+      "depends": "F3 DSP pipeline + offline jobs",
+      "sources": [
+        "A06",
+        "A12"
+      ],
+      "evidence": [
+        "R02",
+        "R20",
+        "R23"
+      ]
+    },
+    {
+      "id": "EDIT-05",
+      "category": "Audio correction and sample editing",
+      "feature": "Transient detection, drum replacement and audio-to-MIDI",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Onset/pitch analysis into auditionable triggers or MIDI; distinguish monophonic transcription from full mixed-audio extraction.",
+      "test": "False triggers can be removed; derived MIDI remains hand-editable.",
+      "depends": "F3 DSP pipeline + offline jobs",
+      "sources": [
+        "A06",
+        "A12"
+      ],
+      "evidence": [
+        "R02",
+        "R20",
+        "R23"
+      ]
+    },
+    {
+      "id": "EDIT-06",
+      "category": "Audio correction and sample editing",
+      "feature": "Stem Splitter: vocals, drums, bass, guitar, piano, other",
+      "phase": "F3",
+      "status": "Contract only",
+      "build": "Expand four-stem contract into capability-negotiated separation; six-way model is required for equivalent coverage.",
+      "test": "Align every stem to the source; compare leakage/artifacts and reconstruction on licensed fixtures.",
+      "depends": "F3 DSP pipeline + offline jobs",
+      "sources": [
+        "A06",
+        "A12"
+      ],
+      "evidence": [
+        "R02",
+        "R20",
+        "R23"
+      ]
+    },
+    {
+      "id": "MIDI-01",
+      "category": "MIDI editing and performance data",
+      "feature": "Piano roll: pitch, duration and velocity",
+      "phase": "F1",
+      "status": "Not found",
+      "build": "Virtualized note editor, draw/select/move/resize, audition, numeric edits and multi-region display.",
+      "test": "Notes edited manually sound and serialize exactly as displayed.",
+      "depends": "F1 MIDI event model; F2 proposal engine",
+      "sources": [
+        "A05",
+        "A24",
+        "A27"
+      ],
+      "evidence": [
+        "R03",
+        "R20",
+        "R24",
+        "R25"
+      ]
+    },
+    {
+      "id": "MIDI-02",
+      "category": "MIDI editing and performance data",
+      "feature": "Timing/pitch quantization, swing and humanize",
+      "phase": "F2",
+      "status": "Contract only",
+      "build": "Reversible timing/pitch transforms; amount/range controls; scale snapping can be disabled.",
+      "test": "Keep raw performance data; changing strength never compounds earlier quantization.",
+      "depends": "F1 MIDI event model; F2 proposal engine",
+      "sources": [
+        "A05",
+        "A24",
+        "A27"
+      ],
+      "evidence": [
+        "R03",
+        "R20",
+        "R24",
+        "R25"
+      ]
+    },
+    {
+      "id": "MIDI-03",
+      "category": "MIDI editing and performance data",
+      "feature": "CC lanes, sustain, pitch bend and aftertouch",
+      "phase": "F1",
+      "status": "Not found",
+      "build": "Event lanes with interpolation, MIDI channel ownership and chase/reset rules.",
+      "test": "Seek into sustained phrases without stuck notes or discontinuous CC state.",
+      "depends": "F1 MIDI event model; F2 proposal engine",
+      "sources": [
+        "A05",
+        "A24",
+        "A27"
+      ],
+      "evidence": [
+        "R03",
+        "R20",
+        "R24",
+        "R25"
+      ]
+    },
+    {
+      "id": "MIDI-04",
+      "category": "MIDI editing and performance data",
+      "feature": "Event List, Step Editor and MIDI Transform",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Precise event table, controller lanes, filter/transform operations and dry-run counts.",
+      "test": "Batch transforms affect only their selected event types and undo atomically.",
+      "depends": "F1 MIDI event model; F2 proposal engine",
+      "sources": [
+        "A05",
+        "A24",
+        "A27"
+      ],
+      "evidence": [
+        "R03",
+        "R20",
+        "R24",
+        "R25"
+      ]
+    },
+    {
+      "id": "MIDI-05",
+      "category": "MIDI editing and performance data",
+      "feature": "MPE and MIDI 2.0 data handling",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Per-note expression model and adapters; establish format-specific capability tests before claiming MIDI 2.0 parity.",
+      "test": "Save/reopen retains expression; unsupported devices receive explicit fallback, not silent loss.",
+      "depends": "F1 MIDI event model; F2 proposal engine",
+      "sources": [
+        "A05",
+        "A24",
+        "A27"
+      ],
+      "evidence": [
+        "R03",
+        "R20",
+        "R24",
+        "R25"
+      ]
+    },
+    {
+      "id": "MIDI-06",
+      "category": "MIDI editing and performance data",
+      "feature": "Articulation sets, key switches and external MIDI",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Named articulations mapped to switches/channels/CC, device-port assignments and virtual MIDI routing.",
+      "test": "Changing an articulation preserves its intended instrument event on export and replay.",
+      "depends": "F1 MIDI event model; F2 proposal engine",
+      "sources": [
+        "A05",
+        "A24",
+        "A27"
+      ],
+      "evidence": [
+        "R03",
+        "R20",
+        "R24",
+        "R25"
+      ]
+    },
+    {
+      "id": "MIDI-07",
+      "category": "MIDI editing and performance data",
+      "feature": "MIDI import/export and track/channel demix",
+      "phase": "F1",
+      "status": "Not found",
+      "build": "Standard MIDI file exchange with timing/meter/tempo handling and a conversion report.",
+      "test": "Round-trip a multi-track fixture; disclose non-portable articulations/plugin states.",
+      "depends": "F1 MIDI event model; F2 proposal engine",
+      "sources": [
+        "A05",
+        "A24",
+        "A27"
+      ],
+      "evidence": [
+        "R03",
+        "R20",
+        "R24",
+        "R25"
+      ]
+    },
+    {
+      "id": "PAT-01",
+      "category": "Patterns and Live Loops",
+      "feature": "Step Sequencer: note and automation patterns",
+      "phase": "F2",
+      "status": "Not found",
+      "build": "Per-step pitch/velocity/gate, repeats/ties/probability, independent row lengths and deterministic playback seed.",
+      "test": "Reloading a seeded pattern preserves its output; editing a row does not shift others.",
+      "depends": "F1 scheduler; explicit SceneSlot model",
+      "sources": [
+        "A09",
+        "A10"
+      ],
+      "evidence": [
+        "R04",
+        "R05",
+        "R19"
+      ]
+    },
+    {
+      "id": "PAT-02",
+      "category": "Patterns and Live Loops",
+      "feature": "Pattern recording, variation and MIDI conversion",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Live/step input, row learning, chord-degree patterns, pattern presets and MIDI materialization.",
+      "test": "Converted MIDI matches the rendered pattern within the selected time resolution.",
+      "depends": "F1 scheduler; explicit SceneSlot model",
+      "sources": [
+        "A09",
+        "A10"
+      ],
+      "evidence": [
+        "R04",
+        "R05",
+        "R19"
+      ]
+    },
+    {
+      "id": "PAT-03",
+      "category": "Patterns and Live Loops",
+      "feature": "Live Loops: track-by-scene cell grid",
+      "phase": "F3",
+      "status": "UI only",
+      "build": "Replace clip-ID prefix inference with explicit cells referencing scene, track and clip; implement empty slots and drop targets.",
+      "test": "Arbitrary UUIDs render in the correct cell; prefix-sharing IDs cannot misroute clips.",
+      "depends": "F1 scheduler; explicit SceneSlot model",
+      "sources": [
+        "A09",
+        "A10"
+      ],
+      "evidence": [
+        "R04",
+        "R05",
+        "R19"
+      ]
+    },
+    {
+      "id": "PAT-04",
+      "category": "Patterns and Live Loops",
+      "feature": "Quantized clip/scene launch and live capture",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Queued/playing/stopping states, launch quantization, scene tempo policy and capture performance into the arrangement.",
+      "test": "Launches land on the next valid boundary; repeated triggers neither double audio nor lose note-offs.",
+      "depends": "F1 scheduler; explicit SceneSlot model",
+      "sources": [
+        "A09",
+        "A10"
+      ],
+      "evidence": [
+        "R04",
+        "R05",
+        "R19"
+      ]
+    },
+    {
+      "id": "PAT-05",
+      "category": "Patterns and Live Loops",
+      "feature": "Remix performance and controller triggering",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Map hardware/touch controls to loop actions and effects; record performance automation with safety limits.",
+      "test": "Disconnecting a controller releases held controls and leaves transport running safely.",
+      "depends": "F1 scheduler; explicit SceneSlot model",
+      "sources": [
+        "A09",
+        "A10"
+      ],
+      "evidence": [
+        "R04",
+        "R05",
+        "R19"
+      ]
+    },
+    {
+      "id": "MIX-01",
+      "category": "Mixing and automation",
+      "feature": "Mixer strips: gain, pan, mute, solo and real meters",
+      "phase": "F1",
+      "status": "Stub",
+      "build": "Actual signal-path control; implement accessible fader/knob gestures, typed values and unclipped gain ranges.",
+      "test": "Fader movement changes measured audio level, not only a painted value.",
+      "depends": "F1 graph + parameter IDs; F3 PDC",
+      "sources": [
+        "A07",
+        "A08"
+      ],
+      "evidence": [
+        "R02",
+        "R10",
+        "R11"
+      ]
+    },
+    {
+      "id": "MIX-02",
+      "category": "Mixing and automation",
+      "feature": "Insert chains, bypass and channel-strip presets",
+      "phase": "F1",
+      "status": "Not found",
+      "build": "Ordered processor chains with state snapshots, A/B, copy/paste and clear wet/dry policy.",
+      "test": "Presets restore sound and automation target IDs after reordering.",
+      "depends": "F1 graph + parameter IDs; F3 PDC",
+      "sources": [
+        "A07",
+        "A08"
+      ],
+      "evidence": [
+        "R02",
+        "R10",
+        "R11"
+      ]
+    },
+    {
+      "id": "MIX-03",
+      "category": "Mixing and automation",
+      "feature": "Sends, aux returns, subgroups and sidechains",
+      "phase": "F3",
+      "status": "Stub",
+      "build": "Directed routing graph with pre/post sends, independent send pan, feedback-cycle policy and bus meters.",
+      "test": "Graph validation blocks unintended feedback; isolated sends reach only their destinations.",
+      "depends": "F1 graph + parameter IDs; F3 PDC",
+      "sources": [
+        "A07",
+        "A08"
+      ],
+      "evidence": [
+        "R02",
+        "R10",
+        "R11"
+      ]
+    },
+    {
+      "id": "MIX-04",
+      "category": "Mixing and automation",
+      "feature": "VCA, mixer groups, multi-output instruments and external I/O",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Group control separate from audio summing; multi-output routing and measured external-hardware latency.",
+      "test": "Group faders preserve relative levels; external insert timing is reported and compensated.",
+      "depends": "F1 graph + parameter IDs; F3 PDC",
+      "sources": [
+        "A07",
+        "A08"
+      ],
+      "evidence": [
+        "R02",
+        "R10",
+        "R11"
+      ]
+    },
+    {
+      "id": "MIX-05",
+      "category": "Mixing and automation",
+      "feature": "Automation lanes and read/touch/latch/write modes",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Track and region automation, parameter addressing, interpolation and explicit write-arm protection.",
+      "test": "Changing modes records the intended gesture while unrelated automation remains unchanged.",
+      "depends": "F1 graph + parameter IDs; F3 PDC",
+      "sources": [
+        "A07",
+        "A08"
+      ],
+      "evidence": [
+        "R02",
+        "R10",
+        "R11"
+      ]
+    },
+    {
+      "id": "MIX-06",
+      "category": "Mixing and automation",
+      "feature": "Automation trim, relative edits and region moves",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Offset layers and transform rules for moving, copying and resizing automated regions.",
+      "test": "Round-trip moves preserve curves; trim changes do not bake over the base lane.",
+      "depends": "F1 graph + parameter IDs; F3 PDC",
+      "sources": [
+        "A07",
+        "A08"
+      ],
+      "evidence": [
+        "R02",
+        "R10",
+        "R11"
+      ]
+    },
+    {
+      "id": "MIX-07",
+      "category": "Mixing and automation",
+      "feature": "Smart Controls, MIDI learn and performance macros",
+      "phase": "F2",
+      "status": "Not found",
+      "build": "Common bounded mapping registry for controls, MIDI, touch and gestures; multi-target macros with preview.",
+      "test": "Every mapped input updates the same parameter; out-of-range values are rejected or clamped.",
+      "depends": "F1 graph + parameter IDs; F3 PDC",
+      "sources": [
+        "A07",
+        "A08"
+      ],
+      "evidence": [
+        "R02",
+        "R10",
+        "R11"
+      ]
+    },
+    {
+      "id": "MIX-08",
+      "category": "Mixing and automation",
+      "feature": "Mixer undo and loudness-aware A/B",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Include mix/plugin edits in the project transaction model; allow gain-matched comparisons.",
+      "test": "Undo restores plugin state and routes as well as fader values.",
+      "depends": "F1 graph + parameter IDs; F3 PDC",
+      "sources": [
+        "A07",
+        "A08"
+      ],
+      "evidence": [
+        "R02",
+        "R10",
+        "R11"
+      ]
+    },
+    {
+      "id": "SND-01",
+      "category": "Instruments, sampling and sound library",
+      "feature": "Playable stock instruments and synthesizer patches",
+      "phase": "F1",
+      "status": "Not found",
+      "build": "Ship an original basic poly synth, drum instrument and sampler with useful licensed patches; expand by inventory below.",
+      "test": "All factory patches load offline and pass voice, sustain and note-off tests.",
+      "depends": "F1 built-in DSP; F3 library/content pipeline",
+      "sources": [
+        "A19",
+        "A18",
+        "A03"
+      ],
+      "evidence": [
+        "R08",
+        "R19",
+        "R20"
+      ]
+    },
+    {
+      "id": "SND-02",
+      "category": "Instruments, sampling and sound library",
+      "feature": "Quick sampling, slicing and drum-pad mapping",
+      "phase": "F2",
+      "status": "Not found",
+      "build": "Drop/import/record a sound, trim/slice, map notes and preserve source references.",
+      "test": "Dragging generated or recorded audio creates a playable instrument without file duplication bugs.",
+      "depends": "F1 built-in DSP; F3 library/content pipeline",
+      "sources": [
+        "A19",
+        "A18",
+        "A03"
+      ],
+      "evidence": [
+        "R08",
+        "R19",
+        "R20"
+      ]
+    },
+    {
+      "id": "SND-03",
+      "category": "Instruments, sampling and sound library",
+      "feature": "Multisampling, zones, layers and round robins",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Streaming sampler with velocity/key ranges, groups, articulations and sample-relink diagnostics.",
+      "test": "Large instruments stream reliably; missing samples have actionable recovery.",
+      "depends": "F1 built-in DSP; F3 library/content pipeline",
+      "sources": [
+        "A19",
+        "A18",
+        "A03"
+      ],
+      "evidence": [
+        "R08",
+        "R19",
+        "R20"
+      ]
+    },
+    {
+      "id": "SND-04",
+      "category": "Instruments, sampling and sound library",
+      "feature": "Granular, additive, spectral, wavetable and physical synthesis",
+      "phase": "F5",
+      "status": "Not found",
+      "build": "Build or license independently designed engines; use the named instrument inventory as outcome coverage, not binary cloning.",
+      "test": "Preset banks have musical review and CPU budgets for the declared voice count.",
+      "depends": "F1 built-in DSP; F3 library/content pipeline",
+      "sources": [
+        "A19",
+        "A18",
+        "A03"
+      ],
+      "evidence": [
+        "R08",
+        "R19",
+        "R20"
+      ]
+    },
+    {
+      "id": "SND-05",
+      "category": "Instruments, sampling and sound library",
+      "feature": "Loop/sample browser and musical preview",
+      "phase": "F2",
+      "status": "Not found",
+      "build": "Tag by tempo/key/instrument/mood; preview in project time; favorites and user-library indexing.",
+      "test": "Audition does not modify the project and never loses the source licence record.",
+      "depends": "F1 built-in DSP; F3 library/content pipeline",
+      "sources": [
+        "A19",
+        "A18",
+        "A03"
+      ],
+      "evidence": [
+        "R08",
+        "R19",
+        "R20"
+      ]
+    },
+    {
+      "id": "SND-06",
+      "category": "Instruments, sampling and sound library",
+      "feature": "Downloadable sound packs and storage management",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Signed/checksummed manifests, resume, disk-space checks, relocation and reference-aware removal.",
+      "test": "Offline packs remain usable; interrupted updates do not break existing projects.",
+      "depends": "F1 built-in DSP; F3 library/content pipeline",
+      "sources": [
+        "A19",
+        "A18",
+        "A03"
+      ],
+      "evidence": [
+        "R08",
+        "R19",
+        "R20"
+      ]
+    },
+    {
+      "id": "SND-07",
+      "category": "Instruments, sampling and sound library",
+      "feature": "User patches, Auto Sampler-style capture and import",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Save complete device states and assets; staged capture of permitted instruments with key/velocity maps.",
+      "test": "Captured instrument has consistent zone names; external capture can be cancelled safely.",
+      "depends": "F1 built-in DSP; F3 library/content pipeline",
+      "sources": [
+        "A19",
+        "A18",
+        "A03"
+      ],
+      "evidence": [
+        "R08",
+        "R19",
+        "R20"
+      ]
+    },
+    {
+      "id": "FX-01",
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "EQ, filtering and spectrum matching",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Parametric/linear-phase/match/vintage-style EQ, modulation filters and analyzers; initial basic EQ lands in F1.",
+      "test": "Frequency and impulse responses match specifications; high-Q settings remain stable.",
+      "depends": "F1 basic DSP; F3 processor state/PDC",
+      "sources": [
+        "A20",
+        "A21",
+        "A22",
+        "A23",
+        "A24"
+      ],
+      "evidence": [
+        "R02",
+        "R08",
+        "R19"
+      ]
+    },
+    {
+      "id": "FX-02",
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "Compression, limiting, gating, de-essing and dynamics",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Core compressor/limiter first; then multiband, sidechain, envelope shaping and adaptive dynamics.",
+      "test": "Attack/release, true-peak and sidechain fixtures pass across sample rates.",
+      "depends": "F1 basic DSP; F3 processor state/PDC",
+      "sources": [
+        "A20",
+        "A21",
+        "A22",
+        "A23",
+        "A24"
+      ],
+      "evidence": [
+        "R02",
+        "R08",
+        "R19"
+      ]
+    },
+    {
+      "id": "FX-03",
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "Reverb, delay and convolution",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Original algorithmic reverb and sync delay first; then convolution, multitap and advanced spaces.",
+      "test": "Tempo changes, tails and plugin bypass cause no discontinuity or truncated exports.",
+      "depends": "F1 basic DSP; F3 processor state/PDC",
+      "sources": [
+        "A20",
+        "A21",
+        "A22",
+        "A23",
+        "A24"
+      ],
+      "evidence": [
+        "R02",
+        "R08",
+        "R19"
+      ]
+    },
+    {
+      "id": "FX-04",
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "Distortion, saturation, amps and pedals",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Original waveshaping/modelled processing, cabinets and routable pedal rack; do not distribute Apple assets.",
+      "test": "Oversampling/aliasing and output-level tests accompany sound-design review.",
+      "depends": "F1 basic DSP; F3 processor state/PDC",
+      "sources": [
+        "A20",
+        "A21",
+        "A22",
+        "A23",
+        "A24"
+      ],
+      "evidence": [
+        "R02",
+        "R08",
+        "R19"
+      ]
+    },
+    {
+      "id": "FX-05",
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "Modulation, imaging and rhythmic multi-effects",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Chorus/flange/phase/rotor/tremolo, stereo tools, beat slicing and step-modulated effect rack.",
+      "test": "Stereo phase behavior and tempo-synced transitions remain stable.",
+      "depends": "F1 basic DSP; F3 processor state/PDC",
+      "sources": [
+        "A20",
+        "A21",
+        "A22",
+        "A23",
+        "A24"
+      ],
+      "evidence": [
+        "R02",
+        "R08",
+        "R19"
+      ]
+    },
+    {
+      "id": "FX-06",
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "Pitch correction, shifter and vocal transformation",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Explicit scale/formant controls and quality/latency modes; distinguish correction from generated vocals.",
+      "test": "Audition bypass with level matching; display latency and detection confidence.",
+      "depends": "F1 basic DSP; F3 processor state/PDC",
+      "sources": [
+        "A20",
+        "A21",
+        "A22",
+        "A23",
+        "A24"
+      ],
+      "evidence": [
+        "R02",
+        "R08",
+        "R19"
+      ]
+    },
+    {
+      "id": "FX-07",
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "MIDI effects and sandboxed scripting",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Arpeggiation, chord triggering, note-repeat, transformation and a bounded MIDI scripting API.",
+      "test": "A bad script cannot stall audio, access private files or emit unbounded events.",
+      "depends": "F1 basic DSP; F3 processor state/PDC",
+      "sources": [
+        "A20",
+        "A21",
+        "A22",
+        "A23",
+        "A24"
+      ],
+      "evidence": [
+        "R02",
+        "R08",
+        "R19"
+      ]
+    },
+    {
+      "id": "FX-08",
+      "category": "Audio and MIDI effect capabilities",
+      "feature": "Meters, tuner, gain, test signal and utility processors",
+      "phase": "F1",
+      "status": "Stub",
+      "build": "Real peak/RMS meters, spectrum/tuning analysis and gain utility first; specialist multichannel tools follow.",
+      "test": "Known sine/noise/impulse fixtures yield documented readings; no fabricated zero meters.",
+      "depends": "F1 basic DSP; F3 processor state/PDC",
+      "sources": [
+        "A20",
+        "A21",
+        "A22",
+        "A23",
+        "A24"
+      ],
+      "evidence": [
+        "R02",
+        "R08",
+        "R19"
+      ]
+    },
+    {
+      "id": "HOST-01",
+      "category": "Third-party devices and extensibility",
+      "feature": "Audio Units v2/v3 instruments and effects",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Add a native macOS host, discovery, state restore, automation, editor embedding and compatibility diagnostics.",
+      "test": "Validated third-party effects/instruments survive save/reopen and offline bounce.",
+      "depends": "F0 licence/API spike; F3 isolated host",
+      "sources": [
+        "A13",
+        "A27"
+      ],
+      "evidence": [
+        "R08",
+        "R12",
+        "R20"
+      ]
+    },
+    {
+      "id": "HOST-02",
+      "category": "Third-party devices and extensibility",
+      "feature": "Plugin scan, validation and crash recovery",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Scan in disposable processes; timeouts, quarantine list and safe re-scan. Full runtime isolation is separate work.",
+      "test": "A deliberately crashing plugin is quarantined and cannot prevent the next studio startup.",
+      "depends": "F0 licence/API spike; F3 isolated host",
+      "sources": [
+        "A13",
+        "A27"
+      ],
+      "evidence": [
+        "R08",
+        "R12",
+        "R20"
+      ]
+    },
+    {
+      "id": "HOST-03",
+      "category": "Third-party devices and extensibility",
+      "feature": "ARA/editor integration and instrument multi-output",
+      "phase": "F5",
+      "status": "Not found",
+      "build": "Assess supported native SDK capabilities and licensing; map edit state and all output buses.",
+      "test": "Document supported plugin/OS combinations and unsupported combinations explicitly.",
+      "depends": "F0 licence/API spike; F3 isolated host",
+      "sources": [
+        "A13",
+        "A27"
+      ],
+      "evidence": [
+        "R08",
+        "R12",
+        "R20"
+      ]
+    },
+    {
+      "id": "HOST-04",
+      "category": "Third-party devices and extensibility",
+      "feature": "WASM devices and controlled live reload",
+      "phase": "F4",
+      "status": "Contract only",
+      "build": "Versioned capability manifest, bounded compute/memory, state migration and rollback to last known good module.",
+      "test": "Malformed modules or parameter schemas are rejected without changing the project.",
+      "depends": "F0 licence/API spike; F3 isolated host",
+      "sources": [
+        "A13",
+        "A27"
+      ],
+      "evidence": [
+        "R08",
+        "R12",
+        "R20"
+      ]
+    },
+    {
+      "id": "HOST-05",
+      "category": "Third-party devices and extensibility",
+      "feature": "VST3 and CLAP hosting — VOID extension, not Logic feature",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Consider cross-platform native hosts after the core plugin abstraction; license/SDK support must be verified.",
+      "test": "Platform test matrix distinguishes hosted formats; no claim that Logic hosts VST3.",
+      "depends": "F0 licence/API spike; F3 isolated host",
+      "sources": [
+        "A13",
+        "A27"
+      ],
+      "evidence": [
+        "R08",
+        "R12",
+        "R20"
+      ]
+    },
+    {
+      "id": "INTEL-01",
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Session Players: drummer, bass, keyboard and synth styles",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Controllable accompaniment that follows chords, groove and sections; store editable MIDI plus generation recipe.",
+      "test": "Lock a phrase, regenerate elsewhere, and preserve the locked notes exactly.",
+      "depends": "F1 editable notes/assets; F2 command/proposal gate",
+      "sources": [
+        "A03",
+        "A11",
+        "A12",
+        "A27"
+      ],
+      "evidence": [
+        "R06",
+        "R20"
+      ]
+    },
+    {
+      "id": "INTEL-02",
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Chord ID and harmonic analysis",
+      "phase": "F2",
+      "status": "Not found",
+      "build": "Analyze selected audio/MIDI into tentative chord objects with confidence, manual correction and region scope.",
+      "test": "Low-confidence chords remain suggestions; no automatic project-wide reharmonization.",
+      "depends": "F1 editable notes/assets; F2 command/proposal gate",
+      "sources": [
+        "A03",
+        "A11",
+        "A12",
+        "A27"
+      ],
+      "evidence": [
+        "R06",
+        "R20"
+      ]
+    },
+    {
+      "id": "INTEL-03",
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Mastering Assistant",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Analysis-driven editable mastering-chain proposal, target loudness/true peak and level-matched audition.",
+      "test": "Export meets the user-selected delivery target without hiding destructive processing.",
+      "depends": "F1 editable notes/assets; F2 command/proposal gate",
+      "sources": [
+        "A03",
+        "A11",
+        "A12",
+        "A27"
+      ],
+      "evidence": [
+        "R06",
+        "R20"
+      ]
+    },
+    {
+      "id": "INTEL-04",
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Predictive notes, drums, chords and phrase completion",
+      "phase": "F2",
+      "status": "Not found",
+      "build": "Inline ghost material, alternative candidates, contextual audition, accept/dismiss and one-transaction commit.",
+      "test": "Rejecting a suggestion changes nothing; accepted output is normal editable project data.",
+      "depends": "F1 editable notes/assets; F2 command/proposal gate",
+      "sources": [
+        "A03",
+        "A11",
+        "A12",
+        "A27"
+      ],
+      "evidence": [
+        "R06",
+        "R20"
+      ]
+    },
+    {
+      "id": "INTEL-05",
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Arrangement and orchestration copilot",
+      "phase": "F3",
+      "status": "Contract only",
+      "build": "Propose structured edits to selected tracks/ranges; explain scope and preview A/B against a saved revision.",
+      "test": "Model output cannot mutate a newer revision without revalidation.",
+      "depends": "F1 editable notes/assets; F2 command/proposal gate",
+      "sources": [
+        "A03",
+        "A11",
+        "A12",
+        "A27"
+      ],
+      "evidence": [
+        "R06",
+        "R20"
+      ]
+    },
+    {
+      "id": "INTEL-06",
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Text/reference-to-audio: loops, one-shots and stems",
+      "phase": "F2",
+      "status": "Contract only",
+      "build": "Async generation jobs with duration/key/tempo requirements, preview, crop/alignment and asset provenance.",
+      "test": "Job completion never auto-replaces the selected clip; failed/cancelled jobs leave no project mutation.",
+      "depends": "F1 editable notes/assets; F2 command/proposal gate",
+      "sources": [
+        "A03",
+        "A11",
+        "A12",
+        "A27"
+      ],
+      "evidence": [
+        "R06",
+        "R20"
+      ]
+    },
+    {
+      "id": "INTEL-07",
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Audio continuation, inpainting and variations",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Preserve protected regions; create alternative takes around defined musical boundaries and approved reference assets.",
+      "test": "Only the approved selection changes after acceptance; original media remains intact.",
+      "depends": "F1 editable notes/assets; F2 command/proposal gate",
+      "sources": [
+        "A03",
+        "A11",
+        "A12",
+        "A27"
+      ],
+      "evidence": [
+        "R06",
+        "R20"
+      ]
+    },
+    {
+      "id": "INTEL-08",
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Local memory, preferences and reusable recipes",
+      "phase": "F2",
+      "status": "Contract only",
+      "build": "Opt-in project-scoped musical preferences with source/revision provenance, editable memory and delete controls.",
+      "test": "Private project context is never sent to a provider without explicit permission.",
+      "depends": "F1 editable notes/assets; F2 command/proposal gate",
+      "sources": [
+        "A03",
+        "A11",
+        "A12",
+        "A27"
+      ],
+      "evidence": [
+        "R06",
+        "R20"
+      ]
+    },
+    {
+      "id": "INTEL-09",
+      "category": "Logic intelligent tools and VOID AI",
+      "feature": "Model routing, downloads, cancellation and resource budgets",
+      "phase": "F2",
+      "status": "Not found",
+      "build": "Capability registry for MIDI/audio/image/video; local-first policy, optional approved cloud and cached results.",
+      "test": "Missing model, OOM, timeout and offline states have working manual fallbacks.",
+      "depends": "F1 editable notes/assets; F2 command/proposal gate",
+      "sources": [
+        "A03",
+        "A11",
+        "A12",
+        "A27"
+      ],
+      "evidence": [
+        "R06",
+        "R20"
+      ]
+    },
+    {
+      "id": "GEST-01",
+      "category": "Gesture-first composition — VOID additions",
+      "feature": "Draw a melodic contour and tap a rhythm",
+      "phase": "F2",
+      "status": "Not found",
+      "build": "Convert pointer/touch paths into proposed pitch/time/velocity events; optional scale and grid constraints.",
+      "test": "User can inspect the raw gesture, edit the resulting notes and disable snapping.",
+      "depends": "F1 parameter/event IDs; F2 gesture mapping",
+      "sources": [
+        "A02"
+      ],
+      "evidence": [
+        "R01",
+        "R10",
+        "R11",
+        "R20",
+        "R25"
+      ]
+    },
+    {
+      "id": "GEST-02",
+      "category": "Gesture-first composition — VOID additions",
+      "feature": "Touch/trackpad macros and harmonic gestures",
+      "phase": "F2",
+      "status": "Not found",
+      "build": "Pinch/rotate/swipe mappings for timbre, tension, voicing and density; explicit arm/clutch and reset.",
+      "test": "Navigation gestures cannot accidentally record destructive automation.",
+      "depends": "F1 parameter/event IDs; F2 gesture mapping",
+      "sources": [
+        "A02"
+      ],
+      "evidence": [
+        "R01",
+        "R10",
+        "R11",
+        "R20",
+        "R25"
+      ]
+    },
+    {
+      "id": "GEST-03",
+      "category": "Gesture-first composition — VOID additions",
+      "feature": "MIDI/MPE expressive performance",
+      "phase": "F3",
+      "status": "Contract only",
+      "build": "Use the same mapping targets as touch input, with configurable deadbands, smoothing and bounded output.",
+      "test": "Hardware and on-screen controls produce equivalent parameter/event changes.",
+      "depends": "F1 parameter/event IDs; F2 gesture mapping",
+      "sources": [
+        "A02"
+      ],
+      "evidence": [
+        "R01",
+        "R10",
+        "R11",
+        "R20",
+        "R25"
+      ]
+    },
+    {
+      "id": "GEST-04",
+      "category": "Gesture-first composition — VOID additions",
+      "feature": "Camera-hand conducting, optional and local",
+      "phase": "F4",
+      "status": "Not found",
+      "build": "On-device pose capture, calibration, confidence threshold and tracking-loss release; record music events, not video, by default.",
+      "test": "Denied camera permission still leaves a fully usable studio; tracking loss causes no surprise cue.",
+      "depends": "F1 parameter/event IDs; F2 gesture mapping",
+      "sources": [
+        "A02"
+      ],
+      "evidence": [
+        "R01",
+        "R10",
+        "R11",
+        "R20",
+        "R25"
+      ]
+    },
+    {
+      "id": "GEST-05",
+      "category": "Gesture-first composition — VOID additions",
+      "feature": "Gesture recording, quantized launches and undo",
+      "phase": "F2",
+      "status": "Not found",
+      "build": "Preserve raw input timestamps and optionally quantized musical results; macro changes may be recorded as automation.",
+      "test": "One undo reverses a committed gesture phrase without deleting an earlier take.",
+      "depends": "F1 parameter/event IDs; F2 gesture mapping",
+      "sources": [
+        "A02"
+      ],
+      "evidence": [
+        "R01",
+        "R10",
+        "R11",
+        "R20",
+        "R25"
+      ]
+    },
+    {
+      "id": "GEST-06",
+      "category": "Gesture-first composition — VOID additions",
+      "feature": "Keyboard/accessibility equivalents for every gesture",
+      "phase": "F2",
+      "status": "Not found",
+      "build": "Provide focusable controls, numeric entry, screen-reader labels and discoverable shortcuts.",
+      "test": "A keyboard-only user completes the same composition and export workflow.",
+      "depends": "F1 parameter/event IDs; F2 gesture mapping",
+      "sources": [
+        "A02"
+      ],
+      "evidence": [
+        "R01",
+        "R10",
+        "R11",
+        "R20",
+        "R25"
+      ]
+    },
+    {
+      "id": "VIS-01",
+      "category": "Visual timeline and stage — VOID additions",
+      "feature": "Imported images, video and conventional visual presets",
+      "phase": "F4",
+      "status": "Not found",
+      "build": "Visual tracks with layers, transforms, opacity, blend modes and licensed presets; all work without AI.",
+      "test": "Offline project reopening restores source media, layering and timing.",
+      "depends": "F1 clock/assets; F2 jobs; F4 renderer",
+      "sources": [
+        "A16"
+      ],
+      "evidence": [
+        "R07",
+        "R06",
+        "R20",
+        "R26"
+      ]
+    },
+    {
+      "id": "VIS-02",
+      "category": "Visual timeline and stage — VOID additions",
+      "feature": "Generated artwork, visual loops and video",
+      "phase": "F4",
+      "status": "Not found",
+      "build": "Provider jobs create immutable assets; compare candidates and choose exact timeline ranges before insertion.",
+      "test": "Generation failure cannot replace a working stage scene.",
+      "depends": "F1 clock/assets; F2 jobs; F4 renderer",
+      "sources": [
+        "A16"
+      ],
+      "evidence": [
+        "R07",
+        "R06",
+        "R20",
+        "R26"
+      ]
+    },
+    {
+      "id": "VIS-03",
+      "category": "Visual timeline and stage — VOID additions",
+      "feature": "Audio-reactive visuals and beat-synced changes",
+      "phase": "F4",
+      "status": "Contract only",
+      "build": "Decimated audio features and musical-clock snapshots drive bounded render parameters; bake expensive material.",
+      "test": "Visual load cannot increase audio xruns in the certified stress test.",
+      "depends": "F1 clock/assets; F2 jobs; F4 renderer",
+      "sources": [
+        "A16"
+      ],
+      "evidence": [
+        "R07",
+        "R06",
+        "R20",
+        "R26"
+      ]
+    },
+    {
+      "id": "VIS-04",
+      "category": "Visual timeline and stage — VOID additions",
+      "feature": "Scene graphs, shader presets and safe generated shaders",
+      "phase": "F4",
+      "status": "Contract only",
+      "build": "Prefer validated declarative scenes; compile untrusted shaders in an isolated renderer with watchdog and rollback.",
+      "test": "Invalid or expensive shader falls back to the last good scene without privileged access.",
+      "depends": "F1 clock/assets; F2 jobs; F4 renderer",
+      "sources": [
+        "A16"
+      ],
+      "evidence": [
+        "R07",
+        "R06",
+        "R20",
+        "R26"
+      ]
+    },
+    {
+      "id": "VIS-05",
+      "category": "Visual timeline and stage — VOID additions",
+      "feature": "Preview, full-screen and multi-display outputs",
+      "phase": "F4",
+      "status": "Contract only",
+      "build": "Independent preview/program output, monitor selection, output blackout and latency calibration.",
+      "test": "Losing a display never stops the audio engine or exposes private UI on the stage output.",
+      "depends": "F1 clock/assets; F2 jobs; F4 renderer",
+      "sources": [
+        "A16"
+      ],
+      "evidence": [
+        "R07",
+        "R06",
+        "R20",
+        "R26"
+      ]
+    },
+    {
+      "id": "VIS-06",
+      "category": "Visual timeline and stage — VOID additions",
+      "feature": "Projection mapping and show cues",
+      "phase": "F5",
+      "status": "Contract only",
+      "build": "Surface calibration, per-output transforms, cue timing, rehearsable transitions and safe rollback.",
+      "test": "Rehearsal exports/plays the same cue timeline; bad mappings can be bypassed immediately.",
+      "depends": "F1 clock/assets; F2 jobs; F4 renderer",
+      "sources": [
+        "A16"
+      ],
+      "evidence": [
+        "R07",
+        "R06",
+        "R20",
+        "R26"
+      ]
+    },
+    {
+      "id": "VIS-07",
+      "category": "Visual timeline and stage — VOID additions",
+      "feature": "OSC/DMX integration and external show control",
+      "phase": "F5",
+      "status": "Contract only",
+      "build": "Capability-scoped local adapters, explicit network/device pairing, rate limits and a safe-state policy.",
+      "test": "Untrusted content cannot send network/hardware commands; fixtures fail safe on disconnect.",
+      "depends": "F1 clock/assets; F2 jobs; F4 renderer",
+      "sources": [
+        "A16"
+      ],
+      "evidence": [
+        "R07",
+        "R06",
+        "R20",
+        "R26"
+      ]
+    },
+    {
+      "id": "VIS-08",
+      "category": "Visual timeline and stage — VOID additions",
+      "feature": "Audio-plus-video export and reproducible rendering",
+      "phase": "F4",
+      "status": "Not found",
+      "build": "Freeze visual/audio assets, render using one timeline, mux with timebase and encoder validation.",
+      "test": "Audio and video stay within the declared sync tolerance from start to end.",
+      "depends": "F1 clock/assets; F2 jobs; F4 renderer",
+      "sources": [
+        "A16"
+      ],
+      "evidence": [
+        "R07",
+        "R06",
+        "R20",
+        "R26"
+      ]
+    },
+    {
+      "id": "OUT-01",
+      "category": "Delivery and interoperability",
+      "feature": "Stereo/mono audio bounce and export",
+      "phase": "F1",
+      "status": "Contract only",
+      "build": "PCM WAV/AIFF first; region/project range, sample rate, bit depth and tail options. Add compressed formats after codec review.",
+      "test": "Exported files contain real non-silent audio and match project duration plus selected tail.",
+      "depends": "F1 offline audio render; F3 interchange",
+      "sources": [
+        "A02",
+        "A14",
+        "A16"
+      ],
+      "evidence": [
+        "R09",
+        "R02",
+        "R20"
+      ]
+    },
+    {
+      "id": "OUT-02",
+      "category": "Delivery and interoperability",
+      "feature": "Offline/realtime bounce, dither and normalization",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Distinguish hardware-dependent real-time render from offline render; explicit dither/normalize and clipping report.",
+      "test": "Repeated built-in renders match within the declared deterministic tolerance.",
+      "depends": "F1 offline audio render; F3 interchange",
+      "sources": [
+        "A02",
+        "A14",
+        "A16"
+      ],
+      "evidence": [
+        "R09",
+        "R02",
+        "R20"
+      ]
+    },
+    {
+      "id": "OUT-03",
+      "category": "Delivery and interoperability",
+      "feature": "Batch stems, regions and instrument renders",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Export aligned stems with routing/tail policy, filenames, channel metadata and a manifest.",
+      "test": "Reassembled stems follow documented bus-effect semantics and remain sample-aligned.",
+      "depends": "F1 offline audio render; F3 interchange",
+      "sources": [
+        "A02",
+        "A14",
+        "A16"
+      ],
+      "evidence": [
+        "R09",
+        "R02",
+        "R20"
+      ]
+    },
+    {
+      "id": "OUT-04",
+      "category": "Delivery and interoperability",
+      "feature": "AAF, Final Cut XML and MusicXML interchange",
+      "phase": "F5",
+      "status": "Not found",
+      "build": "Implement separately tested import/export subsets with a conversion report and retained source files.",
+      "test": "Unsupported items are reported, never silently dropped.",
+      "depends": "F1 offline audio render; F3 interchange",
+      "sources": [
+        "A02",
+        "A14",
+        "A16"
+      ],
+      "evidence": [
+        "R09",
+        "R02",
+        "R20"
+      ]
+    },
+    {
+      "id": "OUT-05",
+      "category": "Delivery and interoperability",
+      "feature": "Logic/GarageBand project migration",
+      "phase": "F5",
+      "status": "Not found",
+      "build": "Start with stems, MIDI and tempo/chord metadata. Treat native .logicx/.band conversion as a separate researched compatibility project.",
+      "test": "Do not claim exact Apple plugin/sound-library or project-state round-tripping.",
+      "depends": "F1 offline audio render; F3 interchange",
+      "sources": [
+        "A02",
+        "A14",
+        "A16"
+      ],
+      "evidence": [
+        "R09",
+        "R02",
+        "R20"
+      ]
+    },
+    {
+      "id": "OUT-06",
+      "category": "Delivery and interoperability",
+      "feature": "Surround routing and binaural monitoring",
+      "phase": "F5",
+      "status": "Not found",
+      "build": "Multichannel buses, speaker maps, monitor downmixes, spatial panners and calibrated output.",
+      "test": "Speaker/channel mapping and gain fixtures pass on documented layouts.",
+      "depends": "F1 offline audio render; F3 interchange",
+      "sources": [
+        "A02",
+        "A14",
+        "A16"
+      ],
+      "evidence": [
+        "R09",
+        "R02",
+        "R20"
+      ]
+    },
+    {
+      "id": "OUT-07",
+      "category": "Delivery and interoperability",
+      "feature": "Dolby Atmos beds, objects and ADM BWF",
+      "phase": "F5",
+      "status": "Not found",
+      "build": "Evaluate licensed renderer/toolchain, object metadata, bed routing and ADM import/export as a dedicated programme.",
+      "test": "Validate files with the selected toolchain; binaural stereo alone is not Atmos parity.",
+      "depends": "F1 offline audio render; F3 interchange",
+      "sources": [
+        "A02",
+        "A14",
+        "A16"
+      ],
+      "evidence": [
+        "R09",
+        "R02",
+        "R20"
+      ]
+    },
+    {
+      "id": "OUT-08",
+      "category": "Delivery and interoperability",
+      "feature": "Atmos MP4 QC, head tracking and spatial formats",
+      "phase": "F5",
+      "status": "Not found",
+      "build": "Separate codec/rendering permissions, supported headphones/hardware and QC exports from basic surround.",
+      "test": "Accepted format/device matrix is explicit; encoding and metadata survive validation.",
+      "depends": "F1 offline audio render; F3 interchange",
+      "sources": [
+        "A02",
+        "A14",
+        "A16"
+      ],
+      "evidence": [
+        "R09",
+        "R02",
+        "R20"
+      ]
+    },
+    {
+      "id": "PRO-01",
+      "category": "Specialist workflows and product completeness",
+      "feature": "Notation editor, parts, lyrics and tablature",
+      "phase": "F5",
+      "status": "Not found",
+      "build": "Notation derived from MIDI but with independent engraving data; staff styles, chord grids and print/export.",
+      "test": "Visual quantization does not change playback; extracted parts retain intended notation.",
+      "depends": "F3 stable studio; F5 specialist integrations",
+      "sources": [
+        "A15",
+        "A17",
+        "A02"
+      ],
+      "evidence": [
+        "R19",
+        "R20",
+        "R22"
+      ]
+    },
+    {
+      "id": "PRO-02",
+      "category": "Specialist workflows and product completeness",
+      "feature": "Movie scoring and absolute timecode",
+      "phase": "F5",
+      "status": "Not found",
+      "build": "Reference video, frame-rate-aware ruler, offset, cues and soundtrack export with decoder isolation.",
+      "test": "Frame/time conversion fixtures pass, including explicitly supported drop-frame modes.",
+      "depends": "F3 stable studio; F5 specialist integrations",
+      "sources": [
+        "A15",
+        "A17",
+        "A02"
+      ],
+      "evidence": [
+        "R19",
+        "R20",
+        "R22"
+      ]
+    },
+    {
+      "id": "PRO-03",
+      "category": "Specialist workflows and product completeness",
+      "feature": "MTC, MIDI Clock output, MMC and Ableton Link",
+      "phase": "F5",
+      "status": "Not found",
+      "build": "Explicit sync ownership and protocol adapters. Incoming MIDI Clock would be an extra capability, not claimed Logic parity.",
+      "test": "Prevent conflicting clock sources; recover after external transport jumps.",
+      "depends": "F3 stable studio; F5 specialist integrations",
+      "sources": [
+        "A15",
+        "A17",
+        "A02"
+      ],
+      "evidence": [
+        "R19",
+        "R20",
+        "R22"
+      ]
+    },
+    {
+      "id": "PRO-04",
+      "category": "Specialist workflows and product completeness",
+      "feature": "Logic Remote-style companion and control surfaces",
+      "phase": "F5",
+      "status": "Not found",
+      "build": "Paired remote controls with permissions, feedback and reconnect; stage macOS keyboard/MIDI support first.",
+      "test": "A disconnected/stale controller cannot replay old destructive commands.",
+      "depends": "F3 stable studio; F5 specialist integrations",
+      "sources": [
+        "A15",
+        "A17",
+        "A02"
+      ],
+      "evidence": [
+        "R19",
+        "R20",
+        "R22"
+      ]
+    },
+    {
+      "id": "PRO-05",
+      "category": "Specialist workflows and product completeness",
+      "feature": "Custom shortcuts, screensets and flexible workspaces",
+      "phase": "F3",
+      "status": "Not found",
+      "build": "Command palette, imported/merged keymaps, saved panel layouts and instrument/editor popouts.",
+      "test": "Shortcut conflicts are reported; layouts restore on smaller displays without hidden controls.",
+      "depends": "F3 stable studio; F5 specialist integrations",
+      "sources": [
+        "A15",
+        "A17",
+        "A02"
+      ],
+      "evidence": [
+        "R19",
+        "R20",
+        "R22"
+      ]
+    },
+    {
+      "id": "PRO-06",
+      "category": "Specialist workflows and product completeness",
+      "feature": "Accessibility, help, onboarding and localization",
+      "phase": "F1",
+      "status": "Not found",
+      "build": "Readable meters, labelled controls, keyboard transport, contextual help and actionable missing-device/media states.",
+      "test": "Complete record/edit/save/export journey passes keyboard and screen-reader checks.",
+      "depends": "F3 stable studio; F5 specialist integrations",
+      "sources": [
+        "A15",
+        "A17",
+        "A02"
+      ],
+      "evidence": [
+        "R19",
+        "R20",
+        "R22"
+      ]
+    },
+    {
+      "id": "PRO-07",
+      "category": "Specialist workflows and product completeness",
+      "feature": "Environment-style MIDI/modular routing",
+      "phase": "F5",
+      "status": "Not found",
+      "build": "Consider a bounded declarative MIDI/device graph; no unrestricted scripting in the audio callback.",
+      "test": "Cycles and unbounded event multiplication are rejected; the graph is editable without code.",
+      "depends": "F3 stable studio; F5 specialist integrations",
+      "sources": [
+        "A15",
+        "A17",
+        "A02"
+      ],
+      "evidence": [
+        "R19",
+        "R20",
+        "R22"
+      ]
+    },
+    {
+      "id": "PRO-08",
+      "category": "Specialist workflows and product completeness",
+      "feature": "Installer, updates, diagnostics and production QA",
+      "phase": "F0",
+      "status": "Not found",
+      "build": "Pinned builds, real tests, CI, signed releases, crash recovery and privacy-preserving diagnostics; ship installers only after platform validation.",
+      "test": "Fresh-machine installation and update/rollback preserve projects and never require development tools.",
+      "depends": "F3 stable studio; F5 specialist integrations",
+      "sources": [
+        "A15",
+        "A17",
+        "A02"
+      ],
+      "evidence": [
+        "R19",
+        "R20",
+        "R22"
+      ]
+    }
+  ],
+  "stockInventory": [
+    {
+      "kind": "Core synthesis",
+      "names": "Alchemy; Retro Synth; ES1; ES2; EFM1; ES E; ES M; ES P",
+      "implementation": "Cover subtractive, wavetable, FM, additive/spectral/granular and modulation outcomes with original engines; a useful compact synth ships before the advanced set.",
+      "phase": "F1 → F5",
+      "sources": [
+        "A19"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Sampling",
+      "names": "Quick Sampler; Sampler; Sample Alchemy",
+      "implementation": "One-shot/loop/slice playback first; then streaming multisampling and sample resynthesis. Preserve user-sample licences and source paths.",
+      "phase": "F2 → F5",
+      "sources": [
+        "A19"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Drums",
+      "names": "Drum Kit Designer; Drum Machine Designer; Drum Synth; Ultrabeat",
+      "implementation": "Acoustic kits, pad racks, synthesized percussion and pattern-oriented drums; add multi-output kits and velocity layers.",
+      "phase": "F1 → F3",
+      "sources": [
+        "A19"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Acoustic and orchestral",
+      "names": "Studio Bass; Studio Piano; Studio Strings; Studio Horns",
+      "implementation": "Commission or license sample sets, expressive articulations, round robins and realistic performance controls. Code alone does not provide this content.",
+      "phase": "F3 → F5",
+      "sources": [
+        "A19"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Vintage and modeled",
+      "names": "Vintage B3 Organ; Vintage Clav; Vintage Electric Piano; Vintage Mellotron; Sculpture",
+      "implementation": "Original/licensed tonewheel, keyboard/tape and physical-model synthesis. Match musical use cases, not Apple binaries or preset signatures.",
+      "phase": "F5",
+      "sources": [
+        "A19"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Vocoder and infrastructure",
+      "names": "EVOC 20 PolySynth; External Instrument; Klopfgeist",
+      "implementation": "Vocoder, external-hardware timing/routing and a controllable click instrument.",
+      "phase": "F1 → F5",
+      "sources": [
+        "A19"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Legacy sound coverage",
+      "names": "Bass; Church Organ; Drum Kits; Electric Clav(inet); Electric Piano; Guitar; Horns; Piano; Sound Effects; Strings; Tuned Percussion; Voice; Woodwind; Tonewheel Organ; Analog Basic/Mono/Pad/Swirl/Sync; Digital Basic/Mono/Stepper; Hybrid Basic/Morph",
+      "implementation": "Cover legacy timbres through original presets/sample packs; no promise of legacy Apple project compatibility.",
+      "phase": "F5",
+      "sources": [
+        "A19"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Amps and pedal rack",
+      "names": "Amp Designer; Bass Amp Designer; Pedalboard",
+      "implementation": "Original amplifier/cabinet models, microphone placement abstractions and routable pedal effects.",
+      "phase": "F3",
+      "sources": [
+        "A02"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Delays",
+      "names": "Delay Designer; Echo; Sample Delay; Stereo Delay; Tape Delay",
+      "implementation": "Short alignment delays, tempo-sync stereo/tape and multitap design with feedback limits and safe parameter smoothing.",
+      "phase": "F1 → F3",
+      "sources": [
+        "A20"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Saturation and distortion",
+      "names": "Bitcrusher; ChromaGlow; Clip Distortion; Distortion; Distortion II; Overdrive; Phase Distortion",
+      "implementation": "Waveshaping and modeled saturation with oversampling, gain matching and clear quality modes.",
+      "phase": "F3",
+      "sources": [
+        "A02"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Dynamics",
+      "names": "Adaptive Limiter; Compressor; DeEsser 2; Enveloper; Expander; Limiter; Multipressor; Noise Gate; Surround Compressor",
+      "implementation": "Dynamics family, sidechain filters, envelope/transient control, multiband and multichannel variants.",
+      "phase": "F1 → F5",
+      "sources": [
+        "A21"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Equalization",
+      "names": "Channel EQ; Linear Phase EQ; Match EQ; Single Band EQ; Vintage Console EQ; Vintage Graphic EQ; Vintage Tube EQ",
+      "implementation": "Parametric, phase-linear, spectral-match and character EQ with stable automation and response fixtures.",
+      "phase": "F1 → F3",
+      "sources": [
+        "A22"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Filters and vocoding",
+      "names": "AutoFilter; EVOC 20 Filterbank; EVOC 20 TrackOscillator; Fuzz-Wah; Spectral Gate",
+      "implementation": "Resonant/formant filters, envelope/LFO modulation, audio tracking and spectral selection.",
+      "phase": "F3 → F5",
+      "sources": [
+        "A22"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Modulation",
+      "names": "Chorus; Ensemble; Flanger; Microphaser; Modulation Delay; Phaser; RingShifter; Rotor Cabinet; Scanner Vibrato; Spreader; Tremolo",
+      "implementation": "Delay-, phase-, ring- and rotary-based movement processors. Verify stereo correlation and gain as part of DSP acceptance.",
+      "phase": "F3",
+      "sources": [
+        "A20"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Rhythmic multi-effects",
+      "names": "Beat Breaker; Phat FX; Remix FX; Step FX",
+      "implementation": "Time slicing, sequenced effects and touch performance macros, with editable automation and deterministic export.",
+      "phase": "F3",
+      "sources": [
+        "A03"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Pitch and voice",
+      "names": "Pitch Correction; Pitch Shifter; Vocal Transformer",
+      "implementation": "Pitch detection/correction, independent shift and formant transformation; display resulting latency.",
+      "phase": "F3",
+      "sources": [
+        "A06"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Reverbs",
+      "names": "ChromaVerb; Space Designer; Quantec Room Simulator; EnVerb; SilverVerb",
+      "implementation": "Original algorithmic reverb, licensed impulse-response convolution and high-quality spaces. Do not copy Quantec/Apple implementation code.",
+      "phase": "F1 → F5",
+      "sources": [
+        "A23"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Imaging and spatial",
+      "names": "Binaural Post-Processing; Spatial Audio Monitoring; Direction Mixer; Stereo Spread; Dolby Atmos",
+      "implementation": "Stereo and binaural utilities first; licensed object-based spatial work is a separate scope.",
+      "phase": "F3 → F5",
+      "sources": [
+        "A14"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Meters and utilities",
+      "names": "BPM Counter; Correlation Meter; Level Meter; Loudness Meter; MultiMeter; Surround MultiMeter; Tuner; Auto Sampler; Down Mixer; Gain; Multichannel Gain; I/O; Test Oscillator",
+      "implementation": "Measurement, metering, capture and calibration tools; every reading must come from real audio, with documented units.",
+      "phase": "F1 → F5",
+      "sources": [
+        "A07"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "MIDI processors",
+      "names": "Arpeggiator; Chord Trigger; Modifier; Modulator; Note Repeater; Randomizer; Scripter; Transposer; Velocity Processor",
+      "implementation": "Composable, deterministic event processors and bounded scripting with previewable output.",
+      "phase": "F2 → F3",
+      "sources": [
+        "A24"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Mastering",
+      "names": "Mastering Assistant",
+      "implementation": "Propose an inspectable mastering chain and let the user set delivery targets; retain bypass and level-matched comparison.",
+      "phase": "F3",
+      "sources": [
+        "A03"
+      ],
+      "status": "Not implemented in inspected repository"
+    },
+    {
+      "kind": "Legacy effects",
+      "names": "AVerb; Bass Amp; DeEsser; Denoiser; Ducker; DJ EQ; Fat EQ; Single-Band EQ; Silver EQ; GoldVerb; Grooveshifter; Guitar Amp Pro; PlatinumVerb",
+      "implementation": "Retain a low-priority outcome-coverage backlog; prioritize current equivalents over matching old interfaces.",
+      "phase": "F5",
+      "sources": [
+        "A25"
+      ],
+      "status": "Not implemented in inspected repository"
+    }
+  ],
+  "sources": {
+    "R00": {
+      "title": "VOID main: pinned audit commit",
+      "url": "https://github.com/Beyon-Digital/VOID/commit/4135db035a93b57b6b9c1f3814ff6189e4aae74a",
+      "note": "Main read through the connected GitHub API. Commit dated 1 June 2026. Other branches and unmerged PRs are outside this audit."
+    },
+    "R01": {
+      "title": "Desktop renderer",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/apps/void-desktop/src/renderer/src/index.tsx",
+      "note": ""
+    },
+    "R02": {
+      "title": "Audio adapter",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-daw/src/adapters/WebAudioAdapter.ts",
+      "note": ""
+    },
+    "R03": {
+      "title": "Project domain",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-core/src/domain/Project.ts",
+      "note": ""
+    },
+    "R04": {
+      "title": "Session domain",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-core/src/domain/SessionView.ts",
+      "note": ""
+    },
+    "R05": {
+      "title": "Session grid component",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-daw/src/components/SessionView/index.tsx",
+      "note": ""
+    },
+    "R06": {
+      "title": "AI port",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-core/src/ports/AIPort.ts",
+      "note": ""
+    },
+    "R07": {
+      "title": "Visual port",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-core/src/ports/VisualPort.ts",
+      "note": ""
+    },
+    "R08": {
+      "title": "Plugin port",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-core/src/ports/PluginPort.ts",
+      "note": ""
+    },
+    "R09": {
+      "title": "Project port",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-core/src/ports/ProjectPort.ts",
+      "note": ""
+    },
+    "R10": {
+      "title": "Knob component",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-ui/components/Knob.tsx",
+      "note": ""
+    },
+    "R11": {
+      "title": "Fader component",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-ui/components/Fader.tsx",
+      "note": ""
+    },
+    "R12": {
+      "title": "Electron main",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/apps/void-desktop/main/index.ts",
+      "note": ""
+    },
+    "R13": {
+      "title": "Root manifest",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/package.json",
+      "note": ""
+    },
+    "R14": {
+      "title": "Core manifest and placeholder test",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-core/package.json",
+      "note": ""
+    },
+    "R15": {
+      "title": "DAW manifest",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-daw/package.json",
+      "note": ""
+    },
+    "R16": {
+      "title": "Desktop manifest",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/apps/void-desktop/package.json",
+      "note": ""
+    },
+    "R17": {
+      "title": "README: documented intent, not implementation",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/README.md",
+      "note": ""
+    },
+    "R18": {
+      "title": "Ableton-oriented migration plan",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/migration.md",
+      "note": ""
+    },
+    "R23": {
+      "title": "Audio warp domain declarations",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-core/src/domain/AudioWarp.ts",
+      "note": ""
+    },
+    "R24": {
+      "title": "Groove domain declarations",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-core/src/domain/GroovePool.ts",
+      "note": ""
+    },
+    "R25": {
+      "title": "MIDI port declarations",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-core/src/ports/MIDIPort.ts",
+      "note": ""
+    },
+    "R26": {
+      "title": "Show cue declarations",
+      "url": "https://github.com/Beyon-Digital/VOID/blob/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-core/src/ports/ShowPort.ts",
+      "note": ""
+    },
+    "R19": {
+      "title": "Complete DAW package tree",
+      "url": "https://github.com/Beyon-Digital/VOID/tree/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-daw",
+      "note": "Recursive API listing was complete: only one adapter, SessionView and the package entrypoint under src."
+    },
+    "R20": {
+      "title": "Complete core package tree",
+      "url": "https://github.com/Beyon-Digital/VOID/tree/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-core",
+      "note": "Recursive API listing was complete: interfaces, domain types and an event bus; no corresponding AI, persistence or native engine adapters."
+    },
+    "R21": {
+      "title": "UI package tree",
+      "url": "https://github.com/Beyon-Digital/VOID/tree/4135db035a93b57b6b9c1f3814ff6189e4aae74a/packages/void-ui",
+      "note": "Two display-only controls and CSS theme files."
+    },
+    "R22": {
+      "title": "Repository root",
+      "url": "https://github.com/Beyon-Digital/VOID/tree/4135db035a93b57b6b9c1f3814ff6189e4aae74a",
+      "note": "Root listing had no .github directory. Package trees had no automated test files."
+    },
+    "A01": {
+      "title": "Logic Pro 12.4 release notes",
+      "url": "https://support.apple.com/zh-cn/109503",
+      "note": "Latest version confirmed by Apple’s localized release notes and Creator Studio app list. The fetched US/UK English cache still started at 12.3."
+    },
+    "A02": {
+      "title": "Logic Pro user guide / feature taxonomy",
+      "url": "https://support.apple.com/en-au/guide/logicpro/welcome/mac",
+      "note": "Guide selector exposed 12.3. Read with 12.4 release notes. This is a feature-family comparison, not a copy of Apple’s manual or preset library."
+    },
+    "A03": {
+      "title": "Logic Pro product overview",
+      "url": "https://www.apple.com/logic-pro/",
+      "note": "Current product capabilities, Session Players, conventional instruments/effects and AI-assisted audio tools."
+    },
+    "A04": {
+      "title": "Recording: audio, MIDI, takes and punch",
+      "url": "https://support.apple.com/guide/logicpro/overview-lgcp7f3af10b/10.7/mac/11.0",
+      "note": "Earlier guide page for established recording behavior; current guide taxonomy also checked."
+    },
+    "A05": {
+      "title": "Piano Roll Editor",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgcpa9111b0d/mac",
+      "note": ""
+    },
+    "A06": {
+      "title": "Flex Time and Pitch",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgcp15968647/mac",
+      "note": ""
+    },
+    "A07": {
+      "title": "Mixing",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgcpbc219818/mac",
+      "note": ""
+    },
+    "A08": {
+      "title": "Automation",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgcpb1a1ea03/mac",
+      "note": ""
+    },
+    "A09": {
+      "title": "Live Loops",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgcpf46ffc88/mac",
+      "note": ""
+    },
+    "A10": {
+      "title": "Step Sequencer",
+      "url": "https://support.apple.com/en-gb/guide/logicpro/lgcp39acefc9/mac",
+      "note": ""
+    },
+    "A11": {
+      "title": "Session Players",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgcpbf624405/mac",
+      "note": ""
+    },
+    "A12": {
+      "title": "Six-way Stem Splitter",
+      "url": "https://support.apple.com/en-mz/guide/logicpro/lgcp61bae908/mac",
+      "note": ""
+    },
+    "A13": {
+      "title": "Audio Units hosting",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgcp22a0dab0/mac",
+      "note": ""
+    },
+    "A14": {
+      "title": "Surround and Spatial Audio",
+      "url": "https://support.apple.com/en-ph/guide/logicpro/lgcp57f6cc60/mac",
+      "note": ""
+    },
+    "A15": {
+      "title": "Notation and engraving",
+      "url": "https://support.apple.com/en-by/guide/logicpro/lgcp8535e072/10.7/mac/11.0",
+      "note": "Established notation scope; cross-checked against current guide contents."
+    },
+    "A16": {
+      "title": "Video and synchronization",
+      "url": "https://support.apple.com/en-in/guide/logicpro/lgcp215935ca/mac",
+      "note": ""
+    },
+    "A17": {
+      "title": "Synchronization protocols",
+      "url": "https://support.apple.com/en-in/guide/logicpro/lgcpfffd9371/mac",
+      "note": "Logic sends MIDI Clock; this source explicitly says it does not receive MIDI Clock synchronization."
+    },
+    "A18": {
+      "title": "Sound library management",
+      "url": "https://support.apple.com/en-in/125036",
+      "note": ""
+    },
+    "A19": {
+      "title": "Instruments guide / named inventory",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgsi6c2728cc/mac",
+      "note": ""
+    },
+    "A20": {
+      "title": "Delay effects",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgcec7e3312c/mac",
+      "note": ""
+    },
+    "A21": {
+      "title": "Dynamics processors",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgcef1bee254/mac",
+      "note": ""
+    },
+    "A22": {
+      "title": "Equalizers",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgce80ed27b0/mac",
+      "note": ""
+    },
+    "A23": {
+      "title": "Reverb effects",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgcef296924f/mac",
+      "note": ""
+    },
+    "A24": {
+      "title": "MIDI effects",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgcef1c11e8f/mac",
+      "note": ""
+    },
+    "A25": {
+      "title": "Legacy effects",
+      "url": "https://support.apple.com/en-au/guide/logicpro/lgcef5c305d8/mac",
+      "note": ""
+    },
+    "A26": {
+      "title": "Tracks area / arrangement",
+      "url": "https://support.apple.com/en-kw/guide/logicpro/lgcpf7c0d5d8/10.7/mac/11.0",
+      "note": "Earlier guide page describes established linear arrangement controls; current feature taxonomy checked."
+    },
+    "A27": {
+      "title": "Current Logic 12 feature changes",
+      "url": "https://support.apple.com/en-us/109503",
+      "note": "Fetched English version covers 12.3, 12.2 and 12.0, including Synth Player, Chord ID, MIDI 2.0 Step Sequencer display and spatial export."
+    },
+    "A28": {
+      "title": "Apple sample-content usage terms",
+      "url": "https://support.apple.com/en-gb/101908",
+      "note": "Royalty-free use in original soundtracks does not permit repackaging individual samples as a competing library."
+    },
+    "A29": {
+      "title": "Creator Studio: current included app versions",
+      "url": "https://support.apple.com/en-al/125029",
+      "note": "Lists Logic Pro for Mac 12.4, iPad 3.4; MainStage, Motion and Final Cut Pro are separate applications."
+    },
+    "T01": {
+      "title": "Tracktion Engine: official repository",
+      "url": "https://github.com/Tracktion/tracktion_engine",
+      "note": "Native sequenced-audio engine candidate. GPL/commercial licensing; JUCE licensing is separate. Candidate, not an adopted dependency."
+    },
+    "T02": {
+      "title": "JUCE 9 licence",
+      "url": "https://juce.com/legal/juce-9-licence/",
+      "note": "Review appropriate product/distribution terms. Section 1.12 needs review for a future feature that generates distributable JUCE-based plug-ins."
+    },
+    "T03": {
+      "title": "Electron security checklist",
+      "url": "https://www.electronjs.org/docs/latest/tutorial/security",
+      "note": "IPC validation, permissions, sandboxing, CSP and navigation boundaries."
+    },
+    "T04": {
+      "title": "Web Audio specification",
+      "url": "https://webaudio.github.io/web-audio-api/",
+      "note": "Browser audio processing is possible. The recommendation for a native desktop engine is a product/engineering choice, not a claim that Web Audio cannot make a DAW."
+    }
+  }
+}

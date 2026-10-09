@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClipMatrix, SessionClip, Scene } from 'void-core';
+import { ClipMatrix, SessionClip, Scene, groupClipsByScene } from 'void-core';
 
 interface SessionViewProps {
   matrix: ClipMatrix;
@@ -39,34 +39,10 @@ SceneColumn.displayName = 'SceneColumn';
 
 // ⚡ Bolt: Wrapped in React.memo to prevent unnecessary re-renders
 export const SessionView: React.FC<SessionViewProps> = React.memo(({ matrix, onClipTrigger, onSceneTrigger }) => {
-  // ⚡ Bolt: Memoize the mapping of clips to scenes to avoid filtering an array inside the render loop.
-  // Reduces time complexity from O(Scenes × Clips) to effectively O(Clips) by using a Map of scene IDs
-  // combined with a sorted Set of unique scene ID lengths to perform prefix lookups.
-  const clipsByScene = React.useMemo(() => {
-    const map = new Map<string, typeof matrix.clips>();
-    const sceneIdLengths = new Set<number>();
-
-    for (const scene of matrix.scenes) {
-      map.set(scene.id, []);
-      sceneIdLengths.add(scene.id.length);
-    }
-
-    // Sort descending to match the most specific (longest) scene ID first
-    const sortedLengths = Array.from(sceneIdLengths).sort((a, b) => b - a);
-
-    for (const clip of matrix.clips) {
-      for (const len of sortedLengths) {
-        if (clip.id.length >= len) {
-          const prefix = clip.id.substring(0, len);
-          if (map.has(prefix)) {
-            map.get(prefix)!.push(clip);
-            break;
-          }
-        }
-      }
-    }
-    return map;
-  }, [matrix.clips, matrix.scenes]);
+  // Clips are placed in scenes by their explicit sceneId relationship only.
+  // ID prefixes never determine membership (a clip named "a-clip" does not
+  // belong to scene "a"). See groupClipsByScene in void-core.
+  const clipsByScene = React.useMemo(() => groupClipsByScene(matrix), [matrix]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '16px' }}>
