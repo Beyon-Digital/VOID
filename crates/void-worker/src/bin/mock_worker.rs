@@ -66,8 +66,50 @@ async fn main() {
             let Some(req) = env.frame_as_request_frame() else {
                 continue;
             };
+            // rev-2: deterministic job lifecycle for SubmitJobOp /
+            // CancelJobOp / PauseJobOp — JobEvent frames ride telemetry
+            // after the receipt lands on control.
+            let mut job_events: Vec<(String, String, f32, String)> = Vec::new();
             let resp: Vec<u8> = if let Some(cmd) = req.request_as_persistent_command() {
                 revision += 1;
+                job_events = match cmd.op_type() {
+                    proto::PersistentOp::SubmitJobOp => cmd
+                        .op_as_submit_job_op()
+                        .and_then(|o| o.spec())
+                        .map(|s| {
+                            let jid = s.job_id().unwrap_or("").to_string();
+                            let pid = s.project_id().unwrap_or("").to_string();
+                            vec![
+                                (pid.clone(), jid.clone(), 0.0, "queued".to_string()),
+                                (pid.clone(), jid.clone(), 50.0, "running".to_string()),
+                                (pid, jid, 100.0, "succeeded".to_string()),
+                            ]
+                        })
+                        .unwrap_or_default(),
+                    proto::PersistentOp::CancelJobOp => cmd
+                        .op_as_cancel_job_op()
+                        .map(|o| {
+                            let jid = o.job_id().unwrap_or("").to_string();
+                            let pid = cmd.project_id().unwrap_or("").to_string();
+                            vec![
+                                (pid.clone(), jid.clone(), -1.0, "cancelling".to_string()),
+                                (pid, jid, -1.0, "cancelled".to_string()),
+                            ]
+                        })
+                        .unwrap_or_default(),
+                    proto::PersistentOp::PauseJobOp => cmd
+                        .op_as_pause_job_op()
+                        .map(|o| {
+                            vec![(
+                                cmd.project_id().unwrap_or("").to_string(),
+                                o.job_id().unwrap_or("").to_string(),
+                                -1.0,
+                                "running".to_string(),
+                            )]
+                        })
+                        .unwrap_or_default(),
+                    _ => Vec::new(),
+                };
                 let mut b = FlatBufferBuilder::new();
                 let cid = b.create_string(cmd.command_id().unwrap_or(""));
                 let tid = b.create_string(cmd.transaction_id().unwrap_or(""));
@@ -179,6 +221,38 @@ async fn main() {
                 break;
             }
             let _ = sink.flush().await;
+            // After the receipt is on the wire, emit any job lifecycle
+            // events on the telemetry channel.
+            for (pid, jid, percent, status) in job_events.drain(..) {
+                let mut tb = FlatBufferBuilder::new();
+                let pid_s = tb.create_string(&pid);
+                let jid_s = tb.create_string(&jid);
+                let status_s = tb.create_string(&status);
+                let je = proto::JobEvent::create(
+                    &mut tb,
+                    &proto::JobEventArgs {
+                        project_id: Some(pid_s),
+                        job_id: Some(jid_s),
+                        status: Some(status_s),
+                        percent,
+                        message: None,
+                        quarantined: false,
+                    },
+                );
+                let tf = proto::TelemetryFrame::create(
+                    &mut tb,
+                    &proto::TelemetryFrameArgs {
+                        event_type: proto::TelemetryEvent::JobEvent,
+                        event: Some(je.as_union_value()),
+                    },
+                );
+                tb.finish_minimal(tf);
+                let framed = encode_frame(tb.finished_data()).unwrap();
+                if telemetry.write_all(&framed).await.is_err() {
+                    break;
+                }
+                let _ = telemetry.flush().await;
+            }
         }
         match control.read(&mut buf).await {
             Ok(0) | Err(_) => break,
