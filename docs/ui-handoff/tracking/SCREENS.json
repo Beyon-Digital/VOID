@@ -5,9 +5,9 @@
    "id": "S01",
    "name": "Arrange / song workspace",
    "figmaNodeId": "4:2",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "in_progress",
+   "lane": "UIP2",
+   "evidence": "docs/ui-handoff/tracking/UIP2_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T02",
     "UI-T03",
@@ -266,9 +266,9 @@
    "id": "S22",
    "name": "Arrange / compact laptop",
    "figmaNodeId": "4:2108",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "in_progress",
+   "lane": "UIP2",
+   "evidence": "docs/ui-handoff/tracking/UIP2_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T02",
     "UI-T03",
@@ -279,9 +279,9 @@
    "id": "S23",
    "name": "Arrange / daylight mode",
    "figmaNodeId": "4:2208",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "in_progress",
+   "lane": "UIP2",
+   "evidence": "docs/ui-handoff/tracking/UIP2_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T03"
    ]
