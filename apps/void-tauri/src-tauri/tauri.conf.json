@@ -28,6 +28,20 @@
   "bundle": {
     "active": true,
     "targets": "all",
-    "icon": ["icons/icon.png"]
+    "icon": ["icons/icon.png"],
+    "createUpdaterArtifacts": true
+  },
+  "plugins": {
+    "updater": {
+      "active": true,
+      "dialog": false,
+      "endpoints": [
+        "https://github.com/Beyon-Digital/VOID/releases/latest/download/latest.json"
+      ],
+      "pubkey": "RWQ0Y2U4ZmEtYmVnb25kaWdpdGFsLXZvaWQtdXBkYXRlci1rZXktcGxhY2Vob2xkZXItbm90LXJlYWw=",
+      "windows": {
+        "installMode": "passive"
+      }
+    }
   }
 }

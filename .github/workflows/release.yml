@@ -1,0 +1,120 @@
+name: release
+
+# Tag-triggered packaging for the VOID Tauri shell (W07/T25/T27 infra side).
+# Produces per-OS bundles and attaches them to a GitHub draft release.
+#
+# What this does NOT do: OS code signing / notarization, updater signing
+# (TAURI_SIGNING_PRIVATE_KEY is secrets-gated; unsigned internal bundles only),
+# engine-worker bundling (see docs/ops/NEEDS.md), publishing (draft only —
+# handoff D06 requires explicit owner authorization for any release).
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  bundle:
+    name: bundle (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+          # latest.json is generated once — macOS leg only; every leg uploading
+          # it would race on the same release asset.
+          - os: macos-14
+            emitUpdaterJson: true
+          - os: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      # --- toolchain (same pattern as ci.yml) ---------------------------------
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # tracktion_engine needs Apple clang >=16 (C++20 parenthesized
+      # aggregate init); the runner's default Xcode 15.4 cannot build it.
+      # (verbatim from ci.yml native job)
+      - name: Select newest installed Xcode
+        if: matrix.os == 'macos-14'
+        run: |
+          ls -d /Applications/Xcode*.app
+          sudo xcode-select -s "$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)/Contents/Developer"
+          xcodebuild -version
+
+      - name: Install flatc 25.9.23
+        if: matrix.os != 'windows-latest'
+        run: |
+          git clone --depth 1 -b v25.9.23 https://github.com/google/flatbuffers /tmp/fb
+          cmake -G Ninja -B /tmp/fb/build -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF /tmp/fb
+          cmake --build /tmp/fb/build --target flatc
+          sudo install -m755 /tmp/fb/build/flatc /usr/local/bin/flatc
+
+      # Windows divergence from the verbatim recipe: no sudo on the runner —
+      # default generator (VS) emits flatc.exe under Release/, added to PATH.
+      - name: Install flatc 25.9.23 (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        run: |
+          git clone --depth 1 -b v25.9.23 https://github.com/google/flatbuffers /tmp/fb
+          cmake -B /tmp/fb/build -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=OFF /tmp/fb
+          cmake --build /tmp/fb/build --config Release --target flatc
+          echo "/tmp/fb/build/Release" >> "$GITHUB_PATH"
+
+      - name: Generate protocol bindings
+        shell: bash
+        run: tools/protocol-gen.sh
+
+      # void-tauri links WebKitGTK on Linux (verbatim from ci.yml rust job).
+      - name: Install WebKitGTK build deps (for void-tauri)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libglib2.0-dev libgtk-3-dev libwebkit2gtk-4.1-dev libsoup-3.0-dev libjavascriptcoregtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: release-${{ matrix.os }}-${{ hashFiles('**/Cargo.lock') }}
+
+      # Packages resolve each other via dist/ (main field) — build workspace
+      # deps so the app's vite build can import them (same as ci.yml ts job).
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r --filter=!void-tauri --if-present build
+
+      # tauri-action runs `tauri build` inside apps/void-tauri, produces the
+      # platform bundles (.deb/.rpm/AppImage | .dmg/.app | .msi/.nsis) and
+      # attaches them — plus the updater manifest (latest.json) when signing
+      # env vars are present — to the tag's draft release.
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          projectPath: apps/void-tauri
+          tagName: ${{ github.ref_name }}
+          releaseName: 'VOID v__VERSION__'
+          releaseBody: 'Draft — unsigned internal build. Engine worker binary is not bundled (docs/ops/NEEDS.md); updater artifacts only appear once TAURI_SIGNING_PRIVATE_KEY is provisioned.'
+          releaseDraft: true
+          prerelease: false
+          includeUpdaterJson: ${{ matrix.emitUpdaterJson == true }}

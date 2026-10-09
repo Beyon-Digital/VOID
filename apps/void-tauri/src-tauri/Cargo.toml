@@ -18,6 +18,11 @@ tauri-build = { version = "2", features = [] }
 [dependencies]
 tauri = { version = "2", features = [] }
 tauri-plugin-opener = "2"
+# Updater channel (T28/W07): verifies signed update manifests served from the
+# GitHub Releases endpoint configured in tauri.conf.json. Signing keys are
+# env-gated (TAURI_SIGNING_PRIVATE_KEY) — see docs/ops/UPDATER.md; with no key
+# present the build still succeeds but produces no signed updater artifacts.
+tauri-plugin-updater = "2"
 void-app = { path = "../../../crates/void-app" }
 void-worker = { path = "../../../crates/void-worker" }
 void-protocol = { path = "../../../crates/void-protocol" }
