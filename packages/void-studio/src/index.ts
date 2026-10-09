@@ -37,6 +37,7 @@ export * from './recents';
 export * from './notes';
 export * from './relink';
 export * from './onboarding';
+export * from './recording';
 export * from './proposals';
 // Re-export the vanilla→react bridge so apps can consume the feature
 // stores above without declaring a direct zustand dependency.

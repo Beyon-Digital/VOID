@@ -4,12 +4,29 @@
 
 import * as React from 'react';
 import { IconButton, tokens } from 'void-ui';
+import { loadViewPage, makeViewKey, studioStore, useStudio } from 'void-studio';
 import { TimelinePane, TrackListColumn } from '../../../shell';
+import { getClient } from '../../../client';
 import { useStudioCompactContext } from '../../useStudioData';
+import { EmptyState } from './EmptyState';
 
 export default function ArrangeScreen() {
   const compact = useStudioCompactContext();
   const [tracksOpen, setTracksOpen] = React.useState(false);
+  const projectId = useStudio((s) => s.projectId);
+  const attached = useStudio((s) => s.engine.attached);
+  const trackEntry = useStudio((s) => s.views[makeViewKey('TRACK_LIST')]);
+
+  // S27 gate: keep TRACK_LIST fresh; the empty state only renders once a
+  // completed page proves the project has zero tracks — never on a guess.
+  React.useEffect(() => {
+    if (!projectId || !attached) return;
+    void loadViewPage(studioStore, getClient(), 'TRACK_LIST').catch(() => undefined);
+  }, [projectId, attached]);
+
+  if (trackEntry?.done && trackEntry.items.length === 0) {
+    return <EmptyState />;
+  }
 
   if (!compact) {
     return (
