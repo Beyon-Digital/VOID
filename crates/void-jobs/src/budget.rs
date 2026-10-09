@@ -8,7 +8,7 @@
 //! - `wall_ns` — relative-to-spawn bound (model `wallNs` default).
 //!
 //! Rlimits are applied via `pre_exec` before the worker image loads —
-//! a child can never run above its budget. Linux-only for now;
+//! a child can never run above its budget. Linux + macOS for now;
 //! elsewhere the runner still enforces deadline/cancel by kill.
 
 use crate::job::JobSpec;
@@ -78,6 +78,11 @@ impl JobBudget {
 
 /// CLOCK_MONOTONIC nanoseconds — same clock the protocol's
 /// `deadlineMonotonicNs` refers to. `0` off unix (tests run Linux).
+///
+/// Clock ids are OS-assigned: CLOCK_MONOTONIC is 1 on Linux/Android and
+/// 6 on Darwin (XNU `sys/time.h`). Unlisted unix targets query id -1,
+/// which fails with EINVAL and degrades to 0 (deadline enforcement
+/// off) rather than sampling the wrong clock.
 #[cfg(unix)]
 pub fn monotonic_ns() -> u64 {
     #[repr(C)]
@@ -88,9 +93,14 @@ pub fn monotonic_ns() -> u64 {
     extern "C" {
         fn clock_gettime(clk: i32, ts: *mut Ts) -> i32;
     }
+    #[cfg(any(target_os = "linux", target_os = "android"))]
+    const CLOCK_MONOTONIC: i32 = 1;
+    #[cfg(target_vendor = "apple")]
+    const CLOCK_MONOTONIC: i32 = 6;
+    #[cfg(not(any(target_os = "linux", target_os = "android", target_vendor = "apple")))]
+    const CLOCK_MONOTONIC: i32 = -1;
     let mut t = Ts { sec: 0, nsec: 0 };
-    // 1 = CLOCK_MONOTONIC on Linux.
-    let rc = unsafe { clock_gettime(1, &mut t) };
+    let rc = unsafe { clock_gettime(CLOCK_MONOTONIC, &mut t) };
     if rc != 0 || t.sec < 0 {
         return 0;
     }
@@ -102,10 +112,15 @@ pub fn monotonic_ns() -> u64 {
     0
 }
 
-/// Apply cpu/memory rlimits to a Command pre-spawn (Linux).
+/// Apply cpu/memory rlimits to a Command pre-spawn (Linux + macOS).
 /// `pre_exec` runs in the child between fork and exec — the worker
 /// never executes a single instruction above budget.
-#[cfg(target_os = "linux")]
+///
+/// Resource ids are OS-assigned: RLIMIT_CPU is 0 on both targets;
+/// RLIMIT_AS is 9 on Linux and 5 on Darwin (XNU `sys/resource.h`,
+/// enforced on address-space allocation; allocation failure aborts the
+/// worker, which the runner records as a failed run).
+#[cfg(any(target_os = "linux", target_os = "macos"))]
 pub fn apply_rlimits(cmd: &mut std::process::Command, budget: &JobBudget) {
     use std::os::unix::process::CommandExt;
     #[repr(C)]
@@ -117,7 +132,10 @@ pub fn apply_rlimits(cmd: &mut std::process::Command, budget: &JobBudget) {
         fn setrlimit(resource: i32, rlim: *const Rlim) -> i32;
     }
     const RLIMIT_CPU: i32 = 0;
+    #[cfg(target_os = "linux")]
     const RLIMIT_AS: i32 = 9;
+    #[cfg(target_os = "macos")]
+    const RLIMIT_AS: i32 = 5;
     let cpu = budget.cpu_seconds;
     let mem = budget.memory_bytes;
     unsafe {
@@ -135,7 +153,7 @@ pub fn apply_rlimits(cmd: &mut std::process::Command, budget: &JobBudget) {
     }
 }
 
-#[cfg(not(target_os = "linux"))]
+#[cfg(not(any(target_os = "linux", target_os = "macos")))]
 pub fn apply_rlimits(_cmd: &mut std::process::Command, _budget: &JobBudget) {
     // Deadline/cancel still enforced by the runner's kill path.
 }

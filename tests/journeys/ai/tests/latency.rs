@@ -130,7 +130,8 @@ fn f2_latency_per_model_cpu_box() {
 fn f2_jobs_never_on_musical_clock() {
     let root = repo_root();
     // 1) Dependency boundary: only these crates may name void-jobs.
-    let allowed_dependents = ["void-export", "void-proposals", "void-journeys-ai", "void-models-tests"];
+    let allowed_dependents = ["void-export", "void-proposals", "void-av", "void-visfx",
+                              "void-producer", "void-journeys-ai", "void-models-tests"];
     let mut dependents = Vec::new();
     for dir in ["crates", "apps", "tests/models", "tests/journeys/ai", "workers"] {
         let d = root.join(dir);

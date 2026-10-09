@@ -14,6 +14,49 @@ inline CommandResult ok()     { return { vp::AckStatus_APPLIED, vp::ErrorCode_NO
 inline CommandResult notFound (const char* what) { return { vp::AckStatus_REJECTED, vp::ErrorCode_NOT_FOUND, 0, juce::String (what) + " not found" }; }
 inline CommandResult badReq (const char* m) { return { vp::AckStatus_REJECTED, vp::ErrorCode_BAD_REQUEST, 0, m }; }
 inline bool finite (float v) { return std::isfinite (v); }
+
+// VOID writes wave-clip `source` strings relative to the edit FILE's own
+// path treated as a directory (e.g. "../../../assets/sha256/<sha>/take.wav"
+// from checkpoints/live/engine.tracktionedit -> container/assets/...).
+// Edit::filePathResolver must reproduce that anchor or refs resolve
+// process-CWD-relative and silently load nothing (F1 finding).
+inline te::Edit::FilePathResolver anchorAtEditFile (const juce::File& editFile)
+{
+    return [editFile] (const juce::String& desc)
+    {
+        return juce::File::isAbsolutePath (desc) ? juce::File (desc)
+                                               : editFile.getChildFile (desc);
+    };
+}
+
+// Every AUDIOCLIP in `state` must resolve to a real file — a project with
+// missing media must fail open with a typed error, not open to silence.
+inline CommandResult checkWaveClipSources (const juce::ValueTree& state,
+                                           const juce::File& anchor,
+                                           juce::String& firstMissing)
+{
+    std::function<bool (const juce::ValueTree&)> walk = [&] (const juce::ValueTree& v)
+    {
+        if (v.getType() == te::IDs::AUDIOCLIP)
+        {
+            const auto src = v.getProperty (te::IDs::source).toString();
+            if (src.isNotEmpty()
+                && ! anchorAtEditFile (anchor) (src).existsAsFile())
+            {
+                firstMissing = src;
+                return false;
+            }
+        }
+        for (const auto& c : v)
+            if (! walk (c))
+                return false;
+        return true;
+    };
+    if (! state.isValid() || walk (state))
+        return { vp::AckStatus_APPLIED, vp::ErrorCode_NONE, 0, {} };
+    return { vp::AckStatus_REJECTED, vp::ErrorCode_ASSET_MISSING, 0,
+             "wave clip source missing: " + firstMissing };
+}
 } // namespace
 
 // ---------------------------------------------------------------------------
@@ -39,6 +82,9 @@ CommandResult EngineSession::opCreateProject (const vp::CreateProjectOp& op)
     options.editFileRetriever = [this] { return containerDir().getChildFile ("checkpoints")
                                                                 .getChildFile ("live")
                                                                 .getChildFile ("engine.tracktionedit"); };
+    options.filePathResolver = anchorAtEditFile (containerDir().getChildFile ("checkpoints")
+                                                               .getChildFile ("live")
+                                                               .getChildFile ("engine.tracktionedit"));
     options.role = te::Edit::forEditing;
     options.numUndoLevelsToStore = 500;
     edit_ = std::make_unique<te::Edit> (options);
@@ -108,9 +154,14 @@ CommandResult EngineSession::opOpenProject (const vp::OpenProjectOp& op)
     if (! state.isValid())
         return { vp::AckStatus_REJECTED, vp::ErrorCode_BAD_REQUEST, 0, "edit file unreadable" };
 
+    juce::String missing;
+    if (auto r = checkWaveClipSources (state, editFile, missing); r.status != vp::AckStatus_APPLIED)
+        return r;
+
     te::Edit::Options options { *engine_, state, {} };
     options.role = te::Edit::forEditing;
     options.editFileRetriever = [editFile] { return editFile; };
+    options.filePathResolver = anchorAtEditFile (editFile);
     edit_ = std::make_unique<te::Edit> (options);
 
     const auto storedRev = (juce::int64) edit_->state.getProperty ("voidRevision", 0);

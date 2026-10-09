@@ -13,19 +13,29 @@ use void_jobs::{
 };
 
 fn worker_exe() -> PathBuf {
-    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../..");
-    let manifest = root.join("workers/fake/Cargo.toml");
     // Build the real fixture binary once per test-process run; a
     // missing or stale binary fails loudly rather than passing mocked.
-    let status = std::process::Command::new(env!("CARGO"))
-        .args(["build", "--manifest-path"])
-        .arg(&manifest)
-        .status()
-        .expect("cargo build fake worker");
-    assert!(status.success(), "fake worker build failed");
-    let exe = root.join("workers/fake/target/debug/void-fake-worker");
-    assert!(exe.is_file(), "fake worker binary missing at {exe:?}");
-    exe
+    //
+    // `cargo build` re-emits the destination binary (unlink+hardlink)
+    // even on a fresh check — observed on macOS as intermittent
+    // ENOENT/“binary missing” when 13 parallel tests each invoked the
+    // same build. `OnceLock` serializes it so every spawn happens after
+    // the single replacement completes.
+    static EXE: std::sync::OnceLock<PathBuf> = std::sync::OnceLock::new();
+    EXE.get_or_init(|| {
+        let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../..");
+        let manifest = root.join("workers/fake/Cargo.toml");
+        let status = std::process::Command::new(env!("CARGO"))
+            .args(["build", "--manifest-path"])
+            .arg(&manifest)
+            .status()
+            .expect("cargo build fake worker");
+        assert!(status.success(), "fake worker build failed");
+        let exe = root.join("workers/fake/target/debug/void-fake-worker");
+        assert!(exe.is_file(), "fake worker binary missing at {exe:?}");
+        exe
+    })
+    .clone()
 }
 
 fn spec(params: serde_json::Value) -> JobSpec {
