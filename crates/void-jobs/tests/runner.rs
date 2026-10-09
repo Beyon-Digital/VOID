@@ -158,7 +158,10 @@ fn t49_happy_path_real_sine_wav_and_provenance() {
     assert_eq!(prov["artifacts"][0]["sha256"], artifacts[0].sha256);
     assert_eq!(prov["parameters"]["freqHz"], 330);
     assert!(prov["runtime"]["argvSha256"].as_str().unwrap().len() == 64);
-    assert_eq!(prov["runtime"]["executable"], "void-fake-worker");
+    assert_eq!(
+        prov["runtime"]["executable"],
+        format!("void-fake-worker{}", std::env::consts::EXE_SUFFIX)
+    );
     assert_eq!(prov["inputs"][0], "11".repeat(32));
     let card: serde_json::Value =
         serde_json::from_slice(&fs::read(dir.join("result.json")).unwrap()).unwrap();
