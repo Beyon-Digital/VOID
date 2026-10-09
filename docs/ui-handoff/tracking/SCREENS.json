@@ -26,9 +26,9 @@
    "id": "S02",
    "name": "Compose / ghost-note audition",
    "figmaNodeId": "4:108",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "in_progress",
+   "lane": "devin/void-lane-uip4",
+   "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
    "acceptance_tests": [
     "UI-T06",
     "UI-T07",
@@ -43,9 +43,9 @@
    "id": "S03",
    "name": "Compose / accepted editable notes",
    "figmaNodeId": "4:208",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "in_progress",
+   "lane": "devin/void-lane-uip4",
+   "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
    "acceptance_tests": [
     "UI-T13"
    ]
@@ -104,9 +104,9 @@
    "id": "S08",
    "name": "Gesture / draw a phrase",
    "figmaNodeId": "4:708",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "in_progress",
+   "lane": "devin/void-lane-uip4",
+   "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
    "acceptance_tests": [
     "UI-T17",
     "UI-T18",
@@ -129,9 +129,9 @@
    "id": "S10",
    "name": "Generate / audio candidates",
    "figmaNodeId": "4:908",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "in_progress",
+   "lane": "devin/void-lane-uip4",
+   "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
    "acceptance_tests": [
     "UI-T19",
     "UI-T20"
@@ -208,9 +208,9 @@
    "id": "S17",
    "name": "Jobs / model downloads and generation",
    "figmaNodeId": "4:1608",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "in_progress",
+   "lane": "devin/void-lane-uip4",
+   "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
    "acceptance_tests": [
     "UI-T19",
     "UI-T32",
@@ -244,9 +244,9 @@
    "id": "S20",
    "name": "Compose / stale suggestion",
    "figmaNodeId": "4:1908",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "in_progress",
+   "lane": "devin/void-lane-uip4",
+   "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
    "acceptance_tests": [
     "UI-T15"
    ]
@@ -301,9 +301,9 @@
    "id": "S25",
    "name": "Compose / auditioning candidate",
    "figmaNodeId": "12:1833",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "in_progress",
+   "lane": "devin/void-lane-uip4",
+   "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
    "acceptance_tests": [
     "UI-T12"
    ]
@@ -312,9 +312,9 @@
    "id": "S26",
    "name": "Compose / selected notes accepted",
    "figmaNodeId": "12:2156",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "in_progress",
+   "lane": "devin/void-lane-uip4",
+   "evidence": "UIP4: see tracking/UIP4_EVIDENCE.md \u2014 real stores+ops wiring; request/audition/submit/cancel gated on absent coordinator ops (NEEDS \u00a79-14)",
    "acceptance_tests": [
     "UI-T13",
     "UI-T14"
