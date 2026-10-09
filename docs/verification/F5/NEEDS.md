@@ -119,13 +119,15 @@ box with all three worker venvs provisioned (`generate`, `separate`,
 `transcribe` + vendored weights). Each fresh box runs setup.sh once; that is
 the reproduction contract, not a code gap.
 
-## F5-N11 — Engine waveclip resolver gap (blocks real-media reopen)
+## F5-N11 — Engine waveclip resolver gap (blocks real-media reopen) — RESOLVED (lane BB)
 
 **What exists:** `docs/engine/F1_WAVECLIP_RESOLVER_GAP.md` — `EngineSession`
-never sets `Edit::filePathResolver`, so relative wave-clip sources resolve
-CWD-relative and render silence post-reopen. Fixture-level fix proven.
-**Needed:** engine-side `options.filePathResolver` in open/create paths.
-**Explains:** residual risk on DOC-01/ARR media paths; recorded by F1 lane.
+never set `Edit::filePathResolver`, so relative wave-clip sources resolved
+CWD-relative and rendered silence post-reopen.
+**Resolution (lane BB, macOS):** resolver wired in `Ops.cpp` open/create
+paths; `native/void-engine/tests/harness/waveclip_checks.py` proves
+reopen-with-media APPLIED and deleted-blob → REJECTED `ASSET_MISSING`
+(9/9 green on macOS). Evidence: `docs/verification/macos/EVIDENCE.md`.
 
 ## F5-N12 — Public release / store submission / licence purchase unauthorized
 
