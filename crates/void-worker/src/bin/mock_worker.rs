@@ -52,12 +52,9 @@ const FOLDER_ONE: &str = "99999999-0000-4000-8000-0000000000f1";
 const SCENE_A: &str = "aaaaaaaa-0000-4000-8000-000000000001";
 const SCENE_B: &str = "aaaaaaaa-0000-4000-8000-000000000002";
 
-const SHA_PRESENT: &str =
-    "aabbccddeeff0011223344556677889900aabbccddeeff00112233445566778899";
-const SHA_MISSING: &str =
-    "00112233445566778899aabbccddeeffaabbccddeeff00112233445566778899aa";
-const SHA_MANIFEST: &str =
-    "bbccddeeff00112233445566778899aaaabbccddeeff00112233445566778899cc";
+const SHA_PRESENT: &str = "aabbccddeeff0011223344556677889900aabbccddeeff00112233445566778899";
+const SHA_MISSING: &str = "00112233445566778899aabbccddeeffaabbccddeeff00112233445566778899aa";
+const SHA_MANIFEST: &str = "bbccddeeff00112233445566778899aaaabbccddeeff00112233445566778899cc";
 
 const PROJECT_FALLBACK: &str = "00000000-0000-4000-8000-000000000001";
 const RECEIPT_HISTORY: usize = 20;
@@ -140,11 +137,15 @@ impl MockState {
                 self.recording_take = Some(take);
             }
             proto::PersistentOp::StopRecordingOp => {
-                let discard =
-                    cmd.op_as_stop_recording_op().map(|o| o.discard()).unwrap_or(false);
+                let discard = cmd
+                    .op_as_stop_recording_op()
+                    .map(|o| o.discard())
+                    .unwrap_or(false);
                 if self.recording && !discard {
-                    let take_id =
-                        self.recording_take.clone().unwrap_or_else(|| TAKE_ONE.to_string());
+                    let take_id = self
+                        .recording_take
+                        .clone()
+                        .unwrap_or_else(|| TAKE_ONE.to_string());
                     self.extra_takes.push(json!({
                         "takeId": take_id,
                         "folderId": FOLDER_ONE,
@@ -164,9 +165,7 @@ impl MockState {
                 self.recording_take = None;
             }
             proto::PersistentOp::SubmitJobOp => {
-                if let Some(spec) =
-                    cmd.op_as_submit_job_op().and_then(|o| o.spec())
-                {
+                if let Some(spec) = cmd.op_as_submit_job_op().and_then(|o| o.spec()) {
                     let jid = spec.job_id().unwrap_or("").to_string();
                     if !jid.is_empty() {
                         // The telemetry lifecycle races to 'succeeded'; the
@@ -357,7 +356,13 @@ fn clip_rows(track_scope: Option<&str>) -> Vec<(String, Value)> {
         (format!("clip:{clip}"), v)
     };
     let mut rows = vec![
-        row(CLIP_AUDIO, TRACK_AUDIO, "AUDIO", "Vocal take", Some(ASSET_PRESENT)),
+        row(
+            CLIP_AUDIO,
+            TRACK_AUDIO,
+            "AUDIO",
+            "Vocal take",
+            Some(ASSET_PRESENT),
+        ),
         row(CLIP_MIDI, TRACK_INSTR, "MIDI", "Keys A", None),
     ];
     if let Some(scope) = track_scope {
@@ -368,11 +373,7 @@ fn clip_rows(track_scope: Option<&str>) -> Vec<(String, Value)> {
     rows
 }
 
-fn note_rows(
-    track_scope: Option<&str>,
-    start_ticks: i64,
-    end_ticks: i64,
-) -> Vec<(String, Value)> {
+fn note_rows(track_scope: Option<&str>, start_ticks: i64, end_ticks: i64) -> Vec<(String, Value)> {
     // The MIDI clip lives on TRACK_INSTR; a mismatched scope yields an
     // honest empty page.
     if let Some(scope) = track_scope {
@@ -602,7 +603,11 @@ fn job_rows(state: &MockState, include_terminal: bool) -> Vec<(String, Value)> {
                 )
         })
         .map(|j| {
-            let id = j.get("jobId").and_then(Value::as_str).unwrap_or("").to_string();
+            let id = j
+                .get("jobId")
+                .and_then(Value::as_str)
+                .unwrap_or("")
+                .to_string();
             (format!("job:{id}"), j.clone())
         })
         .collect()
@@ -633,7 +638,13 @@ fn model_rows() -> Vec<(String, Value)> {
         )
     };
     vec![
-        row(MODEL_AUDIO, "VOID Diffusion", "audio", "internal", "available"),
+        row(
+            MODEL_AUDIO,
+            "VOID Diffusion",
+            "audio",
+            "internal",
+            "available",
+        ),
         row(MODEL_SYMB, "Melody+", "symbolic", "internal", "available"),
         row(MODEL_VIS, "SketchDiff", "visual", "argv", "missing"),
     ]
