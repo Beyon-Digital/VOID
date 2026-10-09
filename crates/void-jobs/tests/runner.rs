@@ -300,6 +300,7 @@ fn ctx_static() -> RunContext<'static> {
 }
 
 #[test]
+#[cfg(unix)]
 fn t50_deadline_kills_sleeping_worker() {
     let f = fixture();
     let r = runner(&f);
@@ -320,6 +321,7 @@ fn t50_deadline_kills_sleeping_worker() {
 }
 
 #[test]
+#[cfg(unix)]
 fn t50_memory_budget_kills_greedy_worker() {
     let f = fixture();
     let r = runner(&f);
@@ -337,6 +339,7 @@ fn t50_memory_budget_kills_greedy_worker() {
 }
 
 #[test]
+#[cfg(unix)]
 fn t50_cpu_budget_kills_spinner() {
     let f = fixture();
     let r = runner(&f);

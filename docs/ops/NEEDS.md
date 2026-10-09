@@ -91,3 +91,18 @@ one-time pass. CVE-2025-3277 (3.49.x fix line) is the current flag item to
 re-verify before release; rusqlite's C API surface does not reach the
 affected functions per this lane's read, integrator confirms.
 **Explains:** T04 advisory half (the rest of T04 is evidenced — SUPPLYCHAIN.md).
+
+## OPS-N10 — Worker resource budgets unenforced on Windows (T50)
+
+**What exists:** `void-jobs` enforces `JobBudget` cpu_seconds/memory_bytes via
+`setrlimit` pre_exec and deadline via `monotonic_ns()` sampling — implemented
+and tested on Linux and macOS (Darwin ids fixed by lane BB).
+**Gap:** on Windows `apply_rlimits` is a no-op and `monotonic_ns()` returns 0,
+so cpu/memory/wall-deadline budgets do not bind there — a runaway worker runs
+to natural exit. The three enforcement tests are `#[cfg(unix)]`-gated;
+admission/cancel/provenance tests still run on Windows (Cancel uses
+`child.kill()`, which works).
+**Needed:** a Windows enforcement path — Job Objects (JOB_OBJECT_LIMIT_*) via
+`win32job`, or polling `GetProcessTimes`/RSS + TerminateProcess from the runner
+loop. `monotonic_ns` has a direct `QueryPerformanceCounter` equivalent.
+**Explains:** T50 `partial_linux` enforcement evidence is POSIX-only.
