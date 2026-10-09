@@ -1,0 +1,10 @@
+[package]
+name = "void-spatial"
+description = "VOID spatial routing model — multichannel layouts, object/bed metadata, monitoring configuration and the honest SpatialGate availability verdicts (W26, T92/T93 spec side)"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }

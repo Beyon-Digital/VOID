@@ -54,3 +54,6 @@ export * from './midi';
 export * from './producer';
 export * from './shortcuts';
 export * from './screensets';
+export * from './spatial';
+export * from './sync';
+export * from './show';
