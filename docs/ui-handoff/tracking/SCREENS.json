@@ -117,9 +117,9 @@
    "id": "S09",
    "name": "Visuals / preview and program",
    "figmaNodeId": "4:808",
-   "status": "not_started",
-   "lane": null,
-   "evidence": null,
+   "status": "implemented",
+   "lane": "UIP6",
+   "evidence": "docs/ui-handoff/tracking/UIP6_EVIDENCE.md",
    "acceptance_tests": [
     "UI-T23",
     "UI-T24"
