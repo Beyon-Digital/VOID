@@ -28,7 +28,7 @@ hardware/licence/infrastructure this env cannot supply.
 | Test | Status | Evidence today | Remaining need |
 | --- | --- | --- | --- |
 | UI-T01 create blank project | partial | S13/S14/S27 verified (UIP1 recorded run); `applyProjectTemplate` ops + tests | engine-attached create→arrange run |
-| UI-T02 select region, change workspaces | not_started | — | S01/S22/S23 not built |
+| UI-T02 select region, change workspaces | partial | S01 implemented (UIP2); viewport/screensets stores coded | recorded cross-workspace continuity run |
 | UI-T03 1600×1000 + 1280×832 both themes | partial | tokens/provider verified (UI01 gallery run); compact drawers coded in every screen lane | recorded pass at both resolutions × themes |
 | UI-T04 200% text scaling + keyboard | not_started | — | recorded pass; no zoom-scale harness |
 | UI-T05 drag/fine/type/arrows/reset/undo (S04) | partial | `editing.test.ts` (22) covers gesture contracts; S04 implemented w/ sendWithStaleRetry | recorded mix-gesture + undo run |
@@ -37,18 +37,18 @@ hardware/licence/infrastructure this env cannot supply.
 | UI-T08 space/shortcuts/IME in fields | partial | `mayUseGlobalShortcut` + editable-target/IME guards implemented | recorded field-editing run |
 | UI-T09 deny mic / remove device | partial | S15 verified honest `—` states (UIP1) | real device/permission hardware run → NEEDS §8 view gap stays |
 | UI-T10 record/stop/review/cancel comp/reopen | partial | S05 verified; review-box transition logic tested (recording.test.ts 10) | engine-attached take-lane run |
-| UI-T11 choose phrases from 4 takes + undo | not_started | take folders exist (UIP1) | S06 not built; recorded comp run |
-| UI-T12 request notes, audition, stop | not_started | — | S02/S25 not built |
-| UI-T13 accept 4 notes then remaining 4 | not_started | — | S02/S26/S03 not built |
-| UI-T14 undo accepted subset / discard ghosts | not_started | — | S26/S02 not built |
-| UI-T15 change song while generating | not_started | — | S20 not built; generation feed absent |
+| UI-T11 choose phrases from 4 takes + undo | partial | S06 implemented (UIP5): planCompApply/applyCompPlan one-tx + undo wired | recorded comp run |
+| UI-T12 request notes, audition, stop | partial | S02/S25 implemented (UIP4): proposal ingest + ghost notes wired; request/audition ops gated honest (NEEDS §9-14) | RequestProposalOp/PreviewLayerOp on wire; recorded audition run |
+| UI-T13 accept 4 notes then remaining 4 | partial | S26/S03 implemented (UIP4): partial acceptance = one tx of selected note ids, then remainder | recorded accept run |
+| UI-T14 undo accepted subset / discard ghosts | partial | implemented (UIP4): UndoOp{transaction_id} + dismiss removes only ghosts | recorded undo run |
+| UI-T15 change song while generating | partial | S20 implemented (UIP4): revision-drift rescan + accept-time revalidation + disable on stale | ProposalStaleEvent on wire; recorded stale run |
 | UI-T16 malformed notes/ids/velocity/time | partial | `parseNoteItem`/`parseClipItem` defensive drops tested (derive + piano-roll tests) | recorded malformed-feed run on S02 |
 | UI-T17 pointer capture, lose focus, cancel, reconnect | partial | `usePointerGesture` contract tests (lost-pointer commits once, Escape cancels) | recorded draw run on S08 |
 | UI-T18 piano roll/keyboard, no camera | partial | roll keyboard ops tested | recorded run on S08 |
-| UI-T19 cancel/OOM/kill worker mid-job | not_started | — | S10/S17 not built; fault harness |
-| UI-T20 accept result, move folder, reopen | not_started | relink model exists in void-studio | S10/S16 not built |
-| UI-T21 queue scene at bar boundary | not_started | — | S07/S28 not built |
-| UI-T22 all-notes-off / stop all clips busy | not_started | panic op exists on wire | S07 not built; busy-worker run |
+| UI-T19 cancel/OOM/kill worker mid-job | partial | S10/S17 implemented (UIP4): job telemetry states honest; cancel gated (no CancelJob op on wire) | SubmitJob/CancelJob ops; fault harness |
+| UI-T20 accept result, move folder, reopen | partial | S10 implemented (UIP4): AttachAssetOp+InsertAudioClipOp one tx; S16 implemented: provenance + missing-state rows | recorded move+reopen run |
+| UI-T21 queue scene at bar boundary | partial | S07/S28 implemented (UIP5): explicit launch queue settles on native clock only | recorded queue run |
+| UI-T22 all-notes-off / stop all clips busy | partial | S07 implemented (UIP5): panic/stop-all bound to real ops | busy-worker recorded run |
 | UI-T23 visuals + external display | partial | S09 implemented; output state machine tested (19 cases) | display-connected run (display enum deferred — UIP6 gap table) |
 | UI-T24 kill renderer / GPU overload | partial | S09 honesty states coded | fault-injection run |
 | UI-T25 reopen w/ unavailable/quarantined plugin | partial | `parseDeviceFromItem` surfaces failed/quarantined verbatim | recorded plugin scan run |
