@@ -1,0 +1,18 @@
+[package]
+name = "void-wasm-tests"
+description = "W28 WASM module host suite (T97–T98 Linux-verifiable halves) — capability denials, fuel/deadline/cancel kills, memory limits, sha256-verified registry, last-known-good hot reload, SDK gate honesty"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Own workspace: the root Cargo.toml members list is integrator-owned —
+# this suite builds standalone via `cargo test --manifest-path`.
+[workspace]
+
+[dependencies]
+void-wasm = { path = "../../crates/void-wasm" }
+wat = "=1.259.0"
+tempfile = "3"
+serde_json = "1"
+serde = { version = "1", features = ["derive"] }
+sha2 = "0.10"
