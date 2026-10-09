@@ -24,10 +24,10 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W15 | F2 | Audio generation, stems and transcription adapters | W12 | partial |
 | W16 | F2 | AI/gesture regression gate | W14, W15 | partial |
 | W17 | F3 | Recording and arrangement depth | W11 | partial |
-| W18 | F3 | Mixer, automation and advanced MIDI | W17 | not_started |
+| W18 | F3 | Mixer, automation and advanced MIDI | W17 | partial |
 | W19 | F3 | Stock sound library, effects and time/pitch tools | W17, W01 | not_started |
-| W20 | F3 | Plugin compatibility, optional isolation and exchange | W18 | not_started |
-| W21 | F3 | Accompaniment, arrangement and producer gate | W16, W19, W20 | not_started |
+| W20 | F3 | Plugin compatibility, optional isolation and exchange | W18 | partial |
+| W21 | F3 | Accompaniment, arrangement and producer gate | W16, W19, W20 | partial |
 | W22 | F4 | Conventional native visual composition and program output | W11 | partial |
 | W23 | F4 | Generated/reactive visuals and optional camera conducting | W22, W16 | not_started |
 | W24 | F4 | Audiovisual export and visual qualification gate | W23 | not_started |
@@ -541,7 +541,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W18 · F3 · Mixer, automation and advanced MIDI
 
-**Owner:** Engine + UI · **Depends:** W17 · **Status:** not_started
+**Owner:** Engine + UI · **Depends:** W17 · **Status:** partial
 
 **Target paths:** `native/void-engine/src/routing/`, `packages/void-studio/src/automation/`, `packages/void-studio/src/midi/`
 
@@ -563,7 +563,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** Reuse already qualified foundations; justify new dependencies separately.
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; -; m; i; x;  ; r; o; u; t; i; n; g;  ; g; r; a; p; h;  ; +;  ; d; e; l; a; y;  ; c; o; m; p;  ; (; t; e; s; t; s; /; m; i; x;  ; 1; 4; /; 1; 4; ); ;;  ; a; u; t; o; m; a; t; i; o; n; +; m; i; d; i;  ; s; t; u; d; i; o;  ; s; u; i; t; e; s;  ; (; T; 6; 9; -; T; 7; 1;  ; p; a; s; s; _; l; i; n; u; x; ); .;  ; E; n; g; i; n; e; -; h; o; s; t; e; d;  ; D; S; P;  ; c; o; n; f; o; r; m; a; n; c; e;  ; (; T; 7; 2; );  ; s; t; i; l; l;  ; n; e; e; d; s;  ; n; a; t; i; v; e;  ; e; n; g; i; n; e; .;  ; [; 2; 0; 2; 6; -; 1; 0; -; 0; 9;  ; 0; 0; :; 0; 7;  ; U; T; C; ]
 
 ## W19 · F3 · Stock sound library, effects and time/pitch tools
 
@@ -595,7 +595,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W20 · F3 · Plugin compatibility, optional isolation and exchange
 
-**Owner:** Plugins + platform · **Depends:** W18 · **Status:** not_started
+**Owner:** Plugins + platform · **Depends:** W18 · **Status:** partial
 
 **Target paths:** `native/void-engine/src/plugins/`, `native/void-plugin-worker/`, `crates/void-interchange/`, `tests/interchange/`
 
@@ -619,11 +619,11 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** IO-01, IO-02, IO-04, QA-01
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; -; e; x; c; h; a; n; g; e; :;  ; .; d; a; w; p; r; o; j; e; c; t;  ; r; o; u; n; d; t; r; i; p;  ; b; y; t; e; -; d; e; t; e; r; m; i; n; i; s; t; i; c;  ; (; T; 7; 7;  ; p; a; s; s; ); ;;  ; i; s; o; l; a; t; i; o; n;  ; p; o; l; i; c; y;  ; +;  ; r; e; g; i; s; t; r; y;  ; s; p; e; c; -; s; i; d; e;  ; (; T; 7; 5; /; T; 7; 6;  ; p; a; r; t; i; a; l;  ; —;  ; n; o;  ; p; l; u; g; i; n;  ; r; u; n; t; i; m; e;  ; o; n;  ; L; i; n; u; x; );  ; [; 2; 0; 2; 6; -; 1; 0; -; 0; 9;  ; 0; 0; :; 0; 7;  ; U; T; C; ]
 
 ## W21 · F3 · Accompaniment, arrangement and producer gate
 
-**Owner:** Musical AI + QA · **Depends:** W16, W19, W20 · **Status:** not_started
+**Owner:** Musical AI + QA · **Depends:** W16, W19, W20 · **Status:** partial
 
 **Target paths:** `workers/symbolic/`, `packages/void-studio/src/players/`, `docs/verification/F3/`
 
@@ -645,7 +645,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** Reuse already qualified foundations; justify new dependencies separately.
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; -; p; r; o; d; u; c; e; r; :;  ; a; c; c; o; m; p; a; n; i; m; e; n; t;  ; d; e; t; e; r; m; i; n; i; s; m; ,;  ; B; S; .; 1; 7; 7; 0;  ; m; a; s; t; e; r; i; n; g; ,;  ; p; r; o; d; u; c; e; r;  ; g; a; t; e;  ; (; T; 7; 8; -; T; 8; 0;  ; p; a; s; s; _; l; i; n; u; x; );  ; [; 2; 0; 2; 6; -; 1; 0; -; 0; 9;  ; 0; 0; :; 0; 7;  ; U; T; C; ]
 
 ## W22 · F4 · Conventional native visual composition and program output
 
