@@ -76,6 +76,13 @@ jobs:
         with:
           path: native/build
           key: native-${{ hashFiles('native/**/CMakeLists.txt', 'third_party/**/HEAD') }}
+      # tracktion_engine needs Apple clang >=16 (C++20 parenthesized
+      # aggregate init); the runner's default Xcode 15.4 cannot build it.
+      - name: Select newest installed Xcode
+        run: |
+          ls -d /Applications/Xcode*.app
+          sudo xcode-select -s "$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)/Contents/Developer"
+          xcodebuild -version
       - name: Install flatc 25.9.23
         run: |
           git clone --depth 1 -b v25.9.23 https://github.com/google/flatbuffers /tmp/fb
