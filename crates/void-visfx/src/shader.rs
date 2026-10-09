@@ -326,8 +326,8 @@ pub struct WatchdogPolicy {
 impl Default for WatchdogPolicy {
     fn default() -> Self {
         Self {
-            kill_after_ns: 250_000_000,   // 250ms per frame
-            cancel_grace_ns: 50_000_000,  // 50ms
+            kill_after_ns: 250_000_000,  // 250ms per frame
+            cancel_grace_ns: 50_000_000, // 50ms
             min_reserved_ram_bytes: 64 * 1024 * 1024,
             heartbeat_timeout_ns: 100_000_000,
             timeout_quarantines: true,
@@ -398,9 +398,11 @@ pub const BUILTIN_PRESETS: &[&str] = &[
 impl FallbackPolicy {
     fn target(&self, r: RejectReason) -> String {
         match r {
-            RejectReason::InvalidSyntax | RejectReason::InvalidSemantics | RejectReason::Forbidden | RejectReason::InvalidLayout | RejectReason::Disabled => {
-                self.on_invalid.clone()
-            }
+            RejectReason::InvalidSyntax
+            | RejectReason::InvalidSemantics
+            | RejectReason::Forbidden
+            | RejectReason::InvalidLayout
+            | RejectReason::Disabled => self.on_invalid.clone(),
             RejectReason::OverBudget => self.on_over_budget.clone(),
             RejectReason::WatchdogTimeout | RejectReason::WatchdogCancelled => {
                 self.on_watchdog.clone()
@@ -429,7 +431,7 @@ pub struct ResolvedShader {
 /// shader or the report that failed it; `.or(next)` adds a fallback.
 pub struct ShaderChain<'a> {
     registry: &'a mut ShaderRegistry,
-    outcome: std::result::Result<ResolvedShader, CompileReport>,
+    outcome: std::result::Result<ResolvedShader, Box<CompileReport>>,
 }
 
 impl<'a> ShaderChain<'a> {
@@ -447,7 +449,7 @@ impl<'a> ShaderChain<'a> {
             Err(first) => match registry.resolve(&next) {
                 Ok(mut r) => {
                     r.fell_back = true;
-                    r.chain.push(first);
+                    r.chain.push(*first);
                     Self {
                         registry,
                         outcome: Ok(r),
@@ -455,12 +457,12 @@ impl<'a> ShaderChain<'a> {
                 }
                 Err(second) => Self {
                     registry,
-                    outcome: Err(CompileReport::chained(first, second)),
+                    outcome: Err(Box::new(CompileReport::chained(*first, *second))),
                 },
             },
         }
     }
-    pub fn resolve(self) -> std::result::Result<ResolvedShader, CompileReport> {
+    pub fn resolve(self) -> std::result::Result<ResolvedShader, Box<CompileReport>> {
         self.outcome
     }
 }
@@ -634,9 +636,8 @@ impl ShaderRegistry {
     fn compose_for(&self, rec: &PresetRecord) -> Result<String> {
         match rec.kind.as_str() {
             "builtin" => {
-                let body = void_visual::shaders::generator_body(&rec.id).ok_or_else(|| {
-                    VisFxError::Shader(format!("unknown builtin {:?}", rec.id))
-                })?;
+                let body = void_visual::shaders::generator_body(&rec.id)
+                    .ok_or_else(|| VisFxError::Shader(format!("unknown builtin {:?}", rec.id)))?;
                 Ok(Self::compose(&body))
             }
             "generated" => Ok(Self::compose(rec.body.as_deref().unwrap_or(""))),
@@ -667,7 +668,11 @@ impl ShaderRegistry {
             rep.fail(
                 ValidationStage::Shape,
                 RejectReason::InvalidLayout,
-                format!("source {} bytes > {}", wgsl.len(), self.budget.max_source_bytes),
+                format!(
+                    "source {} bytes > {}",
+                    wgsl.len(),
+                    self.budget.max_source_bytes
+                ),
             );
         }
         // Stage 2: forbidden builtins (isolated-renderer contract).
@@ -753,7 +758,10 @@ impl ShaderRegistry {
 
     /// Resolve a preset to a compiled module — the cache makes repeat
     /// resolves free; failures return the report (never a fake).
-    pub fn resolve(&mut self, req: &PresetRef) -> std::result::Result<ResolvedShader, CompileReport> {
+    pub fn resolve(
+        &mut self,
+        req: &PresetRef,
+    ) -> std::result::Result<ResolvedShader, Box<CompileReport>> {
         let id = match req {
             PresetRef::Builtin { name } => name.clone(),
             PresetRef::Generated { id } => id.clone(),
@@ -765,7 +773,7 @@ impl ShaderRegistry {
                 RejectReason::InvalidLayout,
                 format!("unknown preset {id:?}"),
             );
-            return Err(r);
+            return Err(Box::new(r));
         };
         if rec.status != PresetStatus::Active {
             let mut r = CompileReport::new(&id, "");
@@ -774,19 +782,23 @@ impl ShaderRegistry {
                 RejectReason::Disabled,
                 format!("preset status {:?}", rec.status),
             );
-            return Err(r);
+            return Err(Box::new(r));
         }
         let wgsl = match self.compose_for(&rec) {
             Ok(w) => w,
             Err(e) => {
                 let mut r = CompileReport::new(&id, "");
-                r.fail(ValidationStage::Shape, RejectReason::InvalidLayout, e.to_string());
-                return Err(r);
+                r.fail(
+                    ValidationStage::Shape,
+                    RejectReason::InvalidLayout,
+                    e.to_string(),
+                );
+                return Err(Box::new(r));
             }
         };
         let rep = self.compile_wgsl(&id, &wgsl);
         if !rep.ok() {
-            return Err(rep);
+            return Err(Box::new(rep));
         }
         Ok(ResolvedShader {
             id,
@@ -810,7 +822,7 @@ impl ShaderRegistry {
                 match self.resolve(&next) {
                     Ok(mut r) => {
                         r.fell_back = true;
-                        r.chain.push(rep);
+                        r.chain.push(*rep);
                         r
                     }
                     Err(rep2) => {
@@ -826,17 +838,16 @@ impl ShaderRegistry {
                                 id: DEFAULT_FALLBACK.into(),
                                 fell_back: true,
                                 wgsl: Self::compose(
-                                    &void_visual::shaders::generator_body("black")
-                                        .unwrap_or_else(|| {
-                                            "return vec4<f32>(0.0,0.0,0.0,1.0);".into()
-                                        }),
+                                    &void_visual::shaders::generator_body("black").unwrap_or_else(
+                                        || "return vec4<f32>(0.0,0.0,0.0,1.0);".into(),
+                                    ),
                                 ),
-                                report: rep3,
+                                report: *rep3,
                                 chain: vec![],
                             });
                         r.fell_back = true;
-                        r.chain.push(rep);
-                        r.chain.push(rep2);
+                        r.chain.push(*rep);
+                        r.chain.push(*rep2);
                         r
                     }
                 }

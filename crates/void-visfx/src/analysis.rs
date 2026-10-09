@@ -158,9 +158,8 @@ impl ShaderCost {
     }
     /// Branch: take the more expensive arm.
     fn merge_max(&mut self, a: &ShaderCost, b: &ShaderCost) {
-        self.texture_samples_per_pixel += a
-            .texture_samples_per_pixel
-            .max(b.texture_samples_per_pixel);
+        self.texture_samples_per_pixel +=
+            a.texture_samples_per_pixel.max(b.texture_samples_per_pixel);
         self.instructions += a.instructions.max(b.instructions);
         self.has_unbounded_loop |= a.has_unbounded_loop || b.has_unbounded_loop;
     }
@@ -201,10 +200,8 @@ fn has_break(b: &Block) -> bool {
                     return true;
                 }
             }
-            Statement::Switch { cases, .. } => {
-                if cases.iter().any(|c| has_break(&c.body)) {
-                    return true;
-                }
+            Statement::Switch { cases, .. } if cases.iter().any(|c| has_break(&c.body)) => {
+                return true;
             }
             _ => {}
         }
@@ -328,7 +325,10 @@ fn trip_bound(
     };
     // seed: `var i = K` lands on LocalVariable.init in this IR, or a
     // const Store earlier in the enclosing block (`for` header init).
-    let mut init = init_stores.iter().rfind(|(s, _)| *s == var).map(|(_, v)| *v);
+    let mut init = init_stores
+        .iter()
+        .rfind(|(s, _)| *s == var)
+        .map(|(_, v)| *v);
     if init.is_none() {
         init = f.local_variables[var]
             .init
@@ -414,7 +414,7 @@ fn trip_bound(
     if span <= 0 {
         return 0;
     }
-    let iters = (span as u64 + st as u64 - 1) / st as u64;
+    let iters = (span as u64).div_ceil(st as u64);
     u32::try_from(iters).unwrap_or(u32::MAX)
 }
 

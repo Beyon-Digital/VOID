@@ -13,7 +13,10 @@ pub enum VisFxError {
     #[error("record not found: {0}")]
     NotFound(String),
     #[error("invalid lifecycle transition {from} -> {to}")]
-    InvalidTransition { from: &'static str, to: &'static str },
+    InvalidTransition {
+        from: &'static str,
+        to: &'static str,
+    },
     #[error("stale: {0}")]
     Stale(String),
     #[error("revalidation failed: {0}")]

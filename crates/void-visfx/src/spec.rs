@@ -18,9 +18,30 @@ pub const DOC_FILE: &str = "scene.json";
 /// network or code-execution reach. Checked shallowly at the envelope
 /// level AND recursively inside params/actions.
 pub const FORBIDDEN_FIELDS: &[&str] = &[
-    "url", "uri", "path", "file", "filepath", "command", "cmd", "exec", "shell", "argv",
-    "network", "http", "https", "socket", "env", "process", "module", "eval", "import",
-    "require", "wgsl_module_path", "fetch", "download", "upload",
+    "url",
+    "uri",
+    "path",
+    "file",
+    "filepath",
+    "command",
+    "cmd",
+    "exec",
+    "shell",
+    "argv",
+    "network",
+    "http",
+    "https",
+    "socket",
+    "env",
+    "process",
+    "module",
+    "eval",
+    "import",
+    "require",
+    "wgsl_module_path",
+    "fetch",
+    "download",
+    "upload",
 ];
 
 /// Allowed declarative action verbs on a scene doc. Anything else is a
@@ -148,10 +169,14 @@ impl SceneGenSpec {
             .parse::<u64>()
             .map_err(|_| VisFxError::InvalidSpec("seed must be decimal u64".into()))?;
         if self.width == 0 || self.height == 0 || self.width > 8192 || self.height > 8192 {
-            return Err(VisFxError::InvalidSpec("width/height out of 1..8192".into()));
+            return Err(VisFxError::InvalidSpec(
+                "width/height out of 1..8192".into(),
+            ));
         }
         if self.fps_num == 0 || self.fps_den == 0 {
-            return Err(VisFxError::InvalidSpec("fps rational must be non-zero".into()));
+            return Err(VisFxError::InvalidSpec(
+                "fps rational must be non-zero".into(),
+            ));
         }
         if self.params.len() > 64 {
             return Err(VisFxError::InvalidSpec("params >64 entries".into()));
@@ -168,18 +193,29 @@ impl SceneGenSpec {
         }
         for b in &self.audio_bindings {
             if !is_ident(&b.target) {
-                return Err(VisFxError::InvalidSpec(format!("binding target {:?}", b.target)));
+                return Err(VisFxError::InvalidSpec(format!(
+                    "binding target {:?}",
+                    b.target
+                )));
             }
             if !matches!(b.mapper.as_str(), "linear" | "sqrt" | "db_floor") {
                 return Err(VisFxError::InvalidSpec(format!("mapper {:?}", b.mapper)));
             }
-            for (name, f) in [("gain", b.gain), ("attack", b.attack), ("release", b.release)] {
+            for (name, f) in [
+                ("gain", b.gain),
+                ("attack", b.attack),
+                ("release", b.release),
+            ] {
                 if !f.is_finite() {
-                    return Err(VisFxError::InvalidSpec(format!("binding {name} not finite")));
+                    return Err(VisFxError::InvalidSpec(format!(
+                        "binding {name} not finite"
+                    )));
                 }
             }
             if !(0.0..=1.0).contains(&b.attack) || !(0.0..=1.0).contains(&b.release) {
-                return Err(VisFxError::InvalidSpec("attack/release must be 0..1".into()));
+                return Err(VisFxError::InvalidSpec(
+                    "attack/release must be 0..1".into(),
+                ));
             }
         }
         if let Some(body) = &self.shader_body {
@@ -259,7 +295,9 @@ fn check_forbidden_text(d: &str) -> Result<()> {
     let l = d.to_ascii_lowercase();
     for pat in ["http://", "https://", "file://", "exec(", "eval("] {
         if l.contains(pat) {
-            return Err(VisFxError::Forbidden(format!("description contains {pat:?}")));
+            return Err(VisFxError::Forbidden(format!(
+                "description contains {pat:?}"
+            )));
         }
     }
     Ok(())
@@ -404,7 +442,10 @@ fn validate_doc_shape(doc: &SceneDoc) -> Result<()> {
             return Err(VisFxError::InvalidDocument("layer name".into()));
         }
         if !matches!(l.channel.as_str(), "preview" | "program") {
-            return Err(VisFxError::InvalidDocument(format!("channel {:?}", l.channel)));
+            return Err(VisFxError::InvalidDocument(format!(
+                "channel {:?}",
+                l.channel
+            )));
         }
         match l.kind.as_str() {
             "generator" => {
@@ -464,7 +505,9 @@ fn validate_doc_shape(doc: &SceneDoc) -> Result<()> {
                 ("opacity", t.opacity),
             ] {
                 if !f.is_finite() {
-                    return Err(VisFxError::InvalidDocument(format!("transform.{n} not finite")));
+                    return Err(VisFxError::InvalidDocument(format!(
+                        "transform.{n} not finite"
+                    )));
                 }
             }
             if !(0.0..=1.0).contains(&t.opacity) {

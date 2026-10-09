@@ -7,18 +7,18 @@
 
 use crate::error::{Result, VisFxError};
 use crate::record::{
-    ArtifactBrief, FailedFacts, PendingFacts, ReadyFacts, RejectedFacts, StaleFacts, VisGenRecord,
-    VisGenProvenance, VisGenStatus,
+    ArtifactBrief, FailedFacts, PendingFacts, ReadyFacts, RejectedFacts, StaleFacts,
+    VisGenProvenance, VisGenRecord, VisGenStatus,
 };
 use crate::shader::{PresetRef, ShaderRegistry};
 use crate::spec::{parse_scene_doc, SceneGenSpec, DOC_FILE};
 use crate::store::{utc_now, VisGenStore};
 use sha2::Digest;
+use std::path::Path;
 use void_assets::AssetStore;
 use void_jobs::{
     decide, Admit, JobDb, JobKind, JobRecord, JobSpec, JobStatus, Reservations, RunOutcome,
 };
-use std::path::Path;
 
 /// In-flight cap (mirrors proposals' MAX_PROPOSALS).
 pub const MAX_PENDING_VIS: usize = 8;
@@ -95,7 +95,9 @@ impl VisualGenService {
             .filter(|r| r.status == VisGenStatus::Pending)
             .count();
         if pending >= MAX_PENDING_VIS {
-            return Err(VisFxError::Busy(format!("{pending} pending vis-gen records")));
+            return Err(VisFxError::Busy(format!(
+                "{pending} pending vis-gen records"
+            )));
         }
 
         let record_id = uuid::Uuid::new_v4().to_string();
@@ -179,12 +181,13 @@ impl VisualGenService {
                 ..
             } if job.status == JobStatus::Succeeded => {
                 let collected = (|| -> std::result::Result<(SceneDocOwned, String), VisFxError> {
-                    let doc_art = artifacts
-                        .iter()
-                        .find(|a| a.name == DOC_FILE)
-                        .ok_or_else(|| {
-                            VisFxError::InvalidDocument(format!("no {DOC_FILE} artifact"))
-                        })?;
+                    let doc_art =
+                        artifacts
+                            .iter()
+                            .find(|a| a.name == DOC_FILE)
+                            .ok_or_else(|| {
+                                VisFxError::InvalidDocument(format!("no {DOC_FILE} artifact"))
+                            })?;
                     let doc_bytes = std::fs::read(&doc_art.asset_abs)?;
                     let doc = parse_scene_doc(&doc_bytes)?;
                     Ok((

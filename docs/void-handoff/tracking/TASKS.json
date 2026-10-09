@@ -960,8 +960,8 @@
     "AI-09",
     "VIS-02"
    ],
-   "status": "not_started",
-   "evidence": [],
+   "status": "partial",
+   "evidence": "void-visfx shader vetting + scene-gen adapter + camera policy \u2014 T84/T86 pass, T85 adapter-side [2026-10-09 01:04 UTC]",
    "implementation_commit": null,
    "blocker": null,
    "readiness_evidence": [],
@@ -999,8 +999,8 @@
    "dependency_ids": [
     "VIS-03"
    ],
-   "status": "not_started",
-   "evidence": [],
+   "status": "partial",
+   "evidence": "void-av argv-only ffmpeg exporter + verify/publish session \u2014 T87-T89 pass_linux [2026-10-09 01:04 UTC]",
    "implementation_commit": null,
    "blocker": null,
    "readiness_evidence": [],

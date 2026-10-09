@@ -26,7 +26,10 @@ pub enum FeatureKind {
     Peak,
     Onset,
     /// Band energy for `band` of `bands` equal-width linear bands.
-    BandEnergy { band: u32, bands: u32 },
+    BandEnergy {
+        band: u32,
+        bands: u32,
+    },
 }
 
 impl AnalyzerSet {
@@ -85,10 +88,7 @@ pub fn analyze(pcm: &[f32], set: &AnalyzerSet) -> Result<FeatureFrames> {
     set.validate()?;
     let mut out = FeatureFrames::default();
     let want = |k: &FeatureKind| set.features.contains(k);
-    let want_onset = set
-        .features
-        .iter()
-        .any(|f| matches!(f, FeatureKind::Onset));
+    let want_onset = set.features.iter().any(|f| matches!(f, FeatureKind::Onset));
     let mut prev_energy = 0f32;
     let mut energies = Vec::new();
     for f in frames(pcm, set) {
@@ -114,8 +114,11 @@ pub fn analyze(pcm: &[f32], set: &AnalyzerSet) -> Result<FeatureFrames> {
         if want_onset {
             // frame 0 has no prior context — convention: no onset at
             // t=0, so a cold start can't dominate the feature.
-            out.onset
-                .push(if energies.len() == 1 { 0.0 } else { (e - prev_energy).max(0.0) });
+            out.onset.push(if energies.len() == 1 {
+                0.0
+            } else {
+                (e - prev_energy).max(0.0)
+            });
         }
         prev_energy = e;
         for fk in &set.features {
@@ -128,7 +131,11 @@ pub fn analyze(pcm: &[f32], set: &AnalyzerSet) -> Result<FeatureFrames> {
                         be += (x as f64) * (x as f64);
                     }
                 }
-                let norm = if sum_sq > 0.0 { (be / sum_sq) as f32 } else { 0.0 };
+                let norm = if sum_sq > 0.0 {
+                    (be / sum_sq) as f32
+                } else {
+                    0.0
+                };
                 let v = norm.clamp(0.0, 1.0);
                 if let Some((_, _, vec)) = out
                     .band_energy
@@ -200,7 +207,9 @@ impl ParamMapper {
             }
         }
         if !(0.0..=1.0).contains(&attack) || !(0.0..=1.0).contains(&release) {
-            return Err(VisFxError::InvalidSpec("attack/release must be 0..1".into()));
+            return Err(VisFxError::InvalidSpec(
+                "attack/release must be 0..1".into(),
+            ));
         }
         Ok(Self {
             kind,

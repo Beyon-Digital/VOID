@@ -29,8 +29,8 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W20 | F3 | Plugin compatibility, optional isolation and exchange | W18 | partial |
 | W21 | F3 | Accompaniment, arrangement and producer gate | W16, W19, W20 | partial |
 | W22 | F4 | Conventional native visual composition and program output | W11 | partial |
-| W23 | F4 | Generated/reactive visuals and optional camera conducting | W22, W16 | not_started |
-| W24 | F4 | Audiovisual export and visual qualification gate | W23 | not_started |
+| W23 | F4 | Generated/reactive visuals and optional camera conducting | W22, W16 | partial |
+| W24 | F4 | Audiovisual export and visual qualification gate | W23 | partial |
 | W25 | F5 | Notation, scoring and advanced interchange | W21 | not_started |
 | W26 | F5 | Spatial routing and delivery | W21 | partial |
 | W27 | F5 | Synchronization, modular control and safe shows | W24, W21 | partial |
@@ -677,7 +677,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W23 · F4 · Generated/reactive visuals and optional camera conducting
 
-**Owner:** Visual AI + gestures · **Depends:** W22, W16 · **Status:** not_started
+**Owner:** Visual AI + gestures · **Depends:** W22, W16 · **Status:** partial
 
 **Target paths:** `workers/visual/`, `crates/void-visual/`, `workers/gestures/`, `packages/void-studio/src/visuals/`
 
@@ -701,11 +701,11 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** AI-07, AI-09, VIS-02
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; -; v; i; s; f; x;  ; s; h; a; d; e; r;  ; v; e; t; t; i; n; g;  ; +;  ; s; c; e; n; e; -; g; e; n;  ; a; d; a; p; t; e; r;  ; +;  ; c; a; m; e; r; a;  ; p; o; l; i; c; y;  ; —;  ; T; 8; 4; /; T; 8; 6;  ; p; a; s; s; ,;  ; T; 8; 5;  ; a; d; a; p; t; e; r; -; s; i; d; e;  ; [; 2; 0; 2; 6; -; 1; 0; -; 0; 9;  ; 0; 1; :; 0; 4;  ; U; T; C; ]
 
 ## W24 · F4 · Audiovisual export and visual qualification gate
 
-**Owner:** Media + QA · **Depends:** W23 · **Status:** not_started
+**Owner:** Media + QA · **Depends:** W23 · **Status:** partial
 
 **Target paths:** `workers/export/`, `crates/void-export/`, `tests/av/`, `docs/verification/F4/`
 
@@ -729,7 +729,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** VIS-03
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; -; a; v;  ; a; r; g; v; -; o; n; l; y;  ; f; f; m; p; e; g;  ; e; x; p; o; r; t; e; r;  ; +;  ; v; e; r; i; f; y; /; p; u; b; l; i; s; h;  ; s; e; s; s; i; o; n;  ; —;  ; T; 8; 7; -; T; 8; 9;  ; p; a; s; s; _; l; i; n; u; x;  ; [; 2; 0; 2; 6; -; 1; 0; -; 0; 9;  ; 0; 1; :; 0; 4;  ; U; T; C; ]
 
 ## W25 · F5 · Notation, scoring and advanced interchange
 

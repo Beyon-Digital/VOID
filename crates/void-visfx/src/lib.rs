@@ -17,15 +17,14 @@ pub mod spec;
 pub mod store;
 
 pub use camera::{
-    CameraAsserts, CameraPolicy, CalibrationRecord, ConsentState, ConductorSession, ControlEvent,
+    CalibrationRecord, CameraAsserts, CameraPolicy, ConductorSession, ConsentState, ControlEvent,
     DropReason, GestureKind, ReleaseCause, TrackerFrame,
 };
 pub use error::{PolicyViolation, Result, VisFxError};
 pub use mappers::{analyze, AnalyzerSet, FeatureFrames, FeatureKind, MapperKind, ParamMapper};
 pub use record::{ArtifactBrief, VisGenRecord, VisGenStatus};
 pub use service::{
-    PendingVis, Revalidation, VisAcceptPlan, VisualGenService, MAX_PENDING_VIS,
-    SYMBOLIC_RUNTIME_ID,
+    PendingVis, Revalidation, VisAcceptPlan, VisualGenService, MAX_PENDING_VIS, SYMBOLIC_RUNTIME_ID,
 };
 pub use shader::{
     CompileReport, FallbackPolicy, KernelOutcome, PresetRecord, PresetRef, PresetStatus,

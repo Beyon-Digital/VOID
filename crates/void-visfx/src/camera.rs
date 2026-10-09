@@ -141,7 +141,9 @@ impl CameraPolicy {
             ));
         }
         if self.smoothing_window == 0 || self.smoothing_window > 120 {
-            return Err(VisFxError::PolicyViolation("smoothing_window 1..120".into()));
+            return Err(VisFxError::PolicyViolation(
+                "smoothing_window 1..120".into(),
+            ));
         }
         if self.max_held == 0 || self.max_held > 64 {
             return Err(VisFxError::PolicyViolation("max_held 1..64".into()));
@@ -541,9 +543,7 @@ impl ConductorSession {
     /// continuous loss, release everything held (T86).
     fn track_loss(&mut self, now_ns: u64, out: &mut Vec<ControlEvent>) {
         match self.loss_since {
-            Some(t0)
-                if now_ns.saturating_sub(t0) >= self.policy.asserts.loss_release_window_ns =>
-            {
+            Some(t0) if now_ns.saturating_sub(t0) >= self.policy.asserts.loss_release_window_ns => {
                 out.extend(self.release_all(ReleaseCause::TrackingLost));
             }
             Some(_) => {}

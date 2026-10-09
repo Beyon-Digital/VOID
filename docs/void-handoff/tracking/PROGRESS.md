@@ -22,3 +22,10 @@
 
 - **W28 wasm sandbox** (`devin/void-lane-w28` @ 43ac142): `crates/void-wasm` real wasmtime 37 restricted host — capability grant set + ambient deny (single void_host.log surface), manifest v1 + DeclaredLimits, sha256+import-scan spec vetting, void-wasm/1 ABI (24B NoteEvent), fuel/epoch deadline + CancelToken, ResourceLimiter, sha256-verified versioned registry w/ revoke+LKG, ARA/plugin-export evidence-only gates. tests/wasm 31/31 (12 real WAT→wasm fixtures incl. adversarial). Studio extensions surface (view-state, snake_case i64 DTOs). T97 pass_linux, T98 gates-side.
 - Workspace clippy -D warnings clean; studio vitest 428.
+
+## 2026-10-09 01:04 UTC — Lanes T (W23), U (W24) merged
+
+- **W23 reactive visuals** (`devin/void-lane-w23` @ 6e567b5): `crates/void-visfx` naga WGSL preset vetting (static IR cost walk, loop trip-bound extraction, kernel-outcome quarantine, black-fallback evidence chain), SceneGenSpec→void-jobs adapter + provenance lifecycle, rms/peak/onset/band analyzers, camera conducting policy (consent/calibration/clutch, landmark-only frames — no pixel types exist by construction). tests/visfx 31/31; T84/T86 pass, T85 adapter-side.
+- **W24 av export** (`devin/void-lane-w24` @ 349b76a): `crates/void-av` argv-only FFmpeg runner (env_clear/-nostdin/-fs cap/timeout/kill-on-cancel), exact rational frame math, codec matrix + rights flags, ffprobe -count_frames verify, stage→verify→provenance→rename→publish; `workers/ffmpeg-fake` fixture + tests/av 29/29 incl. RLIMIT_FSIZE disk-full subprocess. T87–T89 pass_linux.
+- Integrator fixes: void-visfx `resolve` Err boxed (result_large_err), collapsible-if + div_ceil lints; one tests/av disk-full flake observed under parallel load, then 5/5 clean reruns — watching CI.
+- Studio vitest 449; workspace clippy -D warnings clean.

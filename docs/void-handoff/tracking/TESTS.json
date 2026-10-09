@@ -922,8 +922,8 @@
    "phase": "F4",
    "procedure": "Compile malformed/expensive generated shaders and forbidden scene actions under watchdog; cancel active compilation.",
    "expected": "No privileged app code execution; bounded resources and known-good fallback. Shader compile never blocks audio callback.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "lane T: void-visfx naga WGSL vetting \u2014 builtins/loop-bound/cost walk/quarantine/black-fallback chain; tests/visfx 31/31 [2026-10-09 01:04 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -933,8 +933,8 @@
    "phase": "F4",
    "procedure": "Generate approved assets and test optional projectM path through preview/export with cleared presets.",
    "expected": "Accept/reject and provenance work; OpenGL/wgpu interoperability is demonstrated where claimed, not assumed.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "partial_linux",
+   "evidence": "lane T: params\u2192jobs scene-gen provenance accept/reject; projectM ADR evidence-only [2026-10-09 01:04 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -944,8 +944,8 @@
    "phase": "F4",
    "procedure": "Deny/revoke camera, occlude hands, drop frames and lose tracking while armed; inspect storage/network.",
    "expected": "Tracking loss safely releases notes/controls, keyboard path remains. No raw camera retention/upload by default.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "lane T: camera conducting policy \u2014 consent/calibration/clutch/confidence/loss\u2192ReleaseAll, landmark-only frames (no pixel types by construction) [2026-10-09 01:04 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -955,8 +955,8 @@
    "phase": "F4",
    "procedure": "Render fixtures at rational frame rates including 30000/1001 with known cue/onset timestamps and tails.",
    "expected": "Correct frame/sample counts with stated rounding; measured drift no greater than the declared one-frame cue tolerance. Audio file remains sample-correct.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "lane U: void-av exact rational frame math (30000/1001, NTSC-24), cue placement \u22641 frame; tests/av t87 8/8 [2026-10-09 01:04 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -966,8 +966,8 @@
    "phase": "F4",
    "procedure": "Test denied/missing codec, malformed media, shell-like filenames, worker timeout and full disk.",
    "expected": "Argv-only invocation and safe paths, bounded decode, no partial-final export success; codec/build rights documented.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "lane U: argv-only ffmpeg (env_clear/-nostdin/-fs cap/timeout/kill) + fake-ffmpeg adversarial modes; t88 13/13 [2026-10-09 01:04 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -977,8 +977,8 @@
    "phase": "F4",
    "procedure": "Rehearse and export a song using conventional plus generated visuals, then repeat with inference/visual workers failing.",
    "expected": "Manual controls, safe fallback and declared synchronization pass. No universal GPU-crash immunity or bit-identical AI rerender claim.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "lane U: stage\u2192verify(ffprobe -count_frames)\u2192provenance\u2192rename\u2192publish w/ failpoints; t89 8/8 [2026-10-09 01:04 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
