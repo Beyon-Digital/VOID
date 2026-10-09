@@ -50,7 +50,12 @@ jobs:
       - run: pnpm install --frozen-lockfile
       # Build first: packages resolve each other via dist/ (main field), so
       # tests need built deps present.
-      - run: pnpm -r --if-present build
+      - run: pnpm -r --filter=!void-tauri --if-present build
+      # void-tauri's `build` script runs `tauri build` which needs WebKitGTK
+      # system libs (native macOS job covers the real build) — keep the
+      # frontend typecheck + bundle covered here instead:
+      - run: pnpm --filter void-tauri exec vite build
+      - run: pnpm --filter void-tauri exec tsc --noEmit -p tsconfig.json
       - run: pnpm -r --if-present test
 
   native:
