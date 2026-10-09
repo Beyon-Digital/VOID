@@ -22,11 +22,15 @@ impl PcmBuffer {
 }
 
 fn le_u16(b: &[u8], off: usize) -> Result<u16> {
-    let s = b.get(off..off + 2).ok_or_else(|| ProducerError::Pcm("truncated".into()))?;
+    let s = b
+        .get(off..off + 2)
+        .ok_or_else(|| ProducerError::Pcm("truncated".into()))?;
     Ok(u16::from_le_bytes([s[0], s[1]]))
 }
 fn le_u32(b: &[u8], off: usize) -> Result<u32> {
-    let s = b.get(off..off + 4).ok_or_else(|| ProducerError::Pcm("truncated".into()))?;
+    let s = b
+        .get(off..off + 4)
+        .ok_or_else(|| ProducerError::Pcm("truncated".into()))?;
     Ok(u32::from_le_bytes([s[0], s[1], s[2], s[3]]))
 }
 
@@ -90,11 +94,13 @@ pub fn read_wav(bytes: &[u8]) -> Result<PcmBuffer> {
                         | ((data[o + 2] as i32) << 16);
                     (v << 8 >> 8) as f64 / norm(24)
                 }
-                (1, 32) => i32::from_le_bytes([data[o], data[o + 1], data[o + 2], data[o + 3]])
-                    as f64
-                    / norm(32),
-                (3, 32) => f32::from_le_bytes([data[o], data[o + 1], data[o + 2], data[o + 3]])
-                    as f64,
+                (1, 32) => {
+                    i32::from_le_bytes([data[o], data[o + 1], data[o + 2], data[o + 3]]) as f64
+                        / norm(32)
+                }
+                (3, 32) => {
+                    f32::from_le_bytes([data[o], data[o + 1], data[o + 2], data[o + 3]]) as f64
+                }
                 _ => {
                     return Err(ProducerError::Pcm(format!(
                         "encoding tag={tag} bits={bits} unsupported"

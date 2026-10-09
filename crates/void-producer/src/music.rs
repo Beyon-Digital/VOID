@@ -218,9 +218,18 @@ impl Scale {
         let h = hint.trim().to_ascii_lowercase();
         let h = h.strip_suffix('m').unwrap_or(&h);
         let pc = match h {
-            "c" => 0, "c#" | "db" => 1, "d" => 2, "d#" | "eb" => 3, "e" => 4,
-            "f" => 5, "f#" | "gb" => 6, "g" => 7, "g#" | "ab" => 8, "a" => 9,
-            "a#" | "bb" => 10, "b" | "cb" => 11,
+            "c" => 0,
+            "c#" | "db" => 1,
+            "d" => 2,
+            "d#" | "eb" => 3,
+            "e" => 4,
+            "f" => 5,
+            "f#" | "gb" => 6,
+            "g" => 7,
+            "g#" | "ab" => 8,
+            "a" => 9,
+            "a#" | "bb" => 10,
+            "b" | "cb" => 11,
             _ => return Err(ProducerError::InvalidSpec(format!("key hint {hint:?}"))),
         };
         Self::new(pc, kind)
@@ -387,8 +396,16 @@ mod tests {
     #[test]
     fn chord_map_piecewise() {
         let chords = vec![
-            ChordEvent { at_ticks: 0, root_pc: 0, quality: ChordQuality::Major },
-            ChordEvent { at_ticks: 3_840_000, root_pc: 7, quality: ChordQuality::Dominant7 },
+            ChordEvent {
+                at_ticks: 0,
+                root_pc: 0,
+                quality: ChordQuality::Major,
+            },
+            ChordEvent {
+                at_ticks: 3_840_000,
+                root_pc: 7,
+                quality: ChordQuality::Dominant7,
+            },
         ];
         assert_eq!(chord_at(&chords, 0).unwrap().root_pc, 0);
         assert_eq!(chord_at(&chords, 3_839_999).unwrap().root_pc, 0);

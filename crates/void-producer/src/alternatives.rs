@@ -167,7 +167,11 @@ impl AlternativeLedger {
                 "sealed alternatives cannot be deleted".into(),
             ));
         }
-        if self.alternatives.iter().any(|x| x.parent_id.as_deref() == Some(id)) {
+        if self
+            .alternatives
+            .iter()
+            .any(|x| x.parent_id.as_deref() == Some(id))
+        {
             return Err(ProducerError::InvalidSpec(
                 "alternative is a parent of another".into(),
             ));
@@ -218,7 +222,9 @@ mod tests {
         let mut l = AlternativeLedger::new("p");
         let a = l.create("v1", "ck1", None, vec!["sha-a".into()]).unwrap();
         assert!(l.create("v1", "ckX", None, vec![]).is_err()); // dup name
-        assert!(l.create("v2", "ck2", Some(&a.alternative_id), vec![]).is_err()); // parent unsealed
+        assert!(l
+            .create("v2", "ck2", Some(&a.alternative_id), vec![])
+            .is_err()); // parent unsealed
         l.seal(&a.alternative_id).unwrap();
         assert!(l.seal(&a.alternative_id).is_err()); // already sealed
         let b = l

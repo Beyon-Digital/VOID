@@ -5315,6 +5315,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "void-content"
+version = "0.1.0"
+dependencies = [
+ "semver",
+ "serde",
+ "serde_json",
+ "sha2",
+ "tempfile",
+ "thiserror 2.0.21",
+ "uuid",
+ "void-assets",
+]
+
+[[package]]
 name = "void-exchange"
 version = "0.1.0"
 dependencies = [

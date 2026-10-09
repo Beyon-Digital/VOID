@@ -10,7 +10,9 @@
 
 use crate::error::{ProducerError, Result};
 use serde::{Deserialize, Serialize};
-use void_export::{BitDepth, ChannelLayout, ExportFormat, ExportSpec, FramePlan, TailPolicy, TempoSegment};
+use void_export::{
+    BitDepth, ChannelLayout, ExportFormat, ExportSpec, FramePlan, TailPolicy, TempoSegment,
+};
 
 /// A named stem member: one track or bus routed to the export.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -192,7 +194,10 @@ mod tests {
             source_revision: "7".into(),
             range_start_ticks: 0,
             range_end_ticks: 960_000 * 8,
-            tempo_map: vec![TempoSegment { at_ticks: "0".into(), bpm: 120.0 }],
+            tempo_map: vec![TempoSegment {
+                at_ticks: "0".into(),
+                bpm: 120.0,
+            }],
             sample_rate: 48_000,
             bit_depth: BitDepth::Float32,
             channels: ChannelLayout::Stereo,

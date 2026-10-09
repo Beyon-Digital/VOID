@@ -172,9 +172,18 @@ mod tests {
         std::fs::write(&a, b"aaaa").unwrap();
         std::fs::write(&b, b"bbbb").unwrap();
         let refs = vec![
-            ExternalRef { path: a.display().to_string(), referenced_by: "clip1".into() },
-            ExternalRef { path: b.display().to_string(), referenced_by: "clip2".into() },
-            ExternalRef { path: dir.path().join("gone.wav").display().to_string(), referenced_by: "clip3".into() },
+            ExternalRef {
+                path: a.display().to_string(),
+                referenced_by: "clip1".into(),
+            },
+            ExternalRef {
+                path: b.display().to_string(),
+                referenced_by: "clip2".into(),
+            },
+            ExternalRef {
+                path: dir.path().join("gone.wav").display().to_string(),
+                referenced_by: "clip3".into(),
+            },
         ];
         let plan = plan_consolidation("p", &refs, &[]).unwrap();
         assert!(!plan.complete);
@@ -194,8 +203,14 @@ mod tests {
         let same = dir.path().join("same.wav");
         std::fs::write(&same, b"already").unwrap();
         let refs = vec![
-            ExternalRef { path: f.display().to_string(), referenced_by: "c1".into() },
-            ExternalRef { path: same.display().to_string(), referenced_by: "c2".into() },
+            ExternalRef {
+                path: f.display().to_string(),
+                referenced_by: "c1".into(),
+            },
+            ExternalRef {
+                path: same.display().to_string(),
+                referenced_by: "c2".into(),
+            },
         ];
         let plan = plan_consolidation("p", &refs, &[existing.sha256.clone()]).unwrap();
         assert_eq!(plan.refs[1].status, RefStatus::AlreadyContained);

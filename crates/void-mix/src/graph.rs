@@ -218,8 +218,7 @@ impl RoutingGraph {
             .nodes
             .remove(id)
             .ok_or_else(|| MixError::UnknownNode(id.to_string()))?;
-        self.edges
-            .retain(|(f, t, _), _| f != id && t != id);
+        self.edges.retain(|(f, t, _), _| f != id && t != id);
         for g in self.vcas.values_mut() {
             g.members.remove(id);
         }
@@ -301,9 +300,7 @@ impl RoutingGraph {
     pub fn remove_send(&mut self, from: &str, to: &str, kind: EdgeKind) -> Result<Send> {
         self.edges
             .remove(&(from.to_string(), to.to_string(), kind))
-            .ok_or_else(|| {
-                MixError::InvalidSend(format!("no send {from} -> {to} ({kind:?})"))
-            })
+            .ok_or_else(|| MixError::InvalidSend(format!("no send {from} -> {to} ({kind:?})")))
     }
 
     /// Incoming sends of a node, ordered deterministically.
@@ -351,7 +348,9 @@ impl RoutingGraph {
             .get_mut(group_id)
             .ok_or_else(|| MixError::Vca(format!("unknown group '{group_id}'")))?;
         if !gain.is_finite() || gain < 0.0 {
-            return Err(MixError::Vca(format!("VCA gain must be finite >= 0, got {gain}")));
+            return Err(MixError::Vca(format!(
+                "VCA gain must be finite >= 0, got {gain}"
+            )));
         }
         g.gain = gain;
         Ok(())
@@ -388,8 +387,7 @@ impl RoutingGraph {
             return Err(MixError::Unreachable("__void_unreachable__".into()));
         }
 
-        let mut indeg: BTreeMap<&str, usize> =
-            self.nodes.keys().map(|k| (k.as_str(), 0)).collect();
+        let mut indeg: BTreeMap<&str, usize> = self.nodes.keys().map(|k| (k.as_str(), 0)).collect();
         for e in self.edges.values() {
             *indeg.get_mut(e.to.as_str()).expect("edge endpoint checked") += 1;
         }
@@ -423,11 +421,9 @@ impl RoutingGraph {
             .map(String::as_str)
             .filter(|k| !order.iter().any(|o| o == k))
             .collect();
-        Err(MixError::Loop(
-            self.cycle_path(&stuck).unwrap_or_else(|| {
-                stuck.iter().copied().collect::<Vec<_>>().join(" -> ")
-            }),
-        ))
+        Err(MixError::Loop(self.cycle_path(&stuck).unwrap_or_else(
+            || stuck.iter().copied().collect::<Vec<_>>().join(" -> "),
+        )))
     }
 
     /// Full validation entry point: a Master node must exist (the

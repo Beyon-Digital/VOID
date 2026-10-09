@@ -38,11 +38,9 @@ mod latency;
 mod layout;
 
 pub use error::{MixError, Result};
-pub use graph::{
-    EdgeKind, Node, NodeId, NodeKind, RoutingGraph, Send, TapPoint, VcaGroup,
-};
+pub use graph::{EdgeKind, Node, NodeId, NodeKind, RoutingGraph, Send, TapPoint, VcaGroup};
 pub use latency::{
-    compute_compensation, path_latency, simulate_impulse, simulate_raw_arrival,
-    CompensationPlan, EdgeDelay, NodeCompensation,
+    compute_compensation, path_latency, simulate_impulse, simulate_raw_arrival, CompensationPlan,
+    EdgeDelay, NodeCompensation,
 };
 pub use layout::{legality, ChannelLayout, Legality};

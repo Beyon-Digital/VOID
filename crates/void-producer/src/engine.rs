@@ -16,7 +16,9 @@
 //!     as mutable targets.
 
 use crate::error::{ProducerError, Result};
-use crate::music::{chord_at, ChordEvent, GenNote, GrooveTemplate, Range, Scale, TICKS_PER_QUARTER};
+use crate::music::{
+    chord_at, ChordEvent, GenNote, GrooveTemplate, Range, Scale, TICKS_PER_QUARTER,
+};
 use crate::rng::XorShift128;
 use serde::{Deserialize, Serialize};
 
@@ -243,7 +245,12 @@ fn gen_drums(spec: &GenerationSpec, rng: &mut XorShift128) -> Result<Vec<GenNote
         if r.contains_tick(tt) {
             // Kick: beats 1 & 3 (+ optional "and of 2" syncopation).
             if beat_step == 0 && (in_bar_step == 0 || in_bar_step == 2 * spb) {
-                notes.push(GenNote::new(DRUM_KICK, 96 + spec.groove.accent_at(step_index), tt, step / 2)?);
+                notes.push(GenNote::new(
+                    DRUM_KICK,
+                    96 + spec.groove.accent_at(step_index),
+                    tt,
+                    step / 2,
+                )?);
             }
             if beat_step == spb - 1 && in_bar_step == spb && rng.chance(spec.density_ppm / 3) {
                 notes.push(GenNote::new(DRUM_KICK, 84, tt, step / 2)?);
@@ -480,9 +487,11 @@ fn edge_condition(notes: &mut [GenNote], spec: &GenerationSpec, at_tail: bool) {
     };
     let first = &mut notes[0];
     let target = if at_tail {
-        spec.scale.nearest_pitch(last_ctx.pitch + if direction >= 0 { 2 } else { -2 })
+        spec.scale
+            .nearest_pitch(last_ctx.pitch + if direction >= 0 { 2 } else { -2 })
     } else {
-        spec.scale.nearest_pitch(last_ctx.pitch + direction.max(-2).min(2))
+        spec.scale
+            .nearest_pitch(last_ctx.pitch + direction.max(-2).min(2))
     };
     let (lo, hi) = spec.role.register();
     first.pitch = target.clamp(lo, hi);
@@ -577,7 +586,11 @@ mod tests {
             locked_ranges: vec![],
             scale: Scale::new(0, ScaleKind::Major).unwrap(),
             chords: vec![
-                ChordEvent { at_ticks: 0, root_pc: 0, quality: ChordQuality::Major },
+                ChordEvent {
+                    at_ticks: 0,
+                    root_pc: 0,
+                    quality: ChordQuality::Major,
+                },
                 ChordEvent {
                     at_ticks: 4 * TICKS_PER_QUARTER,
                     root_pc: 5,
@@ -635,8 +648,7 @@ mod tests {
         let s = spec(Role::Drums, GenMode::Accompaniment);
         let cand = &generate(&s).unwrap()[0];
         assert!(cand.notes.len() > 30, "{}", cand.notes.len());
-        let pitches: std::collections::HashSet<i32> =
-            cand.notes.iter().map(|n| n.pitch).collect();
+        let pitches: std::collections::HashSet<i32> = cand.notes.iter().map(|n| n.pitch).collect();
         assert!(pitches.contains(&DRUM_KICK));
         assert!(pitches.contains(&DRUM_SNARE));
         assert!(pitches.contains(&DRUM_HAT_CLOSED));

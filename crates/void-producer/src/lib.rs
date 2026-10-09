@@ -32,15 +32,29 @@ pub mod rng;
 pub mod service;
 pub mod stems;
 
+pub use alternatives::{open_or_create, save_ledger, Alternative, AlternativeLedger};
+pub use consolidate::{
+    execute_consolidation, plan_consolidation, ConsolidatedRef, ConsolidationPlan, ExternalRef,
+    RefStatus,
+};
 pub use engine::{generate, GenMode, GeneratedCandidate, GenerationSpec, Role};
 pub use error::{ProducerError, Result};
-pub use music::{locked_region_bytes, ChordEvent, ChordQuality, GenNote, GrooveTemplate, Range, Scale, ScaleKind, TICKS_PER_QUARTER};
-pub use rng::XorShift128;
-pub use service::{accept_plan_checked, request_accompaniment, verify_locked_unchanged, AccompanimentRequest, GenerationSpecBase};
-pub use mastering::{analyze, analyze_wav, draft, suggest_ops, AuditionSpec, MasteringOp, MasteringProposal, MasteringStatus, MasteringStore, MasteringTarget};
+pub use import::{plan_import, ForeignProject, ImportLoss, ImportPlan, PlannedOp};
 pub use loudness::{measure, LoudnessReport};
+pub use mastering::{
+    analyze, analyze_wav, draft, suggest_ops, AuditionSpec, MasteringOp, MasteringProposal,
+    MasteringStatus, MasteringStore, MasteringTarget,
+};
+pub use music::{
+    locked_region_bytes, ChordEvent, ChordQuality, GenNote, GrooveTemplate, Range, Scale,
+    ScaleKind, TICKS_PER_QUARTER,
+};
 pub use pcm::{read_wav, write_wav_f32, PcmBuffer};
-pub use stems::{plan_stem_batch, StemBatchPlan, StemBatchTemplate, StemKind, StemMember, StemSource};
-pub use consolidate::{execute_consolidation, plan_consolidation, ConsolidatedRef, ConsolidationPlan, ExternalRef, RefStatus};
-pub use alternatives::{open_or_create, save_ledger, Alternative, AlternativeLedger};
-pub use import::{plan_import, ForeignProject, ImportPlan, ImportLoss, PlannedOp};
+pub use rng::XorShift128;
+pub use service::{
+    accept_plan_checked, request_accompaniment, verify_locked_unchanged, AccompanimentRequest,
+    GenerationSpecBase,
+};
+pub use stems::{
+    plan_stem_batch, StemBatchPlan, StemBatchTemplate, StemKind, StemMember, StemSource,
+};

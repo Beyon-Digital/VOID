@@ -69,7 +69,15 @@ impl Biquad {
         let b2 = (vh - vb * kk + k2) / a0;
         let a1 = 2.0 * (k2 - 1.0) / a0;
         let a2 = (1.0 - kk + k2) / a0;
-        Self { b0, b1, b2, a1, a2, z1: 0.0, z2: 0.0 }
+        Self {
+            b0,
+            b1,
+            b2,
+            a1,
+            a2,
+            z1: 0.0,
+            z2: 0.0,
+        }
     }
     /// Stage-2 revised high-pass — RLB weighting, f0 = 38.1354709 Hz,
     /// Q = 0.5003270 (Butterworth-ish), generalized to `fs`.
@@ -84,7 +92,15 @@ impl Biquad {
         let b2 = 1.0 / a0;
         let a1 = 2.0 * (k2 - 1.0) / a0;
         let a2 = (1.0 - k / q + k2) / a0;
-        Self { b0, b1, b2, a1, a2, z1: 0.0, z2: 0.0 }
+        Self {
+            b0,
+            b1,
+            b2,
+            a1,
+            a2,
+            z1: 0.0,
+            z2: 0.0,
+        }
     }
     #[inline]
     fn tick(&mut self, x: f64) -> f64 {
@@ -314,7 +330,11 @@ pub fn measure(buf: &PcmBuffer) -> Result<LoudnessReport> {
     let mut sp = 0f64;
     for ch in &buf.channels {
         let pk = true_peak(ch);
-        tp = tp.max(if pk > 0.0 { 20.0 * pk.log10() } else { f64::NEG_INFINITY });
+        tp = tp.max(if pk > 0.0 {
+            20.0 * pk.log10()
+        } else {
+            f64::NEG_INFINITY
+        });
         let s = ch.iter().fold(0f64, |a, &v| a.max((v as f64).abs()));
         sp = sp.max(s);
     }
@@ -327,7 +347,11 @@ pub fn measure(buf: &PcmBuffer) -> Result<LoudnessReport> {
         integrated_lufs: integrated,
         lra_lu: lra,
         true_peak_dbtp: tp,
-        sample_peak_dbfs: if sp > 0.0 { 20.0 * sp.log10() } else { f64::NEG_INFINITY },
+        sample_peak_dbfs: if sp > 0.0 {
+            20.0 * sp.log10()
+        } else {
+            f64::NEG_INFINITY
+        },
         gated_blocks: gated,
         block_lufs_max: block_lufs.iter().copied().fold(f64::NEG_INFINITY, f64::max),
         block_lufs_min: block_lufs.iter().copied().fold(f64::INFINITY, f64::min),
@@ -343,7 +367,9 @@ mod tests {
     fn sine(amp: f64, freq: f64, fs: u32, secs: f64, channels: usize) -> PcmBuffer {
         let n = (fs as f64 * secs) as usize;
         let l: Vec<f32> = (0..n)
-            .map(|i| (amp * (2.0 * std::f64::consts::PI * freq * i as f64 / fs as f64).sin()) as f32)
+            .map(|i| {
+                (amp * (2.0 * std::f64::consts::PI * freq * i as f64 / fs as f64).sin()) as f32
+            })
             .collect();
         PcmBuffer {
             sample_rate: fs,
@@ -363,7 +389,11 @@ mod tests {
             "integrated={}",
             r.integrated_lufs
         );
-        assert!((r.true_peak_dbtp - (-20.0)).abs() < 0.3, "tp={}", r.true_peak_dbtp);
+        assert!(
+            (r.true_peak_dbtp - (-20.0)).abs() < 0.3,
+            "tp={}",
+            r.true_peak_dbtp
+        );
     }
 
     #[test]
@@ -377,7 +407,11 @@ mod tests {
         // Stationary tone → LRA ≈ 0.
         assert!(r.lra_lu < 0.5, "lra={}", r.lra_lu);
         // True peak of a -20 dBFS sine ≈ -20 dBTP.
-        assert!((r.true_peak_dbtp - (-20.0)).abs() < 0.3, "tp={}", r.true_peak_dbtp);
+        assert!(
+            (r.true_peak_dbtp - (-20.0)).abs() < 0.3,
+            "tp={}",
+            r.true_peak_dbtp
+        );
     }
 
     #[test]
@@ -401,10 +435,19 @@ mod tests {
         let mut l = vec![0f32; n];
         for i in 0..n {
             // Alternate 3 s of -14 dBFS and -34 dBFS halves.
-            let amp = if (i / (fs as usize * 3)) % 2 == 0 { 0.2 } else { 0.02 };
-            l[i] = (amp * (2.0 * std::f64::consts::PI * 1_000.0 * i as f64 / fs as f64).sin()) as f32;
+            let amp = if (i / (fs as usize * 3)) % 2 == 0 {
+                0.2
+            } else {
+                0.02
+            };
+            l[i] =
+                (amp * (2.0 * std::f64::consts::PI * 1_000.0 * i as f64 / fs as f64).sin()) as f32;
         }
-        let r = measure(&PcmBuffer { sample_rate: fs, channels: vec![l] }).unwrap();
+        let r = measure(&PcmBuffer {
+            sample_rate: fs,
+            channels: vec![l],
+        })
+        .unwrap();
         assert!(r.lra_lu > 8.0, "lra={}", r.lra_lu);
     }
 

@@ -14,7 +14,10 @@ pub enum ProducerError {
     #[error("malformed document: {0}")]
     MalformedDocument(String),
     #[error("invalid transition: {from} -> {to}")]
-    InvalidTransition { from: &'static str, to: &'static str },
+    InvalidTransition {
+        from: &'static str,
+        to: &'static str,
+    },
     #[error("record not found: {0}")]
     NotFound(String),
     #[error("revalidation failed: {0}")]

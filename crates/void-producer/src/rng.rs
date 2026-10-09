@@ -28,7 +28,9 @@ impl XorShift128 {
         // splitmix64 never returns two zeroes for a real sequence, but
         // guard anyway — xorshift dies on the all-zero state.
         if s == [0, 0] {
-            return Self { s: [0x9E37_79B9_7F4A_7C15, 1] };
+            return Self {
+                s: [0x9E37_79B9_7F4A_7C15, 1],
+            };
         }
         Self { s }
     }

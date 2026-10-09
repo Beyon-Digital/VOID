@@ -148,8 +148,15 @@ pub struct ImportPlan {
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "op", rename_all = "snake_case")]
 pub enum PlannedOp {
-    CreateTrack { void_id: String, name: String, kind: String },
-    CreateBus { void_id: String, name: String },
+    CreateTrack {
+        void_id: String,
+        name: String,
+        kind: String,
+    },
+    CreateBus {
+        void_id: String,
+        name: String,
+    },
     /// Clip shell + payload (audio ref or note list).
     CreateClip {
         void_id: String,
@@ -167,8 +174,11 @@ pub enum PlannedOp {
 }
 
 fn v5(name: &str) -> String {
-    uuid::Uuid::new_v5(&uuid::Uuid::NAMESPACE_OID, format!("void-import:{name}").as_bytes())
-        .to_string()
+    uuid::Uuid::new_v5(
+        &uuid::Uuid::NAMESPACE_OID,
+        format!("void-import:{name}").as_bytes(),
+    )
+    .to_string()
 }
 
 /// Known-mappable track kinds; everything else is a loss entry.
@@ -183,12 +193,11 @@ fn map_track_kind(kind: &str) -> Option<&'static str> {
 /// Build the import plan. `existing_ids` = ids already live in the
 /// destination project — a collision bumps the uuid namespace (v5 over
 /// "id#n") until unique, so a plan NEVER collides.
-pub fn plan_import(
-    src: &ForeignProject,
-    existing_ids: &BTreeSet<String>,
-) -> Result<ImportPlan> {
+pub fn plan_import(src: &ForeignProject, existing_ids: &BTreeSet<String>) -> Result<ImportPlan> {
     if src.tracks.is_empty() && src.buses.is_empty() {
-        return Err(ProducerError::Import("source has no tracks or buses".into()));
+        return Err(ProducerError::Import(
+            "source has no tracks or buses".into(),
+        ));
     }
     if !(20.0..=999.0).contains(&src.tempo_bpm) || src.ts_num == 0 || src.ts_den == 0 {
         return Err(ProducerError::Import("bad tempo/time-signature".into()));
@@ -346,10 +355,21 @@ mod tests {
                 },
             ],
             sends: vec![
-                ForeignSend { from_track_id: "t1".into(), to_bus_id: "b1".into(), gain_db: -6.0 },
-                ForeignSend { from_track_id: "t1".into(), to_bus_id: "ghost".into(), gain_db: -3.0 },
+                ForeignSend {
+                    from_track_id: "t1".into(),
+                    to_bus_id: "b1".into(),
+                    gain_db: -6.0,
+                },
+                ForeignSend {
+                    from_track_id: "t1".into(),
+                    to_bus_id: "ghost".into(),
+                    gain_db: -3.0,
+                },
             ],
-            buses: vec![ForeignBus { id: "b1".into(), name: "Reverb".into() }],
+            buses: vec![ForeignBus {
+                id: "b1".into(),
+                name: "Reverb".into(),
+            }],
         }
     }
 
@@ -371,7 +391,10 @@ mod tests {
         assert_eq!(all.len(), 5);
         // Ops ordered: buses, tracks, clips, sends.
         assert!(matches!(p.ops[0], PlannedOp::CreateBus { .. }));
-        assert!(matches!(p.ops.last().unwrap(), PlannedOp::CreateSend { .. }));
+        assert!(matches!(
+            p.ops.last().unwrap(),
+            PlannedOp::CreateSend { .. }
+        ));
     }
 
     #[test]

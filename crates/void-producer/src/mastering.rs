@@ -176,7 +176,12 @@ fn utc_now() -> String {
         (if mo <= 2 { y + 1 } else { y }, mo, d)
     };
     let s = secs % 86400;
-    format!("{y:04}-{mo:02}-{d:02}T{:02}:{:02}:{:02}Z", s / 3600, (s % 3600) / 60, s % 60)
+    format!(
+        "{y:04}-{mo:02}-{d:02}T{:02}:{:02}:{:02}Z",
+        s / 3600,
+        (s % 3600) / 60,
+        s % 60
+    )
 }
 
 fn sha256_hex(b: &[u8]) -> String {
@@ -471,8 +476,12 @@ mod tests {
         // −16.2 → +2.2 dB; TP −3.5 stays below −1 dBTP after gain →
         // no limiter.
         let (ops, why) = suggest_ops(&report(-16.2, 8.0, -3.5), &t);
-        assert!(ops.iter().any(|o| matches!(o, MasteringOp::Gain { db } if (*db - 2.2).abs() < 0.05)));
-        assert!(!ops.iter().any(|o| matches!(o, MasteringOp::TruePeakLimiter { .. })));
+        assert!(ops
+            .iter()
+            .any(|o| matches!(o, MasteringOp::Gain { db } if (*db - 2.2).abs() < 0.05)));
+        assert!(!ops
+            .iter()
+            .any(|o| matches!(o, MasteringOp::TruePeakLimiter { .. })));
         assert!(!why.is_empty());
     }
 
@@ -498,18 +507,39 @@ mod tests {
     #[test]
     fn lifecycle_pending_ready_accept_reject_stale() {
         let t = MasteringTarget::default();
-        let mut p = draft("p1", "src", "ctx", report(-16.0, 8.0, -3.0), &t, (0, 960_000));
+        let mut p = draft(
+            "p1",
+            "src",
+            "ctx",
+            report(-16.0, 8.0, -3.0),
+            &t,
+            (0, 960_000),
+        );
         assert_eq!(p.status, MasteringStatus::Ready);
         assert!(p.audition.is_some());
         p.accept().unwrap();
         assert!(p.accept().is_err()); // terminal — no re-accept
         assert!(p.reject().is_err());
 
-        let mut q = draft("p1", "src", "ctx", report(-16.0, 8.0, -3.0), &t, (0, 960_000));
+        let mut q = draft(
+            "p1",
+            "src",
+            "ctx",
+            report(-16.0, 8.0, -3.0),
+            &t,
+            (0, 960_000),
+        );
         q.reject().unwrap();
         assert!(q.mark_stale().is_err());
 
-        let mut s = draft("p1", "src", "ctx", report(-16.0, 8.0, -3.0), &t, (0, 960_000));
+        let mut s = draft(
+            "p1",
+            "src",
+            "ctx",
+            report(-16.0, 8.0, -3.0),
+            &t,
+            (0, 960_000),
+        );
         s.mark_stale().unwrap();
         // Revalidate mints a NEW record — stale stays stale.
         let next = s.revalidate("ctx2").unwrap();
@@ -525,13 +555,23 @@ mod tests {
         let dir = tempfile::tempdir().unwrap();
         let store = MasteringStore::new(dir.path());
         let t = MasteringTarget::default();
-        let p = draft("p1", "src", "ctx-A", report(-16.0, 8.0, -3.0), &t, (0, 960_000));
+        let p = draft(
+            "p1",
+            "src",
+            "ctx-A",
+            report(-16.0, 8.0, -3.0),
+            &t,
+            (0, 960_000),
+        );
         store.save(&p).unwrap();
         let back = store.load(&p.proposal_id).unwrap();
         assert_eq!(back.proposal_id, p.proposal_id);
         assert_eq!(back.status, MasteringStatus::Ready);
         assert_eq!(store.sweep_stale("ctx-A").unwrap(), 0);
         assert_eq!(store.sweep_stale("ctx-B").unwrap(), 1);
-        assert_eq!(store.load(&p.proposal_id).unwrap().status, MasteringStatus::Stale);
+        assert_eq!(
+            store.load(&p.proposal_id).unwrap().status,
+            MasteringStatus::Stale
+        );
     }
 }

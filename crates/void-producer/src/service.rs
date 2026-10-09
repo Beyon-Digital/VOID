@@ -7,15 +7,13 @@
 //! `generate()` → `ProposalRecord` (status Ready, candidates ranked by
 //! measured fit) persisted through `ProposalStore`.
 
-use crate::engine::{generate, GenMode, GenerationSpec, GeneratedCandidate};
-use crate::error::{ProducerError, Result};
 use crate::engine::postcondition_check;
+use crate::engine::{generate, GenMode, GeneratedCandidate, GenerationSpec};
+use crate::error::{ProducerError, Result};
 use crate::music::{locked_region_bytes, GenNote, Range, Scale};
 use serde::Serialize;
 use sha2::{Digest, Sha256};
-use void_proposals::record::{
-    Candidate, ProposalProvenance, ProposalRecord, ProposalStatus,
-};
+use void_proposals::record::{Candidate, ProposalProvenance, ProposalRecord, ProposalStatus};
 use void_proposals::store::{utc_now, ProposalStore};
 use void_proposals::{NoteEvent, RegionContext};
 
@@ -116,11 +114,14 @@ pub fn spec_for(req: &AccompanimentRequest) -> Result<GenerationSpec> {
         .collect::<Result<Vec<_>>>()?;
     let scale = match (req.spec.scale, &ctx.key_hint) {
         (Some(s), _) => s,
-        (None, Some(h)) => {
-            Scale::parse_key(h, crate::music::ScaleKind::Major)
-                .unwrap_or(Scale { root_pc: 0, kind: crate::music::ScaleKind::Major })
-        }
-        (None, None) => Scale { root_pc: 0, kind: crate::music::ScaleKind::Major },
+        (None, Some(h)) => Scale::parse_key(h, crate::music::ScaleKind::Major).unwrap_or(Scale {
+            root_pc: 0,
+            kind: crate::music::ScaleKind::Major,
+        }),
+        (None, None) => Scale {
+            root_pc: 0,
+            kind: crate::music::ScaleKind::Major,
+        },
     };
     // Seed: explicit, else first 8 bytes of the context hash —
     // deterministic per-region by construction.
@@ -183,7 +184,11 @@ pub fn request_accompaniment(
         candidates[b]
             .chord_tone_ppm
             .cmp(&candidates[a].chord_tone_ppm)
-            .then(candidates[b].occupancy_ppm.cmp(&candidates[a].occupancy_ppm))
+            .then(
+                candidates[b]
+                    .occupancy_ppm
+                    .cmp(&candidates[a].occupancy_ppm),
+            )
     });
     let mut recs = Vec::with_capacity(candidates.len());
     for (r, &i) in order.iter().enumerate() {
@@ -191,10 +196,7 @@ pub fn request_accompaniment(
     }
     let context_sha = req.context.sha256();
     // Pre-apply snapshot of protected material — T78 byte-identity.
-    let before = locked_region_bytes(
-        &spec.context_notes,
-        &spec.locked_ranges,
-    );
+    let before = locked_region_bytes(&spec.context_notes, &spec.locked_ranges);
     let now = utc_now();
     let spec_json = serde_json::to_value(&SpecEcho {
         role: format!("{:?}", spec.role).to_lowercase(),
