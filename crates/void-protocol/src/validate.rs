@@ -31,6 +31,27 @@ fn check_id(field: &str, value: &str) -> Result<(), Rejection> {
     }
 }
 
+/// Bounded non-empty string for identifiers that are not coordinator UUIDs
+/// (engine-issued proposal ids, model slugs, device ids, scene labels).
+fn check_nonempty(field: &str, value: &str) -> Result<(), Rejection> {
+    if !value.is_empty() && value.len() <= 128 && !value.contains('\0') {
+        Ok(())
+    } else {
+        Err(reject(ErrorCode::BAD_REQUEST, format!("invalid {field}")))
+    }
+}
+
+fn check_sha256(field: &str, value: &str) -> Result<(), Rejection> {
+    if value.len() == 64 && value.bytes().all(|b| b.is_ascii_hexdigit()) {
+        Ok(())
+    } else {
+        Err(reject(
+            ErrorCode::BAD_REQUEST,
+            format!("{field} must be a hex sha256"),
+        ))
+    }
+}
+
 fn check_finite(field: &str, v: f32) -> Result<(), Rejection> {
     if v.is_finite() {
         Ok(())
@@ -279,6 +300,221 @@ pub fn validate_persistent_command(
                     .unwrap_or_default(),
             )?;
         }
+        // -- rev-2 (minor 1) -------------------------------------------------
+        Op::ArmTrackOp => {
+            let op = cmd.op_as_arm_track_op().unwrap();
+            check_id("track", op.track_id().unwrap_or_default())?;
+        }
+        Op::StartRecordingOp => {
+            let op = cmd.op_as_start_recording_op().unwrap();
+            // take_id empty = engine mints one; when present it must be an id.
+            let take = op.take_id().unwrap_or_default();
+            if !take.is_empty() {
+                check_id("take", take)?;
+            }
+        }
+        Op::SetCountInOp => {
+            let op = cmd.op_as_set_count_in_op().unwrap();
+            match op.mode().unwrap_or_default() {
+                "off" => {}
+                "bars" if (1..=16).contains(&op.bars()) => {}
+                _ => {
+                    return Err(reject(
+                        ErrorCode::BAD_REQUEST,
+                        "count-in mode must be \"off\" or \"bars\" (1..=16)",
+                    ));
+                }
+            }
+        }
+        Op::SetMetronomeOp => {
+            let op = cmd.op_as_set_metronome_op().unwrap();
+            check_finite("gain", op.gain())?;
+            if !(0.0..=1.0).contains(&op.gain()) {
+                return Err(reject(ErrorCode::BAD_REQUEST, "metronome gain 0..1"));
+            }
+        }
+        Op::SetPunchInOutOp => {
+            let op = cmd.op_as_set_punch_in_out_op().unwrap();
+            if op.enabled() && (op.in_ticks() < 0 || op.out_ticks() <= op.in_ticks()) {
+                return Err(reject(
+                    ErrorCode::BAD_REQUEST,
+                    "punch range requires 0 <= in < out",
+                ));
+            }
+        }
+        Op::SubmitJobOp => {
+            let op = cmd.op_as_submit_job_op().unwrap();
+            let spec = op
+                .spec()
+                .ok_or_else(|| reject(ErrorCode::BAD_REQUEST, "job spec required"))?;
+            check_id("job", spec.job_id().unwrap_or_default())?;
+            check_id("project", spec.project_id().unwrap_or_default())?;
+            match spec.kind().unwrap_or_default() {
+                "symbolic" | "transcription" | "separation" | "audio_generation"
+                | "visual_generation" | "analysis" | "av_export" => {}
+                _ => {
+                    return Err(reject(ErrorCode::BAD_REQUEST, "unknown job kind"));
+                }
+            }
+            check_nonempty("runtime_id", spec.runtime_id().unwrap_or_default())?;
+            check_sha256("context_sha256", spec.context_sha256().unwrap_or_default())?;
+            if spec.cpu_threads() < 0 {
+                return Err(reject(ErrorCode::BAD_REQUEST, "cpu_threads < 0"));
+            }
+            if let Some(inputs) = spec.inputs() {
+                if inputs.len() > 1024 {
+                    return Err(reject(ErrorCode::BAD_REQUEST, "too many job inputs"));
+                }
+            }
+            if spec.parameters_json().unwrap_or_default().len() > 256 * 1024 {
+                return Err(reject(ErrorCode::BAD_REQUEST, "parameters_json too large"));
+            }
+        }
+        Op::CancelJobOp => {
+            check_id(
+                "job",
+                cmd.op_as_cancel_job_op()
+                    .unwrap()
+                    .job_id()
+                    .unwrap_or_default(),
+            )?;
+        }
+        Op::PauseJobOp => {
+            check_id(
+                "job",
+                cmd.op_as_pause_job_op()
+                    .unwrap()
+                    .job_id()
+                    .unwrap_or_default(),
+            )?;
+        }
+        Op::InstallModelOp => {
+            let op = cmd.op_as_install_model_op().unwrap();
+            check_nonempty("model_id", op.model_id().unwrap_or_default())?;
+            check_nonempty("model_version", op.model_version().unwrap_or_default())?;
+            check_nonempty("source_uri", op.source_uri().unwrap_or_default())?;
+        }
+        Op::RequestProposalOp => {
+            let op = cmd.op_as_request_proposal_op().unwrap();
+            check_nonempty("context_digest", op.context_digest().unwrap_or_default())?;
+            if !(1..=8).contains(&op.max_proposals()) {
+                return Err(reject(ErrorCode::BAD_REQUEST, "max_proposals 1..=8"));
+            }
+        }
+        Op::ResolveProposalOp => {
+            let op = cmd.op_as_resolve_proposal_op().unwrap();
+            check_nonempty("proposal_id", op.proposal_id().unwrap_or_default())?;
+            if op.candidate_rank() < -1 {
+                return Err(reject(ErrorCode::BAD_REQUEST, "candidate_rank < -1"));
+            }
+        }
+        Op::PreviewLayerOp => {
+            let op = cmd.op_as_preview_layer_op().unwrap();
+            check_nonempty("proposal_id", op.proposal_id().unwrap_or_default())?;
+            check_nonempty("clip_id", op.clip_id().unwrap_or_default())?;
+            let notes = op.notes();
+            if notes.as_ref().map(|n| n.len()).unwrap_or(0) > 4096 {
+                return Err(reject(ErrorCode::BAD_REQUEST, "preview note count > 4096"));
+            }
+            if let Some(notes) = notes {
+                for n in notes {
+                    if n.pitch() > 127
+                        || n.velocity() == 0
+                        || n.velocity() > 127
+                        || n.length_ticks() <= 0
+                        || n.start_ticks() < 0
+                    {
+                        return Err(reject(ErrorCode::BAD_REQUEST, "preview note out of range"));
+                    }
+                }
+            }
+        }
+        Op::IngestAssetOp => {
+            let op = cmd.op_as_ingest_asset_op().unwrap();
+            let rel = op.rel_path().unwrap_or_default();
+            if rel.is_empty() || rel.contains('\0') {
+                return Err(reject(ErrorCode::BAD_REQUEST, "rel_path empty or invalid"));
+            }
+            check_nonempty("media_type", op.media_type().unwrap_or_default())?;
+        }
+        Op::RelinkAssetOp => {
+            let op = cmd.op_as_relink_asset_op().unwrap();
+            check_id("asset", op.asset_id().unwrap_or_default())?;
+            check_sha256("sha256", op.sha256().unwrap_or_default())?;
+        }
+        Op::SetPluginBypassOp => {
+            check_id(
+                "plugin_instance",
+                cmd.op_as_set_plugin_bypass_op()
+                    .unwrap()
+                    .plugin_instance_id()
+                    .unwrap_or_default(),
+            )?;
+        }
+        Op::RescanPluginsOp => {
+            // empty plugin_uid = full rescan; otherwise just bound the length.
+            let uid = cmd
+                .op_as_rescan_plugins_op()
+                .unwrap()
+                .plugin_uid()
+                .unwrap_or_default();
+            if uid.len() > 128 {
+                return Err(reject(ErrorCode::BAD_REQUEST, "plugin_uid too long"));
+            }
+        }
+        Op::RestorePluginStateOp => {
+            let op = cmd.op_as_restore_plugin_state_op().unwrap();
+            check_id(
+                "plugin_instance",
+                op.plugin_instance_id().unwrap_or_default(),
+            )?;
+            check_id("state_asset", op.state_asset_id().unwrap_or_default())?;
+        }
+        Op::SaveProjectAsOp => {
+            let op = cmd.op_as_save_project_as_op().unwrap();
+            let dir = op.container_dir().unwrap_or_default();
+            if dir.is_empty() || dir.contains('\0') {
+                return Err(reject(
+                    ErrorCode::BAD_REQUEST,
+                    "container_dir empty or invalid",
+                ));
+            }
+        }
+        Op::LaunchSceneOp => {
+            let op = cmd.op_as_launch_scene_op().unwrap();
+            check_nonempty("scene_id", op.scene_id().unwrap_or_default())?;
+            if op.quantize() == proto::LaunchQuantize::CUSTOM && op.quantize_ticks() <= 0 {
+                return Err(reject(
+                    ErrorCode::BAD_REQUEST,
+                    "CUSTOM quantize needs quantize_ticks > 0",
+                ));
+            }
+        }
+        Op::StopSceneOp => {
+            let op = cmd.op_as_stop_scene_op().unwrap();
+            // empty scene_id = stop all; otherwise must be present and bounded.
+            let scene = op.scene_id().unwrap_or_default();
+            if !scene.is_empty() {
+                check_nonempty("scene_id", scene)?;
+            }
+            if op.quantize() == proto::LaunchQuantize::CUSTOM && op.quantize_ticks() <= 0 {
+                return Err(reject(
+                    ErrorCode::BAD_REQUEST,
+                    "CUSTOM quantize needs quantize_ticks > 0",
+                ));
+            }
+        }
+        Op::LaunchClipOp => {
+            let op = cmd.op_as_launch_clip_op().unwrap();
+            check_nonempty("slot_id", op.slot_id().unwrap_or_default())?;
+            if op.quantize() == proto::LaunchQuantize::CUSTOM && op.quantize_ticks() <= 0 {
+                return Err(reject(
+                    ErrorCode::BAD_REQUEST,
+                    "CUSTOM quantize needs quantize_ticks > 0",
+                ));
+            }
+        }
+        Op::StopRecordingOp => {}
         // Ops with no numeric/ID fields to check still pass through.
         Op::CreateProjectOp
         | Op::OpenProjectOp

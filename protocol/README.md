@@ -1,6 +1,6 @@
 # VOID native control protocol — wire semantics
 
-Schema: `void_control.fbs` (protocol major 1, minor 0). Normative rules live in
+Schema: `void_control.fbs` (protocol major 1, minor 1 = rev-2). Normative rules live in
 `docs/void-handoff/CONTRACTS.md`; this file records the concrete wire layout.
 Generated bindings are produced by `tools/protocol-gen.sh` with pinned
 `flatc 25.9.23` and are **not** committed — they land in `protocol/generated/`

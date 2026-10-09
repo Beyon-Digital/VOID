@@ -111,6 +111,78 @@ struct OpenPluginEditorOpBuilder;
 struct ClosePluginEditorOp;
 struct ClosePluginEditorOpBuilder;
 
+struct ArmTrackOp;
+struct ArmTrackOpBuilder;
+
+struct StartRecordingOp;
+struct StartRecordingOpBuilder;
+
+struct StopRecordingOp;
+struct StopRecordingOpBuilder;
+
+struct SetCountInOp;
+struct SetCountInOpBuilder;
+
+struct SetMetronomeOp;
+struct SetMetronomeOpBuilder;
+
+struct SetPunchInOutOp;
+struct SetPunchInOutOpBuilder;
+
+struct JobSpec;
+struct JobSpecBuilder;
+
+struct SubmitJobOp;
+struct SubmitJobOpBuilder;
+
+struct CancelJobOp;
+struct CancelJobOpBuilder;
+
+struct PauseJobOp;
+struct PauseJobOpBuilder;
+
+struct InstallModelOp;
+struct InstallModelOpBuilder;
+
+struct PreviewNote;
+struct PreviewNoteBuilder;
+
+struct RequestProposalOp;
+struct RequestProposalOpBuilder;
+
+struct ResolveProposalOp;
+struct ResolveProposalOpBuilder;
+
+struct PreviewLayerOp;
+struct PreviewLayerOpBuilder;
+
+struct IngestAssetOp;
+struct IngestAssetOpBuilder;
+
+struct RelinkAssetOp;
+struct RelinkAssetOpBuilder;
+
+struct SetPluginBypassOp;
+struct SetPluginBypassOpBuilder;
+
+struct RescanPluginsOp;
+struct RescanPluginsOpBuilder;
+
+struct RestorePluginStateOp;
+struct RestorePluginStateOpBuilder;
+
+struct SaveProjectAsOp;
+struct SaveProjectAsOpBuilder;
+
+struct LaunchSceneOp;
+struct LaunchSceneOpBuilder;
+
+struct StopSceneOp;
+struct StopSceneOpBuilder;
+
+struct LaunchClipOp;
+struct LaunchClipOpBuilder;
+
 struct PersistentCommand;
 struct PersistentCommandBuilder;
 
@@ -158,6 +230,15 @@ struct SaveResultEventBuilder;
 
 struct TransportAck;
 struct TransportAckBuilder;
+
+struct JobEvent;
+struct JobEventBuilder;
+
+struct ProposalStaleEvent;
+struct ProposalStaleEventBuilder;
+
+struct InputDeviceLostEvent;
+struct InputDeviceLostEventBuilder;
 
 struct TelemetryFrame;
 struct TelemetryFrameBuilder;
@@ -483,6 +564,75 @@ inline const char *EnumNameTransportOp(TransportOp e) {
   return EnumNamesTransportOp()[index];
 }
 
+enum MonitorMode : int8_t {
+  MonitorMode_OFF = 0,
+  MonitorMode_AUTOMATIC = 1,
+  MonitorMode_ON = 2,
+  MonitorMode_MIN = MonitorMode_OFF,
+  MonitorMode_MAX = MonitorMode_ON
+};
+
+inline const MonitorMode (&EnumValuesMonitorMode())[3] {
+  static const MonitorMode values[] = {
+    MonitorMode_OFF,
+    MonitorMode_AUTOMATIC,
+    MonitorMode_ON
+  };
+  return values;
+}
+
+inline const char * const *EnumNamesMonitorMode() {
+  static const char * const names[4] = {
+    "OFF",
+    "AUTOMATIC",
+    "ON",
+    nullptr
+  };
+  return names;
+}
+
+inline const char *EnumNameMonitorMode(MonitorMode e) {
+  if (::flatbuffers::IsOutRange(e, MonitorMode_OFF, MonitorMode_ON)) return "";
+  const size_t index = static_cast<size_t>(e);
+  return EnumNamesMonitorMode()[index];
+}
+
+enum LaunchQuantize : int8_t {
+  LaunchQuantize_IMMEDIATE = 0,
+  LaunchQuantize_BAR = 1,
+  LaunchQuantize_BEAT = 2,
+  LaunchQuantize_CUSTOM = 3,
+  LaunchQuantize_MIN = LaunchQuantize_IMMEDIATE,
+  LaunchQuantize_MAX = LaunchQuantize_CUSTOM
+};
+
+inline const LaunchQuantize (&EnumValuesLaunchQuantize())[4] {
+  static const LaunchQuantize values[] = {
+    LaunchQuantize_IMMEDIATE,
+    LaunchQuantize_BAR,
+    LaunchQuantize_BEAT,
+    LaunchQuantize_CUSTOM
+  };
+  return values;
+}
+
+inline const char * const *EnumNamesLaunchQuantize() {
+  static const char * const names[5] = {
+    "IMMEDIATE",
+    "BAR",
+    "BEAT",
+    "CUSTOM",
+    nullptr
+  };
+  return names;
+}
+
+inline const char *EnumNameLaunchQuantize(LaunchQuantize e) {
+  if (::flatbuffers::IsOutRange(e, LaunchQuantize_IMMEDIATE, LaunchQuantize_CUSTOM)) return "";
+  const size_t index = static_cast<size_t>(e);
+  return EnumNamesLaunchQuantize()[index];
+}
+
 enum ViewKind : int8_t {
   ViewKind_PROJECT_SUMMARY = 0,
   ViewKind_TRACK_LIST = 1,
@@ -491,11 +641,17 @@ enum ViewKind : int8_t {
   ViewKind_ASSET_LIST = 4,
   ViewKind_PLUGIN_LIST = 5,
   ViewKind_RECEIPT_LIST = 6,
+  ViewKind_TAKE_LIST = 7,
+  ViewKind_INPUT_DEVICE_LIST = 8,
+  ViewKind_JOB_LIST = 9,
+  ViewKind_MODEL_LIST = 10,
+  ViewKind_PROPOSAL_LIST = 11,
+  ViewKind_SCENE_LIST = 12,
   ViewKind_MIN = ViewKind_PROJECT_SUMMARY,
-  ViewKind_MAX = ViewKind_RECEIPT_LIST
+  ViewKind_MAX = ViewKind_SCENE_LIST
 };
 
-inline const ViewKind (&EnumValuesViewKind())[7] {
+inline const ViewKind (&EnumValuesViewKind())[13] {
   static const ViewKind values[] = {
     ViewKind_PROJECT_SUMMARY,
     ViewKind_TRACK_LIST,
@@ -503,13 +659,19 @@ inline const ViewKind (&EnumValuesViewKind())[7] {
     ViewKind_NOTE_RANGE,
     ViewKind_ASSET_LIST,
     ViewKind_PLUGIN_LIST,
-    ViewKind_RECEIPT_LIST
+    ViewKind_RECEIPT_LIST,
+    ViewKind_TAKE_LIST,
+    ViewKind_INPUT_DEVICE_LIST,
+    ViewKind_JOB_LIST,
+    ViewKind_MODEL_LIST,
+    ViewKind_PROPOSAL_LIST,
+    ViewKind_SCENE_LIST
   };
   return values;
 }
 
 inline const char * const *EnumNamesViewKind() {
-  static const char * const names[8] = {
+  static const char * const names[14] = {
     "PROJECT_SUMMARY",
     "TRACK_LIST",
     "CLIP_LIST",
@@ -517,13 +679,19 @@ inline const char * const *EnumNamesViewKind() {
     "ASSET_LIST",
     "PLUGIN_LIST",
     "RECEIPT_LIST",
+    "TAKE_LIST",
+    "INPUT_DEVICE_LIST",
+    "JOB_LIST",
+    "MODEL_LIST",
+    "PROPOSAL_LIST",
+    "SCENE_LIST",
     nullptr
   };
   return names;
 }
 
 inline const char *EnumNameViewKind(ViewKind e) {
-  if (::flatbuffers::IsOutRange(e, ViewKind_PROJECT_SUMMARY, ViewKind_RECEIPT_LIST)) return "";
+  if (::flatbuffers::IsOutRange(e, ViewKind_PROJECT_SUMMARY, ViewKind_SCENE_LIST)) return "";
   const size_t index = static_cast<size_t>(e);
   return EnumNamesViewKind()[index];
 }
@@ -562,11 +730,33 @@ enum PersistentOp : uint8_t {
   PersistentOp_SetPluginParamOp = 30,
   PersistentOp_OpenPluginEditorOp = 31,
   PersistentOp_ClosePluginEditorOp = 32,
+  PersistentOp_ArmTrackOp = 33,
+  PersistentOp_StartRecordingOp = 34,
+  PersistentOp_StopRecordingOp = 35,
+  PersistentOp_SetCountInOp = 36,
+  PersistentOp_SetMetronomeOp = 37,
+  PersistentOp_SetPunchInOutOp = 38,
+  PersistentOp_SubmitJobOp = 39,
+  PersistentOp_CancelJobOp = 40,
+  PersistentOp_PauseJobOp = 41,
+  PersistentOp_InstallModelOp = 42,
+  PersistentOp_RequestProposalOp = 43,
+  PersistentOp_ResolveProposalOp = 44,
+  PersistentOp_PreviewLayerOp = 45,
+  PersistentOp_IngestAssetOp = 46,
+  PersistentOp_RelinkAssetOp = 47,
+  PersistentOp_SetPluginBypassOp = 48,
+  PersistentOp_RescanPluginsOp = 49,
+  PersistentOp_RestorePluginStateOp = 50,
+  PersistentOp_SaveProjectAsOp = 51,
+  PersistentOp_LaunchSceneOp = 52,
+  PersistentOp_StopSceneOp = 53,
+  PersistentOp_LaunchClipOp = 54,
   PersistentOp_MIN = PersistentOp_NONE,
-  PersistentOp_MAX = PersistentOp_ClosePluginEditorOp
+  PersistentOp_MAX = PersistentOp_LaunchClipOp
 };
 
-inline const PersistentOp (&EnumValuesPersistentOp())[33] {
+inline const PersistentOp (&EnumValuesPersistentOp())[55] {
   static const PersistentOp values[] = {
     PersistentOp_NONE,
     PersistentOp_CreateProjectOp,
@@ -600,13 +790,35 @@ inline const PersistentOp (&EnumValuesPersistentOp())[33] {
     PersistentOp_RemovePluginOp,
     PersistentOp_SetPluginParamOp,
     PersistentOp_OpenPluginEditorOp,
-    PersistentOp_ClosePluginEditorOp
+    PersistentOp_ClosePluginEditorOp,
+    PersistentOp_ArmTrackOp,
+    PersistentOp_StartRecordingOp,
+    PersistentOp_StopRecordingOp,
+    PersistentOp_SetCountInOp,
+    PersistentOp_SetMetronomeOp,
+    PersistentOp_SetPunchInOutOp,
+    PersistentOp_SubmitJobOp,
+    PersistentOp_CancelJobOp,
+    PersistentOp_PauseJobOp,
+    PersistentOp_InstallModelOp,
+    PersistentOp_RequestProposalOp,
+    PersistentOp_ResolveProposalOp,
+    PersistentOp_PreviewLayerOp,
+    PersistentOp_IngestAssetOp,
+    PersistentOp_RelinkAssetOp,
+    PersistentOp_SetPluginBypassOp,
+    PersistentOp_RescanPluginsOp,
+    PersistentOp_RestorePluginStateOp,
+    PersistentOp_SaveProjectAsOp,
+    PersistentOp_LaunchSceneOp,
+    PersistentOp_StopSceneOp,
+    PersistentOp_LaunchClipOp
   };
   return values;
 }
 
 inline const char * const *EnumNamesPersistentOp() {
-  static const char * const names[34] = {
+  static const char * const names[56] = {
     "NONE",
     "CreateProjectOp",
     "OpenProjectOp",
@@ -640,13 +852,35 @@ inline const char * const *EnumNamesPersistentOp() {
     "SetPluginParamOp",
     "OpenPluginEditorOp",
     "ClosePluginEditorOp",
+    "ArmTrackOp",
+    "StartRecordingOp",
+    "StopRecordingOp",
+    "SetCountInOp",
+    "SetMetronomeOp",
+    "SetPunchInOutOp",
+    "SubmitJobOp",
+    "CancelJobOp",
+    "PauseJobOp",
+    "InstallModelOp",
+    "RequestProposalOp",
+    "ResolveProposalOp",
+    "PreviewLayerOp",
+    "IngestAssetOp",
+    "RelinkAssetOp",
+    "SetPluginBypassOp",
+    "RescanPluginsOp",
+    "RestorePluginStateOp",
+    "SaveProjectAsOp",
+    "LaunchSceneOp",
+    "StopSceneOp",
+    "LaunchClipOp",
     nullptr
   };
   return names;
 }
 
 inline const char *EnumNamePersistentOp(PersistentOp e) {
-  if (::flatbuffers::IsOutRange(e, PersistentOp_NONE, PersistentOp_ClosePluginEditorOp)) return "";
+  if (::flatbuffers::IsOutRange(e, PersistentOp_NONE, PersistentOp_LaunchClipOp)) return "";
   const size_t index = static_cast<size_t>(e);
   return EnumNamesPersistentOp()[index];
 }
@@ -781,6 +1015,94 @@ template<> struct PersistentOpTraits<voidproto::OpenPluginEditorOp> {
 
 template<> struct PersistentOpTraits<voidproto::ClosePluginEditorOp> {
   static const PersistentOp enum_value = PersistentOp_ClosePluginEditorOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::ArmTrackOp> {
+  static const PersistentOp enum_value = PersistentOp_ArmTrackOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::StartRecordingOp> {
+  static const PersistentOp enum_value = PersistentOp_StartRecordingOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::StopRecordingOp> {
+  static const PersistentOp enum_value = PersistentOp_StopRecordingOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::SetCountInOp> {
+  static const PersistentOp enum_value = PersistentOp_SetCountInOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::SetMetronomeOp> {
+  static const PersistentOp enum_value = PersistentOp_SetMetronomeOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::SetPunchInOutOp> {
+  static const PersistentOp enum_value = PersistentOp_SetPunchInOutOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::SubmitJobOp> {
+  static const PersistentOp enum_value = PersistentOp_SubmitJobOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::CancelJobOp> {
+  static const PersistentOp enum_value = PersistentOp_CancelJobOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::PauseJobOp> {
+  static const PersistentOp enum_value = PersistentOp_PauseJobOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::InstallModelOp> {
+  static const PersistentOp enum_value = PersistentOp_InstallModelOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::RequestProposalOp> {
+  static const PersistentOp enum_value = PersistentOp_RequestProposalOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::ResolveProposalOp> {
+  static const PersistentOp enum_value = PersistentOp_ResolveProposalOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::PreviewLayerOp> {
+  static const PersistentOp enum_value = PersistentOp_PreviewLayerOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::IngestAssetOp> {
+  static const PersistentOp enum_value = PersistentOp_IngestAssetOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::RelinkAssetOp> {
+  static const PersistentOp enum_value = PersistentOp_RelinkAssetOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::SetPluginBypassOp> {
+  static const PersistentOp enum_value = PersistentOp_SetPluginBypassOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::RescanPluginsOp> {
+  static const PersistentOp enum_value = PersistentOp_RescanPluginsOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::RestorePluginStateOp> {
+  static const PersistentOp enum_value = PersistentOp_RestorePluginStateOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::SaveProjectAsOp> {
+  static const PersistentOp enum_value = PersistentOp_SaveProjectAsOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::LaunchSceneOp> {
+  static const PersistentOp enum_value = PersistentOp_LaunchSceneOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::StopSceneOp> {
+  static const PersistentOp enum_value = PersistentOp_StopSceneOp;
+};
+
+template<> struct PersistentOpTraits<voidproto::LaunchClipOp> {
+  static const PersistentOp enum_value = PersistentOp_LaunchClipOp;
 };
 
 bool VerifyPersistentOp(::flatbuffers::Verifier &verifier, const void *obj, PersistentOp type);
@@ -964,35 +1286,44 @@ enum TelemetryEvent : uint8_t {
   TelemetryEvent_MeterFrame = 2,
   TelemetryEvent_SaveResultEvent = 3,
   TelemetryEvent_TransportAck = 4,
+  TelemetryEvent_JobEvent = 5,
+  TelemetryEvent_ProposalStaleEvent = 6,
+  TelemetryEvent_InputDeviceLostEvent = 7,
   TelemetryEvent_MIN = TelemetryEvent_NONE,
-  TelemetryEvent_MAX = TelemetryEvent_TransportAck
+  TelemetryEvent_MAX = TelemetryEvent_InputDeviceLostEvent
 };
 
-inline const TelemetryEvent (&EnumValuesTelemetryEvent())[5] {
+inline const TelemetryEvent (&EnumValuesTelemetryEvent())[8] {
   static const TelemetryEvent values[] = {
     TelemetryEvent_NONE,
     TelemetryEvent_ClockSnapshot,
     TelemetryEvent_MeterFrame,
     TelemetryEvent_SaveResultEvent,
-    TelemetryEvent_TransportAck
+    TelemetryEvent_TransportAck,
+    TelemetryEvent_JobEvent,
+    TelemetryEvent_ProposalStaleEvent,
+    TelemetryEvent_InputDeviceLostEvent
   };
   return values;
 }
 
 inline const char * const *EnumNamesTelemetryEvent() {
-  static const char * const names[6] = {
+  static const char * const names[9] = {
     "NONE",
     "ClockSnapshot",
     "MeterFrame",
     "SaveResultEvent",
     "TransportAck",
+    "JobEvent",
+    "ProposalStaleEvent",
+    "InputDeviceLostEvent",
     nullptr
   };
   return names;
 }
 
 inline const char *EnumNameTelemetryEvent(TelemetryEvent e) {
-  if (::flatbuffers::IsOutRange(e, TelemetryEvent_NONE, TelemetryEvent_TransportAck)) return "";
+  if (::flatbuffers::IsOutRange(e, TelemetryEvent_NONE, TelemetryEvent_InputDeviceLostEvent)) return "";
   const size_t index = static_cast<size_t>(e);
   return EnumNamesTelemetryEvent()[index];
 }
@@ -1015,6 +1346,18 @@ template<> struct TelemetryEventTraits<voidproto::SaveResultEvent> {
 
 template<> struct TelemetryEventTraits<voidproto::TransportAck> {
   static const TelemetryEvent enum_value = TelemetryEvent_TransportAck;
+};
+
+template<> struct TelemetryEventTraits<voidproto::JobEvent> {
+  static const TelemetryEvent enum_value = TelemetryEvent_JobEvent;
+};
+
+template<> struct TelemetryEventTraits<voidproto::ProposalStaleEvent> {
+  static const TelemetryEvent enum_value = TelemetryEvent_ProposalStaleEvent;
+};
+
+template<> struct TelemetryEventTraits<voidproto::InputDeviceLostEvent> {
+  static const TelemetryEvent enum_value = TelemetryEvent_InputDeviceLostEvent;
 };
 
 bool VerifyTelemetryEvent(::flatbuffers::Verifier &verifier, const void *obj, TelemetryEvent type);
@@ -3262,6 +3605,1827 @@ inline ::flatbuffers::Offset<ClosePluginEditorOp> CreateClosePluginEditorOpDirec
       plugin_instance_id__);
 }
 
+struct ArmTrackOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef ArmTrackOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_TRACK_ID = 4,
+    VT_RECORD_ENABLED = 6,
+    VT_INPUT_DEVICE = 8,
+    VT_MONITOR_MODE = 10,
+    VT_IS_MIDI = 12
+  };
+  const ::flatbuffers::String *track_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_TRACK_ID);
+  }
+  bool record_enabled() const {
+    return GetField<uint8_t>(VT_RECORD_ENABLED, 1) != 0;
+  }
+  const ::flatbuffers::String *input_device() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_INPUT_DEVICE);
+  }
+  voidproto::MonitorMode monitor_mode() const {
+    return static_cast<voidproto::MonitorMode>(GetField<int8_t>(VT_MONITOR_MODE, 1));
+  }
+  bool is_midi() const {
+    return GetField<uint8_t>(VT_IS_MIDI, 0) != 0;
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_TRACK_ID) &&
+           verifier.VerifyString(track_id()) &&
+           VerifyField<uint8_t>(verifier, VT_RECORD_ENABLED, 1) &&
+           VerifyOffset(verifier, VT_INPUT_DEVICE) &&
+           verifier.VerifyString(input_device()) &&
+           VerifyField<int8_t>(verifier, VT_MONITOR_MODE, 1) &&
+           VerifyField<uint8_t>(verifier, VT_IS_MIDI, 1) &&
+           verifier.EndTable();
+  }
+};
+
+struct ArmTrackOpBuilder {
+  typedef ArmTrackOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_track_id(::flatbuffers::Offset<::flatbuffers::String> track_id) {
+    fbb_.AddOffset(ArmTrackOp::VT_TRACK_ID, track_id);
+  }
+  void add_record_enabled(bool record_enabled) {
+    fbb_.AddElement<uint8_t>(ArmTrackOp::VT_RECORD_ENABLED, static_cast<uint8_t>(record_enabled), 1);
+  }
+  void add_input_device(::flatbuffers::Offset<::flatbuffers::String> input_device) {
+    fbb_.AddOffset(ArmTrackOp::VT_INPUT_DEVICE, input_device);
+  }
+  void add_monitor_mode(voidproto::MonitorMode monitor_mode) {
+    fbb_.AddElement<int8_t>(ArmTrackOp::VT_MONITOR_MODE, static_cast<int8_t>(monitor_mode), 1);
+  }
+  void add_is_midi(bool is_midi) {
+    fbb_.AddElement<uint8_t>(ArmTrackOp::VT_IS_MIDI, static_cast<uint8_t>(is_midi), 0);
+  }
+  explicit ArmTrackOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<ArmTrackOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<ArmTrackOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<ArmTrackOp> CreateArmTrackOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> track_id = 0,
+    bool record_enabled = true,
+    ::flatbuffers::Offset<::flatbuffers::String> input_device = 0,
+    voidproto::MonitorMode monitor_mode = voidproto::MonitorMode_AUTOMATIC,
+    bool is_midi = false) {
+  ArmTrackOpBuilder builder_(_fbb);
+  builder_.add_input_device(input_device);
+  builder_.add_track_id(track_id);
+  builder_.add_is_midi(is_midi);
+  builder_.add_monitor_mode(monitor_mode);
+  builder_.add_record_enabled(record_enabled);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<ArmTrackOp> CreateArmTrackOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *track_id = nullptr,
+    bool record_enabled = true,
+    const char *input_device = nullptr,
+    voidproto::MonitorMode monitor_mode = voidproto::MonitorMode_AUTOMATIC,
+    bool is_midi = false) {
+  auto track_id__ = track_id ? _fbb.CreateString(track_id) : 0;
+  auto input_device__ = input_device ? _fbb.CreateString(input_device) : 0;
+  return voidproto::CreateArmTrackOp(
+      _fbb,
+      track_id__,
+      record_enabled,
+      input_device__,
+      monitor_mode,
+      is_midi);
+}
+
+struct StartRecordingOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef StartRecordingOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_TAKE_ID = 4
+  };
+  const ::flatbuffers::String *take_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_TAKE_ID);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_TAKE_ID) &&
+           verifier.VerifyString(take_id()) &&
+           verifier.EndTable();
+  }
+};
+
+struct StartRecordingOpBuilder {
+  typedef StartRecordingOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_take_id(::flatbuffers::Offset<::flatbuffers::String> take_id) {
+    fbb_.AddOffset(StartRecordingOp::VT_TAKE_ID, take_id);
+  }
+  explicit StartRecordingOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<StartRecordingOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<StartRecordingOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<StartRecordingOp> CreateStartRecordingOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> take_id = 0) {
+  StartRecordingOpBuilder builder_(_fbb);
+  builder_.add_take_id(take_id);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<StartRecordingOp> CreateStartRecordingOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *take_id = nullptr) {
+  auto take_id__ = take_id ? _fbb.CreateString(take_id) : 0;
+  return voidproto::CreateStartRecordingOp(
+      _fbb,
+      take_id__);
+}
+
+struct StopRecordingOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef StopRecordingOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_DISCARD = 4
+  };
+  bool discard() const {
+    return GetField<uint8_t>(VT_DISCARD, 0) != 0;
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyField<uint8_t>(verifier, VT_DISCARD, 1) &&
+           verifier.EndTable();
+  }
+};
+
+struct StopRecordingOpBuilder {
+  typedef StopRecordingOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_discard(bool discard) {
+    fbb_.AddElement<uint8_t>(StopRecordingOp::VT_DISCARD, static_cast<uint8_t>(discard), 0);
+  }
+  explicit StopRecordingOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<StopRecordingOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<StopRecordingOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<StopRecordingOp> CreateStopRecordingOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    bool discard = false) {
+  StopRecordingOpBuilder builder_(_fbb);
+  builder_.add_discard(discard);
+  return builder_.Finish();
+}
+
+struct SetCountInOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef SetCountInOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_MODE = 4,
+    VT_BARS = 6
+  };
+  const ::flatbuffers::String *mode() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_MODE);
+  }
+  int32_t bars() const {
+    return GetField<int32_t>(VT_BARS, 1);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_MODE) &&
+           verifier.VerifyString(mode()) &&
+           VerifyField<int32_t>(verifier, VT_BARS, 4) &&
+           verifier.EndTable();
+  }
+};
+
+struct SetCountInOpBuilder {
+  typedef SetCountInOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_mode(::flatbuffers::Offset<::flatbuffers::String> mode) {
+    fbb_.AddOffset(SetCountInOp::VT_MODE, mode);
+  }
+  void add_bars(int32_t bars) {
+    fbb_.AddElement<int32_t>(SetCountInOp::VT_BARS, bars, 1);
+  }
+  explicit SetCountInOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<SetCountInOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<SetCountInOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<SetCountInOp> CreateSetCountInOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> mode = 0,
+    int32_t bars = 1) {
+  SetCountInOpBuilder builder_(_fbb);
+  builder_.add_bars(bars);
+  builder_.add_mode(mode);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<SetCountInOp> CreateSetCountInOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *mode = nullptr,
+    int32_t bars = 1) {
+  auto mode__ = mode ? _fbb.CreateString(mode) : 0;
+  return voidproto::CreateSetCountInOp(
+      _fbb,
+      mode__,
+      bars);
+}
+
+struct SetMetronomeOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef SetMetronomeOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_ENABLED = 4,
+    VT_GAIN = 6,
+    VT_RECORDING_ONLY = 8
+  };
+  bool enabled() const {
+    return GetField<uint8_t>(VT_ENABLED, 0) != 0;
+  }
+  float gain() const {
+    return GetField<float>(VT_GAIN, 0.5f);
+  }
+  bool recording_only() const {
+    return GetField<uint8_t>(VT_RECORDING_ONLY, 0) != 0;
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyField<uint8_t>(verifier, VT_ENABLED, 1) &&
+           VerifyField<float>(verifier, VT_GAIN, 4) &&
+           VerifyField<uint8_t>(verifier, VT_RECORDING_ONLY, 1) &&
+           verifier.EndTable();
+  }
+};
+
+struct SetMetronomeOpBuilder {
+  typedef SetMetronomeOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_enabled(bool enabled) {
+    fbb_.AddElement<uint8_t>(SetMetronomeOp::VT_ENABLED, static_cast<uint8_t>(enabled), 0);
+  }
+  void add_gain(float gain) {
+    fbb_.AddElement<float>(SetMetronomeOp::VT_GAIN, gain, 0.5f);
+  }
+  void add_recording_only(bool recording_only) {
+    fbb_.AddElement<uint8_t>(SetMetronomeOp::VT_RECORDING_ONLY, static_cast<uint8_t>(recording_only), 0);
+  }
+  explicit SetMetronomeOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<SetMetronomeOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<SetMetronomeOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<SetMetronomeOp> CreateSetMetronomeOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    bool enabled = false,
+    float gain = 0.5f,
+    bool recording_only = false) {
+  SetMetronomeOpBuilder builder_(_fbb);
+  builder_.add_gain(gain);
+  builder_.add_recording_only(recording_only);
+  builder_.add_enabled(enabled);
+  return builder_.Finish();
+}
+
+struct SetPunchInOutOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef SetPunchInOutOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_ENABLED = 4,
+    VT_IN_TICKS = 6,
+    VT_OUT_TICKS = 8
+  };
+  bool enabled() const {
+    return GetField<uint8_t>(VT_ENABLED, 0) != 0;
+  }
+  int64_t in_ticks() const {
+    return GetField<int64_t>(VT_IN_TICKS, -1LL);
+  }
+  int64_t out_ticks() const {
+    return GetField<int64_t>(VT_OUT_TICKS, -1LL);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyField<uint8_t>(verifier, VT_ENABLED, 1) &&
+           VerifyField<int64_t>(verifier, VT_IN_TICKS, 8) &&
+           VerifyField<int64_t>(verifier, VT_OUT_TICKS, 8) &&
+           verifier.EndTable();
+  }
+};
+
+struct SetPunchInOutOpBuilder {
+  typedef SetPunchInOutOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_enabled(bool enabled) {
+    fbb_.AddElement<uint8_t>(SetPunchInOutOp::VT_ENABLED, static_cast<uint8_t>(enabled), 0);
+  }
+  void add_in_ticks(int64_t in_ticks) {
+    fbb_.AddElement<int64_t>(SetPunchInOutOp::VT_IN_TICKS, in_ticks, -1LL);
+  }
+  void add_out_ticks(int64_t out_ticks) {
+    fbb_.AddElement<int64_t>(SetPunchInOutOp::VT_OUT_TICKS, out_ticks, -1LL);
+  }
+  explicit SetPunchInOutOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<SetPunchInOutOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<SetPunchInOutOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<SetPunchInOutOp> CreateSetPunchInOutOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    bool enabled = false,
+    int64_t in_ticks = -1LL,
+    int64_t out_ticks = -1LL) {
+  SetPunchInOutOpBuilder builder_(_fbb);
+  builder_.add_out_ticks(out_ticks);
+  builder_.add_in_ticks(in_ticks);
+  builder_.add_enabled(enabled);
+  return builder_.Finish();
+}
+
+struct JobSpec FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef JobSpecBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_JOB_ID = 4,
+    VT_PROJECT_ID = 6,
+    VT_SOURCE_REVISION = 8,
+    VT_CONTEXT_SHA256 = 10,
+    VT_KIND = 12,
+    VT_RUNTIME_ID = 14,
+    VT_RUNTIME_SHA256 = 16,
+    VT_MODEL_ID = 18,
+    VT_MODEL_SHA256 = 20,
+    VT_INPUTS = 22,
+    VT_PARAMETERS_JSON = 24,
+    VT_RAM_BYTES = 26,
+    VT_VRAM_BYTES = 28,
+    VT_CPU_THREADS = 30,
+    VT_DEADLINE_MONOTONIC_NS = 32,
+    VT_OUTPUT_SCOPE_TOKEN = 34,
+    VT_CLOUD_CONSENT_ID = 36
+  };
+  const ::flatbuffers::String *job_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_JOB_ID);
+  }
+  const ::flatbuffers::String *project_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_PROJECT_ID);
+  }
+  uint64_t source_revision() const {
+    return GetField<uint64_t>(VT_SOURCE_REVISION, 0);
+  }
+  const ::flatbuffers::String *context_sha256() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_CONTEXT_SHA256);
+  }
+  const ::flatbuffers::String *kind() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_KIND);
+  }
+  const ::flatbuffers::String *runtime_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_RUNTIME_ID);
+  }
+  const ::flatbuffers::String *runtime_sha256() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_RUNTIME_SHA256);
+  }
+  const ::flatbuffers::String *model_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_MODEL_ID);
+  }
+  const ::flatbuffers::String *model_sha256() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_MODEL_SHA256);
+  }
+  const ::flatbuffers::Vector<::flatbuffers::Offset<::flatbuffers::String>> *inputs() const {
+    return GetPointer<const ::flatbuffers::Vector<::flatbuffers::Offset<::flatbuffers::String>> *>(VT_INPUTS);
+  }
+  const ::flatbuffers::String *parameters_json() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_PARAMETERS_JSON);
+  }
+  uint64_t ram_bytes() const {
+    return GetField<uint64_t>(VT_RAM_BYTES, 0);
+  }
+  uint64_t vram_bytes() const {
+    return GetField<uint64_t>(VT_VRAM_BYTES, 0);
+  }
+  int32_t cpu_threads() const {
+    return GetField<int32_t>(VT_CPU_THREADS, 0);
+  }
+  uint64_t deadline_monotonic_ns() const {
+    return GetField<uint64_t>(VT_DEADLINE_MONOTONIC_NS, 0);
+  }
+  const ::flatbuffers::String *output_scope_token() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_OUTPUT_SCOPE_TOKEN);
+  }
+  const ::flatbuffers::String *cloud_consent_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_CLOUD_CONSENT_ID);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_JOB_ID) &&
+           verifier.VerifyString(job_id()) &&
+           VerifyOffset(verifier, VT_PROJECT_ID) &&
+           verifier.VerifyString(project_id()) &&
+           VerifyField<uint64_t>(verifier, VT_SOURCE_REVISION, 8) &&
+           VerifyOffset(verifier, VT_CONTEXT_SHA256) &&
+           verifier.VerifyString(context_sha256()) &&
+           VerifyOffset(verifier, VT_KIND) &&
+           verifier.VerifyString(kind()) &&
+           VerifyOffset(verifier, VT_RUNTIME_ID) &&
+           verifier.VerifyString(runtime_id()) &&
+           VerifyOffset(verifier, VT_RUNTIME_SHA256) &&
+           verifier.VerifyString(runtime_sha256()) &&
+           VerifyOffset(verifier, VT_MODEL_ID) &&
+           verifier.VerifyString(model_id()) &&
+           VerifyOffset(verifier, VT_MODEL_SHA256) &&
+           verifier.VerifyString(model_sha256()) &&
+           VerifyOffset(verifier, VT_INPUTS) &&
+           verifier.VerifyVector(inputs()) &&
+           verifier.VerifyVectorOfStrings(inputs()) &&
+           VerifyOffset(verifier, VT_PARAMETERS_JSON) &&
+           verifier.VerifyString(parameters_json()) &&
+           VerifyField<uint64_t>(verifier, VT_RAM_BYTES, 8) &&
+           VerifyField<uint64_t>(verifier, VT_VRAM_BYTES, 8) &&
+           VerifyField<int32_t>(verifier, VT_CPU_THREADS, 4) &&
+           VerifyField<uint64_t>(verifier, VT_DEADLINE_MONOTONIC_NS, 8) &&
+           VerifyOffset(verifier, VT_OUTPUT_SCOPE_TOKEN) &&
+           verifier.VerifyString(output_scope_token()) &&
+           VerifyOffset(verifier, VT_CLOUD_CONSENT_ID) &&
+           verifier.VerifyString(cloud_consent_id()) &&
+           verifier.EndTable();
+  }
+};
+
+struct JobSpecBuilder {
+  typedef JobSpec Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_job_id(::flatbuffers::Offset<::flatbuffers::String> job_id) {
+    fbb_.AddOffset(JobSpec::VT_JOB_ID, job_id);
+  }
+  void add_project_id(::flatbuffers::Offset<::flatbuffers::String> project_id) {
+    fbb_.AddOffset(JobSpec::VT_PROJECT_ID, project_id);
+  }
+  void add_source_revision(uint64_t source_revision) {
+    fbb_.AddElement<uint64_t>(JobSpec::VT_SOURCE_REVISION, source_revision, 0);
+  }
+  void add_context_sha256(::flatbuffers::Offset<::flatbuffers::String> context_sha256) {
+    fbb_.AddOffset(JobSpec::VT_CONTEXT_SHA256, context_sha256);
+  }
+  void add_kind(::flatbuffers::Offset<::flatbuffers::String> kind) {
+    fbb_.AddOffset(JobSpec::VT_KIND, kind);
+  }
+  void add_runtime_id(::flatbuffers::Offset<::flatbuffers::String> runtime_id) {
+    fbb_.AddOffset(JobSpec::VT_RUNTIME_ID, runtime_id);
+  }
+  void add_runtime_sha256(::flatbuffers::Offset<::flatbuffers::String> runtime_sha256) {
+    fbb_.AddOffset(JobSpec::VT_RUNTIME_SHA256, runtime_sha256);
+  }
+  void add_model_id(::flatbuffers::Offset<::flatbuffers::String> model_id) {
+    fbb_.AddOffset(JobSpec::VT_MODEL_ID, model_id);
+  }
+  void add_model_sha256(::flatbuffers::Offset<::flatbuffers::String> model_sha256) {
+    fbb_.AddOffset(JobSpec::VT_MODEL_SHA256, model_sha256);
+  }
+  void add_inputs(::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<::flatbuffers::String>>> inputs) {
+    fbb_.AddOffset(JobSpec::VT_INPUTS, inputs);
+  }
+  void add_parameters_json(::flatbuffers::Offset<::flatbuffers::String> parameters_json) {
+    fbb_.AddOffset(JobSpec::VT_PARAMETERS_JSON, parameters_json);
+  }
+  void add_ram_bytes(uint64_t ram_bytes) {
+    fbb_.AddElement<uint64_t>(JobSpec::VT_RAM_BYTES, ram_bytes, 0);
+  }
+  void add_vram_bytes(uint64_t vram_bytes) {
+    fbb_.AddElement<uint64_t>(JobSpec::VT_VRAM_BYTES, vram_bytes, 0);
+  }
+  void add_cpu_threads(int32_t cpu_threads) {
+    fbb_.AddElement<int32_t>(JobSpec::VT_CPU_THREADS, cpu_threads, 0);
+  }
+  void add_deadline_monotonic_ns(uint64_t deadline_monotonic_ns) {
+    fbb_.AddElement<uint64_t>(JobSpec::VT_DEADLINE_MONOTONIC_NS, deadline_monotonic_ns, 0);
+  }
+  void add_output_scope_token(::flatbuffers::Offset<::flatbuffers::String> output_scope_token) {
+    fbb_.AddOffset(JobSpec::VT_OUTPUT_SCOPE_TOKEN, output_scope_token);
+  }
+  void add_cloud_consent_id(::flatbuffers::Offset<::flatbuffers::String> cloud_consent_id) {
+    fbb_.AddOffset(JobSpec::VT_CLOUD_CONSENT_ID, cloud_consent_id);
+  }
+  explicit JobSpecBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<JobSpec> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<JobSpec>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<JobSpec> CreateJobSpec(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> job_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> project_id = 0,
+    uint64_t source_revision = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> context_sha256 = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> kind = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> runtime_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> runtime_sha256 = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> model_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> model_sha256 = 0,
+    ::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<::flatbuffers::String>>> inputs = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> parameters_json = 0,
+    uint64_t ram_bytes = 0,
+    uint64_t vram_bytes = 0,
+    int32_t cpu_threads = 0,
+    uint64_t deadline_monotonic_ns = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> output_scope_token = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> cloud_consent_id = 0) {
+  JobSpecBuilder builder_(_fbb);
+  builder_.add_deadline_monotonic_ns(deadline_monotonic_ns);
+  builder_.add_vram_bytes(vram_bytes);
+  builder_.add_ram_bytes(ram_bytes);
+  builder_.add_source_revision(source_revision);
+  builder_.add_cloud_consent_id(cloud_consent_id);
+  builder_.add_output_scope_token(output_scope_token);
+  builder_.add_cpu_threads(cpu_threads);
+  builder_.add_parameters_json(parameters_json);
+  builder_.add_inputs(inputs);
+  builder_.add_model_sha256(model_sha256);
+  builder_.add_model_id(model_id);
+  builder_.add_runtime_sha256(runtime_sha256);
+  builder_.add_runtime_id(runtime_id);
+  builder_.add_kind(kind);
+  builder_.add_context_sha256(context_sha256);
+  builder_.add_project_id(project_id);
+  builder_.add_job_id(job_id);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<JobSpec> CreateJobSpecDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *job_id = nullptr,
+    const char *project_id = nullptr,
+    uint64_t source_revision = 0,
+    const char *context_sha256 = nullptr,
+    const char *kind = nullptr,
+    const char *runtime_id = nullptr,
+    const char *runtime_sha256 = nullptr,
+    const char *model_id = nullptr,
+    const char *model_sha256 = nullptr,
+    const std::vector<::flatbuffers::Offset<::flatbuffers::String>> *inputs = nullptr,
+    const char *parameters_json = nullptr,
+    uint64_t ram_bytes = 0,
+    uint64_t vram_bytes = 0,
+    int32_t cpu_threads = 0,
+    uint64_t deadline_monotonic_ns = 0,
+    const char *output_scope_token = nullptr,
+    const char *cloud_consent_id = nullptr) {
+  auto job_id__ = job_id ? _fbb.CreateString(job_id) : 0;
+  auto project_id__ = project_id ? _fbb.CreateString(project_id) : 0;
+  auto context_sha256__ = context_sha256 ? _fbb.CreateString(context_sha256) : 0;
+  auto kind__ = kind ? _fbb.CreateString(kind) : 0;
+  auto runtime_id__ = runtime_id ? _fbb.CreateString(runtime_id) : 0;
+  auto runtime_sha256__ = runtime_sha256 ? _fbb.CreateString(runtime_sha256) : 0;
+  auto model_id__ = model_id ? _fbb.CreateString(model_id) : 0;
+  auto model_sha256__ = model_sha256 ? _fbb.CreateString(model_sha256) : 0;
+  auto inputs__ = inputs ? _fbb.CreateVector<::flatbuffers::Offset<::flatbuffers::String>>(*inputs) : 0;
+  auto parameters_json__ = parameters_json ? _fbb.CreateString(parameters_json) : 0;
+  auto output_scope_token__ = output_scope_token ? _fbb.CreateString(output_scope_token) : 0;
+  auto cloud_consent_id__ = cloud_consent_id ? _fbb.CreateString(cloud_consent_id) : 0;
+  return voidproto::CreateJobSpec(
+      _fbb,
+      job_id__,
+      project_id__,
+      source_revision,
+      context_sha256__,
+      kind__,
+      runtime_id__,
+      runtime_sha256__,
+      model_id__,
+      model_sha256__,
+      inputs__,
+      parameters_json__,
+      ram_bytes,
+      vram_bytes,
+      cpu_threads,
+      deadline_monotonic_ns,
+      output_scope_token__,
+      cloud_consent_id__);
+}
+
+struct SubmitJobOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef SubmitJobOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_SPEC = 4
+  };
+  const voidproto::JobSpec *spec() const {
+    return GetPointer<const voidproto::JobSpec *>(VT_SPEC);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_SPEC) &&
+           verifier.VerifyTable(spec()) &&
+           verifier.EndTable();
+  }
+};
+
+struct SubmitJobOpBuilder {
+  typedef SubmitJobOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_spec(::flatbuffers::Offset<voidproto::JobSpec> spec) {
+    fbb_.AddOffset(SubmitJobOp::VT_SPEC, spec);
+  }
+  explicit SubmitJobOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<SubmitJobOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<SubmitJobOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<SubmitJobOp> CreateSubmitJobOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<voidproto::JobSpec> spec = 0) {
+  SubmitJobOpBuilder builder_(_fbb);
+  builder_.add_spec(spec);
+  return builder_.Finish();
+}
+
+struct CancelJobOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef CancelJobOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_JOB_ID = 4
+  };
+  const ::flatbuffers::String *job_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_JOB_ID);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_JOB_ID) &&
+           verifier.VerifyString(job_id()) &&
+           verifier.EndTable();
+  }
+};
+
+struct CancelJobOpBuilder {
+  typedef CancelJobOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_job_id(::flatbuffers::Offset<::flatbuffers::String> job_id) {
+    fbb_.AddOffset(CancelJobOp::VT_JOB_ID, job_id);
+  }
+  explicit CancelJobOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<CancelJobOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<CancelJobOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<CancelJobOp> CreateCancelJobOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> job_id = 0) {
+  CancelJobOpBuilder builder_(_fbb);
+  builder_.add_job_id(job_id);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<CancelJobOp> CreateCancelJobOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *job_id = nullptr) {
+  auto job_id__ = job_id ? _fbb.CreateString(job_id) : 0;
+  return voidproto::CreateCancelJobOp(
+      _fbb,
+      job_id__);
+}
+
+struct PauseJobOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef PauseJobOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_JOB_ID = 4
+  };
+  const ::flatbuffers::String *job_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_JOB_ID);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_JOB_ID) &&
+           verifier.VerifyString(job_id()) &&
+           verifier.EndTable();
+  }
+};
+
+struct PauseJobOpBuilder {
+  typedef PauseJobOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_job_id(::flatbuffers::Offset<::flatbuffers::String> job_id) {
+    fbb_.AddOffset(PauseJobOp::VT_JOB_ID, job_id);
+  }
+  explicit PauseJobOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<PauseJobOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<PauseJobOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<PauseJobOp> CreatePauseJobOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> job_id = 0) {
+  PauseJobOpBuilder builder_(_fbb);
+  builder_.add_job_id(job_id);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<PauseJobOp> CreatePauseJobOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *job_id = nullptr) {
+  auto job_id__ = job_id ? _fbb.CreateString(job_id) : 0;
+  return voidproto::CreatePauseJobOp(
+      _fbb,
+      job_id__);
+}
+
+struct InstallModelOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef InstallModelOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_MODEL_ID = 4,
+    VT_MODEL_VERSION = 6,
+    VT_SOURCE_URI = 8
+  };
+  const ::flatbuffers::String *model_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_MODEL_ID);
+  }
+  const ::flatbuffers::String *model_version() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_MODEL_VERSION);
+  }
+  const ::flatbuffers::String *source_uri() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_SOURCE_URI);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_MODEL_ID) &&
+           verifier.VerifyString(model_id()) &&
+           VerifyOffset(verifier, VT_MODEL_VERSION) &&
+           verifier.VerifyString(model_version()) &&
+           VerifyOffset(verifier, VT_SOURCE_URI) &&
+           verifier.VerifyString(source_uri()) &&
+           verifier.EndTable();
+  }
+};
+
+struct InstallModelOpBuilder {
+  typedef InstallModelOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_model_id(::flatbuffers::Offset<::flatbuffers::String> model_id) {
+    fbb_.AddOffset(InstallModelOp::VT_MODEL_ID, model_id);
+  }
+  void add_model_version(::flatbuffers::Offset<::flatbuffers::String> model_version) {
+    fbb_.AddOffset(InstallModelOp::VT_MODEL_VERSION, model_version);
+  }
+  void add_source_uri(::flatbuffers::Offset<::flatbuffers::String> source_uri) {
+    fbb_.AddOffset(InstallModelOp::VT_SOURCE_URI, source_uri);
+  }
+  explicit InstallModelOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<InstallModelOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<InstallModelOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<InstallModelOp> CreateInstallModelOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> model_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> model_version = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> source_uri = 0) {
+  InstallModelOpBuilder builder_(_fbb);
+  builder_.add_source_uri(source_uri);
+  builder_.add_model_version(model_version);
+  builder_.add_model_id(model_id);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<InstallModelOp> CreateInstallModelOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *model_id = nullptr,
+    const char *model_version = nullptr,
+    const char *source_uri = nullptr) {
+  auto model_id__ = model_id ? _fbb.CreateString(model_id) : 0;
+  auto model_version__ = model_version ? _fbb.CreateString(model_version) : 0;
+  auto source_uri__ = source_uri ? _fbb.CreateString(source_uri) : 0;
+  return voidproto::CreateInstallModelOp(
+      _fbb,
+      model_id__,
+      model_version__,
+      source_uri__);
+}
+
+struct PreviewNote FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef PreviewNoteBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_NOTE_ID = 4,
+    VT_PITCH = 6,
+    VT_VELOCITY = 8,
+    VT_START_TICKS = 10,
+    VT_LENGTH_TICKS = 12
+  };
+  const ::flatbuffers::String *note_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_NOTE_ID);
+  }
+  uint8_t pitch() const {
+    return GetField<uint8_t>(VT_PITCH, 0);
+  }
+  uint8_t velocity() const {
+    return GetField<uint8_t>(VT_VELOCITY, 0);
+  }
+  int64_t start_ticks() const {
+    return GetField<int64_t>(VT_START_TICKS, 0);
+  }
+  int64_t length_ticks() const {
+    return GetField<int64_t>(VT_LENGTH_TICKS, 0);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_NOTE_ID) &&
+           verifier.VerifyString(note_id()) &&
+           VerifyField<uint8_t>(verifier, VT_PITCH, 1) &&
+           VerifyField<uint8_t>(verifier, VT_VELOCITY, 1) &&
+           VerifyField<int64_t>(verifier, VT_START_TICKS, 8) &&
+           VerifyField<int64_t>(verifier, VT_LENGTH_TICKS, 8) &&
+           verifier.EndTable();
+  }
+};
+
+struct PreviewNoteBuilder {
+  typedef PreviewNote Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_note_id(::flatbuffers::Offset<::flatbuffers::String> note_id) {
+    fbb_.AddOffset(PreviewNote::VT_NOTE_ID, note_id);
+  }
+  void add_pitch(uint8_t pitch) {
+    fbb_.AddElement<uint8_t>(PreviewNote::VT_PITCH, pitch, 0);
+  }
+  void add_velocity(uint8_t velocity) {
+    fbb_.AddElement<uint8_t>(PreviewNote::VT_VELOCITY, velocity, 0);
+  }
+  void add_start_ticks(int64_t start_ticks) {
+    fbb_.AddElement<int64_t>(PreviewNote::VT_START_TICKS, start_ticks, 0);
+  }
+  void add_length_ticks(int64_t length_ticks) {
+    fbb_.AddElement<int64_t>(PreviewNote::VT_LENGTH_TICKS, length_ticks, 0);
+  }
+  explicit PreviewNoteBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<PreviewNote> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<PreviewNote>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<PreviewNote> CreatePreviewNote(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> note_id = 0,
+    uint8_t pitch = 0,
+    uint8_t velocity = 0,
+    int64_t start_ticks = 0,
+    int64_t length_ticks = 0) {
+  PreviewNoteBuilder builder_(_fbb);
+  builder_.add_length_ticks(length_ticks);
+  builder_.add_start_ticks(start_ticks);
+  builder_.add_note_id(note_id);
+  builder_.add_velocity(velocity);
+  builder_.add_pitch(pitch);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<PreviewNote> CreatePreviewNoteDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *note_id = nullptr,
+    uint8_t pitch = 0,
+    uint8_t velocity = 0,
+    int64_t start_ticks = 0,
+    int64_t length_ticks = 0) {
+  auto note_id__ = note_id ? _fbb.CreateString(note_id) : 0;
+  return voidproto::CreatePreviewNote(
+      _fbb,
+      note_id__,
+      pitch,
+      velocity,
+      start_ticks,
+      length_ticks);
+}
+
+struct RequestProposalOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef RequestProposalOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_CONTEXT_DIGEST = 4,
+    VT_SEED = 6,
+    VT_MAX_PROPOSALS = 8
+  };
+  const ::flatbuffers::String *context_digest() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_CONTEXT_DIGEST);
+  }
+  uint64_t seed() const {
+    return GetField<uint64_t>(VT_SEED, 0);
+  }
+  int32_t max_proposals() const {
+    return GetField<int32_t>(VT_MAX_PROPOSALS, 1);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_CONTEXT_DIGEST) &&
+           verifier.VerifyString(context_digest()) &&
+           VerifyField<uint64_t>(verifier, VT_SEED, 8) &&
+           VerifyField<int32_t>(verifier, VT_MAX_PROPOSALS, 4) &&
+           verifier.EndTable();
+  }
+};
+
+struct RequestProposalOpBuilder {
+  typedef RequestProposalOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_context_digest(::flatbuffers::Offset<::flatbuffers::String> context_digest) {
+    fbb_.AddOffset(RequestProposalOp::VT_CONTEXT_DIGEST, context_digest);
+  }
+  void add_seed(uint64_t seed) {
+    fbb_.AddElement<uint64_t>(RequestProposalOp::VT_SEED, seed, 0);
+  }
+  void add_max_proposals(int32_t max_proposals) {
+    fbb_.AddElement<int32_t>(RequestProposalOp::VT_MAX_PROPOSALS, max_proposals, 1);
+  }
+  explicit RequestProposalOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<RequestProposalOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<RequestProposalOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<RequestProposalOp> CreateRequestProposalOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> context_digest = 0,
+    uint64_t seed = 0,
+    int32_t max_proposals = 1) {
+  RequestProposalOpBuilder builder_(_fbb);
+  builder_.add_seed(seed);
+  builder_.add_max_proposals(max_proposals);
+  builder_.add_context_digest(context_digest);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<RequestProposalOp> CreateRequestProposalOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *context_digest = nullptr,
+    uint64_t seed = 0,
+    int32_t max_proposals = 1) {
+  auto context_digest__ = context_digest ? _fbb.CreateString(context_digest) : 0;
+  return voidproto::CreateRequestProposalOp(
+      _fbb,
+      context_digest__,
+      seed,
+      max_proposals);
+}
+
+struct ResolveProposalOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef ResolveProposalOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_PROPOSAL_ID = 4,
+    VT_ACCEPT = 6,
+    VT_CANDIDATE_RANK = 8
+  };
+  const ::flatbuffers::String *proposal_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_PROPOSAL_ID);
+  }
+  bool accept() const {
+    return GetField<uint8_t>(VT_ACCEPT, 0) != 0;
+  }
+  int32_t candidate_rank() const {
+    return GetField<int32_t>(VT_CANDIDATE_RANK, -1);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_PROPOSAL_ID) &&
+           verifier.VerifyString(proposal_id()) &&
+           VerifyField<uint8_t>(verifier, VT_ACCEPT, 1) &&
+           VerifyField<int32_t>(verifier, VT_CANDIDATE_RANK, 4) &&
+           verifier.EndTable();
+  }
+};
+
+struct ResolveProposalOpBuilder {
+  typedef ResolveProposalOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_proposal_id(::flatbuffers::Offset<::flatbuffers::String> proposal_id) {
+    fbb_.AddOffset(ResolveProposalOp::VT_PROPOSAL_ID, proposal_id);
+  }
+  void add_accept(bool accept) {
+    fbb_.AddElement<uint8_t>(ResolveProposalOp::VT_ACCEPT, static_cast<uint8_t>(accept), 0);
+  }
+  void add_candidate_rank(int32_t candidate_rank) {
+    fbb_.AddElement<int32_t>(ResolveProposalOp::VT_CANDIDATE_RANK, candidate_rank, -1);
+  }
+  explicit ResolveProposalOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<ResolveProposalOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<ResolveProposalOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<ResolveProposalOp> CreateResolveProposalOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> proposal_id = 0,
+    bool accept = false,
+    int32_t candidate_rank = -1) {
+  ResolveProposalOpBuilder builder_(_fbb);
+  builder_.add_candidate_rank(candidate_rank);
+  builder_.add_proposal_id(proposal_id);
+  builder_.add_accept(accept);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<ResolveProposalOp> CreateResolveProposalOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *proposal_id = nullptr,
+    bool accept = false,
+    int32_t candidate_rank = -1) {
+  auto proposal_id__ = proposal_id ? _fbb.CreateString(proposal_id) : 0;
+  return voidproto::CreateResolveProposalOp(
+      _fbb,
+      proposal_id__,
+      accept,
+      candidate_rank);
+}
+
+struct PreviewLayerOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef PreviewLayerOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_PROPOSAL_ID = 4,
+    VT_CLIP_ID = 6,
+    VT_NOTES = 8,
+    VT_ENABLE = 10
+  };
+  const ::flatbuffers::String *proposal_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_PROPOSAL_ID);
+  }
+  const ::flatbuffers::String *clip_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_CLIP_ID);
+  }
+  const ::flatbuffers::Vector<::flatbuffers::Offset<voidproto::PreviewNote>> *notes() const {
+    return GetPointer<const ::flatbuffers::Vector<::flatbuffers::Offset<voidproto::PreviewNote>> *>(VT_NOTES);
+  }
+  bool enable() const {
+    return GetField<uint8_t>(VT_ENABLE, 0) != 0;
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_PROPOSAL_ID) &&
+           verifier.VerifyString(proposal_id()) &&
+           VerifyOffset(verifier, VT_CLIP_ID) &&
+           verifier.VerifyString(clip_id()) &&
+           VerifyOffset(verifier, VT_NOTES) &&
+           verifier.VerifyVector(notes()) &&
+           verifier.VerifyVectorOfTables(notes()) &&
+           VerifyField<uint8_t>(verifier, VT_ENABLE, 1) &&
+           verifier.EndTable();
+  }
+};
+
+struct PreviewLayerOpBuilder {
+  typedef PreviewLayerOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_proposal_id(::flatbuffers::Offset<::flatbuffers::String> proposal_id) {
+    fbb_.AddOffset(PreviewLayerOp::VT_PROPOSAL_ID, proposal_id);
+  }
+  void add_clip_id(::flatbuffers::Offset<::flatbuffers::String> clip_id) {
+    fbb_.AddOffset(PreviewLayerOp::VT_CLIP_ID, clip_id);
+  }
+  void add_notes(::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<voidproto::PreviewNote>>> notes) {
+    fbb_.AddOffset(PreviewLayerOp::VT_NOTES, notes);
+  }
+  void add_enable(bool enable) {
+    fbb_.AddElement<uint8_t>(PreviewLayerOp::VT_ENABLE, static_cast<uint8_t>(enable), 0);
+  }
+  explicit PreviewLayerOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<PreviewLayerOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<PreviewLayerOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<PreviewLayerOp> CreatePreviewLayerOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> proposal_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> clip_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::Vector<::flatbuffers::Offset<voidproto::PreviewNote>>> notes = 0,
+    bool enable = false) {
+  PreviewLayerOpBuilder builder_(_fbb);
+  builder_.add_notes(notes);
+  builder_.add_clip_id(clip_id);
+  builder_.add_proposal_id(proposal_id);
+  builder_.add_enable(enable);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<PreviewLayerOp> CreatePreviewLayerOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *proposal_id = nullptr,
+    const char *clip_id = nullptr,
+    const std::vector<::flatbuffers::Offset<voidproto::PreviewNote>> *notes = nullptr,
+    bool enable = false) {
+  auto proposal_id__ = proposal_id ? _fbb.CreateString(proposal_id) : 0;
+  auto clip_id__ = clip_id ? _fbb.CreateString(clip_id) : 0;
+  auto notes__ = notes ? _fbb.CreateVector<::flatbuffers::Offset<voidproto::PreviewNote>>(*notes) : 0;
+  return voidproto::CreatePreviewLayerOp(
+      _fbb,
+      proposal_id__,
+      clip_id__,
+      notes__,
+      enable);
+}
+
+struct IngestAssetOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef IngestAssetOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_REL_PATH = 4,
+    VT_MEDIA_TYPE = 6
+  };
+  const ::flatbuffers::String *rel_path() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_REL_PATH);
+  }
+  const ::flatbuffers::String *media_type() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_MEDIA_TYPE);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_REL_PATH) &&
+           verifier.VerifyString(rel_path()) &&
+           VerifyOffset(verifier, VT_MEDIA_TYPE) &&
+           verifier.VerifyString(media_type()) &&
+           verifier.EndTable();
+  }
+};
+
+struct IngestAssetOpBuilder {
+  typedef IngestAssetOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_rel_path(::flatbuffers::Offset<::flatbuffers::String> rel_path) {
+    fbb_.AddOffset(IngestAssetOp::VT_REL_PATH, rel_path);
+  }
+  void add_media_type(::flatbuffers::Offset<::flatbuffers::String> media_type) {
+    fbb_.AddOffset(IngestAssetOp::VT_MEDIA_TYPE, media_type);
+  }
+  explicit IngestAssetOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<IngestAssetOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<IngestAssetOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<IngestAssetOp> CreateIngestAssetOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> rel_path = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> media_type = 0) {
+  IngestAssetOpBuilder builder_(_fbb);
+  builder_.add_media_type(media_type);
+  builder_.add_rel_path(rel_path);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<IngestAssetOp> CreateIngestAssetOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *rel_path = nullptr,
+    const char *media_type = nullptr) {
+  auto rel_path__ = rel_path ? _fbb.CreateString(rel_path) : 0;
+  auto media_type__ = media_type ? _fbb.CreateString(media_type) : 0;
+  return voidproto::CreateIngestAssetOp(
+      _fbb,
+      rel_path__,
+      media_type__);
+}
+
+struct RelinkAssetOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef RelinkAssetOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_ASSET_ID = 4,
+    VT_SHA256 = 6
+  };
+  const ::flatbuffers::String *asset_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_ASSET_ID);
+  }
+  const ::flatbuffers::String *sha256() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_SHA256);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_ASSET_ID) &&
+           verifier.VerifyString(asset_id()) &&
+           VerifyOffset(verifier, VT_SHA256) &&
+           verifier.VerifyString(sha256()) &&
+           verifier.EndTable();
+  }
+};
+
+struct RelinkAssetOpBuilder {
+  typedef RelinkAssetOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_asset_id(::flatbuffers::Offset<::flatbuffers::String> asset_id) {
+    fbb_.AddOffset(RelinkAssetOp::VT_ASSET_ID, asset_id);
+  }
+  void add_sha256(::flatbuffers::Offset<::flatbuffers::String> sha256) {
+    fbb_.AddOffset(RelinkAssetOp::VT_SHA256, sha256);
+  }
+  explicit RelinkAssetOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<RelinkAssetOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<RelinkAssetOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<RelinkAssetOp> CreateRelinkAssetOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> asset_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> sha256 = 0) {
+  RelinkAssetOpBuilder builder_(_fbb);
+  builder_.add_sha256(sha256);
+  builder_.add_asset_id(asset_id);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<RelinkAssetOp> CreateRelinkAssetOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *asset_id = nullptr,
+    const char *sha256 = nullptr) {
+  auto asset_id__ = asset_id ? _fbb.CreateString(asset_id) : 0;
+  auto sha256__ = sha256 ? _fbb.CreateString(sha256) : 0;
+  return voidproto::CreateRelinkAssetOp(
+      _fbb,
+      asset_id__,
+      sha256__);
+}
+
+struct SetPluginBypassOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef SetPluginBypassOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_PLUGIN_INSTANCE_ID = 4,
+    VT_BYPASSED = 6
+  };
+  const ::flatbuffers::String *plugin_instance_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_PLUGIN_INSTANCE_ID);
+  }
+  bool bypassed() const {
+    return GetField<uint8_t>(VT_BYPASSED, 0) != 0;
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_PLUGIN_INSTANCE_ID) &&
+           verifier.VerifyString(plugin_instance_id()) &&
+           VerifyField<uint8_t>(verifier, VT_BYPASSED, 1) &&
+           verifier.EndTable();
+  }
+};
+
+struct SetPluginBypassOpBuilder {
+  typedef SetPluginBypassOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_plugin_instance_id(::flatbuffers::Offset<::flatbuffers::String> plugin_instance_id) {
+    fbb_.AddOffset(SetPluginBypassOp::VT_PLUGIN_INSTANCE_ID, plugin_instance_id);
+  }
+  void add_bypassed(bool bypassed) {
+    fbb_.AddElement<uint8_t>(SetPluginBypassOp::VT_BYPASSED, static_cast<uint8_t>(bypassed), 0);
+  }
+  explicit SetPluginBypassOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<SetPluginBypassOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<SetPluginBypassOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<SetPluginBypassOp> CreateSetPluginBypassOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> plugin_instance_id = 0,
+    bool bypassed = false) {
+  SetPluginBypassOpBuilder builder_(_fbb);
+  builder_.add_plugin_instance_id(plugin_instance_id);
+  builder_.add_bypassed(bypassed);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<SetPluginBypassOp> CreateSetPluginBypassOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *plugin_instance_id = nullptr,
+    bool bypassed = false) {
+  auto plugin_instance_id__ = plugin_instance_id ? _fbb.CreateString(plugin_instance_id) : 0;
+  return voidproto::CreateSetPluginBypassOp(
+      _fbb,
+      plugin_instance_id__,
+      bypassed);
+}
+
+struct RescanPluginsOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef RescanPluginsOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_PLUGIN_UID = 4
+  };
+  const ::flatbuffers::String *plugin_uid() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_PLUGIN_UID);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_PLUGIN_UID) &&
+           verifier.VerifyString(plugin_uid()) &&
+           verifier.EndTable();
+  }
+};
+
+struct RescanPluginsOpBuilder {
+  typedef RescanPluginsOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_plugin_uid(::flatbuffers::Offset<::flatbuffers::String> plugin_uid) {
+    fbb_.AddOffset(RescanPluginsOp::VT_PLUGIN_UID, plugin_uid);
+  }
+  explicit RescanPluginsOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<RescanPluginsOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<RescanPluginsOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<RescanPluginsOp> CreateRescanPluginsOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> plugin_uid = 0) {
+  RescanPluginsOpBuilder builder_(_fbb);
+  builder_.add_plugin_uid(plugin_uid);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<RescanPluginsOp> CreateRescanPluginsOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *plugin_uid = nullptr) {
+  auto plugin_uid__ = plugin_uid ? _fbb.CreateString(plugin_uid) : 0;
+  return voidproto::CreateRescanPluginsOp(
+      _fbb,
+      plugin_uid__);
+}
+
+struct RestorePluginStateOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef RestorePluginStateOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_PLUGIN_INSTANCE_ID = 4,
+    VT_STATE_ASSET_ID = 6
+  };
+  const ::flatbuffers::String *plugin_instance_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_PLUGIN_INSTANCE_ID);
+  }
+  const ::flatbuffers::String *state_asset_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_STATE_ASSET_ID);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_PLUGIN_INSTANCE_ID) &&
+           verifier.VerifyString(plugin_instance_id()) &&
+           VerifyOffset(verifier, VT_STATE_ASSET_ID) &&
+           verifier.VerifyString(state_asset_id()) &&
+           verifier.EndTable();
+  }
+};
+
+struct RestorePluginStateOpBuilder {
+  typedef RestorePluginStateOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_plugin_instance_id(::flatbuffers::Offset<::flatbuffers::String> plugin_instance_id) {
+    fbb_.AddOffset(RestorePluginStateOp::VT_PLUGIN_INSTANCE_ID, plugin_instance_id);
+  }
+  void add_state_asset_id(::flatbuffers::Offset<::flatbuffers::String> state_asset_id) {
+    fbb_.AddOffset(RestorePluginStateOp::VT_STATE_ASSET_ID, state_asset_id);
+  }
+  explicit RestorePluginStateOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<RestorePluginStateOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<RestorePluginStateOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<RestorePluginStateOp> CreateRestorePluginStateOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> plugin_instance_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> state_asset_id = 0) {
+  RestorePluginStateOpBuilder builder_(_fbb);
+  builder_.add_state_asset_id(state_asset_id);
+  builder_.add_plugin_instance_id(plugin_instance_id);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<RestorePluginStateOp> CreateRestorePluginStateOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *plugin_instance_id = nullptr,
+    const char *state_asset_id = nullptr) {
+  auto plugin_instance_id__ = plugin_instance_id ? _fbb.CreateString(plugin_instance_id) : 0;
+  auto state_asset_id__ = state_asset_id ? _fbb.CreateString(state_asset_id) : 0;
+  return voidproto::CreateRestorePluginStateOp(
+      _fbb,
+      plugin_instance_id__,
+      state_asset_id__);
+}
+
+struct SaveProjectAsOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef SaveProjectAsOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_CONTAINER_DIR = 4,
+    VT_NAME = 6,
+    VT_REASON = 8
+  };
+  const ::flatbuffers::String *container_dir() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_CONTAINER_DIR);
+  }
+  const ::flatbuffers::String *name() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_NAME);
+  }
+  const ::flatbuffers::String *reason() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_REASON);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_CONTAINER_DIR) &&
+           verifier.VerifyString(container_dir()) &&
+           VerifyOffset(verifier, VT_NAME) &&
+           verifier.VerifyString(name()) &&
+           VerifyOffset(verifier, VT_REASON) &&
+           verifier.VerifyString(reason()) &&
+           verifier.EndTable();
+  }
+};
+
+struct SaveProjectAsOpBuilder {
+  typedef SaveProjectAsOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_container_dir(::flatbuffers::Offset<::flatbuffers::String> container_dir) {
+    fbb_.AddOffset(SaveProjectAsOp::VT_CONTAINER_DIR, container_dir);
+  }
+  void add_name(::flatbuffers::Offset<::flatbuffers::String> name) {
+    fbb_.AddOffset(SaveProjectAsOp::VT_NAME, name);
+  }
+  void add_reason(::flatbuffers::Offset<::flatbuffers::String> reason) {
+    fbb_.AddOffset(SaveProjectAsOp::VT_REASON, reason);
+  }
+  explicit SaveProjectAsOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<SaveProjectAsOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<SaveProjectAsOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<SaveProjectAsOp> CreateSaveProjectAsOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> container_dir = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> name = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> reason = 0) {
+  SaveProjectAsOpBuilder builder_(_fbb);
+  builder_.add_reason(reason);
+  builder_.add_name(name);
+  builder_.add_container_dir(container_dir);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<SaveProjectAsOp> CreateSaveProjectAsOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *container_dir = nullptr,
+    const char *name = nullptr,
+    const char *reason = nullptr) {
+  auto container_dir__ = container_dir ? _fbb.CreateString(container_dir) : 0;
+  auto name__ = name ? _fbb.CreateString(name) : 0;
+  auto reason__ = reason ? _fbb.CreateString(reason) : 0;
+  return voidproto::CreateSaveProjectAsOp(
+      _fbb,
+      container_dir__,
+      name__,
+      reason__);
+}
+
+struct LaunchSceneOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef LaunchSceneOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_SCENE_ID = 4,
+    VT_QUANTIZE = 6,
+    VT_QUANTIZE_TICKS = 8
+  };
+  const ::flatbuffers::String *scene_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_SCENE_ID);
+  }
+  voidproto::LaunchQuantize quantize() const {
+    return static_cast<voidproto::LaunchQuantize>(GetField<int8_t>(VT_QUANTIZE, 1));
+  }
+  int64_t quantize_ticks() const {
+    return GetField<int64_t>(VT_QUANTIZE_TICKS, 0);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_SCENE_ID) &&
+           verifier.VerifyString(scene_id()) &&
+           VerifyField<int8_t>(verifier, VT_QUANTIZE, 1) &&
+           VerifyField<int64_t>(verifier, VT_QUANTIZE_TICKS, 8) &&
+           verifier.EndTable();
+  }
+};
+
+struct LaunchSceneOpBuilder {
+  typedef LaunchSceneOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_scene_id(::flatbuffers::Offset<::flatbuffers::String> scene_id) {
+    fbb_.AddOffset(LaunchSceneOp::VT_SCENE_ID, scene_id);
+  }
+  void add_quantize(voidproto::LaunchQuantize quantize) {
+    fbb_.AddElement<int8_t>(LaunchSceneOp::VT_QUANTIZE, static_cast<int8_t>(quantize), 1);
+  }
+  void add_quantize_ticks(int64_t quantize_ticks) {
+    fbb_.AddElement<int64_t>(LaunchSceneOp::VT_QUANTIZE_TICKS, quantize_ticks, 0);
+  }
+  explicit LaunchSceneOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<LaunchSceneOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<LaunchSceneOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<LaunchSceneOp> CreateLaunchSceneOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> scene_id = 0,
+    voidproto::LaunchQuantize quantize = voidproto::LaunchQuantize_BAR,
+    int64_t quantize_ticks = 0) {
+  LaunchSceneOpBuilder builder_(_fbb);
+  builder_.add_quantize_ticks(quantize_ticks);
+  builder_.add_scene_id(scene_id);
+  builder_.add_quantize(quantize);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<LaunchSceneOp> CreateLaunchSceneOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *scene_id = nullptr,
+    voidproto::LaunchQuantize quantize = voidproto::LaunchQuantize_BAR,
+    int64_t quantize_ticks = 0) {
+  auto scene_id__ = scene_id ? _fbb.CreateString(scene_id) : 0;
+  return voidproto::CreateLaunchSceneOp(
+      _fbb,
+      scene_id__,
+      quantize,
+      quantize_ticks);
+}
+
+struct StopSceneOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef StopSceneOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_SCENE_ID = 4,
+    VT_QUANTIZE = 6,
+    VT_QUANTIZE_TICKS = 8
+  };
+  const ::flatbuffers::String *scene_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_SCENE_ID);
+  }
+  voidproto::LaunchQuantize quantize() const {
+    return static_cast<voidproto::LaunchQuantize>(GetField<int8_t>(VT_QUANTIZE, 1));
+  }
+  int64_t quantize_ticks() const {
+    return GetField<int64_t>(VT_QUANTIZE_TICKS, 0);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_SCENE_ID) &&
+           verifier.VerifyString(scene_id()) &&
+           VerifyField<int8_t>(verifier, VT_QUANTIZE, 1) &&
+           VerifyField<int64_t>(verifier, VT_QUANTIZE_TICKS, 8) &&
+           verifier.EndTable();
+  }
+};
+
+struct StopSceneOpBuilder {
+  typedef StopSceneOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_scene_id(::flatbuffers::Offset<::flatbuffers::String> scene_id) {
+    fbb_.AddOffset(StopSceneOp::VT_SCENE_ID, scene_id);
+  }
+  void add_quantize(voidproto::LaunchQuantize quantize) {
+    fbb_.AddElement<int8_t>(StopSceneOp::VT_QUANTIZE, static_cast<int8_t>(quantize), 1);
+  }
+  void add_quantize_ticks(int64_t quantize_ticks) {
+    fbb_.AddElement<int64_t>(StopSceneOp::VT_QUANTIZE_TICKS, quantize_ticks, 0);
+  }
+  explicit StopSceneOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<StopSceneOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<StopSceneOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<StopSceneOp> CreateStopSceneOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> scene_id = 0,
+    voidproto::LaunchQuantize quantize = voidproto::LaunchQuantize_BAR,
+    int64_t quantize_ticks = 0) {
+  StopSceneOpBuilder builder_(_fbb);
+  builder_.add_quantize_ticks(quantize_ticks);
+  builder_.add_scene_id(scene_id);
+  builder_.add_quantize(quantize);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<StopSceneOp> CreateStopSceneOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *scene_id = nullptr,
+    voidproto::LaunchQuantize quantize = voidproto::LaunchQuantize_BAR,
+    int64_t quantize_ticks = 0) {
+  auto scene_id__ = scene_id ? _fbb.CreateString(scene_id) : 0;
+  return voidproto::CreateStopSceneOp(
+      _fbb,
+      scene_id__,
+      quantize,
+      quantize_ticks);
+}
+
+struct LaunchClipOp FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef LaunchClipOpBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_SLOT_ID = 4,
+    VT_QUANTIZE = 6,
+    VT_QUANTIZE_TICKS = 8
+  };
+  const ::flatbuffers::String *slot_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_SLOT_ID);
+  }
+  voidproto::LaunchQuantize quantize() const {
+    return static_cast<voidproto::LaunchQuantize>(GetField<int8_t>(VT_QUANTIZE, 1));
+  }
+  int64_t quantize_ticks() const {
+    return GetField<int64_t>(VT_QUANTIZE_TICKS, 0);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_SLOT_ID) &&
+           verifier.VerifyString(slot_id()) &&
+           VerifyField<int8_t>(verifier, VT_QUANTIZE, 1) &&
+           VerifyField<int64_t>(verifier, VT_QUANTIZE_TICKS, 8) &&
+           verifier.EndTable();
+  }
+};
+
+struct LaunchClipOpBuilder {
+  typedef LaunchClipOp Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_slot_id(::flatbuffers::Offset<::flatbuffers::String> slot_id) {
+    fbb_.AddOffset(LaunchClipOp::VT_SLOT_ID, slot_id);
+  }
+  void add_quantize(voidproto::LaunchQuantize quantize) {
+    fbb_.AddElement<int8_t>(LaunchClipOp::VT_QUANTIZE, static_cast<int8_t>(quantize), 1);
+  }
+  void add_quantize_ticks(int64_t quantize_ticks) {
+    fbb_.AddElement<int64_t>(LaunchClipOp::VT_QUANTIZE_TICKS, quantize_ticks, 0);
+  }
+  explicit LaunchClipOpBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<LaunchClipOp> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<LaunchClipOp>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<LaunchClipOp> CreateLaunchClipOp(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> slot_id = 0,
+    voidproto::LaunchQuantize quantize = voidproto::LaunchQuantize_BAR,
+    int64_t quantize_ticks = 0) {
+  LaunchClipOpBuilder builder_(_fbb);
+  builder_.add_quantize_ticks(quantize_ticks);
+  builder_.add_slot_id(slot_id);
+  builder_.add_quantize(quantize);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<LaunchClipOp> CreateLaunchClipOpDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *slot_id = nullptr,
+    voidproto::LaunchQuantize quantize = voidproto::LaunchQuantize_BAR,
+    int64_t quantize_ticks = 0) {
+  auto slot_id__ = slot_id ? _fbb.CreateString(slot_id) : 0;
+  return voidproto::CreateLaunchClipOp(
+      _fbb,
+      slot_id__,
+      quantize,
+      quantize_ticks);
+}
+
 struct PersistentCommand FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef PersistentCommandBuilder Builder;
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -3390,6 +5554,72 @@ struct PersistentCommand FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table 
   }
   const voidproto::ClosePluginEditorOp *op_as_ClosePluginEditorOp() const {
     return op_type() == voidproto::PersistentOp_ClosePluginEditorOp ? static_cast<const voidproto::ClosePluginEditorOp *>(op()) : nullptr;
+  }
+  const voidproto::ArmTrackOp *op_as_ArmTrackOp() const {
+    return op_type() == voidproto::PersistentOp_ArmTrackOp ? static_cast<const voidproto::ArmTrackOp *>(op()) : nullptr;
+  }
+  const voidproto::StartRecordingOp *op_as_StartRecordingOp() const {
+    return op_type() == voidproto::PersistentOp_StartRecordingOp ? static_cast<const voidproto::StartRecordingOp *>(op()) : nullptr;
+  }
+  const voidproto::StopRecordingOp *op_as_StopRecordingOp() const {
+    return op_type() == voidproto::PersistentOp_StopRecordingOp ? static_cast<const voidproto::StopRecordingOp *>(op()) : nullptr;
+  }
+  const voidproto::SetCountInOp *op_as_SetCountInOp() const {
+    return op_type() == voidproto::PersistentOp_SetCountInOp ? static_cast<const voidproto::SetCountInOp *>(op()) : nullptr;
+  }
+  const voidproto::SetMetronomeOp *op_as_SetMetronomeOp() const {
+    return op_type() == voidproto::PersistentOp_SetMetronomeOp ? static_cast<const voidproto::SetMetronomeOp *>(op()) : nullptr;
+  }
+  const voidproto::SetPunchInOutOp *op_as_SetPunchInOutOp() const {
+    return op_type() == voidproto::PersistentOp_SetPunchInOutOp ? static_cast<const voidproto::SetPunchInOutOp *>(op()) : nullptr;
+  }
+  const voidproto::SubmitJobOp *op_as_SubmitJobOp() const {
+    return op_type() == voidproto::PersistentOp_SubmitJobOp ? static_cast<const voidproto::SubmitJobOp *>(op()) : nullptr;
+  }
+  const voidproto::CancelJobOp *op_as_CancelJobOp() const {
+    return op_type() == voidproto::PersistentOp_CancelJobOp ? static_cast<const voidproto::CancelJobOp *>(op()) : nullptr;
+  }
+  const voidproto::PauseJobOp *op_as_PauseJobOp() const {
+    return op_type() == voidproto::PersistentOp_PauseJobOp ? static_cast<const voidproto::PauseJobOp *>(op()) : nullptr;
+  }
+  const voidproto::InstallModelOp *op_as_InstallModelOp() const {
+    return op_type() == voidproto::PersistentOp_InstallModelOp ? static_cast<const voidproto::InstallModelOp *>(op()) : nullptr;
+  }
+  const voidproto::RequestProposalOp *op_as_RequestProposalOp() const {
+    return op_type() == voidproto::PersistentOp_RequestProposalOp ? static_cast<const voidproto::RequestProposalOp *>(op()) : nullptr;
+  }
+  const voidproto::ResolveProposalOp *op_as_ResolveProposalOp() const {
+    return op_type() == voidproto::PersistentOp_ResolveProposalOp ? static_cast<const voidproto::ResolveProposalOp *>(op()) : nullptr;
+  }
+  const voidproto::PreviewLayerOp *op_as_PreviewLayerOp() const {
+    return op_type() == voidproto::PersistentOp_PreviewLayerOp ? static_cast<const voidproto::PreviewLayerOp *>(op()) : nullptr;
+  }
+  const voidproto::IngestAssetOp *op_as_IngestAssetOp() const {
+    return op_type() == voidproto::PersistentOp_IngestAssetOp ? static_cast<const voidproto::IngestAssetOp *>(op()) : nullptr;
+  }
+  const voidproto::RelinkAssetOp *op_as_RelinkAssetOp() const {
+    return op_type() == voidproto::PersistentOp_RelinkAssetOp ? static_cast<const voidproto::RelinkAssetOp *>(op()) : nullptr;
+  }
+  const voidproto::SetPluginBypassOp *op_as_SetPluginBypassOp() const {
+    return op_type() == voidproto::PersistentOp_SetPluginBypassOp ? static_cast<const voidproto::SetPluginBypassOp *>(op()) : nullptr;
+  }
+  const voidproto::RescanPluginsOp *op_as_RescanPluginsOp() const {
+    return op_type() == voidproto::PersistentOp_RescanPluginsOp ? static_cast<const voidproto::RescanPluginsOp *>(op()) : nullptr;
+  }
+  const voidproto::RestorePluginStateOp *op_as_RestorePluginStateOp() const {
+    return op_type() == voidproto::PersistentOp_RestorePluginStateOp ? static_cast<const voidproto::RestorePluginStateOp *>(op()) : nullptr;
+  }
+  const voidproto::SaveProjectAsOp *op_as_SaveProjectAsOp() const {
+    return op_type() == voidproto::PersistentOp_SaveProjectAsOp ? static_cast<const voidproto::SaveProjectAsOp *>(op()) : nullptr;
+  }
+  const voidproto::LaunchSceneOp *op_as_LaunchSceneOp() const {
+    return op_type() == voidproto::PersistentOp_LaunchSceneOp ? static_cast<const voidproto::LaunchSceneOp *>(op()) : nullptr;
+  }
+  const voidproto::StopSceneOp *op_as_StopSceneOp() const {
+    return op_type() == voidproto::PersistentOp_StopSceneOp ? static_cast<const voidproto::StopSceneOp *>(op()) : nullptr;
+  }
+  const voidproto::LaunchClipOp *op_as_LaunchClipOp() const {
+    return op_type() == voidproto::PersistentOp_LaunchClipOp ? static_cast<const voidproto::LaunchClipOp *>(op()) : nullptr;
   }
   bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
@@ -3534,6 +5764,94 @@ template<> inline const voidproto::OpenPluginEditorOp *PersistentCommand::op_as<
 
 template<> inline const voidproto::ClosePluginEditorOp *PersistentCommand::op_as<voidproto::ClosePluginEditorOp>() const {
   return op_as_ClosePluginEditorOp();
+}
+
+template<> inline const voidproto::ArmTrackOp *PersistentCommand::op_as<voidproto::ArmTrackOp>() const {
+  return op_as_ArmTrackOp();
+}
+
+template<> inline const voidproto::StartRecordingOp *PersistentCommand::op_as<voidproto::StartRecordingOp>() const {
+  return op_as_StartRecordingOp();
+}
+
+template<> inline const voidproto::StopRecordingOp *PersistentCommand::op_as<voidproto::StopRecordingOp>() const {
+  return op_as_StopRecordingOp();
+}
+
+template<> inline const voidproto::SetCountInOp *PersistentCommand::op_as<voidproto::SetCountInOp>() const {
+  return op_as_SetCountInOp();
+}
+
+template<> inline const voidproto::SetMetronomeOp *PersistentCommand::op_as<voidproto::SetMetronomeOp>() const {
+  return op_as_SetMetronomeOp();
+}
+
+template<> inline const voidproto::SetPunchInOutOp *PersistentCommand::op_as<voidproto::SetPunchInOutOp>() const {
+  return op_as_SetPunchInOutOp();
+}
+
+template<> inline const voidproto::SubmitJobOp *PersistentCommand::op_as<voidproto::SubmitJobOp>() const {
+  return op_as_SubmitJobOp();
+}
+
+template<> inline const voidproto::CancelJobOp *PersistentCommand::op_as<voidproto::CancelJobOp>() const {
+  return op_as_CancelJobOp();
+}
+
+template<> inline const voidproto::PauseJobOp *PersistentCommand::op_as<voidproto::PauseJobOp>() const {
+  return op_as_PauseJobOp();
+}
+
+template<> inline const voidproto::InstallModelOp *PersistentCommand::op_as<voidproto::InstallModelOp>() const {
+  return op_as_InstallModelOp();
+}
+
+template<> inline const voidproto::RequestProposalOp *PersistentCommand::op_as<voidproto::RequestProposalOp>() const {
+  return op_as_RequestProposalOp();
+}
+
+template<> inline const voidproto::ResolveProposalOp *PersistentCommand::op_as<voidproto::ResolveProposalOp>() const {
+  return op_as_ResolveProposalOp();
+}
+
+template<> inline const voidproto::PreviewLayerOp *PersistentCommand::op_as<voidproto::PreviewLayerOp>() const {
+  return op_as_PreviewLayerOp();
+}
+
+template<> inline const voidproto::IngestAssetOp *PersistentCommand::op_as<voidproto::IngestAssetOp>() const {
+  return op_as_IngestAssetOp();
+}
+
+template<> inline const voidproto::RelinkAssetOp *PersistentCommand::op_as<voidproto::RelinkAssetOp>() const {
+  return op_as_RelinkAssetOp();
+}
+
+template<> inline const voidproto::SetPluginBypassOp *PersistentCommand::op_as<voidproto::SetPluginBypassOp>() const {
+  return op_as_SetPluginBypassOp();
+}
+
+template<> inline const voidproto::RescanPluginsOp *PersistentCommand::op_as<voidproto::RescanPluginsOp>() const {
+  return op_as_RescanPluginsOp();
+}
+
+template<> inline const voidproto::RestorePluginStateOp *PersistentCommand::op_as<voidproto::RestorePluginStateOp>() const {
+  return op_as_RestorePluginStateOp();
+}
+
+template<> inline const voidproto::SaveProjectAsOp *PersistentCommand::op_as<voidproto::SaveProjectAsOp>() const {
+  return op_as_SaveProjectAsOp();
+}
+
+template<> inline const voidproto::LaunchSceneOp *PersistentCommand::op_as<voidproto::LaunchSceneOp>() const {
+  return op_as_LaunchSceneOp();
+}
+
+template<> inline const voidproto::StopSceneOp *PersistentCommand::op_as<voidproto::StopSceneOp>() const {
+  return op_as_StopSceneOp();
+}
+
+template<> inline const voidproto::LaunchClipOp *PersistentCommand::op_as<voidproto::LaunchClipOp>() const {
+  return op_as_LaunchClipOp();
 }
 
 struct PersistentCommandBuilder {
@@ -3762,7 +6080,8 @@ struct ReadRequest FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
     VT_LIMIT = 12,
     VT_TRACK_ID = 14,
     VT_START_TICKS = 16,
-    VT_END_TICKS = 18
+    VT_END_TICKS = 18,
+    VT_INCLUDE_TERMINAL = 20
   };
   const ::flatbuffers::String *request_id() const {
     return GetPointer<const ::flatbuffers::String *>(VT_REQUEST_ID);
@@ -3788,6 +6107,9 @@ struct ReadRequest FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   int64_t end_ticks() const {
     return GetField<int64_t>(VT_END_TICKS, -1LL);
   }
+  bool include_terminal() const {
+    return GetField<uint8_t>(VT_INCLUDE_TERMINAL, 0) != 0;
+  }
   bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_REQUEST_ID) &&
@@ -3802,6 +6124,7 @@ struct ReadRequest FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
            verifier.VerifyString(track_id()) &&
            VerifyField<int64_t>(verifier, VT_START_TICKS, 8) &&
            VerifyField<int64_t>(verifier, VT_END_TICKS, 8) &&
+           VerifyField<uint8_t>(verifier, VT_INCLUDE_TERMINAL, 1) &&
            verifier.EndTable();
   }
 };
@@ -3834,6 +6157,9 @@ struct ReadRequestBuilder {
   void add_end_ticks(int64_t end_ticks) {
     fbb_.AddElement<int64_t>(ReadRequest::VT_END_TICKS, end_ticks, -1LL);
   }
+  void add_include_terminal(bool include_terminal) {
+    fbb_.AddElement<uint8_t>(ReadRequest::VT_INCLUDE_TERMINAL, static_cast<uint8_t>(include_terminal), 0);
+  }
   explicit ReadRequestBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
         : fbb_(_fbb) {
     start_ = fbb_.StartTable();
@@ -3854,7 +6180,8 @@ inline ::flatbuffers::Offset<ReadRequest> CreateReadRequest(
     uint32_t limit = 0,
     ::flatbuffers::Offset<::flatbuffers::String> track_id = 0,
     int64_t start_ticks = -1LL,
-    int64_t end_ticks = -1LL) {
+    int64_t end_ticks = -1LL,
+    bool include_terminal = false) {
   ReadRequestBuilder builder_(_fbb);
   builder_.add_end_ticks(end_ticks);
   builder_.add_start_ticks(start_ticks);
@@ -3863,6 +6190,7 @@ inline ::flatbuffers::Offset<ReadRequest> CreateReadRequest(
   builder_.add_cursor(cursor);
   builder_.add_project_id(project_id);
   builder_.add_request_id(request_id);
+  builder_.add_include_terminal(include_terminal);
   builder_.add_view(view);
   return builder_.Finish();
 }
@@ -3876,7 +6204,8 @@ inline ::flatbuffers::Offset<ReadRequest> CreateReadRequestDirect(
     uint32_t limit = 0,
     const char *track_id = nullptr,
     int64_t start_ticks = -1LL,
-    int64_t end_ticks = -1LL) {
+    int64_t end_ticks = -1LL,
+    bool include_terminal = false) {
   auto request_id__ = request_id ? _fbb.CreateString(request_id) : 0;
   auto project_id__ = project_id ? _fbb.CreateString(project_id) : 0;
   auto cursor__ = cursor ? _fbb.CreateString(cursor) : 0;
@@ -3890,7 +6219,8 @@ inline ::flatbuffers::Offset<ReadRequest> CreateReadRequestDirect(
       limit,
       track_id__,
       start_ticks,
-      end_ticks);
+      end_ticks,
+      include_terminal);
 }
 
 struct PluginScanRequest FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
@@ -5360,6 +7690,281 @@ inline ::flatbuffers::Offset<TransportAck> CreateTransportAckDirect(
       error);
 }
 
+struct JobEvent FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef JobEventBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_PROJECT_ID = 4,
+    VT_JOB_ID = 6,
+    VT_STATUS = 8,
+    VT_PERCENT = 10,
+    VT_MESSAGE = 12,
+    VT_QUARANTINED = 14
+  };
+  const ::flatbuffers::String *project_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_PROJECT_ID);
+  }
+  const ::flatbuffers::String *job_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_JOB_ID);
+  }
+  const ::flatbuffers::String *status() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_STATUS);
+  }
+  float percent() const {
+    return GetField<float>(VT_PERCENT, -1.0f);
+  }
+  const ::flatbuffers::String *message() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_MESSAGE);
+  }
+  bool quarantined() const {
+    return GetField<uint8_t>(VT_QUARANTINED, 0) != 0;
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_PROJECT_ID) &&
+           verifier.VerifyString(project_id()) &&
+           VerifyOffset(verifier, VT_JOB_ID) &&
+           verifier.VerifyString(job_id()) &&
+           VerifyOffset(verifier, VT_STATUS) &&
+           verifier.VerifyString(status()) &&
+           VerifyField<float>(verifier, VT_PERCENT, 4) &&
+           VerifyOffset(verifier, VT_MESSAGE) &&
+           verifier.VerifyString(message()) &&
+           VerifyField<uint8_t>(verifier, VT_QUARANTINED, 1) &&
+           verifier.EndTable();
+  }
+};
+
+struct JobEventBuilder {
+  typedef JobEvent Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_project_id(::flatbuffers::Offset<::flatbuffers::String> project_id) {
+    fbb_.AddOffset(JobEvent::VT_PROJECT_ID, project_id);
+  }
+  void add_job_id(::flatbuffers::Offset<::flatbuffers::String> job_id) {
+    fbb_.AddOffset(JobEvent::VT_JOB_ID, job_id);
+  }
+  void add_status(::flatbuffers::Offset<::flatbuffers::String> status) {
+    fbb_.AddOffset(JobEvent::VT_STATUS, status);
+  }
+  void add_percent(float percent) {
+    fbb_.AddElement<float>(JobEvent::VT_PERCENT, percent, -1.0f);
+  }
+  void add_message(::flatbuffers::Offset<::flatbuffers::String> message) {
+    fbb_.AddOffset(JobEvent::VT_MESSAGE, message);
+  }
+  void add_quarantined(bool quarantined) {
+    fbb_.AddElement<uint8_t>(JobEvent::VT_QUARANTINED, static_cast<uint8_t>(quarantined), 0);
+  }
+  explicit JobEventBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<JobEvent> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<JobEvent>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<JobEvent> CreateJobEvent(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> project_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> job_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> status = 0,
+    float percent = -1.0f,
+    ::flatbuffers::Offset<::flatbuffers::String> message = 0,
+    bool quarantined = false) {
+  JobEventBuilder builder_(_fbb);
+  builder_.add_message(message);
+  builder_.add_percent(percent);
+  builder_.add_status(status);
+  builder_.add_job_id(job_id);
+  builder_.add_project_id(project_id);
+  builder_.add_quarantined(quarantined);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<JobEvent> CreateJobEventDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *project_id = nullptr,
+    const char *job_id = nullptr,
+    const char *status = nullptr,
+    float percent = -1.0f,
+    const char *message = nullptr,
+    bool quarantined = false) {
+  auto project_id__ = project_id ? _fbb.CreateString(project_id) : 0;
+  auto job_id__ = job_id ? _fbb.CreateString(job_id) : 0;
+  auto status__ = status ? _fbb.CreateString(status) : 0;
+  auto message__ = message ? _fbb.CreateString(message) : 0;
+  return voidproto::CreateJobEvent(
+      _fbb,
+      project_id__,
+      job_id__,
+      status__,
+      percent,
+      message__,
+      quarantined);
+}
+
+struct ProposalStaleEvent FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef ProposalStaleEventBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_PROJECT_ID = 4,
+    VT_PROPOSAL_ID = 6,
+    VT_CAUSE = 8
+  };
+  const ::flatbuffers::String *project_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_PROJECT_ID);
+  }
+  const ::flatbuffers::String *proposal_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_PROPOSAL_ID);
+  }
+  const ::flatbuffers::String *cause() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_CAUSE);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_PROJECT_ID) &&
+           verifier.VerifyString(project_id()) &&
+           VerifyOffset(verifier, VT_PROPOSAL_ID) &&
+           verifier.VerifyString(proposal_id()) &&
+           VerifyOffset(verifier, VT_CAUSE) &&
+           verifier.VerifyString(cause()) &&
+           verifier.EndTable();
+  }
+};
+
+struct ProposalStaleEventBuilder {
+  typedef ProposalStaleEvent Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_project_id(::flatbuffers::Offset<::flatbuffers::String> project_id) {
+    fbb_.AddOffset(ProposalStaleEvent::VT_PROJECT_ID, project_id);
+  }
+  void add_proposal_id(::flatbuffers::Offset<::flatbuffers::String> proposal_id) {
+    fbb_.AddOffset(ProposalStaleEvent::VT_PROPOSAL_ID, proposal_id);
+  }
+  void add_cause(::flatbuffers::Offset<::flatbuffers::String> cause) {
+    fbb_.AddOffset(ProposalStaleEvent::VT_CAUSE, cause);
+  }
+  explicit ProposalStaleEventBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<ProposalStaleEvent> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<ProposalStaleEvent>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<ProposalStaleEvent> CreateProposalStaleEvent(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> project_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> proposal_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> cause = 0) {
+  ProposalStaleEventBuilder builder_(_fbb);
+  builder_.add_cause(cause);
+  builder_.add_proposal_id(proposal_id);
+  builder_.add_project_id(project_id);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<ProposalStaleEvent> CreateProposalStaleEventDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *project_id = nullptr,
+    const char *proposal_id = nullptr,
+    const char *cause = nullptr) {
+  auto project_id__ = project_id ? _fbb.CreateString(project_id) : 0;
+  auto proposal_id__ = proposal_id ? _fbb.CreateString(proposal_id) : 0;
+  auto cause__ = cause ? _fbb.CreateString(cause) : 0;
+  return voidproto::CreateProposalStaleEvent(
+      _fbb,
+      project_id__,
+      proposal_id__,
+      cause__);
+}
+
+struct InputDeviceLostEvent FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
+  typedef InputDeviceLostEventBuilder Builder;
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_PROJECT_ID = 4,
+    VT_DEVICE_ID = 6,
+    VT_DEVICE_NAME = 8
+  };
+  const ::flatbuffers::String *project_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_PROJECT_ID);
+  }
+  const ::flatbuffers::String *device_id() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_DEVICE_ID);
+  }
+  const ::flatbuffers::String *device_name() const {
+    return GetPointer<const ::flatbuffers::String *>(VT_DEVICE_NAME);
+  }
+  bool Verify(::flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_PROJECT_ID) &&
+           verifier.VerifyString(project_id()) &&
+           VerifyOffset(verifier, VT_DEVICE_ID) &&
+           verifier.VerifyString(device_id()) &&
+           VerifyOffset(verifier, VT_DEVICE_NAME) &&
+           verifier.VerifyString(device_name()) &&
+           verifier.EndTable();
+  }
+};
+
+struct InputDeviceLostEventBuilder {
+  typedef InputDeviceLostEvent Table;
+  ::flatbuffers::FlatBufferBuilder &fbb_;
+  ::flatbuffers::uoffset_t start_;
+  void add_project_id(::flatbuffers::Offset<::flatbuffers::String> project_id) {
+    fbb_.AddOffset(InputDeviceLostEvent::VT_PROJECT_ID, project_id);
+  }
+  void add_device_id(::flatbuffers::Offset<::flatbuffers::String> device_id) {
+    fbb_.AddOffset(InputDeviceLostEvent::VT_DEVICE_ID, device_id);
+  }
+  void add_device_name(::flatbuffers::Offset<::flatbuffers::String> device_name) {
+    fbb_.AddOffset(InputDeviceLostEvent::VT_DEVICE_NAME, device_name);
+  }
+  explicit InputDeviceLostEventBuilder(::flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  ::flatbuffers::Offset<InputDeviceLostEvent> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = ::flatbuffers::Offset<InputDeviceLostEvent>(end);
+    return o;
+  }
+};
+
+inline ::flatbuffers::Offset<InputDeviceLostEvent> CreateInputDeviceLostEvent(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    ::flatbuffers::Offset<::flatbuffers::String> project_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> device_id = 0,
+    ::flatbuffers::Offset<::flatbuffers::String> device_name = 0) {
+  InputDeviceLostEventBuilder builder_(_fbb);
+  builder_.add_device_name(device_name);
+  builder_.add_device_id(device_id);
+  builder_.add_project_id(project_id);
+  return builder_.Finish();
+}
+
+inline ::flatbuffers::Offset<InputDeviceLostEvent> CreateInputDeviceLostEventDirect(
+    ::flatbuffers::FlatBufferBuilder &_fbb,
+    const char *project_id = nullptr,
+    const char *device_id = nullptr,
+    const char *device_name = nullptr) {
+  auto project_id__ = project_id ? _fbb.CreateString(project_id) : 0;
+  auto device_id__ = device_id ? _fbb.CreateString(device_id) : 0;
+  auto device_name__ = device_name ? _fbb.CreateString(device_name) : 0;
+  return voidproto::CreateInputDeviceLostEvent(
+      _fbb,
+      project_id__,
+      device_id__,
+      device_name__);
+}
+
 struct TelemetryFrame FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   typedef TelemetryFrameBuilder Builder;
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
@@ -5385,6 +7990,15 @@ struct TelemetryFrame FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   const voidproto::TransportAck *event_as_TransportAck() const {
     return event_type() == voidproto::TelemetryEvent_TransportAck ? static_cast<const voidproto::TransportAck *>(event()) : nullptr;
   }
+  const voidproto::JobEvent *event_as_JobEvent() const {
+    return event_type() == voidproto::TelemetryEvent_JobEvent ? static_cast<const voidproto::JobEvent *>(event()) : nullptr;
+  }
+  const voidproto::ProposalStaleEvent *event_as_ProposalStaleEvent() const {
+    return event_type() == voidproto::TelemetryEvent_ProposalStaleEvent ? static_cast<const voidproto::ProposalStaleEvent *>(event()) : nullptr;
+  }
+  const voidproto::InputDeviceLostEvent *event_as_InputDeviceLostEvent() const {
+    return event_type() == voidproto::TelemetryEvent_InputDeviceLostEvent ? static_cast<const voidproto::InputDeviceLostEvent *>(event()) : nullptr;
+  }
   bool Verify(::flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyField<uint8_t>(verifier, VT_EVENT_TYPE, 1) &&
@@ -5408,6 +8022,18 @@ template<> inline const voidproto::SaveResultEvent *TelemetryFrame::event_as<voi
 
 template<> inline const voidproto::TransportAck *TelemetryFrame::event_as<voidproto::TransportAck>() const {
   return event_as_TransportAck();
+}
+
+template<> inline const voidproto::JobEvent *TelemetryFrame::event_as<voidproto::JobEvent>() const {
+  return event_as_JobEvent();
+}
+
+template<> inline const voidproto::ProposalStaleEvent *TelemetryFrame::event_as<voidproto::ProposalStaleEvent>() const {
+  return event_as_ProposalStaleEvent();
+}
+
+template<> inline const voidproto::InputDeviceLostEvent *TelemetryFrame::event_as<voidproto::InputDeviceLostEvent>() const {
+  return event_as_InputDeviceLostEvent();
 }
 
 struct TelemetryFrameBuilder {
@@ -5574,6 +8200,94 @@ inline bool VerifyPersistentOp(::flatbuffers::Verifier &verifier, const void *ob
       auto ptr = reinterpret_cast<const voidproto::ClosePluginEditorOp *>(obj);
       return verifier.VerifyTable(ptr);
     }
+    case PersistentOp_ArmTrackOp: {
+      auto ptr = reinterpret_cast<const voidproto::ArmTrackOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_StartRecordingOp: {
+      auto ptr = reinterpret_cast<const voidproto::StartRecordingOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_StopRecordingOp: {
+      auto ptr = reinterpret_cast<const voidproto::StopRecordingOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_SetCountInOp: {
+      auto ptr = reinterpret_cast<const voidproto::SetCountInOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_SetMetronomeOp: {
+      auto ptr = reinterpret_cast<const voidproto::SetMetronomeOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_SetPunchInOutOp: {
+      auto ptr = reinterpret_cast<const voidproto::SetPunchInOutOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_SubmitJobOp: {
+      auto ptr = reinterpret_cast<const voidproto::SubmitJobOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_CancelJobOp: {
+      auto ptr = reinterpret_cast<const voidproto::CancelJobOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_PauseJobOp: {
+      auto ptr = reinterpret_cast<const voidproto::PauseJobOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_InstallModelOp: {
+      auto ptr = reinterpret_cast<const voidproto::InstallModelOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_RequestProposalOp: {
+      auto ptr = reinterpret_cast<const voidproto::RequestProposalOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_ResolveProposalOp: {
+      auto ptr = reinterpret_cast<const voidproto::ResolveProposalOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_PreviewLayerOp: {
+      auto ptr = reinterpret_cast<const voidproto::PreviewLayerOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_IngestAssetOp: {
+      auto ptr = reinterpret_cast<const voidproto::IngestAssetOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_RelinkAssetOp: {
+      auto ptr = reinterpret_cast<const voidproto::RelinkAssetOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_SetPluginBypassOp: {
+      auto ptr = reinterpret_cast<const voidproto::SetPluginBypassOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_RescanPluginsOp: {
+      auto ptr = reinterpret_cast<const voidproto::RescanPluginsOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_RestorePluginStateOp: {
+      auto ptr = reinterpret_cast<const voidproto::RestorePluginStateOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_SaveProjectAsOp: {
+      auto ptr = reinterpret_cast<const voidproto::SaveProjectAsOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_LaunchSceneOp: {
+      auto ptr = reinterpret_cast<const voidproto::LaunchSceneOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_StopSceneOp: {
+      auto ptr = reinterpret_cast<const voidproto::StopSceneOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case PersistentOp_LaunchClipOp: {
+      auto ptr = reinterpret_cast<const voidproto::LaunchClipOp *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
     default: return true;
   }
 }
@@ -5712,6 +8426,18 @@ inline bool VerifyTelemetryEvent(::flatbuffers::Verifier &verifier, const void *
     }
     case TelemetryEvent_TransportAck: {
       auto ptr = reinterpret_cast<const voidproto::TransportAck *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case TelemetryEvent_JobEvent: {
+      auto ptr = reinterpret_cast<const voidproto::JobEvent *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case TelemetryEvent_ProposalStaleEvent: {
+      auto ptr = reinterpret_cast<const voidproto::ProposalStaleEvent *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
+    case TelemetryEvent_InputDeviceLostEvent: {
+      auto ptr = reinterpret_cast<const voidproto::InputDeviceLostEvent *>(obj);
       return verifier.VerifyTable(ptr);
     }
     default: return true;
