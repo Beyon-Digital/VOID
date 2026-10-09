@@ -43,3 +43,9 @@ T08–T12 (protocol validation/idempotency/stale/bounded/timebase) and T49–T51
 
 - **W29 parity reconciliation + release readiness** (`devin/void-lane-w29` @ 59949d9): `docs/verification/F5/` — F5_RECONCILIATION.md (W00–W29 with merge SHAs), FEATURE_MATRIX.md (116 features + 22 stock groups), RESIDUAL_RISKS.md (Link/Verovio/projectM/ARA/isolation/head-tracking/live-device), F5 NEEDS.md N01–N15 + NEEDS_MAP.json, trace_check.py + TRACE_AUDIT.json (T99 pass_linux); `docs/release/RELEASE_CANDIDATE.md` v1.0.0-rc.1 (T100 partial — release deferred-by-approval). README gains verification section.
 - All 30 work packages (W00–W29) now implemented/audited; every non-pass test row maps to a NEEDS entry.
+
+## 2026-10-09 02:57 UTC — Lane AA (infra) merged + F5-N01 ledger reconciliation
+
+- **Lane AA** (`devin/void-lane-infra` @ 199979e): `.github/workflows/release.yml` tag-triggered 3-OS tauri matrix → draft release (signing env-wired, key material gated); `tauri-plugin-updater` wired w/ fail-closed placeholder pubkey; `tools/privacy-audit.sh` 8 pass/2 warn; `tools/supplychain-check.sh` 7 pass (vendored SQLite 3.46.0 pinned); ci.yml +rust-windows +rust-macos +ts-macos +ts-windows +audit jobs; docs/ops/*; OPS-N01..N09 (signing keys, runtime drills, engine-in-bundle).
+- **F5-N01 reconciliation**: FEATURE_TRACEABILITY derived from TESTS.json — 80 verified / 36 partial; stock 22/22 partial; INFRASTRUCTURE 17 partial; DEPENDENCIES 3 qualified (Tracktion/JUCE/FlatBuffers) + 12 in_use; PLATFORMS linux=tested, macOS=partial, windows=not_tested.
+- F5-N10/N13/N14 resolved earlier this session (models suite 6/6 provisioned; void-tauri in cargo gate; T01/T52 evidence).

@@ -18,7 +18,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### DOC-01 · Project create, open, save and templates
 
-**Original stage/status:** F1 / Contract only · **Execution:** W05, W11 (F0, F1) · **Current:** not_verified
+**Original stage/status:** F1 / Contract only · **Execution:** W05, W11 (F0, F1) · **Current:** partial
 
 **Required build outcome:** Versioned document, project folder, recent-project picker, atomic save and useful default templates.
 
@@ -32,7 +32,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### DOC-02 · Project alternatives and track alternatives
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Branch revisions without duplicating immutable media; preserve plugin states per alternative.
 
@@ -46,7 +46,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### DOC-03 · Backups, undo and redo
 
-**Original stage/status:** F1 / Not found · **Execution:** W05, W09 (F0, F1) · **Current:** not_verified
+**Original stage/status:** F1 / Not found · **Execution:** W05, W09 (F0, F1) · **Current:** verified
 
 **Required build outcome:** Command journal, bounded undo snapshots, crash recovery and explicit destructive-change confirmation.
 
@@ -60,7 +60,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### DOC-04 · Consolidate, relink and clean media
 
-**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** verified
 
 **Required build outcome:** Content-hashed assets, portable project archive, missing-file resolver and reference-aware cleanup.
 
@@ -74,7 +74,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### DOC-05 · Project/track notes and project information
 
-**Original stage/status:** F1 / Not found · **Execution:** W11 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Not found · **Execution:** W11 (F1) · **Current:** partial
 
 **Required build outcome:** Local notes, credits, sample rate, tempo/key summary, used assets and storage totals.
 
@@ -88,7 +88,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### DOC-06 · Import tracks/settings from another project
 
-**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** verified
 
 **Required build outcome:** Merge selected tracks, routing, assets and plugin states with ID remapping and preview.
 
@@ -104,7 +104,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### ENG-01 · Audio device, input/output and buffer setup
 
-**Original stage/status:** F1 / Not found · **Execution:** W04, W08 (F0, F1) · **Current:** not_verified
+**Original stage/status:** F1 / Not found · **Execution:** W04, W08 (F0, F1) · **Current:** partial
 
 **Required build outcome:** Native device selection, channel configuration, sample-rate negotiation and a device-loss state. Certify macOS first; stage Windows/Linux separately.
 
@@ -118,7 +118,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### ENG-02 · Sample-accurate transport, seek, pause and stop
 
-**Original stage/status:** F1 / Stub · **Execution:** W04 (F0) · **Current:** not_verified
+**Original stage/status:** F1 / Stub · **Execution:** W04 (F0) · **Current:** partial
 
 **Required build outcome:** One audio clock, scheduled events, tempo conversion, note chase, click-free seek and explicit stop semantics.
 
@@ -132,7 +132,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### ENG-03 · Low-latency monitoring and recording alignment
 
-**Original stage/status:** F1 / Not found · **Execution:** W08 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Not found · **Execution:** W08 (F1) · **Current:** verified
 
 **Required build outcome:** Record-arm, input monitor, measured input/output compensation and documented low-latency bypass rules.
 
@@ -146,7 +146,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### ENG-04 · Plugin delay compensation and sidechain timing
 
-**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** verified
 
 **Required build outcome:** Latency propagation through tracks, buses, sends, multi-output instruments and external inserts.
 
@@ -160,7 +160,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### ENG-05 · Disk streaming, CPU meters, freeze and bounce-in-place
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Bounded read-ahead/cache, xruns telemetry, frozen renders and reversible offline processing.
 
@@ -174,7 +174,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### ENG-06 · Mono, stereo, dual-mono and multichannel processing
 
-**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** verified
 
 **Required build outcome:** Typed channel layouts, explicit conversion nodes, pan laws and format validation.
 
@@ -190,7 +190,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### TIME-01 · Tempo, meter, key and cycle loop
 
-**Original stage/status:** F1 / Stub · **Execution:** W04, W08 (F0, F1) · **Current:** not_verified
+**Original stage/status:** F1 / Stub · **Execution:** W04, W08 (F0, F1) · **Current:** partial
 
 **Required build outcome:** Implement BPM/meter controls, musical ruler, loop boundaries and key metadata rather than empty setters.
 
@@ -204,7 +204,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### TIME-02 · Metronome, count-in and punch boundaries
 
-**Original stage/status:** F1 / Not found · **Execution:** W08 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Not found · **Execution:** W08 (F1) · **Current:** verified
 
 **Required build outcome:** Configurable click and count-in scheduled by the engine; distinguish pre-roll from recorded material.
 
@@ -218,7 +218,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### TIME-03 · Tempo/signature maps and tempo curves
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Versioned piecewise tempo and meter maps; convert ticks to samples and back deterministically.
 
@@ -232,7 +232,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### TIME-04 · Markers, arrangement sections and global edits
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Named sections with move/copy/repeat operations that update clips, automation, chords and visuals together.
 
@@ -246,7 +246,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### TIME-05 · Chord track, region chords and harmonic follow
 
-**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** verified
 
 **Required build outcome:** Structured chord objects with local overrides, voicing policy and explicit follow behavior.
 
@@ -260,7 +260,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### TIME-06 · Smart Tempo, beat mapping and groove track
 
-**Original stage/status:** F3 / Contract only · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Contract only · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Analysis jobs produce editable beat/downbeat/tempo maps; allow keep/adapt choices and manual correction.
 
@@ -276,7 +276,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### REC-01 · Audio recording: mono/stereo and multitrack
 
-**Original stage/status:** F1 / Stub · **Execution:** W08 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Stub · **Execution:** W08 (F1) · **Current:** verified
 
 **Required build outcome:** Stream input to recoverable files; arm per track; show actual waveforms and input levels.
 
@@ -290,7 +290,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### REC-02 · MIDI and software-instrument recording
 
-**Original stage/status:** F1 / Contract only · **Execution:** W08 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Contract only · **Execution:** W08 (F1) · **Current:** verified
 
 **Required build outcome:** Timestamp notes/CC, route devices/channels, render a built-in instrument and record MIDI separately from audio.
 
@@ -304,7 +304,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### REC-03 · Overdub, replace, step input and note repeat
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Explicit recording modes with clear destination, source retention and configurable note-repeat clock.
 
@@ -318,7 +318,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### REC-04 · Loop takes, take folders and punch recording
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Non-destructive take lanes, take IDs, punch ranges and compensating crossfades.
 
@@ -332,7 +332,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### REC-05 · Quick-swipe-style comping and take editing
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Audition lanes, select comp segments, edit seams, duplicate comps and reversible flatten.
 
@@ -346,7 +346,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### REC-06 · Flashback capture: recent MIDI and audio
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Consent-aware bounded capture buffers, clear armed-state indication and recovery into takes.
 
@@ -362,7 +362,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### ARR-01 · Track list, timeline, waveform and region editing
 
-**Original stage/status:** F1 / Not found · **Execution:** W09 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Not found · **Execution:** W09 (F1) · **Current:** verified
 
 **Required build outcome:** Build the actual arrangement workspace: add/select/move/split/trim/copy/delete clips with zoom, scroll and sample-aware waveforms.
 
@@ -376,7 +376,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### ARR-02 · Snap, marquee, alignment guides and drag modes
 
-**Original stage/status:** F1 / Not found · **Execution:** W09 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Not found · **Execution:** W09 (F1) · **Current:** verified
 
 **Required build outcome:** A common edit-intent layer for pointer/keyboard, grid-relative and absolute snaps, overlap modes and precise numeric input.
 
@@ -390,7 +390,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### ARR-03 · Region loops, repeats, aliases and folders
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Distinguish linked instances from independent copies; support explicit flattening and nested arrangement groups.
 
@@ -404,7 +404,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### ARR-04 · Region gain, mute, solo, reverse and delay
 
-**Original stage/status:** F1 / Stub · **Execution:** W09 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Stub · **Execution:** W09 (F1) · **Current:** verified
 
 **Required build outcome:** Non-destructive per-clip transforms, visible gain and clearly scoped clip-versus-track control.
 
@@ -418,7 +418,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### ARR-05 · Fades, crossfades and silence removal
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Editable fade curves, automatic seam fades, threshold-based strip-silence analysis and audition.
 
@@ -432,7 +432,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### ARR-06 · Track stacks, groups, hide/protect and search
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Folder and summing stacks, group-scoped edits, hidden-track search and protected-track enforcement.
 
@@ -446,7 +446,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### ARR-07 · Batch region processing and render-in-place
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Preview a processing chain; render to new assets; retain originals and undo relationships.
 
@@ -462,7 +462,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### EDIT-01 · Flex Time: transient and sustained-material stretching
 
-**Original stage/status:** F3 / Contract only · **Execution:** W19 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Contract only · **Execution:** W19 (F3) · **Current:** partial
 
 **Required build outcome:** Integrate or license stretch DSP; expose transient/tonal/polyphonic strategies, warp anchors and quality modes.
 
@@ -476,7 +476,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### EDIT-02 · Flex Pitch: note-level audio pitch editing
 
-**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** partial
 
 **Required build outcome:** Pitch analysis, correction curves, drift/vibrato/formant controls and reversible regional edits.
 
@@ -490,7 +490,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### EDIT-03 · Varispeed and linked/unlinked time-pitch changes
 
-**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** partial
 
 **Required build outcome:** Separate project speed, tempo adaptation and pitch shifting with explicit render semantics.
 
@@ -504,7 +504,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### EDIT-04 · Audio-file editing and repair tools
 
-**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** partial
 
 **Required build outcome:** Sample editor, zero-crossing snaps, normalize, DC removal, phase invert, silence and protected source copies.
 
@@ -518,7 +518,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### EDIT-05 · Transient detection, drum replacement and audio-to-MIDI
 
-**Original stage/status:** F3 / Not found · **Execution:** W15, W19 (F2, F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W15, W19 (F2, F3) · **Current:** partial
 
 **Required build outcome:** Onset/pitch analysis into auditionable triggers or MIDI; distinguish monophonic transcription from full mixed-audio extraction.
 
@@ -532,7 +532,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### EDIT-06 · Stem Splitter: vocals, drums, bass, guitar, piano, other
 
-**Original stage/status:** F3 / Contract only · **Execution:** W15, W19 (F2, F3) · **Current:** not_verified
+**Original stage/status:** F3 / Contract only · **Execution:** W15, W19 (F2, F3) · **Current:** partial
 
 **Required build outcome:** Expand four-stem contract into capability-negotiated separation; six-way model is required for equivalent coverage.
 
@@ -548,7 +548,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIDI-01 · Piano roll: pitch, duration and velocity
 
-**Original stage/status:** F1 / Not found · **Execution:** W09 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Not found · **Execution:** W09 (F1) · **Current:** verified
 
 **Required build outcome:** Virtualized note editor, draw/select/move/resize, audition, numeric edits and multi-region display.
 
@@ -562,7 +562,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIDI-02 · Timing/pitch quantization, swing and humanize
 
-**Original stage/status:** F2 / Contract only · **Execution:** W14 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Contract only · **Execution:** W14 (F2) · **Current:** verified
 
 **Required build outcome:** Reversible timing/pitch transforms; amount/range controls; scale snapping can be disabled.
 
@@ -576,7 +576,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIDI-03 · CC lanes, sustain, pitch bend and aftertouch
 
-**Original stage/status:** F1 / Not found · **Execution:** W08, W09 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Not found · **Execution:** W08, W09 (F1) · **Current:** verified
 
 **Required build outcome:** Event lanes with interpolation, MIDI channel ownership and chase/reset rules.
 
@@ -590,7 +590,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIDI-04 · Event List, Step Editor and MIDI Transform
 
-**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** verified
 
 **Required build outcome:** Precise event table, controller lanes, filter/transform operations and dry-run counts.
 
@@ -604,7 +604,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIDI-05 · MPE and MIDI 2.0 data handling
 
-**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** verified
 
 **Required build outcome:** Per-note expression model and adapters; establish format-specific capability tests before claiming MIDI 2.0 parity.
 
@@ -618,7 +618,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIDI-06 · Articulation sets, key switches and external MIDI
 
-**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** verified
 
 **Required build outcome:** Named articulations mapped to switches/channels/CC, device-port assignments and virtual MIDI routing.
 
@@ -632,7 +632,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIDI-07 · MIDI import/export and track/channel demix
 
-**Original stage/status:** F1 / Not found · **Execution:** W08, W10 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Not found · **Execution:** W08, W10 (F1) · **Current:** verified
 
 **Required build outcome:** Standard MIDI file exchange with timing/meter/tempo handling and a conversion report.
 
@@ -648,7 +648,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### PAT-01 · Step Sequencer: note and automation patterns
 
-**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** verified
 
 **Required build outcome:** Per-step pitch/velocity/gate, repeats/ties/probability, independent row lengths and deterministic playback seed.
 
@@ -662,7 +662,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### PAT-02 · Pattern recording, variation and MIDI conversion
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Live/step input, row learning, chord-degree patterns, pattern presets and MIDI materialization.
 
@@ -676,7 +676,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### PAT-03 · Live Loops: track-by-scene cell grid
 
-**Original stage/status:** F3 / UI only · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / UI only · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Replace clip-ID prefix inference with explicit cells referencing scene, track and clip; implement empty slots and drop targets.
 
@@ -690,7 +690,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### PAT-04 · Quantized clip/scene launch and live capture
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Queued/playing/stopping states, launch quantization, scene tempo policy and capture performance into the arrangement.
 
@@ -704,7 +704,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### PAT-05 · Remix performance and controller triggering
 
-**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W17 (F3) · **Current:** verified
 
 **Required build outcome:** Map hardware/touch controls to loop actions and effects; record performance automation with safety limits.
 
@@ -720,7 +720,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIX-01 · Mixer strips: gain, pan, mute, solo and real meters
 
-**Original stage/status:** F1 / Stub · **Execution:** W10 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Stub · **Execution:** W10 (F1) · **Current:** verified
 
 **Required build outcome:** Actual signal-path control; implement accessible fader/knob gestures, typed values and unclipped gain ranges.
 
@@ -734,7 +734,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIX-02 · Insert chains, bypass and channel-strip presets
 
-**Original stage/status:** F1 / Not found · **Execution:** W10 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Not found · **Execution:** W10 (F1) · **Current:** verified
 
 **Required build outcome:** Ordered processor chains with state snapshots, A/B, copy/paste and clear wet/dry policy.
 
@@ -748,7 +748,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIX-03 · Sends, aux returns, subgroups and sidechains
 
-**Original stage/status:** F3 / Stub · **Execution:** W18 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Stub · **Execution:** W18 (F3) · **Current:** verified
 
 **Required build outcome:** Directed routing graph with pre/post sends, independent send pan, feedback-cycle policy and bus meters.
 
@@ -762,7 +762,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIX-04 · VCA, mixer groups, multi-output instruments and external I/O
 
-**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** verified
 
 **Required build outcome:** Group control separate from audio summing; multi-output routing and measured external-hardware latency.
 
@@ -776,7 +776,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIX-05 · Automation lanes and read/touch/latch/write modes
 
-**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** verified
 
 **Required build outcome:** Track and region automation, parameter addressing, interpolation and explicit write-arm protection.
 
@@ -790,7 +790,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIX-06 · Automation trim, relative edits and region moves
 
-**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** verified
 
 **Required build outcome:** Offset layers and transform rules for moving, copying and resizing automated regions.
 
@@ -804,7 +804,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIX-07 · Smart Controls, MIDI learn and performance macros
 
-**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** verified
 
 **Required build outcome:** Common bounded mapping registry for controls, MIDI, touch and gestures; multi-target macros with preview.
 
@@ -818,7 +818,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### MIX-08 · Mixer undo and loudness-aware A/B
 
-**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W18 (F3) · **Current:** verified
 
 **Required build outcome:** Include mix/plugin edits in the project transaction model; allow gain-matched comparisons.
 
@@ -834,7 +834,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### SND-01 · Playable stock instruments and synthesizer patches
 
-**Original stage/status:** F1 / Not found · **Execution:** W10 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Not found · **Execution:** W10 (F1) · **Current:** verified
 
 **Required build outcome:** Ship an original basic poly synth, drum instrument and sampler with useful licensed patches; expand by inventory below.
 
@@ -848,7 +848,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### SND-02 · Quick sampling, slicing and drum-pad mapping
 
-**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** verified
 
 **Required build outcome:** Drop/import/record a sound, trim/slice, map notes and preserve source references.
 
@@ -862,7 +862,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### SND-03 · Multisampling, zones, layers and round robins
 
-**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** partial
 
 **Required build outcome:** Streaming sampler with velocity/key ranges, groups, articulations and sample-relink diagnostics.
 
@@ -876,7 +876,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### SND-04 · Granular, additive, spectral, wavetable and physical synthesis
 
-**Original stage/status:** F5 / Not found · **Execution:** W28 (F5) · **Current:** not_verified
+**Original stage/status:** F5 / Not found · **Execution:** W28 (F5) · **Current:** partial
 
 **Required build outcome:** Build or license independently designed engines; use the named instrument inventory as outcome coverage, not binary cloning.
 
@@ -890,7 +890,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### SND-05 · Loop/sample browser and musical preview
 
-**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** verified
 
 **Required build outcome:** Tag by tempo/key/instrument/mood; preview in project time; favorites and user-library indexing.
 
@@ -904,7 +904,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### SND-06 · Downloadable sound packs and storage management
 
-**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** partial
 
 **Required build outcome:** Signed/checksummed manifests, resume, disk-space checks, relocation and reference-aware removal.
 
@@ -918,7 +918,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### SND-07 · User patches, Auto Sampler-style capture and import
 
-**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** partial
 
 **Required build outcome:** Save complete device states and assets; staged capture of permitted instruments with key/velocity maps.
 
@@ -934,7 +934,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### FX-01 · EQ, filtering and spectrum matching
 
-**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** partial
 
 **Required build outcome:** Parametric/linear-phase/match/vintage-style EQ, modulation filters and analyzers; initial basic EQ lands in F1.
 
@@ -948,7 +948,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### FX-02 · Compression, limiting, gating, de-essing and dynamics
 
-**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** partial
 
 **Required build outcome:** Core compressor/limiter first; then multiband, sidechain, envelope shaping and adaptive dynamics.
 
@@ -962,7 +962,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### FX-03 · Reverb, delay and convolution
 
-**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** partial
 
 **Required build outcome:** Original algorithmic reverb and sync delay first; then convolution, multitap and advanced spaces.
 
@@ -976,7 +976,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### FX-04 · Distortion, saturation, amps and pedals
 
-**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** partial
 
 **Required build outcome:** Original waveshaping/modelled processing, cabinets and routable pedal rack; do not distribute Apple assets.
 
@@ -990,7 +990,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### FX-05 · Modulation, imaging and rhythmic multi-effects
 
-**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** partial
 
 **Required build outcome:** Chorus/flange/phase/rotor/tremolo, stereo tools, beat slicing and step-modulated effect rack.
 
@@ -1004,7 +1004,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### FX-06 · Pitch correction, shifter and vocal transformation
 
-**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W19 (F3) · **Current:** partial
 
 **Required build outcome:** Explicit scale/formant controls and quality/latency modes; distinguish correction from generated vocals.
 
@@ -1018,7 +1018,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### FX-07 · MIDI effects and sandboxed scripting
 
-**Original stage/status:** F3 / Not found · **Execution:** W28 (F5) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W28 (F5) · **Current:** partial
 
 **Required build outcome:** Arpeggiation, chord triggering, note-repeat, transformation and a bounded MIDI scripting API.
 
@@ -1032,7 +1032,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### FX-08 · Meters, tuner, gain, test signal and utility processors
 
-**Original stage/status:** F1 / Stub · **Execution:** W10 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Stub · **Execution:** W10 (F1) · **Current:** verified
 
 **Required build outcome:** Real peak/RMS meters, spectrum/tuning analysis and gain utility first; specialist multichannel tools follow.
 
@@ -1048,7 +1048,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### HOST-01 · Audio Units v2/v3 instruments and effects
 
-**Original stage/status:** F3 / Not found · **Execution:** W06, W20 (F0, F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W06, W20 (F0, F3) · **Current:** partial
 
 **Required build outcome:** Add a native macOS host, discovery, state restore, automation, editor embedding and compatibility diagnostics.
 
@@ -1062,7 +1062,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### HOST-02 · Plugin scan, validation and crash recovery
 
-**Original stage/status:** F3 / Not found · **Execution:** W06, W20 (F0, F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W06, W20 (F0, F3) · **Current:** partial
 
 **Required build outcome:** Scan in disposable processes; timeouts, quarantine list and safe re-scan. Full runtime isolation is separate work.
 
@@ -1076,7 +1076,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### HOST-03 · ARA/editor integration and instrument multi-output
 
-**Original stage/status:** F5 / Not found · **Execution:** W20, W28 (F3, F5) · **Current:** not_verified
+**Original stage/status:** F5 / Not found · **Execution:** W20, W28 (F3, F5) · **Current:** partial
 
 **Required build outcome:** Assess supported native SDK capabilities and licensing; map edit state and all output buses.
 
@@ -1090,7 +1090,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### HOST-04 · WASM devices and controlled live reload
 
-**Original stage/status:** F4 / Contract only · **Execution:** W28 (F5) · **Current:** not_verified
+**Original stage/status:** F4 / Contract only · **Execution:** W28 (F5) · **Current:** partial
 
 **Required build outcome:** Versioned capability manifest, bounded compute/memory, state migration and rollback to last known good module.
 
@@ -1104,7 +1104,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### HOST-05 · VST3 and CLAP hosting — VOID extension, not Logic feature
 
-**Original stage/status:** F3 / Not found · **Execution:** W06, W20 (F0, F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W06, W20 (F0, F3) · **Current:** partial
 
 **Required build outcome:** Consider cross-platform native hosts after the core plugin abstraction; license/SDK support must be verified.
 
@@ -1120,7 +1120,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### INTEL-01 · Session Players: drummer, bass, keyboard and synth styles
 
-**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** verified
 
 **Required build outcome:** Controllable accompaniment that follows chords, groove and sections; store editable MIDI plus generation recipe.
 
@@ -1134,7 +1134,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### INTEL-02 · Chord ID and harmonic analysis
 
-**Original stage/status:** F2 / Not found · **Execution:** W13, W14 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Not found · **Execution:** W13, W14 (F2) · **Current:** verified
 
 **Required build outcome:** Analyze selected audio/MIDI into tentative chord objects with confidence, manual correction and region scope.
 
@@ -1148,7 +1148,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### INTEL-03 · Mastering Assistant
 
-**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** verified
 
 **Required build outcome:** Analysis-driven editable mastering-chain proposal, target loudness/true peak and level-matched audition.
 
@@ -1162,7 +1162,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### INTEL-04 · Predictive notes, drums, chords and phrase completion
 
-**Original stage/status:** F2 / Not found · **Execution:** W13 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Not found · **Execution:** W13 (F2) · **Current:** verified
 
 **Required build outcome:** Inline ghost material, alternative candidates, contextual audition, accept/dismiss and one-transaction commit.
 
@@ -1176,7 +1176,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### INTEL-05 · Arrangement and orchestration copilot
 
-**Original stage/status:** F3 / Contract only · **Execution:** W21 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Contract only · **Execution:** W21 (F3) · **Current:** verified
 
 **Required build outcome:** Propose structured edits to selected tracks/ranges; explain scope and preview A/B against a saved revision.
 
@@ -1190,7 +1190,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### INTEL-06 · Text/reference-to-audio: loops, one-shots and stems
 
-**Original stage/status:** F2 / Contract only · **Execution:** W15 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Contract only · **Execution:** W15 (F2) · **Current:** verified
 
 **Required build outcome:** Async generation jobs with duration/key/tempo requirements, preview, crop/alignment and asset provenance.
 
@@ -1204,7 +1204,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### INTEL-07 · Audio continuation, inpainting and variations
 
-**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** verified
 
 **Required build outcome:** Preserve protected regions; create alternative takes around defined musical boundaries and approved reference assets.
 
@@ -1218,7 +1218,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### INTEL-08 · Local memory, preferences and reusable recipes
 
-**Original stage/status:** F2 / Contract only · **Execution:** W12 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Contract only · **Execution:** W12 (F2) · **Current:** verified
 
 **Required build outcome:** Opt-in project-scoped musical preferences with source/revision provenance, editable memory and delete controls.
 
@@ -1232,7 +1232,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### INTEL-09 · Model routing, downloads, cancellation and resource budgets
 
-**Original stage/status:** F2 / Not found · **Execution:** W12 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Not found · **Execution:** W12 (F2) · **Current:** verified
 
 **Required build outcome:** Capability registry for MIDI/audio/image/video; local-first policy, optional approved cloud and cached results.
 
@@ -1248,7 +1248,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### GEST-01 · Draw a melodic contour and tap a rhythm
 
-**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** verified
 
 **Required build outcome:** Convert pointer/touch paths into proposed pitch/time/velocity events; optional scale and grid constraints.
 
@@ -1262,7 +1262,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### GEST-02 · Touch/trackpad macros and harmonic gestures
 
-**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** verified
 
 **Required build outcome:** Pinch/rotate/swipe mappings for timbre, tension, voicing and density; explicit arm/clutch and reset.
 
@@ -1276,7 +1276,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### GEST-03 · MIDI/MPE expressive performance
 
-**Original stage/status:** F3 / Contract only · **Execution:** W18 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Contract only · **Execution:** W18 (F3) · **Current:** verified
 
 **Required build outcome:** Use the same mapping targets as touch input, with configurable deadbands, smoothing and bounded output.
 
@@ -1290,7 +1290,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### GEST-04 · Camera-hand conducting, optional and local
 
-**Original stage/status:** F4 / Not found · **Execution:** W23 (F4) · **Current:** not_verified
+**Original stage/status:** F4 / Not found · **Execution:** W23 (F4) · **Current:** partial
 
 **Required build outcome:** On-device pose capture, calibration, confidence threshold and tracking-loss release; record music events, not video, by default.
 
@@ -1304,7 +1304,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### GEST-05 · Gesture recording, quantized launches and undo
 
-**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** verified
 
 **Required build outcome:** Preserve raw input timestamps and optionally quantized musical results; macro changes may be recorded as automation.
 
@@ -1318,7 +1318,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### GEST-06 · Keyboard/accessibility equivalents for every gesture
 
-**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** not_verified
+**Original stage/status:** F2 / Not found · **Execution:** W14 (F2) · **Current:** verified
 
 **Required build outcome:** Provide focusable controls, numeric entry, screen-reader labels and discoverable shortcuts.
 
@@ -1334,7 +1334,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### VIS-01 · Imported images, video and conventional visual presets
 
-**Original stage/status:** F4 / Not found · **Execution:** W22 (F4) · **Current:** not_verified
+**Original stage/status:** F4 / Not found · **Execution:** W22 (F4) · **Current:** verified
 
 **Required build outcome:** Visual tracks with layers, transforms, opacity, blend modes and licensed presets; all work without AI.
 
@@ -1348,7 +1348,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### VIS-02 · Generated artwork, visual loops and video
 
-**Original stage/status:** F4 / Not found · **Execution:** W23 (F4) · **Current:** not_verified
+**Original stage/status:** F4 / Not found · **Execution:** W23 (F4) · **Current:** partial
 
 **Required build outcome:** Provider jobs create immutable assets; compare candidates and choose exact timeline ranges before insertion.
 
@@ -1362,7 +1362,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### VIS-03 · Audio-reactive visuals and beat-synced changes
 
-**Original stage/status:** F4 / Contract only · **Execution:** W22, W23 (F4) · **Current:** not_verified
+**Original stage/status:** F4 / Contract only · **Execution:** W22, W23 (F4) · **Current:** partial
 
 **Required build outcome:** Decimated audio features and musical-clock snapshots drive bounded render parameters; bake expensive material.
 
@@ -1376,7 +1376,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### VIS-04 · Scene graphs, shader presets and safe generated shaders
 
-**Original stage/status:** F4 / Contract only · **Execution:** W23 (F4) · **Current:** not_verified
+**Original stage/status:** F4 / Contract only · **Execution:** W23 (F4) · **Current:** partial
 
 **Required build outcome:** Prefer validated declarative scenes; compile untrusted shaders in an isolated renderer with watchdog and rollback.
 
@@ -1390,7 +1390,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### VIS-05 · Preview, full-screen and multi-display outputs
 
-**Original stage/status:** F4 / Contract only · **Execution:** W22 (F4) · **Current:** not_verified
+**Original stage/status:** F4 / Contract only · **Execution:** W22 (F4) · **Current:** verified
 
 **Required build outcome:** Independent preview/program output, monitor selection, output blackout and latency calibration.
 
@@ -1404,7 +1404,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### VIS-06 · Projection mapping and show cues
 
-**Original stage/status:** F5 / Contract only · **Execution:** W27 (F5) · **Current:** not_verified
+**Original stage/status:** F5 / Contract only · **Execution:** W27 (F5) · **Current:** verified
 
 **Required build outcome:** Surface calibration, per-output transforms, cue timing, rehearsable transitions and safe rollback.
 
@@ -1418,7 +1418,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### VIS-07 · OSC/DMX integration and external show control
 
-**Original stage/status:** F5 / Contract only · **Execution:** W27 (F5) · **Current:** not_verified
+**Original stage/status:** F5 / Contract only · **Execution:** W27 (F5) · **Current:** verified
 
 **Required build outcome:** Capability-scoped local adapters, explicit network/device pairing, rate limits and a safe-state policy.
 
@@ -1432,7 +1432,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### VIS-08 · Audio-plus-video export and reproducible rendering
 
-**Original stage/status:** F4 / Not found · **Execution:** W24 (F4) · **Current:** not_verified
+**Original stage/status:** F4 / Not found · **Execution:** W24 (F4) · **Current:** verified
 
 **Required build outcome:** Freeze visual/audio assets, render using one timeline, mux with timebase and encoder validation.
 
@@ -1448,7 +1448,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### OUT-01 · Stereo/mono audio bounce and export
 
-**Original stage/status:** F1 / Contract only · **Execution:** W10 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Contract only · **Execution:** W10 (F1) · **Current:** verified
 
 **Required build outcome:** PCM WAV/AIFF first; region/project range, sample rate, bit depth and tail options. Add compressed formats after codec review.
 
@@ -1462,7 +1462,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### OUT-02 · Offline/realtime bounce, dither and normalization
 
-**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** verified
 
 **Required build outcome:** Distinguish hardware-dependent real-time render from offline render; explicit dither/normalize and clipping report.
 
@@ -1476,7 +1476,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### OUT-03 · Batch stems, regions and instrument renders
 
-**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** verified
 
 **Required build outcome:** Export aligned stems with routing/tail policy, filenames, channel metadata and a manifest.
 
@@ -1490,7 +1490,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### OUT-04 · AAF, Final Cut XML and MusicXML interchange
 
-**Original stage/status:** F5 / Not found · **Execution:** W25 (F5) · **Current:** not_verified
+**Original stage/status:** F5 / Not found · **Execution:** W25 (F5) · **Current:** verified
 
 **Required build outcome:** Implement separately tested import/export subsets with a conversion report and retained source files.
 
@@ -1504,7 +1504,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### OUT-05 · Logic/GarageBand project migration
 
-**Original stage/status:** F5 / Not found · **Execution:** W25 (F5) · **Current:** not_verified
+**Original stage/status:** F5 / Not found · **Execution:** W25 (F5) · **Current:** verified
 
 **Required build outcome:** Start with stems, MIDI and tempo/chord metadata. Treat native .logicx/.band conversion as a separate researched compatibility project.
 
@@ -1518,7 +1518,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### OUT-06 · Surround routing and binaural monitoring
 
-**Original stage/status:** F5 / Not found · **Execution:** W26 (F5) · **Current:** not_verified
+**Original stage/status:** F5 / Not found · **Execution:** W26 (F5) · **Current:** partial
 
 **Required build outcome:** Multichannel buses, speaker maps, monitor downmixes, spatial panners and calibrated output.
 
@@ -1532,7 +1532,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### OUT-07 · Dolby Atmos beds, objects and ADM BWF
 
-**Original stage/status:** F5 / Not found · **Execution:** W26 (F5) · **Current:** not_verified
+**Original stage/status:** F5 / Not found · **Execution:** W26 (F5) · **Current:** partial
 
 **Required build outcome:** Evaluate licensed renderer/toolchain, object metadata, bed routing and ADM import/export as a dedicated programme.
 
@@ -1546,7 +1546,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### OUT-08 · Atmos MP4 QC, head tracking and spatial formats
 
-**Original stage/status:** F5 / Not found · **Execution:** W26 (F5) · **Current:** not_verified
+**Original stage/status:** F5 / Not found · **Execution:** W26 (F5) · **Current:** partial
 
 **Required build outcome:** Separate codec/rendering permissions, supported headphones/hardware and QC exports from basic surround.
 
@@ -1562,7 +1562,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### PRO-01 · Notation editor, parts, lyrics and tablature
 
-**Original stage/status:** F5 / Not found · **Execution:** W25 (F5) · **Current:** not_verified
+**Original stage/status:** F5 / Not found · **Execution:** W25 (F5) · **Current:** verified
 
 **Required build outcome:** Notation derived from MIDI but with independent engraving data; staff styles, chord grids and print/export.
 
@@ -1576,7 +1576,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### PRO-02 · Movie scoring and absolute timecode
 
-**Original stage/status:** F5 / Not found · **Execution:** W25 (F5) · **Current:** not_verified
+**Original stage/status:** F5 / Not found · **Execution:** W25 (F5) · **Current:** verified
 
 **Required build outcome:** Reference video, frame-rate-aware ruler, offset, cues and soundtrack export with decoder isolation.
 
@@ -1590,7 +1590,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### PRO-03 · MTC, MIDI Clock output, MMC and Ableton Link
 
-**Original stage/status:** F5 / Not found · **Execution:** W27 (F5) · **Current:** not_verified
+**Original stage/status:** F5 / Not found · **Execution:** W27 (F5) · **Current:** verified
 
 **Required build outcome:** Explicit sync ownership and protocol adapters. Incoming MIDI Clock would be an extra capability, not claimed Logic parity.
 
@@ -1604,7 +1604,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### PRO-04 · Logic Remote-style companion and control surfaces
 
-**Original stage/status:** F5 / Not found · **Execution:** W27 (F5) · **Current:** not_verified
+**Original stage/status:** F5 / Not found · **Execution:** W27 (F5) · **Current:** verified
 
 **Required build outcome:** Paired remote controls with permissions, feedback and reconnect; stage macOS keyboard/MIDI support first.
 
@@ -1618,7 +1618,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### PRO-05 · Custom shortcuts, screensets and flexible workspaces
 
-**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** not_verified
+**Original stage/status:** F3 / Not found · **Execution:** W21 (F3) · **Current:** verified
 
 **Required build outcome:** Command palette, imported/merged keymaps, saved panel layouts and instrument/editor popouts.
 
@@ -1632,7 +1632,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### PRO-06 · Accessibility, help, onboarding and localization
 
-**Original stage/status:** F1 / Not found · **Execution:** W09, W11 (F1) · **Current:** not_verified
+**Original stage/status:** F1 / Not found · **Execution:** W09, W11 (F1) · **Current:** partial
 
 **Required build outcome:** Readable meters, labelled controls, keyboard transport, contextual help and actionable missing-device/media states.
 
@@ -1646,7 +1646,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### PRO-07 · Environment-style MIDI/modular routing
 
-**Original stage/status:** F5 / Not found · **Execution:** W27 (F5) · **Current:** not_verified
+**Original stage/status:** F5 / Not found · **Execution:** W27 (F5) · **Current:** verified
 
 **Required build outcome:** Consider a bounded declarative MIDI/device graph; no unrestricted scripting in the audio callback.
 
@@ -1660,7 +1660,7 @@ Generated from `tracking/FEATURE_TRACEABILITY.json`. All 116 original IDs and 22
 
 ### PRO-08 · Installer, updates, diagnostics and production QA
 
-**Original stage/status:** F0 / Not found · **Execution:** W07, W29 (F0, F5) · **Current:** not_verified
+**Original stage/status:** F0 / Not found · **Execution:** W07, W29 (F0, F5) · **Current:** partial
 
 **Required build outcome:** Pinned builds, real tests, CI, signed releases, crash recovery and privacy-preserving diagnostics; ship installers only after platform validation.
 

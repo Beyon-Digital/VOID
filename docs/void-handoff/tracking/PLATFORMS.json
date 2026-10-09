@@ -1,40 +1,46 @@
 {
-  "date": "2026-10-08",
-  "policy": "Proposed qualification targets, not advertised support. Record exact OS/toolkit/device/plugin/GPU versions during implementation.",
-  "targets": [
-    {
-      "target": "macOS Apple Silicon",
-      "status": "not_tested",
-      "os_version": null,
-      "toolchain": null,
-      "audio_devices": [],
-      "plugin_formats": [
-        "AU candidates",
-        "VST3 candidate"
-      ],
-      "evidence": []
-    },
-    {
-      "target": "Windows x64",
-      "status": "not_tested",
-      "os_version": null,
-      "toolchain": null,
-      "audio_devices": [],
-      "plugin_formats": [
-        "VST3 candidate"
-      ],
-      "evidence": []
-    },
-    {
-      "target": "Named Linux x64 distribution / toolkit / audio backend",
-      "status": "not_tested",
-      "os_version": null,
-      "toolchain": null,
-      "audio_devices": [],
-      "plugin_formats": [
-        "VST3 candidate"
-      ],
-      "evidence": []
-    }
-  ]
+ "date": "2026-10-08",
+ "policy": "Proposed qualification targets, not advertised support. Record exact OS/toolkit/device/plugin/GPU versions during implementation.",
+ "targets": [
+  {
+   "target": "macOS Apple Silicon",
+   "status": "partial",
+   "os_version": null,
+   "toolchain": "Xcode (newest, xcode-selected); clang 16+ required for Tracktion",
+   "audio_devices": [],
+   "plugin_formats": [
+    "AU candidates",
+    "VST3 candidate"
+   ],
+   "evidence": [
+    "engine TestRunner 450/22282 + void-engine harness on macOS lanes; ci.yml native job green; lane BB full-workspace verification in flight [2026-10-09 02:57 UTC]"
+   ]
+  },
+  {
+   "target": "Windows x64",
+   "status": "not_tested",
+   "os_version": null,
+   "toolchain": null,
+   "audio_devices": [],
+   "plugin_formats": [
+    "VST3 candidate"
+   ],
+   "evidence": [
+    "no Windows platform in org; portability CI jobs (rust-windows/ts-windows check+test) added lane AA \u2014 runtime qualification remains NEEDS [2026-10-09 02:57 UTC]"
+   ]
+  },
+  {
+   "target": "Named Linux x64 distribution / toolkit / audio backend",
+   "status": "tested",
+   "os_version": "Ubuntu 24.04 (runner + box)",
+   "toolchain": null,
+   "audio_devices": [],
+   "plugin_formats": [
+    "VST3 candidate"
+   ],
+   "evidence": [
+    "all suites green: 45 workspace blocks, 12 detached suites 230 cases, 462 vitest; tauri bundle deb/rpm/AppImage built [2026-10-09 02:57 UTC]"
+   ]
+  }
+ ]
 }
