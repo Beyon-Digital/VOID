@@ -45,17 +45,21 @@ const clock = (over: Partial<ClockSnapshot> = {}): ClockSnapshot => ({
 // -- workspace defs ---------------------------------------------------------------
 
 describe('workspace defs (accessibility surface)', () => {
-  it('exposes three labelled workspaces in order with digit shortcuts', () => {
-    expect(WORKSPACE_ORDER).toEqual(['compose', 'arrange', 'mix']);
+  it('exposes five labelled workspaces in Signal order with digit shortcuts', () => {
+    expect(WORKSPACE_ORDER).toEqual(['arrange', 'compose', 'mix', 'perform', 'visuals']);
     for (const id of WORKSPACE_ORDER) {
       const w = WORKSPACES[id];
       expect(w.ariaLabel.length).toBeGreaterThan(10);
-      expect(w.shortcut).toMatch(/^[1-3]$/);
-      expect(['piano-roll', 'timeline', 'mixer']).toContain(w.primaryRegion);
+      expect(w.shortcut).toMatch(/^[1-5]$/);
+      expect(['piano-roll', 'timeline', 'mixer', 'scene-grid', 'visual-output']).toContain(
+        w.primaryRegion,
+      );
     }
     expect(isWorkspaceId('arrange')).toBe(true);
+    expect(isWorkspaceId('perform')).toBe(true);
     expect(isWorkspaceId('nope')).toBe(false);
-    expect(workspaceForShortcut('2')).toBe('arrange');
+    expect(workspaceForShortcut('2')).toBe('compose');
+    expect(workspaceForShortcut('5')).toBe('visuals');
     expect(workspaceForShortcut('9')).toBeNull();
   });
 });

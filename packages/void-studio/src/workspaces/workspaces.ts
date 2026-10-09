@@ -1,15 +1,20 @@
-// Workspace shells — Compose / Arrange / Mix.
+// Workspace shells — Signal Studio's five canonical workspaces.
 //
-// W09: three workspaces share ONE transport bar and the base store's
-// track selection. No approved Figma file exists, so these are functional
-// region layouts, not a design match: each workspace says which regions
-// are primary and which editor owns keyboard focus by default.
+// W09: workspaces share ONE transport bar and the base store's track
+// selection. Signal Studio (UI01) extends the original three to the
+// designed set: Arrange / Compose / Mix / Perform / Visuals.
 
 import type { PanelId } from '../store';
 
-export type WorkspaceId = 'compose' | 'arrange' | 'mix';
+export type WorkspaceId = 'arrange' | 'compose' | 'mix' | 'perform' | 'visuals';
 
-export const WORKSPACE_ORDER: WorkspaceId[] = ['compose', 'arrange', 'mix'];
+export const WORKSPACE_ORDER: WorkspaceId[] = [
+  'arrange',
+  'compose',
+  'mix',
+  'perform',
+  'visuals',
+];
 
 export interface WorkspaceDef {
   id: WorkspaceId;
@@ -17,27 +22,27 @@ export interface WorkspaceDef {
   /** Accessible label for the workspace's main region. */
   ariaLabel: string;
   /** Primary region id — the default keyboard-focus target. */
-  primaryRegion: 'piano-roll' | 'timeline' | 'mixer';
+  primaryRegion: 'piano-roll' | 'timeline' | 'mixer' | 'scene-grid' | 'visual-output';
   /** Panels this workspace keeps open when it becomes active. */
   panels: Partial<Record<PanelId, boolean>>;
-  /** Keyboard shortcut (Ctrl/Cmd+1..3) — handled by the shell. */
+  /** Keyboard shortcut (Ctrl/Cmd+1..5) — handled by the shell. */
   shortcut: string;
 }
 
 export const WORKSPACES: Record<WorkspaceId, WorkspaceDef> = {
-  compose: {
-    id: 'compose',
-    title: 'Compose',
-    ariaLabel: 'Compose workspace — piano roll editor for the selected clip',
-    primaryRegion: 'piano-roll',
-    panels: { browser: true, inspector: true, mixer: false, editor: true, meters: false },
-    shortcut: '1',
-  },
   arrange: {
     id: 'arrange',
     title: 'Arrange',
     ariaLabel: 'Arrange workspace — timeline of tracks and clips',
     primaryRegion: 'timeline',
+    panels: { browser: true, inspector: true, mixer: false, editor: true, meters: false },
+    shortcut: '1',
+  },
+  compose: {
+    id: 'compose',
+    title: 'Compose',
+    ariaLabel: 'Compose workspace — piano roll editor for the selected clip',
+    primaryRegion: 'piano-roll',
     panels: { browser: true, inspector: true, mixer: false, editor: true, meters: false },
     shortcut: '2',
   },
@@ -49,10 +54,26 @@ export const WORKSPACES: Record<WorkspaceId, WorkspaceDef> = {
     panels: { browser: false, inspector: true, mixer: true, editor: true, meters: true },
     shortcut: '3',
   },
+  perform: {
+    id: 'perform',
+    title: 'Perform',
+    ariaLabel: 'Perform workspace — scene launch grid',
+    primaryRegion: 'scene-grid',
+    panels: { browser: true, inspector: false, mixer: false, editor: true, meters: false },
+    shortcut: '4',
+  },
+  visuals: {
+    id: 'visuals',
+    title: 'Visuals',
+    ariaLabel: 'Visuals workspace — preview and program output',
+    primaryRegion: 'visual-output',
+    panels: { browser: false, inspector: true, mixer: false, editor: true, meters: false },
+    shortcut: '5',
+  },
 };
 
 export function isWorkspaceId(v: string): v is WorkspaceId {
-  return v === 'compose' || v === 'arrange' || v === 'mix';
+  return WORKSPACE_ORDER.indexOf(v as WorkspaceId) >= 0;
 }
 
 /** Cycle workspaces with a keyboard shortcut digit (1..3 → order index). */
