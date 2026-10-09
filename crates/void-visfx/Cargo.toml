@@ -1,0 +1,20 @@
+[package]
+name = "void-visfx"
+description = "VOID generated/reactive visuals — declarative scene-gen job adapter, naga-validated WGSL preset registry, audio-feature mappers, camera-conducting policy (W23 non-native halves)"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+void-protocol = { path = "../void-protocol" }
+void-jobs = { path = "../void-jobs" }
+void-assets = { path = "../void-assets" }
+void-visual = { path = "../void-visual" }
+thiserror = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+uuid = { workspace = true }
+naga = { version = "=25.0.1", default-features = false, features = ["wgsl-in"] }
+
+[dev-dependencies]
+tempfile = "3"

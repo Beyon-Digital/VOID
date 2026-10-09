@@ -48,3 +48,4 @@ export * from './takes';
 export * from './arrangement';
 export * from './scenes';
 export * from './visuals';
+export * from './visual-gen';
