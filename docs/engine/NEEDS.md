@@ -3,6 +3,12 @@
 Owner: `protocol/` is integrator-owned; this file only records what the engine
 needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
 
+> **rev-2 status (protocol minor 1):** items 3, 7, 8, 9, 10, 11, 12, 13, 14,
+> 17, 26 and 32 now have wire representation — see the per-item LANDED notes.
+> Ops validate in `crates/void-protocol::validate`, encode/decode in the Tauri
+> codec (`apps/void-tauri/src-tauri/src/codec.rs`) and echo through
+> `void-mock-worker`. Engine-side application remains the engine lane's work.
+
 1. **`expected_revision` has no "skip" sentinel.** It's `ulong` with no opt-out
    value, so the gate is a hard `== revision_` match — a client that only wants
    best-effort application must track the exact revision. Documented behaviour,
@@ -18,6 +24,8 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
    checkpoint always lands in the container created by `CreateProjectOp` /
    `OpenProjectOp`. That's correct per CONTRACTS §4 (container-chosen), just
    noting there's no "save-as" / export path in schema.
+   **LANDED (minor 1):** `SaveProjectAsOp{container_dir, name?, reason?}` —
+   checkpoint into a NEW container; the source container is untouched.
 
 4. **`InsertAudioClipOp` takes `rel_path` + `asset_id`** — assets must be staged
    in `container/assets/sha256/` *before* the op; there is no op to ingest/upload
@@ -48,10 +56,19 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
    `SetPunchInOutOp{enabled}`, `RecordArmView`/`TakeListView` view kinds,
    `InputDeviceLostEvent` telemetry. Until schema rev 2 the supervisor cannot
    drive recording — W08 evidence is produced in-process only.
+   **LANDED (minor 1):** `ArmTrackOp{track_id, record_enabled, input_device,
+   monitor_mode, is_midi}` (monitor mode is a `MonitorMode` enum
+   OFF/AUTOMATIC/ON, not a bare string), `StartRecordingOp{take_id?}`,
+   `StopRecordingOp{discard}`, `SetCountInOp{mode, bars}` (mode 'off'|'bars'),
+   `SetMetronomeOp{enabled, gain, recording_only}`,
+   `SetPunchInOutOp{enabled, in_ticks, out_ticks}` (carries the punch window,
+   so a separate `PunchOp` was not added), `TAKE_LIST` view,
+   `InputDeviceLostEvent{project_id, device_id, device_name}` telemetry.
 
 8. **No device-enumeration view.** `arm` needs the engine's input device list
    (names, channel configs, latencies) — an `INPUT_DEVICE_LIST` ViewKind would
    let the supervisor build the arm UI without a device-manager round trip.
+   **LANDED (minor 1):** `ViewKind::INPUT_DEVICE_LIST`.
 
 ## W12 AI-jobs lane (protocol major.1 gaps — runner drives these in-process)
 
@@ -62,12 +79,19 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
    `CancelJobOp{job_id}`. Until then jobs are driven in-process by the
    `void-jobs` runner and the studio builds the intended payload shapes in
    `packages/void-studio/src/jobs/job.ts` (`submitJobOp`/`cancelJobOp`).
+   **LANDED (minor 1):** `SubmitJobOp{spec}` (carries the job/1.0.0 envelope
+   as a `JobSpec` table), `CancelJobOp{job_id}`, `PauseJobOp{job_id}`,
+   `InstallModelOp{model_id, model_version, source_uri}` (model-registry
+   install for the MODEL_LIST surface).
 
 10. **No `JOB_LIST` / `MODEL_LIST` ViewKind.** The job list (cards, budget
     badges, progress) and the model registry read view cannot be fetched over
     the socket. Studio parses both defensively (`parseJobCard`,
     `parseModelRow`) so the shapes are pinned — the coordinator only needs to
     emit them. `jobListRequest`/`modelListRequest` carry the proposed params.
+    **LANDED (minor 1):** `ViewKind::JOB_LIST` / `MODEL_LIST`, plus a
+    `ReadRequest.include_terminal` field mirroring the pinned
+    `jobListRequest(includeTerminal)` param.
 
 11. **No `JobEvent` telemetry union member.** Runner progress lines
     (`{"v":1,"kind":"progress",...}`) and status transitions have no
@@ -75,6 +99,8 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
     `{kind:"JobEvent", project_id, job_id, status, percent?, message?,
     quarantined?}` (snake_case — `parseJobEvent` already reads it and
     `void-jobs::JobEvent` serializes exactly that shape).
+    **LANDED (minor 1):** `TelemetryEvent::JobEvent` emits exactly that JSON
+    shape; `percent` is always present (<0 = no progress reported).
 
 ## W13 predictive-composition lane (protocol major.1 gaps — proposals drive in-process)
 
@@ -91,6 +117,9 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
     session end; or a `PREVIEW_LAYER` ViewKind if the coordinator wants
     it display-only. Until then "audition" renders visually but cannot
     sound — noted as a gap, not silently faked.
+    **LANDED (minor 1):** `PreviewLayerOp{proposal_id, clip_id, notes[],
+    enable}` with a `PreviewNote` table — the wire op is in place; the
+    engine-side transient layer it drives is still the engine lane's work.
 
 13. **No `PROPOSAL_LIST` ViewKind and no proposal lifecycle wire
     commands.** Proposal records (pending→ready→accepted/rejected/stale,
@@ -103,6 +132,9 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
     the symbolic job), `ResolveProposalOp{proposal_id, accept|reject}`
     for terminal transitions. The studio parses records defensively
     (`parseProposalRecord`) so the shape is pinned.
+    **LANDED (minor 1):** `ViewKind::PROPOSAL_LIST`,
+    `RequestProposalOp{context_digest, seed?, max_proposals}` and
+    `ResolveProposalOp{proposal_id, accept, candidate_rank?}`.
 
 14. **No stale-invalidation telemetry.** Region edits must mark live
     proposals stale (T55) but nothing on the wire reports a context hash
@@ -112,6 +144,9 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
     piggyback `STALE_REVISION` receipts — proposals listening on command
     receipts would catch region edits the same session makes; edits from
     other sessions still need the dedicated event.
+    **LANDED (minor 1):** `TelemetryEvent::ProposalStaleEvent{project_id,
+    proposal_id, cause}` (cause: 'context_changed' | 'target_gone' |
+    'session_ended').
 ||||||| a505956d
 
 ## W11-SUPPORT lane (protocol major.1 gaps — UI/coordinator-side shell features)
@@ -152,6 +187,11 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
     invoke, then the attach) and a `RelinkAssetOp{asset_id, sha256}` that
     performs the `relink()`/`replace()` transitions server-side so the UI
     does not coordinate the two steps blind.
+    **LANDED (minor 1):** `IngestAssetOp{rel_path, media_type}` and
+    `RelinkAssetOp{asset_id, sha256}` (sha256 enforced hex-64 by validate).
+    The hash+stage half stays coordinator-side per item 4 — the op carries
+    the host path and the coordinator copies into `assets/sha256/` before
+    the engine attach.
 
 ## rev2 — W17 studio lane gaps (items 18+)
 
@@ -209,6 +249,11 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
     scene onto SEEK+SET_CYCLE as the only honest wire surface today.
     Needed: `LaunchSceneOp`/`LaunchClipOp` + a launch-state view page
     (PAT-02/PAT-03).
+    **LANDED (minor 1):** `LaunchSceneOp{scene_id, quantize, quantize_ticks}`,
+    `LaunchClipOp{slot_id, quantize, quantize_ticks}`,
+    `StopSceneOp{scene_id?, quantize, quantize_ticks}` (empty scene_id =
+    stop all), `LaunchQuantize` enum (IMMEDIATE/BAR/BEAT/CUSTOM) and
+    `ViewKind::SCENE_LIST` for the launch-state page.
 
 27. **No tempo ramp.** `TempoEvent.ramp` is spec-only — `SetTempoOp`
     is a step change; glissando/ritardando needs a `ramp_to_ticks` or
@@ -240,6 +285,10 @@ needed vs what exists in `void_control.fbs` as of `devin/void-implementation`.
     through the missing-plugin store instead of sending them (loss
     entry `plugin/state`). Needed: `RestorePluginStateOp{plugin_instance_id,
     state_asset_id}` or a state field on insert (PLG-01/T76).
+    **LANDED (minor 1):** `RestorePluginStateOp{plugin_instance_id,
+    state_asset_id}` — alongside `SetPluginBypassOp{plugin_instance_id,
+    bypassed}` and `RescanPluginsOp{plugin_uid?}` for the plugin-recovery
+    and rescan surfaces.
 
 33. **No plugin-host isolation on this platform.** `IsolationPolicy`
     (`crates/void-exchange::isolation`) validates bounded-buffer /
