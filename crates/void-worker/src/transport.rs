@@ -29,7 +29,12 @@ pub struct SocketPaths {
 
 /// Create a per-launch socket directory owned by the current user (0700).
 pub fn create_launch_dir(base: &Path, launch_id: &str) -> Result<SocketPaths, TransportError> {
-    let dir = base.join(launch_id);
+    // `sun_path` is ~104 bytes on every unix; macOS $TMPDIR alone runs
+    // ~50 chars. A 36-char launch UUID on top overflows SUN_LEN there —
+    // the first 12 chars (48 bits) keep collision odds negligible while
+    // the Supervisor still logs the full launch_id.
+    let slug = launch_id.get(..12).unwrap_or(launch_id);
+    let dir = base.join(slug);
     fs::create_dir_all(&dir)?;
     #[cfg(unix)]
     {

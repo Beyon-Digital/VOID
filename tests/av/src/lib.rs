@@ -17,17 +17,24 @@ pub fn repo_root() -> PathBuf {
 }
 
 /// Build + locate the fake ffmpeg. Fails loudly when the build fails.
+/// Build once per test process: parallel `cargo build` invocations race on
+/// the destination binary (cargo unlinks+relinks even when fresh), which
+/// flakes the is_file() check underneath running tests on all platforms.
 pub fn fake_ffmpeg() -> PathBuf {
-    let root = repo_root();
-    let st = std::process::Command::new("cargo")
-        .args(["build", "--manifest-path"])
-        .arg(root.join("workers/ffmpeg-fake/Cargo.toml"))
-        .status()
-        .expect("spawn cargo build for void-fake-ffmpeg");
-    assert!(st.success(), "cargo build of void-fake-ffmpeg failed");
-    let p = root.join("workers/ffmpeg-fake/target/debug/void-fake-ffmpeg");
-    assert!(p.is_file(), "void-fake-ffmpeg binary missing at {p:?}");
-    p
+    static EXE: std::sync::OnceLock<PathBuf> = std::sync::OnceLock::new();
+    EXE.get_or_init(|| {
+        let root = repo_root();
+        let st = std::process::Command::new("cargo")
+            .args(["build", "--manifest-path"])
+            .arg(root.join("workers/ffmpeg-fake/Cargo.toml"))
+            .status()
+            .expect("spawn cargo build for void-fake-ffmpeg");
+        assert!(st.success(), "cargo build of void-fake-ffmpeg failed");
+        let p = root.join("workers/ffmpeg-fake/target/debug/void-fake-ffmpeg");
+        assert!(p.is_file(), "void-fake-ffmpeg binary missing at {p:?}");
+        p
+    })
+    .clone()
 }
 
 /// Real ffmpeg iff present (feature-detect, per lane assignment).
