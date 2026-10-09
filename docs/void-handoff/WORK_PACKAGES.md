@@ -31,7 +31,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 | W22 | F4 | Conventional native visual composition and program output | W11 | partial |
 | W23 | F4 | Generated/reactive visuals and optional camera conducting | W22, W16 | partial |
 | W24 | F4 | Audiovisual export and visual qualification gate | W23 | partial |
-| W25 | F5 | Notation, scoring and advanced interchange | W21 | not_started |
+| W25 | F5 | Notation, scoring and advanced interchange | W21 | partial |
 | W26 | F5 | Spatial routing and delivery | W21 | partial |
 | W27 | F5 | Synchronization, modular control and safe shows | W24, W21 | partial |
 | W28 | F5 | Advanced synthesis and restricted extensions | W19, W24 | partial |
@@ -733,7 +733,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 ## W25 · F5 · Notation, scoring and advanced interchange
 
-**Owner:** Specialist editor · **Depends:** W21 · **Status:** not_started
+**Owner:** Specialist editor · **Depends:** W21 · **Status:** partial
 
 **Target paths:** `packages/void-studio/src/score/`, `crates/void-notation/`, `crates/void-interchange/`
 
@@ -755,7 +755,7 @@ Generated from `tracking/TASKS.json`. Paths outside packet folders are proposed 
 
 **Dependency decisions:** VIS-04
 
-**Evidence:** None yet. Record actual commands, artifacts and limitations.
+**Evidence:** v; o; i; d; -; n; o; t; a; t; i; o; n;  ; s; c; o; r; e;  ; m; o; d; e; l;  ; +;  ; M; u; s; i; c; X; M; L;  ; 4;  ; i; n; t; e; r; c; h; a; n; g; e;  ; +;  ; a; n; c; h; o; r; s;  ; —;  ; T; 9; 0; /; T; 9; 1;  ; p; a; s; s; _; l; i; n; u; x; ;;  ; e; n; g; r; a; v; i; n; g;  ; (; V; e; r; o; v; i; o; );  ; =;  ; G; U; I;  ; N; E; E; D; S;  ; [; 2; 0; 2; 6; -; 1; 0; -; 0; 9;  ; 0; 1; :; 0; 9;  ; U; T; C; ]
 
 ## W26 · F5 · Spatial routing and delivery
 

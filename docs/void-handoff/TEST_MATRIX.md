@@ -120,8 +120,8 @@ Generated from `tracking/TESTS.json`. These are 100 required integration scenari
 
 | ID / owner task | Scenario | Procedure | Expected outcome | Status |
 | --- | --- | --- | --- | --- |
-| T90 / W25 | Notation editing | Edit score notes/parts/lyrics/tab through stable event IDs and round-trip supported notation format. | Score and piano-roll remain the same musical data; engraving library alone cannot pass editing requirement. | not_run |
-| T91 / W25 | Scoring/interchange formats | Import supported movie/timecode/MusicXML/AAF/XML fixtures and migrate a supported external-project subset. | Absolute anchors survive tempo changes; format loss/limitations are documented; unsupported proprietary conversion stays blocked. | not_run |
+| T90 / W25 | Notation editing | Edit score notes/parts/lyrics/tab through stable event IDs and round-trip supported notation format. | Score and piano-roll remain the same musical data; engraving library alone cannot pass editing requirement. | pass_linux |
+| T91 / W25 | Scoring/interchange formats | Import supported movie/timecode/MusicXML/AAF/XML fixtures and migrate a supported external-project subset. | Absolute anchors survive tempo changes; format loss/limitations are documented; unsupported proprietary conversion stays blocked. | pass_linux |
 | T92 / W26 | Spatial rendering | Render known multichannel/object fixtures and inspect layout/object metadata with actual approved validators. | Every claimed spatial output is valid; unavailable licensed/specification paths are disabled rather than approximated as stereo. | partial_linux |
 | T93 / W26 | Spatial listening and head tracking | Play qualified output on declared speaker/headphone hardware; calibrate and fail head-tracking input. | Document correct routing, safe level and fallback; hardware-unavailable scenarios remain blocked with no invented pass. | partial_linux |
 | T94 / W27 | External synchronization | Test clock-master changes, network/MIDI sync loss and reconnect with actual supported endpoints. | No competing transport master, drift and latency measured; ordinary local transport works without network sync. | pass_linux |

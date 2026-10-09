@@ -133,9 +133,7 @@ impl Pitch {
                 };
                 // Rank: fewer accidentals first, then key-direction
                 // preference, then lower letter position for stability.
-                let dir_bonus = if prefer_sharps && alter > 0 {
-                    -1
-                } else if prefer_flats && alter < 0 {
+                let dir_bonus = if (prefer_sharps && alter > 0) || (prefer_flats && alter < 0) {
                     -1
                 } else {
                     0

@@ -29,3 +29,8 @@
 - **W24 av export** (`devin/void-lane-w24` @ 349b76a): `crates/void-av` argv-only FFmpeg runner (env_clear/-nostdin/-fs cap/timeout/kill-on-cancel), exact rational frame math, codec matrix + rights flags, ffprobe -count_frames verify, stage→verify→provenance→rename→publish; `workers/ffmpeg-fake` fixture + tests/av 29/29 incl. RLIMIT_FSIZE disk-full subprocess. T87–T89 pass_linux.
 - Integrator fixes: void-visfx `resolve` Err boxed (result_large_err), collapsible-if + div_ceil lints; one tests/av disk-full flake observed under parallel load, then 5/5 clean reruns — watching CI.
 - Studio vitest 449; workspace clippy -D warnings clean.
+
+## 2026-10-09 01:09 UTC — Lane V (W25) merged
+
+- **W25 notation/interchange** (`devin/void-lane-w25` @ 096de33): `crates/void-notation` score model over stable ids, single-transaction `apply_transaction` + exact `UndoToken` undo, real MusicXML 4 score-partwise import+export (4 fixture semantic round-trips, deterministic loss report), rational-second anchors surviving tempo-map changes, SMPTE modes, tab/lyric binding. tests/notation 18/18; T90/T91 pass_linux. Engraving (Verovio) = GUI NEEDS.
+- Studio vitest 462; workspace clippy -D warnings clean.

@@ -988,8 +988,8 @@
    "phase": "F5",
    "procedure": "Edit score notes/parts/lyrics/tab through stable event IDs and round-trip supported notation format.",
    "expected": "Score and piano-roll remain the same musical data; engraving library alone cannot pass editing requirement.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "lane V: void-notation ScoreOp single-transaction plans + exact UndoToken, stable ids through edits/re-import; tests/notation 18/18 [2026-10-09 01:09 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {
@@ -999,8 +999,8 @@
    "phase": "F5",
    "procedure": "Import supported movie/timecode/MusicXML/AAF/XML fixtures and migrate a supported external-project subset.",
    "expected": "Absolute anchors survive tempo changes; format loss/limitations are documented; unsupported proprietary conversion stays blocked.",
-   "status": "not_run",
-   "evidence": [],
+   "status": "pass_linux",
+   "evidence": "lane V: real MusicXML 4 score-partwise import+export semantic round-trips on 4 fixtures, deterministic loss report, rational-second anchors survive tempo-map changes [2026-10-09 01:09 UTC]",
    "required_evidence": "Exact command/manual steps; fixture hash; build SHA; OS/toolchain/device or model details; observed result; logs/output hashes; limitations. Screenshots supplement but do not replace audio/data evidence."
   },
   {

@@ -1312,6 +1312,7 @@ fn import_note(
     Ok(())
 }
 
+#[allow(clippy::too_many_arguments)]
 fn new_note_element(
     ctx: &mut PartCtx,
     _n: &Node,

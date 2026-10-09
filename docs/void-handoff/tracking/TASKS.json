@@ -1035,8 +1035,8 @@
    "dependency_ids": [
     "VIS-04"
    ],
-   "status": "not_started",
-   "evidence": [],
+   "status": "partial",
+   "evidence": "void-notation score model + MusicXML 4 interchange + anchors \u2014 T90/T91 pass_linux; engraving (Verovio) = GUI NEEDS [2026-10-09 01:09 UTC]",
    "implementation_commit": null,
    "blocker": null,
    "readiness_evidence": [],
