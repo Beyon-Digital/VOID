@@ -50,8 +50,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       # Build first: packages resolve each other via dist/ (main field), so
       # tests need built deps present.
-      - run: pnpm -r build --if-present
-      - run: pnpm -r test --if-present
+      - run: pnpm -r --if-present build
+      - run: pnpm -r --if-present test
 
   native:
     name: native engine (macos)
