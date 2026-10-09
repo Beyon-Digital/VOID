@@ -1,0 +1,228 @@
+<frame id="4:808" name="S09 / Visuals / preview and program" x="80" y="2440" width="1600" height="1000">
+  <frame id="4:809" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:810" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:811" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:812" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:813" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:814" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+      <text id="4:815" name="Project · saved on this device" x="0" y="18" width="154" height="16" />
+    </frame>
+    <frame id="4:816" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:817" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:819" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:821" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:823" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:825" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:827" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:828" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:834" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:840" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:846" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:848" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:849" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:851" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:853" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:854" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:855" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:861" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:867" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:873" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:879" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:885" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:886" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:887" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:888" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:889" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:890" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:891" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:892" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:893" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:894" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:895" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:897" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:899" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="10:1762" name="Visual layer library" x="0" y="0" width="224" height="856">
+      <text id="10:1763" name="VISUAL ASSETS" x="16" y="16" width="86" height="16" />
+      <instance id="10:1764" name="VOID / Field" x="16" y="48" width="192" height="40" />
+      <instance id="10:1766" name="VOID / AssetRow" x="16" y="104" width="192" height="56" />
+      <instance id="10:1769" name="VOID / AssetRow" x="16" y="176" width="192" height="56" />
+      <instance id="10:1772" name="VOID / AssetRow" x="16" y="248" width="192" height="56" />
+      <instance id="10:1775" name="VOID / AssetRow" x="16" y="320" width="192" height="56" />
+      <frame id="10:1778" name="Divider" x="16" y="392" width="192" height="1" />
+      <text id="10:1779" name="LAYERS" x="16" y="409" width="42" height="16" />
+      <instance id="10:1780" name="VOID / ActionButton" x="16" y="441" width="192" height="36" />
+      <instance id="10:1782" name="VOID / ActionButton" x="16" y="493" width="192" height="36" />
+      <instance id="10:1784" name="VOID / ActionButton" x="16" y="545" width="192" height="36" />
+      <frame id="10:1786" name="Flexible space" x="16" y="597" width="1" height="139" />
+      <instance id="10:1787" name="go/S16" x="16" y="752" width="192" height="36" />
+      <instance id="10:1789" name="go/S01" x="16" y="804" width="192" height="36" />
+    </frame>
+    <frame id="10:1791" name="Visual studio" x="224" y="0" width="1056" height="856">
+      <frame id="10:1792" name="Visual title" x="20" y="20" width="1016" height="52">
+        <text id="10:1793" name="Make the sound visible." x="0" y="8" width="319" height="36" />
+        <frame id="10:1794" name="Flexible space" x="331" y="25.5" width="573" height="1" />
+        <instance id="10:1795" name="VOID / StatusBadge" x="916" y="13" width="100" height="26" />
+      </frame>
+      <frame id="10:1797" name="Preview and program" x="20" y="88" width="1016" height="416">
+        <frame id="10:1798" name="Orbit / original editable visual composition" x="0" y="0" width="728" height="416">
+          <frame id="10:1799" name="Reactive orbit 0" x="0" y="0" width="728" height="416">
+            <vector id="10:1800" name="Vector" x="275.69000244140625" y="149.0500030517578" width="176.6199951171875" height="88.58000183105469" />
+          </frame>
+          <frame id="10:1801" name="Reactive orbit 1" x="0" y="0" width="728" height="416">
+            <vector id="10:1802" name="Vector" x="268" y="145.27000427246094" width="192.89999389648438" height="94.61000061035156" />
+          </frame>
+          <frame id="10:1803" name="Reactive orbit 2" x="0" y="0" width="728" height="416">
+            <vector id="10:1804" name="Vector" x="260.4200134277344" y="141.49000549316406" width="209.1099853515625" height="100.84999084472656" />
+          </frame>
+          <frame id="10:1805" name="Reactive orbit 3" x="0" y="0" width="728" height="416">
+            <vector id="10:1806" name="Vector" x="252.94000244140625" y="137.7100067138672" width="225.33999633789062" height="107.27999877929688" />
+          </frame>
+          <frame id="10:1807" name="Reactive orbit 4" x="0" y="0" width="728" height="416">
+            <vector id="10:1808" name="Vector" x="245.5800018310547" y="133.92999267578125" width="241.5299835205078" height="113.90000915527344" />
+          </frame>
+          <frame id="10:1809" name="Reactive orbit 5" x="0" y="0" width="728" height="416">
+            <vector id="10:1810" name="Vector" x="238.3300018310547" y="130.14999389648438" width="257.6400146484375" height="120.72000122070312" />
+          </frame>
+          <frame id="10:1811" name="Reactive orbit 6" x="0" y="0" width="728" height="416">
+            <vector id="10:1812" name="Vector" x="231.19000244140625" y="126.37000274658203" width="273.66998291015625" height="127.73999786376953" />
+          </frame>
+          <frame id="10:1813" name="Reactive orbit 7" x="0" y="0" width="728" height="416">
+            <vector id="10:1814" name="Vector" x="224.08999633789062" y="122.58999633789062" width="289.6900329589844" height="134.95999145507812" />
+          </frame>
+          <frame id="10:1815" name="Reactive orbit 8" x="0" y="0" width="728" height="416">
+            <vector id="10:1816" name="Vector" x="217.10000610351562" y="118.80999755859375" width="305.6000061035156" height="142.3800048828125" />
+          </frame>
+          <frame id="10:1817" name="Reactive orbit 9" x="0" y="0" width="728" height="416">
+            <vector id="10:1818" name="Vector" x="210.22000122070312" y="115.02999877929688" width="321.4100036621094" height="149.94000244140625" />
+          </frame>
+          <frame id="10:1819" name="Reactive orbit 10" x="0" y="0" width="728" height="416">
+            <vector id="10:1820" name="Vector" x="203.4600067138672" y="111.25" width="337.17999267578125" height="157.5" />
+          </frame>
+          <frame id="10:1821" name="Reactive orbit 11" x="0" y="0" width="728" height="416">
+            <vector id="10:1822" name="Vector" x="196.8300018310547" y="107.47000122070312" width="352.90997314453125" height="165.05999755859375" />
+          </frame>
+          <frame id="10:1823" name="Reactive orbit 12" x="0" y="0" width="728" height="416">
+            <vector id="10:1824" name="Vector" x="190.3000030517578" y="103.69000244140625" width="368.5400390625" height="172.6199951171875" />
+          </frame>
+          <frame id="10:1825" name="Reactive orbit 13" x="0" y="0" width="728" height="416">
+            <vector id="10:1826" name="Vector" x="183.89999389648438" y="99.91000366210938" width="384.0199890136719" height="180.17999267578125" />
+          </frame>
+          <frame id="10:1827" name="Reactive orbit 14" x="0" y="0" width="728" height="416">
+            <vector id="10:1828" name="Vector" x="177.61000061035156" y="96.12999725341797" width="399.3599853515625" height="187.739990234375" />
+          </frame>
+          <frame id="10:1829" name="Reactive orbit 15" x="0" y="0" width="728" height="416">
+            <vector id="10:1830" name="Vector" x="171.4199981689453" y="92.3499984741211" width="414.57000732421875" height="195.29998779296875" />
+          </frame>
+          <text id="10:1831" name="ORBIT / 02" x="20" y="386" width="57" height="16" />
+        </frame>
+        <frame id="10:1832" name="Program monitor" x="744" y="0" width="272" height="416">
+          <text id="10:1833" name="PROGRAM" x="16" y="16" width="56" height="16" />
+          <frame id="10:1834" name="Program black output" x="16" y="48" width="240" height="156">
+            <text id="10:1835" name="OUTPUT DISARMED" x="40" y="68" width="107" height="16" />
+          </frame>
+          <text id="10:1836" name="Nothing is sent to a display until you arm an output." x="16" y="220" width="240" height="34" />
+          <instance id="10:1837" name="VOID / ActionButton" x="16" y="270" width="240" height="36" />
+          <instance id="10:1839" name="VOID / ActionButton" x="16" y="322" width="240" height="36" />
+          <text id="10:1841" name="Rehearse in preview first." x="16" y="374" width="240" height="16" />
+        </frame>
+      </frame>
+      <frame id="10:1842" name="Visual timeline" x="20" y="520" width="1016" height="220">
+        <frame id="10:1843" name="Visual ruler" x="12" y="12" width="992" height="28">
+          <text id="10:1844" name="LAYERS" x="0" y="6" width="42" height="16" />
+          <frame id="10:1845" name="Flexible space" x="58" y="13.5" width="407" height="1" />
+          <text id="10:1846" name="1          5          9          13          17          21          25" x="481" y="5" width="511" height="18" />
+        </frame>
+        <frame id="10:1847" name="Orbit" x="12" y="48" width="992" height="46">
+          <text id="10:1848" name="Orbit" x="0" y="14" width="32" height="18" />
+          <frame id="10:1849" name="Flexible space" x="44" y="22.5" width="240" height="1" />
+          <instance id="10:1850" name="VOID / TimelineClip" x="296" y="3" width="168" height="40" />
+          <instance id="10:1854" name="VOID / TimelineClip" x="476" y="3" width="168" height="40" />
+          <instance id="10:1858" name="VOID / TimelineClip" x="656" y="3" width="336" height="40" />
+        </frame>
+        <frame id="10:1862" name="Film grain" x="12" y="102" width="992" height="46">
+          <text id="10:1863" name="Film grain" x="0" y="14" width="61" height="18" />
+          <frame id="10:1864" name="Flexible space" x="73" y="22.5" width="235" height="1" />
+          <instance id="10:1865" name="VOID / TimelineClip" x="320" y="3" width="672" height="40" />
+        </frame>
+        <frame id="10:1869" name="Background" x="12" y="156" width="992" height="46">
+          <text id="10:1870" name="Background" x="0" y="14" width="75" height="18" />
+          <frame id="10:1871" name="Flexible space" x="87" y="22.5" width="221" height="1" />
+          <instance id="10:1872" name="VOID / TimelineClip" x="320" y="3" width="672" height="40" />
+        </frame>
+      </frame>
+      <frame id="10:1876" name="Visual output controls" x="20" y="756" width="1016" height="56">
+        <text id="10:1877" name="Audio clock → visual frames. Never the other way around." x="0" y="19.5" width="328" height="17" />
+        <frame id="10:1878" name="Flexible space" x="344" y="27.5" width="442" height="1" />
+        <instance id="10:1879" name="go/S11" x="802" y="10" width="214" height="36" />
+      </frame>
+    </frame>
+    <frame id="10:1881" name="Visual inspector" x="1280" y="0" width="320" height="856">
+      <instance id="10:1882" name="VOID / StatusBadge" x="20" y="20" width="144" height="26" />
+      <text id="10:1884" name="Orbit" x="20" y="58" width="69" height="36" />
+      <text id="10:1885" name="Layer 01 · selected" x="20" y="106" width="107" height="17" />
+      <frame id="10:1886" name="Blend" x="20" y="135" width="280" height="30">
+        <text id="10:1887" name="Blend" x="0" y="6.5" width="33" height="17" />
+        <frame id="10:1888" name="Flexible space" x="45" y="14.5" width="179" height="1" />
+        <text id="10:1889" name="Screen" x="236" y="6" width="44" height="18" />
+      </frame>
+      <frame id="10:1890" name="Opacity" x="20" y="177" width="280" height="30">
+        <text id="10:1891" name="Opacity" x="0" y="6.5" width="44" height="17" />
+        <frame id="10:1892" name="Flexible space" x="56" y="14.5" width="190" height="1" />
+        <text id="10:1893" name="82%" x="258" y="6" width="22" height="18" />
+      </frame>
+      <frame id="10:1894" name="Beat sync" x="20" y="219" width="280" height="30">
+        <text id="10:1895" name="Beat sync" x="0" y="6.5" width="56" height="17" />
+        <frame id="10:1896" name="Flexible space" x="68" y="14.5" width="178" height="1" />
+        <text id="10:1897" name="1/4" x="258" y="6" width="22" height="18" />
+      </frame>
+      <frame id="10:1898" name="Visual parameters" x="20" y="261" width="280" height="106">
+        <instance id="10:1899" name="VOID / ParameterKnob" x="0" y="0" width="80" height="106" />
+        <instance id="10:1904" name="VOID / ParameterKnob" x="92" y="0" width="80" height="106" />
+        <instance id="10:1909" name="VOID / ParameterKnob" x="184" y="0" width="80" height="106" />
+      </frame>
+      <frame id="10:1914" name="Divider" x="20" y="379" width="280" height="1" />
+      <text id="10:1915" name="AUDIO REACTIVITY" x="20" y="392" width="103" height="16" />
+      <frame id="10:1916" name="Source" x="20" y="420" width="280" height="30">
+        <text id="10:1917" name="Source" x="0" y="6.5" width="40" height="17" />
+        <frame id="10:1918" name="Flexible space" x="52" y="14.5" width="151" height="1" />
+        <text id="10:1919" name="Music bus" x="215" y="6" width="65" height="18" />
+      </frame>
+      <frame id="10:1920" name="Band" x="20" y="462" width="280" height="30">
+        <text id="10:1921" name="Band" x="0" y="6.5" width="30" height="17" />
+        <frame id="10:1922" name="Flexible space" x="42" y="14.5" width="154" height="1" />
+        <text id="10:1923" name="Low / bass" x="208" y="6" width="72" height="18" />
+      </frame>
+      <frame id="10:1924" name="Amount" x="20" y="504" width="280" height="30">
+        <text id="10:1925" name="Amount" x="0" y="6.5" width="45" height="17" />
+        <frame id="10:1926" name="Flexible space" x="57" y="14.5" width="189" height="1" />
+        <text id="10:1927" name="24%" x="258" y="6" width="22" height="18" />
+      </frame>
+      <text id="10:1928" name="Bounded analysis follows the native engine. Late frames never hold a musical cue." x="20" y="546" width="280" height="34" />
+      <frame id="10:1929" name="Flexible space" x="20" y="592" width="1" height="22" />
+      <frame id="10:1930" name="Generate a visual asset" x="20" y="626" width="280" height="162">
+        <text id="10:1931" name="Create a visual asset" x="16" y="16" width="131" height="18" />
+        <text id="10:1932" name="“Soft ink clouds, slow motion, no hard cuts.”" x="16" y="46" width="248" height="34" />
+        <instance id="10:1933" name="go/S17" x="16" y="92" width="248" height="36" />
+      </frame>
+      <instance id="10:1935" name="VOID / ActionButton" x="20" y="800" width="280" height="36" />
+    </frame>
+  </frame>
+  <frame id="4:900" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:901" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:902" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:903" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:904" name="Flexible space" x="342" y="13.5" width="958" height="1" />
+    <text id="4:905" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="4:906" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:907" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

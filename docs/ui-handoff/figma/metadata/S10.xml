@@ -1,0 +1,167 @@
+<frame id="4:908" name="S10 / Generate / audio candidates" x="1840" y="2440" width="1600" height="1000">
+  <frame id="4:909" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:910" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:911" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:912" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:913" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:914" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+      <text id="4:915" name="Project · saved on this device" x="0" y="18" width="154" height="16" />
+    </frame>
+    <frame id="4:916" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:917" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:919" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:921" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:923" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:925" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:927" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:928" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:934" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:940" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:946" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:948" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:949" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:951" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:953" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:954" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:955" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:961" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:967" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:973" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:979" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:985" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:986" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:987" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:988" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:989" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:990" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:991" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:992" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:993" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:994" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:995" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:997" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:999" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="9:1717" name="Generate prompt" x="0" y="0" width="460" height="856">
+      <instance id="9:1718" name="VOID / StatusBadge" x="28" y="28" width="160" height="26" />
+      <text id="9:1720" name="Add a little
+unexpected." x="28" y="70" width="171" height="72" />
+      <text id="9:1721" name="Generate into a preview. Your song stays untouched until you choose a result." x="28" y="158" width="404" height="40" />
+      <frame id="9:1722" name="Generation type" x="28" y="214" width="404" height="36">
+        <instance id="9:1723" name="VOID / ActionButton" x="0" y="0" width="128" height="36" />
+        <instance id="9:1725" name="go/S09" x="136" y="0" width="128" height="36" />
+        <instance id="9:1727" name="go/S09" x="272" y="0" width="128" height="36" />
+      </frame>
+      <text id="9:1729" name="Describe the sound" x="28" y="266" width="123" height="18" />
+      <frame id="9:1730" name="Generation prompt" x="28" y="300" width="404" height="118">
+        <text id="9:1731" name="A sparse analog pulse for the final eight bars. Warm, low, and a little unstable. Leave space for the vocal." x="17" y="17" width="372" height="40" />
+      </frame>
+      <frame id="9:1732" name="Duration" x="28" y="434" width="404" height="30">
+        <text id="9:1733" name="Duration" x="0" y="6.5" width="49" height="17" />
+        <frame id="9:1734" name="Flexible space" x="61" y="14.5" width="287" height="1" />
+        <text id="9:1735" name="8 bars" x="360" y="6" width="44" height="18" />
+      </frame>
+      <frame id="9:1736" name="Tempo / key" x="28" y="480" width="404" height="30">
+        <text id="9:1737" name="Tempo / key" x="0" y="6.5" width="70" height="17" />
+        <frame id="9:1738" name="Flexible space" x="82" y="14.5" width="187" height="1" />
+        <text id="9:1739" name="118 BPM · A minor" x="281" y="6" width="123" height="18" />
+      </frame>
+      <frame id="9:1740" name="Destination" x="28" y="526" width="404" height="30">
+        <text id="9:1741" name="Destination" x="0" y="6.5" width="65" height="17" />
+        <frame id="9:1742" name="Flexible space" x="77" y="14.5" width="207" height="1" />
+        <text id="9:1743" name="New audio track" x="296" y="6" width="108" height="18" />
+      </frame>
+      <frame id="9:1744" name="Divider" x="28" y="572" width="404" height="1" />
+      <frame id="9:1745" name="Provider" x="28" y="589" width="404" height="30">
+        <text id="9:1746" name="Provider" x="0" y="6.5" width="48" height="17" />
+        <frame id="9:1747" name="Flexible space" x="60" y="14.5" width="252" height="1" />
+        <text id="9:1748" name="Local model" x="324" y="6" width="80" height="18" />
+      </frame>
+      <text id="9:1749" name="Model capability and license must be qualified. No automatic cloud fallback." x="28" y="635" width="404" height="34" />
+      <frame id="9:1750" name="Flexible space" x="28" y="685" width="1" height="39" />
+      <instance id="9:1751" name="go/S17" x="28" y="740" width="404" height="36" />
+      <instance id="9:1753" name="go/S01" x="28" y="792" width="404" height="36" />
+    </frame>
+    <frame id="9:1755" name="Generation results" x="460" y="0" width="1140" height="856">
+      <frame id="9:1756" name="Section heading" x="32" y="32" width="1076" height="82">
+        <text id="9:1757" name="Three directions. Your call." x="0" y="0" width="359" height="36" />
+        <text id="9:1758" name="Illustrative candidates. Audition, compare, and accept only the one that belongs." x="0" y="44" width="1076" height="20" />
+      </frame>
+      <frame id="9:1759" name="Audio candidate 1" x="32" y="138" width="1076" height="188">
+        <frame id="9:1760" name="Candidate identity" x="20" y="20" width="1036" height="28">
+          <instance id="9:1761" name="VOID / StatusBadge" x="0" y="1" width="52" height="26" />
+          <text id="9:1763" name="Soft voltage" x="64" y="0" width="120" height="28" />
+          <frame id="9:1764" name="Flexible space" x="196" y="13.5" width="648" height="1" />
+          <text id="9:1765" name="8 bars · stereo · A minor" x="856" y="5" width="180" height="18" />
+        </frame>
+        <frame id="9:1766" name="Candidate preview" x="20" y="60" width="1036" height="60">
+          <instance id="9:1767" name="VOID / ActionButton" x="0" y="12" width="120" height="36" />
+          <frame id="9:1769" name="Editable preview waveform" x="136" y="0" width="880" height="60">
+            <vector id="9:1770" name="Vector" x="2" y="3.019158124923706" width="876" height="53.96168518066406" />
+          </frame>
+        </frame>
+        <frame id="9:1771" name="Candidate actions" x="20" y="132" width="1036" height="36">
+          <text id="9:1772" name="Subtle movement. Rounded transients." x="0" y="9.5" width="220" height="17" />
+          <frame id="9:1773" name="Flexible space" x="232" y="17.5" width="628" height="1" />
+          <instance id="9:1774" name="go/S01" x="872" y="0" width="164" height="36" />
+        </frame>
+      </frame>
+      <frame id="9:1776" name="Audio candidate 2" x="32" y="350" width="1076" height="188">
+        <frame id="9:1777" name="Candidate identity" x="20" y="20" width="1036" height="28">
+          <instance id="9:1778" name="VOID / StatusBadge" x="0" y="1" width="52" height="26" />
+          <text id="9:1780" name="Broken orbit" x="64" y="0" width="120" height="28" />
+          <frame id="9:1781" name="Flexible space" x="196" y="13.5" width="648" height="1" />
+          <text id="9:1782" name="8 bars · stereo · A minor" x="856" y="5" width="180" height="18" />
+        </frame>
+        <frame id="9:1783" name="Candidate preview" x="20" y="60" width="1036" height="60">
+          <instance id="9:1784" name="VOID / ActionButton" x="0" y="12" width="120" height="36" />
+          <frame id="9:1786" name="Editable preview waveform" x="136" y="0" width="880" height="60">
+            <vector id="9:1787" name="Vector" x="2" y="3.019158124923706" width="876" height="53.96168518066406" />
+          </frame>
+        </frame>
+        <frame id="9:1788" name="Candidate actions" x="20" y="132" width="1036" height="36">
+          <text id="9:1789" name="More syncopation, less low-end weight." x="0" y="9.5" width="226" height="17" />
+          <frame id="9:1790" name="Flexible space" x="238" y="17.5" width="622" height="1" />
+          <instance id="9:1791" name="go/S01" x="872" y="0" width="164" height="36" />
+        </frame>
+      </frame>
+      <frame id="9:1793" name="Audio candidate 3" x="32" y="562" width="1076" height="188">
+        <frame id="9:1794" name="Candidate identity" x="20" y="20" width="1036" height="28">
+          <instance id="9:1795" name="VOID / StatusBadge" x="0" y="1" width="52" height="26" />
+          <text id="9:1797" name="Afterglow pulse" x="64" y="0" width="153" height="28" />
+          <frame id="9:1798" name="Flexible space" x="229" y="13.5" width="615" height="1" />
+          <text id="9:1799" name="8 bars · stereo · A minor" x="856" y="5" width="180" height="18" />
+        </frame>
+        <frame id="9:1800" name="Candidate preview" x="20" y="60" width="1036" height="60">
+          <instance id="9:1801" name="VOID / ActionButton" x="0" y="12" width="120" height="36" />
+          <frame id="9:1803" name="Editable preview waveform" x="136" y="0" width="880" height="60">
+            <vector id="9:1804" name="Vector" x="2" y="3.019158124923706" width="876" height="53.96168518066406" />
+          </frame>
+        </frame>
+        <frame id="9:1805" name="Candidate actions" x="20" y="132" width="1036" height="36">
+          <text id="9:1806" name="A slower swell with a longer release." x="0" y="9.5" width="206" height="17" />
+          <frame id="9:1807" name="Flexible space" x="218" y="17.5" width="642" height="1" />
+          <instance id="9:1808" name="go/S01" x="872" y="0" width="164" height="36" />
+        </frame>
+      </frame>
+      <text id="9:1810" name="Accepted output becomes a regular asset: trim, stretch, mix, save, export and undo." x="32" y="774" width="477" height="17" />
+    </frame>
+  </frame>
+  <frame id="4:1000" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:1001" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:1002" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:1003" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:1004" name="Flexible space" x="342" y="13.5" width="958" height="1" />
+    <text id="4:1005" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="4:1006" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:1007" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

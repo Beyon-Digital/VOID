@@ -1,0 +1,1032 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/fee7d9bd-15d1-45de-a939-f4a886480213";
+const imgFrame = `${assetPathPrefix}/91439.svg`;
+const imgFrame1 = `${assetPathPrefix}/cb003.svg`;
+const imgFrame2 = `${assetPathPrefix}/41971.svg`;
+const imgFrame3 = `${assetPathPrefix}/71e78.svg`;
+const imgFrame4 = `${assetPathPrefix}/a0613.svg`;
+const imgFrame5 = `${assetPathPrefix}/1f1b2.svg`;
+const imgFrame6 = `${assetPathPrefix}/cc961.svg`;
+const imgFrame7 = `${assetPathPrefix}/4d8ce.svg`;
+const imgMusicalGrid = `${assetPathPrefix}/8f6e7.svg`;
+const imgEditableNotes = `${assetPathPrefix}/bceac.svg`;
+const imgEditableNotes1 = `${assetPathPrefix}/66426.svg`;
+const imgEditableWaveform = `${assetPathPrefix}/7188c.svg`;
+const imgEditableWaveform1 = `${assetPathPrefix}/7c8b0.svg`;
+const imgEditableNotes2 = `${assetPathPrefix}/20373.svg`;
+const imgKnobArc = `${assetPathPrefix}/09690.svg`;
+
+export default function S23ArrangeDaylightMode() {
+  return (
+    <div className="bg-[var(--void-bg,#f2f2ef)] content-stretch flex flex-col gap-[var(--void-space-0,0px)] items-start p-[var(--void-space-0,0px)] relative size-full" data-node-id="4:2208" data-name="S23 / Arrange / daylight mode">
+      <div className="bg-[var(--void-surface,white)] content-stretch flex gap-[var(--void-space-12,12px)] h-[52px] items-center overflow-clip p-[var(--void-space-12,12px)] relative shrink-0 w-[1600px]" data-node-id="4:2209" data-name="StudioHeader">
+        <a className="[word-break:break-word] content-stretch cursor-pointer flex gap-[var(--void-space-4,4px)] h-[28px] items-center leading-[28px] overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 text-[20px] text-left w-[88px] whitespace-nowrap" data-node-id="4:2210" data-name="go/S13">
+          <p className="font-['Space_Grotesk:Bold'] font-bold relative shrink-0 text-[color:var(--void-text,#171b19)] tracking-[1.6px]" data-node-id="4:2211">
+            VOID
+          </p>
+          <p className="font-['Space_Grotesk:Medium'] font-medium relative shrink-0 text-[color:var(--void-accent,#506b0b)]" data-node-id="4:2212">
+            /
+          </p>
+        </a>
+        <a className="[word-break:break-word] content-stretch cursor-pointer flex flex-col gap-[var(--void-space-0,0px)] h-[36px] items-start not-italic overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 text-left w-[258px] whitespace-nowrap" data-node-id="4:2213" data-name="go/S13">
+          <p className="font-['Inter:Semi_Bold'] font-semibold leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)]" data-node-id="4:2214">
+            Midnight circuit
+          </p>
+          <p className="font-['Inter:Medium'] font-medium leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)]" data-node-id="4:2215">
+            Project · saved on this device
+          </p>
+        </a>
+        <div className="content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[502px]" data-node-id="4:2216" data-name="Workspace navigation">
+          <a className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[94px]" data-node-id="4:2217" data-name="go/S01">
+            <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] text-left whitespace-nowrap" data-node-id="I4:2217;2:119">
+              Arrange
+            </p>
+          </a>
+          <a className="content-stretch flex h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[94px]" data-node-id="4:2219" data-name="go/S02">
+            <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I4:2219;2:121">
+              Compose
+            </p>
+          </a>
+          <a className="content-stretch flex h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[94px]" data-node-id="4:2221" data-name="go/S04">
+            <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I4:2221;2:121">
+              Mix
+            </p>
+          </a>
+          <a className="content-stretch flex h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[94px]" data-node-id="4:2223" data-name="go/S07">
+            <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I4:2223;2:121">
+              Perform
+            </p>
+          </a>
+          <a className="content-stretch flex h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[94px]" data-node-id="4:2225" data-name="go/S09">
+            <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I4:2225;2:121">
+              Visuals
+            </p>
+          </a>
+        </div>
+        <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="4:2227" data-name="Flexible space" />
+        <a className="bg-[var(--void-raised,#e5e7e3)] content-stretch cursor-pointer flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:2228" data-name="go/S16">
+          <div className="relative shrink-0 size-[20px]" data-node-id="I4:2228;3:141" data-name="Icon">
+            <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:2228;3:141;3:87" data-name="Frame">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame} />
+            </div>
+          </div>
+        </a>
+        <a className="bg-[var(--void-raised,#e5e7e3)] content-stretch cursor-pointer flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:2234" data-name="go/S17">
+          <div className="relative shrink-0 size-[20px]" data-node-id="I4:2234;3:141" data-name="Icon">
+            <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:2234;3:141;3:138" data-name="Frame">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame1} />
+            </div>
+          </div>
+        </a>
+        <a className="bg-[var(--void-raised,#e5e7e3)] content-stretch cursor-pointer flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:2240" data-name="go/S15">
+          <div className="relative shrink-0 size-[20px]" data-node-id="I4:2240;3:141" data-name="Icon">
+            <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:2240;3:141;3:102" data-name="Frame">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame2} />
+            </div>
+          </div>
+        </a>
+        <a className="bg-[var(--void-accent,#506b0b)] content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[100px]" data-node-id="4:2246" data-name="go/S11">
+          <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-on-accent,white)] text-left whitespace-nowrap" data-node-id="I4:2246;2:104">
+            Export
+          </p>
+        </a>
+      </div>
+      <div className="bg-[var(--void-surface,white)] border border-[var(--void-line,#ced4cc)] border-solid content-stretch flex gap-[var(--void-space-12,12px)] h-[64px] items-center overflow-clip p-[var(--void-space-12,12px)] relative shrink-0 w-[1600px]" data-node-id="4:2248" data-name="TransportBar">
+        <a className="content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[94px]" data-node-id="4:2249" data-name="go/S16">
+          <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] text-left whitespace-nowrap" data-node-id="I4:2249;2:108">
+            Library
+          </p>
+        </a>
+        <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[72px]" data-node-id="4:2251" data-name="VOID / ActionButton">
+          <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="I4:2251;2:108">
+            Undo
+          </p>
+        </div>
+        <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="4:2253" data-name="Flexible space" />
+        <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[40px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[220px]" data-node-id="4:2254" data-name="Transport controls">
+          <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:2255" data-name="control/back">
+            <div className="relative shrink-0 size-[20px]" data-node-id="I4:2255;3:141" data-name="Icon">
+              <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:2255;3:141;3:84" data-name="Frame">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame3} />
+              </div>
+            </div>
+          </div>
+          <a className="bg-[var(--void-raised,#e5e7e3)] content-stretch cursor-pointer flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:2261" data-name="go/S01">
+            <div className="relative shrink-0 size-[20px]" data-node-id="I4:2261;3:141" data-name="Icon">
+              <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:2261;3:141;3:75" data-name="Frame">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame4} />
+              </div>
+            </div>
+          </a>
+          <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:2267" data-name="control/play">
+            <div className="relative shrink-0 size-[20px]" data-node-id="I4:2267;3:141" data-name="Icon">
+              <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:2267;3:141;3:72" data-name="Frame">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame5} />
+              </div>
+            </div>
+          </div>
+          <a className="bg-[var(--void-danger-soft,#fbe4e5)] content-stretch cursor-pointer flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:2273" data-name="go/S05">
+            <div className="relative shrink-0 size-[20px]" data-node-id="I4:2273;3:149" data-name="Icon">
+              <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:2273;3:149;3:78" data-name="Frame">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame6} />
+              </div>
+            </div>
+          </a>
+          <div className="bg-[var(--void-accent-soft,#edf5d8)] content-stretch flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:2279" data-name="control/loop">
+            <div className="relative shrink-0 size-[20px]" data-node-id="I4:2279;3:145" data-name="Icon">
+              <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:2279;3:145;3:81" data-name="Frame">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame7} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="[word-break:break-word] content-stretch flex flex-col gap-[var(--void-space-0,0px)] h-[48px] items-start not-italic overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[180px]" data-node-id="4:2285" data-name="Musical position">
+          <p className="font-['IBM_Plex_Mono:Medium'] leading-[32px] relative shrink-0 text-[24px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="4:2286">
+            09.01.001
+          </p>
+          <p className="font-['Inter:Medium'] font-medium leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-subtle,#68726d)] whitespace-pre" data-node-id="4:2287">{`BARS   BEATS   TICKS`}</p>
+        </div>
+        <div className="[word-break:break-word] content-stretch flex flex-col gap-[var(--void-space-0,0px)] h-[42px] items-start not-italic overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[84px] whitespace-nowrap" data-node-id="4:2288" data-name="Tempo">
+          <p className="font-['Inter:Semi_Bold'] font-semibold leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)]" data-node-id="4:2289">
+            118.0
+          </p>
+          <p className="font-['Inter:Medium'] font-medium leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)]" data-node-id="4:2290">
+            BPM
+          </p>
+        </div>
+        <div className="[word-break:break-word] content-stretch flex flex-col gap-[var(--void-space-0,0px)] h-[42px] items-start not-italic overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[90px] whitespace-nowrap" data-node-id="4:2291" data-name="Key and meter">
+          <p className="font-['Inter:Semi_Bold'] font-semibold leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)]" data-node-id="4:2292">
+            A minor
+          </p>
+          <p className="font-['Inter:Medium'] font-medium leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)]" data-node-id="4:2293">
+            4 / 4
+          </p>
+        </div>
+        <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="4:2294" data-name="Flexible space" />
+        <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex h-[26px] items-center justify-center relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[114px]" data-node-id="4:2295" data-name="VOID / StatusBadge">
+          <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="I4:2295;2:124">
+            Cycle 9–17
+          </p>
+        </div>
+        <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[110px]" data-node-id="4:2297" data-name="VOID / ActionButton">
+          <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="I4:2297;2:108">
+            Metronome
+          </p>
+        </div>
+      </div>
+      <div className="bg-[var(--void-bg,#f2f2ef)] content-stretch flex gap-[var(--void-space-0,0px)] h-[856px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1600px]" data-node-id="4:2299" data-name="Body">
+        <div className="bg-[var(--void-surface,white)] content-stretch flex flex-col gap-[var(--void-space-12,12px)] h-[856px] items-start overflow-clip p-[var(--void-space-16,16px)] relative shrink-0 w-[224px]" data-node-id="5:1404" data-name="SoundLibrary">
+          <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1405">
+            SOUNDS
+          </p>
+          <a className="bg-[var(--void-bg,#f2f2ef)] border border-[var(--void-line,#ced4cc)] border-solid content-stretch cursor-pointer flex h-[40px] items-center px-[var(--void-space-12,12px)] relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[192px]" data-node-id="5:1406" data-name="go/S16">
+            <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1406;2:137">
+              Search sounds…
+            </p>
+          </a>
+          <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[28px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[192px]" data-node-id="5:1408" data-name="Library filter">
+            <div className="bg-[var(--void-mint-soft,#ddf2e5)] content-stretch flex h-[26px] items-center justify-center relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[84px]" data-node-id="5:1409" data-name="VOID / StatusBadge">
+              <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-mint,#236849)] whitespace-nowrap" data-node-id="I5:1409;2:126">
+                Installed
+              </p>
+            </div>
+            <a className="bg-[var(--void-raised,#e5e7e3)] content-stretch cursor-pointer flex h-[26px] items-center justify-center relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[92px]" data-node-id="5:1411" data-name="go/S16">
+              <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1411;2:124">
+                All sounds
+              </p>
+            </a>
+          </div>
+          <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-subtle,#68726d)] whitespace-nowrap" data-node-id="5:1413">
+            INSTRUMENTS
+          </p>
+          <a className="[word-break:break-word] bg-[var(--void-raised,#e5e7e3)] content-stretch cursor-pointer flex flex-col font-['Inter:Medium'] font-medium gap-[var(--void-space-4,4px)] h-[56px] items-start not-italic pt-[var(--void-space-8,8px)] px-[var(--void-space-12,12px)] relative rounded-[var(--void-radius-8,8px)] shrink-0 text-left w-[192px] whitespace-nowrap" data-node-id="5:1414" data-name="go/S02">
+            <p className="leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)]" data-node-id="I5:1414;2:281">
+              Velvet keys
+            </p>
+            <p className="leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)]" data-node-id="I5:1414;2:282">
+              4OSC · electric piano
+            </p>
+          </a>
+          <a className="[word-break:break-word] content-stretch cursor-pointer flex flex-col font-['Inter:Medium'] font-medium gap-[var(--void-space-4,4px)] h-[56px] items-start not-italic pt-[var(--void-space-8,8px)] px-[var(--void-space-12,12px)] relative rounded-[var(--void-radius-8,8px)] shrink-0 text-left w-[192px] whitespace-nowrap" data-node-id="5:1417" data-name="go/S02">
+            <p className="leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)]" data-node-id="I5:1417;2:278">
+              Satin bass
+            </p>
+            <p className="leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)]" data-node-id="I5:1417;2:279">
+              Synth · warm / rounded
+            </p>
+          </a>
+          <a className="[word-break:break-word] content-stretch cursor-pointer flex flex-col font-['Inter:Medium'] font-medium gap-[var(--void-space-4,4px)] h-[56px] items-start not-italic pt-[var(--void-space-8,8px)] px-[var(--void-space-12,12px)] relative rounded-[var(--void-radius-8,8px)] shrink-0 text-left w-[192px] whitespace-nowrap" data-node-id="5:1420" data-name="go/S02">
+            <p className="leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)]" data-node-id="I5:1420;2:278">
+              Dust kit
+            </p>
+            <p className="leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)]" data-node-id="I5:1420;2:279">
+              Drums · 16 one-shots
+            </p>
+          </a>
+          <a className="[word-break:break-word] content-stretch cursor-pointer flex flex-col font-['Inter:Medium'] font-medium gap-[var(--void-space-4,4px)] h-[56px] items-start not-italic pt-[var(--void-space-8,8px)] px-[var(--void-space-12,12px)] relative rounded-[var(--void-radius-8,8px)] shrink-0 text-left w-[192px] whitespace-nowrap" data-node-id="5:1423" data-name="go/S02">
+            <p className="leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)]" data-node-id="I5:1423;2:278">
+              Air pad
+            </p>
+            <p className="leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)]" data-node-id="I5:1423;2:279">
+              Synth · slow / wide
+            </p>
+          </a>
+          <a className="[word-break:break-word] content-stretch cursor-pointer flex flex-col font-['Inter:Medium'] font-medium gap-[var(--void-space-4,4px)] h-[56px] items-start not-italic pt-[var(--void-space-8,8px)] px-[var(--void-space-12,12px)] relative rounded-[var(--void-radius-8,8px)] shrink-0 text-left w-[192px] whitespace-nowrap" data-node-id="5:1426" data-name="go/S02">
+            <p className="leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)]" data-node-id="I5:1426;2:278">
+              Taped strings
+            </p>
+            <p className="leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)]" data-node-id="I5:1426;2:279">
+              Sampler · sustained
+            </p>
+          </a>
+          <div className="bg-[var(--void-line,#ced4cc)] h-px relative shrink-0 w-[192px]" data-node-id="5:1429" data-name="Divider" />
+          <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-subtle,#68726d)] whitespace-nowrap" data-node-id="5:1430">
+            COLLECTIONS
+          </p>
+          <a className="[word-break:break-word] block cursor-pointer font-['Inter:Medium'] font-medium leading-[0] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1431">
+            <p className="leading-[18px]">Favorites</p>
+          </a>
+          <a className="[word-break:break-word] block cursor-pointer font-['Inter:Medium'] font-medium leading-[0] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1432">
+            <p className="leading-[18px]">Recently used</p>
+          </a>
+          <a className="[word-break:break-word] block cursor-pointer font-['Inter:Medium'] font-medium leading-[0] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1433">
+            <p className="leading-[18px]">My recordings</p>
+          </a>
+          <a className="[word-break:break-word] block cursor-pointer font-['Inter:Medium'] font-medium leading-[0] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1434">
+            <p className="leading-[18px]">Imported assets</p>
+          </a>
+          <div className="flex-[1_0_0] min-h-px relative w-px" data-node-id="5:1435" data-name="Flexible space" />
+          <a className="content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[192px]" data-node-id="5:1436" data-name="go/S10">
+            <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] text-left whitespace-nowrap" data-node-id="I5:1436;2:108">
+              Create a sound
+            </p>
+          </a>
+          <div className="[word-break:break-word] bg-[var(--void-raised,#e5e7e3)] content-stretch flex flex-col font-['Inter:Medium'] font-medium gap-[var(--void-space-4,4px)] h-[66px] items-start not-italic overflow-clip p-[var(--void-space-12,12px)] relative shrink-0 w-[192px]" data-node-id="5:1438" data-name="Browser audition">
+            <p className="leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1439">
+              Velvet keys
+            </p>
+            <p className="leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] whitespace-pre" data-node-id="5:1440">{`Audition on selection  ·  A3`}</p>
+          </div>
+        </div>
+        <div className="bg-[var(--void-bg,#f2f2ef)] content-stretch flex flex-col gap-[var(--void-space-0,0px)] h-[856px] items-start overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1112px]" data-node-id="5:1441" data-name="Arrangement">
+          <div className="bg-[var(--void-bg,#f2f2ef)] content-stretch flex gap-[var(--void-space-12,12px)] h-[44px] items-center overflow-clip p-[var(--void-space-8,8px)] relative shrink-0 w-[1112px]" data-node-id="5:1442" data-name="Arrangement tools">
+            <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1443">
+              Arrangement
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="5:1444" data-name="Flexible space" />
+            <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[104px]" data-node-id="5:1445" data-name="VOID / ActionButton">
+              <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] whitespace-pre" data-node-id="I5:1445;2:108">{`Snap  1/16`}</p>
+            </div>
+            <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[104px]" data-node-id="5:1447" data-name="VOID / ActionButton">
+              <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="I5:1447;2:108">
+                Automation
+              </p>
+            </div>
+            <a className="bg-[var(--void-raised,#e5e7e3)] border border-[var(--void-line,#ced4cc)] border-solid content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[108px]" data-node-id="5:1449" data-name="go/S16">
+              <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] text-left whitespace-nowrap" data-node-id="I5:1449;2:106">
+                + Add track
+              </p>
+            </a>
+          </div>
+          <div className="bg-[var(--void-surface,white)] content-stretch flex gap-[var(--void-space-0,0px)] h-[56px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1112px]" data-node-id="5:1451" data-name="Song sections and ruler">
+            <div className="[word-break:break-word] content-stretch flex flex-col gap-[var(--void-space-4,4px)] h-[56px] items-start not-italic overflow-clip p-[var(--void-space-12,12px)] relative shrink-0 w-[196px] whitespace-nowrap" data-node-id="5:1452" data-name="Track list header">
+              <p className="font-['Inter:Medium'] font-medium leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)]" data-node-id="5:1453">
+                TRACKS
+              </p>
+              <p className="font-['Inter:Regular'] font-normal leading-[17px] relative shrink-0 text-[12px] text-[color:var(--void-subtle,#68726d)]" data-node-id="5:1454">
+                6 tracks
+              </p>
+            </div>
+            <div className="bg-[var(--void-surface,white)] h-[56px] overflow-clip relative shrink-0 w-[916px]" data-node-id="5:1455" data-name="Time ruler">
+              <div className="absolute bg-[var(--void-raised,#e5e7e3)] h-[26px] left-0 rounded-[var(--void-radius-4,4px)] top-0 w-[227px]" data-node-id="5:1456" data-name="Section" />
+              <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[10px] not-italic text-[11px] text-[color:var(--void-muted,#515b57)] top-[5px] whitespace-nowrap" data-node-id="5:1457">
+                Intro
+              </p>
+              <div className="absolute bg-[var(--void-accent-soft,#edf5d8)] h-[26px] left-[229px] rounded-[var(--void-radius-4,4px)] top-0 w-[227px]" data-node-id="5:1458" data-name="Section" />
+              <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[239px] not-italic text-[11px] text-[color:var(--void-accent,#506b0b)] top-[5px] whitespace-nowrap" data-node-id="5:1459">
+                Verse
+              </p>
+              <div className="absolute bg-[var(--void-raised,#e5e7e3)] h-[26px] left-[458px] rounded-[var(--void-radius-4,4px)] top-0 w-[227px]" data-node-id="5:1460" data-name="Section" />
+              <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[468px] not-italic text-[11px] text-[color:var(--void-muted,#515b57)] top-[5px] whitespace-nowrap" data-node-id="5:1461">
+                Lift
+              </p>
+              <div className="absolute bg-[var(--void-raised,#e5e7e3)] h-[26px] left-[687px] rounded-[var(--void-radius-4,4px)] top-0 w-[227px]" data-node-id="5:1462" data-name="Section" />
+              <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[697px] not-italic text-[11px] text-[color:var(--void-muted,#515b57)] top-[5px] whitespace-nowrap" data-node-id="5:1463">
+                Chorus
+              </p>
+              <p className="[word-break:break-word] absolute font-['IBM_Plex_Mono:Regular'] leading-[18px] left-[10px] not-italic text-[12px] text-[color:var(--void-subtle,#68726d)] top-[34px] whitespace-nowrap" data-node-id="5:1464">
+                1
+              </p>
+              <p className="[word-break:break-word] absolute font-['IBM_Plex_Mono:Regular'] leading-[18px] left-[124.5px] not-italic text-[12px] text-[color:var(--void-subtle,#68726d)] top-[34px] whitespace-nowrap" data-node-id="5:1465">
+                5
+              </p>
+              <p className="[word-break:break-word] absolute font-['IBM_Plex_Mono:Regular'] leading-[18px] left-[239px] not-italic text-[12px] text-[color:var(--void-subtle,#68726d)] top-[34px] whitespace-nowrap" data-node-id="5:1466">
+                9
+              </p>
+              <p className="[word-break:break-word] absolute font-['IBM_Plex_Mono:Regular'] leading-[18px] left-[353.5px] not-italic text-[12px] text-[color:var(--void-subtle,#68726d)] top-[34px] whitespace-nowrap" data-node-id="5:1467">
+                13
+              </p>
+              <p className="[word-break:break-word] absolute font-['IBM_Plex_Mono:Regular'] leading-[18px] left-[468px] not-italic text-[12px] text-[color:var(--void-subtle,#68726d)] top-[34px] whitespace-nowrap" data-node-id="5:1468">
+                17
+              </p>
+              <p className="[word-break:break-word] absolute font-['IBM_Plex_Mono:Regular'] leading-[18px] left-[582.5px] not-italic text-[12px] text-[color:var(--void-subtle,#68726d)] top-[34px] whitespace-nowrap" data-node-id="5:1469">
+                21
+              </p>
+              <p className="[word-break:break-word] absolute font-['IBM_Plex_Mono:Regular'] leading-[18px] left-[697px] not-italic text-[12px] text-[color:var(--void-subtle,#68726d)] top-[34px] whitespace-nowrap" data-node-id="5:1470">
+                25
+              </p>
+              <p className="[word-break:break-word] absolute font-['IBM_Plex_Mono:Regular'] leading-[18px] left-[811.5px] not-italic text-[12px] text-[color:var(--void-subtle,#68726d)] top-[34px] whitespace-nowrap" data-node-id="5:1471">
+                29
+              </p>
+              <div className="absolute bg-[var(--void-accent,#506b0b)] h-[2px] left-[229px] top-[27px] w-[229px]" data-node-id="5:1472" data-name="Loop span 9–17" />
+            </div>
+          </div>
+          <div className="bg-[var(--void-bg,#f2f2ef)] content-stretch flex gap-[var(--void-space-0,0px)] h-[76px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1112px]" data-node-id="5:1473" data-name="Track 1 / Dust kit">
+            <a className="bg-[var(--void-surface,white)] content-stretch cursor-pointer flex flex-col gap-[var(--void-space-8,8px)] h-[76px] items-start pb-[var(--void-space-8,8px)] pt-[var(--void-space-12,12px)] px-[var(--void-space-12,12px)] relative shrink-0 w-[196px]" data-node-id="5:1474" data-name="go/S02">
+              <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[20px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[166px]" data-node-id="I5:1474;2:170" data-name="Track identity">
+                <div className="bg-[var(--void-blue,#245c84)] h-[16px] relative shrink-0 w-[6px]" data-node-id="I5:1474;2:171" data-name="Track type" />
+                <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] text-left whitespace-nowrap" data-node-id="I5:1474;2:172">
+                  Dust kit
+                </p>
+              </div>
+              <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[24px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[166px]" data-node-id="I5:1474;2:173" data-name="Track states">
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1474;2:174" data-name="M">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1474;2:175">
+                    M
+                  </p>
+                </div>
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1474;2:176" data-name="S">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1474;2:177">
+                    S
+                  </p>
+                </div>
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1474;2:178" data-name="R">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1474;2:179">
+                    R
+                  </p>
+                </div>
+                <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1474;2:180">
+                  −8.0 dB
+                </p>
+              </div>
+            </a>
+            <div className="bg-[var(--void-bg,#f2f2ef)] h-[76px] overflow-clip relative shrink-0 w-[916px]" data-node-id="5:1486" data-name="Timeline lane / Dust kit">
+              <div className="absolute h-[76px] left-0 top-0 w-[916px]" data-node-id="5:1487" data-name="Musical grid">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgMusicalGrid} />
+              </div>
+              <a className="absolute bg-[var(--void-blue-soft,#dcecf7)] block border border-[var(--void-blue,#245c84)] border-solid cursor-pointer h-[62px] left-[4px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1489" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1489;2:223">
+                  Dust groove
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1489;2:224" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes} />
+                </div>
+              </a>
+              <a className="absolute bg-[var(--void-blue-soft,#dcecf7)] block border border-[var(--void-blue,#245c84)] border-solid cursor-pointer h-[62px] left-[233px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1493" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1493;2:223">
+                  Dust groove / B
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1493;2:224" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes} />
+                </div>
+              </a>
+              <a className="absolute bg-[var(--void-blue-soft,#dcecf7)] block border border-[var(--void-blue,#245c84)] border-solid cursor-pointer h-[62px] left-[462px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1497" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1497;2:223">
+                  Dust groove
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1497;2:224" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes} />
+                </div>
+              </a>
+              <a className="absolute bg-[var(--void-blue-soft,#dcecf7)] block border border-[var(--void-blue,#245c84)] border-solid cursor-pointer h-[62px] left-[691px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1501" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1501;2:223">
+                  Dust groove
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1501;2:224" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes} />
+                </div>
+              </a>
+            </div>
+          </div>
+          <div className="bg-[var(--void-bg,#f2f2ef)] content-stretch flex gap-[var(--void-space-0,0px)] h-[76px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1112px]" data-node-id="5:1505" data-name="Track 2 / Satin bass">
+            <a className="bg-[var(--void-surface,white)] content-stretch cursor-pointer flex flex-col gap-[var(--void-space-8,8px)] h-[76px] items-start pb-[var(--void-space-8,8px)] pt-[var(--void-space-12,12px)] px-[var(--void-space-12,12px)] relative shrink-0 w-[196px]" data-node-id="5:1506" data-name="go/S02">
+              <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[20px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[166px]" data-node-id="I5:1506;2:182" data-name="Track identity">
+                <div className="bg-[var(--void-mint,#236849)] h-[16px] relative shrink-0 w-[6px]" data-node-id="I5:1506;2:183" data-name="Track type" />
+                <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] text-left whitespace-nowrap" data-node-id="I5:1506;2:184">
+                  Satin bass
+                </p>
+              </div>
+              <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[24px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[166px]" data-node-id="I5:1506;2:185" data-name="Track states">
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1506;2:186" data-name="M">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1506;2:187">
+                    M
+                  </p>
+                </div>
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1506;2:188" data-name="S">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1506;2:189">
+                    S
+                  </p>
+                </div>
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1506;2:190" data-name="R">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1506;2:191">
+                    R
+                  </p>
+                </div>
+                <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1506;2:192">
+                  −6.0 dB
+                </p>
+              </div>
+            </a>
+            <div className="bg-[var(--void-bg,#f2f2ef)] h-[76px] overflow-clip relative shrink-0 w-[916px]" data-node-id="5:1518" data-name="Timeline lane / Satin bass">
+              <div className="absolute h-[76px] left-0 top-0 w-[916px]" data-node-id="5:1519" data-name="Musical grid">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgMusicalGrid} />
+              </div>
+              <a className="absolute bg-[var(--void-mint-soft,#ddf2e5)] block border border-[var(--void-mint,#236849)] border-solid cursor-pointer h-[62px] left-[118.5px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[106.5px]" data-node-id="5:1521" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1521;2:223">
+                  Satin bass
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1521;2:224" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes1} />
+                </div>
+              </a>
+              <a className="absolute bg-[var(--void-mint-soft,#ddf2e5)] block border border-[var(--void-mint,#236849)] border-solid cursor-pointer h-[62px] left-[233px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1525" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1525;2:223">
+                  Satin bass / B
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1525;2:224" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes} />
+                </div>
+              </a>
+              <a className="absolute bg-[var(--void-mint-soft,#ddf2e5)] block border border-[var(--void-mint,#236849)] border-solid cursor-pointer h-[62px] left-[462px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1529" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1529;2:223">
+                  Satin bass
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1529;2:224" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes} />
+                </div>
+              </a>
+              <a className="absolute bg-[var(--void-mint-soft,#ddf2e5)] block border border-[var(--void-mint,#236849)] border-solid cursor-pointer h-[62px] left-[691px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1533" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1533;2:223">
+                  Satin bass
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1533;2:224" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes} />
+                </div>
+              </a>
+            </div>
+          </div>
+          <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[76px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1112px]" data-node-id="5:1537" data-name="Track 3 / Velvet keys">
+            <a className="bg-[var(--void-surface,white)] content-stretch cursor-pointer flex flex-col gap-[var(--void-space-8,8px)] h-[76px] items-start pb-[var(--void-space-8,8px)] pt-[var(--void-space-12,12px)] px-[var(--void-space-12,12px)] relative shrink-0 w-[196px]" data-node-id="5:1538" data-name="go/S02">
+              <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[20px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[166px]" data-node-id="I5:1538;2:158" data-name="Track identity">
+                <div className="bg-[var(--void-violet,#6846ad)] h-[16px] relative shrink-0 w-[6px]" data-node-id="I5:1538;2:159" data-name="Track type" />
+                <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] text-left whitespace-nowrap" data-node-id="I5:1538;2:160">
+                  Velvet keys
+                </p>
+              </div>
+              <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[24px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[166px]" data-node-id="I5:1538;2:161" data-name="Track states">
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1538;2:162" data-name="M">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1538;2:163">
+                    M
+                  </p>
+                </div>
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1538;2:164" data-name="S">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1538;2:165">
+                    S
+                  </p>
+                </div>
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1538;2:166" data-name="R">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1538;2:167">
+                    R
+                  </p>
+                </div>
+                <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1538;2:168">
+                  −4.5 dB
+                </p>
+              </div>
+            </a>
+            <div className="bg-[var(--void-raised,#e5e7e3)] h-[76px] overflow-clip relative shrink-0 w-[916px]" data-node-id="5:1550" data-name="Timeline lane / Velvet keys">
+              <div className="absolute h-[76px] left-0 top-0 w-[916px]" data-node-id="5:1551" data-name="Musical grid">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgMusicalGrid} />
+              </div>
+              <a className="absolute bg-[var(--void-violet-soft,#eae2fa)] block border border-[var(--void-violet,#6846ad)] border-solid cursor-pointer h-[62px] left-[4px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1553" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1553;2:223">
+                  Velvet keys
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1553;2:224" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes} />
+                </div>
+              </a>
+              <a className="absolute bg-[var(--void-violet-soft,#eae2fa)] block border-2 border-[var(--void-violet,#6846ad)] border-solid cursor-pointer h-[62px] left-[233px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1557" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[8px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[5px] whitespace-nowrap" data-node-id="I5:1557;2:231">
+                  Velvet keys / B
+                </p>
+                <div className="absolute inset-[-2px]" data-node-id="I5:1557;2:232" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes} />
+                </div>
+              </a>
+              <a className="absolute bg-[var(--void-violet-soft,#eae2fa)] block border border-[var(--void-violet,#6846ad)] border-solid cursor-pointer h-[62px] left-[462px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1561" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1561;2:223">
+                  Velvet keys
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1561;2:224" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes} />
+                </div>
+              </a>
+              <a className="absolute bg-[var(--void-violet-soft,#eae2fa)] block border border-[var(--void-violet,#6846ad)] border-solid cursor-pointer h-[62px] left-[691px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[106.5px]" data-node-id="5:1565" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1565;2:223">
+                  Velvet keys
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1565;2:224" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes1} />
+                </div>
+              </a>
+            </div>
+          </div>
+          <div className="bg-[var(--void-bg,#f2f2ef)] content-stretch flex gap-[var(--void-space-0,0px)] h-[76px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1112px]" data-node-id="5:1569" data-name="Track 4 / Lead vocal">
+            <a className="bg-[var(--void-surface,white)] content-stretch cursor-pointer flex flex-col gap-[var(--void-space-8,8px)] h-[76px] items-start pb-[var(--void-space-8,8px)] pt-[var(--void-space-12,12px)] px-[var(--void-space-12,12px)] relative shrink-0 w-[196px]" data-node-id="5:1570" data-name="go/S05">
+              <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[20px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[166px]" data-node-id="I5:1570;2:146" data-name="Track identity">
+                <div className="bg-[var(--void-orange,#90571d)] h-[16px] relative shrink-0 w-[6px]" data-node-id="I5:1570;2:147" data-name="Track type" />
+                <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] text-left whitespace-nowrap" data-node-id="I5:1570;2:148">
+                  Lead vocal
+                </p>
+              </div>
+              <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[24px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[166px]" data-node-id="I5:1570;2:149" data-name="Track states">
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1570;2:150" data-name="M">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1570;2:151">
+                    M
+                  </p>
+                </div>
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1570;2:152" data-name="S">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1570;2:153">
+                    S
+                  </p>
+                </div>
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1570;2:154" data-name="R">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-danger,#b22f36)] text-left whitespace-nowrap" data-node-id="I5:1570;2:155">
+                    R
+                  </p>
+                </div>
+                <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1570;2:156">
+                  −7.0 dB
+                </p>
+              </div>
+            </a>
+            <div className="bg-[var(--void-bg,#f2f2ef)] h-[76px] overflow-clip relative shrink-0 w-[916px]" data-node-id="5:1582" data-name="Timeline lane / Lead vocal">
+              <div className="absolute h-[76px] left-0 top-0 w-[916px]" data-node-id="5:1583" data-name="Musical grid">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgMusicalGrid} />
+              </div>
+              <a className="absolute bg-[var(--void-orange-soft,#faead7)] block border border-[var(--void-orange,#90571d)] border-solid cursor-pointer h-[62px] left-[233px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[192.375px]" data-node-id="5:1585" data-name="go/S06">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-orange,#90571d)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1585;2:219">
+                  Vocal · take 03
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1585;2:220" data-name="Editable waveform">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableWaveform} />
+                </div>
+              </a>
+              <a className="absolute bg-[var(--void-orange-soft,#faead7)] block border border-[var(--void-orange,#90571d)] border-solid cursor-pointer h-[62px] left-[490.63px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[163.75px]" data-node-id="5:1589" data-name="go/S06">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-orange,#90571d)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1589;2:219">
+                  Vocal · take 03 / B
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1589;2:220" data-name="Editable waveform">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableWaveform1} />
+                </div>
+              </a>
+              <a className="absolute bg-[var(--void-orange-soft,#faead7)] block border border-[var(--void-orange,#90571d)] border-solid cursor-pointer h-[62px] left-[719.63px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[163.75px]" data-node-id="5:1593" data-name="go/S06">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-orange,#90571d)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1593;2:219">
+                  Vocal · take 03
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1593;2:220" data-name="Editable waveform">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableWaveform1} />
+                </div>
+              </a>
+            </div>
+          </div>
+          <div className="bg-[var(--void-bg,#f2f2ef)] content-stretch flex gap-[var(--void-space-0,0px)] h-[76px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1112px]" data-node-id="5:1597" data-name="Track 5 / Atmosphere">
+            <a className="bg-[var(--void-surface,white)] content-stretch cursor-pointer flex flex-col gap-[var(--void-space-8,8px)] h-[76px] items-start pb-[var(--void-space-8,8px)] pt-[var(--void-space-12,12px)] px-[var(--void-space-12,12px)] relative shrink-0 w-[196px]" data-node-id="5:1598" data-name="go/S02">
+              <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[20px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[166px]" data-node-id="I5:1598;2:158" data-name="Track identity">
+                <div className="bg-[var(--void-violet,#6846ad)] h-[16px] relative shrink-0 w-[6px]" data-node-id="I5:1598;2:159" data-name="Track type" />
+                <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] text-left whitespace-nowrap" data-node-id="I5:1598;2:160">
+                  Atmosphere
+                </p>
+              </div>
+              <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[24px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[166px]" data-node-id="I5:1598;2:161" data-name="Track states">
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1598;2:162" data-name="M">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1598;2:163">
+                    M
+                  </p>
+                </div>
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1598;2:164" data-name="S">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1598;2:165">
+                    S
+                  </p>
+                </div>
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1598;2:166" data-name="R">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1598;2:167">
+                    R
+                  </p>
+                </div>
+                <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1598;2:168">
+                  −12 dB
+                </p>
+              </div>
+            </a>
+            <div className="bg-[var(--void-bg,#f2f2ef)] h-[76px] overflow-clip relative shrink-0 w-[916px]" data-node-id="5:1610" data-name="Timeline lane / Atmosphere">
+              <div className="absolute h-[76px] left-0 top-0 w-[916px]" data-node-id="5:1611" data-name="Musical grid">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgMusicalGrid} />
+              </div>
+              <a className="absolute bg-[var(--void-blue-soft,#dcecf7)] block border border-[var(--void-blue,#245c84)] border-solid cursor-pointer h-[62px] left-[4px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[450px]" data-node-id="5:1613" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1613;2:223">
+                  Atmosphere
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1613;2:224" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes2} />
+                </div>
+              </a>
+              <a className="absolute bg-[var(--void-blue-soft,#dcecf7)] block border border-[var(--void-blue,#245c84)] border-solid cursor-pointer h-[62px] left-[462px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[450px]" data-node-id="5:1617" data-name="go/S02">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1617;2:223">
+                  Atmosphere / B
+                </p>
+                <div className="absolute inset-[-1px]" data-node-id="I5:1617;2:224" data-name="Editable notes">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEditableNotes2} />
+                </div>
+              </a>
+            </div>
+          </div>
+          <div className="bg-[var(--void-bg,#f2f2ef)] content-stretch flex gap-[var(--void-space-0,0px)] h-[76px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1112px]" data-node-id="5:1621" data-name="Track 6 / Visual cues">
+            <a className="bg-[var(--void-surface,white)] content-stretch cursor-pointer flex flex-col gap-[var(--void-space-8,8px)] h-[76px] items-start pb-[var(--void-space-8,8px)] pt-[var(--void-space-12,12px)] px-[var(--void-space-12,12px)] relative shrink-0 w-[196px]" data-node-id="5:1622" data-name="go/S09">
+              <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[20px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[166px]" data-node-id="I5:1622;2:194" data-name="Track identity">
+                <div className="bg-[var(--void-violet,#6846ad)] h-[16px] relative shrink-0 w-[6px]" data-node-id="I5:1622;2:195" data-name="Track type" />
+                <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] text-left whitespace-nowrap" data-node-id="I5:1622;2:196">
+                  Visual cues
+                </p>
+              </div>
+              <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[24px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[166px]" data-node-id="I5:1622;2:197" data-name="Track states">
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1622;2:198" data-name="M">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1622;2:199">
+                    M
+                  </p>
+                </div>
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1622;2:200" data-name="S">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1622;2:201">
+                    S
+                  </p>
+                </div>
+                <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex gap-[var(--void-space-0,0px)] h-[22px] items-center justify-center overflow-clip p-[var(--void-space-0,0px)] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[24px]" data-node-id="I5:1622;2:202" data-name="R">
+                  <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1622;2:203">
+                    R
+                  </p>
+                </div>
+                <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] text-left whitespace-nowrap" data-node-id="I5:1622;2:204">
+                  Muted
+                </p>
+              </div>
+            </a>
+            <div className="bg-[var(--void-bg,#f2f2ef)] h-[76px] overflow-clip relative shrink-0 w-[916px]" data-node-id="5:1634" data-name="Timeline lane / Visual cues">
+              <div className="absolute h-[76px] left-0 top-0 w-[916px]" data-node-id="5:1635" data-name="Musical grid">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgMusicalGrid} />
+              </div>
+              <a className="absolute bg-[var(--void-violet-soft,#eae2fa)] block border border-[var(--void-violet,#6846ad)] border-solid cursor-pointer h-[62px] left-[4px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1637" data-name="go/S09">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1637;2:223">
+                  Visual cues
+                </p>
+              </a>
+              <a className="absolute bg-[var(--void-violet-soft,#eae2fa)] block border border-[var(--void-violet,#6846ad)] border-solid cursor-pointer h-[62px] left-[233px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1641" data-name="go/S09">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1641;2:223">
+                  Visual cues / B
+                </p>
+              </a>
+              <a className="absolute bg-[var(--void-violet-soft,#eae2fa)] block border border-[var(--void-violet,#6846ad)] border-solid cursor-pointer h-[62px] left-[462px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1645" data-name="go/S09">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1645;2:223">
+                  Visual cues
+                </p>
+              </a>
+              <a className="absolute bg-[var(--void-violet-soft,#eae2fa)] block border border-[var(--void-violet,#6846ad)] border-solid cursor-pointer h-[62px] left-[691px] rounded-[var(--void-radius-4,4px)] top-[7px] w-[221px]" data-node-id="5:1649" data-name="go/S09">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#6846ad)] text-left top-[6px] whitespace-nowrap" data-node-id="I5:1649;2:223">
+                  Visual cues
+                </p>
+              </a>
+            </div>
+          </div>
+          <div className="bg-[var(--void-surface,white)] content-stretch flex flex-col gap-[var(--void-space-16,16px)] h-[300px] items-start overflow-clip p-[var(--void-space-16,16px)] relative shrink-0 w-[1112px]" data-node-id="5:1653" data-name="Contextual device dock">
+            <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1080px]" data-node-id="5:1654" data-name="Editor modes">
+              <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-violet,#6846ad)] whitespace-nowrap" data-node-id="5:1655">
+                VELVET KEYS
+              </p>
+              <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="5:1656" data-name="Flexible space" />
+              <div className="bg-[var(--void-raised,#e5e7e3)] border border-[var(--void-line,#ced4cc)] border-solid content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[104px]" data-node-id="5:1657" data-name="VOID / ActionButton">
+                <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="I5:1657;2:106">
+                  Instrument
+                </p>
+              </div>
+              <a className="content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[100px]" data-node-id="5:1659" data-name="go/S02">
+                <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] text-left whitespace-nowrap" data-node-id="I5:1659;2:108">
+                  Piano roll
+                </p>
+              </a>
+              <a className="content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[84px]" data-node-id="5:1661" data-name="go/S08">
+                <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] text-left whitespace-nowrap" data-node-id="I5:1661;2:108">
+                  Gesture
+                </p>
+              </a>
+            </div>
+            <div className="content-stretch flex gap-[var(--void-space-16,16px)] h-[210px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1080px]" data-node-id="5:1663" data-name="Instrument and chain">
+              <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex flex-col gap-[var(--void-space-4,4px)] h-[156px] items-start overflow-clip p-[var(--void-space-12,12px)] relative shrink-0 w-[196px]" data-node-id="5:1664" data-name="Instrument identity">
+                <p className="[word-break:break-word] font-['Space_Grotesk:Bold'] font-bold leading-[36px] relative shrink-0 text-[28px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1665">
+                  4OSC
+                </p>
+                <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-violet,#6846ad)] whitespace-nowrap" data-node-id="5:1666">
+                  Velvet keys
+                </p>
+                <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1667">
+                  Native instrument
+                </p>
+                <a className="content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[150px]" data-node-id="5:1668" data-name="go/S04">
+                  <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] text-left whitespace-nowrap" data-node-id="I5:1668;2:108">
+                    Open editor
+                  </p>
+                </a>
+              </div>
+              <div className="content-stretch flex flex-col gap-[var(--void-space-8,8px)] h-[106px] items-center justify-center relative shrink-0 w-[80px]" data-node-id="5:1670" data-name="VOID / ParameterKnob">
+                <div className="relative shrink-0 size-[48px]" data-node-id="I5:1670;2:236" data-name="Knob arc">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgKnobArc} />
+                </div>
+                <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="I5:1670;2:238">
+                  Tone
+                </p>
+                <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="I5:1670;2:239">
+                  42%
+                </p>
+              </div>
+              <div className="content-stretch flex flex-col gap-[var(--void-space-8,8px)] h-[106px] items-center justify-center relative shrink-0 w-[80px]" data-node-id="5:1675" data-name="VOID / ParameterKnob">
+                <div className="relative shrink-0 size-[48px]" data-node-id="I5:1675;2:236" data-name="Knob arc">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgKnobArc} />
+                </div>
+                <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="I5:1675;2:238">
+                  Cutoff
+                </p>
+                <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="I5:1675;2:239">
+                  2.4 kHz
+                </p>
+              </div>
+              <div className="content-stretch flex flex-col gap-[var(--void-space-8,8px)] h-[106px] items-center justify-center relative shrink-0 w-[80px]" data-node-id="5:1680" data-name="VOID / ParameterKnob">
+                <div className="relative shrink-0 size-[48px]" data-node-id="I5:1680;2:236" data-name="Knob arc">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgKnobArc} />
+                </div>
+                <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="I5:1680;2:238">
+                  Attack
+                </p>
+                <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="I5:1680;2:239">
+                  12 ms
+                </p>
+              </div>
+              <div className="content-stretch flex flex-col gap-[var(--void-space-8,8px)] h-[106px] items-center justify-center relative shrink-0 w-[80px]" data-node-id="5:1685" data-name="VOID / ParameterKnob">
+                <div className="relative shrink-0 size-[48px]" data-node-id="I5:1685;2:236" data-name="Knob arc">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgKnobArc} />
+                </div>
+                <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="I5:1685;2:238">
+                  Release
+                </p>
+                <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="I5:1685;2:239">
+                  820 ms
+                </p>
+              </div>
+              <div className="[word-break:break-word] content-stretch flex flex-col gap-[var(--void-space-12,12px)] h-[136px] items-start not-italic overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[320px]" data-node-id="5:1690" data-name="Signal chain">
+                <p className="font-['Inter:Medium'] font-medium leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1691">
+                  DEVICE CHAIN
+                </p>
+                <div className="content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[52px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 text-left w-[320px] whitespace-nowrap" data-node-id="5:1692" data-name="Devices">
+                  <a className="bg-[var(--void-accent-soft,#edf5d8)] content-stretch flex flex-col gap-[var(--void-space-4,4px)] h-[52px] items-start px-[var(--void-space-12,12px)] py-[var(--void-space-8,8px)] relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[148px]" data-node-id="5:1693" data-name="go/S04">
+                    <p className="font-['Inter:Semi_Bold'] font-semibold leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)]" data-node-id="I5:1693;2:271">
+                      Studio EQ
+                    </p>
+                    <p className="font-['Inter:Medium'] font-medium leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)]" data-node-id="I5:1693;2:272">
+                      Stereo · active
+                    </p>
+                  </a>
+                  <a className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex flex-col gap-[var(--void-space-4,4px)] h-[52px] items-start px-[var(--void-space-12,12px)] py-[var(--void-space-8,8px)] relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[148px]" data-node-id="5:1696" data-name="go/S04">
+                    <p className="font-['Inter:Semi_Bold'] font-semibold leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)]" data-node-id="I5:1696;2:268">
+                      Room reverb
+                    </p>
+                    <p className="font-['Inter:Medium'] font-medium leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)]" data-node-id="I5:1696;2:269">
+                      Send A · 18%
+                    </p>
+                  </a>
+                </div>
+                <p className="font-['Inter:Medium'] font-medium leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-subtle,#68726d)] whitespace-pre" data-node-id="5:1699">{`4OSC  →  Studio EQ  →  Music bus`}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-[var(--void-surface,white)] content-stretch flex flex-col gap-[var(--void-space-12,12px)] h-[856px] items-start overflow-clip p-[var(--void-space-16,16px)] relative shrink-0 w-[264px]" data-node-id="5:1700" data-name="RegionInspector">
+          <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1701">
+            REGION / MIDI
+          </p>
+          <p className="[word-break:break-word] font-['Space_Grotesk:Medium'] font-medium leading-[28px] relative shrink-0 text-[20px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1702">
+            Velvet keys
+          </p>
+          <div className="bg-[var(--void-raised,#e5e7e3)] content-stretch flex h-[26px] items-center justify-center relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[104px]" data-node-id="5:1703" data-name="VOID / StatusBadge">
+            <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="I5:1703;2:124">
+              Bars 9–17
+            </p>
+          </div>
+          <div className="bg-[var(--void-line,#ced4cc)] h-px relative shrink-0 w-[232px]" data-node-id="5:1705" data-name="Divider" />
+          <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1706">{`Timing & feel`}</p>
+          <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[28px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[232px]" data-node-id="5:1707" data-name="Start">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1708">
+              Start
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="5:1709" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1710">
+              9.1.1
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[28px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[232px]" data-node-id="5:1711" data-name="Length">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1712">
+              Length
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="5:1713" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1714">
+              8 bars
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[28px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[232px]" data-node-id="5:1715" data-name="Quantize">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1716">
+              Quantize
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="5:1717" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1718">
+              1/16
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[28px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[232px]" data-node-id="5:1719" data-name="Strength">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1720">
+              Strength
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="5:1721" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1722">
+              85%
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[28px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[232px]" data-node-id="5:1723" data-name="Swing">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1724">
+              Swing
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="5:1725" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1726">
+              12%
+            </p>
+          </div>
+          <div className="bg-[var(--void-line,#ced4cc)] h-px relative shrink-0 w-[232px]" data-node-id="5:1727" data-name="Divider" />
+          <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1728">
+            Pitch
+          </p>
+          <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[28px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[232px]" data-node-id="5:1729" data-name="Transpose">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1730">
+              Transpose
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="5:1731" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1732">
+              0 st
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[28px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[232px]" data-node-id="5:1733" data-name="Scale">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1734">
+              Scale
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="5:1735" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1736">
+              A minor
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[28px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[232px]" data-node-id="5:1737" data-name="Velocity">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1738">
+              Velocity
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="5:1739" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1740">
+              Original
+            </p>
+          </div>
+          <div className="bg-[var(--void-line,#ced4cc)] h-px relative shrink-0 w-[232px]" data-node-id="5:1741" data-name="Divider" />
+          <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1742">
+            Signal
+          </p>
+          <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[28px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[232px]" data-node-id="5:1743" data-name="Instrument">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1744">
+              Instrument
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="5:1745" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1746">
+              4OSC
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[28px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[232px]" data-node-id="5:1747" data-name="Output">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="5:1748">
+              Output
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="5:1749" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#171b19)] whitespace-nowrap" data-node-id="5:1750">
+              Music bus
+            </p>
+          </div>
+          <div className="flex-[1_0_0] min-h-px relative w-px" data-node-id="5:1751" data-name="Flexible space" />
+          <div className="bg-[var(--void-accent-soft,#edf5d8)] content-stretch flex flex-col gap-[var(--void-space-12,12px)] h-[156px] items-start overflow-clip p-[var(--void-space-16,16px)] relative shrink-0 w-[232px]" data-node-id="5:1752" data-name="Scoped creative action">
+            <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-accent,#506b0b)] whitespace-nowrap" data-node-id="5:1753">
+              Keep the idea moving.
+            </p>
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] w-[200px]" data-node-id="5:1754">
+              Suggest a continuation of this region. Nothing changes until you accept.
+            </p>
+            <a className="bg-[var(--void-accent,#506b0b)] content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[200px]" data-node-id="5:1755" data-name="go/S02">
+              <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-on-accent,white)] text-left whitespace-nowrap" data-node-id="I5:1755;2:104">
+                Continue phrase
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="bg-[var(--void-surface,white)] content-stretch flex gap-[var(--void-space-16,16px)] h-[28px] items-center overflow-clip p-[var(--void-space-4,4px)] relative shrink-0 w-[1600px]" data-node-id="4:2300" data-name="HealthBar">
+        <a className="[word-break:break-word] block cursor-pointer font-['Inter:Medium'] font-medium leading-[0] not-italic relative shrink-0 text-[11px] text-[color:var(--void-mint,#236849)] whitespace-nowrap" data-node-id="4:2301">
+          <p className="leading-[16px]">Engine connected</p>
+        </a>
+        <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="4:2302">
+          48 kHz · 128 samples
+        </p>
+        <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-subtle,#68726d)] whitespace-nowrap" data-node-id="4:2303">
+          CPU 18%
+        </p>
+        <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="4:2304" data-name="Flexible space" />
+        <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="4:2305">
+          Saved locally
+        </p>
+        <a className="[word-break:break-word] block cursor-pointer font-['Inter:Medium'] font-medium leading-[0] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#515b57)] whitespace-nowrap" data-node-id="4:2306">
+          <p className="leading-[16px]">2 background jobs</p>
+        </a>
+        <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-subtle,#68726d)] whitespace-nowrap" data-node-id="4:2307">
+          Design preview
+        </p>
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: VOID / title: Font(family: "Space Grotesk", style: Medium, size: 20, weight: 500, lineHeight: 28, letterSpacing: 0), VOID / strong: Font(family: "Inter", style: Semi Bold, size: 13, weight: 600, lineHeight: 18, letterSpacing: 0), VOID / micro: Font(family: "Inter", style: Medium, size: 11, weight: 500, lineHeight: 16, letterSpacing: 0), VOID / time: Font(family: "IBM Plex Mono", style: Medium, size: 24, weight: 500, lineHeight: 32, letterSpacing: 0), VOID / label: Font(family: "Inter", style: Medium, size: 13, weight: 500, lineHeight: 18, letterSpacing: 0), VOID / small: Font(family: "Inter", style: Regular, size: 12, weight: 400, lineHeight: 17, letterSpacing: 0), VOID / numeric: Font(family: "IBM Plex Mono", style: Regular, size: 12, weight: 400, lineHeight: 18, letterSpacing: 0), VOID / heading: Font(family: "Space Grotesk", style: Bold, size: 28, weight: 700, lineHeight: 36, letterSpacing: 0).
+Component descriptions: The following components have usage descriptions or documentation links defined in Figma. These descriptions provide important context about the intended usage, best practices, and any constraints for each component. Follow these guidelines when implementing or using these components.
+
+## VOID / WorkspaceTab
+**Node ID:** 2:122
+
+Reusable WorkspaceTab. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / IconButton
+**Node ID:** 3:156
+
+36 px dense desktop icon button. Accessible label and shortcut required; performance targets use 48 px. Swap icon, do not duplicate variants for each glyph.
+
+## VOID / ActionButton
+**Node ID:** 2:117
+
+Reusable ActionButton. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / StatusBadge
+**Node ID:** 2:135
+
+Reusable StatusBadge. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / Field
+**Node ID:** 2:144
+
+Reusable Field. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / AssetRow
+**Node ID:** 2:283
+
+Reusable AssetRow. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / TrackHeader
+**Node ID:** 2:217
+
+Reusable TrackHeader. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / TimelineClip
+**Node ID:** 2:234
+
+Reusable TimelineClip. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / ParameterKnob
+**Node ID:** 2:245
+
+Reusable ParameterKnob. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / DeviceSlot
+**Node ID:** 2:276
+
+Reusable DeviceSlot. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+Images and SVGs will be stored as constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.
+[Image: image/png, 148172 base64 chars]

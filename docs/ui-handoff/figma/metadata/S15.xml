@@ -1,0 +1,140 @@
+<frame id="4:1408" name="S15 / Setup / audio and MIDI" x="3600" y="3620" width="1600" height="1000">
+  <frame id="4:1409" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:1410" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:1411" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:1412" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:1413" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:1414" name="Your studio" x="0" y="0" width="72" height="18" />
+      <text id="4:1415" name="Local first. Yours by default." x="0" y="18" width="147" height="16" />
+    </frame>
+    <frame id="4:1416" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:1417" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:1419" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:1421" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:1423" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:1425" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:1427" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:1428" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:1434" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:1440" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:1446" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:1448" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:1449" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:1451" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:1453" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:1454" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:1455" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:1461" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:1467" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:1473" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:1479" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:1485" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:1486" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:1487" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:1488" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:1489" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:1490" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:1491" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:1492" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:1493" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:1494" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:1495" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:1497" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:1499" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="8:1838" name="Settings navigation" x="0" y="0" width="248" height="856">
+      <text id="8:1839" name="SETTINGS" x="24" y="24" width="55" height="16" />
+      <instance id="8:1840" name="VOID / ActionButton" x="24" y="56" width="200" height="36" />
+      <instance id="8:1842" name="go/S23" x="24" y="108" width="200" height="36" />
+      <instance id="8:1844" name="VOID / ActionButton" x="24" y="160" width="200" height="36" />
+      <instance id="8:1846" name="go/S17" x="24" y="212" width="200" height="36" />
+      <instance id="8:1848" name="VOID / ActionButton" x="24" y="264" width="200" height="36" />
+      <frame id="8:1850" name="Flexible space" x="24" y="316" width="1" height="464" />
+      <instance id="8:1851" name="go/S01" x="24" y="796" width="200" height="36" />
+    </frame>
+    <frame id="8:1853" name="Audio and MIDI settings" x="248" y="0" width="1352" height="856">
+      <frame id="8:1854" name="Section heading" x="32" y="32" width="1288" height="82">
+        <text id="8:1855" name="Hear every decision." x="0" y="0" width="274" height="36" />
+        <text id="8:1856" name="Device settings belong to the native audio engine. Changes apply when recording is stopped." x="0" y="44" width="1288" height="20" />
+      </frame>
+      <frame id="8:1857" name="Device settings columns" x="32" y="134" width="1288" height="544">
+        <frame id="8:1858" name="Audio device settings" x="0" y="0" width="696" height="544">
+          <text id="8:1859" name="Audio" x="24" y="24" width="56" height="28" />
+          <frame id="8:1860" name="Output device" x="24" y="68" width="648" height="66">
+            <text id="8:1861" name="Output device" x="0" y="0" width="88" height="18" />
+            <instance id="8:1862" name="VOID / Field" x="0" y="26" width="648" height="40" />
+          </frame>
+          <frame id="8:1864" name="Input device" x="24" y="150" width="648" height="66">
+            <text id="8:1865" name="Input device" x="0" y="0" width="77" height="18" />
+            <instance id="8:1866" name="VOID / Field" x="0" y="26" width="648" height="40" />
+          </frame>
+          <frame id="8:1868" name="Sample rate" x="24" y="232" width="648" height="66">
+            <text id="8:1869" name="Sample rate" x="0" y="0" width="75" height="18" />
+            <instance id="8:1870" name="VOID / Field" x="0" y="26" width="648" height="40" />
+          </frame>
+          <frame id="8:1872" name="Buffer size" x="24" y="314" width="648" height="66">
+            <text id="8:1873" name="Buffer size" x="0" y="0" width="67" height="18" />
+            <instance id="8:1874" name="VOID / Field" x="0" y="26" width="648" height="40" />
+          </frame>
+          <frame id="8:1876" name="Latency guidance" x="24" y="396" width="648" height="90">
+            <text id="8:1877" name="Smaller buffer, more real-time work." x="16" y="16" width="226" height="18" />
+            <text id="8:1878" name="Measure round-trip latency with your device. This design does not claim a latency benchmark." x="16" y="42" width="616" height="17" />
+          </frame>
+        </frame>
+        <frame id="8:1879" name="MIDI and privacy" x="720" y="0" width="568" height="544">
+          <text id="8:1880" name="MIDI devices" x="24" y="24" width="121" height="28" />
+          <frame id="8:1881" name="USB Keyboard" x="24" y="68" width="520" height="80">
+            <text id="8:1882" name="USB Keyboard" x="16" y="16" width="90" height="18" />
+            <text id="8:1883" name="Connected · input enabled" x="16" y="42" width="150" height="17" />
+          </frame>
+          <frame id="8:1884" name="Expression controller" x="24" y="164" width="520" height="80">
+            <text id="8:1885" name="Expression controller" x="16" y="16" width="134" height="18" />
+            <text id="8:1886" name="Connected · MPE enabled" x="16" y="42" width="147" height="17" />
+          </frame>
+          <frame id="8:1887" name="Divider" x="24" y="260" width="520" height="1" />
+          <text id="8:1888" name="Permissions" x="24" y="277" width="77" height="18" />
+          <frame id="8:1889" name="Microphone" x="24" y="311" width="520" height="30">
+            <text id="8:1890" name="Microphone" x="0" y="6.5" width="68" height="17" />
+            <frame id="8:1891" name="Flexible space" x="80" y="14.5" width="377" height="1" />
+            <text id="8:1892" name="Allowed" x="469" y="6" width="51" height="18" />
+          </frame>
+          <frame id="8:1893" name="Camera" x="24" y="357" width="520" height="30">
+            <text id="8:1894" name="Camera" x="0" y="6.5" width="45" height="17" />
+            <frame id="8:1895" name="Flexible space" x="57" y="14.5" width="357" height="1" />
+            <text id="8:1896" name="Not requested" x="426" y="6" width="94" height="18" />
+          </frame>
+          <frame id="8:1897" name="Cloud upload" x="24" y="403" width="520" height="30">
+            <text id="8:1898" name="Cloud upload" x="0" y="6.5" width="76" height="17" />
+            <frame id="8:1899" name="Flexible space" x="88" y="14.5" width="398" height="1" />
+            <text id="8:1900" name="Off" x="498" y="6" width="22" height="18" />
+          </frame>
+          <text id="8:1901" name="Camera is never required for pointer gestures. No automatic upload or model training." x="24" y="449" width="520" height="17" />
+        </frame>
+      </frame>
+      <frame id="8:1902" name="Settings actions" x="32" y="698" width="1288" height="80">
+        <instance id="8:1903" name="VOID / ActionButton" x="20" y="22" width="140" height="36" />
+        <text id="8:1905" name="Playback pauses only for an explicit device change." x="176" y="31.5" width="292" height="17" />
+        <frame id="8:1906" name="Flexible space" x="484" y="39.5" width="440" height="1" />
+        <instance id="8:1907" name="go/S23" x="940" y="22" width="148" height="36" />
+        <instance id="8:1909" name="go/S01" x="1104" y="22" width="164" height="36" />
+      </frame>
+    </frame>
+  </frame>
+  <frame id="4:1500" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:1501" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:1502" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:1503" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:1504" name="Flexible space" x="342" y="13.5" width="958" height="1" />
+    <text id="4:1505" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="4:1506" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:1507" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

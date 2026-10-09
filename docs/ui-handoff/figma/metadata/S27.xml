@@ -1,0 +1,88 @@
+<frame id="12:2479" name="S27 / Arrange / empty new project" x="3600" y="7160" width="1600" height="1000">
+  <frame id="12:2480" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="12:2481" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="12:2482" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="12:2483" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="12:2484" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="12:2485" name="Midnight circuit" x="0" y="0" width="102" height="18" />
+      <text id="12:2486" name="Project · saved on this device" x="0" y="18" width="154" height="16" />
+    </frame>
+    <frame id="12:2487" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="12:2488" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="12:2489" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="12:2490" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="12:2491" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="12:2492" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="12:2493" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="12:2494" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="12:2495" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="12:2496" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="12:2497" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="12:2498" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="12:2499" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="12:2500" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="12:2501" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="12:2502" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="12:2503" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="12:2504" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="12:2505" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="12:2506" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="12:2507" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="12:2508" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="12:2509" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="12:2510" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="12:2511" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="12:2512" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="12:2513" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="12:2514" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="12:2515" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="12:2516" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="12:2517" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="12:2518" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="12:2519" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="12:2520" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="12:2916" name="Empty song workspace" x="0" y="0" width="1600" height="856">
+      <text id="12:2917" name="UNTITLED SESSION / 118 BPM / A MINOR" x="64" y="64" width="217" height="16" />
+      <text id="12:2918" name="Your first track
+starts here." x="64" y="112" width="349" height="112" />
+      <text id="12:2919" name="Record something real. Play an instrument. Draw a phrase.
+You can combine all of them in the same song." x="64" y="256" width="1200" height="40" />
+      <frame id="12:2920" name="First-track choices" x="64" y="328" width="1472" height="248">
+        <frame id="12:2921" name="Record audio" x="0" y="0" width="474" height="248">
+          <text id="12:2922" name="Record audio" x="28" y="28" width="179" height="36" />
+          <text id="12:2923" name="Choose an input, arm a track, and capture a performance." x="28" y="84" width="418" height="20" />
+          <instance id="12:2924" name="go/S05" x="28" y="124" width="220" height="36" />
+        </frame>
+        <frame id="12:2926" name="Play an instrument" x="498" y="0" width="474" height="248">
+          <text id="12:2927" name="Play an instrument" x="28" y="28" width="255" height="36" />
+          <text id="12:2928" name="Browse a sound and open the piano roll." x="28" y="84" width="418" height="20" />
+          <instance id="12:2929" name="go/S16" x="28" y="124" width="220" height="36" />
+        </frame>
+        <frame id="12:2931" name="Draw a phrase" x="996" y="0" width="474" height="248">
+          <text id="12:2932" name="Draw a phrase" x="28" y="28" width="191" height="36" />
+          <text id="12:2933" name="Turn a contour into notes you can still edit." x="28" y="84" width="418" height="20" />
+          <instance id="12:2934" name="go/S08" x="28" y="124" width="220" height="36" />
+        </frame>
+      </frame>
+      <text id="12:2936" name="Or drag in an audio file. No AI model, internet connection or account is required." x="64" y="608" width="1472" height="17" />
+    </frame>
+  </frame>
+  <frame id="12:2702" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="12:2703" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="12:2704" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="12:2705" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="12:2706" name="Flexible space" x="342" y="13.5" width="958" height="1" />
+    <text id="12:2707" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="12:2708" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="12:2709" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-09",
+  "source": "Figma Plugin API structural and route-graph inspection",
+  "screenCount": 28,
+  "emptyBodies": 0,
+  "structuralOverflowCount": 0,
+  "missingFonts": 0,
+  "brokenDestinations": 0,
+  "unreachableScreens": 0,
+  "linkedHotspots": 707,
+  "flowCount": 13,
+  "screenInstanceCount": 1271,
+  "imageFillCount": 0,
+  "variableCount": 85,
+  "textStyleCount": 10,
+  "componentFamilies": 13,
+  "componentVariants": 56,
+  "standaloneVectorIcons": 23,
+  "visualReviews": [
+    "S01 arrangement",
+    "S02 piano roll",
+    "S04 mixer",
+    "S09 visuals",
+    "S11 export",
+    "S13 projects",
+    "S22 compact",
+    "S23 daylight",
+    "design-system specimen"
+  ],
+  "notPerformed": [
+    "Browser-driven prototype click testing",
+    "Compiled application tests",
+    "Audio playback or rendering",
+    "Device or native plugin-window tests",
+    "End-user usability studies",
+    "Screen-reader tests",
+    "Complete contrast certification"
+  ],
+  "limitations": [
+    "707 linked hotspots include repeated global navigation; this is not 707 implemented controls.",
+    "The prototype demonstrates navigation and selected state transitions, not real music playback.",
+    "Score is a layout specimen, not complete notation functionality.",
+    "28 designed states do not exhaust the original 116 functional requirement groups."
+  ]
+}

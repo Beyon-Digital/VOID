@@ -1,0 +1,298 @@
+<frame id="4:308" name="S04 / Mix / routing and device chain" x="5360" y="80" width="1600" height="1000">
+  <frame id="4:309" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:310" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:311" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:312" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:313" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:314" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+      <text id="4:315" name="Project · saved on this device" x="0" y="18" width="154" height="16" />
+    </frame>
+    <frame id="4:316" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:317" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:319" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:321" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:323" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:325" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:327" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:328" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:334" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:340" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:346" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:348" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:349" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:351" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:353" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:354" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:355" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:361" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:367" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:373" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:379" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:385" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:386" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:387" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:388" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:389" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:390" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:391" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:392" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:393" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:394" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:395" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:397" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:399" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="6:1351" name="Mix groups" x="0" y="0" width="200" height="856">
+      <text id="6:1352" name="MIXER" x="16" y="16" width="34" height="16" />
+      <text id="6:1353" name="Everything in balance." x="16" y="48" width="168" height="56" />
+      <instance id="6:1354" name="VOID / ActionButton" x="16" y="120" width="168" height="36" />
+      <instance id="6:1356" name="VOID / ActionButton" x="16" y="172" width="168" height="36" />
+      <instance id="6:1358" name="VOID / ActionButton" x="16" y="224" width="168" height="36" />
+      <instance id="6:1360" name="VOID / ActionButton" x="16" y="276" width="168" height="36" />
+      <instance id="6:1362" name="go/S18" x="16" y="328" width="168" height="36" />
+      <frame id="6:1364" name="Divider" x="16" y="380" width="168" height="1" />
+      <text id="6:1365" name="MUSIC BUS" x="16" y="397" width="62" height="16" />
+      <frame id="6:1366" name="Route" x="16" y="429" width="168" height="30">
+        <text id="6:1367" name="Route" x="0" y="6.5" width="34" height="17" />
+        <frame id="6:1368" name="Flexible space" x="42" y="14.5" width="46" height="1" />
+        <text id="6:1369" name="Stereo out" x="96" y="6" width="72" height="18" />
+      </frame>
+      <frame id="6:1370" name="Headroom" x="16" y="475" width="168" height="30">
+        <text id="6:1371" name="Headroom" x="0" y="6.5" width="60" height="17" />
+        <frame id="6:1372" name="Flexible space" x="68" y="14.5" width="48" height="1" />
+        <text id="6:1373" name="6.2 dB" x="124" y="6" width="44" height="18" />
+      </frame>
+      <frame id="6:1374" name="Flexible space" x="16" y="521" width="1" height="203" />
+      <text id="6:1375" name="Selected channel" x="16" y="740" width="91" height="16" />
+      <text id="6:1376" name="Velvet keys" x="16" y="772" width="73" height="18" />
+      <text id="6:1377" name="Signal flows left to right. All controls target this channel." x="16" y="806" width="168" height="34" />
+    </frame>
+    <frame id="6:1378" name="Mixer desk" x="200" y="0" width="1144" height="856">
+      <frame id="6:1379" name="Mixer tools" x="0" y="0" width="1144" height="52">
+        <text id="6:1380" name="Channels" x="12" y="17" width="60" height="18" />
+        <instance id="6:1381" name="VOID / StatusBadge" x="84" y="13" width="112" height="26" />
+        <frame id="6:1383" name="Flexible space" x="208" y="25.5" width="648" height="1" />
+        <instance id="6:1384" name="VOID / ActionButton" x="868" y="8" width="96" height="36" />
+        <instance id="6:1386" name="VOID / ActionButton" x="976" y="8" width="156" height="36" />
+      </frame>
+      <frame id="6:1388" name="Channel bank" x="0" y="52" width="1144" height="540">
+        <frame id="6:1389" name="Channel / Dust kit" x="12" y="12" width="133" height="516">
+          <rounded-rectangle id="6:1390" name="Channel color" x="12" y="12" width="109" height="3" />
+          <text id="6:1391" name="Dust kit" x="12" y="19" width="49" height="18" />
+          <text id="6:1392" name="→ Music bus" x="12" y="41" width="67" height="16" />
+          <frame id="6:1393" name="Divider" x="12" y="61" width="109" height="1" />
+          <frame id="6:1394" name="Insert chain" x="12" y="66" width="109" height="84">
+            <instance id="6:1395" name="go/S18" x="0" y="0" width="109" height="36" />
+            <instance id="6:1397" name="go/S18" x="0" y="44" width="109" height="36" />
+          </frame>
+          <instance id="6:1399" name="VOID / ParameterKnob" x="12" y="154" width="70" height="106" />
+          <frame id="6:1404" name="Fader and level" x="12" y="264" width="109" height="216">
+            <instance id="6:1405" name="VOID / ChannelFader" x="0" y="0" width="72" height="216" />
+            <frame id="6:1415" name="Live meter illustration" x="80" y="16" width="18" height="184" />
+          </frame>
+          <frame id="6:1458" name="Mute and solo" x="12" y="484" width="109" height="28">
+            <instance id="6:1459" name="VOID / ActionButton" x="0" y="0" width="48" height="28" />
+            <instance id="6:1461" name="VOID / ActionButton" x="56" y="0" width="48" height="28" />
+          </frame>
+        </frame>
+        <frame id="6:1464" name="Channel / Satin bass" x="153" y="12" width="133" height="516">
+          <rounded-rectangle id="6:1465" name="Channel color" x="12" y="12" width="109" height="3" />
+          <text id="6:1466" name="Satin bass" x="12" y="19" width="66" height="18" />
+          <text id="6:1467" name="→ Music bus" x="12" y="41" width="67" height="16" />
+          <frame id="6:1468" name="Divider" x="12" y="61" width="109" height="1" />
+          <frame id="6:1469" name="Insert chain" x="12" y="66" width="109" height="84">
+            <instance id="6:1470" name="go/S18" x="0" y="0" width="109" height="36" />
+            <instance id="6:1472" name="go/S18" x="0" y="44" width="109" height="36" />
+          </frame>
+          <instance id="6:1474" name="VOID / ParameterKnob" x="12" y="154" width="70" height="106" />
+          <frame id="6:1479" name="Fader and level" x="12" y="264" width="109" height="216">
+            <instance id="6:1480" name="VOID / ChannelFader" x="0" y="0" width="72" height="216" />
+            <frame id="6:1490" name="Live meter illustration" x="80" y="16" width="18" height="184" />
+          </frame>
+          <frame id="6:1535" name="Mute and solo" x="12" y="484" width="109" height="28">
+            <instance id="6:1536" name="VOID / ActionButton" x="0" y="0" width="48" height="28" />
+            <instance id="6:1538" name="VOID / ActionButton" x="56" y="0" width="48" height="28" />
+          </frame>
+        </frame>
+        <frame id="6:1541" name="Channel / Velvet keys" x="294" y="12" width="133" height="516">
+          <rounded-rectangle id="6:1542" name="Channel color" x="12" y="12" width="109" height="3" />
+          <text id="6:1543" name="Velvet keys" x="12" y="19" width="73" height="18" />
+          <text id="6:1544" name="→ Music bus" x="12" y="41" width="67" height="16" />
+          <frame id="6:1545" name="Divider" x="12" y="61" width="109" height="1" />
+          <frame id="6:1546" name="Insert chain" x="12" y="66" width="109" height="84">
+            <instance id="6:1547" name="go/S18" x="0" y="0" width="109" height="36" />
+            <instance id="6:1549" name="go/S18" x="0" y="44" width="109" height="36" />
+          </frame>
+          <instance id="6:1551" name="VOID / ParameterKnob" x="12" y="154" width="70" height="106" />
+          <frame id="6:1556" name="Fader and level" x="12" y="264" width="109" height="216">
+            <instance id="6:1557" name="VOID / ChannelFader" x="0" y="0" width="72" height="216" />
+            <frame id="6:1567" name="Live meter illustration" x="80" y="16" width="18" height="184" />
+          </frame>
+          <frame id="6:1614" name="Mute and solo" x="12" y="484" width="109" height="28">
+            <instance id="6:1615" name="VOID / ActionButton" x="0" y="0" width="48" height="28" />
+            <instance id="6:1617" name="VOID / ActionButton" x="56" y="0" width="48" height="28" />
+          </frame>
+        </frame>
+        <frame id="6:1620" name="Channel / Lead vocal" x="435" y="12" width="133" height="516">
+          <rounded-rectangle id="6:1621" name="Channel color" x="12" y="12" width="109" height="3" />
+          <text id="6:1622" name="Lead vocal" x="12" y="19" width="68" height="18" />
+          <text id="6:1623" name="→ Music bus" x="12" y="41" width="67" height="16" />
+          <frame id="6:1624" name="Divider" x="12" y="61" width="109" height="1" />
+          <frame id="6:1625" name="Insert chain" x="12" y="66" width="109" height="84">
+            <instance id="6:1626" name="go/S18" x="0" y="0" width="109" height="36" />
+            <instance id="6:1628" name="go/S18" x="0" y="44" width="109" height="36" />
+          </frame>
+          <instance id="6:1630" name="VOID / ParameterKnob" x="12" y="154" width="70" height="106" />
+          <frame id="6:1635" name="Fader and level" x="12" y="264" width="109" height="216">
+            <instance id="6:1636" name="VOID / ChannelFader" x="0" y="0" width="72" height="216" />
+            <frame id="6:1646" name="Live meter illustration" x="80" y="16" width="18" height="184" />
+          </frame>
+          <frame id="6:1689" name="Mute and solo" x="12" y="484" width="109" height="28">
+            <instance id="6:1690" name="VOID / ActionButton" x="0" y="0" width="48" height="28" />
+            <instance id="6:1692" name="VOID / ActionButton" x="56" y="0" width="48" height="28" />
+          </frame>
+        </frame>
+        <frame id="6:1695" name="Channel / Atmosphere" x="576" y="12" width="133" height="516">
+          <rounded-rectangle id="6:1696" name="Channel color" x="12" y="12" width="109" height="3" />
+          <text id="6:1697" name="Atmosphere" x="12" y="19" width="77" height="18" />
+          <text id="6:1698" name="→ Music bus" x="12" y="41" width="67" height="16" />
+          <frame id="6:1699" name="Divider" x="12" y="61" width="109" height="1" />
+          <frame id="6:1700" name="Insert chain" x="12" y="66" width="109" height="84">
+            <instance id="6:1701" name="go/S18" x="0" y="0" width="109" height="36" />
+            <instance id="6:1703" name="go/S18" x="0" y="44" width="109" height="36" />
+          </frame>
+          <instance id="6:1705" name="VOID / ParameterKnob" x="12" y="154" width="70" height="106" />
+          <frame id="6:1710" name="Fader and level" x="12" y="264" width="109" height="216">
+            <instance id="6:1711" name="VOID / ChannelFader" x="0" y="0" width="72" height="216" />
+            <frame id="6:1721" name="Live meter illustration" x="80" y="16" width="18" height="184" />
+          </frame>
+          <frame id="6:1766" name="Mute and solo" x="12" y="484" width="109" height="28">
+            <instance id="6:1767" name="VOID / ActionButton" x="0" y="0" width="48" height="28" />
+            <instance id="6:1769" name="VOID / ActionButton" x="56" y="0" width="48" height="28" />
+          </frame>
+        </frame>
+        <frame id="6:1772" name="Channel / Music bus" x="717" y="12" width="133" height="516">
+          <rounded-rectangle id="6:1773" name="Channel color" x="12" y="12" width="109" height="3" />
+          <text id="6:1774" name="Music bus" x="12" y="19" width="65" height="18" />
+          <text id="6:1775" name="→ Stereo out" x="12" y="41" width="69" height="16" />
+          <frame id="6:1776" name="Divider" x="12" y="61" width="109" height="1" />
+          <frame id="6:1777" name="Insert chain" x="12" y="66" width="109" height="84">
+            <instance id="6:1778" name="go/S18" x="0" y="0" width="109" height="36" />
+          </frame>
+          <instance id="6:1780" name="VOID / ParameterKnob" x="12" y="154" width="70" height="106" />
+          <frame id="6:1785" name="Fader and level" x="12" y="264" width="109" height="216">
+            <instance id="6:1786" name="VOID / ChannelFader" x="0" y="0" width="72" height="216" />
+            <frame id="6:1796" name="Live meter illustration" x="80" y="16" width="18" height="184" />
+          </frame>
+          <frame id="6:1843" name="Mute and solo" x="12" y="484" width="109" height="28">
+            <instance id="6:1844" name="VOID / ActionButton" x="0" y="0" width="48" height="28" />
+            <instance id="6:1846" name="VOID / ActionButton" x="56" y="0" width="48" height="28" />
+          </frame>
+        </frame>
+        <frame id="6:1849" name="Channel / Room A" x="858" y="12" width="133" height="516">
+          <rounded-rectangle id="6:1850" name="Channel color" x="12" y="12" width="109" height="3" />
+          <text id="6:1851" name="Room A" x="12" y="19" width="49" height="18" />
+          <text id="6:1852" name="→ Stereo out" x="12" y="41" width="69" height="16" />
+          <frame id="6:1853" name="Divider" x="12" y="61" width="109" height="1" />
+          <frame id="6:1854" name="Insert chain" x="12" y="66" width="109" height="84">
+            <instance id="6:1855" name="go/S18" x="0" y="0" width="109" height="36" />
+          </frame>
+          <instance id="6:1857" name="VOID / ParameterKnob" x="12" y="154" width="70" height="106" />
+          <frame id="6:1862" name="Fader and level" x="12" y="264" width="109" height="216">
+            <instance id="6:1863" name="VOID / ChannelFader" x="0" y="0" width="72" height="216" />
+            <frame id="6:1873" name="Live meter illustration" x="80" y="16" width="18" height="184" />
+          </frame>
+          <frame id="6:1916" name="Mute and solo" x="12" y="484" width="109" height="28">
+            <instance id="6:1917" name="VOID / ActionButton" x="0" y="0" width="48" height="28" />
+            <instance id="6:1919" name="VOID / ActionButton" x="56" y="0" width="48" height="28" />
+          </frame>
+        </frame>
+        <frame id="6:1922" name="Channel / Delay B" x="999" y="12" width="133" height="516">
+          <rounded-rectangle id="6:1923" name="Channel color" x="12" y="12" width="109" height="3" />
+          <text id="6:1924" name="Delay B" x="12" y="19" width="47" height="18" />
+          <text id="6:1925" name="→ Stereo out" x="12" y="41" width="69" height="16" />
+          <frame id="6:1926" name="Divider" x="12" y="61" width="109" height="1" />
+          <frame id="6:1927" name="Insert chain" x="12" y="66" width="109" height="84">
+            <instance id="6:1928" name="go/S18" x="0" y="0" width="109" height="36" />
+          </frame>
+          <instance id="6:1930" name="VOID / ParameterKnob" x="12" y="154" width="70" height="106" />
+          <frame id="6:1935" name="Fader and level" x="12" y="264" width="109" height="216">
+            <instance id="6:1936" name="VOID / ChannelFader" x="0" y="0" width="72" height="216" />
+            <frame id="6:1946" name="Live meter illustration" x="80" y="16" width="18" height="184" />
+          </frame>
+          <frame id="6:1991" name="Mute and solo" x="12" y="484" width="109" height="28">
+            <instance id="6:1992" name="VOID / ActionButton" x="0" y="0" width="48" height="28" />
+            <instance id="6:1994" name="VOID / ActionButton" x="56" y="0" width="48" height="28" />
+          </frame>
+        </frame>
+      </frame>
+      <frame id="6:1997" name="Channel detail" x="0" y="592" width="1144" height="264">
+        <frame id="6:1998" name="Selected signal path" x="16" y="16" width="1112" height="28">
+          <text id="6:1999" name="VELVET KEYS" x="0" y="6" width="73" height="16" />
+          <text id="6:2000" name="Instrument  →  EQ  →  Sends  →  Music bus" x="85" y="5" width="266" height="18" />
+        </frame>
+        <frame id="6:2001" name="EQ and output" x="16" y="56" width="1112" height="180">
+          <frame id="6:2002" name="EQ response editor" x="0" y="7" width="560" height="166">
+            <frame id="6:2003" name="EQ grid" x="0" y="0" width="560" height="166">
+              <vector id="6:2004" name="Vector" x="0" y="0" width="560" height="166" />
+            </frame>
+            <frame id="6:2005" name="EQ curve" x="0" y="0" width="560" height="166">
+              <vector id="6:2006" name="Vector" x="0" y="73.15791320800781" width="560" height="75.85405731201172" />
+            </frame>
+          </frame>
+          <instance id="6:2007" name="VOID / ParameterKnob" x="580" y="37" width="104" height="106" />
+          <instance id="6:2012" name="VOID / ParameterKnob" x="704" y="37" width="104" height="106" />
+          <instance id="6:2017" name="VOID / ParameterKnob" x="828" y="37" width="104" height="106" />
+          <instance id="6:2022" name="VOID / ParameterKnob" x="952" y="37" width="104" height="106" />
+        </frame>
+      </frame>
+    </frame>
+    <frame id="6:2027" name="Master output" x="1344" y="0" width="256" height="856">
+      <text id="6:2028" name="STEREO OUT" x="20" y="20" width="70" height="16" />
+      <text id="6:2029" name="Master" x="20" y="52" width="95" height="36" />
+      <instance id="6:2030" name="VOID / StatusBadge" x="20" y="104" width="130" height="26" />
+      <frame id="6:2032" name="Divider" x="20" y="146" width="216" height="1" />
+      <frame id="6:2033" name="Output controls" x="20" y="163" width="216" height="270">
+        <instance id="6:2034" name="VOID / ChannelFader" x="0" y="27" width="90" height="216" />
+        <frame id="6:2044" name="Master stereo meter" x="110" y="19" width="80" height="232" />
+      </frame>
+      <frame id="6:2103" name="Peak" x="20" y="449" width="216" height="30">
+        <text id="6:2104" name="Peak" x="0" y="6.5" width="28" height="17" />
+        <frame id="6:2105" name="Flexible space" x="36" y="14.5" width="107" height="1" />
+        <text id="6:2106" name="−1.2 dBFS" x="151" y="6" width="65" height="18" />
+      </frame>
+      <frame id="6:2107" name="Integrated" x="20" y="495" width="216" height="30">
+        <text id="6:2108" name="Integrated" x="0" y="6.5" width="59" height="17" />
+        <frame id="6:2109" name="Flexible space" x="67" y="14.5" width="69" height="1" />
+        <text id="6:2110" name="−16.4 LUFS" x="144" y="6" width="72" height="18" />
+      </frame>
+      <frame id="6:2111" name="True peak" x="20" y="541" width="216" height="30">
+        <text id="6:2112" name="True peak" x="0" y="6.5" width="57" height="17" />
+        <frame id="6:2113" name="Flexible space" x="65" y="14.5" width="78" height="1" />
+        <text id="6:2114" name="−1.0 dBTP" x="151" y="6" width="65" height="18" />
+      </frame>
+      <frame id="6:2115" name="Divider" x="20" y="587" width="216" height="1" />
+      <text id="6:2116" name="No loudness target is applied automatically." x="20" y="604" width="216" height="34" />
+      <frame id="6:2117" name="Flexible space" x="20" y="654" width="1" height="78" />
+      <instance id="6:2118" name="go/S11" x="20" y="748" width="216" height="36" />
+      <instance id="6:2120" name="go/S18" x="20" y="800" width="216" height="36" />
+    </frame>
+  </frame>
+  <frame id="4:400" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:401" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:402" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:403" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:404" name="Flexible space" x="342" y="13.5" width="958" height="1" />
+    <text id="4:405" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="4:406" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:407" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

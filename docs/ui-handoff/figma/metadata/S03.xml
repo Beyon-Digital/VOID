@@ -1,0 +1,304 @@
+<frame id="4:208" name="S03 / Compose / accepted editable notes" x="3600" y="80" width="1600" height="1000">
+  <frame id="4:209" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:210" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:211" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:212" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:213" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:214" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+      <text id="4:215" name="Project · saved on this device" x="0" y="18" width="154" height="16" />
+    </frame>
+    <frame id="4:216" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:217" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:219" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:221" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:223" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:225" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:227" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:228" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:234" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:240" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:246" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:248" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:249" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:251" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:253" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:254" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:255" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:261" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:267" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:273" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:279" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:285" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:286" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:287" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:288" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:289" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:290" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:291" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:292" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:293" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:294" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:295" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:297" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:299" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="5:1996" name="Compose tools" x="0" y="0" width="224" height="856">
+      <text id="5:1997" name="COMPOSE" x="16" y="16" width="56" height="16" />
+      <text id="5:1998" name="Velvet keys" x="16" y="48" width="110" height="28" />
+      <instance id="5:1999" name="VOID / StatusBadge" x="16" y="92" width="132" height="26" />
+      <frame id="5:2001" name="Divider" x="16" y="134" width="192" height="1" />
+      <instance id="5:2002" name="go/S02" x="16" y="151" width="192" height="36" />
+      <instance id="5:2004" name="go/S08" x="16" y="203" width="192" height="36" />
+      <instance id="5:2006" name="go/S07" x="16" y="255" width="192" height="36" />
+      <instance id="5:2008" name="go/S24" x="16" y="307" width="192" height="36" />
+      <instance id="5:2010" name="go/S10" x="16" y="359" width="192" height="36" />
+      <frame id="5:2012" name="Divider" x="16" y="411" width="192" height="1" />
+      <text id="5:2013" name="MUSICAL CONTEXT" x="16" y="428" width="106" height="16" />
+      <frame id="5:2014" name="Key" x="16" y="460" width="192" height="28">
+        <text id="5:2015" name="Key" x="0" y="5.5" width="21" height="17" />
+        <frame id="5:2016" name="Flexible space" x="29" y="13.5" width="104" height="1" />
+        <text id="5:2017" name="A minor" x="141" y="5" width="51" height="18" />
+      </frame>
+      <frame id="5:2018" name="Tempo" x="16" y="504" width="192" height="28">
+        <text id="5:2019" name="Tempo" x="0" y="5.5" width="39" height="17" />
+        <frame id="5:2020" name="Flexible space" x="47" y="13.5" width="86" height="1" />
+        <text id="5:2021" name="118 BPM" x="141" y="5" width="51" height="18" />
+      </frame>
+      <frame id="5:2022" name="Grid" x="16" y="548" width="192" height="28">
+        <text id="5:2023" name="Grid" x="0" y="5.5" width="24" height="17" />
+        <frame id="5:2024" name="Flexible space" x="32" y="13.5" width="123" height="1" />
+        <text id="5:2025" name="1/16" x="163" y="5" width="29" height="18" />
+      </frame>
+      <frame id="5:2026" name="Loop" x="16" y="592" width="192" height="28">
+        <text id="5:2027" name="Loop" x="0" y="5.5" width="29" height="17" />
+        <frame id="5:2028" name="Flexible space" x="37" y="13.5" width="118" height="1" />
+        <text id="5:2029" name="9–17" x="163" y="5" width="29" height="18" />
+      </frame>
+      <frame id="5:2030" name="Flexible space" x="16" y="636" width="1" height="119" />
+      <text id="5:2031" name="Your original notes stay locked." x="16" y="771" width="192" height="17" />
+      <instance id="5:2032" name="go/S01" x="16" y="804" width="192" height="36" />
+    </frame>
+    <frame id="5:2034" name="Piano roll workspace" x="224" y="0" width="1024" height="856">
+      <frame id="5:2035" name="Piano roll tools" x="0" y="0" width="1024" height="52">
+        <text id="5:2036" name="Notes" x="12" y="17" width="38" height="18" />
+        <instance id="5:2037" name="VOID / StatusBadge" x="62" y="13" width="104" height="26" />
+        <frame id="5:2039" name="Flexible space" x="178" y="25.5" width="552" height="1" />
+        <instance id="5:2040" name="VOID / ActionButton" x="742" y="8" width="130" height="36" />
+        <instance id="5:2042" name="VOID / ActionButton" x="884" y="8" width="128" height="36" />
+      </frame>
+      <frame id="5:2044" name="Chord progression" x="0" y="52" width="1024" height="62">
+        <frame id="5:2045" name="Am9" x="12" y="12" width="244" height="38">
+          <text id="5:2046" name="Am9" x="12" y="10" width="30" height="18" />
+          <frame id="5:2047" name="Flexible space" x="50" y="18.5" width="141" height="1" />
+          <text id="5:2048" name="2 bars" x="199" y="11" width="33" height="16" />
+        </frame>
+        <frame id="5:2049" name="Fmaj7" x="264" y="12" width="244" height="38">
+          <text id="5:2050" name="Fmaj7" x="12" y="10" width="38" height="18" />
+          <frame id="5:2051" name="Flexible space" x="58" y="18.5" width="133" height="1" />
+          <text id="5:2052" name="2 bars" x="199" y="11" width="33" height="16" />
+        </frame>
+        <frame id="5:2053" name="Cmaj7" x="516" y="12" width="244" height="38">
+          <text id="5:2054" name="Cmaj7" x="12" y="10" width="40" height="18" />
+          <frame id="5:2055" name="Flexible space" x="60" y="18.5" width="131" height="1" />
+          <text id="5:2056" name="2 bars" x="199" y="11" width="33" height="16" />
+        </frame>
+        <frame id="5:2057" name="Gsus2" x="768" y="12" width="244" height="38">
+          <text id="5:2058" name="Gsus2" x="12" y="10" width="41" height="18" />
+          <frame id="5:2059" name="Flexible space" x="61" y="18.5" width="130" height="1" />
+          <text id="5:2060" name="2 bars" x="199" y="11" width="33" height="16" />
+        </frame>
+      </frame>
+      <frame id="5:2061" name="Editable pitch and time grid" x="0" y="114" width="1024" height="502">
+        <rounded-rectangle id="5:2062" name="Prediction extent" x="544" y="0" width="480" height="502" />
+        <rounded-rectangle id="5:2063" name="Pitch row" x="64" y="30" width="960" height="28" />
+        <rounded-rectangle id="5:2064" name="Piano key" x="0" y="30" width="63" height="27" />
+        <text id="5:2065" name="C5" x="16" y="35" width="15" height="16" />
+        <rounded-rectangle id="5:2066" name="Pitch row" x="64" y="58" width="960" height="28" />
+        <rounded-rectangle id="5:2067" name="Piano key" x="0" y="58" width="63" height="27" />
+        <text id="5:2068" name="B4" x="16" y="63" width="15" height="16" />
+        <rounded-rectangle id="5:2069" name="Pitch row" x="64" y="86" width="960" height="28" />
+        <rounded-rectangle id="5:2070" name="Piano key" x="0" y="86" width="63" height="27" />
+        <text id="5:2071" name="A4" x="16" y="91" width="15" height="16" />
+        <rounded-rectangle id="5:2072" name="Pitch row" x="64" y="114" width="960" height="28" />
+        <rounded-rectangle id="5:2073" name="Piano key" x="0" y="114" width="63" height="27" />
+        <text id="5:2074" name="G4" x="16" y="119" width="16" height="16" />
+        <rounded-rectangle id="5:2075" name="Pitch row" x="64" y="142" width="960" height="28" />
+        <rounded-rectangle id="5:2076" name="Piano key" x="0" y="142" width="63" height="27" />
+        <text id="5:2077" name="F4" x="16" y="147" width="14" height="16" />
+        <rounded-rectangle id="5:2078" name="Pitch row" x="64" y="170" width="960" height="28" />
+        <rounded-rectangle id="5:2079" name="Piano key" x="0" y="170" width="63" height="27" />
+        <text id="5:2080" name="E4" x="16" y="175" width="14" height="16" />
+        <rounded-rectangle id="5:2081" name="Pitch row" x="64" y="198" width="960" height="28" />
+        <rounded-rectangle id="5:2082" name="Piano key" x="0" y="198" width="63" height="27" />
+        <text id="5:2083" name="D4" x="16" y="203" width="16" height="16" />
+        <rounded-rectangle id="5:2084" name="Pitch row" x="64" y="226" width="960" height="28" />
+        <rounded-rectangle id="5:2085" name="Piano key" x="0" y="226" width="63" height="27" />
+        <text id="5:2086" name="C4" x="16" y="231" width="16" height="16" />
+        <rounded-rectangle id="5:2087" name="Pitch row" x="64" y="254" width="960" height="28" />
+        <rounded-rectangle id="5:2088" name="Piano key" x="0" y="254" width="63" height="27" />
+        <text id="5:2089" name="B3" x="16" y="259" width="15" height="16" />
+        <rounded-rectangle id="5:2090" name="Pitch row" x="64" y="282" width="960" height="28" />
+        <rounded-rectangle id="5:2091" name="Piano key" x="0" y="282" width="63" height="27" />
+        <text id="5:2092" name="A3" x="16" y="287" width="15" height="16" />
+        <rounded-rectangle id="5:2093" name="Pitch row" x="64" y="310" width="960" height="28" />
+        <rounded-rectangle id="5:2094" name="Piano key" x="0" y="310" width="63" height="27" />
+        <text id="5:2095" name="G3" x="16" y="315" width="16" height="16" />
+        <rounded-rectangle id="5:2096" name="Pitch row" x="64" y="338" width="960" height="28" />
+        <rounded-rectangle id="5:2097" name="Piano key" x="0" y="338" width="63" height="27" />
+        <text id="5:2098" name="F3" x="16" y="343" width="14" height="16" />
+        <rounded-rectangle id="5:2099" name="Pitch row" x="64" y="366" width="960" height="28" />
+        <rounded-rectangle id="5:2100" name="Piano key" x="0" y="366" width="63" height="27" />
+        <text id="5:2101" name="E3" x="16" y="371" width="14" height="16" />
+        <rounded-rectangle id="5:2102" name="Pitch row" x="64" y="394" width="960" height="28" />
+        <rounded-rectangle id="5:2103" name="Piano key" x="0" y="394" width="63" height="27" />
+        <text id="5:2104" name="D3" x="16" y="399" width="16" height="16" />
+        <rounded-rectangle id="5:2105" name="Pitch row" x="64" y="422" width="960" height="28" />
+        <rounded-rectangle id="5:2106" name="Piano key" x="0" y="422" width="63" height="27" />
+        <text id="5:2107" name="C3" x="16" y="427" width="16" height="16" />
+        <rounded-rectangle id="5:2108" name="Pitch row" x="64" y="450" width="960" height="28" />
+        <rounded-rectangle id="5:2109" name="Piano key" x="0" y="450" width="63" height="27" />
+        <text id="5:2110" name="B2" x="16" y="455" width="14" height="16" />
+        <frame id="5:2111" name="Time grid" x="0" y="0" width="1024" height="502">
+          <vector id="5:2112" name="Vector" x="64" y="30" width="960" height="448" />
+        </frame>
+        <text id="5:2113" name="9" x="72" y="8" width="8" height="18" />
+        <text id="5:2114" name="10" x="192" y="8" width="15" height="18" />
+        <text id="5:2115" name="11" x="312" y="8" width="15" height="18" />
+        <text id="5:2116" name="12" x="432" y="8" width="15" height="18" />
+        <text id="5:2117" name="13" x="552" y="8" width="15" height="18" />
+        <text id="5:2118" name="14" x="672" y="8" width="15" height="18" />
+        <text id="5:2119" name="15" x="792" y="8" width="15" height="18" />
+        <text id="5:2120" name="16" x="912" y="8" width="15" height="18" />
+        <rounded-rectangle id="5:2121" name="Note / 0" x="76" y="286" width="50.400001525878906" height="20" />
+        <text id="5:2122" name="A3" x="81" y="288" width="15" height="16" />
+        <rounded-rectangle id="5:2123" name="Note / 1" x="134" y="230" width="32.7599983215332" height="20" />
+        <text id="5:2124" name="C4" x="139" y="232" width="16" height="16" />
+        <rounded-rectangle id="5:2125" name="Note / 2" x="192" y="174" width="51.65999984741211" height="20" />
+        <text id="5:2126" name="E4" x="197" y="176" width="14" height="16" />
+        <rounded-rectangle id="5:2127" name="Note / 3" x="250" y="202" width="34.02000045776367" height="20" />
+        <text id="5:2128" name="D4" x="255" y="204" width="16" height="16" />
+        <rounded-rectangle id="5:2129" name="Note / 4" x="308" y="258" width="49.13999938964844" height="20" />
+        <text id="5:2130" name="B3" x="313" y="260" width="15" height="16" />
+        <rounded-rectangle id="5:2131" name="Note / 5" x="366" y="314" width="34.02000045776367" height="20" />
+        <text id="5:2132" name="G3" x="371" y="316" width="16" height="16" />
+        <rounded-rectangle id="5:2133" name="Note / 6" x="424" y="230" width="50.400001525878906" height="20" />
+        <text id="5:2134" name="C4" x="429" y="232" width="16" height="16" />
+        <rounded-rectangle id="5:2135" name="Note / 7" x="482" y="174" width="45.36000061035156" height="20" />
+        <text id="5:2136" name="E4" x="487" y="176" width="14" height="16" />
+        <rounded-rectangle id="5:2137" name="Note / 8" x="556" y="286" width="50.400001525878906" height="20" />
+        <text id="5:2138" name="A3" x="561" y="288" width="15" height="16" />
+        <rounded-rectangle id="5:2139" name="Note / 9" x="614" y="230" width="32.7599983215332" height="20" />
+        <text id="5:2140" name="C4" x="619" y="232" width="16" height="16" />
+        <rounded-rectangle id="5:2141" name="Note / 10" x="672" y="174" width="51.65999984741211" height="20" />
+        <text id="5:2142" name="E4" x="677" y="176" width="14" height="16" />
+        <rounded-rectangle id="5:2143" name="Note / 11" x="730" y="202" width="34.02000045776367" height="20" />
+        <text id="5:2144" name="D4" x="735" y="204" width="16" height="16" />
+        <rounded-rectangle id="5:2145" name="Note / 12" x="788" y="258" width="49.13999938964844" height="20" />
+        <text id="5:2146" name="B3" x="793" y="260" width="15" height="16" />
+        <rounded-rectangle id="5:2147" name="Note / 13" x="846" y="314" width="34.02000045776367" height="20" />
+        <text id="5:2148" name="G3" x="851" y="316" width="16" height="16" />
+        <rounded-rectangle id="5:2149" name="Note / 14" x="904" y="230" width="50.400001525878906" height="20" />
+        <text id="5:2150" name="C4" x="909" y="232" width="16" height="16" />
+        <rounded-rectangle id="5:2151" name="Note / 15" x="962" y="174" width="45.36000061035156" height="20" />
+        <text id="5:2152" name="E4" x="967" y="176" width="14" height="16" />
+        <rounded-rectangle id="5:2153" name="Native playback cursor" x="544" y="0" width="2" height="502" />
+      </frame>
+      <frame id="5:2154" name="Velocity editor" x="0" y="616" width="1024" height="92">
+        <frame id="5:2155" name="Velocity label" x="0" y="0" width="64" height="92">
+          <text id="5:2156" name="VEL" x="4" y="4" width="21" height="16" />
+        </frame>
+        <frame id="5:2157" name="Velocity bars" x="64" y="0" width="960" height="92">
+          <rounded-rectangle id="5:2158" name="Velocity 0" x="12" y="58" width="5" height="20" />
+          <rounded-rectangle id="5:2159" name="Velocity 1" x="41" y="41" width="5" height="37" />
+          <rounded-rectangle id="5:2160" name="Velocity 2" x="70" y="24" width="5" height="54" />
+          <rounded-rectangle id="5:2161" name="Velocity 3" x="99" y="58" width="5" height="20" />
+          <rounded-rectangle id="5:2162" name="Velocity 4" x="128" y="41" width="5" height="37" />
+          <rounded-rectangle id="5:2163" name="Velocity 5" x="157" y="24" width="5" height="54" />
+          <rounded-rectangle id="5:2164" name="Velocity 6" x="186" y="58" width="5" height="20" />
+          <rounded-rectangle id="5:2165" name="Velocity 7" x="215" y="41" width="5" height="37" />
+          <rounded-rectangle id="5:2166" name="Velocity 8" x="244" y="24" width="5" height="54" />
+          <rounded-rectangle id="5:2167" name="Velocity 9" x="273" y="58" width="5" height="20" />
+          <rounded-rectangle id="5:2168" name="Velocity 10" x="302" y="41" width="5" height="37" />
+          <rounded-rectangle id="5:2169" name="Velocity 11" x="331" y="24" width="5" height="54" />
+          <rounded-rectangle id="5:2170" name="Velocity 12" x="360" y="58" width="5" height="20" />
+          <rounded-rectangle id="5:2171" name="Velocity 13" x="389" y="41" width="5" height="37" />
+          <rounded-rectangle id="5:2172" name="Velocity 14" x="418" y="24" width="5" height="54" />
+          <rounded-rectangle id="5:2173" name="Velocity 15" x="447" y="58" width="5" height="20" />
+          <rounded-rectangle id="5:2174" name="Velocity 16" x="476" y="41" width="5" height="37" />
+          <rounded-rectangle id="5:2175" name="Velocity 17" x="505" y="24" width="5" height="54" />
+          <rounded-rectangle id="5:2176" name="Velocity 18" x="534" y="58" width="5" height="20" />
+          <rounded-rectangle id="5:2177" name="Velocity 19" x="563" y="41" width="5" height="37" />
+          <rounded-rectangle id="5:2178" name="Velocity 20" x="592" y="24" width="5" height="54" />
+          <rounded-rectangle id="5:2179" name="Velocity 21" x="621" y="58" width="5" height="20" />
+          <rounded-rectangle id="5:2180" name="Velocity 22" x="650" y="41" width="5" height="37" />
+          <rounded-rectangle id="5:2181" name="Velocity 23" x="679" y="24" width="5" height="54" />
+          <rounded-rectangle id="5:2182" name="Velocity 24" x="708" y="58" width="5" height="20" />
+          <rounded-rectangle id="5:2183" name="Velocity 25" x="737" y="41" width="5" height="37" />
+          <rounded-rectangle id="5:2184" name="Velocity 26" x="766" y="24" width="5" height="54" />
+          <rounded-rectangle id="5:2185" name="Velocity 27" x="795" y="58" width="5" height="20" />
+          <rounded-rectangle id="5:2186" name="Velocity 28" x="824" y="41" width="5" height="37" />
+          <rounded-rectangle id="5:2187" name="Velocity 29" x="853" y="24" width="5" height="54" />
+          <rounded-rectangle id="5:2188" name="Velocity 30" x="882" y="58" width="5" height="20" />
+          <rounded-rectangle id="5:2189" name="Velocity 31" x="911" y="41" width="5" height="37" />
+        </frame>
+      </frame>
+      <frame id="5:2190" name="Proposal timeline annotation" x="0" y="708" width="1024" height="44">
+        <instance id="5:2191" name="VOID / StatusBadge" x="12" y="9" width="118" height="26" />
+        <text id="5:2193" name="8 notes added. All notes are editable." x="142" y="13.5" width="212" height="17" />
+        <frame id="5:2194" name="Flexible space" x="366" y="21.5" width="646" height="1" />
+      </frame>
+      <frame id="5:2195" name="Compose bottom actions" x="0" y="752" width="1024" height="104">
+        <frame id="5:2196" name="Source and target" x="16" y="16" width="470" height="72">
+          <text id="5:2197" name="Original 9–13  →  Continue 13–17" x="12" y="12" width="203" height="18" />
+          <text id="5:2198" name="A minor  ·  Keep harmony  ·  Respect locked notes" x="12" y="38" width="281" height="17" />
+        </frame>
+        <instance id="5:2199" name="go/S08" x="502" y="34" width="138" height="36" />
+        <instance id="5:2201" name="go/S01" x="656" y="34" width="132" height="36" />
+      </frame>
+    </frame>
+    <frame id="5:2203" name="Suggestion review" x="1248" y="0" width="352" height="856">
+      <instance id="5:2204" name="VOID / StatusBadge" x="20" y="20" width="132" height="26" />
+      <text id="5:2206" name="Your phrase, continued." x="20" y="62" width="312" height="72" />
+      <text id="5:2207" name="A continuation that leaves room for the vocal. Audition it against your original." x="20" y="150" width="312" height="40" />
+      <frame id="5:2208" name="Divider" x="20" y="206" width="312" height="1" />
+      <text id="5:2209" name="KEEP THESE FIXED" x="20" y="223" width="101" height="16" />
+      <text id="5:2210" name="✓  Original notes, bars 9–13" x="20" y="255" width="172" height="18" />
+      <text id="5:2211" name="✓  Chord progression" x="20" y="289" width="134" height="18" />
+      <text id="5:2212" name="✓  Instrument and sound" x="20" y="323" width="155" height="18" />
+      <frame id="5:2213" name="Divider" x="20" y="357" width="312" height="1" />
+      <text id="5:2214" name="DIRECTION" x="20" y="374" width="60" height="16" />
+      <frame id="5:2215" name="Candidate 0" x="20" y="406" width="312" height="68">
+        <text id="5:2216" name="01  Stay close" x="12" y="12" width="87" height="18" />
+        <text id="5:2217" name="A familiar shape, a new ending" x="12" y="34" width="174" height="17" />
+      </frame>
+      <frame id="5:2218" name="Candidate 1" x="20" y="490" width="312" height="68">
+        <text id="5:2219" name="02  Open it up" x="12" y="12" width="88" height="18" />
+        <text id="5:2220" name="More space and wider intervals" x="12" y="34" width="178" height="17" />
+      </frame>
+      <frame id="5:2221" name="Candidate 2" x="20" y="574" width="312" height="68">
+        <text id="5:2222" name="03  Build tension" x="12" y="12" width="106" height="18" />
+        <text id="5:2223" name="A rising phrase before the chorus" x="12" y="34" width="189" height="17" />
+      </frame>
+      <frame id="5:2224" name="Flexible space" x="20" y="658" width="1" height="74" />
+      <instance id="5:2225" name="go/S02" x="20" y="748" width="312" height="36" />
+      <instance id="5:2227" name="go/S01" x="20" y="800" width="312" height="36" />
+    </frame>
+  </frame>
+  <frame id="4:300" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:301" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:302" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:303" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:304" name="Flexible space" x="342" y="13.5" width="958" height="1" />
+    <text id="4:305" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="4:306" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:307" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

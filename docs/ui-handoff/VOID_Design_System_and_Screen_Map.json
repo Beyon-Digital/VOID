@@ -1,0 +1,2821 @@
+{
+  "schemaVersion": "1.0.0",
+  "version": "1.0.0",
+  "product": "VOID",
+  "designName": "VOID / Signal Studio",
+  "date": "2026-10-09",
+  "status": "design-created; implementation-not-started",
+  "figma": {
+    "fileKey": "8EExJVjnqfpva0gasuZAhA",
+    "designUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-2",
+    "prototypeUrl": "https://www.figma.com/proto/8EExJVjnqfpva0gasuZAhA?node-id=4-2&starting-point-node-id=4%3A2",
+    "pages": {
+      "cover": "0:1",
+      "foundations": "2:2",
+      "studio": "2:3",
+      "engineering": "2:4"
+    },
+    "coverNodeId": "17:2",
+    "foundationNodeId": "2:310",
+    "engineeringNodeIds": [
+      "18:9",
+      "18:50"
+    ],
+    "permissionChangesMade": false
+  },
+  "scope": {
+    "target": "Desktop studio: macOS, Windows and Linux qualification; compact laptop layout included.",
+    "delivery": "28 editable screens/states and selected click-through interactions.",
+    "notClaimed": [
+      "Exhaustive Logic Pro UI parity",
+      "Working audio or AI generation",
+      "Runtime performance",
+      "All controls interactive"
+    ],
+    "originalScope": "The original 116 requirement groups and 30 work packages remain in force.",
+    "decisionRefinement": "Original D08 had no Figma source. This task adds this file as the v1 design source; it does not supersede engine ownership or release/licensing gates."
+  },
+  "foundations": {
+    "colors": {
+      "bg": [
+        "#111214",
+        "#F2F2EF"
+      ],
+      "surface": [
+        "#191B1E",
+        "#FFFFFF"
+      ],
+      "raised": [
+        "#23262A",
+        "#E5E7E3"
+      ],
+      "hover": [
+        "#30343A",
+        "#D7DBD5"
+      ],
+      "line": [
+        "#353A40",
+        "#CED4CC"
+      ],
+      "text": [
+        "#F0F2EB",
+        "#171B19"
+      ],
+      "muted": [
+        "#ADB4B9",
+        "#515B57"
+      ],
+      "subtle": [
+        "#7F8990",
+        "#68726D"
+      ],
+      "accent": [
+        "#D8FC71",
+        "#506B0B"
+      ],
+      "on-accent": [
+        "#172004",
+        "#FFFFFF"
+      ],
+      "accent-soft": [
+        "#29331B",
+        "#EDF5D8"
+      ],
+      "violet": [
+        "#C4B0FB",
+        "#6846AD"
+      ],
+      "violet-soft": [
+        "#322943",
+        "#EAE2FA"
+      ],
+      "blue": [
+        "#9BCDF4",
+        "#245C84"
+      ],
+      "blue-soft": [
+        "#203443",
+        "#DCECF7"
+      ],
+      "mint": [
+        "#8ED9B3",
+        "#236849"
+      ],
+      "mint-soft": [
+        "#1E352B",
+        "#DDF2E5"
+      ],
+      "orange": [
+        "#F6BB81",
+        "#90571D"
+      ],
+      "orange-soft": [
+        "#3C2D21",
+        "#FAEAD7"
+      ],
+      "danger": [
+        "#FF918C",
+        "#B22F36"
+      ],
+      "danger-soft": [
+        "#422728",
+        "#FBE4E5"
+      ],
+      "white": [
+        "#FFFFFF",
+        "#FFFFFF"
+      ],
+      "ink": [
+        "#111214",
+        "#111214"
+      ]
+    },
+    "spacing": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      32,
+      40,
+      48
+    ],
+    "radii": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      24
+    ],
+    "typography": {
+      "body": {
+        "family": "Inter",
+        "styles": [
+          "Regular",
+          "Medium",
+          "Semi Bold"
+        ]
+      },
+      "display": {
+        "family": "Space Grotesk",
+        "styles": [
+          "Medium",
+          "Bold"
+        ]
+      },
+      "numeric": {
+        "family": "IBM Plex Mono",
+        "styles": [
+          "Regular",
+          "Medium"
+        ]
+      }
+    },
+    "fontDecision": "New design uses Inter for controls, Space Grotesk for workspace/project titles and IBM Plex Mono for time/numerals. Existing source uses an OS system stack; this is an explicit redesign proposal, not source parity.",
+    "collections": {
+      "primitives": "VariableCollectionId:2:5",
+      "colors": "VariableCollectionId:2:6",
+      "dimensions": "VariableCollectionId:2:7",
+      "dark": "2:1",
+      "light": "2:2"
+    },
+    "colorEncoding": {
+      "0": "Studio dark",
+      "1": "Daylight"
+    },
+    "semanticVariableIds": {
+      "bg": "VariableID:2:10",
+      "surface": "VariableID:2:13",
+      "raised": "VariableID:2:16",
+      "hover": "VariableID:2:19",
+      "line": "VariableID:2:22",
+      "text": "VariableID:2:25",
+      "muted": "VariableID:2:28",
+      "subtle": "VariableID:2:31",
+      "accent": "VariableID:2:34",
+      "on-accent": "VariableID:2:37",
+      "accent-soft": "VariableID:2:40",
+      "violet": "VariableID:2:43",
+      "violet-soft": "VariableID:2:46",
+      "blue": "VariableID:2:49",
+      "blue-soft": "VariableID:2:52",
+      "mint": "VariableID:2:55",
+      "mint-soft": "VariableID:2:58",
+      "orange": "VariableID:2:61",
+      "orange-soft": "VariableID:2:64",
+      "danger": "VariableID:2:67",
+      "danger-soft": "VariableID:2:70",
+      "white": "VariableID:2:73",
+      "ink": "VariableID:2:76"
+    },
+    "textStyles": {
+      "display": {
+        "family": "Space Grotesk",
+        "style": "Bold",
+        "weight": 700,
+        "fontSizePx": 48,
+        "lineHeightPx": 56,
+        "figmaStyleId": "S:082c62bf8b38678f831d5d0a6813dbaa14704083,"
+      },
+      "heading": {
+        "family": "Space Grotesk",
+        "style": "Bold",
+        "weight": 700,
+        "fontSizePx": 28,
+        "lineHeightPx": 36,
+        "figmaStyleId": "S:1b488621e88eadc88e3595aae681a337f482ff2c,"
+      },
+      "title": {
+        "family": "Space Grotesk",
+        "style": "Medium",
+        "weight": 500,
+        "fontSizePx": 20,
+        "lineHeightPx": 28,
+        "figmaStyleId": "S:27ff09a83e7a3ca99fa72692cae537ff1ccba6d3,"
+      },
+      "body": {
+        "family": "Inter",
+        "style": "Regular",
+        "weight": 400,
+        "fontSizePx": 14,
+        "lineHeightPx": 20,
+        "figmaStyleId": "S:afd987c9ad420af128421d69f825696325296f7c,"
+      },
+      "label": {
+        "family": "Inter",
+        "style": "Medium",
+        "weight": 500,
+        "fontSizePx": 13,
+        "lineHeightPx": 18,
+        "figmaStyleId": "S:248c46cc52cfe2711bf354e48013a5f4814a5749,"
+      },
+      "strong": {
+        "family": "Inter",
+        "style": "Semi Bold",
+        "weight": 600,
+        "fontSizePx": 13,
+        "lineHeightPx": 18,
+        "figmaStyleId": "S:9e86eb92938c6bed9022e02dba49a335a71ffac6,"
+      },
+      "small": {
+        "family": "Inter",
+        "style": "Regular",
+        "weight": 400,
+        "fontSizePx": 12,
+        "lineHeightPx": 17,
+        "figmaStyleId": "S:83ea3858e6bc498abf905db0c62ab5a179c76572,"
+      },
+      "micro": {
+        "family": "Inter",
+        "style": "Medium",
+        "weight": 500,
+        "fontSizePx": 11,
+        "lineHeightPx": 16,
+        "figmaStyleId": "S:6c17da91c8a78c0feae3d1c236a621465436d1a2,"
+      },
+      "numeric": {
+        "family": "IBM Plex Mono",
+        "style": "Regular",
+        "weight": 400,
+        "fontSizePx": 12,
+        "lineHeightPx": 18,
+        "figmaStyleId": "S:17d6d9471cb996fac197a1bf0ded1893cd279bbc,"
+      },
+      "time": {
+        "family": "IBM Plex Mono",
+        "style": "Medium",
+        "weight": 500,
+        "fontSizePx": 24,
+        "lineHeightPx": 32,
+        "figmaStyleId": "S:eee7ecd7bb88cb1191f1d4001215508db1caf5a9,"
+      }
+    }
+  },
+  "principles": [
+    "The music is the main surface; never gate manual editing behind AI.",
+    "One persistent transport and one visible edit target.",
+    "Compose, Arrange, Mix, Perform and Visuals are workspace lenses on one project.",
+    "AI results are revision-scoped, auditionable proposals with partial accept, reject and undo.",
+    "Record and performance actions are explicit, armed and reversible where possible.",
+    "Busy/unsupported states explain the blocked action and preserve independent work.",
+    "Static/imported and generated media share the same editing and asset lifecycle.",
+    "Minimize panels through context; keep deep tools discoverable."
+  ],
+  "architectureConstraints": [
+    "Tracktion/JUCE owns the musical Edit and audio clock.",
+    "Rust coordinates project identity, jobs, checkpoints, permissions and history.",
+    "React keeps bounded viewport projections and transient interactions, never PCM/tensors or a second mutable song graph.",
+    "Figma demo data is not production audio, meter or model evidence."
+  ],
+  "navigation": {
+    "workspaces": [
+      "Arrange",
+      "Compose",
+      "Mix",
+      "Perform",
+      "Visuals"
+    ],
+    "global": [
+      "Projects",
+      "Command palette",
+      "Jobs",
+      "Settings",
+      "Export"
+    ],
+    "contextual": [
+      "Library",
+      "Inspector",
+      "Device chain",
+      "Notes",
+      "Automation",
+      "Takes",
+      "Score"
+    ]
+  },
+  "screens": [
+    {
+      "id": "S01",
+      "name": "Arrange / song workspace",
+      "goal": "Record, arrange and inspect musical objects without leaving the song.",
+      "phase": "F1",
+      "workPackageRefs": [
+        "W09",
+        "W10"
+      ],
+      "figmaNodeId": "4:2",
+      "bodyNodeId": "4:99",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-2",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/ArrangeScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "project.read",
+        "project.edit"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "project.summary",
+        "transport.snapshot",
+        "tracks.viewport",
+        "clips.viewport",
+        "selection",
+        "device.chain"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s01.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T02",
+        "UI-T03",
+        "UI-T04",
+        "UI-T06",
+        "UI-T07",
+        "UI-T08",
+        "UI-T30",
+        "UI-T31",
+        "UI-T33",
+        "UI-T35",
+        "UI-T36"
+      ]
+    },
+    {
+      "id": "S02",
+      "name": "Compose / ghost-note audition",
+      "goal": "Preview a continuation; existing notes remain locked and unchanged.",
+      "phase": "F2",
+      "workPackageRefs": [
+        "W09",
+        "W13"
+      ],
+      "figmaNodeId": "4:108",
+      "bodyNodeId": "4:199",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-108",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/ComposeScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "project.read",
+        "proposal.request"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "notes.viewport",
+        "chords.selection",
+        "proposal.preview",
+        "selection",
+        "project.revision"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s02.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T06",
+        "UI-T07",
+        "UI-T08",
+        "UI-T12",
+        "UI-T13",
+        "UI-T14",
+        "UI-T16"
+      ]
+    },
+    {
+      "id": "S03",
+      "name": "Compose / accepted editable notes",
+      "goal": "Show acknowledged notes as ordinary editable music with one-step undo.",
+      "phase": "F2",
+      "workPackageRefs": [
+        "W13"
+      ],
+      "figmaNodeId": "4:208",
+      "bodyNodeId": "4:299",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-208",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/ComposeScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "project.edit"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "notes.viewport",
+        "history.lastTransaction",
+        "project.revision"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s03.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T13"
+      ]
+    },
+    {
+      "id": "S04",
+      "name": "Mix / routing and device chain",
+      "goal": "Adjust the selected signal chain, levels, pan, sends and output.",
+      "phase": "F1",
+      "workPackageRefs": [
+        "W10",
+        "W18"
+      ],
+      "figmaNodeId": "4:308",
+      "bodyNodeId": "4:399",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-308",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/MixScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "project.edit",
+        "audio.device.use"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "channels.viewport",
+        "meters.snapshot",
+        "routing.summary",
+        "device.chain",
+        "parameter.descriptors"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s04.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T05",
+        "UI-T30",
+        "UI-T33",
+        "UI-T35"
+      ]
+    },
+    {
+      "id": "S05",
+      "name": "Record / input and take lanes",
+      "goal": "Arm a specific track and capture a local performance with clear monitoring.",
+      "phase": "F1",
+      "workPackageRefs": [
+        "W08"
+      ],
+      "figmaNodeId": "4:408",
+      "bodyNodeId": "4:499",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-408",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/RecordScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "microphone.use",
+        "audio.device.use",
+        "project.record"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "input.devices",
+        "permissions.microphone",
+        "recording.state",
+        "takes.viewport",
+        "transport.snapshot"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s05.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T09",
+        "UI-T10"
+      ]
+    },
+    {
+      "id": "S06",
+      "name": "Comp / audition and commit",
+      "goal": "Choose phrases across retained takes; commit nondestructively.",
+      "phase": "F3",
+      "workPackageRefs": [
+        "W17"
+      ],
+      "figmaNodeId": "4:508",
+      "bodyNodeId": "4:599",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-508",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/CompScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "project.edit"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "takes.viewport",
+        "comp.selection",
+        "audition.state",
+        "assets.availability"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s06.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T10",
+        "UI-T11"
+      ]
+    },
+    {
+      "id": "S07",
+      "name": "Perform / clips and queued scenes",
+      "goal": "Queue and launch explicit scene/track slots at native musical boundaries.",
+      "phase": "F3",
+      "workPackageRefs": [
+        "W17",
+        "W21"
+      ],
+      "figmaNodeId": "4:608",
+      "bodyNodeId": "4:699",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-608",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/PerformScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "performance.control"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "scene.slots",
+        "scene.launchQueue",
+        "transport.snapshot",
+        "output.safety"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s07.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T21",
+        "UI-T22"
+      ]
+    },
+    {
+      "id": "S08",
+      "name": "Gesture / draw a phrase",
+      "goal": "Draw a contour, audition the snapped notes, and commit only on request.",
+      "phase": "F2",
+      "workPackageRefs": [
+        "W14"
+      ],
+      "figmaNodeId": "4:708",
+      "bodyNodeId": "4:799",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-708",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/GestureScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "project.edit"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "gesture.mapping",
+        "gesture.preview",
+        "scale.context",
+        "target.track",
+        "input.state"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s08.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T17",
+        "UI-T18",
+        "UI-T33"
+      ]
+    },
+    {
+      "id": "S09",
+      "name": "Visuals / preview and program",
+      "goal": "Compose conventional and generated visual assets; preview stays separate from program output.",
+      "phase": "F4",
+      "workPackageRefs": [
+        "W22",
+        "W23",
+        "W24"
+      ],
+      "figmaNodeId": "4:808",
+      "bodyNodeId": "4:899",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-808",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/VisualsScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "visual.preview",
+        "visual.output.arm"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "visual.layers",
+        "visual.assets",
+        "clock.snapshot",
+        "program.outputState",
+        "analysis.bindings"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s09.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T23",
+        "UI-T24"
+      ]
+    },
+    {
+      "id": "S10",
+      "name": "Generate / audio candidates",
+      "goal": "Generate into candidate assets, audition them and explicitly insert a selected result.",
+      "phase": "F2",
+      "workPackageRefs": [
+        "W12",
+        "W15"
+      ],
+      "figmaNodeId": "4:908",
+      "bodyNodeId": "4:999",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-908",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/GenerateScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "generation.request",
+        "model.use"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "generation.form",
+        "model.capabilities",
+        "job.results",
+        "candidate.assets",
+        "target.selection"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s10.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T19",
+        "UI-T20"
+      ]
+    },
+    {
+      "id": "S11",
+      "name": "Export / delivery check",
+      "goal": "Choose format, range and destination; render a fixed revision.",
+      "phase": "F1",
+      "workPackageRefs": [
+        "W10"
+      ],
+      "figmaNodeId": "4:1008",
+      "bodyNodeId": "4:1099",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-1008",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/ExportScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "project.export",
+        "filesystem.destination.write"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "export.options",
+        "export.preflight",
+        "assets.availability",
+        "project.revision",
+        "write.permissions"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s11.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T28",
+        "UI-T29"
+      ]
+    },
+    {
+      "id": "S12",
+      "name": "Export / completed",
+      "goal": "Confirm a verified output and offer return, reveal and another export.",
+      "phase": "F1",
+      "workPackageRefs": [
+        "W10",
+        "W11"
+      ],
+      "figmaNodeId": "4:1108",
+      "bodyNodeId": "4:1199",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-1108",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/ExportScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "filesystem.destination.read"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "export.verifiedResult",
+        "export.manifest"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s12.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T28"
+      ]
+    },
+    {
+      "id": "S13",
+      "name": "Projects / start here",
+      "goal": "Create or resume a local project without mandatory account or model setup.",
+      "phase": "F1",
+      "workPackageRefs": [
+        "W05",
+        "W11"
+      ],
+      "figmaNodeId": "4:1208",
+      "bodyNodeId": "4:1299",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-1208",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/ProjectsScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "filesystem.project.choose"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "projects.recent",
+        "projects.availability",
+        "device.readiness"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s13.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T01"
+      ]
+    },
+    {
+      "id": "S14",
+      "name": "New project / starting point",
+      "goal": "Select a first action and basic project settings; do not download assets automatically.",
+      "phase": "F1",
+      "workPackageRefs": [
+        "W05",
+        "W09"
+      ],
+      "figmaNodeId": "4:1308",
+      "bodyNodeId": "4:1399",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-1308",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/NewProjectScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "project.create",
+        "filesystem.destination.write"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "project.creationDraft",
+        "device.readiness",
+        "write.permissions"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s14.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T01"
+      ]
+    },
+    {
+      "id": "S15",
+      "name": "Setup / audio and MIDI",
+      "goal": "Configure native devices, sample rate, buffer and permissions safely.",
+      "phase": "F1",
+      "workPackageRefs": [
+        "W04",
+        "W08"
+      ],
+      "figmaNodeId": "4:1408",
+      "bodyNodeId": "4:1499",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-1408",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/SettingsScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "audio.device.configure",
+        "microphone.request"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "audio.devices",
+        "midi.devices",
+        "permissions.snapshot",
+        "audio.settings",
+        "transport.state"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s15.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T09"
+      ]
+    },
+    {
+      "id": "S16",
+      "name": "Library / sounds and assets",
+      "goal": "Browse installed assets and audition before inserting into an explicit target.",
+      "phase": "F1",
+      "workPackageRefs": [
+        "W05",
+        "W10"
+      ],
+      "figmaNodeId": "4:1508",
+      "bodyNodeId": "4:1599",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-1508",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/LibraryScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "asset.import",
+        "project.edit"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "assets.query",
+        "asset.metadata",
+        "asset.provenance",
+        "target.selection",
+        "audition.state"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s16.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T20"
+      ]
+    },
+    {
+      "id": "S17",
+      "name": "Jobs / model downloads and generation",
+      "goal": "Observe and cancel optional work; completed results never self-insert.",
+      "phase": "F2",
+      "workPackageRefs": [
+        "W12"
+      ],
+      "figmaNodeId": "4:1608",
+      "bodyNodeId": "4:1699",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-1608",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/JobsScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "job.cancel",
+        "model.download"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "jobs.queue",
+        "models.inventory",
+        "downloads.progress",
+        "worker.budgets"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s17.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T19",
+        "UI-T32",
+        "UI-T36"
+      ]
+    },
+    {
+      "id": "S18",
+      "name": "Plugin / missing and quarantined",
+      "goal": "Preserve unavailable plugin state and routing; locate, replace or keep visibly bypassed.",
+      "phase": "F0",
+      "workPackageRefs": [
+        "W06",
+        "W20"
+      ],
+      "figmaNodeId": "4:1708",
+      "bodyNodeId": "4:1799",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-1708",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/PluginRecoveryScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "plugin.scan",
+        "plugin.replace"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "plugin.registry",
+        "plugin.quarantine",
+        "plugin.savedState",
+        "affected.channels"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s18.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T25"
+      ]
+    },
+    {
+      "id": "S19",
+      "name": "Recovery / engine stopped",
+      "goal": "Admit audio stopped; restart stopped and verify recovered state before playback.",
+      "phase": "F0",
+      "workPackageRefs": [
+        "W02",
+        "W05",
+        "W07"
+      ],
+      "figmaNodeId": "4:1808",
+      "bodyNodeId": "4:1899",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-1808",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/EngineRecoveryScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "engine.restart"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "engine.health",
+        "checkpoint.verified",
+        "recovery.journal",
+        "recording.salvage"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s19.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T26",
+        "UI-T31"
+      ]
+    },
+    {
+      "id": "S20",
+      "name": "Compose / stale suggestion",
+      "goal": "Reject a stale preview and request a new result; never silently overwrite later edits.",
+      "phase": "F2",
+      "workPackageRefs": [
+        "W13"
+      ],
+      "figmaNodeId": "4:1908",
+      "bodyNodeId": "4:1999",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-1908",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/ComposeScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "proposal.refresh"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "proposal.baseRevision",
+        "project.revision",
+        "proposal.conflict"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s20.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T15"
+      ]
+    },
+    {
+      "id": "S21",
+      "name": "Save / storage unavailable",
+      "goal": "Preserve current edits and the last verified checkpoint after a failed write.",
+      "phase": "F0",
+      "workPackageRefs": [
+        "W05"
+      ],
+      "figmaNodeId": "4:2008",
+      "bodyNodeId": "4:2099",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-2008",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/SaveRecoveryScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "filesystem.destination.choose"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "save.failure",
+        "checkpoint.lastGood",
+        "project.unsavedRevision",
+        "write.permissions"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s21.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T27"
+      ]
+    },
+    {
+      "id": "S22",
+      "name": "Arrange / compact laptop",
+      "goal": "Collapse secondary panels at 1280×832; preserve working font sizes and musical selection.",
+      "phase": "F1",
+      "workPackageRefs": [
+        "W09",
+        "W11"
+      ],
+      "figmaNodeId": "4:2108",
+      "bodyNodeId": "4:2199",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-2108",
+      "size": [
+        1280,
+        832
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/ArrangeScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "project.read",
+        "project.edit"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "tracks.viewport",
+        "clips.viewport",
+        "layout.panels",
+        "selection",
+        "transport.snapshot"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s22.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Compact laptop"
+      },
+      "testRefs": [
+        "UI-T02",
+        "UI-T03",
+        "UI-T04"
+      ]
+    },
+    {
+      "id": "S23",
+      "name": "Arrange / daylight mode",
+      "goal": "Apply semantic daylight tokens without hardcoded dark clip fills.",
+      "phase": "F1",
+      "workPackageRefs": [
+        "W09",
+        "W11"
+      ],
+      "figmaNodeId": "4:2208",
+      "bodyNodeId": "4:2299",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-2208",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/ArrangeScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "project.read",
+        "project.edit"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "theme.preference",
+        "tracks.viewport",
+        "clips.viewport",
+        "selection"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s23.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Daylight",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T03"
+      ]
+    },
+    {
+      "id": "S24",
+      "name": "Score / notation workspace",
+      "goal": "Specialist layout study; displayed quantization must not rewrite the performance.",
+      "phase": "F5",
+      "workPackageRefs": [
+        "W25"
+      ],
+      "figmaNodeId": "4:2308",
+      "bodyNodeId": "4:2399",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=4-2308",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/ScoreScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "project.read",
+        "notation.edit"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "notation.document",
+        "notation.selection",
+        "score.layout",
+        "musical.noteIds"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s24.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T34"
+      ]
+    },
+    {
+      "id": "S25",
+      "name": "Compose / auditioning candidate",
+      "goal": "Audition the candidate through an isolated native preview path; stop leaves the original intact.",
+      "phase": "F2",
+      "workPackageRefs": [
+        "W13"
+      ],
+      "figmaNodeId": "12:1833",
+      "bodyNodeId": "12:1874",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=12-1833",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/ComposeScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "proposal.audition"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "audition.state",
+        "proposal.preview",
+        "transport.snapshot",
+        "project.revision"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s25.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T12"
+      ]
+    },
+    {
+      "id": "S26",
+      "name": "Compose / selected notes accepted",
+      "goal": "Commit selected note IDs; remaining notes stay ghosts, with explicit accept/discard/undo.",
+      "phase": "F2",
+      "workPackageRefs": [
+        "W13"
+      ],
+      "figmaNodeId": "12:2156",
+      "bodyNodeId": "12:2197",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=12-2156",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/ComposeScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "project.edit"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "proposal.remaining",
+        "history.lastTransaction",
+        "notes.viewport",
+        "project.revision"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s26.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T13",
+        "UI-T14"
+      ]
+    },
+    {
+      "id": "S27",
+      "name": "Arrange / empty new project",
+      "goal": "Offer record, instrument or gesture starting points in a genuinely empty project.",
+      "phase": "F1",
+      "workPackageRefs": [
+        "W05",
+        "W09"
+      ],
+      "figmaNodeId": "12:2479",
+      "bodyNodeId": "12:2520",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=12-2479",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/ArrangeScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "project.edit"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "project.summary",
+        "device.readiness",
+        "capabilities.snapshot"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s27.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T01"
+      ]
+    },
+    {
+      "id": "S28",
+      "name": "Perform / next scene playing",
+      "goal": "Show the queued scene as playing only after acknowledgement of its actual launch.",
+      "phase": "F3",
+      "workPackageRefs": [
+        "W17",
+        "W21"
+      ],
+      "figmaNodeId": "12:2937",
+      "bodyNodeId": "12:2978",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=12-2937",
+      "size": [
+        1600,
+        1000
+      ],
+      "status": "designed",
+      "runtimeStatus": "not-implemented-by-this-task",
+      "codePath": "packages/void-studio/src/screens/PerformScreen.tsx",
+      "codePathStatus": "proposed; reconcile with current repository",
+      "permissions": [
+        "performance.control"
+      ],
+      "permissionNamesStatus": "conceptual capability labels; map to the actual native policy, not permission grants",
+      "dataDependencies": [
+        "scene.active",
+        "scene.launchQueue",
+        "transport.snapshot"
+      ],
+      "dataDependencyNamesStatus": "proposed view contracts, not claimed existing endpoints",
+      "analytics": {
+        "localEvent": "ui.s28.viewed",
+        "default": "No remote telemetry; avoid media, prompts or raw private paths"
+      },
+      "relayFragments": null,
+      "relayReason": "Local native command/subscription architecture; do not add GraphQL or Relay merely for this UI.",
+      "variants": {
+        "theme": "Studio dark",
+        "density": "Desktop"
+      },
+      "testRefs": [
+        "UI-T21"
+      ]
+    }
+  ],
+  "componentInventory": [
+    {
+      "id": "void.action-button",
+      "name": "ActionButton",
+      "figmaSetId": "2:117",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=2-117",
+      "variants": {
+        "Primary": "2:103",
+        "Secondary": "2:105",
+        "Quiet": "2:107",
+        "Danger": "2:109",
+        "Disabled": "2:111",
+        "Focus": "2:113",
+        "Loading": "2:115"
+      },
+      "componentProperties": {},
+      "codePath": "packages/void-ui/src/components/ActionButton.tsx",
+      "codeStatus": "proposed; not generated or Code-Connected by this task",
+      "behavior": "Default/hover/focus/disabled/loading and semantic intent; callbacks never fake success."
+    },
+    {
+      "id": "void.workspace-tab",
+      "name": "WorkspaceTab",
+      "figmaSetId": "2:122",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=2-122",
+      "variants": {
+        "Active": "2:118",
+        "Idle": "2:120"
+      },
+      "componentProperties": {},
+      "codePath": "packages/void-ui/src/components/WorkspaceTab.tsx",
+      "codeStatus": "proposed; not generated or Code-Connected by this task",
+      "behavior": "One selected workspace; preserve project, selected object and scroll/zoom."
+    },
+    {
+      "id": "void.status-badge",
+      "name": "StatusBadge",
+      "figmaSetId": "2:135",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=2-135",
+      "variants": {
+        "Quiet": "2:123",
+        "Ready": "2:125",
+        "Live": "2:127",
+        "AI": "2:129",
+        "Warning": "2:131",
+        "Error": "2:133"
+      },
+      "componentProperties": {},
+      "codePath": "packages/void-ui/src/components/StatusBadge.tsx",
+      "codeStatus": "proposed; not generated or Code-Connected by this task",
+      "behavior": "State text plus semantic color. Values come from acknowledged state."
+    },
+    {
+      "id": "void.field",
+      "name": "Field",
+      "figmaSetId": "2:144",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=2-144",
+      "variants": {
+        "Default": "2:136",
+        "Focus": "2:138",
+        "Error": "2:140",
+        "Disabled": "2:142"
+      },
+      "componentProperties": {},
+      "codePath": "packages/void-ui/src/components/Field.tsx",
+      "codeStatus": "proposed; not generated or Code-Connected by this task",
+      "behavior": "Visible label, correct units, focus/error/disabled semantics, inline validation."
+    },
+    {
+      "id": "void.track-header",
+      "name": "TrackHeader",
+      "figmaSetId": "2:217",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=2-217",
+      "variants": {
+        "Audio": "2:145",
+        "MIDI": "2:157",
+        "Drums": "2:169",
+        "Bass": "2:181",
+        "Visual": "2:193",
+        "Bus": "2:205"
+      },
+      "componentProperties": {},
+      "codePath": "packages/void-ui/src/components/TrackHeader.tsx",
+      "codeStatus": "proposed; not generated or Code-Connected by this task",
+      "behavior": "Stable opaque track ID; arm/mute/solo as separate targets; explicit device/routing state."
+    },
+    {
+      "id": "void.timeline-clip",
+      "name": "TimelineClip",
+      "figmaSetId": "2:234",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=2-234",
+      "variants": {
+        "Audio": "2:218",
+        "MIDI": "2:222",
+        "Ghost": "2:226",
+        "Selected": "2:230"
+      },
+      "componentProperties": {},
+      "codePath": "packages/void-ui/src/components/TimelineClip.tsx",
+      "codeStatus": "proposed; not generated or Code-Connected by this task",
+      "behavior": "Audio/MIDI/ghost/selected variants. Time geometry derives from native timebase. Visual clips use asset thumbnails/labels, not MIDI glyphs."
+    },
+    {
+      "id": "void.parameter-knob",
+      "name": "ParameterKnob",
+      "figmaSetId": "2:245",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=2-245",
+      "variants": {
+        "Default": "2:235",
+        "Focus": "2:240"
+      },
+      "componentProperties": {},
+      "codePath": "packages/void-ui/src/components/ParameterKnob.tsx",
+      "codeStatus": "proposed; not generated or Code-Connected by this task",
+      "behavior": "Pointer capture, arrows, fine adjustment, reset and numeric entry; units and range from descriptors; one gesture = one transaction."
+    },
+    {
+      "id": "void.channel-fader",
+      "name": "ChannelFader",
+      "figmaSetId": "2:266",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=2-266",
+      "variants": {
+        "Default": "2:246",
+        "Focus": "2:256",
+        "Level=-6.0": "2:246",
+        "Level=-8.0": "16:79",
+        "Level=-4.5": "16:89",
+        "Level=-7.0": "16:99",
+        "Level=-12.0": "16:109",
+        "Level=-1.0": "16:119",
+        "Level=-10.0": "16:129",
+        "Level=-14.0": "16:139"
+      },
+      "componentProperties": {},
+      "codePath": "packages/void-ui/src/components/ChannelFader.tsx",
+      "codeStatus": "proposed; not generated or Code-Connected by this task",
+      "behavior": "Continuous dB gain control; finite min/max and silence; value, handle and native gain agree. Figma level variants are examples, not discrete runtime steps."
+    },
+    {
+      "id": "void.device-slot",
+      "name": "DeviceSlot",
+      "figmaSetId": "2:276",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=2-276",
+      "variants": {
+        "Default": "2:267",
+        "Selected": "2:270",
+        "Missing": "2:273"
+      },
+      "componentProperties": {},
+      "codePath": "packages/void-ui/src/components/DeviceSlot.tsx",
+      "codeStatus": "proposed; not generated or Code-Connected by this task",
+      "behavior": "Active/selected/missing with preserved plugin state; actual native editor opened by controller."
+    },
+    {
+      "id": "void.asset-row",
+      "name": "AssetRow",
+      "figmaSetId": "2:283",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=2-283",
+      "variants": {
+        "Default": "2:277",
+        "Selected": "2:280"
+      },
+      "componentProperties": {},
+      "codePath": "packages/void-ui/src/components/AssetRow.tsx",
+      "codeStatus": "proposed; not generated or Code-Connected by this task",
+      "behavior": "Asset type/source/availability; target and audition explicit; preview never changes the song."
+    },
+    {
+      "id": "void.scene-cell",
+      "name": "SceneCell",
+      "figmaSetId": "2:302",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=2-302",
+      "variants": {
+        "Idle": "2:284",
+        "Playing": "2:289",
+        "Queued": "2:294",
+        "Empty": "2:299"
+      },
+      "componentProperties": {},
+      "codePath": "packages/void-ui/src/components/SceneCell.tsx",
+      "codeStatus": "proposed; not generated or Code-Connected by this task",
+      "behavior": "Explicit sceneId+trackId slots; queued and playing separate; launch on native boundary."
+    },
+    {
+      "id": "void.toast",
+      "name": "Toast",
+      "figmaSetId": "2:309",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=2-309",
+      "variants": {
+        "Success": "2:303",
+        "Warning": "2:305",
+        "Error": "2:307"
+      },
+      "componentProperties": {},
+      "codePath": "packages/void-ui/src/components/Toast.tsx",
+      "codeStatus": "proposed; not generated or Code-Connected by this task",
+      "behavior": "Accessible nonblocking result; live failure/recording persists beyond transient toast."
+    },
+    {
+      "id": "void.icon-button",
+      "name": "IconButton",
+      "figmaSetId": "3:156",
+      "figmaUrl": "https://www.figma.com/design/8EExJVjnqfpva0gasuZAhA?node-id=3-156",
+      "variants": {
+        "Idle": "3:140",
+        "Active": "3:144",
+        "Record": "3:148",
+        "Disabled": "3:152"
+      },
+      "componentProperties": {
+        "Icon": "Icon#3:0"
+      },
+      "codePath": "packages/void-ui/src/components/IconButton.tsx",
+      "codeStatus": "proposed; not generated or Code-Connected by this task",
+      "behavior": "Named accessible action, tooltip and shortcut; support icon swap and visible focus."
+    }
+  ],
+  "discovery": {
+    "codeConnect": "GitHub code search for figma returned no results; no mappings assumed.",
+    "fileBeforeBuild": "New file has one empty page; no local variables or text styles.",
+    "libraries": "Simple Design System inspected. Generic components do not supply DAW interaction/state semantics; create editable local VOID components with the new token model.",
+    "references": [
+      {
+        "title": "Descript timeline reference",
+        "url": "https://mobbin.com/screens/bb36265f-c007-44b7-b9d9-6ae8f3b8dda7",
+        "use": "Contextual right inspector adjacent to timeline; no image copying."
+      },
+      {
+        "title": "ElevenLabs variation reference",
+        "url": "https://mobbin.com/screens/fa5656d4-f78a-4253-b0f0-62d7e7fd3e03",
+        "use": "Separate candidate/history and audition, but preserve editable music-first workflow."
+      },
+      {
+        "title": "VEED asset reference",
+        "url": "https://mobbin.com/screens/963fd1cb-0f6b-407b-b478-6898cbf7830c",
+        "use": "Searchable assets with explicit add; no cloned UI."
+      }
+    ]
+  },
+  "iconInventory": [
+    {
+      "name": "play",
+      "figmaNodeId": "3:71",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "stop",
+      "figmaNodeId": "3:74",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "record",
+      "figmaNodeId": "3:77",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "loop",
+      "figmaNodeId": "3:80",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "back",
+      "figmaNodeId": "3:83",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "search",
+      "figmaNodeId": "3:86",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "plus",
+      "figmaNodeId": "3:89",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "chevron",
+      "figmaNodeId": "3:92",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "down",
+      "figmaNodeId": "3:95",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "close",
+      "figmaNodeId": "3:98",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "settings",
+      "figmaNodeId": "3:101",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "headphones",
+      "figmaNodeId": "3:104",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "spark",
+      "figmaNodeId": "3:107",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "piano",
+      "figmaNodeId": "3:110",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "mic",
+      "figmaNodeId": "3:113",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "folder",
+      "figmaNodeId": "3:116",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "undo",
+      "figmaNodeId": "3:119",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "download",
+      "figmaNodeId": "3:122",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "grid",
+      "figmaNodeId": "3:125",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "wave",
+      "figmaNodeId": "3:128",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "monitor",
+      "figmaNodeId": "3:131",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "check",
+      "figmaNodeId": "3:134",
+      "size": [
+        20,
+        20
+      ]
+    },
+    {
+      "name": "clock",
+      "figmaNodeId": "3:137",
+      "size": [
+        20,
+        20
+      ]
+    }
+  ],
+  "composedRegions": [
+    "StudioHeader",
+    "TransportBar",
+    "HealthBar",
+    "SoundLibrary",
+    "RegionInspector",
+    "Arrangement",
+    "PianoRoll",
+    "CandidateReview",
+    "TakeWorkspace",
+    "MixerDesk",
+    "PreviewProgram",
+    "ExportPreflight",
+    "RecoveryPanel"
+  ],
+  "responsive": {
+    "wide": {
+      "reference": [
+        1600,
+        1000
+      ],
+      "header": 52,
+      "transport": 64,
+      "health": 28,
+      "arrangementColumns": [
+        224,
+        1112,
+        264
+      ]
+    },
+    "compact": {
+      "reference": [
+        1280,
+        832
+      ],
+      "policy": "Close secondary panels into drawers; retain working typography, transport and contextual bottom editor.",
+      "library": "Drawer",
+      "inspector": "Drawer"
+    },
+    "implementationPolicy": "Make geometry fluid between references; do not hardcode every screen to these canvas sizes. Below 1280 define and test a minimum size or an accessible panel strategy; do not merely shrink the page.",
+    "textZoom": "Implement and test 200% text scaling/reflow; not verified by the Figma prototype."
+  },
+  "interactionContracts": {
+    "proposal": {
+      "states": [
+        "idle",
+        "requesting",
+        "preview",
+        "auditioning",
+        "partiallyAccepted",
+        "committed",
+        "dismissed",
+        "stale",
+        "failed"
+      ],
+      "rules": [
+        "No preview notes in the durable musical graph.",
+        "Every accept uses projectId, target IDs, expectedRevision and commandId.",
+        "Commit only accepted note IDs and acknowledge the revision.",
+        "Stale output is rejected; refresh is an explicit action.",
+        "Discard after partial acceptance removes remaining ghosts, not committed notes.",
+        "Undo only reverts the corresponding accepted transaction."
+      ]
+    },
+    "recording": {
+      "states": [
+        "unavailable",
+        "ready",
+        "armed",
+        "countIn",
+        "recording",
+        "stopping",
+        "review",
+        "failed"
+      ],
+      "rules": [
+        "Permission denied or missing input produces a visible reason.",
+        "Stop flushes/preserves the take before review.",
+        "No device reconfiguration or updater restart while recording."
+      ]
+    },
+    "sceneLaunch": {
+      "states": [
+        "ready",
+        "queued",
+        "playing",
+        "stopping",
+        "stopped"
+      ],
+      "rules": [
+        "Native clock commits the launch.",
+        "A queue acknowledgement is not a play acknowledgement.",
+        "All-notes-off remains an explicit safety action."
+      ]
+    },
+    "save": {
+      "states": [
+        "clean",
+        "dirty",
+        "saving",
+        "saved",
+        "failed",
+        "recovering"
+      ],
+      "rules": [
+        "Saved means a verified durable checkpoint was published.",
+        "Never overwrite the last good checkpoint with incomplete staging data.",
+        "Cancel/failed save never discards the in-memory song."
+      ]
+    },
+    "visualOutput": {
+      "states": [
+        "previewOnly",
+        "displaySelected",
+        "armed",
+        "live",
+        "blackout",
+        "unavailable"
+      ],
+      "rules": [
+        "Preview and program are separate.",
+        "No automatic output arming.",
+        "AI never sends direct unreviewed fixture or device commands.",
+        "Visual/AI work never blocks the audio callback."
+      ]
+    }
+  },
+  "implementationOrder": [
+    {
+      "id": "UI00",
+      "title": "Reconcile current repository and native contracts",
+      "dependsOn": [],
+      "workPackages": [
+        "W00",
+        "W02",
+        "W03",
+        "W04",
+        "W05",
+        "W06",
+        "W07"
+      ],
+      "done": "Baseline report, native capability inventory and no duplicated song graph."
+    },
+    {
+      "id": "UI01",
+      "title": "Semantic tokens and accessible reusable components",
+      "dependsOn": [
+        "UI00"
+      ],
+      "workPackages": [
+        "W09"
+      ],
+      "done": "13 component families; dark/daylight and compact references; behavior tests."
+    },
+    {
+      "id": "UI02",
+      "title": "One complete conventional studio path",
+      "dependsOn": [
+        "UI01"
+      ],
+      "workPackages": [
+        "W08",
+        "W09",
+        "W10",
+        "W11"
+      ],
+      "done": "Create empty project, add/record music, arrange, mix, save/reopen and export real audio. Advanced comping follows W17."
+    },
+    {
+      "id": "UI03",
+      "title": "Reviewable predictive and gesture composition",
+      "dependsOn": [
+        "UI02"
+      ],
+      "workPackages": [
+        "W12",
+        "W13",
+        "W14",
+        "W15",
+        "W16"
+      ],
+      "done": "Audition, partial/full acceptance, stale rejection, undo and gesture input-loss behavior."
+    },
+    {
+      "id": "UI04",
+      "title": "Producer depth and performance",
+      "dependsOn": [
+        "UI02"
+      ],
+      "workPackages": [
+        "W17",
+        "W18",
+        "W19",
+        "W20",
+        "W21"
+      ],
+      "done": "Comping, routing/automation/plugin states, scene launch queue and compatibility tests."
+    },
+    {
+      "id": "UI05",
+      "title": "Conventional and generated visual composition",
+      "dependsOn": [
+        "UI03",
+        "UI04"
+      ],
+      "workPackages": [
+        "W22",
+        "W23",
+        "W24"
+      ],
+      "done": "Preview/program separation, explicit arming, deterministic clock following and verified AV export."
+    },
+    {
+      "id": "UI06",
+      "title": "Specialist notation and coverage reconciliation",
+      "dependsOn": [
+        "UI04"
+      ],
+      "workPackages": [
+        "W25",
+        "W26",
+        "W27",
+        "W28",
+        "W29"
+      ],
+      "done": "Notation beyond this layout and all unpictured original requirements tracked without asserting false parity."
+    }
+  ],
+  "validation": {
+    "date": "2026-10-09",
+    "source": "Figma Plugin API structural and route-graph inspection",
+    "screenCount": 28,
+    "emptyBodies": 0,
+    "structuralOverflowCount": 0,
+    "missingFonts": 0,
+    "brokenDestinations": 0,
+    "unreachableScreens": 0,
+    "linkedHotspots": 707,
+    "flowCount": 13,
+    "screenInstanceCount": 1271,
+    "imageFillCount": 0,
+    "variableCount": 85,
+    "textStyleCount": 10,
+    "componentFamilies": 13,
+    "componentVariants": 56,
+    "standaloneVectorIcons": 23,
+    "visualReviews": [
+      "S01 arrangement",
+      "S02 piano roll",
+      "S04 mixer",
+      "S09 visuals",
+      "S11 export",
+      "S13 projects",
+      "S22 compact",
+      "S23 daylight",
+      "design-system specimen"
+    ],
+    "notPerformed": [
+      "Browser-driven prototype click testing",
+      "Compiled application tests",
+      "Audio playback or rendering",
+      "Device or native plugin-window tests",
+      "End-user usability studies",
+      "Screen-reader tests",
+      "Complete contrast certification"
+    ],
+    "limitations": [
+      "707 linked hotspots include repeated global navigation; this is not 707 implemented controls.",
+      "The prototype demonstrates navigation and selected state transitions, not real music playback.",
+      "Score is a layout specimen, not complete notation functionality.",
+      "28 designed states do not exhaust the original 116 functional requirement groups."
+    ]
+  },
+  "prototype": {
+    "url": "https://www.figma.com/proto/8EExJVjnqfpva0gasuZAhA?node-id=4-2&starting-point-node-id=4%3A2",
+    "startingScreens": [
+      "S01",
+      "S13",
+      "S02",
+      "S05",
+      "S07",
+      "S09",
+      "S10",
+      "S19",
+      "S21",
+      "S20",
+      "S22",
+      "S23",
+      "S24"
+    ],
+    "linkedHotspots": 707,
+    "keyTransitions": [
+      {
+        "from": "S13",
+        "action": "New project",
+        "to": "S14"
+      },
+      {
+        "from": "S14",
+        "action": "Create project",
+        "to": "S27"
+      },
+      {
+        "from": "S02",
+        "action": "Audition with original",
+        "to": "S25"
+      },
+      {
+        "from": "S25",
+        "action": "Stop audition",
+        "to": "S02"
+      },
+      {
+        "from": "S02",
+        "action": "Accept selected",
+        "to": "S26"
+      },
+      {
+        "from": "S26",
+        "action": "Accept remaining 4",
+        "to": "S03"
+      },
+      {
+        "from": "S26",
+        "action": "Undo 4 notes",
+        "to": "S02"
+      },
+      {
+        "from": "S02",
+        "action": "Accept 8 notes",
+        "to": "S03"
+      },
+      {
+        "from": "S03",
+        "action": "Undo acceptance",
+        "to": "S02"
+      },
+      {
+        "from": "S20",
+        "action": "Refresh suggestion",
+        "to": "S02"
+      },
+      {
+        "from": "S05",
+        "action": "Stop and review",
+        "to": "S06"
+      },
+      {
+        "from": "S06",
+        "action": "Commit comp",
+        "to": "S01"
+      },
+      {
+        "from": "S07",
+        "action": "Queued next scene",
+        "to": "S28"
+      },
+      {
+        "from": "S11",
+        "action": "Export mix",
+        "to": "S12"
+      }
+    ],
+    "limitation": "Selected state transitions only. Export, audition, recording and generation are simulated by navigation; physical audio/video and arbitrary editing are not implemented."
+  },
+  "acceptanceTests": [
+    {
+      "id": "UI-T01",
+      "screens": [
+        "S13",
+        "S14",
+        "S27"
+      ],
+      "title": "First empty project",
+      "action": "Create a blank project from home.",
+      "expected": "Show no seeded notes, tracks or assets; choose a first action. No mandatory account/model download.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T02",
+      "screens": [
+        "S01",
+        "S22"
+      ],
+      "title": "Workspace continuity",
+      "action": "Select a region and change workspaces repeatedly.",
+      "expected": "Stable selection, musical time, history and viewport restoration; no second project loaded.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T03",
+      "screens": [
+        "S01",
+        "S22",
+        "S23"
+      ],
+      "title": "Theme and sizing",
+      "action": "Exercise 1600×1000 and 1280×832 in both themes.",
+      "expected": "No clipped actionable controls; secondary panels collapse; semantic fills and readable labels in both modes.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T04",
+      "screens": [
+        "S01",
+        "S22"
+      ],
+      "title": "Text zoom",
+      "action": "Use 200% text scaling with keyboard navigation.",
+      "expected": "Reflow or intentional scroll retains controls and focus; no whole-screen bitmap scaling.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T05",
+      "screens": [
+        "S04"
+      ],
+      "title": "Knob and fader",
+      "action": "Drag, fine-adjust, type values, press arrows, reset and undo.",
+      "expected": "Displayed units, handle, parameter and engine agree; values bounded; one drag produces one undo transaction.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T06",
+      "screens": [
+        "S01",
+        "S02"
+      ],
+      "title": "Command retry",
+      "action": "Replay the same edit commandId after a dropped acknowledgement.",
+      "expected": "No duplicate note/clip; reconcile the acknowledged revision.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T07",
+      "screens": [
+        "S01",
+        "S02"
+      ],
+      "title": "Native time mapping",
+      "action": "Test tempo changes, zooming, off-grid notes, loop edges and sample boundaries.",
+      "expected": "UI geometry maps through the shared native time contract, not independent JS timers.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T08",
+      "screens": [
+        "S01",
+        "S02"
+      ],
+      "title": "Keyboard and text",
+      "action": "Type a space, shortcuts and IME composition inside fields; then exit.",
+      "expected": "No unwanted transport start. Editor shortcuts resume only in the appropriate context.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T09",
+      "screens": [
+        "S15",
+        "S05"
+      ],
+      "title": "Input permission denial",
+      "action": "Deny microphone permission or remove the selected device.",
+      "expected": "Explain the blocker without a fake meter or recording state; allow configuration or a manual MIDI path.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T10",
+      "screens": [
+        "S05",
+        "S06"
+      ],
+      "title": "Record preservation",
+      "action": "Record, stop, review, cancel comp and reopen project.",
+      "expected": "Original take stays available; flush errors surfaced; review only after retained output is ready.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T11",
+      "screens": [
+        "S06"
+      ],
+      "title": "Nondestructive comp",
+      "action": "Choose three phrases from four takes, commit and undo.",
+      "expected": "Comp changes are reversible; source asset bytes remain unchanged.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T12",
+      "screens": [
+        "S02",
+        "S25"
+      ],
+      "title": "Ghost preview and audition",
+      "action": "Request notes, audition and stop without accepting.",
+      "expected": "No durable musical edit or auto-insert; preview bus stops cleanly and original remains unchanged.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T13",
+      "screens": [
+        "S02",
+        "S26",
+        "S03"
+      ],
+      "title": "Partial acceptance",
+      "action": "Accept four selected notes, then accept the remaining four.",
+      "expected": "Only selected IDs commit each time; two acknowledged transactions; ghosts separated from notes.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T14",
+      "screens": [
+        "S26",
+        "S02"
+      ],
+      "title": "Partial undo and discard",
+      "action": "Undo the last accepted subset; alternatively discard remaining ghosts.",
+      "expected": "Undo restores accepted subset only; discard never deletes already committed notes.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T15",
+      "screens": [
+        "S20"
+      ],
+      "title": "Stale response",
+      "action": "Change the song while the suggestion is generating.",
+      "expected": "Reject old expectedRevision; disable acceptance; refresh explicitly; no silent rebase.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T16",
+      "screens": [
+        "S02"
+      ],
+      "title": "Invalid output",
+      "action": "Return malformed notes, unknown IDs, out-of-range velocities or nonfinite time.",
+      "expected": "Typed validation refuses the proposal before engine mutation and preserves the project.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T17",
+      "screens": [
+        "S08"
+      ],
+      "title": "Gesture safety",
+      "action": "Draw with pointer capture, lose focus, cancel, reconnect and commit.",
+      "expected": "Held notes release on loss; preview discarded on cancel; committed notes remain editable.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T18",
+      "screens": [
+        "S08"
+      ],
+      "title": "Gesture alternatives",
+      "action": "Use piano roll/keyboard without camera or continuous movement.",
+      "expected": "Equivalent conventional composition remains available; camera consent is never forced.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T19",
+      "screens": [
+        "S10",
+        "S17"
+      ],
+      "title": "Generation failure",
+      "action": "Cancel, exhaust memory or kill a worker mid-job.",
+      "expected": "Song unchanged; job state accurate; partial assets quarantined/cleaned; no automatic cloud fallback.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T20",
+      "screens": [
+        "S10",
+        "S16"
+      ],
+      "title": "Asset acceptance",
+      "action": "Accept a generated result, move source folder and reopen.",
+      "expected": "Imported immutable asset has provenance and availability state; media not an ephemeral URL.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T21",
+      "screens": [
+        "S07",
+        "S28"
+      ],
+      "title": "Scene timing",
+      "action": "Queue a scene just before and just after a bar boundary.",
+      "expected": "Queued is visible until native launch; explicit sceneId/trackId membership; no prefix inference.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T22",
+      "screens": [
+        "S07"
+      ],
+      "title": "Live safety",
+      "action": "Trigger all-notes-off or stop all clips while optional workers are busy.",
+      "expected": "Native action remains responsive; state acknowledgement visible; no AI permission gate on panic.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T23",
+      "screens": [
+        "S09"
+      ],
+      "title": "Preview and program",
+      "action": "Open visuals and generate a candidate with an external display connected.",
+      "expected": "Output remains disarmed until explicit arm; preview never unexpectedly goes live.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T24",
+      "screens": [
+        "S09"
+      ],
+      "title": "Visual failure",
+      "action": "Kill renderer or overload GPU during playback.",
+      "expected": "Expose preview/output failure; native audio does not wait for frames; blackout/fallback is visible.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T25",
+      "screens": [
+        "S18"
+      ],
+      "title": "Missing plugin",
+      "action": "Reopen with an unavailable or quarantined plugin.",
+      "expected": "Saved state and routing retained; locate/replace/bypass explicit; no silent substitute.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T26",
+      "screens": [
+        "S19"
+      ],
+      "title": "Engine exit",
+      "action": "Terminate native engine or force a plugin crash on the in-process path.",
+      "expected": "UI says audio stopped, offers verified recovery and restarts stopped; no uninterrupted-audio claim.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T27",
+      "screens": [
+        "S21"
+      ],
+      "title": "Failed checkpoint",
+      "action": "Simulate no space, denied write or disappearing destination.",
+      "expected": "Keep unsaved edits and last good checkpoint; header does not show Saved until durable verification.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T28",
+      "screens": [
+        "S11",
+        "S12"
+      ],
+      "title": "Real export",
+      "action": "Export a known fixture, including tails, then compare bytes/sample properties.",
+      "expected": "Real render duration/format/channels correct; success only on verified file; no double dither.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T29",
+      "screens": [
+        "S11"
+      ],
+      "title": "Preflight failures",
+      "action": "Disconnect routing, remove an asset and disable a plugin.",
+      "expected": "Report actual missing dependencies and blocking conditions instead of hardcoded green checks.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T30",
+      "screens": [
+        "S01",
+        "S04"
+      ],
+      "title": "Memory and repaint",
+      "action": "Open large fixture, scroll/zoom and operate meters for a long session.",
+      "expected": "Bounded viewport subscriptions, peak-level-of-detail and cache eviction; no raw PCM/tensors in WebView state.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T31",
+      "screens": [
+        "S01",
+        "S19"
+      ],
+      "title": "Renderer reload",
+      "action": "Reload presentation while native playback/recording is active.",
+      "expected": "Test architecture behavior; engine never depends on a WebView timer; retain truthful health and reconciliation.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T32",
+      "screens": [
+        "S17"
+      ],
+      "title": "Least privilege",
+      "action": "Attempt worker path escape, unapproved upload and unauthorized device command.",
+      "expected": "Controller rejects requests; no ambient filesystem/network/camera rights; redact diagnostics.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T33",
+      "screens": [
+        "S01",
+        "S04",
+        "S08"
+      ],
+      "title": "Accessibility",
+      "action": "Screen-reader and keyboard-test controls, selection and errors.",
+      "expected": "Names, units, focus and noncolor state cues; grids expose manageable visible subsets and meaningful navigation.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T34",
+      "screens": [
+        "S24"
+      ],
+      "title": "Score mapping",
+      "action": "Change display quantization and map selection back to the piano roll.",
+      "expected": "Performance unchanged by engraving settings; stable note IDs; supported editing/export separately tested.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T35",
+      "screens": [
+        "S01",
+        "S04"
+      ],
+      "title": "Native plugin window",
+      "action": "Open, focus, resize and close a real VST3/AU editor on each supported OS.",
+      "expected": "No fake web editor; native window ownership and focus shortcuts verified.",
+      "status": "required-not-run"
+    },
+    {
+      "id": "UI-T36",
+      "screens": [
+        "S01",
+        "S17"
+      ],
+      "title": "Update inhibition",
+      "action": "Offer update during recording, performance or unsaved changes.",
+      "expected": "No forced restart, install interruption or lost work; exact update policy enforced.",
+      "status": "required-not-run"
+    }
+  ]
+}

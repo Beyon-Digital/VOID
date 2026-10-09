@@ -1,0 +1,200 @@
+<frame id="4:508" name="S06 / Comp / audition and commit" x="1840" y="1260" width="1600" height="1000">
+  <frame id="4:509" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:510" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:511" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:512" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:513" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:514" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+      <text id="4:515" name="Project · saved on this device" x="0" y="18" width="154" height="16" />
+    </frame>
+    <frame id="4:516" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:517" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:519" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:521" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:523" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:525" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:527" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:528" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:534" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:540" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:546" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:548" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:549" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:551" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:553" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:554" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:555" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:561" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:567" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:573" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:579" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:585" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:586" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:587" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:588" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:589" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:590" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:591" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:592" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:593" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:594" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:595" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:597" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:599" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="6:2252" name="Recording input" x="0" y="0" width="264" height="856">
+      <instance id="6:2253" name="VOID / StatusBadge" x="20" y="20" width="112" height="26" />
+      <text id="6:2255" name="Lead vocal" x="20" y="62" width="145" height="36" />
+      <text id="6:2256" name="Build the best performance." x="20" y="114" width="185" height="20" />
+      <frame id="6:2257" name="Divider" x="20" y="150" width="224" height="1" />
+      <frame id="6:2258" name="Input" x="20" y="167" width="224" height="30">
+        <text id="6:2259" name="Input" x="0" y="6.5" width="29" height="17" />
+        <frame id="6:2260" name="Flexible space" x="37" y="14.5" width="78" height="1" />
+        <text id="6:2261" name="Input 1 · mono" x="123" y="6" width="101" height="18" />
+      </frame>
+      <frame id="6:2262" name="Monitor" x="20" y="213" width="224" height="30">
+        <text id="6:2263" name="Monitor" x="0" y="6.5" width="44" height="17" />
+        <frame id="6:2264" name="Flexible space" x="52" y="14.5" width="149" height="1" />
+        <text id="6:2265" name="On" x="209" y="6" width="15" height="18" />
+      </frame>
+      <frame id="6:2266" name="Count-in" x="20" y="259" width="224" height="30">
+        <text id="6:2267" name="Count-in" x="0" y="6.5" width="50" height="17" />
+        <frame id="6:2268" name="Flexible space" x="58" y="14.5" width="122" height="1" />
+        <text id="6:2269" name="1 bar" x="188" y="6" width="36" height="18" />
+      </frame>
+      <frame id="6:2270" name="Cycle" x="20" y="305" width="224" height="30">
+        <text id="6:2271" name="Cycle" x="0" y="6.5" width="32" height="17" />
+        <frame id="6:2272" name="Flexible space" x="40" y="14.5" width="104" height="1" />
+        <text id="6:2273" name="Bars 17–25" x="152" y="6" width="72" height="18" />
+      </frame>
+      <instance id="6:2274" name="go/S15" x="20" y="351" width="224" height="36" />
+      <text id="6:2276" name="INPUT LEVEL" x="20" y="403" width="70" height="16" />
+      <frame id="6:2277" name="Input level meter" x="20" y="435" width="224" height="40" />
+      <text id="6:2302" name="−12.4 dBFS peak  ·  healthy level" x="20" y="491" width="170" height="16" />
+      <frame id="6:2303" name="Divider" x="20" y="523" width="224" height="1" />
+      <text id="6:2304" name="Every take is kept." x="20" y="540" width="115" height="18" />
+      <text id="6:2305" name="Recordings remain original assets. Comping chooses regions; it never rewrites your source." x="20" y="574" width="224" height="51" />
+      <frame id="6:2306" name="Flexible space" x="20" y="641" width="1" height="91" />
+      <instance id="6:2307" name="go/S01" x="20" y="748" width="224" height="36" />
+      <instance id="6:2309" name="go/S01" x="20" y="800" width="224" height="36" />
+    </frame>
+    <frame id="6:2311" name="Take workspace" x="264" y="0" width="1336" height="856">
+      <frame id="6:2312" name="Take tools" x="24" y="24" width="1288" height="60">
+        <frame id="6:2313" name="Take title" x="0" y="0" width="480" height="60">
+          <text id="6:2314" name="Take the best of every take." x="0" y="0" width="377" height="36" />
+          <text id="6:2315" name="Swipe the phrases you want. Audition the whole comp." x="0" y="40" width="312" height="17" />
+        </frame>
+        <frame id="6:2316" name="Flexible space" x="496" y="29.5" width="618" height="1" />
+        <instance id="6:2317" name="go/S06" x="1130" y="12" width="158" height="36" />
+      </frame>
+      <frame id="6:2319" name="Take ruler" x="24" y="100" width="1288" height="36">
+        <text id="6:2320" name="TAKES" x="8" y="10" width="35" height="16" />
+        <text id="6:2321" name="17" x="75" y="9" width="15" height="18" />
+        <frame id="6:2322" name="beat gap" x="122" y="17.5" width="50" height="1" />
+        <text id="6:2323" name="18" x="204" y="9" width="15" height="18" />
+        <frame id="6:2324" name="beat gap" x="251" y="17.5" width="50" height="1" />
+        <text id="6:2325" name="19" x="333" y="9" width="15" height="18" />
+        <frame id="6:2326" name="beat gap" x="380" y="17.5" width="50" height="1" />
+        <text id="6:2327" name="20" x="462" y="9" width="15" height="18" />
+        <frame id="6:2328" name="beat gap" x="509" y="17.5" width="50" height="1" />
+        <text id="6:2329" name="21" x="591" y="9" width="15" height="18" />
+        <frame id="6:2330" name="beat gap" x="638" y="17.5" width="50" height="1" />
+        <text id="6:2331" name="22" x="720" y="9" width="15" height="18" />
+        <frame id="6:2332" name="beat gap" x="767" y="17.5" width="50" height="1" />
+        <text id="6:2333" name="23" x="849" y="9" width="15" height="18" />
+        <frame id="6:2334" name="beat gap" x="896" y="17.5" width="50" height="1" />
+        <text id="6:2335" name="24" x="978" y="9" width="15" height="18" />
+        <frame id="6:2336" name="beat gap" x="1025" y="17.5" width="50" height="1" />
+        <text id="6:2337" name="25" x="1107" y="9" width="15" height="18" />
+        <frame id="6:2338" name="beat gap" x="1154" y="17.5" width="50" height="1" />
+      </frame>
+      <frame id="6:2339" name="Comp summary lane" x="24" y="152" width="1288" height="116">
+        <frame id="6:2340" name="Comp label" x="16" y="16" width="152" height="84">
+          <text id="6:2341" name="Comp A" x="0" y="0" width="50" height="18" />
+          <text id="6:2342" name="3 chosen phrases" x="0" y="26" width="94" height="16" />
+        </frame>
+        <frame id="6:2343" name="Comp regions" x="184" y="16" width="1088" height="84">
+          <frame id="6:2344" name="Editable waveform" x="0" y="0" width="1088" height="84">
+            <vector id="6:2345" name="Vector" x="2" y="4.4629130363464355" width="1080" height="75.07417297363281" />
+          </frame>
+          <rounded-rectangle id="6:2346" name="Chosen phrase" x="0" y="0" width="320" height="84" />
+          <rounded-rectangle id="6:2347" name="Chosen phrase" x="340" y="0" width="340" height="84" />
+          <rounded-rectangle id="6:2348" name="Chosen phrase" x="700" y="0" width="388" height="84" />
+        </frame>
+      </frame>
+      <frame id="6:2349" name="Take 1" x="24" y="284" width="1288" height="94">
+        <frame id="6:2350" name="Take metadata" x="12" y="15" width="156" height="64">
+          <text id="6:2351" name="Take 01" x="0" y="0" width="49" height="18" />
+          <text id="6:2352" name="Warm-up" x="0" y="26" width="53" height="17" />
+        </frame>
+        <frame id="6:2353" name="Audio waveform take 0" x="184" y="13" width="1088" height="68">
+          <frame id="6:2354" name="Editable waveform" x="0" y="0" width="1088" height="68">
+            <vector id="6:2355" name="Vector" x="2" y="3.6128344535827637" width="1080" height="60.77433395385742" />
+          </frame>
+          <rounded-rectangle id="6:2356" name="Selected comp region" x="0" y="0" width="320" height="68" />
+          <text id="6:2357" name="IN COMP" x="12" y="8" width="48" height="16" />
+        </frame>
+      </frame>
+      <frame id="6:2358" name="Take 2" x="24" y="394" width="1288" height="94">
+        <frame id="6:2359" name="Take metadata" x="12" y="15" width="156" height="64">
+          <text id="6:2360" name="Take 02" x="0" y="0" width="50" height="18" />
+          <text id="6:2361" name="Verse emphasis" x="0" y="26" width="90" height="17" />
+        </frame>
+        <frame id="6:2362" name="Audio waveform take 1" x="184" y="13" width="1088" height="68">
+          <frame id="6:2363" name="Editable waveform" x="0" y="0" width="1088" height="68">
+            <vector id="6:2364" name="Vector" x="2" y="3.6128344535827637" width="1080" height="60.77433395385742" />
+          </frame>
+          <rounded-rectangle id="6:2365" name="Selected comp region" x="340" y="0" width="340" height="68" />
+          <text id="6:2366" name="IN COMP" x="352" y="8" width="48" height="16" />
+        </frame>
+      </frame>
+      <frame id="6:2367" name="Take 3" x="24" y="504" width="1288" height="94">
+        <frame id="6:2368" name="Take metadata" x="12" y="15" width="156" height="64">
+          <text id="6:2369" name="Take 03" x="0" y="0" width="51" height="18" />
+          <text id="6:2370" name="Best ending" x="0" y="26" width="68" height="17" />
+        </frame>
+        <frame id="6:2371" name="Audio waveform take 2" x="184" y="13" width="1088" height="68">
+          <frame id="6:2372" name="Editable waveform" x="0" y="0" width="1088" height="68">
+            <vector id="6:2373" name="Vector" x="2" y="3.6128344535827637" width="1080" height="60.77433395385742" />
+          </frame>
+          <rounded-rectangle id="6:2374" name="Selected comp region" x="700" y="0" width="388" height="68" />
+          <text id="6:2375" name="IN COMP" x="712" y="8" width="48" height="16" />
+        </frame>
+      </frame>
+      <frame id="6:2376" name="Take 4" x="24" y="614" width="1288" height="94">
+        <frame id="6:2377" name="Take metadata" x="12" y="15" width="156" height="64">
+          <text id="6:2378" name="Take 04" x="0" y="0" width="51" height="18" />
+          <text id="6:2379" name="Alternate" x="0" y="26" width="52" height="17" />
+        </frame>
+        <frame id="6:2380" name="Audio waveform take 3" x="184" y="13" width="1088" height="68">
+          <frame id="6:2381" name="Editable waveform" x="0" y="0" width="1088" height="68">
+            <vector id="6:2382" name="Vector" x="2" y="3.437596559524536" width="1080" height="61.12480545043945" />
+          </frame>
+        </frame>
+      </frame>
+      <frame id="6:2383" name="Comp behavior" x="24" y="724" width="1288" height="60">
+        <instance id="6:2384" name="VOID / StatusBadge" x="0" y="17" width="148" height="26" />
+        <text id="6:2386" name="One comp edit. One undo. All four original takes remain available." x="164" y="21.5" width="368" height="17" />
+        <frame id="6:2387" name="Flexible space" x="548" y="29.5" width="560" height="1" />
+        <instance id="6:2388" name="go/S01" x="1124" y="12" width="164" height="36" />
+      </frame>
+    </frame>
+  </frame>
+  <frame id="4:600" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:601" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:602" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:603" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:604" name="Flexible space" x="342" y="13.5" width="958" height="1" />
+    <text id="4:605" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="4:606" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:607" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

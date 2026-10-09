@@ -1,0 +1,96 @@
+{
+ "schema": "ui-components/1",
+ "components": [
+  {
+   "name": "ActionButton",
+   "variants": 7,
+   "status": "not_started",
+   "lane": null,
+   "evidence": null
+  },
+  {
+   "name": "WorkspaceTab",
+   "variants": 2,
+   "status": "not_started",
+   "lane": null,
+   "evidence": null
+  },
+  {
+   "name": "StatusBadge",
+   "variants": 6,
+   "status": "not_started",
+   "lane": null,
+   "evidence": null
+  },
+  {
+   "name": "Field",
+   "variants": 4,
+   "status": "not_started",
+   "lane": null,
+   "evidence": null
+  },
+  {
+   "name": "TrackHeader",
+   "variants": 6,
+   "status": "not_started",
+   "lane": null,
+   "evidence": null
+  },
+  {
+   "name": "TimelineClip",
+   "variants": 4,
+   "status": "not_started",
+   "lane": null,
+   "evidence": null
+  },
+  {
+   "name": "ParameterKnob",
+   "variants": 2,
+   "status": "not_started",
+   "lane": null,
+   "evidence": null
+  },
+  {
+   "name": "ChannelFader",
+   "variants": 10,
+   "status": "not_started",
+   "lane": null,
+   "evidence": null
+  },
+  {
+   "name": "DeviceSlot",
+   "variants": 3,
+   "status": "not_started",
+   "lane": null,
+   "evidence": null
+  },
+  {
+   "name": "AssetRow",
+   "variants": 2,
+   "status": "not_started",
+   "lane": null,
+   "evidence": null
+  },
+  {
+   "name": "SceneCell",
+   "variants": 4,
+   "status": "not_started",
+   "lane": null,
+   "evidence": null
+  },
+  {
+   "name": "Toast",
+   "variants": 3,
+   "status": "not_started",
+   "lane": null,
+   "evidence": null
+  },
+  {
+   "name": "IconButton",
+   "variants": 4,
+   "status": "not_started",
+   "lane": null,
+   "evidence": null
+  }
+ ]
+}

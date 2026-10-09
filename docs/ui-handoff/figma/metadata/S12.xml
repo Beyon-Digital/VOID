@@ -1,0 +1,87 @@
+<frame id="4:1108" name="S12 / Export / completed" x="5360" y="2440" width="1600" height="1000">
+  <frame id="4:1109" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:1110" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:1111" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:1112" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:1113" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:1114" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+      <text id="4:1115" name="Project · saved on this device" x="0" y="18" width="154" height="16" />
+    </frame>
+    <frame id="4:1116" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:1117" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:1119" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:1121" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:1123" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:1125" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:1127" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:1128" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:1134" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:1140" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:1146" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:1148" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:1149" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:1151" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:1153" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:1154" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:1155" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:1161" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:1167" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:1173" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:1179" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:1185" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:1186" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:1187" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:1188" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:1189" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:1190" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:1191" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:1192" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:1193" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:1194" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:1195" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:1197" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:1199" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="9:1940" name="Export layout" x="0" y="0" width="1600" height="856">
+      <frame id="9:1941" name="Export success" x="40" y="40" width="1520" height="776">
+        <instance id="9:1942" name="VOID / StatusBadge" x="48" y="48" width="176" height="26" />
+        <text id="9:1944" name="Ready for the next set of ears." x="48" y="98" width="710" height="56" />
+        <text id="9:1945" name="Your files were written successfully. The editable project remains on this device." x="48" y="178" width="1200" height="20" />
+        <frame id="9:1946" name="Exported file" x="48" y="222" width="1424" height="130">
+          <frame id="9:1947" name="File wave artwork" x="24" y="24" width="120" height="82">
+            <frame id="9:1948" name="Editable preview waveform" x="0" y="0" width="120" height="82" />
+          </frame>
+          <frame id="9:1950" name="File information" x="168" y="24" width="930" height="82">
+            <text id="9:1951" name="Midnight circuit — Mix.wav" x="0" y="0" width="259" height="28" />
+            <text id="9:1952" name="WAV · 24-bit PCM · 48 kHz · stereo · full arrangement" x="0" y="40" width="301" height="17" />
+          </frame>
+          <instance id="9:1953" name="VOID / StatusBadge" x="1122" y="52" width="112" height="26" />
+        </frame>
+        <frame id="9:1955" name="Export next actions" x="48" y="376" width="1424" height="48">
+          <instance id="9:1956" name="go/S01" x="0" y="6" width="180" height="36" />
+          <instance id="9:1958" name="go/S11" x="196" y="6" width="232" height="36" />
+        </frame>
+        <text id="9:1960" name="In the app: reveal the output folder, audition the bounce, or export stems from the same revision." x="48" y="448" width="1424" height="17" />
+        <frame id="9:1961" name="Flexible space" x="48" y="489" width="1" height="199" />
+        <text id="9:1962" name="Prototype state. No audio file is generated by this Figma interaction." x="48" y="712" width="358" height="16" />
+      </frame>
+    </frame>
+  </frame>
+  <frame id="4:1200" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:1201" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:1202" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:1203" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:1204" name="Flexible space" x="342" y="13.5" width="958" height="1" />
+    <text id="4:1205" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="4:1206" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:1207" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

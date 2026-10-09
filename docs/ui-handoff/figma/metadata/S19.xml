@@ -1,0 +1,112 @@
+<frame id="4:1808" name="S19 / Recovery / engine stopped" x="3600" y="4800" width="1600" height="1000">
+  <frame id="4:1809" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:1810" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:1811" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:1812" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:1813" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:1814" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+      <text id="4:1815" name="Project · saved on this device" x="0" y="18" width="154" height="16" />
+    </frame>
+    <frame id="4:1816" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:1817" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:1819" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:1821" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:1823" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:1825" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:1827" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:1828" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:1834" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:1840" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:1846" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:1848" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:1849" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:1851" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:1853" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:1854" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:1855" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:1861" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:1867" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:1873" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:1879" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:1885" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:1886" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:1887" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:1888" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:1889" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:1890" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:1891" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:1892" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:1893" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:1894" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:1895" name="go/S19" x="1351" y="19" width="114" height="26" />
+    <instance id="4:1897" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:1899" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="10:1980" name="engine recovery layout" x="0" y="0" width="1600" height="856">
+      <frame id="10:1981" name="engine issue panel" x="40" y="40" width="952" height="776">
+        <instance id="10:1982" name="VOID / StatusBadge" x="36" y="36" width="166" height="26" />
+        <text id="10:1984" name="Your session is safe.
+Playback has stopped." x="36" y="86" width="528" height="112" />
+        <text id="10:1985" name="The audio engine exited. VOID did not keep playing, and it will not restart the transport automatically." x="36" y="222" width="880" height="20" />
+        <frame id="10:1986" name="Preserved state" x="36" y="266" width="880" height="166">
+          <frame id="10:1987" name="Last verified checkpoint" x="20" y="20" width="840" height="30">
+            <text id="10:1988" name="Last verified checkpoint" x="0" y="6.5" width="136" height="17" />
+            <frame id="10:1989" name="Flexible space" x="148" y="14.5" width="456" height="1" />
+            <text id="10:1990" name="Midnight circuit · revision 128" x="616" y="6" width="224" height="18" />
+          </frame>
+          <frame id="10:1991" name="Recovery" x="20" y="62" width="840" height="30">
+            <text id="10:1992" name="Recovery" x="0" y="6.5" width="53" height="17" />
+            <frame id="10:1993" name="Flexible space" x="65" y="14.5" width="547" height="1" />
+            <text id="10:1994" name="Unsaved edit journal available" x="624" y="6" width="216" height="18" />
+          </frame>
+          <frame id="10:1995" name="Recording" x="20" y="104" width="840" height="30">
+            <text id="10:1996" name="Recording" x="0" y="6.5" width="58" height="17" />
+            <frame id="10:1997" name="Flexible space" x="70" y="14.5" width="563" height="1" />
+            <text id="10:1998" name="Recovered take needs review" x="645" y="6" width="195" height="18" />
+          </frame>
+        </frame>
+        <frame id="10:1999" name="Flexible space" x="36" y="456" width="1" height="171" />
+        <frame id="10:2000" name="Recovery actions" x="36" y="651" width="880" height="48">
+          <instance id="10:2001" name="go/S01" x="0" y="6" width="292" height="36" />
+          <instance id="10:2003" name="go/S06" x="308" y="6" width="228" height="36" />
+        </frame>
+        <text id="10:2005" name="A scanner subprocess is not runtime plugin isolation. Restart returns stopped." x="36" y="723" width="880" height="17" />
+      </frame>
+      <frame id="10:2006" name="Recovery details" x="1032" y="40" width="528" height="776">
+        <text id="10:2007" name="Recover, then listen." x="24" y="24" width="480" height="36" />
+        <frame id="10:2008" name="Recovery step 0" x="24" y="84" width="480" height="134">
+          <text id="10:2009" name="01 / Restart stopped" x="20" y="20" width="128" height="18" />
+          <text id="10:2010" name="Start a clean engine without auto-playing the song." x="20" y="50" width="440" height="20" />
+        </frame>
+        <frame id="10:2011" name="Recovery step 1" x="24" y="242" width="480" height="134">
+          <text id="10:2012" name="02 / Verify the checkpoint" x="20" y="20" width="163" height="18" />
+          <text id="10:2013" name="Check assets, track count and recovered recording." x="20" y="50" width="440" height="20" />
+        </frame>
+        <frame id="10:2014" name="Recovery step 2" x="24" y="400" width="480" height="134">
+          <text id="10:2015" name="03 / Re-enable carefully" x="20" y="20" width="151" height="18" />
+          <text id="10:2016" name="Load quarantined plugins only after explicit review." x="20" y="50" width="440" height="20" />
+        </frame>
+        <frame id="10:2017" name="Flexible space" x="24" y="558" width="1" height="93" />
+        <instance id="10:2018" name="go/S15" x="24" y="675" width="248" height="36" />
+        <text id="10:2020" name="Diagnostic exports must redact private paths, keys and content." x="24" y="735" width="480" height="17" />
+      </frame>
+    </frame>
+  </frame>
+  <frame id="4:1900" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:1901" name="go/S19" x="4" y="6" width="77" height="16" />
+    <text id="4:1902" name="48 kHz · 128 samples" x="97" y="5" width="144" height="18" />
+    <text id="4:1903" name="CPU 18%" x="257" y="5" width="51" height="18" />
+    <frame id="4:1904" name="Flexible space" x="324" y="13.5" width="976" height="1" />
+    <text id="4:1905" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="4:1906" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:1907" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

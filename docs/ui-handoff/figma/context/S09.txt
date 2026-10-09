@@ -1,0 +1,615 @@
+const assetPathPrefix = "https://www.figma.com/api/mcp/asset/b8fd4388-6e57-49d4-b9a8-86a1a33b2de3";
+const imgKnobArc = `${assetPathPrefix}/f588c.svg`;
+const imgFrame = `${assetPathPrefix}/28382.svg`;
+const imgFrame1 = `${assetPathPrefix}/77813.svg`;
+const imgFrame2 = `${assetPathPrefix}/3c383.svg`;
+const imgFrame3 = `${assetPathPrefix}/7d05d.svg`;
+const imgFrame4 = `${assetPathPrefix}/ada1c.svg`;
+const imgFrame5 = `${assetPathPrefix}/53899.svg`;
+const imgFrame6 = `${assetPathPrefix}/0cc0d.svg`;
+const imgFrame7 = `${assetPathPrefix}/1630b.svg`;
+const imgReactiveOrbit0 = `${assetPathPrefix}/4e0cb.svg`;
+const imgReactiveOrbit1 = `${assetPathPrefix}/04ceb.svg`;
+const imgReactiveOrbit2 = `${assetPathPrefix}/55abb.svg`;
+const imgReactiveOrbit3 = `${assetPathPrefix}/6db4c.svg`;
+const imgReactiveOrbit4 = `${assetPathPrefix}/d659e.svg`;
+const imgReactiveOrbit5 = `${assetPathPrefix}/a43b0.svg`;
+const imgReactiveOrbit6 = `${assetPathPrefix}/a368d.svg`;
+const imgReactiveOrbit7 = `${assetPathPrefix}/dab3b.svg`;
+const imgReactiveOrbit8 = `${assetPathPrefix}/f5874.svg`;
+const imgReactiveOrbit9 = `${assetPathPrefix}/60c1b.svg`;
+const imgReactiveOrbit10 = `${assetPathPrefix}/bf951.svg`;
+const imgReactiveOrbit11 = `${assetPathPrefix}/8fa89.svg`;
+const imgReactiveOrbit12 = `${assetPathPrefix}/545cd.svg`;
+const imgReactiveOrbit13 = `${assetPathPrefix}/fa461.svg`;
+const imgReactiveOrbit14 = `${assetPathPrefix}/ec347.svg`;
+const imgReactiveOrbit15 = `${assetPathPrefix}/e8cc4.svg`;
+
+type VoidActionButtonProps = {
+  className?: string;
+  label?: string;
+  variant?: "Primary" | "Secondary" | "Quiet" | "Danger";
+};
+
+function VoidActionButton({ className, label = "Action", variant = "Primary" }: VoidActionButtonProps) {
+  const isDanger = variant === "Danger";
+  const isQuiet = variant === "Quiet";
+  const isSecondary = variant === "Secondary";
+  return (
+    <div className={className || `content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] w-[136px] ${isDanger ? "bg-[var(--void-danger-soft,#422728)]" : isQuiet ? "" : isSecondary ? "bg-[var(--void-raised,#23262a)] border border-[var(--void-line,#353a40)] border-solid" : "bg-[var(--void-accent,#d8fc71)]"}`} id={isDanger ? "node-2_109" : isQuiet ? "node-2_107" : isSecondary ? "node-2_105" : "node-2_103"}>
+      {["Secondary", "Quiet"].includes(variant) && (
+        <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#f0f2eb)] whitespace-nowrap" data-node-id="2:106">
+          {label}
+        </p>
+      )}
+      {variant === "Primary" && (
+        <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-on-accent,#172004)] whitespace-nowrap" data-node-id="2:104">
+          {label}
+        </p>
+      )}
+      {isDanger && (
+        <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-danger,#ff918c)] whitespace-nowrap" data-node-id="2:110">
+          {label}
+        </p>
+      )}
+    </div>
+  );
+}
+
+type VoidParameterKnobProps = {
+  className?: string;
+  label?: string;
+  value?: string;
+  variant?: "Default";
+};
+
+function VoidParameterKnob({ className, label = "Cutoff", value = "2.4 kHz", variant = "Default" }: VoidParameterKnobProps) {
+  return (
+    <div className={className || "content-stretch flex flex-col gap-[var(--void-space-8,8px)] h-[106px] items-center justify-center relative w-[80px]"} data-node-id="2:235">
+      <div className="relative shrink-0 size-[48px]" data-node-id="2:236" data-name="Knob arc">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgKnobArc} />
+      </div>
+      <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-text,#f0f2eb)] whitespace-nowrap" data-node-id="2:238">
+        {label}
+      </p>
+      <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="2:239">
+        {value}
+      </p>
+    </div>
+  );
+}
+
+type VoidStatusBadgeProps = {
+  className?: string;
+  label?: string;
+  variant?: "Quiet" | "AI";
+};
+
+function VoidStatusBadge({ className, label = "Ready", variant = "Quiet" }: VoidStatusBadgeProps) {
+  const isAi = variant === "AI";
+  return (
+    <div className={className || `content-stretch flex h-[26px] items-center justify-center relative rounded-[var(--void-radius-4,4px)] w-[104px] ${isAi ? "bg-[var(--void-violet-soft,#322943)]" : "bg-[var(--void-raised,#23262a)]"}`} id={isAi ? "node-2_129" : "node-2_123"}>
+      {variant === "Quiet" && (
+        <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="2:124">
+          {label}
+        </p>
+      )}
+      {isAi && (
+        <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-violet,#c4b0fb)] whitespace-nowrap" data-node-id="2:130">
+          {label}
+        </p>
+      )}
+    </div>
+  );
+}
+
+type VoidAssetRowProps = {
+  className?: string;
+  detail?: string;
+  title?: string;
+  variant?: "Default" | "Selected";
+};
+
+function VoidAssetRow({ className, detail = "Instrument · installed", title = "Velvet keys", variant = "Default" }: VoidAssetRowProps) {
+  const isSelected = variant === "Selected";
+  return (
+    <div className={className || `content-stretch flex flex-col gap-[var(--void-space-4,4px)] h-[56px] items-start pt-[var(--void-space-8,8px)] px-[var(--void-space-12,12px)] relative rounded-[var(--void-radius-8,8px)] w-[212px] ${isSelected ? "bg-[var(--void-raised,#23262a)]" : ""}`} id={isSelected ? "node-2_280" : "node-2_277"}>
+      <p className="leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#f0f2eb)]" data-node-id="2:278">
+        {title}
+      </p>
+      <p className="leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#adb4b9)]" data-node-id="2:279">
+        {detail}
+      </p>
+    </div>
+  );
+}
+
+type VoidFieldProps = {
+  className?: string;
+  label?: string;
+  variant?: "Default";
+};
+
+function VoidField({ className, label = "Search sounds…", variant = "Default" }: VoidFieldProps) {
+  return (
+    <div className={className || "bg-[var(--void-bg,#111214)] border border-[var(--void-line,#353a40)] border-solid content-stretch flex h-[40px] items-center px-[var(--void-space-12,12px)] relative rounded-[var(--void-radius-8,8px)] w-[240px]"} data-node-id="2:136">
+      <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="2:137">
+        {label}
+      </p>
+    </div>
+  );
+}
+
+function VoidIconPlay({ className }: { className?: string }) {
+  return (
+    <div className={className || "relative size-[20px]"} data-node-id="3:71" data-name="VOID / Icon / play">
+      <div className="absolute left-0 size-[20px] top-0" data-node-id="3:72" data-name="Frame">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame} />
+      </div>
+    </div>
+  );
+}
+
+type VoidWorkspaceTabProps = {
+  className?: string;
+  label?: string;
+  variant?: "Active" | "Idle";
+};
+
+function VoidWorkspaceTab({ className, label = "Arrange", variant = "Active" }: VoidWorkspaceTabProps) {
+  const isIdle = variant === "Idle";
+  return (
+    <div className={className || `content-stretch flex h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] w-[94px] ${isIdle ? "" : "bg-[var(--void-raised,#23262a)]"}`} id={isIdle ? "node-2_120" : "node-2_118"}>
+      {variant === "Active" && (
+        <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-text,#f0f2eb)] whitespace-nowrap" data-node-id="2:119">
+          {label}
+        </p>
+      )}
+      {isIdle && (
+        <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="2:121">
+          {label}
+        </p>
+      )}
+    </div>
+  );
+}
+
+export default function S09VisualsPreviewAndProgram() {
+  return (
+    <div className="bg-[var(--void-bg,#111214)] content-stretch flex flex-col gap-[var(--void-space-0,0px)] items-start p-[var(--void-space-0,0px)] relative size-full" data-node-id="4:808" data-name="S09 / Visuals / preview and program">
+      <div className="bg-[var(--void-surface,#191b1e)] content-stretch flex gap-[var(--void-space-12,12px)] h-[52px] items-center overflow-clip p-[var(--void-space-12,12px)] relative shrink-0 w-[1600px]" data-node-id="4:809" data-name="StudioHeader">
+        <a className="[word-break:break-word] content-stretch cursor-pointer flex gap-[var(--void-space-4,4px)] h-[28px] items-center leading-[28px] overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 text-[20px] text-left w-[88px] whitespace-nowrap" data-node-id="4:810" data-name="go/S13">
+          <p className="font-['Space_Grotesk:Bold'] font-bold relative shrink-0 text-[color:var(--void-text,#f0f2eb)] tracking-[1.6px]" data-node-id="4:811">
+            VOID
+          </p>
+          <p className="font-['Space_Grotesk:Medium'] font-medium relative shrink-0 text-[color:var(--void-accent,#d8fc71)]" data-node-id="4:812">
+            /
+          </p>
+        </a>
+        <a className="[word-break:break-word] content-stretch cursor-pointer flex flex-col gap-[var(--void-space-0,0px)] h-[36px] items-start not-italic overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 text-left w-[258px] whitespace-nowrap" data-node-id="4:813" data-name="go/S13">
+          <p className="font-['Inter:Semi_Bold'] font-semibold leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#f0f2eb)]" data-node-id="4:814">
+            Midnight circuit
+          </p>
+          <p className="font-['Inter:Medium'] font-medium leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#adb4b9)]" data-node-id="4:815">
+            Project · saved on this device
+          </p>
+        </a>
+        <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[502px]" data-node-id="4:816" data-name="Workspace navigation">
+          <VoidWorkspaceTab className="content-stretch cursor-pointer flex h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[94px]" variant="Idle" />
+          <VoidWorkspaceTab className="content-stretch cursor-pointer flex h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[94px]" label="Compose" variant="Idle" />
+          <VoidWorkspaceTab className="content-stretch cursor-pointer flex h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[94px]" label="Mix" variant="Idle" />
+          <VoidWorkspaceTab className="content-stretch cursor-pointer flex h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[94px]" label="Perform" variant="Idle" />
+          <VoidWorkspaceTab className="bg-[var(--void-raised,#23262a)] content-stretch flex h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[94px]" label="Visuals" />
+        </div>
+        <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="4:827" data-name="Flexible space" />
+        <a className="bg-[var(--void-raised,#23262a)] content-stretch cursor-pointer flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:828" data-name="go/S16">
+          <div className="relative shrink-0 size-[20px]" data-node-id="I4:828;3:141" data-name="Icon">
+            <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:828;3:141;3:87" data-name="Frame">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame1} />
+            </div>
+          </div>
+        </a>
+        <a className="bg-[var(--void-raised,#23262a)] content-stretch cursor-pointer flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:834" data-name="go/S17">
+          <div className="relative shrink-0 size-[20px]" data-node-id="I4:834;3:141" data-name="Icon">
+            <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:834;3:141;3:138" data-name="Frame">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame2} />
+            </div>
+          </div>
+        </a>
+        <a className="bg-[var(--void-raised,#23262a)] content-stretch cursor-pointer flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:840" data-name="go/S15">
+          <div className="relative shrink-0 size-[20px]" data-node-id="I4:840;3:141" data-name="Icon">
+            <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:840;3:141;3:102" data-name="Frame">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame3} />
+            </div>
+          </div>
+        </a>
+        <VoidActionButton className="bg-[var(--void-accent,#d8fc71)] content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[100px]" label="Export" />
+      </div>
+      <div className="bg-[var(--void-surface,#191b1e)] border border-[var(--void-line,#353a40)] border-solid content-stretch flex gap-[var(--void-space-12,12px)] h-[64px] items-center overflow-clip p-[var(--void-space-12,12px)] relative shrink-0 w-[1600px]" data-node-id="4:848" data-name="TransportBar">
+        <VoidActionButton className="content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[94px]" label="Library" variant="Quiet" />
+        <VoidActionButton className="content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[72px]" label="Undo" variant="Quiet" />
+        <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="4:853" data-name="Flexible space" />
+        <div className="content-stretch flex gap-[var(--void-space-8,8px)] h-[40px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[220px]" data-node-id="4:854" data-name="Transport controls">
+          <div className="bg-[var(--void-raised,#23262a)] content-stretch flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:855" data-name="control/back">
+            <div className="relative shrink-0 size-[20px]" data-node-id="I4:855;3:141" data-name="Icon">
+              <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:855;3:141;3:84" data-name="Frame">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame4} />
+              </div>
+            </div>
+          </div>
+          <a className="bg-[var(--void-raised,#23262a)] content-stretch cursor-pointer flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:861" data-name="go/S01">
+            <div className="relative shrink-0 size-[20px]" data-node-id="I4:861;3:141" data-name="Icon">
+              <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:861;3:141;3:75" data-name="Frame">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame5} />
+              </div>
+            </div>
+          </a>
+          <div className="bg-[var(--void-raised,#23262a)] content-stretch flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:867" data-name="control/play">
+            <VoidIconPlay className="relative shrink-0 size-[20px]" />
+          </div>
+          <a className="bg-[var(--void-danger-soft,#422728)] content-stretch cursor-pointer flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:873" data-name="go/S05">
+            <div className="relative shrink-0 size-[20px]" data-node-id="I4:873;3:149" data-name="Icon">
+              <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:873;3:149;3:78" data-name="Frame">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame6} />
+              </div>
+            </div>
+          </a>
+          <div className="bg-[var(--void-accent-soft,#29331b)] content-stretch flex items-center justify-center relative rounded-[8px] shrink-0 size-[36px]" data-node-id="4:879" data-name="control/loop">
+            <div className="relative shrink-0 size-[20px]" data-node-id="I4:879;3:145" data-name="Icon">
+              <div className="absolute left-0 size-[20px] top-0" data-node-id="I4:879;3:145;3:81" data-name="Frame">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgFrame7} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="[word-break:break-word] content-stretch flex flex-col gap-[var(--void-space-0,0px)] h-[48px] items-start not-italic overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[180px]" data-node-id="4:885" data-name="Musical position">
+          <p className="font-['IBM_Plex_Mono:Medium'] leading-[32px] relative shrink-0 text-[24px] text-[color:var(--void-text,#f0f2eb)] whitespace-nowrap" data-node-id="4:886">
+            09.01.001
+          </p>
+          <p className="font-['Inter:Medium'] font-medium leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-subtle,#7f8990)] whitespace-pre" data-node-id="4:887">{`BARS   BEATS   TICKS`}</p>
+        </div>
+        <div className="[word-break:break-word] content-stretch flex flex-col gap-[var(--void-space-0,0px)] h-[42px] items-start not-italic overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[84px] whitespace-nowrap" data-node-id="4:888" data-name="Tempo">
+          <p className="font-['Inter:Semi_Bold'] font-semibold leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#f0f2eb)]" data-node-id="4:889">
+            118.0
+          </p>
+          <p className="font-['Inter:Medium'] font-medium leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#adb4b9)]" data-node-id="4:890">
+            BPM
+          </p>
+        </div>
+        <div className="[word-break:break-word] content-stretch flex flex-col gap-[var(--void-space-0,0px)] h-[42px] items-start not-italic overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[90px] whitespace-nowrap" data-node-id="4:891" data-name="Key and meter">
+          <p className="font-['Inter:Semi_Bold'] font-semibold leading-[18px] relative shrink-0 text-[13px] text-[color:var(--void-text,#f0f2eb)]" data-node-id="4:892">
+            A minor
+          </p>
+          <p className="font-['Inter:Medium'] font-medium leading-[16px] relative shrink-0 text-[11px] text-[color:var(--void-muted,#adb4b9)]" data-node-id="4:893">
+            4 / 4
+          </p>
+        </div>
+        <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="4:894" data-name="Flexible space" />
+        <VoidStatusBadge className="bg-[var(--void-raised,#23262a)] content-stretch flex h-[26px] items-center justify-center relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[114px]" label="Cycle 9–17" />
+        <VoidActionButton className="content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[110px]" label="Metronome" variant="Quiet" />
+      </div>
+      <div className="bg-[var(--void-bg,#111214)] content-stretch flex gap-[var(--void-space-0,0px)] h-[856px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1600px]" data-node-id="4:899" data-name="Body">
+        <div className="bg-[var(--void-surface,#191b1e)] content-stretch flex flex-col gap-[var(--void-space-16,16px)] h-[856px] items-start overflow-clip p-[var(--void-space-16,16px)] relative shrink-0 w-[224px]" data-node-id="10:1762" data-name="Visual layer library">
+          <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1763">
+            VISUAL ASSETS
+          </p>
+          <VoidField className="bg-[var(--void-bg,#111214)] border border-[var(--void-line,#353a40)] border-solid content-stretch flex h-[40px] items-center px-[var(--void-space-12,12px)] relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[192px]" label="Find visuals…" />
+          <VoidAssetRow className="[word-break:break-word] bg-[var(--void-raised,#23262a)] content-stretch flex flex-col font-['Inter:Medium'] font-medium gap-[var(--void-space-4,4px)] h-[56px] items-start not-italic pt-[var(--void-space-8,8px)] px-[var(--void-space-12,12px)] relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[192px] whitespace-nowrap" detail="Procedural · local" title="Orbit" variant="Selected" />
+          <VoidAssetRow className="[word-break:break-word] content-stretch flex flex-col font-['Inter:Medium'] font-medium gap-[var(--void-space-4,4px)] h-[56px] items-start not-italic pt-[var(--void-space-8,8px)] px-[var(--void-space-12,12px)] relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[192px] whitespace-nowrap" detail="Static texture · imported" title="Film grain" />
+          <VoidAssetRow className="[word-break:break-word] content-stretch flex flex-col font-['Inter:Medium'] font-medium gap-[var(--void-space-4,4px)] h-[56px] items-start not-italic pt-[var(--void-space-8,8px)] px-[var(--void-space-12,12px)] relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[192px] whitespace-nowrap" detail="Video · imported" title="Night window" />
+          <VoidAssetRow className="[word-break:break-word] content-stretch flex flex-col font-['Inter:Medium'] font-medium gap-[var(--void-space-4,4px)] h-[56px] items-start not-italic pt-[var(--void-space-8,8px)] px-[var(--void-space-12,12px)] relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[192px] whitespace-nowrap" detail="Generated · accepted" title="Halo gradient" />
+          <div className="bg-[var(--void-line,#353a40)] h-px relative shrink-0 w-[192px]" data-node-id="10:1778" data-name="Divider" />
+          <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-subtle,#7f8990)] whitespace-nowrap" data-node-id="10:1779">
+            LAYERS
+          </p>
+          <VoidActionButton className="bg-[var(--void-raised,#23262a)] border border-[var(--void-line,#353a40)] border-solid content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[192px]" label="01  Orbit" variant="Secondary" />
+          <VoidActionButton className="content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[192px]" label="02  Film grain" variant="Quiet" />
+          <VoidActionButton className="content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[192px]" label="03  Background" variant="Quiet" />
+          <div className="flex-[1_0_0] min-h-px relative w-px" data-node-id="10:1786" data-name="Flexible space" />
+          <VoidActionButton className="bg-[var(--void-raised,#23262a)] border border-[var(--void-line,#353a40)] border-solid content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[192px]" label="Import visual" variant="Secondary" />
+          <VoidActionButton className="content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[192px]" label="Back to song" variant="Quiet" />
+        </div>
+        <div className="bg-[var(--void-bg,#111214)] content-stretch flex flex-col gap-[var(--void-space-16,16px)] h-[856px] items-start overflow-clip p-[var(--void-space-20,20px)] relative shrink-0 w-[1056px]" data-node-id="10:1791" data-name="Visual studio">
+          <div className="content-stretch flex gap-[var(--void-space-12,12px)] h-[52px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1016px]" data-node-id="10:1792" data-name="Visual title">
+            <p className="[word-break:break-word] font-['Space_Grotesk:Bold'] font-bold leading-[36px] relative shrink-0 text-[28px] text-[color:var(--void-text,#f0f2eb)] whitespace-nowrap" data-node-id="10:1793">
+              Make the sound visible.
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="10:1794" data-name="Flexible space" />
+            <VoidStatusBadge className="bg-[var(--void-violet-soft,#322943)] content-stretch flex h-[26px] items-center justify-center relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[100px]" label="Preview" variant="AI" />
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-16,16px)] h-[416px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1016px]" data-node-id="10:1797" data-name="Preview and program">
+            <div className="bg-[var(--void-ink,#111214)] h-[416px] overflow-clip relative shrink-0 w-[728px]" data-node-id="10:1798" data-name="Orbit / original editable visual composition">
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1799" data-name="Reactive orbit 0">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit0} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1801" data-name="Reactive orbit 1">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit1} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1803" data-name="Reactive orbit 2">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit2} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1805" data-name="Reactive orbit 3">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit3} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1807" data-name="Reactive orbit 4">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit4} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1809" data-name="Reactive orbit 5">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit5} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1811" data-name="Reactive orbit 6">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit6} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1813" data-name="Reactive orbit 7">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit7} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1815" data-name="Reactive orbit 8">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit8} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1817" data-name="Reactive orbit 9">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit9} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1819" data-name="Reactive orbit 10">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit10} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1821" data-name="Reactive orbit 11">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit11} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1823" data-name="Reactive orbit 12">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit12} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1825" data-name="Reactive orbit 13">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit13} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1827" data-name="Reactive orbit 14">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit14} />
+              </div>
+              <div className="absolute h-[416px] left-0 top-0 w-[728px]" data-node-id="10:1829" data-name="Reactive orbit 15">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgReactiveOrbit15} />
+              </div>
+              <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[20px] not-italic text-[11px] text-[color:var(--void-muted,#adb4b9)] top-[386px] whitespace-nowrap" data-node-id="10:1831">
+                ORBIT / 02
+              </p>
+            </div>
+            <div className="bg-[var(--void-surface,#191b1e)] content-stretch flex flex-col gap-[var(--void-space-16,16px)] h-[416px] items-start overflow-clip p-[var(--void-space-16,16px)] relative shrink-0 w-[272px]" data-node-id="10:1832" data-name="Program monitor">
+              <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1833">
+                PROGRAM
+              </p>
+              <div className="bg-[var(--void-ink,#111214)] h-[156px] overflow-clip relative shrink-0 w-[240px]" data-node-id="10:1834" data-name="Program black output">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[40px] not-italic text-[11px] text-[color:var(--void-muted,#adb4b9)] top-[68px] whitespace-nowrap" data-node-id="10:1835">
+                  OUTPUT DISARMED
+                </p>
+              </div>
+              <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#adb4b9)] w-[240px]" data-node-id="10:1836">
+                Nothing is sent to a display until you arm an output.
+              </p>
+              <VoidActionButton className="bg-[var(--void-raised,#23262a)] border border-[var(--void-line,#353a40)] border-solid content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[240px]" label="Choose display" variant="Secondary" />
+              <VoidActionButton className="bg-[var(--void-raised,#23262a)] border border-[var(--void-line,#353a40)] border-solid content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[240px]" label="Arm output" variant="Secondary" />
+              <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-subtle,#7f8990)] w-[240px]" data-node-id="10:1841">
+                Rehearse in preview first.
+              </p>
+            </div>
+          </div>
+          <div className="bg-[var(--void-surface,#191b1e)] content-stretch flex flex-col gap-[var(--void-space-8,8px)] h-[220px] items-start overflow-clip p-[var(--void-space-12,12px)] relative shrink-0 w-[1016px]" data-node-id="10:1842" data-name="Visual timeline">
+            <div className="content-stretch flex gap-[var(--void-space-16,16px)] h-[28px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[992px]" data-node-id="10:1843" data-name="Visual ruler">
+              <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1844">
+                LAYERS
+              </p>
+              <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="10:1845" data-name="Flexible space" />
+              <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-subtle,#7f8990)] whitespace-pre" data-node-id="10:1846">{`1          5          9          13          17          21          25`}</p>
+            </div>
+            <div className="content-stretch flex gap-[var(--void-space-12,12px)] h-[46px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[992px]" data-node-id="10:1847" data-name="Orbit">
+              <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1848">
+                Orbit
+              </p>
+              <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="10:1849" data-name="Flexible space" />
+              <div className="bg-[var(--void-violet-soft,#322943)] border border-[var(--void-violet,#c4b0fb)] border-solid h-[40px] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[168px]" data-node-id="10:1850" data-name="VOID / TimelineClip">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#c4b0fb)] top-[6px] whitespace-nowrap" data-node-id="I10:1850;2:223">
+                  Orbit / 1
+                </p>
+              </div>
+              <div className="bg-[var(--void-violet-soft,#322943)] border border-[var(--void-violet,#c4b0fb)] border-solid h-[40px] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[168px]" data-node-id="10:1854" data-name="VOID / TimelineClip">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#c4b0fb)] top-[6px] whitespace-nowrap" data-node-id="I10:1854;2:223">
+                  Orbit / 5
+                </p>
+              </div>
+              <div className="bg-[var(--void-violet-soft,#322943)] border border-[var(--void-violet,#c4b0fb)] border-solid h-[40px] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[336px]" data-node-id="10:1858" data-name="VOID / TimelineClip">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#c4b0fb)] top-[6px] whitespace-nowrap" data-node-id="I10:1858;2:223">
+                  Orbit / 9
+                </p>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[var(--void-space-12,12px)] h-[46px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[992px]" data-node-id="10:1862" data-name="Film grain">
+              <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1863">
+                Film grain
+              </p>
+              <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="10:1864" data-name="Flexible space" />
+              <div className="bg-[var(--void-blue-soft,#203443)] border border-[var(--void-blue,#9bcdf4)] border-solid h-[40px] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[672px]" data-node-id="10:1865" data-name="VOID / TimelineClip">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#c4b0fb)] top-[6px] whitespace-nowrap" data-node-id="I10:1865;2:223">
+                  Film grain / 1
+                </p>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[var(--void-space-12,12px)] h-[46px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[992px]" data-node-id="10:1869" data-name="Background">
+              <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1870">
+                Background
+              </p>
+              <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="10:1871" data-name="Flexible space" />
+              <div className="bg-[var(--void-mint-soft,#1e352b)] border border-[var(--void-mint,#8ed9b3)] border-solid h-[40px] relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[672px]" data-node-id="10:1872" data-name="VOID / TimelineClip">
+                <p className="[word-break:break-word] absolute font-['Inter:Medium'] font-medium leading-[16px] left-[9px] not-italic text-[11px] text-[color:var(--void-violet,#c4b0fb)] top-[6px] whitespace-nowrap" data-node-id="I10:1872;2:223">
+                  Background / 1
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-16,16px)] h-[56px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[1016px]" data-node-id="10:1876" data-name="Visual output controls">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1877">
+              Audio clock → visual frames. Never the other way around.
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="10:1878" data-name="Flexible space" />
+            <VoidActionButton className="bg-[var(--void-accent,#d8fc71)] content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[214px]" label="Export audio + visuals" />
+          </div>
+        </div>
+        <div className="bg-[var(--void-surface,#191b1e)] content-stretch flex flex-col gap-[var(--void-space-12,12px)] h-[856px] items-start overflow-clip p-[var(--void-space-20,20px)] relative shrink-0 w-[320px]" data-node-id="10:1881" data-name="Visual inspector">
+          <VoidStatusBadge className="bg-[var(--void-violet-soft,#322943)] content-stretch flex h-[26px] items-center justify-center relative rounded-[var(--void-radius-4,4px)] shrink-0 w-[144px]" label="PROCEDURAL" variant="AI" />
+          <p className="[word-break:break-word] font-['Space_Grotesk:Bold'] font-bold leading-[36px] relative shrink-0 text-[28px] text-[color:var(--void-text,#f0f2eb)] whitespace-nowrap" data-node-id="10:1884">
+            Orbit
+          </p>
+          <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1885">
+            Layer 01 · selected
+          </p>
+          <div className="content-stretch flex gap-[var(--void-space-12,12px)] h-[30px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[280px]" data-node-id="10:1886" data-name="Blend">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1887">
+              Blend
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="10:1888" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#f0f2eb)] whitespace-nowrap" data-node-id="10:1889">
+              Screen
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-12,12px)] h-[30px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[280px]" data-node-id="10:1890" data-name="Opacity">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1891">
+              Opacity
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="10:1892" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#f0f2eb)] whitespace-nowrap" data-node-id="10:1893">
+              82%
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-12,12px)] h-[30px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[280px]" data-node-id="10:1894" data-name="Beat sync">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1895">
+              Beat sync
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="10:1896" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#f0f2eb)] whitespace-nowrap" data-node-id="10:1897">
+              1/4
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-12,12px)] h-[106px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[280px]" data-node-id="10:1898" data-name="Visual parameters">
+            <VoidParameterKnob className="content-stretch flex flex-col gap-[var(--void-space-8,8px)] h-[106px] items-center justify-center relative shrink-0 w-[80px]" label="Scale" value="64%" />
+            <VoidParameterKnob className="content-stretch flex flex-col gap-[var(--void-space-8,8px)] h-[106px] items-center justify-center relative shrink-0 w-[80px]" label="Motion" value="28%" />
+            <VoidParameterKnob className="content-stretch flex flex-col gap-[var(--void-space-8,8px)] h-[106px] items-center justify-center relative shrink-0 w-[80px]" label="Glow" value="42%" />
+          </div>
+          <div className="bg-[var(--void-line,#353a40)] h-px relative shrink-0 w-[280px]" data-node-id="10:1914" data-name="Divider" />
+          <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-subtle,#7f8990)] whitespace-nowrap" data-node-id="10:1915">
+            AUDIO REACTIVITY
+          </p>
+          <div className="content-stretch flex gap-[var(--void-space-12,12px)] h-[30px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[280px]" data-node-id="10:1916" data-name="Source">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1917">
+              Source
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="10:1918" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#f0f2eb)] whitespace-nowrap" data-node-id="10:1919">
+              Music bus
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-12,12px)] h-[30px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[280px]" data-node-id="10:1920" data-name="Band">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1921">
+              Band
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="10:1922" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#f0f2eb)] whitespace-nowrap" data-node-id="10:1923">
+              Low / bass
+            </p>
+          </div>
+          <div className="content-stretch flex gap-[var(--void-space-12,12px)] h-[30px] items-center overflow-clip p-[var(--void-space-0,0px)] relative shrink-0 w-[280px]" data-node-id="10:1924" data-name="Amount">
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="10:1925">
+              Amount
+            </p>
+            <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="10:1926" data-name="Flexible space" />
+            <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-text,#f0f2eb)] whitespace-nowrap" data-node-id="10:1927">
+              24%
+            </p>
+          </div>
+          <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#adb4b9)] w-[280px]" data-node-id="10:1928">
+            Bounded analysis follows the native engine. Late frames never hold a musical cue.
+          </p>
+          <div className="flex-[1_0_0] min-h-px relative w-px" data-node-id="10:1929" data-name="Flexible space" />
+          <div className="bg-[var(--void-violet-soft,#322943)] content-stretch flex flex-col gap-[var(--void-space-12,12px)] h-[162px] items-start overflow-clip p-[var(--void-space-16,16px)] relative shrink-0 w-[280px]" data-node-id="10:1930" data-name="Generate a visual asset">
+            <p className="[word-break:break-word] font-['Inter:Semi_Bold'] font-semibold leading-[18px] not-italic relative shrink-0 text-[13px] text-[color:var(--void-violet,#c4b0fb)] whitespace-nowrap" data-node-id="10:1931">
+              Create a visual asset
+            </p>
+            <p className="[word-break:break-word] font-['Inter:Regular'] font-normal leading-[17px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#adb4b9)] w-[248px]" data-node-id="10:1932">
+              “Soft ink clouds, slow motion, no hard cuts.”
+            </p>
+            <VoidActionButton className="bg-[var(--void-raised,#23262a)] border border-[var(--void-line,#353a40)] border-solid content-stretch cursor-pointer flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[248px]" label="Generate preview" variant="Secondary" />
+          </div>
+          <VoidActionButton className="bg-[var(--void-danger-soft,#422728)] content-stretch flex gap-[var(--void-space-8,8px)] h-[36px] items-center justify-center relative rounded-[var(--void-radius-8,8px)] shrink-0 w-[280px]" label="Blackout output" variant="Danger" />
+        </div>
+      </div>
+      <div className="bg-[var(--void-surface,#191b1e)] content-stretch flex gap-[var(--void-space-16,16px)] h-[28px] items-center overflow-clip p-[var(--void-space-4,4px)] relative shrink-0 w-[1600px]" data-node-id="4:900" data-name="HealthBar">
+        <a className="[word-break:break-word] block cursor-pointer font-['Inter:Medium'] font-medium leading-[0] not-italic relative shrink-0 text-[11px] text-[color:var(--void-mint,#8ed9b3)] whitespace-nowrap" data-node-id="4:901">
+          <p className="leading-[16px]">Engine connected</p>
+        </a>
+        <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="4:902">
+          48 kHz · 128 samples
+        </p>
+        <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[18px] not-italic relative shrink-0 text-[12px] text-[color:var(--void-subtle,#7f8990)] whitespace-nowrap" data-node-id="4:903">
+          CPU 18%
+        </p>
+        <div className="flex-[1_0_0] h-px min-w-px relative" data-node-id="4:904" data-name="Flexible space" />
+        <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="4:905">
+          Saved locally
+        </p>
+        <a className="[word-break:break-word] block cursor-pointer font-['Inter:Medium'] font-medium leading-[0] not-italic relative shrink-0 text-[11px] text-[color:var(--void-muted,#adb4b9)] whitespace-nowrap" data-node-id="4:906">
+          <p className="leading-[16px]">2 background jobs</p>
+        </a>
+        <p className="[word-break:break-word] font-['Inter:Medium'] font-medium leading-[16px] not-italic relative shrink-0 text-[11px] text-[color:var(--void-subtle,#7f8990)] whitespace-nowrap" data-node-id="4:907">
+          Design preview
+        </p>
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: VOID / title: Font(family: "Space Grotesk", style: Medium, size: 20, weight: 500, lineHeight: 28, letterSpacing: 0), VOID / strong: Font(family: "Inter", style: Semi Bold, size: 13, weight: 600, lineHeight: 18, letterSpacing: 0), VOID / micro: Font(family: "Inter", style: Medium, size: 11, weight: 500, lineHeight: 16, letterSpacing: 0), VOID / time: Font(family: "IBM Plex Mono", style: Medium, size: 24, weight: 500, lineHeight: 32, letterSpacing: 0), VOID / label: Font(family: "Inter", style: Medium, size: 13, weight: 500, lineHeight: 18, letterSpacing: 0), VOID / heading: Font(family: "Space Grotesk", style: Bold, size: 28, weight: 700, lineHeight: 36, letterSpacing: 0), VOID / small: Font(family: "Inter", style: Regular, size: 12, weight: 400, lineHeight: 17, letterSpacing: 0), VOID / numeric: Font(family: "IBM Plex Mono", style: Regular, size: 12, weight: 400, lineHeight: 18, letterSpacing: 0).
+Component descriptions: The following components have usage descriptions or documentation links defined in Figma. These descriptions provide important context about the intended usage, best practices, and any constraints for each component. Follow these guidelines when implementing or using these components.
+
+## VOID / WorkspaceTab
+**Node ID:** 2:122
+
+Reusable WorkspaceTab. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / IconButton
+**Node ID:** 3:156
+
+36 px dense desktop icon button. Accessible label and shortcut required; performance targets use 48 px. Swap icon, do not duplicate variants for each glyph.
+
+## VOID / ActionButton
+**Node ID:** 2:117
+
+Reusable ActionButton. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / StatusBadge
+**Node ID:** 2:135
+
+Reusable StatusBadge. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / Field
+**Node ID:** 2:144
+
+Reusable Field. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / AssetRow
+**Node ID:** 2:283
+
+Reusable AssetRow. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / TimelineClip
+**Node ID:** 2:234
+
+Reusable TimelineClip. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+
+## VOID / ParameterKnob
+**Node ID:** 2:245
+
+Reusable ParameterKnob. Bind all production instances to canonical tokens. Keyboard and acknowledged-state behavior are specified in the handoff.
+Images and SVGs will be stored as constants, e.g. const image = `${assetPathPrefix}/<asset file name>`, where assetPathPrefix is declared once at the top of the code and every asset URL interpolates it. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.
+[Image: image/png, 142516 base64 chars]

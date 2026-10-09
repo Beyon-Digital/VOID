@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:void:ui-design-map:1.0.0",
+  "title": "VOID UI design map",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "version",
+    "figma",
+    "foundations",
+    "screens",
+    "componentInventory",
+    "validation"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "version": {
+      "type": "string"
+    },
+    "figma": {
+      "type": "object",
+      "required": [
+        "fileKey",
+        "designUrl",
+        "prototypeUrl"
+      ],
+      "properties": {
+        "fileKey": {
+          "const": "8EExJVjnqfpva0gasuZAhA"
+        },
+        "designUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "prototypeUrl": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "screens": {
+      "type": "array",
+      "minItems": 28,
+      "maxItems": 28,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "figmaNodeId",
+          "codePath",
+          "status",
+          "phase",
+          "testRefs"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^S[0-9]{2}$"
+          },
+          "figmaNodeId": {
+            "type": "string",
+            "pattern": "^[0-9]+:[0-9]+$"
+          },
+          "status": {
+            "const": "designed"
+          },
+          "phase": {
+            "enum": [
+              "F0",
+              "F1",
+              "F2",
+              "F3",
+              "F4",
+              "F5"
+            ]
+          },
+          "testRefs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^UI-T[0-9]{2}$"
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

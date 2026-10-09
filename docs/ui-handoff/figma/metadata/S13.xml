@@ -1,0 +1,201 @@
+<frame id="4:1208" name="S13 / Projects / start here" x="80" y="3620" width="1600" height="1000">
+  <frame id="4:1209" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:1210" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:1211" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:1212" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:1213" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:1214" name="Your studio" x="0" y="0" width="72" height="18" />
+      <text id="4:1215" name="Local first. Yours by default." x="0" y="18" width="147" height="16" />
+    </frame>
+    <frame id="4:1216" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:1217" name="disabled/no-project" x="0" y="0" width="94" height="36" />
+      <instance id="4:1219" name="disabled/no-project" x="102" y="0" width="94" height="36" />
+      <instance id="4:1221" name="disabled/no-project" x="204" y="0" width="94" height="36" />
+      <instance id="4:1223" name="disabled/no-project" x="306" y="0" width="94" height="36" />
+      <instance id="4:1225" name="disabled/no-project" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:1227" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:1228" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:1234" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:1240" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:1246" name="disabled/no-project" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:1248" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:1249" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:1251" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:1253" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:1254" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:1255" name="disabled/transport" x="0" y="2" width="36" height="36" />
+      <instance id="4:1261" name="disabled/transport" x="44" y="2" width="36" height="36" />
+      <instance id="4:1267" name="disabled/transport" x="88" y="2" width="36" height="36" />
+      <instance id="4:1273" name="disabled/transport" x="132" y="2" width="36" height="36" />
+      <instance id="4:1279" name="disabled/transport" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:1285" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:1286" name="09.01.001" x="0" y="0" width="101" height="32" />
+      <text id="4:1287" name="BARS   BEATS   TICKS" x="0" y="32" width="104" height="16" />
+    </frame>
+    <frame id="4:1288" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:1289" name="118.0" x="0" y="0" width="13" height="18" />
+      <text id="4:1290" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:1291" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:1292" name="A minor" x="0" y="0" width="13" height="18" />
+      <text id="4:1293" name="4 / 4" x="0" y="18" width="11" height="16" />
+    </frame>
+    <frame id="4:1294" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:1295" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:1297" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:1299" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="8:1650" name="Project navigation" x="0" y="0" width="232" height="856">
+      <text id="8:1651" name="YOUR STUDIO" x="24" y="24" width="76" height="16" />
+      <instance id="8:1652" name="go/S13" x="24" y="56" width="184" height="36" />
+      <instance id="8:1654" name="go/S13" x="24" y="108" width="184" height="36" />
+      <instance id="8:1656" name="go/S16" x="24" y="160" width="184" height="36" />
+      <instance id="8:1658" name="go/S16" x="24" y="212" width="184" height="36" />
+      <instance id="8:1660" name="go/S17" x="24" y="264" width="184" height="36" />
+      <frame id="8:1662" name="Flexible space" x="24" y="316" width="1" height="372" />
+      <instance id="8:1663" name="VOID / StatusBadge" x="24" y="704" width="180" height="26" />
+      <text id="8:1665" name="Create offline. Add models only when you need them." x="24" y="746" width="184" height="34" />
+      <instance id="8:1666" name="go/S15" x="24" y="796" width="184" height="36" />
+    </frame>
+    <frame id="8:1668" name="Project home" x="232" y="0" width="1368" height="856">
+      <frame id="8:1669" name="Welcome" x="40" y="40" width="1288" height="322">
+        <frame id="8:1670" name="Welcome copy" x="0" y="0" width="700" height="322">
+          <text id="8:1671" name="A LITTLE SPACE. A NEW SOUND." x="0" y="0" width="173" height="16" />
+          <text id="8:1672" name="Make room for
+the next idea." x="0" y="32" width="335" height="112" />
+          <text id="8:1673" name="Start with a recording, a sound, or a blank canvas.
+Your studio is ready." x="0" y="160" width="640" height="40" />
+          <frame id="8:1674" name="Start actions" x="0" y="216" width="640" height="44">
+            <instance id="8:1675" name="go/S14" x="0" y="4" width="170" height="36" />
+            <instance id="8:1677" name="go/S01" x="182" y="4" width="154" height="36" />
+          </frame>
+        </frame>
+        <frame id="8:1679" name="Signal / original vector artwork" x="732" y="0" width="556" height="322">
+          <frame id="8:1680" name="Signal ribbon 0" x="0" y="0" width="556" height="322">
+            <vector id="8:1681" name="Vector" x="20" y="25.493980407714844" width="522" height="135.07125854492188" />
+          </frame>
+          <frame id="8:1682" name="Signal ribbon 1" x="0" y="0" width="556" height="322">
+            <vector id="8:1683" name="Vector" x="20" y="35.52675247192383" width="522" height="126.48091888427734" />
+          </frame>
+          <frame id="8:1684" name="Signal ribbon 2" x="0" y="0" width="556" height="322">
+            <vector id="8:1685" name="Vector" x="20" y="45.55952072143555" width="522" height="118.6947250366211" />
+          </frame>
+          <frame id="8:1686" name="Signal ribbon 3" x="0" y="0" width="556" height="322">
+            <vector id="8:1687" name="Vector" x="20" y="55.592288970947266" width="522" height="111.51799774169922" />
+          </frame>
+          <frame id="8:1688" name="Signal ribbon 4" x="0" y="0" width="556" height="322">
+            <vector id="8:1689" name="Vector" x="20" y="65.62505340576172" width="522" height="104.88883209228516" />
+          </frame>
+          <frame id="8:1690" name="Signal ribbon 5" x="0" y="0" width="556" height="322">
+            <vector id="8:1691" name="Vector" x="20" y="75.6578140258789" width="522" height="98.755615234375" />
+          </frame>
+          <frame id="8:1692" name="Signal ribbon 6" x="0" y="0" width="556" height="322">
+            <vector id="8:1693" name="Vector" x="20" y="85.6905746459961" width="522" height="93.07254791259766" />
+          </frame>
+          <frame id="8:1694" name="Signal ribbon 7" x="0" y="0" width="556" height="322">
+            <vector id="8:1695" name="Vector" x="20" y="95.72332763671875" width="522" height="87.79890441894531" />
+          </frame>
+          <frame id="8:1696" name="Signal ribbon 8" x="0" y="0" width="556" height="322">
+            <vector id="8:1697" name="Vector" x="20" y="105.7560806274414" width="522" height="82.89836120605469" />
+          </frame>
+          <frame id="8:1698" name="Signal ribbon 9" x="0" y="0" width="556" height="322">
+            <vector id="8:1699" name="Vector" x="20" y="115.78882598876953" width="522" height="78.33844757080078" />
+          </frame>
+          <frame id="8:1700" name="Signal ribbon 10" x="0" y="0" width="556" height="322">
+            <vector id="8:1701" name="Vector" x="20" y="125.82157135009766" width="522" height="74.09008026123047" />
+          </frame>
+          <frame id="8:1702" name="Signal ribbon 11" x="0" y="0" width="556" height="322">
+            <vector id="8:1703" name="Vector" x="20" y="135.85430908203125" width="522" height="70.12713623046875" />
+          </frame>
+          <frame id="8:1704" name="Signal ribbon 12" x="0" y="0" width="556" height="322">
+            <vector id="8:1705" name="Vector" x="20" y="145.88705444335938" width="522" height="66.42611694335938" />
+          </frame>
+          <frame id="8:1706" name="Signal ribbon 13" x="0" y="0" width="556" height="322">
+            <vector id="8:1707" name="Vector" x="20" y="151.75230407714844" width="522" height="67.1333236694336" />
+          </frame>
+          <frame id="8:1708" name="Signal ribbon 14" x="0" y="0" width="556" height="322">
+            <vector id="8:1709" name="Vector" x="20" y="150.88043212890625" width="522" height="74.79925537109375" />
+          </frame>
+          <frame id="8:1710" name="Signal ribbon 15" x="0" y="0" width="556" height="322">
+            <vector id="8:1711" name="Vector" x="20" y="149.8154754638672" width="522" height="82.8625259399414" />
+          </frame>
+          <frame id="8:1712" name="Signal ribbon 16" x="0" y="0" width="556" height="322">
+            <vector id="8:1713" name="Vector" x="20" y="148.563232421875" width="522" height="91.3016586303711" />
+          </frame>
+          <frame id="8:1714" name="Signal ribbon 17" x="0" y="0" width="556" height="322">
+            <vector id="8:1715" name="Vector" x="20" y="147.1294403076172" width="522" height="100.09664916992188" />
+          </frame>
+          <frame id="8:1716" name="Signal ribbon 18" x="0" y="0" width="556" height="322">
+            <vector id="8:1717" name="Vector" x="20" y="145.52130126953125" width="522" height="109.22728729248047" />
+          </frame>
+          <frame id="8:1718" name="Signal ribbon 19" x="0" y="0" width="556" height="322">
+            <vector id="8:1719" name="Vector" x="20" y="143.74864196777344" width="522" height="118.67195129394531" />
+          </frame>
+          <frame id="8:1720" name="Signal ribbon 20" x="0" y="0" width="556" height="322">
+            <vector id="8:1721" name="Vector" x="20" y="141.82461547851562" width="522" height="128.4066925048828" />
+          </frame>
+          <frame id="8:1722" name="Signal ribbon 21" x="0" y="0" width="556" height="322">
+            <vector id="8:1723" name="Vector" x="20" y="139.7661895751953" width="522" height="138.40464782714844" />
+          </frame>
+          <text id="8:1724" name="SIGNAL 001 / MIDNIGHT CIRCUIT" x="24" y="288" width="176" height="16" />
+        </frame>
+      </frame>
+      <frame id="8:1725" name="Recent heading" x="40" y="386" width="1288" height="32">
+        <text id="8:1726" name="Pick up where you left off." x="0" y="2" width="252" height="28" />
+        <frame id="8:1727" name="Flexible space" x="264" y="15.5" width="900" height="1" />
+        <instance id="8:1728" name="go/S13" x="1176" y="-2" width="112" height="36" />
+      </frame>
+      <frame id="8:1730" name="go/S01" x="40" y="442" width="1288" height="92">
+        <frame id="8:1731" name="Project artwork" x="20" y="20" width="52" height="52">
+          <frame id="8:1732" name="Editable preview waveform" x="0" y="0" width="52" height="52" />
+        </frame>
+        <frame id="8:1734" name="Project title" x="92" y="20" width="770" height="52">
+          <text id="8:1735" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+          <text id="8:1736" name="118 BPM  ·  A minor  ·  6 tracks  ·  edited just now" x="0" y="26" width="275" height="17" />
+        </frame>
+        <frame id="8:1737" name="Flexible space" x="882" y="45.5" width="120" height="1" />
+        <instance id="8:1738" name="VOID / StatusBadge" x="1022" y="33" width="130" height="26" />
+        <instance id="8:1740" name="go/S01" x="1172" y="28" width="96" height="36" />
+      </frame>
+      <frame id="8:1742" name="go/S01" x="40" y="558" width="1288" height="92">
+        <frame id="8:1743" name="Project artwork" x="20" y="20" width="52" height="52">
+          <frame id="8:1744" name="Editable preview waveform" x="0" y="0" width="52" height="52" />
+        </frame>
+        <frame id="8:1746" name="Project title" x="92" y="20" width="770" height="52">
+          <text id="8:1747" name="Soft landing" x="0" y="0" width="76" height="18" />
+          <text id="8:1748" name="86 BPM  ·  D major  ·  12 tracks  ·  yesterday" x="0" y="26" width="246" height="17" />
+        </frame>
+        <frame id="8:1749" name="Flexible space" x="882" y="45.5" width="120" height="1" />
+        <instance id="8:1750" name="VOID / StatusBadge" x="1022" y="33" width="130" height="26" />
+        <instance id="8:1752" name="go/S01" x="1172" y="28" width="96" height="36" />
+      </frame>
+      <frame id="8:1754" name="go/S01" x="40" y="674" width="1288" height="92">
+        <frame id="8:1755" name="Project artwork" x="20" y="20" width="52" height="52">
+          <frame id="8:1756" name="Editable preview waveform" x="0" y="0" width="52" height="52" />
+        </frame>
+        <frame id="8:1758" name="Project title" x="92" y="20" width="770" height="52">
+          <text id="8:1759" name="Live set / warehouse" x="0" y="0" width="130" height="18" />
+          <text id="8:1760" name="126 BPM  ·  8 scenes  ·  rehearsal" x="0" y="26" width="187" height="17" />
+        </frame>
+        <frame id="8:1761" name="Flexible space" x="882" y="45.5" width="120" height="1" />
+        <instance id="8:1762" name="VOID / StatusBadge" x="1022" y="33" width="130" height="26" />
+        <instance id="8:1764" name="go/S01" x="1172" y="28" width="96" height="36" />
+      </frame>
+      <text id="8:1766" name="Recent projects are local to this device. Cloud sync is not required or enabled." x="40" y="790" width="409" height="16" />
+    </frame>
+  </frame>
+  <frame id="4:1300" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:1301" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:1302" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:1303" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:1304" name="Flexible space" x="342" y="13.5" width="942" height="1" />
+    <text id="4:1305" name="Saved locally" x="1300" y="6" width="85" height="16" />
+    <text id="4:1306" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:1307" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.

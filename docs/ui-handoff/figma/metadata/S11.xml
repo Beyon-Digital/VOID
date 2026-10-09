@@ -1,0 +1,126 @@
+<frame id="4:1008" name="S11 / Export / delivery check" x="3600" y="2440" width="1600" height="1000">
+  <frame id="4:1009" name="StudioHeader" x="0" y="0" width="1600" height="52">
+    <frame id="4:1010" name="go/S13" x="12" y="12" width="88" height="28">
+      <text id="4:1011" name="VOID" x="0" y="0" width="49" height="28" />
+      <text id="4:1012" name="/" x="53" y="0" width="8" height="28" />
+    </frame>
+    <frame id="4:1013" name="go/S13" x="112" y="8" width="258" height="36">
+      <text id="4:1014" name="Midnight circuit" x="0" y="0" width="99" height="18" />
+      <text id="4:1015" name="Project · saved on this device" x="0" y="18" width="154" height="16" />
+    </frame>
+    <frame id="4:1016" name="Workspace navigation" x="382" y="8" width="502" height="36">
+      <instance id="4:1017" name="go/S01" x="0" y="0" width="94" height="36" />
+      <instance id="4:1019" name="go/S02" x="102" y="0" width="94" height="36" />
+      <instance id="4:1021" name="go/S04" x="204" y="0" width="94" height="36" />
+      <instance id="4:1023" name="go/S07" x="306" y="0" width="94" height="36" />
+      <instance id="4:1025" name="go/S09" x="408" y="0" width="94" height="36" />
+    </frame>
+    <frame id="4:1027" name="Flexible space" x="896" y="25.5" width="436" height="1" />
+    <instance id="4:1028" name="go/S16" x="1344" y="8" width="36" height="36" />
+    <instance id="4:1034" name="go/S17" x="1392" y="8" width="36" height="36" />
+    <instance id="4:1040" name="go/S15" x="1440" y="8" width="36" height="36" />
+    <instance id="4:1046" name="go/S11" x="1488" y="8" width="100" height="36" />
+  </frame>
+  <frame id="4:1048" name="TransportBar" x="0" y="52" width="1600" height="64">
+    <instance id="4:1049" name="go/S16" x="13" y="14" width="94" height="36" />
+    <instance id="4:1051" name="VOID / ActionButton" x="119" y="14" width="72" height="36" />
+    <frame id="4:1053" name="Flexible space" x="203" y="31.5" width="251" height="1" />
+    <frame id="4:1054" name="Transport controls" x="466" y="12" width="220" height="40">
+      <instance id="4:1055" name="control/back" x="0" y="2" width="36" height="36" />
+      <instance id="4:1061" name="go/S01" x="44" y="2" width="36" height="36" />
+      <instance id="4:1067" name="control/play" x="88" y="2" width="36" height="36" />
+      <instance id="4:1073" name="go/S05" x="132" y="2" width="36" height="36" />
+      <instance id="4:1079" name="control/loop" x="176" y="2" width="36" height="36" />
+    </frame>
+    <frame id="4:1085" name="Musical position" x="698" y="8" width="180" height="48">
+      <text id="4:1086" name="09.01.001" x="0" y="0" width="130" height="32" />
+      <text id="4:1087" name="BARS   BEATS   TICKS" x="0" y="32" width="114" height="16" />
+    </frame>
+    <frame id="4:1088" name="Tempo" x="890" y="11" width="84" height="42">
+      <text id="4:1089" name="118.0" x="0" y="0" width="33" height="18" />
+      <text id="4:1090" name="BPM" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:1091" name="Key and meter" x="986" y="11" width="90" height="42">
+      <text id="4:1092" name="A minor" x="0" y="0" width="49" height="18" />
+      <text id="4:1093" name="4 / 4" x="0" y="18" width="25" height="16" />
+    </frame>
+    <frame id="4:1094" name="Flexible space" x="1088" y="31.5" width="251" height="1" />
+    <instance id="4:1095" name="VOID / StatusBadge" x="1351" y="19" width="114" height="26" />
+    <instance id="4:1097" name="VOID / ActionButton" x="1477" y="14" width="110" height="36" />
+  </frame>
+  <frame id="4:1099" name="Body" x="0" y="116" width="1600" height="856">
+    <frame id="9:1880" name="Export layout" x="0" y="0" width="1600" height="856">
+      <frame id="9:1881" name="Export settings" x="40" y="40" width="940" height="776">
+        <frame id="9:1882" name="Section heading" x="28" y="28" width="884" height="82">
+          <text id="9:1883" name="Finish the way you intended." x="0" y="0" width="391" height="36" />
+          <text id="9:1884" name="Export from a fixed project revision. Keep editing in the project after the bounce." x="0" y="44" width="884" height="20" />
+        </frame>
+        <frame id="9:1885" name="Export types" x="28" y="130" width="884" height="40">
+          <instance id="9:1886" name="VOID / ActionButton" x="0" y="2" width="172" height="36" />
+          <instance id="9:1888" name="VOID / ActionButton" x="184" y="2" width="172" height="36" />
+          <instance id="9:1890" name="VOID / ActionButton" x="368" y="2" width="172" height="36" />
+        </frame>
+        <frame id="9:1892" name="Export form" x="28" y="190" width="884" height="302">
+          <frame id="9:1893" name="Audio settings" x="0" y="0" width="428" height="302">
+            <text id="9:1894" name="Format" x="0" y="0" width="45" height="18" />
+            <instance id="9:1895" name="VOID / Field" x="0" y="30" width="428" height="40" />
+            <text id="9:1897" name="Sample rate / depth" x="0" y="82" width="124" height="18" />
+            <instance id="9:1898" name="VOID / Field" x="0" y="112" width="428" height="40" />
+            <text id="9:1900" name="Range" x="0" y="164" width="40" height="18" />
+            <instance id="9:1901" name="VOID / Field" x="0" y="194" width="428" height="40" />
+          </frame>
+          <frame id="9:1903" name="Output settings" x="456" y="0" width="428" height="302">
+            <text id="9:1904" name="File name" x="0" y="0" width="61" height="18" />
+            <instance id="9:1905" name="VOID / Field" x="0" y="30" width="428" height="40" />
+            <text id="9:1907" name="Destination" x="0" y="82" width="73" height="18" />
+            <instance id="9:1908" name="VOID / Field" x="0" y="112" width="428" height="40" />
+            <text id="9:1910" name="Tail handling" x="0" y="164" width="80" height="18" />
+            <instance id="9:1911" name="VOID / Field" x="0" y="194" width="428" height="40" />
+          </frame>
+        </frame>
+        <frame id="9:1913" name="Export options" x="28" y="512" width="884" height="102">
+          <text id="9:1914" name="✓  Include effect tails     □  Normalize loudness     □  Dither" x="16" y="16" width="366" height="18" />
+          <text id="9:1915" name="Normalization stays off unless you choose a delivery target. Do not double-dither." x="16" y="46" width="852" height="17" />
+        </frame>
+        <frame id="9:1916" name="Flexible space" x="28" y="634" width="1" height="46" />
+        <frame id="9:1917" name="Export actions" x="28" y="700" width="884" height="48">
+          <instance id="9:1918" name="go/S01" x="0" y="6" width="132" height="36" />
+          <frame id="9:1920" name="Flexible space" x="144" y="23.5" width="548" height="1" />
+          <instance id="9:1921" name="go/S12" x="704" y="6" width="180" height="36" />
+        </frame>
+      </frame>
+      <frame id="9:1923" name="Export preflight" x="1020" y="40" width="540" height="776">
+        <text id="9:1924" name="Before the bounce." x="24" y="24" width="261" height="36" />
+        <text id="9:1925" name="This check must use real engine and asset data in the app." x="24" y="84" width="492" height="20" />
+        <frame id="9:1926" name="All assets available" x="24" y="128" width="492" height="98">
+          <text id="9:1927" name="✓  All assets available" x="20" y="20" width="138" height="18" />
+          <text id="9:1928" name="6 tracks · source assets located" x="20" y="46" width="452" height="17" />
+        </frame>
+        <frame id="9:1929" name="No missing plugins" x="24" y="250" width="492" height="98">
+          <text id="9:1930" name="✓  No missing plugins" x="20" y="20" width="137" height="18" />
+          <text id="9:1931" name="All active devices can render" x="20" y="46" width="452" height="17" />
+        </frame>
+        <frame id="9:1932" name="Output is not silent" x="24" y="372" width="492" height="98">
+          <text id="9:1933" name="✓  Output is not silent" x="20" y="20" width="138" height="18" />
+          <text id="9:1934" name="Stereo out is connected" x="20" y="46" width="452" height="17" />
+        </frame>
+        <frame id="9:1935" name="Peak check complete" x="24" y="494" width="492" height="98">
+          <text id="9:1936" name="✓  Peak check complete" x="20" y="20" width="153" height="18" />
+          <text id="9:1937" name="No clipping detected in this example" x="20" y="46" width="452" height="17" />
+        </frame>
+        <frame id="9:1938" name="Flexible space" x="24" y="616" width="1" height="78" />
+        <text id="9:1939" name="Render uses the selected revision. Later edits do not silently alter an in-progress export." x="24" y="718" width="492" height="34" />
+      </frame>
+    </frame>
+  </frame>
+  <frame id="4:1100" name="HealthBar" x="0" y="972" width="1600" height="28">
+    <text id="4:1101" name="go/S15" x="4" y="6" width="95" height="16" />
+    <text id="4:1102" name="48 kHz · 128 samples" x="115" y="5" width="144" height="18" />
+    <text id="4:1103" name="CPU 18%" x="275" y="5" width="51" height="18" />
+    <frame id="4:1104" name="Flexible space" x="342" y="13.5" width="958" height="1" />
+    <text id="4:1105" name="Saved locally" x="1316" y="6" width="69" height="16" />
+    <text id="4:1106" name="go/S17" x="1401" y="6" width="98" height="16" />
+    <text id="4:1107" name="Design preview" x="1515" y="6" width="81" height="16" />
+  </frame>
+</frame>
+IMPORTANT: After you call this tool, you MUST call get_design_context if trying to implement the design, since this tool only returns metadata. If you do not call get_design_context, the agent will not be able to implement the design.
