@@ -3,8 +3,8 @@
   "generated_by": "docs/verification/F5/trace_check.py (Lane Y / W29)",
   "repo": "Beyon-Digital/VOID",
   "audit_branch": "devin/void-implementation",
-  "audit_head": "094f49ca802f65dc9314eefcfa3d8f41d7bb3524",
-  "integration_branch_head": "094f49ca802f65dc9314eefcfa3d8f41d7bb3524",
+  "audit_head": "e6d4a087c1cd136ce198ccc3193eff09972a9a81",
+  "integration_branch_head": "e6d4a087c1cd136ce198ccc3193eff09972a9a81",
   "policy": "blocked/not_run/partial_* are not-done; ledger statuses are reported, never upgraded.",
   "test_status_counts": {
     "pass_linux": 65,
@@ -45,9 +45,7 @@
   "platform_status_counts": {
     "not_tested": 3
   },
-  "evidence_anomalies": {
-    "T52": "Status pass_linux but evidence field is empty \u2014 the only pass row without evidence. Reported per lane rules; not corrected."
-  },
+  "evidence_anomalies": {},
   "non_pass_rows": {
     "T04": {
       "status": "not_run",
@@ -3074,11 +3072,7 @@
       ]
     }
   },
-  "notes": [
-    "map declares tasks_with_evidence anyway: ['W29']"
-  ],
-  "result": "fail",
-  "failures": [
-    "evidence_anomalies declared ['T52'] != found []"
-  ]
+  "notes": [],
+  "result": "pass",
+  "failures": []
 }
