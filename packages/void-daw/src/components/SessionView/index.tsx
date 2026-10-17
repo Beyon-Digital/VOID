@@ -16,6 +16,21 @@ interface SceneColumnProps {
   onClipTrigger?: (clipId: string) => void;
 }
 
+interface ClipButtonProps {
+  clip: SessionClip;
+  onClipTrigger?: (clipId: string) => void;
+}
+
+const ClipButton: React.FC<ClipButtonProps> = React.memo(({ clip, onClipTrigger }) => (
+  <button
+    onClick={() => onClipTrigger?.(clip.id)}
+    style={{ padding: '24px', backgroundColor: clip.color || 'var(--void-accent)', color: 'white', border: 'none', borderRadius: '4px' }}
+  >
+    {clip.name}
+  </button>
+));
+ClipButton.displayName = 'ClipButton';
+
 const SceneColumn: React.FC<SceneColumnProps> = React.memo(({ scene, sceneClips, onSceneTrigger, onClipTrigger }) => (
   <div key={scene.id} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
     <button
@@ -25,13 +40,11 @@ const SceneColumn: React.FC<SceneColumnProps> = React.memo(({ scene, sceneClips,
       {scene.name}
     </button>
     {sceneClips.map(clip => (
-       <button
+       <ClipButton
         key={clip.id}
-        onClick={() => onClipTrigger?.(clip.id)}
-        style={{ padding: '24px', backgroundColor: clip.color || 'var(--void-accent)', color: 'white', border: 'none', borderRadius: '4px' }}
-       >
-         {clip.name}
-       </button>
+        clip={clip}
+        onClipTrigger={onClipTrigger}
+       />
     ))}
   </div>
 ));
