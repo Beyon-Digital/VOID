@@ -31,7 +31,7 @@ jobs:
           - os: ubuntu-latest
           # latest.json is generated once — macOS leg only; every leg uploading
           # it would race on the same release asset.
-          - os: macos-14
+          - os: macos-15
             emitUpdaterJson: true
           - os: windows-latest
     steps:
@@ -49,10 +49,10 @@ jobs:
           cache: pnpm
 
       # tracktion_engine needs Apple clang >=16 (C++20 parenthesized
-      # aggregate init); the runner's default Xcode 15.4 cannot build it.
+      # aggregate init); explicitly select the newest installed toolchain.
       # (verbatim from ci.yml native job)
       - name: Select newest installed Xcode
-        if: matrix.os == 'macos-14'
+        if: matrix.os == 'macos-15'
         run: |
           ls -d /Applications/Xcode*.app
           sudo xcode-select -s "$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)/Contents/Developer"

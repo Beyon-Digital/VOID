@@ -69,7 +69,7 @@ jobs:
 
   native:
     name: native engine (macos)
-    runs-on: macos-14
+    runs-on: macos-15
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
@@ -80,7 +80,7 @@ jobs:
           path: native/build
           key: native-${{ hashFiles('native/**/CMakeLists.txt', 'third_party/**/HEAD') }}
       # tracktion_engine needs Apple clang >=16 (C++20 parenthesized
-      # aggregate init); the runner's default Xcode 15.4 cannot build it.
+      # aggregate init); explicitly select the newest installed toolchain.
       - name: Select newest installed Xcode
         run: |
           ls -d /Applications/Xcode*.app
@@ -152,7 +152,7 @@ jobs:
 
   rust-macos:
     name: rust (macos)
-    runs-on: macos-14
+    runs-on: macos-15
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
@@ -176,7 +176,7 @@ jobs:
 
   ts-macos:
     name: typescript (macos)
-    runs-on: macos-14
+    runs-on: macos-15
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
